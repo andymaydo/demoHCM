@@ -1,0 +1,1177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Administration_Settings_Title" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
+  <data name="Administration_Users_List_Table_Title" xml:space="preserve">
+    <value>Overview about all Users </value>
+  </data>
+  <data name="Admin_Users2RoleButtonAssignText" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Admin_Users2RoleButtonUnAssignText" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Admin_Users2RoleStatusAssignText" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="Admin_Users2RoleStatusUnAssignText" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Admin_UsersChangePassowrdTitle" xml:space="preserve">
+    <value>Change Password </value>
+  </data>
+  <data name="Admin_UsersIsApprovedLabel" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="Admin_UsersMsgPassChanged" xml:space="preserve">
+    <value>The new password has been saved successfully.</value>
+  </data>
+  <data name="Admin_UsersMsgPassConfirmFailure" xml:space="preserve">
+    <value>An error has occurred while entering the password. Please try again!</value>
+  </data>
+  <data name="Admin_UsersMsgUserSaved" xml:space="preserve">
+    <value>The user information has been saved successfully.</value>
+  </data>
+  <data name="Admin_UsersNewPassowrdLabel" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Admin_UsersPassowrdConfirmLabel" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Admin_Users_CreateUserTitle" xml:space="preserve">
+    <value>Create a new User</value>
+  </data>
+  <data name="Admin_Users_Create_Error" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="Admin_Users_Create_Invalid_Password" xml:space="preserve">
+    <value>An error has occurred while entering the password. Please try again!</value>
+  </data>
+  <data name="Admin_Users_Create_Invalid_Username" xml:space="preserve">
+    <value>The user name is invalid.</value>
+  </data>
+  <data name="Admin_Users_Create_Success" xml:space="preserve">
+    <value>The new user was created successfully.</value>
+  </data>
+  <data name="Admin_Users_EditUserTitle" xml:space="preserve">
+    <value>User Information</value>
+  </data>
+  <data name="Admin_Users_EmailLabel" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Admin_Users_PasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Admin_Users_RealNameLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Admin_Users_UserNameExists" xml:space="preserve">
+    <value>This user name already exists!</value>
+  </data>
+  <data name="Admin_Users_UserNameLabel" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="ajaxSession_IgnoreButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ajaxSession_LoginButton" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="ajaxSession_Message" xml:space="preserve">
+    <value>Your browser session has been expired. Please login again.</value>
+  </data>
+  <data name="ajaxSession_Title" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="Button_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Button_Back" xml:space="preserve">
+    <value>&lt;&lt; Back</value>
+  </data>
+  <data name="Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Button_Cancel_ToolTip" xml:space="preserve">
+    <value>(cancelling...)</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Button_Edit_Answered" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Button_Edit_ToolTip" xml:space="preserve">
+    <value>(data is loaded...)</value>
+  </data>
+  <data name="Button_Exec" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="Button_Execute" xml:space="preserve">
+    <value>ZZ apply action</value>
+  </data>
+  <data name="Button_Exec_ToolTip" xml:space="preserve">
+    <value>(executing...)</value>
+  </data>
+  <data name="Button_Export" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="Button_Filter" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Button_Finish" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Button_GO" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Button_Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Button_Logout" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="Button_MoreInfo" xml:space="preserve">
+    <value>More Info</value>
+  </data>
+  <data name="Button_Next" xml:space="preserve">
+    <value>Next &gt;&gt;</value>
+  </data>
+  <data name="Button_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Button_Page_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Button_Page_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Button_Page_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Button_Prev" xml:space="preserve">
+    <value>&lt;&lt; Back</value>
+  </data>
+  <data name="Button_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Button_Refresh" xml:space="preserve">
+    <value>Reload the page</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Button_Save_ToolTip" xml:space="preserve">
+    <value>(data is saved...)</value>
+  </data>
+  <data name="Button_Update" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ErrCode_SendMailException" xml:space="preserve">
+    <value>ZZ QuickCheck protocol</value>
+  </data>
+  <data name="ErrCode_SendPasswordException" xml:space="preserve">
+    <value>ZZ Passwort senden</value>
+  </data>
+  <data name="ErrCode_UnknownError" xml:space="preserve">
+    <value>ZZ common</value>
+  </data>
+  <data name="JavaScript_DeleteConfirm" xml:space="preserve">
+    <value>ZZ Delete......\r\nAre you sure?</value>
+  </data>
+  <data name="LinkButton_Execute" xml:space="preserve">
+    <value>ZZ apply action</value>
+  </data>
+  <data name="LoginLabel_AccountName" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="LoginLabel_UserName" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="Login_ButtonText" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Login_LabelPassword" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="Login_LabelUserName" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="Login_RememberMeText" xml:space="preserve">
+    <value>Remember my access data</value>
+  </data>
+  <data name="Login_TitleText" xml:space="preserve">
+    <value>H.C.M. Log in</value>
+  </data>
+  <data name="MainMenu_Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="MainMenu_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MainMenu_MyCases" xml:space="preserve">
+    <value>My Cases</value>
+  </data>
+  <data name="MainMenu_Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="MsgPanel_Error_Title" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="MsgPanel_Success_Title" xml:space="preserve">
+    <value>Saved!</value>
+  </data>
+  <data name="MsgPanel_Validator_Title" xml:space="preserve">
+    <value>Validation Error!</value>
+  </data>
+  <data name="Proxy_1" xml:space="preserve">
+    <value>Proxy Configuration</value>
+  </data>
+  <data name="Proxy_10" xml:space="preserve">
+    <value>Invalid Proxy Server</value>
+  </data>
+  <data name="Proxy_11" xml:space="preserve">
+    <value>Invalid Proxy Port</value>
+  </data>
+  <data name="Proxy_12" xml:space="preserve">
+    <value>Invalid Proxy User</value>
+  </data>
+  <data name="Proxy_13" xml:space="preserve">
+    <value>Invalid Proxy Password</value>
+  </data>
+  <data name="Proxy_14" xml:space="preserve">
+    <value>Error retrieving Proxy Settings</value>
+  </data>
+  <data name="Proxy_2" xml:space="preserve">
+    <value>ZZ Use Proxy Server</value>
+  </data>
+  <data name="Proxy_3" xml:space="preserve">
+    <value>Proxy Server</value>
+  </data>
+  <data name="Proxy_4" xml:space="preserve">
+    <value>Proxy Port</value>
+  </data>
+  <data name="Proxy_5" xml:space="preserve">
+    <value>Proxy Domain</value>
+  </data>
+  <data name="Proxy_6" xml:space="preserve">
+    <value>Server requires authentication</value>
+  </data>
+  <data name="Proxy_7" xml:space="preserve">
+    <value>Proxy User</value>
+  </data>
+  <data name="Proxy_8" xml:space="preserve">
+    <value>Proxy Password</value>
+  </data>
+  <data name="Proxy_9" xml:space="preserve">
+    <value>Configuring of the Proxy Server was successful!</value>
+  </data>
+  <data name="SMTP_1" xml:space="preserve">
+    <value>SMTP Configuration</value>
+  </data>
+  <data name="SMTP_10" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="SMTP_11" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="SMTP_12" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SMTP_2" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="SMTP_3" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="SMTP_4" xml:space="preserve">
+    <value>Server requires authentication</value>
+  </data>
+  <data name="SMTP_5" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="SMTP_6" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="SMTP_7" xml:space="preserve">
+    <value>* To apply changes, please restart the following services: Perpetuum, FULL and DELTA Batch</value>
+  </data>
+  <data name="SMTP_8" xml:space="preserve">
+    <value>Configuring of the SMTP Server was successful!</value>
+  </data>
+  <data name="SMTP_9" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Status_Activate" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="Status_DeActivate" xml:space="preserve">
+    <value>Deactivated</value>
+  </data>
+  <data name="Status_Message_Delete_Confirm" xml:space="preserve">
+    <value>Should the record be deleted definitely?</value>
+  </data>
+  <data name="Status_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Status_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="User_Create_Title" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="User_List_Title" xml:space="preserve">
+    <value>User Administration</value>
+  </data>
+  <data name="Value_Delete_Text" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="Value_Edit_Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Value_False_Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Value_True_Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Admin_EditUsers_GeneralData" xml:space="preserve">
+    <value>Change User Information</value>
+  </data>
+  <data name="Admin_EditUsers_RoleList" xml:space="preserve">
+    <value>Change Authorizations</value>
+  </data>
+  <data name="Admin_UsersRoleNameLabel" xml:space="preserve">
+    <value>Privileges</value>
+  </data>
+  <data name="Admin_Users_AbteilungLabel" xml:space="preserve">
+    <value>Function in Company</value>
+  </data>
+  <data name="Admin_Users_RealNameLabel1" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Filter_Last7days" xml:space="preserve">
+    <value>Last 7 days</value>
+  </data>
+  <data name="Filter_PrevMonth" xml:space="preserve">
+    <value>Last month</value>
+  </data>
+  <data name="Filter_PrevWeek" xml:space="preserve">
+    <value>Last week (Mon-Sun)</value>
+  </data>
+  <data name="Filter_ThisMonth" xml:space="preserve">
+    <value>Current month</value>
+  </data>
+  <data name="Filter_ThisWeek" xml:space="preserve">
+    <value>Current week</value>
+  </data>
+  <data name="Filter_Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Filter_Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Menu_Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Menu_Users_Create" xml:space="preserve">
+    <value>Add new user</value>
+  </data>
+  <data name="Menu_Users_List" xml:space="preserve">
+    <value>User Administration</value>
+  </data>
+  <data name="Reports_Title" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Cases_AddMessage_Title" xml:space="preserve">
+    <value>Create a new Note</value>
+  </data>
+  <data name="Cases_AddUser_Title" xml:space="preserve">
+    <value>Overview about all Case Participants</value>
+  </data>
+  <data name="Cases_AttachFile_Title" xml:space="preserve">
+    <value>Attach File</value>
+  </data>
+  <data name="Cases_ChangeStatus_Title" xml:space="preserve">
+    <value>Change Case Status</value>
+  </data>
+  <data name="Cases_Detail_Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Cases_Detail_Action_AddMessage" xml:space="preserve">
+    <value>Create a Note</value>
+  </data>
+  <data name="Cases_Detail_Action_AddUser" xml:space="preserve">
+    <value>Consult Participant</value>
+  </data>
+  <data name="Cases_Detail_Action_AttachFile" xml:space="preserve">
+    <value>Attach File</value>
+  </data>
+  <data name="Cases_Detail_Action_ChangeStatus" xml:space="preserve">
+    <value>Change Status</value>
+  </data>
+  <data name="Cases_Detail_Action_NotifyAll" xml:space="preserve">
+    <value>Notify all</value>
+  </data>
+  <data name="Cases_Detail_Action_NotifyUser" xml:space="preserve">
+    <value>ZZ Notify user</value>
+  </data>
+  <data name="Cases_Detail_Label_AttachInformation" xml:space="preserve">
+    <value>Attachment / Hit Details</value>
+  </data>
+  <data name="Cases_Detail_Label_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Cases_Detail_Label_CreateBy" xml:space="preserve">
+    <value>Created by</value>
+  </data>
+  <data name="Cases_Detail_Label_CreateOn" xml:space="preserve">
+    <value>Created on</value>
+  </data>
+  <data name="Cases_Detail_Label_Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Cases_Detail_Label_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Cases_Detail_Label_ID" xml:space="preserve">
+    <value>Case-ID</value>
+  </data>
+  <data name="Cases_Detail_Label_LastModifyBy" xml:space="preserve">
+    <value>Modified by</value>
+  </data>
+  <data name="Cases_Detail_Label_LastModifyOn" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="Cases_Detail_Label_MatchXml" xml:space="preserve">
+    <value>DENIED PARTIES Hit-Report</value>
+  </data>
+  <data name="Cases_Detail_Label_Platform" xml:space="preserve">
+    <value>Gate</value>
+  </data>
+  <data name="Cases_Detail_Label_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Cases_Detail_Label_Source" xml:space="preserve">
+    <value>Data Source</value>
+  </data>
+  <data name="Cases_Detail_Label_Status" xml:space="preserve">
+    <value>Current Status</value>
+  </data>
+  <data name="Cases_Detail_Label_Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Cases_Detail_Label_UploadedFiles" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Cases_Detail_Label_Users" xml:space="preserve">
+    <value>Consulted Participants</value>
+  </data>
+  <data name="Cases_Detail_Title" xml:space="preserve">
+    <value>Case Detail</value>
+  </data>
+  <data name="Cases_ListCases" xml:space="preserve">
+    <value>Case List</value>
+  </data>
+  <data name="Cases_List_CaseID" xml:space="preserve">
+    <value>Case-ID</value>
+  </data>
+  <data name="Cases_List_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Cases_List_CreateOn" xml:space="preserve">
+    <value>Created on</value>
+  </data>
+  <data name="Cases_List_LastModify" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="Cases_List_Platform" xml:space="preserve">
+    <value>Gate</value>
+  </data>
+  <data name="Cases_List_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Cases_List_Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Cases_NotifyAll_Title" xml:space="preserve">
+    <value>Notify all</value>
+  </data>
+  <data name="Cases_NotifyUser_Title" xml:space="preserve">
+    <value>ZZ notify user</value>
+  </data>
+  <data name="Cases_Title" xml:space="preserve">
+    <value>My Cases</value>
+  </data>
+  <data name="Label_Filter" xml:space="preserve">
+    <value>Filter Settings</value>
+  </data>
+  <data name="Label_Filter_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Menu_EventLog" xml:space="preserve">
+    <value>Event Log</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Cases_Detail_History_NotifyContact" xml:space="preserve">
+    <value>Distribution List</value>
+  </data>
+  <data name="Value_View_Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="event_cms_addnote" xml:space="preserve">
+    <value>Created Note</value>
+  </data>
+  <data name="event_cms_notifycontact" xml:space="preserve">
+    <value>ZZ Benachrichtigung</value>
+  </data>
+  <data name="event_cms_participantschanged" xml:space="preserve">
+    <value>Updated Participants</value>
+  </data>
+  <data name="event_dpf_checking" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="event_dpf_escalation" xml:space="preserve">
+    <value>Escalated</value>
+  </data>
+  <data name="event_dpf_nomatch" xml:space="preserve">
+    <value>Classified as "Miss Hit"</value>
+  </data>
+  <data name="event_dpf_onmatchfound" xml:space="preserve">
+    <value>Hit Located</value>
+  </data>
+  <data name="event_dpf_yesmatch" xml:space="preserve">
+    <value>Classified as "Real Hit"</value>
+  </data>
+  <data name="event_ecs_question_answered" xml:space="preserve">
+    <value>Answer Question</value>
+  </data>
+  <data name="event_ecs_question_canceled_issuer" xml:space="preserve">
+    <value>Cancel Question</value>
+  </data>
+  <data name="event_ecs_question_canceled_user" xml:space="preserve">
+    <value>Cancel Question</value>
+  </data>
+  <data name="event_ecs_question_send" xml:space="preserve">
+    <value>Ask Question</value>
+  </data>
+  <data name="event_ecs_question_viewed" xml:space="preserve">
+    <value>Read Question</value>
+  </data>
+  <data name="Cases_AddMessage_Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Cases_AddMessage_NotifyUsers" xml:space="preserve">
+    <value>Distribution List</value>
+  </data>
+  <data name="Cases_AddMessage_Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Value_All_Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Button_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Cases_ChangeUsers_AddUser" xml:space="preserve">
+    <value>Add new participant</value>
+  </data>
+  <data name="Cases_ChangeUsers_ListUsers" xml:space="preserve">
+    <value>Consulted Participants</value>
+  </data>
+  <data name="Cases_ChangeUsers_List_Devision" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Cases_ChangeUsers_List_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Cases_ChangeUsers_List_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Cases_ChangeUsers_Title" xml:space="preserve">
+    <value>Overview about all Participants</value>
+  </data>
+  <data name="Button_Del" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Button_RemoveFromCase" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Cases_ChangeUsers_FullUserList" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Button_Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Cases_ChangeStatus_Note" xml:space="preserve">
+    <value>Explanation</value>
+  </data>
+  <data name="Cases_ChangeStatus_NotifyUsers" xml:space="preserve">
+    <value>Distribution List</value>
+  </data>
+  <data name="Cases_ChangeStatus_SelectStatus" xml:space="preserve">
+    <value>Select Status</value>
+  </data>
+  <data name="Cases_ChangeStatus_Subject" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="event_dpf_cancel" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="event_dpf_hold" xml:space="preserve">
+    <value>On hold</value>
+  </data>
+  <data name="event_dpf_reopen" xml:space="preserve">
+    <value>Process Restarted</value>
+  </data>
+  <data name="Cases_AddMessage_Validation_Note" xml:space="preserve">
+    <value>Please fill in a note!</value>
+  </data>
+  <data name="Cases_AddMessage_Validation_Title" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="Menu_Profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="Profile_List" xml:space="preserve">
+    <value>List of current Profiles</value>
+  </data>
+  <data name="Profile_Platform" xml:space="preserve">
+    <value>Gate</value>
+  </data>
+  <data name="Profile_ProfileID" xml:space="preserve">
+    <value>Profile-ID</value>
+  </data>
+  <data name="Profile_ProfileName" xml:space="preserve">
+    <value>Profile Name</value>
+  </data>
+  <data name="Profile_ProfileStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Profile_CreateNew" xml:space="preserve">
+    <value>Add new profile</value>
+  </data>
+  <data name="Cases_ChangeStatus_Validation_Note" xml:space="preserve">
+    <value>Please fill in an explanation!</value>
+  </data>
+  <data name="Cases_ChangeStatus_Validation_Title" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="Cases_ChangeUsers_List_Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Profile_Step2_cbNotifyAll" xml:space="preserve">
+    <value>Automatic notification to all</value>
+  </data>
+  <data name="Profile_User_Role_1" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Profile_User_Role_2" xml:space="preserve">
+    <value>Decision Maker</value>
+  </data>
+  <data name="Profile_Title" xml:space="preserve">
+    <value>Profile Settings</value>
+  </data>
+  <data name="Profile_Steps" xml:space="preserve">
+    <value>Steps</value>
+  </data>
+  <data name="Profile_Step_Allgemeine" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Profile_Step_Escalation" xml:space="preserve">
+    <value>Escalation Rules</value>
+  </data>
+  <data name="Profile_Step_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Profile_Step_Teilnehmen" xml:space="preserve">
+    <value>Responsibles</value>
+  </data>
+  <data name="Profile_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Profile_Step_Escalation_RuleList" xml:space="preserve">
+    <value>Overview about all Escalation Rules</value>
+  </data>
+  <data name="Profile_Step_Escalation_RuleList_Days" xml:space="preserve">
+    <value>After hours</value>
+  </data>
+  <data name="Profile_Step_Escalation_RuleList_Name" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Profile_Step_Escalation_AddRule" xml:space="preserve">
+    <value>Setup new Rule</value>
+  </data>
+  <data name="Profile_Status_Active" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="Profile_Status_InActive" xml:space="preserve">
+    <value>Deactivated</value>
+  </data>
+  <data name="Cases_ChangeUsers_List_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Label_Filter_Case_CaseID" xml:space="preserve">
+    <value>Case-ID</value>
+  </data>
+  <data name="Label_Filter_Case_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Label_Filter_Case_Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Label_Filter_Case_Modify" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="Label_Filter_Case_OnlyActive" xml:space="preserve">
+    <value>Only active Cases</value>
+  </data>
+  <data name="Label_Filter_Case_Platform" xml:space="preserve">
+    <value>Gate</value>
+  </data>
+  <data name="Label_Filter_Case_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Cases_Detail_Label_ProfileName" xml:space="preserve">
+    <value>Profile Name</value>
+  </data>
+  <data name="Profile_List_Title" xml:space="preserve">
+    <value>Change Profiles</value>
+  </data>
+  <data name="Profile_Step_Escalation_List" xml:space="preserve">
+    <value>Responsible for Escalation</value>
+  </data>
+  <data name="Cases_Detail_Label_EscalationUsers1" xml:space="preserve">
+    <value>Responsible for Escalation</value>
+  </data>
+  <data name="Cases_Detail_Label_EscalationUsers" xml:space="preserve">
+    <value>Responsible for Escalation</value>
+  </data>
+  <data name="Cases_Detail_Label_ProfileUsers" xml:space="preserve">
+    <value>Responsibles</value>
+  </data>
+  <data name="Cases_Detail_Label_ProfileUsers1" xml:space="preserve">
+    <value>Responsibles</value>
+  </data>
+  <data name="Label_Filter_Report_OnlyOwn" xml:space="preserve">
+    <value>Only "My Cases"</value>
+  </data>
+  <data name="Label_Report_Result_Group_Title" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="Label_Report_Result_Title" xml:space="preserve">
+    <value>Desktop</value>
+  </data>
+  <data name="Label_Report_Status_Group_Title" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Label_Filter_Case_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Profile_Validation_ProfileName" xml:space="preserve">
+    <value>Please enter a profile name!</value>
+  </data>
+  <data name="Profile_Validation_Role" xml:space="preserve">
+    <value>Please enter a user role!</value>
+  </data>
+  <data name="Profile_Validation_StatusDays" xml:space="preserve">
+    <value>Please enter a time slot!</value>
+  </data>
+  <data name="Profile_Validation_User" xml:space="preserve">
+    <value>Please enter a user!</value>
+  </data>
+  <data name="Case_Result_-1" xml:space="preserve">
+    <value>ZZ result -1</value>
+  </data>
+  <data name="Case_Result_101" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="Case_Result_111" xml:space="preserve">
+    <value>No Hit</value>
+  </data>
+  <data name="Case_Result_112" xml:space="preserve">
+    <value>Real Hit</value>
+  </data>
+  <data name="Case_Result_113" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Case_Result_201" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="Case_Result_211" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Case_Result_212" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="Case_Status_-1" xml:space="preserve">
+    <value>ZZ status -1</value>
+  </data>
+  <data name="Case_Status_0" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Case_Status_10" xml:space="preserve">
+    <value>On hold</value>
+  </data>
+  <data name="Case_Status_100" xml:space="preserve">
+    <value>Decided</value>
+  </data>
+  <data name="Case_Status_1000" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Case_Status_5" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="Case_Status_6" xml:space="preserve">
+    <value>Escalated</value>
+  </data>
+  <data name="Profile_Status_Delete" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="Profile_Delete_List" xml:space="preserve">
+    <value>List of deleted Profiles</value>
+  </data>
+  <data name="Value_Copy_Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Profile_DeleteProfile" xml:space="preserve">
+    <value>Show deleted Profiles</value>
+  </data>
+  <data name="Profile_Validation_Delete_Profil" xml:space="preserve">
+    <value>Please enter your reason for deleting!</value>
+  </data>
+  <data name="Profile_Step_AllView" xml:space="preserve">
+    <value>Profile Overview</value>
+  </data>
+  <data name="Cases_SetStatus_InProgress" xml:space="preserve">
+    <value>Case Opened</value>
+  </data>
+  <data name="Profile_Step2_TeilnehmerAnlegen" xml:space="preserve">
+    <value>Add Responsible</value>
+  </data>
+  <data name="Profile_Step2_TeilnehmerListe" xml:space="preserve">
+    <value>Case Responsibles</value>
+  </data>
+  <data name="Reports_List" xml:space="preserve">
+    <value>Selected Reports</value>
+  </data>
+  <data name="Profile_Step3_TeilnehmerAnlegen" xml:space="preserve">
+    <value>Add Responsible for Escalation</value>
+  </data>
+  <data name="Profile_Step3_TeilnehmerListe" xml:space="preserve">
+    <value>Responsible for Escalation</value>
+  </data>
+  <data name="Admin_UsersMsg_ValidatorSettings" xml:space="preserve">
+    <value>Please fill out all fields!</value>
+  </data>
+  <data name="Cases_Detail_Label_Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="Cases_Detail_Label_Duration_Day" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="Cases_Detail_Label_Duration_Hour" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="Cases_Detail_Label_Duration_Min" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="Admin_Users_DeleteConfirm" xml:space="preserve">
+    <value>Do you really want to delete the user?</value>
+  </data>
+  <data name="Admin_Users_Delete_Success" xml:space="preserve">
+    <value>The user was deleted successfully.</value>
+  </data>
+  <data name="Admin_Users_Delete_Error" xml:space="preserve">
+    <value>Failed to delete! Please try again.</value>
+  </data>
+  <data name="Login_LabelLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="UserRole_1" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="UserRole_2" xml:space="preserve">
+    <value>Profile Administration</value>
+  </data>
+  <data name="UserRole_30" xml:space="preserve">
+    <value>Access to all Reports</value>
+  </data>
+  <data name="UserRole_4" xml:space="preserve">
+    <value>User Administration</value>
+  </data>
+  <data name="UserRole_5" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
+  <data name="UserRole_6" xml:space="preserve">
+    <value>Event Viewer</value>
+  </data>
+  <data name="Profile_Email_Language" xml:space="preserve">
+    <value>Language of the Notifications</value>
+  </data>
+  <data name="Cases_Detail_Action_AddAlias" xml:space="preserve">
+    <value>Create an Alias</value>
+  </data>
+  <data name="Cases_AddAlias_AliasTitle" xml:space="preserve">
+    <value>Our data record ...</value>
+  </data>
+  <data name="Cases_AddAlias_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Cases_AddAlias_Note" xml:space="preserve">
+    <value>Additional info</value>
+  </data>
+  <data name="Cases_AddAlias_RealName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Cases_AddAlias_RealNameTitle" xml:space="preserve">
+    <value>Generates false positives and should be included into the alias list</value>
+  </data>
+  <data name="Cases_AddAlias_RealStreet" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="Cases_AddAlias_SelectLiz" xml:space="preserve">
+    <value>Lic-ID</value>
+  </data>
+  <data name="Cases_AddAlias_Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="Cases_AddAlias_Title" xml:space="preserve">
+    <value>Create an Alias</value>
+  </data>
+  <data name="Cases_AddAlias_Validation_Note" xml:space="preserve">
+    <value>Please fill in the "Lic-ID" and "additional info"!</value>
+  </data>
+  <data name="Cases_AddAlias_Validation_Title" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="Cases_AddAlias_AllLiz" xml:space="preserve">
+    <value>Cross-profile</value>
+  </data>
+  <data name="Cases_AddAlias_OwnLiz" xml:space="preserve">
+    <value>Current profile only</value>
+  </data>
+  <data name="event_dpf_addalias" xml:space="preserve">
+    <value>Alias created</value>
+  </data>
+  <data name="AliasApiError_100000" xml:space="preserve">
+    <value>Undefined error</value>
+  </data>
+  <data name="AliasApiError_100501" xml:space="preserve">
+    <value>Missing username</value>
+  </data>
+  <data name="AliasApiError_100502" xml:space="preserve">
+    <value>Missing path</value>
+  </data>
+  <data name="AliasApiError_100503" xml:space="preserve">
+    <value>AUTHENTICATION ERROR</value>
+  </data>
+  <data name="AliasApiError_100504" xml:space="preserve">
+    <value>Invalid LizID</value>
+  </data>
+  <data name="AliasApiError_100505" xml:space="preserve">
+    <value>Alias/Name is required</value>
+  </data>
+  <data name="AliasApiError_100506" xml:space="preserve">
+    <value>Real/Name is required</value>
+  </data>
+  <data name="AliasApiError_100507" xml:space="preserve">
+    <value>Invalid ProfileID</value>
+  </data>
+  <data name="AliasApiError_100508" xml:space="preserve">
+    <value>Invalid SAPIP, SAPGTW, MANDANT</value>
+  </data>
+  <data name="AliasApiError_100510" xml:space="preserve">
+    <value>This record is already included in your alias list.
+
+Please check the status of the data set on your 
+VALIDATION GATEWAY SERVER.
+
+If it is currently deactivated, please reactivate 
+it - after verification of the hit - in the menu 
+"Alias Manager".</value>
+  </data>
+  <data name="AliasApiError_100511" xml:space="preserve">
+    <value>Alias not created</value>
+  </data>
+  <data name="AliasApiSuccess" xml:space="preserve">
+    <value>Alias created successfuly</value>
+  </data>
+  <data name="AliasApiStatusWindowTitle" xml:space="preserve">
+    <value>Status message</value>
+  </data>
+  <data name="AliasApiError_110000" xml:space="preserve">
+    <value>Error calling the alias web service interface</value>
+  </data>
+  <data name="Cases_AddMessage_AddReport" xml:space="preserve">
+    <value>Add hit-report</value>
+  </data>
+  <data name="Cases_AddMessage_Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="Cases_AddMessage_ExEmails" xml:space="preserve">
+    <value>External emails</value>
+  </data>
+  <data name="Label_Report_Alias_Group_Count" xml:space="preserve">
+    <value>Cases with Alias</value>
+  </data>
+  <data name="Label_Report_Alias_Group_Title" xml:space="preserve">
+    <value>Alias History</value>
+  </data>
+  <data name="Label_Filter_CustomerName" xml:space="preserve">
+    <value>Checked Name</value>
+  </data>
+  <data name="Label_Filter_ProfileID" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Cases_AddMessage_Validation_Email" xml:space="preserve">
+    <value>Invalid Email</value>
+  </data>
+  <data name="Cases_List_AliasName" xml:space="preserve">
+    <value>AliasName</value>
+  </data>
+  <data name="Cases_List_Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="Cases_List_Ergebnis" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Cases_List_GeprufterName" xml:space="preserve">
+    <value>Checked Name</value>
+  </data>
+  <data name="Cases_List_User" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="Button_Filter_Reset" xml:space="preserve">
+    <value>Reset filter</value>
+  </data>
+  <data name="Button_Save_Staus_New" xml:space="preserve">
+    <value>Save without case opening</value>
+  </data>
+  <data name="Cases_AddAlias_Beleg" xml:space="preserve">
+    <value>Current transaction only</value>
+  </data>
+  <data name="Profile_User_Role_3" xml:space="preserve">
+    <value>Alias manager</value>
+  </data>
+</root>

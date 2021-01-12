@@ -1,0 +1,231 @@
+﻿@page "/admin/users"
+
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Popups
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+
+@inject IStringLocalizer<App> Localizer
+@inject IUsersData _usersData;
+@inject IUserRolesData _userRolesData;
+@inject ILocalStorageService storageService
+
+@attribute [Authorize]
+
+<h3 class="title">@Localizer["Menu_Users_List"]</h3>
+
+<h4 class="blue_bg mt-3 subtitle">@Localizer["Administration_Users_List_Table_Title"]</h4>
+
+<SfGrid DataSource="@UsersList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true">
+    <GridPageSettings PageSize="25"></GridPageSettings>
+    <GridEvents CommandClicked="OnCommandClicked" TValue="UsersModel"></GridEvents>
+    <GridColumns>
+        <GridColumn Field=@nameof(UsersModel.LoginName) HeaderText="@Localizer["Admin_Users_UserNameLabel"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.Name) HeaderText="@Localizer["Admin_Users_RealNameLabel"]" Width="220"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.FunctionInFirma) HeaderText="@Localizer["Admin_Users_AbteilungLabel"]" Width="350"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.EMail) HeaderText="@Localizer["Admin_Users_EmailLabel"]" Width="220"></GridColumn>
+        @*<GridColumn Field=@nameof(UsersModel.Enable) HeaderText="@Localizer["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" Width="100" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center"></GridColumn>*@
+        <GridColumn HeaderText="" Width="160">
+            <GridCommandColumns>
+                <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat" })"></GridCommandColumn>
+                <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-delete", CssClass="e-flat" })"></GridCommandColumn>
+            </GridCommandColumns>
+        </GridColumn>
+    </GridColumns>
+</SfGrid>
+
+<SfDialog Header="@EditDialogHeader" @ref="EditDialogID" ShowCloseIcon="true" Width="650px" Height="820px" IsModal="true" @bind-Visible="EditDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Admin_Users_EditUserTitle"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+                <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_EditUsers_GeneralData"]</h4>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" Value="@UserNameValue">
+                            </SfTextBox>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_RealNameLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            <SfTextBox @ref="RealNameID" Placeholder="@Localizer["Admin_Users_RealNameLabel"]" Value="@RealNameValue">
+                            </SfTextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_EmailLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            <SfTextBox @ref="EMailID" Placeholder="@Localizer["Admin_Users_EmailLabel"]" Value="@EMailValue">
+                            </SfTextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_AbteilungLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            <SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_Users_AbteilungLabel"]" Value="@AbteilungValue">
+                            </SfTextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersIsApprovedLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            @*<SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_UsersIsApprovedLabel"]" Value="@AbteilungValue">
+                                </SfTextBox>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-1 row_padding">
+                    <hr style="background-color: #ABC3D7;height:1px;width:100%" />
+                </div>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <div class="col-sm-2 control_padding">
+                            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Save"]" Click="onUpdateUserInfo_Click" Size="ButtonSize.Small" />
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_UsersChangePassowrdTitle"]</h4>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersNewPassowrdLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            <SfTextBox @ref="Password1ID" Placeholder="@Localizer["Admin_UsersNewPassowrdLabel"]" Value="@Password1Value">
+                            </SfTextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersPassowrdConfirmLabel"]</label>
+                        <div class="col-sm-6 control_padding">
+                            <SfTextBox @ref="Password2ID" Placeholder="@Localizer["Admin_UsersPassowrdConfirmLabel"]" Value="@Password2Value">
+                            </SfTextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-1 row_padding">
+                    <hr style="background-color: #ABC3D7;height:1px;width:100%" />
+                </div>
+
+                <div class="row ml-3 row_padding">
+                    <div class="col-sm-12 form-inline control_padding">
+                        <div class="col-sm-2 control_padding">
+                            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Save"]" Click="onUpdatePassword_Click" Size="ButtonSize.Small" />
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_EditUsers_RoleList"]</h4>
+
+                <SfGrid DataSource="@UsersRoleList" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+                    <GridEvents TValue="UserRolesModel"></GridEvents>
+                    <GridColumns>
+                        <GridColumn  Field=@nameof(UserRolesModel.LocalizerRoleName)  TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
+
+                    </GridColumns>
+                </SfGrid>
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    <DialogEvents OnOpen="@EditDialogBeforeOpen"></DialogEvents>
+    @*<DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>*@
+</SfDialog>
+
+@code {
+
+    private List<UsersModel> UsersList { get; set; }
+    private bool EditDialogVisibility { get; set; } = false;
+    SfDialog EditDialogID;
+    private string EditDialogHeader { get; set; }
+
+    SfTextBox UserNameID;
+    public string UserNameValue { get; set; }
+    SfTextBox RealNameID;
+    public string RealNameValue { get; set; }
+    SfTextBox EMailID;
+    public string EMailValue { get; set; }
+    SfTextBox AbteilungID;
+    public string AbteilungValue { get; set; }
+
+    SfTextBox Password1ID;
+    public string Password1Value { get; set; }
+    SfTextBox Password2ID;
+    public string Password2Value { get; set; }
+
+    private List<UserRolesModel> UsersRoleList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        UsersModel _userInfo = await storageService.GetItemAsync<UsersModel>("User");
+        UsersList = await _usersData.UsersList(_userInfo.UserID);
+
+    }
+    async Task onUpdateUserInfo_Click()
+    {
+
+    }
+    async Task onUpdatePassword_Click()
+    {
+
+    }
+    private void BindUsersRoleList()
+    {
+        UsersRoleList = _userRolesData.GetLocalizatedNames();
+        foreach(UserRolesModel r in UsersRoleList)
+        {
+            r.LocalizerRoleName = Localizer["UserRole_" + r.RoleID.ToString()];
+        }
+    }
+    public void OnCommandClicked(CommandClickEventArgs<UsersModel> args)
+    {
+        if (args.CommandColumn.Type == CommandButtonType.Edit)
+        {
+            this.EditDialogVisibility = true;
+            UserNameValue = args.RowData.LoginName;
+            RealNameValue = args.RowData.Name;
+            EMailValue = args.RowData.EMail;
+            AbteilungValue = args.RowData.FunctionInFirma;
+            BindUsersRoleList();
+
+        }
+        if (args.CommandColumn.Type == CommandButtonType.Delete)
+        {
+            // Perform required operations here
+        }
+    }
+
+    private void EditDialogBeforeOpen(BeforeOpenEventArgs args)
+    {
+        args.MaxHeight = null;
+    }
+
+}

@@ -1,0 +1,143 @@
+﻿@page "/auth/login"
+
+@layout AuthLayout
+
+@using Syncfusion.Blazor.Inputs
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+
+@inject ILoginData loginData
+@inject ILocalStorageService storageService
+@inject AuthenticationStateProvider  authenticationStateProvider
+
+
+@inject NavigationManager NavigationManager
+@inject IConfiguration Configuration
+
+
+<div class="row align-items-center">
+    <div class="col-4">
+        <h2>Login to your account</h2>
+        <EditForm Model="model" OnValidSubmit="LoginUser">
+            <RadzenCard>
+                @*<AlertMessage Message="@message" MessageType="@messageType" />*@
+
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <label>Email</label>
+                <div class="input-group mb-3">
+                    <Radzen.Blazor.RadzenTextBox @bind-Value="model.UserName" class="form-control"></Radzen.Blazor.RadzenTextBox>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <label>Password</label>
+                <div class="input-group mb-3">
+                    <RadzenPassword @bind-Value="model.Password" class="form-control"></RadzenPassword>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <label>Sprache</label>
+                <div class="input-group mb-3">
+                    <select class="form-control mr-2" @bind="selectedCulture">
+                        @foreach (var culture in cultures)
+                        {
+                            <option value="@culture.Key">@culture.Value</option>
+                        }
+                    </select>
+                </div>
+
+                <hr />
+                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Login"
+                              ButtonStyle="Radzen.ButtonStyle.Primary" class="btn-block mr-2"
+                              Disabled="isBusy" />
+
+            </RadzenCard>
+        </EditForm>
+    </div>
+</div>
+
+<!--<div class="row">
+    <div class="col-12">-->
+@*<EditForm Model="model" OnValidSubmit="LoginUser">*@
+@*<RadzenCard>*@
+
+
+<!--<SfCard ID="HugeImage" Orientation="CardOrientation.Vertical">
+    <CardImage Image="images/cards/steven.png" />
+    <CardHeader Title="Harrisburg Keith" />
+    <CardContent>
+        <label>Username</label>
+        <SfTextBox Placeholder="Enter your username" CssClass="e-success"></SfTextBox>
+        <label>Password</label>
+        <SfTextBox Placeholder="Enter your password" CssClass="e-success"></SfTextBox>
+    </CardContent>
+    <CardFooter>
+        <CardFooterContent>
+            <SfButton OnClick="LoginUser" CssClass="e-btn e-outline e-primary">FOLLOW US</SfButton>
+        </CardFooterContent>
+    </CardFooter>
+</SfCard>-->
+@*</RadzenCard>*@
+@*</EditForm>*@
+<!--</div>
+</div>-->
+
+
+
+@code {
+    HCMDataAccess.Models.LoginRequest model = new HCMDataAccess.Models.LoginRequest();
+    private string selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+    private Dictionary<string, string> cultures;
+
+    bool isBusy = false;
+
+    protected override void OnInitialized()
+    {
+        cultures = Configuration.GetSection("Cultures")
+            .GetChildren().ToDictionary(x => x.Key, x => x.Value);
+
+    }
+
+    public async Task LoginUser()
+    {
+        HCMDataAccess.Models.LoginResponse _LoginResponse = await loginData.Login(model.UserName, model.Password);
+
+        if (_LoginResponse.Success)
+        {
+            var userInfo = new UsersModel()
+            {
+                FullName = _LoginResponse.FullName,
+                NickName = _LoginResponse.NikName,
+                ContactID = _LoginResponse.ContactID,
+                UserID = _LoginResponse.UserID
+            };
+
+            await storageService.SetItemAsync("User", userInfo);
+            await authenticationStateProvider.GetAuthenticationStateAsync();
+
+            var uri = new Uri(NavigationManager.Uri)
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+
+            var query = $"?culture={Uri.EscapeDataString(selectedCulture)}&" +
+                $"redirectUri={Uri.EscapeDataString(uri)}";
+
+            NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+
+            //navigationManager.NavigateTo("/");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/auth/login");
+        }
+
+    }
+}

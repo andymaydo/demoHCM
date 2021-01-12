@@ -1,0 +1,162 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+
+.nav-item a {
+    color: #d7d7d7;
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+}
+
+    .nav-item a.active {
+        background-color: rgba(255,255,255,0.25);
+        color: white;
+    }
+
+    .nav-item a:hover {
+        background-color: rgba(255,255,255,0.1);
+        color: white;
+    }
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+@media (min-width: 768px) {
+
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+/****************************************************** 
+UI
+******************************************************/
+.row_padding {
+    padding-bottom: 5px !important;
+}
+.control_padding {
+    padding-left: 0px !important;
+    padding-right: 5px !important;
+}
+.blue_bg {
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../images/bg-title.gif);
+    padding: 5px 0px 0px 5px;
+}
+.bottom_blue_bg {
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../images/subMenuBg.jpg);
+    padding: 4px 5px 3px 5px;
+    height: 25px;
+}
+.tLabel {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #444444;
+    padding-left: 5px;
+}
+.subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444444;
+    padding-top: 5px;
+}
+.e-grid .e-rowcell {
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+}
+.e-grid .e-headercelldiv {
+    font-size: 12px !important;
+    padding: 0 0 !important;
+}
+.ReportHeader {
+    padding-left: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+    color: #444444;
+    background-color: #EBEBEB;
+}
+.ReportItem, .ReportItem a {
+    font-size: 11px;
+    font-weight: normal;
+    text-align: left;
+    width: 100%;
+    height: 20px;
+    text-decoration: none;
+    padding-left: 6px;
+    padding-top: 2px;
+    color: #444444;
+    display: block;
+}
+.ReportItemNormal {
+    font-size: 11px;
+    font-weight: normal;
+    padding-right: 5px;
+    text-align: right !important;
+}
+.nav-item a {
+    height: 2rem !important;
+}
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+.subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444444;
+    padding-top: 5px;
+}
+.e-btn.e-icon-btn, .e-css.e-btn.e-icon-btn {
+    padding: 2px 4px !important;
+}
+.e-btn .e-btn-icon, .e-css.e-btn .e-btn-icon {
+    font-size: 12px !important;
+}
+.e-pager .e-spacing, .e-pager .e-numericitem:hover, .e-pager .e-currentitem {
+    padding: 5px 5px 5px 5px !important;
+}
+
+.mylabel-left {
+    align-items: left !important;
+    justify-content: left !important;
+}
+

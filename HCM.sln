@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCM", "HCM\HCM.csproj", "{DF13957F-FB97-4954-B365-F40C7773FCE0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCMDataAccess", "HCMDataAccess\HCMDataAccess.csproj", "{E88DBCE1-8A16-49CC-81D3-B40E6D9C350F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCMApi", "HCMApi\HCMApi.csproj", "{5F074F3A-4272-48FB-82B7-ACE566B1799F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF13957F-FB97-4954-B365-F40C7773FCE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF13957F-FB97-4954-B365-F40C7773FCE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF13957F-FB97-4954-B365-F40C7773FCE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF13957F-FB97-4954-B365-F40C7773FCE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88DBCE1-8A16-49CC-81D3-B40E6D9C350F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88DBCE1-8A16-49CC-81D3-B40E6D9C350F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88DBCE1-8A16-49CC-81D3-B40E6D9C350F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88DBCE1-8A16-49CC-81D3-B40E6D9C350F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F074F3A-4272-48FB-82B7-ACE566B1799F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F074F3A-4272-48FB-82B7-ACE566B1799F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F074F3A-4272-48FB-82B7-ACE566B1799F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F074F3A-4272-48FB-82B7-ACE566B1799F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8948A1D2-D4F4-419A-A677-4852A8CC5D00}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Xml;
+
+namespace HCMDataAccess.Models
+{
+    public class UsersModel
+    {
+        public int UserID { get; set; }
+        public string LoginName { get; set; }
+        public string Password { get; set; }
+        public int ContactID { get; set; }
+        public int Enable { get; set; }
+        public string EMail { get; set; }
+        public string FullName { get; set; }
+        public string Name { get; set; }
+        public string NickName { get; set; }
+        public XmlDocument ContactData { get; set; }
+        public string FunctionInFirma { get; set; }
+    }
+}

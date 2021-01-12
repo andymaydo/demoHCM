@@ -1,0 +1,14 @@
+﻿@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager  navigationManager
+
+<AuthorizeView>
+    <RadzenButton ButtonStyle="ButtonStyle.Info" Text="Logout" Click="Logout" Size="ButtonSize.Small" />
+</AuthorizeView>
+
+@code { async Task Logout()
+            {
+                var localStateProvider = (LocalAuthenticationStateProvider)authenticationStateProvider;
+                await localStateProvider.LogoutAsync();
+                navigationManager.NavigateTo("/auth/login");
+            } 
+}

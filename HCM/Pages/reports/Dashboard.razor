@@ -1,0 +1,126 @@
+﻿@using HCMApi;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.DropDowns
+
+@inject IStringLocalizer<App> Localizer
+@inject IReportsCaseData _reportsCaseData;
+
+@attribute [Authorize]
+
+<h4 class="blue_bg mt-3">@Localizer["Label_Report_Result_Title"]</h4>
+
+<div class="container">
+    <div class="row row_padding">
+        <div class="col-sm-6 control_padding">
+            <div class="col-sm-12 control_padding">
+                <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Status_Group_Title"]</label>
+            </div>
+            @foreach (ReportsModels.ReportCaseByStatusModels r in _ReportCaseByStatusList)
+            {
+                <div class="col-sm-12 control_padding form-inline">
+                    <div class="col-sm-6 control_padding">
+                        <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Status_" + r.CaseStatusID]</span>
+                    </div>
+                    <div class="col-sm-6 control_padding text-right">
+                        <span class="col-sm-12 ReportItemNormal">@r.CaseCount</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-sm-6 control_padding">
+            <div class="col-sm-12 control_padding">
+                <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Result_Group_Title"]</label>
+            </div>
+            @foreach (ReportsModels.ReportCaseByResultModels r in _ReportCaseByResultList)
+            {
+                <div class="col-sm-12 control_padding form-inline">
+                    <div class="col-sm-6 control_padding">
+                        <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Result_" + r.CaseResultID]</span>
+                    </div>
+                    <div class="col-sm-6 control_padding text-right">
+                        <span class="col-sm-12 ReportItemNormal">@r.CaseCount</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row row_padding">
+        <div class="col-sm-6 control_padding">
+            <div class="col-sm-12 control_padding">
+                <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Alias_Group_Title"]</label>
+            </div>
+            @foreach (ReportsModels.ReportAliasCountModels r in _ReportAliasCountList)
+            {
+                <div class="col-sm-12 control_padding form-inline">
+                    <div class="col-sm-6 control_padding">
+                        <span class="col-sm-12 text-left ReportItem">@Localizer["Label_Report_Alias_Group_Count"]</span>
+                    </div>
+                    <div class="col-sm-6 control_padding text-right">
+                        <span class="col-sm-12 ReportItemNormal">@r.CaseCount</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-sm-6 control_padding">
+            &nbsp;
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public Reports ParentReports { get; set; }
+
+
+
+    List<ReportsModels.ReportCaseByStatusModels> _ReportCaseByStatusList { get; set; }
+    List<ReportsModels.ReportCaseByResultModels> _ReportCaseByResultList { get; set; }
+    List<ReportsModels.ReportAliasCountModels> _ReportAliasCountList { get; set; }
+
+    int? _contactID = null;
+    int? _caseid = null;
+    string _customerName = "";
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        ParentReports.FilterChanged += FilterChangedEvent;
+        BindDashboardData();
+
+    }
+    private async void BindDashboardData()
+    {
+
+        _ReportCaseByStatusList = await _reportsCaseData.CaseByStatus(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
+            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue, 
+            _caseid, ParentReports.ProfileID, _customerName);
+
+        _ReportCaseByResultList = await _reportsCaseData.CaseByResult(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
+            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue, 
+            _caseid, ParentReports.ProfileID, _customerName);
+
+        _ReportAliasCountList = await _reportsCaseData.AliasCount(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
+            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue, 
+            _caseid, ParentReports.ProfileID, _customerName);
+
+        StateHasChanged();
+    }
+
+    public void FilterChangedEvent(bool IsAction)
+    {
+        BindDashboardData();
+    }
+
+
+}
