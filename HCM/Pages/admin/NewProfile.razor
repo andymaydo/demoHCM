@@ -1,0 +1,69 @@
+﻿@page "/admin/profiles/step1"
+
+@using HCMApi;
+@using HCMApi.Models;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+
+@inject IStringLocalizer<HcmRes> Localizer
+@inject IFiltersData _filtersData;
+@inject ICMSProfile _CMSProfile;
+@inject NavigationManager NavManager;
+@inject ILocalStorageService storageService;
+
+@attribute [Authorize]
+
+<h3 class="title">@Localizer["Profile_Title"]</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3 control_padding">
+            <h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Steps"]</h5>
+            <ProfileMenu OnChangeFormClick=@OnChangeFormEvent />
+        </div>
+        <div class="col-9 control_padding">
+
+            @if (ProfileStep == 1)
+            {
+                <ProfileStep1 OnChangeFormClick=@OnChangeFormEvent/>
+            }
+            else if (ProfileStep == 2)
+            {
+                <ProfileStep2 OnChangeFormClick=@OnChangeFormEvent/>
+            }
+            else if (ProfileStep == 3)
+            {
+                <ProfileStep3 OnChangeFormClick=@OnChangeFormEvent/>
+            }
+            else if (ProfileStep == 4)
+            {
+                <ProfileStep4 OnChangeFormClick=@OnChangeFormEvent/>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@code {
+    public int ProfileStep { get; set; }
+
+    private async Task OnChangeFormEvent(int value)
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStep = ProfileStatusInfo.Step;
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStep = ProfileStatusInfo.Step;
+    }
+}

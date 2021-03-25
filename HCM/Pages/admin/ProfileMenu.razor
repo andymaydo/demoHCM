@@ -1,0 +1,106 @@
+﻿
+@inject IStringLocalizer<App> Localizer
+@inject ILocalStorageService storageService;
+
+
+@attribute [Authorize]
+
+
+<div class="col-12 control_padding">
+    <SfButton CssClass="e-link"  OnClick="onMenu1Click">@Localizer["Profile_Step_Allgemeine"]</SfButton>
+</div>
+<div class="col-12 control_padding">
+    <SfButton CssClass="e-link"  OnClick="onMenu2Click">@Localizer["Profile_Step_Teilnehmen"]</SfButton>
+</div>
+<div class="col-12 control_padding">
+    <SfButton CssClass="e-link"  OnClick="onMenu3Click">@Localizer["Profile_Step_Escalation"]</SfButton>
+</div>
+<div class="col-12 control_padding">
+    <SfButton CssClass="e-link"  OnClick="onMenu4Click">@Localizer["Profile_Step_Status"]</SfButton>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public EventCallback<int> OnChangeFormClick { get; set; }
+
+    public int Step { get; set; }
+
+    public bool Menu1Disabled = true;
+    public bool Menu2Disabled = true;
+    public bool Menu3Disabled = true;
+    public bool Menu4Disabled = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        Step = ProfileStatusInfo.Step;
+        onStepChange();
+    }
+
+    private async Task onMenu1Click(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStatusInfo.Step = Step = 1;
+        await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+        await OnChangeFormClick.InvokeAsync(1);
+        onStepChange();
+    }
+    private async Task onMenu2Click(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStatusInfo.Step = Step = 2;
+        await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+        await OnChangeFormClick.InvokeAsync(2);
+        onStepChange();
+    }
+    private async Task onMenu3Click(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStatusInfo.Step = Step = 3;
+        await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+        await OnChangeFormClick.InvokeAsync(3);
+        onStepChange();
+    }
+    private async Task onMenu4Click(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStatusInfo.Step = Step = 4;
+        await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+        await OnChangeFormClick.InvokeAsync(4);
+        onStepChange();
+    }
+
+
+    private void onStepChange()
+    {
+        if (Step == 1)
+        {
+            Menu1Disabled = false;
+        }
+        else if (Step == 2)
+        {
+            Menu1Disabled = false;
+            Menu2Disabled = false;
+        }
+        else if (Step == 3)
+        {
+            Menu1Disabled = false;
+            Menu2Disabled = false;
+            Menu3Disabled = false;
+        }
+        else if (Step == 4)
+        {
+            Menu1Disabled = false;
+            Menu2Disabled = false;
+            Menu3Disabled = false;
+            Menu4Disabled = false;
+        }
+        StateHasChanged();
+    }
+}

@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using HCMDataAccess;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,10 +42,11 @@ namespace HCMApi
 
 
         private readonly IConfiguration _config;
-
-        public CaseContact(IConfiguration config)
+        private readonly ISqlDataAccess _db;
+        public CaseContact(IConfiguration config, ISqlDataAccess db)
         {
             _config = config;
+            _db = db;
         }
         public CaseContact()
         {
@@ -110,7 +113,7 @@ namespace HCMApi
 
             try
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
                     var result = await conn.QueryAsync<CaseContact>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -130,26 +133,7 @@ namespace HCMApi
             {
                 return -1;
             }
-
-            //SqlParameter[] parms = new SqlParameter[] {
-            //new SqlParameter("@Email", SqlDbType.NVarChar),
-            //new SqlParameter("@ContactURI", SqlDbType.NVarChar),
-            //new SqlParameter("@ForeingID", SqlDbType.NVarChar),
-            //new SqlParameter("@Name", SqlDbType.NVarChar),
-            //new SqlParameter("@NickName", SqlDbType.NVarChar),
-            //new SqlParameter("@Function", SqlDbType.NVarChar),
-            //new SqlParameter("@ContactData", SqlDbType.Xml)
-            //};
-            //parms[0].Value = Email;
-            //parms[1].Value = String.IsNullOrEmpty(ContactURI) ? String.Empty : ContactURI;
-            //parms[2].Value = String.IsNullOrEmpty(ForeingID) ? String.Empty : ForeingID;
-            //parms[3].Value = String.IsNullOrEmpty(Name) ? String.Empty : Name;
-            //parms[4].Value = String.IsNullOrEmpty(NickName) ? String.Empty : NickName;
-            //parms[5].Value = String.IsNullOrEmpty(Function) ? String.Empty : Function;
-            //parms[6].Value = ContactData;
-
-            //object o = DAO.ExecuteScalar(CommandType.StoredProcedure, "Contact_Create", parms);
-            //Email = o.ToString();
+            
 
         }
 
@@ -174,7 +158,7 @@ namespace HCMApi
 
             try
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn.QueryAsync<CaseContact>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -200,28 +184,180 @@ namespace HCMApi
                 return null;
             }
 
-            //Email = String.Empty;
-            //SqlParameter[] parms = new SqlParameter[] {
-            //               new SqlParameter("@ContactID", SqlDbType.Int),
-            //               new SqlParameter("@Email", SqlDbType.NVarChar)
-            //};
-            //parms[0].Value = vContactID;
-            //parms[1].Value = vEmail;
+            
+        }
+        public async Task<List<CaseContact>> Contact_GetAll()
+        {
+            var procedure = "Contact_GetAll";
+            var _params = new DynamicParameters();
 
-            //DataTable dt = DAO.ExecSqlProcedureReturnDt("Contact_GetOne", parms);
-            //foreach (DataRow dr in dt.Rows)
-            //{
-            //    Email = dr["Email"].ToString();
-            //    ContactID = Convert.ToInt32(dr["ContactID"]);
-            //    ContactURI = dr["ContactURI"].ToString();
-            //    ForeingID = dr["ForeingID"].ToString();
-            //    Name = dr["Name"].ToString();
-            //    ForeingID = dr["ForeingID"].ToString();
-            //    NickName = dr["NickName"].ToString();
-            //    Function = dr["Function"].ToString();
-            //    // ContactData = dr["ContactData"].ToString();
-            //}
-            //return Email;
+            try
+            {
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                {
+                    var result = await conn.QueryAsync<CaseContact>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CaseContact> _CaseContact = result.ToList<CaseContact>();                   
+
+                    return _CaseContact;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+        }
+    }
+
+    /// <summary>
+    /// class for storing collection of  CaseContact items
+    /// </summary>
+    [Serializable]
+    [DataContract(Namespace = "DominoCMS")]
+    public class CaseContactList : Hashtable
+    {
+        public CaseContactList() { }
+
+        protected CaseContactList(SerializationInfo info, StreamingContext context) : base(info, context) 
+        { 
+        }
+
+        public void CopyTo(Exception[] array, int index)
+        {
+            base.CopyTo(array, index);
+        }
+        public override bool Contains(Object key)
+        {
+            return base.Contains(key.ToString().ToUpper());
+        }
+
+        public static CaseContactList LoadFromXml(string xml)
+        {
+            CaseContactList _participants = new CaseContactList();
+            if (!String.IsNullOrEmpty(xml))
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.LoadXml(xml);
+                foreach (XmlNode nContact in xDoc.SelectNodes(@"//Contact"))
+                {
+                    //CaseContact c = CaseContact.GetContact(Convert.ToInt32(nContact.Attributes["ContactID"].Value));
+                    CaseContact c = CaseContact.GetContactFromXML(nContact.OuterXml);
+                    _participants.Add(c.ContactID, c);
+                }
+            }
+            return _participants;
+        }
+        public static List<CaseContact> LoadFromXmlAsList(string xml)
+        {
+            List<CaseContact> _CaseContact = new List<CaseContact>();
+            if (!String.IsNullOrEmpty(xml))
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.LoadXml(xml);
+                foreach (XmlNode nContact in xDoc.SelectNodes(@"//Contact"))
+                {
+                    //CaseContact c = CaseContact.GetContact(Convert.ToInt32(nContact.Attributes["ContactID"].Value));
+                    CaseContact c = CaseContact.GetContactFromXML(nContact.OuterXml);
+                    _CaseContact.Add(c);
+                }
+            }
+            return _CaseContact;
+        }
+
+
+
+
+
+        //public static CaseContactList LoadFromIDs(string ids)
+        //{
+        //    CaseContactList _contacts = new CaseContactList();
+        //    if (!String.IsNullOrEmpty(ids))
+        //    {
+        //        SqlParameter[] parms = null;
+        //        string[] _ids = ids.Split(',');
+        //        DataTable dt = DAO.ExecSqlProcedureReturnDt("Contact_GetAll", parms);
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            bool found = false;
+        //            int _id = -1;
+        //            for (int i = 0; i < _ids.Length; i++)
+        //            {
+        //                int.TryParse(_ids[i], out _id);
+        //                if (_id == Convert.ToInt32(dr["ContactID"]))
+        //                {
+        //                    found = true;
+        //                    break;
+        //                }
+        //            }
+        //            if (found)
+        //            {
+        //                CaseContact c = new CaseContact();
+        //                c.ContactID = Convert.ToInt32(dr["ContactID"]);
+        //                c.ContactData = dr["ContactData"].ToString();
+        //                c.ContactURI = dr["ContactURI"].ToString();
+        //                c.Email = dr["Email"].ToString();
+        //                c.ForeingID = dr["ForeingID"].ToString();
+        //                c.Name = dr["Name"].ToString();
+        //                c.NickName = dr["NickName"].ToString();
+        //                c.Function = dr["Function"].ToString();
+
+
+        //                _contacts.Add(c.ContactID, c);
+        //            }
+
+        //        }
+        //    }
+        //    return _contacts;
+        //}
+        //public static CaseContactList GetSuggestionsList(string Keyword)
+        //{
+        //    CaseContactList _contacts = new CaseContactList();
+
+        //    SqlParameter[] parms = new SqlParameter[] {
+        //                   new SqlParameter("@Keyword", SqlDbType.VarChar, 50)
+        //    };
+        //    parms[0].Value = Keyword;
+
+        //    DataTable dt = DAO.ExecSqlProcedureReturnDt("Contact_GetSuggestions", parms);
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+
+        //        CaseContact c = new CaseContact();
+        //        c.ContactID = Convert.ToInt32(dr["ContactID"]);
+        //        c.ContactData = dr["ContactData"].ToString();
+        //        c.ContactURI = dr["ContactURI"].ToString();
+        //        c.Email = dr["Email"].ToString();
+        //        c.ForeingID = dr["ForeingID"].ToString();
+        //        c.Name = dr["Name"].ToString();
+        //        c.NickName = dr["NickName"].ToString();
+        //        c.Function = dr["Function"].ToString();
+
+        //        _contacts.Add(c.ContactID, c);
+
+        //    }
+
+
+        //    return _contacts;
+        //}
+        //public XmlDocument AsXml()
+        //{
+        //    XmlDocument xDoc = new XmlDocument();
+        //    xDoc.LoadXml(AsXmlString());
+        //    return xDoc;
+        //}
+
+        public string AsXmlString()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            string s = @"<ContactList>";
+            foreach (var key in base.Keys)
+            {
+                s += ((CaseContact)base[key]).AsXml();
+            }
+            s += @"</ContactList>";
+            return s;
         }
     }
 }

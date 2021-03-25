@@ -40,9 +40,9 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.FilterGateModel" ShowClearButton="false" @bind-Index="@GateDefaultIndex" DataSource="@_Gates">
+                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" ShowClearButton="false" @bind-Index="@GateDefaultIndex" DataSource="@_Gates">
                     @*<SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>*@
-                    <ComboBoxEvents TItem="FiltersModels.FilterGateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
+                    <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -75,8 +75,8 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_ProfileID"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.FilterProfileModel" ShowClearButton="false" @bind-Index="@ProfileDefaultIndex" DataSource="@_Profile">
-                    <ComboBoxEvents TItem="FiltersModels.FilterProfileModel" TValue="string" ValueChange="onChangeProfile"></ComboBoxEvents>
+                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" ShowClearButton="false" @bind-Index="@ProfileDefaultIndex" DataSource="@_Profile">
+                    <ComboBoxEvents TItem="FiltersModels.ProfileModel" TValue="string" ValueChange="onChangeProfile"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -101,8 +101,8 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Category"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.FilterCategoryModel" ShowClearButton="false" @bind-Index="@CategoryDefaultIndex" DataSource="@_Category">
-                    <ComboBoxEvents TItem="FiltersModels.FilterCategoryModel" TValue="string" ValueChange="onChangeCategory"></ComboBoxEvents>
+                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" ShowClearButton="false" @bind-Index="@CategoryDefaultIndex" DataSource="@_Category">
+                    <ComboBoxEvents TItem="FiltersModels.CategoryModel" TValue="string" ValueChange="onChangeCategory"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="CaseType" Value="CaseTypeID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -152,9 +152,9 @@
     public int? CaseTypeID { get; set; }
     public int? ProfileID { get; set; }
 
-    SfComboBox<string, FiltersModels.FilterGateModel> GateComboObj;
-    SfComboBox<string, FiltersModels.FilterCategoryModel> CategoryComboObj;
-    SfComboBox<string, FiltersModels.FilterProfileModel> ProfileComboObj;
+    SfComboBox<string, FiltersModels.GateModel> GateComboObj;
+    SfComboBox<string, FiltersModels.CategoryModel> CategoryComboObj;
+    SfComboBox<string, FiltersModels.ProfileModel> ProfileComboObj;
     SfDatePicker<DateTime?> CreateFromDateObj;
     SfDatePicker<DateTime?> CreateToDateObj;
     SfDatePicker<DateTime?> ModifyFromDateObj;
@@ -174,9 +174,9 @@
 
     private bool OnlyActiveIsChecked = true;
 
-    private List<FiltersModels.FilterGateModel> _Gates;
-    private List<FiltersModels.FilterCategoryModel> _Category;
-    private List<FiltersModels.FilterProfileModel> _Profile;
+    private List<FiltersModels.GateModel> _Gates;
+    private List<FiltersModels.CategoryModel> _Category;
+    private List<FiltersModels.ProfileModel> _Profile;
 
     protected override async Task OnInitializedAsync()
     {
@@ -194,12 +194,12 @@
         _Category = _filtersData.GetCategories(AppID);
         _Profile = _filtersData.GetProfiles(AppID);
 
-        FiltersModels.FilterCategoryModel _FilterCategoryModel = new FiltersModels.FilterCategoryModel();
+        FiltersModels.CategoryModel _FilterCategoryModel = new FiltersModels.CategoryModel();
         _FilterCategoryModel.CaseType = Localizer["Value_All_Text"];
         _FilterCategoryModel.CaseTypeID = -1;
         _Category.Insert(0, _FilterCategoryModel);
 
-        FiltersModels.FilterProfileModel _FilterProfileModel = new FiltersModels.FilterProfileModel();
+        FiltersModels.ProfileModel _FilterProfileModel = new FiltersModels.ProfileModel();
         _FilterProfileModel.ProfileName = Localizer["Value_All_Text"];
         _FilterProfileModel.ProfileID = -1;
         _Profile.Insert(0, _FilterProfileModel);
@@ -262,7 +262,7 @@
     }
 
 
-    private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.FilterGateModel> args)
+    private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.GateModel> args)
     {
         AppID = (Convert.ToInt32(args.ItemData.appID));
 
@@ -273,7 +273,7 @@
         FilterChanged?.Invoke(true);
         StateHasChanged();
     }
-    private void onChangeProfile(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.FilterProfileModel> args)
+    private void onChangeProfile(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.ProfileModel> args)
     {
         ProfileID = (Convert.ToInt32(args.ItemData.ProfileID));
         if (ProfileID == -1)
@@ -282,7 +282,7 @@
         FilterChanged?.Invoke(true);
         StateHasChanged();
     }
-    private void onChangeCategory(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.FilterCategoryModel> args)
+    private void onChangeCategory(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.CategoryModel> args)
     {
         CaseTypeID = (Convert.ToInt32(args.ItemData.CaseTypeID));
         if (CaseTypeID == -1)

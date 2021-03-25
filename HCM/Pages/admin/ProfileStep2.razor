@@ -1,0 +1,188 @@
+﻿@using HCMApi;
+@using HCMApi.Models;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+@using System.ComponentModel.DataAnnotations;
+
+@inject IStringLocalizer<App> Localizer
+@inject ICMSProfile _CMSProfile;
+@inject ILocalStorageService storageService
+@inject ICaseContact _caseContact;
+
+@attribute [Authorize]
+
+
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Teilnehmen"]</h5>
+
+<h4 class="tLabel">@Localizer["Profile_Step2_TeilnehmerListe"]</h4>
+
+<SfGrid @ref="_caseResponsiblesObj" DataSource="@_caseResponsibles" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+    <GridPageSettings PageSize="25"></GridPageSettings>
+    <GridEvents CommandClicked="OnCommandClicked" TValue="CaseContact"></GridEvents>
+    <GridColumns>
+        <GridColumn Field=@nameof(CaseContact.Name) HeaderText="@Localizer["Cases_ChangeUsers_List_Name"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80"></GridColumn>
+        <GridColumn Field=@nameof(CaseContact.Email) HeaderText="@Localizer["Cases_ChangeUsers_List_Email"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CaseContact.Function) HeaderText="@Localizer["Cases_ChangeUsers_List_Function"]"></GridColumn>
+        <GridColumn Field=@nameof(CaseContact.ProfileRole) HeaderText="@Localizer["Cases_ChangeUsers_List_Role"]" Width="150"></GridColumn>
+        <GridColumn HeaderText="" Width="240">
+            <GridCommandColumns>
+                <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-delete", CssClass="e-flat", Content=Localizer["Button_Del"]})"></GridCommandColumn>
+            </GridCommandColumns>
+        </GridColumn>
+    </GridColumns>
+</SfGrid>
+
+<div class="row row_padding">
+    <div class="col-sm-3 control_padding">
+        <SfCheckBox @bind-Checked="NotifyAllChecked" Label="@Localizer["Profile_Step2_cbNotifyAll"]" ValueChange="@NotifyAllChecked_OnChange" TChecked="bool"></SfCheckBox>
+    </div>
+</div>
+
+<h4 class="tLabel bottom_blue_bg">@Localizer["Profile_Step2_TeilnehmerAnlegen"]</h4>
+
+<EditForm Model="@_NewProfile_Step2" OnValidSubmit="AddNewUser_Click">
+    <DataAnnotationsValidator />
+    <div class="col-sm-12 form-inline control_padding">
+        <label class="col-sm-2 control_padding mylabel-left profilWizadrdText">@Localizer["Cases_ChangeUsers_FullUserList"]</label>
+        <div class="col-sm-4 control_padding">
+            <SfDropDownList @ref="_caseContactDropDownListObj" TValue="string" TItem="CaseContact" AllowFiltering="true" DataSource="@_caseContactList" @bind-Value="_NewProfile_Step2.ContactID">
+                <DropDownListFieldSettings Text="Name" Value="ContactID"></DropDownListFieldSettings>
+            </SfDropDownList>
+        </div>
+        <label class="col-sm-2 control_padding mylabel-left profilWizadrdText">@Localizer["Cases_ChangeUsers_List_Role"]</label>
+        <div class="col-sm-3 control_padding">
+            <SfDropDownList TValue="string" TItem="UserRolesModel" AllowFiltering="true" DataSource="@UserRolesList" @bind-Value="_NewProfile_Step2.RoleName">
+                <DropDownListFieldSettings Text="LocalizerRoleName" Value="RoleName"></DropDownListFieldSettings>
+            </SfDropDownList>
+        </div>
+        <div class="col-sm-1 control_padding">
+            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Add"]" ButtonType="ButtonType.Submit" Size="ButtonSize.Small" />
+        </div>
+    </div>    
+</EditForm>
+
+<div class="row row_padding top_blue_bg mt-3">
+    <div class="col-sm-1 form-inline control_padding">
+        <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Save"]" Click="SaveStep_Click" Size="ButtonSize.Small" />
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<int> OnChangeFormClick { get; set; }
+
+    private List<CaseContact> _caseResponsibles = new List<CaseContact>();
+    public bool NotifyAllChecked { get; set; }
+
+    public List<CaseContact> _caseContactList = new List<CaseContact>();
+    public List<UserRolesModel> UserRolesList;
+    NewProfile_Step2 _NewProfile_Step2 = new NewProfile_Step2();
+
+
+    protected  SfDropDownList<string, CaseContact> _caseContactDropDownListObj;
+    SfGrid<CaseContact> _caseResponsiblesObj;
+
+    public class NewProfile_Step2
+    {
+        [Required(ErrorMessageResourceName = "Profile_Validation_User", ErrorMessageResourceType = typeof(HcmRes))]
+        public string ContactID { get; set; }
+        [Required(ErrorMessageResourceName = "Profile_Validation_Role", ErrorMessageResourceType = typeof(HcmRes))]
+        public string RoleName { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _caseContactList = await _caseContact.Contact_GetAll();
+
+        UserRolesList = new List<UserRolesModel>();
+        UserRolesList.Add(new UserRolesModel()
+        {
+            RoleName = "User",
+            LocalizerRoleName = Localizer["Profile_User_Role_1"]
+        });
+        UserRolesList.Add(new UserRolesModel()
+        {
+            RoleName = "Moderator",
+            LocalizerRoleName = Localizer["Profile_User_Role_2"]
+        });
+        UserRolesList.Add(new UserRolesModel()
+        {
+            RoleName = "AliasManager",
+            LocalizerRoleName = Localizer["Profile_User_Role_3"]
+        });
+
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        if (ProfileStatusInfo.cmsProfile.profileParticipants != null && ProfileStatusInfo.cmsProfile.profileParticipants.Count > 0)
+        {
+            _caseResponsibles = ProfileStatusInfo.cmsProfile.profileParticipants;
+        }
+        NotifyAllChecked = ProfileStatusInfo.cmsProfile.NotifyAllProfileParticipants;
+
+        StateHasChanged();
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            StateHasChanged();
+        }
+
+    }
+
+    private void NotifyAllChecked_OnChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
+    {
+        NotifyAllChecked = args.Checked;
+        StateHasChanged();
+    }
+
+    public async void OnCommandClicked(CommandClickEventArgs<CaseContact> args)
+    {
+        if (args.CommandColumn.Type == CommandButtonType.Delete)
+        {
+            CaseContact _CaseContact = _caseResponsibles.Where(c => c.ContactID == args.RowData.ContactID).FirstOrDefault();
+            if (_caseResponsibles.Remove(_CaseContact))
+            {
+                _caseResponsiblesObj.Refresh();
+
+                var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+                ProfileStatusInfo.cmsProfile.profileParticipants = _caseResponsibles;
+                await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+                StateHasChanged();
+            }
+        }
+    }
+
+    async Task AddNewUser_Click()
+    {
+        if (_caseResponsibles.Where(c => c.ContactID == Convert.ToInt32(_NewProfile_Step2.ContactID)).Count() == 0  )
+        {
+            CaseContact _CaseContact = _caseContactList.Where(c1 => c1.ContactID == Convert.ToInt32(_NewProfile_Step2.ContactID)).FirstOrDefault();
+            _CaseContact.ProfileRole = _NewProfile_Step2.RoleName;
+            _caseResponsibles.Add(_CaseContact);
+            _caseResponsiblesObj.Refresh();
+
+            var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+            ProfileStatusInfo.cmsProfile.profileParticipants = _caseResponsibles;
+            await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+            StateHasChanged();
+        }
+    }
+    async Task SaveStep_Click()
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStatusInfo.cmsProfile.profileParticipants = _caseResponsibles;
+        ProfileStatusInfo.cmsProfile.NotifyAllProfileParticipants = NotifyAllChecked;
+        ProfileStatusInfo.Step = 3;
+        await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+        await _CMSProfile.UpdateParticipantsAsync(ProfileStatusInfo.cmsProfile);
+        await OnChangeFormClick.InvokeAsync(2);
+    }
+}

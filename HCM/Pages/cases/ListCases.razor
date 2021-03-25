@@ -43,9 +43,9 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.FilterGateModel" Placeholder="@_NoItemSelected">
+                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@_NoItemSelected">
                     <SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>
-                    <ComboBoxEvents TItem="FiltersModels.FilterGateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
+                    <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -78,7 +78,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_ProfileID"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.FilterProfileModel" Placeholder="@_NoItemSelected" DataSource="@_Profile">
+                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" Placeholder="@_NoItemSelected" DataSource="@_Profile">
                     <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -103,7 +103,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Category"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.FilterCategoryModel" Placeholder="@_NoItemSelected" DataSource="@_Category">
+                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" Placeholder="@_NoItemSelected" DataSource="@_Category">
                     <ComboBoxFieldSettings Text="CaseType" Value="CaseTypeID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -120,7 +120,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Status"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="StatusComboObj" TValue="string" TItem="FiltersModels.FilterStatusModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@Statuses">
+                <SfComboBox @ref="StatusComboObj" TValue="string" TItem="FiltersModels.CaseStatusModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@Statuses">
                     @*<SfDataManager Url="api/FiltersData/GetStatuses" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>*@
                     <ComboBoxFieldSettings Text="CaseStatus" Value="CaseStatusID"></ComboBoxFieldSettings>
                 </SfComboBox>
@@ -173,10 +173,10 @@
 
 
 @code {
-    SfComboBox<string, FiltersModels.FilterGateModel> GateComboObj;
-    SfComboBox<string, FiltersModels.FilterCategoryModel> CategoryComboObj;
-    SfComboBox<string, FiltersModels.FilterStatusModel> StatusComboObj;
-    SfComboBox<string, FiltersModels.FilterProfileModel> ProfileComboObj;
+    SfComboBox<string, FiltersModels.GateModel> GateComboObj;
+    SfComboBox<string, FiltersModels.CategoryModel> CategoryComboObj;
+    SfComboBox<string, FiltersModels.CaseStatusModel> StatusComboObj;
+    SfComboBox<string, FiltersModels.ProfileModel> ProfileComboObj;
 
     private string _NoItemSelected = "- - - - - - - - - -";
 
@@ -200,20 +200,20 @@
 
     private List<Case> Cases { get; set; }
     //private List<Order> Orders { get; set; }
-    private List<FiltersModels.FilterStatusModel> Statuses
+    private List<FiltersModels.CaseStatusModel> Statuses
     {
         get
         {
-            List<FiltersModels.FilterStatusModel> _Statuses = _filtersData.GetStatuses();
-            foreach (FiltersModels.FilterStatusModel status in _Statuses)
+            List<FiltersModels.CaseStatusModel> _Statuses = _filtersData.GetStatuses();
+            foreach (FiltersModels.CaseStatusModel status in _Statuses)
             {
                 status.CaseStatus = Localizer["Case_Status_" + status.CaseStatusID.ToString()];
             }
             return _Statuses;
         }
     }
-    private List<FiltersModels.FilterCategoryModel> _Category;
-    private List<FiltersModels.FilterProfileModel> _Profile;
+    private List<FiltersModels.CategoryModel> _Category;
+    private List<FiltersModels.ProfileModel> _Profile;
 
 
 
@@ -282,7 +282,7 @@ CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
         OnlyActiveIsChecked = true;
     }
 
-    private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.FilterGateModel> args)
+    private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.GateModel> args)
     {
         string appID = "-1";
         if (args.ItemData != null)

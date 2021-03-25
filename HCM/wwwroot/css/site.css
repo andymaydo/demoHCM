@@ -69,6 +69,10 @@ UI
     padding-left: 0px !important;
     padding-right: 5px !important;
 }
+.control_padding_dropcown {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
 .blue_bg {
     background-repeat: repeat-x;
     background-position: top;
@@ -82,6 +86,13 @@ UI
     padding: 4px 5px 3px 5px;
     height: 25px;
 }
+.top_blue_bg {
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../images/subMenuBg3.gif);
+    padding: 10px 5px 3px 5px;
+    height: 25px;
+}
 .tLabel {
     font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
     font-size: 13px;
@@ -89,6 +100,7 @@ UI
     color: #444444;
     padding-left: 5px;
 }
+
 .subtitle {
     font-size: 14px;
     font-weight: bold;
@@ -158,5 +170,41 @@ UI
 .mylabel-left {
     align-items: left !important;
     justify-content: left !important;
+}
+.e-thumbnail:before {
+    content: '\e7b4';
+}
+.profilWizadrdMenu {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #444444;
+    padding-left: 5px;
+}
+.profilWizadrdText {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #444444;
+    padding-left: 5px;
+}
+
+.e-icons-hcm {
+    font-size: 18px;
+    font-family: 'e-icons';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-transform: none;
+}
+.e-hcm-search:before {
+    content: '\e724';
+    color: #ffffff;
+}
+
+.form_name {
+    font-size: 12px;
+    color: #298083;
+    font-weight: bold;
 }
 

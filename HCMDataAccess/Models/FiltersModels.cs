@@ -6,25 +6,30 @@ namespace HCMDataAccess.Models
 {
     public class FiltersModels
     {
-        public class FilterGateModel
+        public class GateModel
         {
             public string appID { get; set; }
             public string appName { get; set; }
         }
-        public class FilterProfileModel
+        public class ProfileModel
         {
             public int ProfileID { get; set; }
             public string ProfileName { get; set; }
         }
-        public class FilterCategoryModel
+        public class CategoryModel
         {
             public int CaseTypeID { get; set; }
             public string CaseType { get; set; }
         }
-        public class FilterStatusModel
+        public class CaseStatusModel
         {
             public int CaseStatusID { get; set; }
             public string CaseStatus { get; set; }
+        }
+        public class ProfileStatusModel
+        {
+            public int ProfileStatusID { get; set; }
+            public string ProfileStatus { get; set; }
         }
     }
 }

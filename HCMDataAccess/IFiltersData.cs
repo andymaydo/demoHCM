@@ -6,9 +6,11 @@ namespace HCMDataAccess
 {
     public interface IFiltersData
     {
-        List<FiltersModels.FilterCategoryModel> GetCategories(int appID);
-        List<FiltersModels.FilterGateModel> GetGates();
-        List<FiltersModels.FilterProfileModel> GetProfiles(int appID);
-        List<FiltersModels.FilterStatusModel> GetStatuses();
+        List<FiltersModels.CategoryModel> GetCategories(int appID);
+        List<FiltersModels.GateModel> GetGates();
+        List<FiltersModels.ProfileModel> GetProfiles(int appID);
+        List<FiltersModels.CaseStatusModel> GetStatuses();
+        List<FiltersModels.ProfileStatusModel> GetProfileStatuses();
+        List<FiltersModels.CaseStatusModel> GetStatusesForEscalation();
     }
 }

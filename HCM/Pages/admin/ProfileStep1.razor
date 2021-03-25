@@ -1,0 +1,149 @@
+﻿@using HCMApi;
+@using HCMApi.Models;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+@using System.ComponentModel.DataAnnotations;
+
+@inject IStringLocalizer<HcmRes> Localizer
+@inject IFiltersData _filtersData;
+@inject ICMSProfile _CMSProfile;
+@inject ILocalStorageService storageService
+
+@attribute [Authorize]
+
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Allgemeine"]</h5>
+
+<EditForm Model="@_NewProfile_Step1" OnValidSubmit="onSave_Click">
+    <DataAnnotationsValidator />
+    <div class="col-sm-12 form-inline control_padding">
+        <label class="col-sm-4 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_ProfileName"]</label>
+        <div class="col-sm-5 control_padding">
+            <SfTextBox @ref="ProfileNameObj" Placeholder="@Localizer["Profile_ProfileName"]" @bind-Value="_NewProfile_Step1.ProfileName"
+                       CssClass="col-sm-12 control_padding_dropcown">
+            </SfTextBox>
+        </div>
+        <div class="col-md-3 profilWizadrdText"><ValidationMessage For="@(() => _NewProfile_Step1.ProfileName)" /> </div>
+    </div>
+    <div class="col-sm-12 form-inline control_padding mt-3">
+        <label class="col-sm-4 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_Platform"]</label>
+        <div class="col-sm-5 control_padding">
+            <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" ShowClearButton="false" @bind-Value="_NewProfile_Step1.ProfileGate"
+                        CssClass="col-sm-12 control_padding_dropcown" @bind-Index="@GateDefaultIndex" DataSource="@_Gates">
+                <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
+            </SfComboBox>
+        </div>
+        <div class="col-md-3 profilWizadrdText"><ValidationMessage For="@(() => _NewProfile_Step1.ProfileGate)" /> </div>
+    </div>
+    <div class="col-sm-12 form-inline control_padding mt-3">
+        <label class="col-sm-4 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_Email_Language"]</label>
+        <div class="col-sm-5 control_padding">
+            <SfComboBox @ref="ProfileEmailLanguageObj" TValue="string" TItem="ProfileEmailLanguageData" ShowClearButton="false" @bind-Value="_NewProfile_Step1.ProfileEmailLanguage"
+                        CssClass="col-sm-12 control_padding_dropcown" @bind-Index="@ProfileEmailLanguageDefaultIndex" DataSource="@_LanguageList">
+                <ComboBoxFieldSettings Text="LangID" Value="LangValue"></ComboBoxFieldSettings>
+            </SfComboBox>
+        </div>
+        <div class="col-md-3 profilWizadrdText"><ValidationMessage For="@(() => _NewProfile_Step1.ProfileEmailLanguage)" /> </div>
+    </div>
+    <div class="col-sm-12 form-inline control_padding mt-3">
+        <label class="col-sm-4 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_Description"]</label>
+        <div class="col-sm-8 control_padding">
+            <SfTextBox Placeholder="@Localizer["Profile_Description"]" @bind-Value="@_NewProfile_Step1.ProfileDescription"  Multiline="true">
+            </SfTextBox>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-sm-12 top_blue_bg">
+            <div class="col-sm-1 form-inline control_padding">
+                <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Text="@Localizer["Button_Save"]" Size="ButtonSize.Small" />
+            </div>
+
+        </div>
+    </div>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public EventCallback<int> OnChangeFormClick { get; set; }
+
+    SfTextBox ProfileNameObj;
+    public string ProfileNameValue { get; set; }
+
+    SfComboBox<string, FiltersModels.GateModel> GateComboObj;
+    private int? GateDefaultIndex { get; set; } = 0;
+    private List<FiltersModels.GateModel> _Gates;
+
+    SfComboBox<string, ProfileEmailLanguageData> ProfileEmailLanguageObj;
+    private int? ProfileEmailLanguageDefaultIndex { get; set; } = 0;
+    private List<ProfileEmailLanguageData> _LanguageList;
+
+    NewProfile_Step1 _NewProfile_Step1 = new NewProfile_Step1();
+
+    public class ProfileEmailLanguageData
+    {
+        public string LangID { get; set; }
+        public string LangValue { get; set; }
+    }
+
+    public class NewProfile_Step1
+    {
+        [Required(ErrorMessageResourceName = "Profile_Validation_ProfileName", ErrorMessageResourceType = typeof(HcmRes))]
+        public string ProfileName { get; set; }
+        public string ProfileGate { get; set; }
+        public string ProfileEmailLanguage { get; set; }
+        public string ProfileDescription { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _Gates = _filtersData.GetGates();
+        _LanguageList = new List<ProfileEmailLanguageData>
+        {
+            new ProfileEmailLanguageData() { LangID = "de-DE",  LangValue = "Deutsch" },
+            new ProfileEmailLanguageData() { LangID = "en-US",  LangValue = "English" }
+        };
+        var profileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        if (profileStatusInfo.cmsProfile != null)
+        {
+            if (profileStatusInfo.cmsProfile.profileID > 0)
+            {
+                _NewProfile_Step1.ProfileName = profileStatusInfo.cmsProfile.profileName;
+                _NewProfile_Step1.ProfileDescription = profileStatusInfo.cmsProfile.profilDescr;
+            }
+        }
+    }
+
+    async Task onSave_Click()
+    {
+        var profileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        if (profileStatusInfo.cmsProfile != null && profileStatusInfo.cmsProfile.profileID > 0)
+        {
+
+            profileStatusInfo.cmsProfile.profileName = _NewProfile_Step1.ProfileName;
+            profileStatusInfo.cmsProfile.profilDescr = _NewProfile_Step1.ProfileDescription;
+            profileStatusInfo.cmsProfile.EmailLanguage = _NewProfile_Step1.ProfileEmailLanguage;
+            profileStatusInfo.cmsProfile.appID = int.Parse(_NewProfile_Step1.ProfileGate);
+            await storageService.SetItemAsync("ProfileStatusInfo", profileStatusInfo);
+
+            await _CMSProfile.UpdateGeneralInfoAsync(profileStatusInfo.cmsProfile);
+        }
+        else
+        {
+            var _UsersModel = await storageService.GetItemAsync<UsersModel>("User");
+            CMSProfileModel cmsNewProfile = await _CMSProfile.CreateNew(_UsersModel.ContactID, int.Parse(_NewProfile_Step1.ProfileGate), _NewProfile_Step1.ProfileName, _NewProfile_Step1.ProfileDescription, _NewProfile_Step1.ProfileEmailLanguage);
+            if (cmsNewProfile != null)
+            {
+                var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+                ProfileStatusInfo.Step = 2;
+                ProfileStatusInfo.cmsProfile = cmsNewProfile;
+                await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+                await OnChangeFormClick.InvokeAsync(1);
+            }
+        }
+    }
+}

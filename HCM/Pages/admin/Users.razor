@@ -187,7 +187,6 @@
     {
         UsersModel _userInfo = await storageService.GetItemAsync<UsersModel>("User");
         UsersList = await _usersData.UsersList(_userInfo.UserID);
-
     }
     async Task onUpdateUserInfo_Click()
     {

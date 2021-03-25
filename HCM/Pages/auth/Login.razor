@@ -15,86 +15,72 @@
 @inject IConfiguration Configuration
 
 
-<div class="row align-items-center">
-    <div class="col-4">
-        <h2>Login to your account</h2>
-        <EditForm Model="model" OnValidSubmit="LoginUser">
-            <RadzenCard>
-                @*<AlertMessage Message="@message" MessageType="@messageType" />*@
 
-                <DataAnnotationsValidator />
-                <ValidationSummary />
 
-                <label>Email</label>
-                <div class="input-group mb-3">
-                    <Radzen.Blazor.RadzenTextBox @bind-Value="model.UserName" class="form-control"></Radzen.Blazor.RadzenTextBox>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
+<EditForm Model="loginModel" OnValidSubmit="LoginUser">
+
+
+        
+
+        <div class="row justify-content-sm-center mt-4">
+
+            <div class="row col-sm-4 justify-content-sm-center border">
+
+                <div class="col-sm-12 form-inline m-sm-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
                 </div>
 
-                <label>Password</label>
-                <div class="input-group mb-3">
-                    <RadzenPassword @bind-Value="model.Password" class="form-control"></RadzenPassword>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
+                <div class="col-sm-12 form-inline m-sm-2">
+                    <label class="col-sm-4 form_name">Email:</label>
+                    <div class="col-sm-8">
+                        <SfTextBox @bind-Value="@loginModel.UserName">
+                        </SfTextBox>
                     </div>
                 </div>
-
-                <label>Sprache</label>
-                <div class="input-group mb-3">
-                    <select class="form-control mr-2" @bind="selectedCulture">
-                        @foreach (var culture in cultures)
-                        {
-                            <option value="@culture.Key">@culture.Value</option>
-                        }
-                    </select>
+                <div class="col-sm-12 form-inline m-sm-2">
+                    <label class="col-sm-4 form_name">Password:</label>
+                    <div class="col-sm-8">
+                        <SfTextBox @bind-Value="@loginModel.Password">
+                        </SfTextBox>
+                    </div>
+                </div>
+                <div class="col-sm-12 form-inline m-sm-2">
+                    <label class="col-sm-4 form_name">Sprache:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control mr-2 col-sm-12" @bind="selectedCulture">
+                            @foreach (var culture in cultures)
+                            {
+                                <option value="@culture.Key">@culture.Value</option>
+                            }
+                        </select>
+                    </div>
                 </div>
 
                 <hr />
-                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Login"
-                              ButtonStyle="Radzen.ButtonStyle.Primary" class="btn-block mr-2"
-                              Disabled="isBusy" />
 
-            </RadzenCard>
-        </EditForm>
-    </div>
-</div>
-
-<!--<div class="row">
-    <div class="col-12">-->
-@*<EditForm Model="model" OnValidSubmit="LoginUser">*@
-@*<RadzenCard>*@
+                <div class="col-sm-12 form-inline m-sm-2">
+                    <label class="col-sm-4 filter_title">&nbsp;</label>
+                    <div class="col-sm-8">
+                        <SfButton Type="submit" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" CssClass="e-flat e-info col-sm-12">Login</SfButton>
+                    </div>
+                </div>
 
 
-<!--<SfCard ID="HugeImage" Orientation="CardOrientation.Vertical">
-    <CardImage Image="images/cards/steven.png" />
-    <CardHeader Title="Harrisburg Keith" />
-    <CardContent>
-        <label>Username</label>
-        <SfTextBox Placeholder="Enter your username" CssClass="e-success"></SfTextBox>
-        <label>Password</label>
-        <SfTextBox Placeholder="Enter your password" CssClass="e-success"></SfTextBox>
-    </CardContent>
-    <CardFooter>
-        <CardFooterContent>
-            <SfButton OnClick="LoginUser" CssClass="e-btn e-outline e-primary">FOLLOW US</SfButton>
-        </CardFooterContent>
-    </CardFooter>
-</SfCard>-->
-@*</RadzenCard>*@
-@*</EditForm>*@
-<!--</div>
-</div>-->
+            </div>
+        
+        </div>
+
+
+</EditForm>
+
+
+
 
 
 
 @code {
-    HCMDataAccess.Models.LoginRequest model = new HCMDataAccess.Models.LoginRequest();
+    HCMDataAccess.Models.LoginRequest loginModel = new HCMDataAccess.Models.LoginRequest();
     private string selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
     private Dictionary<string, string> cultures;
 
@@ -109,7 +95,7 @@
 
     public async Task LoginUser()
     {
-        HCMDataAccess.Models.LoginResponse _LoginResponse = await loginData.Login(model.UserName, model.Password);
+        HCMDataAccess.Models.LoginResponse _LoginResponse = await loginData.Login(loginModel.UserName, loginModel.Password);
 
         if (_LoginResponse.Success)
         {
@@ -118,7 +104,12 @@
                 FullName = _LoginResponse.FullName,
                 NickName = _LoginResponse.NikName,
                 ContactID = _LoginResponse.ContactID,
-                UserID = _LoginResponse.UserID
+                UserID = _LoginResponse.UserID,
+                EMail = _LoginResponse.EMail,
+                //ContactURI = _LoginResponse.ContactURI,
+                //ForeingID = _LoginResponse.ForeingID,
+                Name = _LoginResponse.Name,
+                ContactData = _LoginResponse.ContactData
             };
 
             await storageService.SetItemAsync("User", userInfo);

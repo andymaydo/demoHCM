@@ -1,0 +1,134 @@
+﻿@using HCMApi;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+@using System.ComponentModel.DataAnnotations;
+
+@inject IStringLocalizer<App> Localizer
+@inject IFiltersData _filtersData;
+@inject ILocalStorageService storageService
+
+@attribute [Authorize]
+
+
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Escalation"]</h5>
+
+<h4 class="tLabel">@Localizer["Profile_Step_Escalation_RuleList"]</h4>
+
+<SfGrid DataSource="@_caseRuleList" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+    <GridPageSettings PageSize="25"></GridPageSettings>
+    <GridEvents CommandClicked="OnCommandClicked" TValue="CaseRule"></GridEvents>
+    <GridColumns>
+        <GridColumn Field=@nameof(CaseRule.CaseStatusName) HeaderText="@Localizer["Profile_Step_Escalation_RuleList_Name"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80"></GridColumn>
+        <GridColumn Field=@nameof(CaseRule.CaseStatusDays) HeaderText="@Localizer["Profile_Step_Escalation_RuleList_Days"]" Width="150"></GridColumn>
+        <GridColumn HeaderText="" Width="240">
+            <GridCommandColumns>
+                <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-delete", CssClass="e-flat", Content=Localizer["Button_Del"]})"></GridCommandColumn>
+            </GridCommandColumns>
+        </GridColumn>
+    </GridColumns>
+</SfGrid>
+
+<h4 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Escalation_AddRule"]</h4>
+
+<EditForm Model="@_NewProfile_Step3_1" OnValidSubmit="AddEscalation_Rule_Click">
+    <DataAnnotationsValidator />
+    <ValidationSummary></ValidationSummary>
+    <div class="col-sm-12 form-inline control_padding">
+        <label class="col-sm-2 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_Step_Escalation_RuleList_Name"]</label>
+        <div class="col-sm-4 control_padding">
+            <SfDropDownList TValue="string" TItem="FiltersModels.CaseStatusModel" DataSource="@Statuses" @bind-Value="_NewProfile_Step3_1.StatusID">
+                <DropDownListFieldSettings Text="CaseStatus" Value="CaseStatusID"></DropDownListFieldSettings>
+            </SfDropDownList>
+        </div>
+        <label class="col-sm-2 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_Step_Escalation_RuleList_Days"]</label>
+        <div class="col-sm-3 control_padding">
+            <SfTextBox Value="@_NewProfile_Step3_1.InDays" ValueChange="InDays_ValueChange">
+            </SfTextBox>
+        </div>
+        <div class="col-sm-1 control_padding">
+            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Add"]" ButtonType="ButtonType.Submit" Size="ButtonSize.Small" />
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public EventCallback<int> OnChangeFormClick { get; set; }
+    NewProfile_Step3_1 _NewProfile_Step3_1 = new NewProfile_Step3_1();
+
+    private List<CaseRule> _caseRuleList { get; set; }
+
+    public class NewProfile_Step3_1
+    {
+
+        public string StatusID { get; set; }
+        public string StatusText { get; set; }
+        [Required(ErrorMessageResourceName = "Profile_Validation_StatusDays", ErrorMessageResourceType = typeof(HcmRes))]
+        public string InDays { get; set; }
+    }
+    private List<FiltersModels.CaseStatusModel> Statuses
+    {
+        get
+        {
+            List<FiltersModels.CaseStatusModel> _Statuses = _filtersData.GetStatusesForEscalation();
+            foreach (FiltersModels.CaseStatusModel status in _Statuses)
+            {
+                status.CaseStatus = Localizer["Case_Status_" + status.CaseStatusID.ToString()];
+            }
+            return _Statuses;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        if (ProfileStatusInfo.cmsProfile.escalationRules != null && ProfileStatusInfo.cmsProfile.escalationRules.Count > 0)
+        {
+            //_caseRuleList = ProfileStatusInfo.cmsProfile.escalationRules;
+            //_caseRuleList.Clear();
+            _caseRuleList = new List<CaseRule>();
+            foreach (CaseRule c in ProfileStatusInfo.cmsProfile.escalationRules)
+            {
+                c.CaseStatusName = Localizer["Case_Status_" + c.CaseStatusID];
+                _caseRuleList.Add(c);
+            }
+        }
+
+        StateHasChanged();
+    }
+    public void OnCommandClicked(CommandClickEventArgs<CaseRule> args)
+    {
+        if (args.CommandColumn.Type == CommandButtonType.Delete)
+        {
+            //UserNameValue = args.RowData.LoginName;
+            //RealNameValue = args.RowData.Name;
+            //EMailValue = args.RowData.EMail;
+            //AbteilungValue = args.RowData.FunctionInFirma;
+            //BindUsersRoleList();
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            StateHasChanged();
+        }
+
+    }
+
+    private void InDays_ValueChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
+    {
+        _NewProfile_Step3_1.InDays = args.Value;
+        StateHasChanged();
+    }
+
+    async Task AddEscalation_Rule_Click()
+    {
+
+    }
+}
