@@ -29,19 +29,23 @@
 
             @if (ProfileStep == 1)
             {
-                <ProfileStep1 OnChangeFormClick=@OnChangeFormEvent/>
+                <ProfileStep1 OnChangeFormClick=@OnChangeFormEvent />
             }
             else if (ProfileStep == 2)
             {
-                <ProfileStep2 OnChangeFormClick=@OnChangeFormEvent/>
+                <ProfileStep2 OnChangeFormClick=@OnChangeFormEvent />
             }
             else if (ProfileStep == 3)
             {
-                <ProfileStep3 OnChangeFormClick=@OnChangeFormEvent/>
+                <ProfileStep3 OnChangeFormClick=@OnChangeFormEvent />
             }
             else if (ProfileStep == 4)
             {
-                <ProfileStep4 OnChangeFormClick=@OnChangeFormEvent/>
+                <ProfileStep4 OnChangeFormClick=@OnChangeFormEvent />
+            }
+            else if (ProfileStep == 5)
+            {
+                <ProfileView OnChangeFormClick=@OnChangeFormEvent />
             }
 
         </div>

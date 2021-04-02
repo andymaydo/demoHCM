@@ -1,6 +1,154 @@
-﻿<h3>ProfileStep4</h3>
+﻿@using HCMApi;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+@using System.ComponentModel.DataAnnotations;
 
-@code {
-    [Parameter]
-    public EventCallback<int> OnChangeFormClick { get; set; }
-}
+@inject IStringLocalizer<App> Localizer
+@inject IFiltersData _filtersData;
+@inject ILocalStorageService storageService
+@inject ICaseContact _caseContact;
+@inject ICMSProfile _CMSProfile;
+
+@attribute [Authorize]
+
+
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Status"] (@_CMSProfileModel?.profileName)</h5>
+
+<EditForm Model="@_StatusValidation" OnValidSubmit="SaveStep_Click">
+    <DataAnnotationsValidator />
+    <div class="row row_padding">
+        <div class="col-sm-3 control_padding">
+            <h5 class="tLabel">@Localizer["Profile_ProfileStatus"] </h5>
+        </div>
+        <div class="col-sm-3 control_padding">
+
+
+            <SfRadioButton @bind-Checked="@_StatusValidation.StatusText" Label="@Localizer["Profile_Status_Active"]" @onclick="@(() => ChangeStatus("Active"))" Name="Status" Value="Active"></SfRadioButton>
+            <br />
+            <SfRadioButton @bind-Checked="@_StatusValidation.StatusText" Label="@Localizer["Profile_Status_InActive"]" @onclick="@(() => ChangeStatus("InActive"))" Name="Status" Value="InActive"></SfRadioButton>
+            <br />
+            <SfRadioButton @bind-Checked="@_StatusValidation.StatusText" Label="@Localizer["Profile_Status_Delete"]" @onclick="@(() => ChangeStatus("Delete"))" Name="Status" Value="Delete"></SfRadioButton>
+            <br />
+            <HcmCustomValidator @ref="customValidator" />
+            <SfTextBox @ref="DeleteTextObj" @bind-Value="@_StatusValidation.DeleteStatusText" Multiline="true" Enabled=@deleteTextBoxStatus>
+            </SfTextBox>
+            <ValidationMessage For="@(()=>_StatusValidation.DeleteStatusText)" />
+
+            @*<div class="form-group">
+            <label for="EmailAddress">Email address</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@@</span>
+                </div>
+                <SfTextBox @ref="DeleteTextObj" @bind-Value="@_StatusValidation.DeleteStatusText" Multiline="true" Enabled=@deleteTextBoxStatus>
+                </SfTextBox>
+
+            </div>
+        </div>*@
+
+        </div>
+    </div>
+
+    <div class="row row_padding top_blue_bg mt-3">
+        <div class="col-sm-1 form-inline control_padding">
+            <SfButton Type="submit" IconCss="e-icons-hcm e-hcm-search" CssClass="e-flat e-info col-sm-12">@Localizer["Button_Save"]</SfButton>
+        </div>
+
+    </div>
+</EditForm>
+
+
+    @code {
+        [Parameter]
+        public EventCallback<int> OnChangeFormClick { get; set; }
+        HCMApi.Models.CMSProfileModel _CMSProfileModel;
+        SfTextBox DeleteTextObj;
+
+        public string deleteText { get; set; }
+        public bool deleteTextBoxStatus { get; set; } = true;
+
+        StatusValidation _StatusValidation { get; set; } = new StatusValidation{ StatusID=0,DeleteStatusText="",StatusText=""};
+        public class StatusValidation
+        {
+
+            public int StatusID { get; set; }
+            public string StatusText { get; set; }
+            //[Required(ErrorMessageResourceName = "Profile_Validation_Delete_Profil", ErrorMessageResourceType = typeof(HcmRes))]
+            public string DeleteStatusText { get; set; }
+        }
+        private HcmCustomValidator customValidator;
+
+
+
+        protected override async Task OnInitializedAsync()
+        {
+            var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+            if (ProfileStatusInfo.cmsProfile != null)
+            {
+                _CMSProfileModel = ProfileStatusInfo.cmsProfile;
+                _StatusValidation.DeleteStatusText = _CMSProfileModel.ReasonToDelete;
+                _StatusValidation.StatusID = _CMSProfileModel.profileStatusID;
+                _StatusValidation.StatusText = _CMSProfileModel.profileStatus;
+            }
+
+        }
+
+        private void ChangeStatus(string status)
+        {
+            _StatusValidation.StatusText = status;
+            if (_StatusValidation.StatusText == "Delete")
+            {
+                deleteTextBoxStatus = true;
+                _StatusValidation.StatusID = -1;
+            }
+            else
+            {
+                deleteTextBoxStatus = false;
+                _StatusValidation.StatusID = (status == "Active" ? 1:0);
+            }
+            StateHasChanged();
+        }
+        async Task SaveStep_Click()
+        {
+            customValidator.ClearErrors();
+
+            var errors = new Dictionary<string, List<string>>();
+
+            if (_StatusValidation.StatusText == "Delete" && string.IsNullOrEmpty(_StatusValidation.DeleteStatusText))
+            {
+                errors.Add(nameof(_StatusValidation.DeleteStatusText),
+                    new List<string>() { Localizer["Profile_Validation_Delete_Profil"] });
+            }
+
+            if (errors.Count() > 0)
+            {
+                customValidator.DisplayErrors(errors);
+            }
+            else
+            {
+                var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+                ProfileStatusInfo.Step = 5;
+
+                ProfileStatusInfo.cmsProfile.profileStatusID = _StatusValidation.StatusID;
+                ProfileStatusInfo.cmsProfile.profileStatus = _StatusValidation.StatusText;
+                ProfileStatusInfo.cmsProfile.ReasonToDelete = _StatusValidation.DeleteStatusText;
+
+                await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+                await _CMSProfile.UpdateStatusAsync(ProfileStatusInfo.cmsProfile);
+                await OnChangeFormClick.InvokeAsync(4);
+            }
+
+
+
+        }
+
+
+
+
+
+    }

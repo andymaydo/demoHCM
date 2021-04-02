@@ -12,5 +12,7 @@ namespace HCMApi
         CMSProfileModel Load(int _profileID);
         Task<bool> UpdateParticipantsAsync(CMSProfileModel cmsProfileModel);
         Task<bool> UpdateGeneralInfoAsync(CMSProfileModel cmsProfileModel);
+        Task<bool> UpdateEscalationAsync(CMSProfileModel cmsProfileModel);
+        Task<bool> UpdateStatusAsync(CMSProfileModel cmsProfileModel);
     }
 }

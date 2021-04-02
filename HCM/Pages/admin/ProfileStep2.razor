@@ -44,18 +44,18 @@
 
 <h4 class="tLabel bottom_blue_bg">@Localizer["Profile_Step2_TeilnehmerAnlegen"]</h4>
 
-<EditForm Model="@_NewProfile_Step2" OnValidSubmit="AddNewUser_Click">
+<EditForm Model="@_CaseContactValidation" OnValidSubmit="AddNewUser_Click">
     <DataAnnotationsValidator />
     <div class="col-sm-12 form-inline control_padding">
         <label class="col-sm-2 control_padding mylabel-left profilWizadrdText">@Localizer["Cases_ChangeUsers_FullUserList"]</label>
         <div class="col-sm-4 control_padding">
-            <SfDropDownList @ref="_caseContactDropDownListObj" TValue="string" TItem="CaseContact" AllowFiltering="true" DataSource="@_caseContactList" @bind-Value="_NewProfile_Step2.ContactID">
+            <SfDropDownList @ref="_caseContactDropDownListObj" TValue="string" TItem="CaseContact" AllowFiltering="true" DataSource="@_caseContactList" @bind-Value="_CaseContactValidation.ContactID">
                 <DropDownListFieldSettings Text="Name" Value="ContactID"></DropDownListFieldSettings>
             </SfDropDownList>
         </div>
         <label class="col-sm-2 control_padding mylabel-left profilWizadrdText">@Localizer["Cases_ChangeUsers_List_Role"]</label>
         <div class="col-sm-3 control_padding">
-            <SfDropDownList TValue="string" TItem="UserRolesModel" AllowFiltering="true" DataSource="@UserRolesList" @bind-Value="_NewProfile_Step2.RoleName">
+            <SfDropDownList TValue="string" TItem="UserRolesModel" AllowFiltering="true" DataSource="@UserRolesList" @bind-Value="_CaseContactValidation.RoleName">
                 <DropDownListFieldSettings Text="LocalizerRoleName" Value="RoleName"></DropDownListFieldSettings>
             </SfDropDownList>
         </div>
@@ -81,13 +81,13 @@
 
     public List<CaseContact> _caseContactList = new List<CaseContact>();
     public List<UserRolesModel> UserRolesList;
-    NewProfile_Step2 _NewProfile_Step2 = new NewProfile_Step2();
+    CaseContactValidation _CaseContactValidation = new CaseContactValidation();
 
 
     protected  SfDropDownList<string, CaseContact> _caseContactDropDownListObj;
     SfGrid<CaseContact> _caseResponsiblesObj;
 
-    public class NewProfile_Step2
+    public class CaseContactValidation
     {
         [Required(ErrorMessageResourceName = "Profile_Validation_User", ErrorMessageResourceType = typeof(HcmRes))]
         public string ContactID { get; set; }
@@ -160,10 +160,10 @@
 
     async Task AddNewUser_Click()
     {
-        if (_caseResponsibles.Where(c => c.ContactID == Convert.ToInt32(_NewProfile_Step2.ContactID)).Count() == 0  )
+        if (_caseResponsibles.Where(c => c.ContactID == Convert.ToInt32(_CaseContactValidation.ContactID)).Count() == 0  )
         {
-            CaseContact _CaseContact = _caseContactList.Where(c1 => c1.ContactID == Convert.ToInt32(_NewProfile_Step2.ContactID)).FirstOrDefault();
-            _CaseContact.ProfileRole = _NewProfile_Step2.RoleName;
+            CaseContact _CaseContact = _caseContactList.Where(c1 => c1.ContactID == Convert.ToInt32(_CaseContactValidation.ContactID)).FirstOrDefault();
+            _CaseContact.ProfileRole = _CaseContactValidation.RoleName;
             _caseResponsibles.Add(_CaseContact);
             _caseResponsiblesObj.Refresh();
 

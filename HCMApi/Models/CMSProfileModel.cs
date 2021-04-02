@@ -20,7 +20,7 @@ namespace HCMApi.Models
         public string EmailLanguage { get; set; }
 
         public List<CaseContact> profileParticipants { get; set; }
-        public CaseContactList escalationUsers { get; set; }
+        public List<CaseContact> escalationUsers { get; set; }
         public List<CaseRule> escalationRules { get; set; }
         public bool NotifyAllProfileParticipants { get; set; }
 
@@ -41,17 +41,28 @@ namespace HCMApi.Models
             s += @"</ContactList>";
             return s;
         }
-        //public string EscalationUsers_AsXmlString()
-        //{
-        //    XmlDocument xDoc = new XmlDocument();
-        //    string s = @"<ContactList>";
-        //    foreach (CaseContact key in profileParticipants)
-        //    {
-        //        s += key.AsXml();
-        //    }
-        //    s += @"</ContactList>";
-        //    return s;
-        //}
+        public string EscalationUsers_AsXmlString()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            string s = @"<ContactList>";
+            foreach (CaseContact key in escalationUsers)
+            {
+                s += key.AsXml();
+            }
+            s += @"</ContactList>";
+            return s;
+        }
+        public string EscalationRules_AsXmlString()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            string s = @"<CaseRuleList>";
+            foreach (CaseRule key in escalationRules)
+            {
+                s += key.AsXml();
+            }
+            s += @"</CaseRuleList>";
+            return s;
+        }
     }
 
      public class CMSProfileModelSimple

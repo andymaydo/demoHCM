@@ -7,16 +7,23 @@
 
 
 <div class="col-12 control_padding">
-    <SfButton CssClass="e-link"  OnClick="onMenu1Click">@Localizer["Profile_Step_Allgemeine"]</SfButton>
+    <SfButton CssClass="e-link" OnClick="onMenu1Click">@Localizer["Profile_Step_Allgemeine"]</SfButton>
 </div>
 <div class="col-12 control_padding">
-    <SfButton CssClass="e-link"  OnClick="onMenu2Click">@Localizer["Profile_Step_Teilnehmen"]</SfButton>
+    <SfButton CssClass="e-link" OnClick="onMenu2Click">@Localizer["Profile_Step_Teilnehmen"]</SfButton>
 </div>
 <div class="col-12 control_padding">
-    <SfButton CssClass="e-link"  OnClick="onMenu3Click">@Localizer["Profile_Step_Escalation"]</SfButton>
+    <SfButton CssClass="e-link" OnClick="onMenu3Click">@Localizer["Profile_Step_Escalation"]</SfButton>
 </div>
 <div class="col-12 control_padding">
-    <SfButton CssClass="e-link"  OnClick="onMenu4Click">@Localizer["Profile_Step_Status"]</SfButton>
+    <SfButton CssClass="e-link" OnClick="onMenu4Click">@Localizer["Profile_Step_Status"]</SfButton>
+</div>
+<div class="row">
+    <br />
+</div>
+
+<div class="col-12 control_padding">
+    <SfButton CssClass="e-link" OnClick="onMenu5Click">@Localizer["Profile_Step_AllView"]</SfButton>
 </div>
 
 
@@ -31,6 +38,7 @@
     public bool Menu2Disabled = true;
     public bool Menu3Disabled = true;
     public bool Menu4Disabled = true;
+    public bool Menu5Disabled = true;
 
     protected override async Task OnInitializedAsync()
     {
@@ -75,6 +83,15 @@
         await OnChangeFormClick.InvokeAsync(4);
         onStepChange();
     }
+    private async Task onMenu5Click(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+        ProfileStatusInfo.Step = Step = 5;
+        await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+        await OnChangeFormClick.InvokeAsync(5);
+        onStepChange();
+    }
 
 
     private void onStepChange()
@@ -100,6 +117,14 @@
             Menu2Disabled = false;
             Menu3Disabled = false;
             Menu4Disabled = false;
+        }
+        else if (Step == 5)
+        {
+            Menu1Disabled = false;
+            Menu2Disabled = false;
+            Menu3Disabled = false;
+            Menu4Disabled = false;
+            Menu5Disabled = false;
         }
         StateHasChanged();
     }

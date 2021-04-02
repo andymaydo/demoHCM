@@ -91,7 +91,7 @@ namespace HCMApi
                                 try { 
                                     if (!String.IsNullOrEmpty(_escalationUsers))
                                     {
-                                        _CMSProfileModel.escalationUsers = CaseContactList.LoadFromXml(_escalationUsers);
+                                        _CMSProfileModel.escalationUsers = CaseContactList.LoadFromXmlAsList(_escalationUsers);
                                     }
                                 }
                                 catch { };
@@ -217,21 +217,40 @@ namespace HCMApi
             }
 
         }
-        //public void UpdateEscalation(int ModifiedBy)
-        //{
-        //    SqlParameter[] parms = new SqlParameter[] {
-        //                   new SqlParameter("@ProfilID", SqlDbType.Int),
-        //                   new SqlParameter("@ModifiedBy", SqlDbType.Int),
-        //                   new SqlParameter("@EscalationUsers", SqlDbType.Xml),
-        //                   new SqlParameter("@EscalationRules", SqlDbType.Xml)
-        //    };
-        //    parms[0].Value = ProfileID;
-        //    parms[1].Value = ModifiedBy;
-        //    parms[2].Value = EscalationUsers.AsXmlString();
-        //    parms[3].Value = EscalationRules.AsXmlString();
+        public async Task<bool> UpdateEscalationAsync(CMSProfileModel cmsProfileModel)
+        {
+            var procedure = "Profile_Update_Escalation";
+            var _params = new DynamicParameters();
 
-        //    DAO.ExecuteScalar(CommandType.StoredProcedure, "Profile_Update_Escalation", parms);
-        //}
+            _params.Add(name: "@ProfilID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: cmsProfileModel.profileID);
+            _params.Add(name: "@ModifiedBy", dbType: DbType.Int32, direction: ParameterDirection.Input, value: cmsProfileModel.ModifiedBy);
+            _params.Add(name: "@EscalationUsers", dbType: DbType.Xml, direction: ParameterDirection.Input, value: cmsProfileModel.EscalationUsers_AsXmlString());
+            _params.Add(name: "@EscalationRules", dbType: DbType.Xml, direction: ParameterDirection.Input, value: cmsProfileModel.EscalationRules_AsXmlString());
+            _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            try
+            {
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                {
+
+                    var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    int ReturnValue = _params.Get<int>("@ReturnValue");
+
+                    if (ReturnValue != 0)
+                    {
+                        throw new Exception("UpdateParticipantsAsync.UndefinedError");
+                    }
+
+                    return true;
+
+                }
+            }
+            catch ( Exception ex)
+            {
+                return false;
+            }
+            
+        }
         public async Task<bool> UpdateGeneralInfoAsync(CMSProfileModel cmsProfileModel)
         {
             var procedure = "Profile_Update_General";
@@ -267,38 +286,54 @@ namespace HCMApi
                 return false;
             }
 
+            
+        }
+        public async Task<bool> UpdateStatusAsync(CMSProfileModel cmsProfileModel)
+        {
+            var procedure = "Profile_Update_Status";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@ProfilID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: cmsProfileModel.profileID);
+            _params.Add(name: "@ModifiedBy", dbType: DbType.Int32, direction: ParameterDirection.Input, value: cmsProfileModel.ModifiedBy);
+            _params.Add(name: "@profileStatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: cmsProfileModel.profileStatusID);
+            _params.Add(name: "@ReasonToDelete", dbType: DbType.String, direction: ParameterDirection.Input, value: cmsProfileModel.ReasonToDelete);
+            _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            try
+            {
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                {
+
+                    var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    int ReturnValue = _params.Get<int>("@ReturnValue");
+
+                    if (ReturnValue != 0)
+                    {
+                        throw new Exception("UpdateStatusAsync.UndefinedError");
+                    }
+
+                    return true;
+
+                }
+            }
+            catch ( Exception ex)
+            {
+                return false;
+            }
+
             //SqlParameter[] parms = new SqlParameter[] {
             //               new SqlParameter("@ProfilID", SqlDbType.Int),
             //               new SqlParameter("@ModifiedBy", SqlDbType.Int),
-            //               new SqlParameter("@ProfileName", SqlDbType.NVarChar),
-            //               new SqlParameter("@ProfilDescr", SqlDbType.NVarChar),
-            //               new SqlParameter("@appID", SqlDbType.Int),
-            //               new SqlParameter("@NotificationLang ", SqlDbType.NVarChar, 50)
+            //               new SqlParameter("@profileStatusID", SqlDbType.Int),
+            //               new SqlParameter("@ReasonToDelete", SqlDbType.NChar)
             //};
             //parms[0].Value = ProfileID;
             //parms[1].Value = ModifiedBy;
-            //parms[2].Value = profileName;
-            //parms[3].Value = profilDescr;
-            //parms[4].Value = appID;
-            //parms[5].Value = EmailLanguage;
-
-            //DAO.ExecuteScalar(CommandType.StoredProcedure, "Profile_Update_General", parms);
+            //parms[2].Value = StatusID;
+            //parms[3].Value = ReasonToDelete;
+            //DAO.ExecuteScalar(CommandType.StoredProcedure, "Profile_Update_Status", parms);
+            //profileStatusID = StatusID;
         }
-        //public void UpdateStatus(int ModifiedBy, int StatusID, string ReasonToDelete)
-        //{
-        //    SqlParameter[] parms = new SqlParameter[] {
-        //                   new SqlParameter("@ProfilID", SqlDbType.Int),
-        //                   new SqlParameter("@ModifiedBy", SqlDbType.Int),
-        //                   new SqlParameter("@profileStatusID", SqlDbType.Int),
-        //                   new SqlParameter("@ReasonToDelete", SqlDbType.NChar)
-        //    };
-        //    parms[0].Value = ProfileID;
-        //    parms[1].Value = ModifiedBy;
-        //    parms[2].Value = StatusID;
-        //    parms[3].Value = ReasonToDelete;
-        //    DAO.ExecuteScalar(CommandType.StoredProcedure, "Profile_Update_Status", parms);
-        //    profileStatusID = StatusID;
-        //}
         #endregion
 
 
