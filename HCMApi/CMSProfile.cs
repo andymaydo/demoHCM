@@ -41,9 +41,9 @@ namespace HCMApi
 
         private readonly ISqlDataAccess _db;
 
-        //public CMSProfile()
-        //{
-        //}
+        public CMSProfile()
+        {
+        }
 
         public CMSProfile(ISqlDataAccess db)
         {
@@ -321,25 +321,13 @@ namespace HCMApi
                 return false;
             }
 
-            //SqlParameter[] parms = new SqlParameter[] {
-            //               new SqlParameter("@ProfilID", SqlDbType.Int),
-            //               new SqlParameter("@ModifiedBy", SqlDbType.Int),
-            //               new SqlParameter("@profileStatusID", SqlDbType.Int),
-            //               new SqlParameter("@ReasonToDelete", SqlDbType.NChar)
-            //};
-            //parms[0].Value = ProfileID;
-            //parms[1].Value = ModifiedBy;
-            //parms[2].Value = StatusID;
-            //parms[3].Value = ReasonToDelete;
-            //DAO.ExecuteScalar(CommandType.StoredProcedure, "Profile_Update_Status", parms);
-            //profileStatusID = StatusID;
         }
         #endregion
 
 
 
 
-        public async Task<List<ProfileListModel>> GetList(int? AppID, int? StatusID)
+        public async Task<List<CMSProfile>> GetList(int? AppID, int? StatusID)
         {
             var procedure = "Profile_GetList";
             var _params = new DynamicParameters();
@@ -368,9 +356,9 @@ namespace HCMApi
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = await conn.QueryAsync<ProfileListModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<CMSProfile>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<ProfileListModel> _CMSProfile = result.ToList<ProfileListModel>();
+                    List<CMSProfile> _CMSProfile = result.ToList<CMSProfile>();
 
                     return _CMSProfile;
                 }

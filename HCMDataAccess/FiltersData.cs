@@ -94,6 +94,33 @@ namespace HCMDataAccess
                 return null;
             }
         }
+
+         public List<CaseResultModel> GetResults(int appID)
+        {
+            var procedure = "CaseData_Result_4Application";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
+
+            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            try
+            {
+                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                {
+                    var result = conn.Query<CaseResultModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CaseResultModel> _FilterResultsModel = result.ToList<CaseResultModel>();
+
+                    return _FilterResultsModel;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public List<CaseStatusModel> GetStatuses()
         {
             var procedure = "CaseStatus_GetActiveOnly";

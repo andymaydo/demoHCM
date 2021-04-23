@@ -7,8 +7,9 @@ namespace HCMApi
     public interface ICMSProfile
     {      
 
-        Task<List<ProfileListModel>> GetList(int? AppID, int? StatusID);
+        Task<List<CMSProfile>> GetList(int? AppID, int? StatusID);
         Task<CMSProfileModel> CreateNew(int ModifiedBy, int appID, string profileName, string profilDescr, string EmailLanguage);
+        Task<CMSProfileModel> ProfilCopy(int SourceProfilID, int ModifiedBy);
         CMSProfileModel Load(int _profileID);
         Task<bool> UpdateParticipantsAsync(CMSProfileModel cmsProfileModel);
         Task<bool> UpdateGeneralInfoAsync(CMSProfileModel cmsProfileModel);

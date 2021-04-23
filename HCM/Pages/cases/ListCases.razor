@@ -15,6 +15,8 @@
 @inject IStringLocalizer<App> Localizer
 @inject IFiltersData _filtersData;
 @inject ILocalUserData _localUserData;
+@inject ILocalStorageService storageService
+@inject NavigationManager NavigationManager
 
 
 @attribute [Authorize]
@@ -150,8 +152,9 @@
 
 <SfGrid DataSource="@Cases" AllowPaging="true" AllowResizing="false" AllowTextWrap="true">
     <GridPageSettings PageSize="25"></GridPageSettings>
+    <GridEvents CommandClicked="OnCommandClicked" TValue="Case"></GridEvents>
     <GridColumns>
-        <GridColumn Field=@nameof(Case.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left"  MinWidth="80" MaxWidth="120" Width="80"></GridColumn>
+        <GridColumn Field=@nameof(Case.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" MinWidth="80" MaxWidth="120" Width="80"></GridColumn>
         <GridColumn Field=@nameof(Case.ProfileID) HeaderText="@Localizer["Label_Filter_ProfileID"]" Width="80" MinWidth="80" MaxWidth="200"></GridColumn>
         <GridColumn Field=@nameof(Case.Subject) HeaderText="@Localizer["Cases_List_Subject"]"></GridColumn>
         <GridColumn Field=@nameof(Case.CaseType) HeaderText="@Localizer["Cases_List_Category"]" Width="100"></GridColumn>
@@ -161,6 +164,11 @@
         <GridColumn Field=@nameof(Case.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Width="80"></GridColumn>
         <GridColumn Field=@nameof(Case.SapUser)></GridColumn>
         <GridColumn Field=@nameof(Case.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" Width="80"></GridColumn>
+        <GridColumn HeaderText="" Width="40">
+            <GridCommandColumns>
+                <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
+            </GridCommandColumns>
+        </GridColumn>
     </GridColumns>
 </SfGrid>
 
@@ -265,7 +273,7 @@
         Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, contactID,
 CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, ProfileID, FilterCustomerNameValue);
 
-        
+
     }
     async Task ClearFilter()
     {
@@ -280,6 +288,16 @@ CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
         FilterCaseIDValue = null;
         FilterCustomerNameValue = null;
         OnlyActiveIsChecked = true;
+    }
+
+    public async void OnCommandClicked(CommandClickEventArgs<Case> args)
+    {
+        if (args.CommandColumn.Type == CommandButtonType.Edit)
+        {
+            await storageService.SetItemAsync("CaseViewID", args.RowData.CaseID);
+
+            NavigationManager.NavigateTo("/case/details", forceLoad: true);
+        }
     }
 
     private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.GateModel> args)

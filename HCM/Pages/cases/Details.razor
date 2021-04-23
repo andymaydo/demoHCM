@@ -1,0 +1,26 @@
+﻿@page "/case/details"
+
+@inject IStringLocalizer<App> Localizer
+
+@attribute [Authorize]
+
+<h3>@Localizer["Cases_Detail_Title"]</h3>
+
+<div class="container">
+    <div class="row row_padding">
+        <div class="col-sm-2 form-inline control_padding">
+            <h5 class="tLabel bottom_blue_bg">@Localizer["Cases_Detail_Actions"]</h5>
+        </div>
+        <div class="col-sm-7 form-inline control_padding">
+            <h5 class="tLabel bottom_blue_bg">@Localizer["Cases_Detail_Label_Subject"]</h5>
+        </div>
+        <div class="col-sm-3 form-inline control_padding">
+            <h5 class="tLabel bottom_blue_bg">@Localizer["Cases_Detail_Label_AttachInformation"]</h5>
+        </div>
+    </div>
+</div>
+
+
+    @code {
+
+    }

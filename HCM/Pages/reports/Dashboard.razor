@@ -24,7 +24,7 @@
                         <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Status_" + r.CaseStatusID]</span>
                     </div>
                     <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal">@r.CaseCount</span>
+                        <span class="col-sm-12 ReportItemNormal"><a href="" @onclick="@(() => SetFilterByStatusID(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
                     </div>
                 </div>
             }
@@ -41,7 +41,7 @@
                         <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Result_" + r.CaseResultID]</span>
                     </div>
                     <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal">@r.CaseCount</span>
+                        <span class="col-sm-12 ReportItemNormal"><a href="" @onclick="@(() => SetFilterByResultID(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
                     </div>
                 </div>
             }
@@ -64,7 +64,7 @@
                         <span class="col-sm-12 text-left ReportItem">@Localizer["Label_Report_Alias_Group_Count"]</span>
                     </div>
                     <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal">@r.CaseCount</span>
+                        <span class="col-sm-12 ReportItemNormal"><a href="" @onclick="@(() => SetFilterByCaseCount(r.CaseCount))" @onclick:preventDefault>@r.CaseCount</a></span>
                     </div>
                 </div>
             }
@@ -81,6 +81,14 @@
     [Parameter]
     public Reports ParentReports { get; set; }
 
+    [Parameter]
+    public EventCallback<int> OnChangeStatusClick { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnChangeResultClick { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnChangeCaseCountClick { get; set; }
 
 
     List<ReportsModels.ReportCaseByStatusModels> _ReportCaseByStatusList { get; set; }
@@ -103,15 +111,15 @@
     {
 
         _ReportCaseByStatusList = await _reportsCaseData.CaseByStatus(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue, 
+            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
             _caseid, ParentReports.ProfileID, _customerName);
 
         _ReportCaseByResultList = await _reportsCaseData.CaseByResult(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue, 
+            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
             _caseid, ParentReports.ProfileID, _customerName);
 
         _ReportAliasCountList = await _reportsCaseData.AliasCount(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue, 
+            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
             _caseid, ParentReports.ProfileID, _customerName);
 
         StateHasChanged();
@@ -120,6 +128,22 @@
     public void FilterChangedEvent(bool IsAction)
     {
         BindDashboardData();
+    }
+
+    private async Task SetFilterByStatusID(int filter)
+    {
+        await OnChangeStatusClick.InvokeAsync(filter);
+        StateHasChanged();
+    }
+    private async Task SetFilterByResultID(int filter)
+    {
+        await OnChangeResultClick.InvokeAsync(filter);
+        StateHasChanged();
+    }
+    private async Task SetFilterByCaseCount(int filter)
+    {
+        await OnChangeCaseCountClick.InvokeAsync(filter);
+        StateHasChanged();
     }
 
 

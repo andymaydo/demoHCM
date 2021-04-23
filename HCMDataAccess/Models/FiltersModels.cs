@@ -21,6 +21,11 @@ namespace HCMDataAccess.Models
             public int CaseTypeID { get; set; }
             public string CaseType { get; set; }
         }
+        public class CaseResultModel
+        {
+            public int CaseResultID { get; set; }
+            public string CaseResult { get; set; }
+        }
         public class CaseStatusModel
         {
             public int CaseStatusID { get; set; }

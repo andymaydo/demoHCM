@@ -94,15 +94,15 @@
 
 <SfGrid DataSource="@ProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true">
     <GridPageSettings PageSize="25"></GridPageSettings>
-    <GridEvents CommandClicked="OnCommandClicked" TValue="ProfileListModel"></GridEvents>
+    <GridEvents CommandClicked="OnCommandClicked" TValue="CMSProfile"></GridEvents>
     <GridColumns>
         <GridColumn Field=@nameof(CMSProfile.profileID) HeaderText="@Localizer["Profile_ProfileID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80"></GridColumn>
         <GridColumn Field=@nameof(CMSProfile.appName) HeaderText="@Localizer["Profile_Platform"]" Width="150"></GridColumn>
         <GridColumn Field=@nameof(CMSProfile.profileName) HeaderText="@Localizer["Profile_ProfileName"]"></GridColumn>
-        <GridColumn Field=@nameof(CMSProfile.profileName) HeaderText="@Localizer["Profile_ProfileStatus"]" Width="150"></GridColumn>
-        <GridColumn HeaderText="" Width="240">
+        <GridColumn Field=@nameof(CMSProfile.profileStatus) HeaderText="@Localizer["Profile_ProfileStatus"]" Width="150"></GridColumn>
+        <GridColumn HeaderText="" Width="340">
             <GridCommandColumns>
-                <GridCommandColumn Type="CommandButtonType.Save" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-thumbnail", CssClass="e-flat", Content=Localizer["Value_Copy_Text"]})"></GridCommandColumn>
+                <GridCommandColumn Type="CommandButtonType.None" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-copy", CssClass="e-flat", Content=Localizer["Value_Copy_Text"]})"></GridCommandColumn>
                 <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat", Content=Localizer["Value_Edit_Text"]})"></GridCommandColumn>
             </GridCommandColumns>
         </GridColumn>
@@ -114,7 +114,7 @@
     SfComboBox<string, FiltersModels.ProfileStatusModel> StatusComboObj;
     private bool ShowDeletedIsChecked = true;
     //private string _NoItemSelected = Localizer["Value_All_Text"];
-    private List<ProfileListModel> ProfileList { get; set; }
+    private List<CMSProfile> ProfileList { get; set; }
 
     private List<FiltersModels.ProfileStatusModel> Statuses
     {
@@ -134,10 +134,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //ProfileList = new List<ProfileListModel>();
-
         ProfileList = await _CMSProfile.GetList(null, null);
-
     }
 
     async Task onGo_Click()
@@ -181,17 +178,10 @@
         StateHasChanged();
     }
 
-    public void OnCommandClicked(CommandClickEventArgs<ProfileListModel> args)
+    public async Task OnCommandClicked(CommandClickEventArgs<CMSProfile> args)
     {
         if (args.CommandColumn.Type == CommandButtonType.Edit)
         {
-            //this.EditDialogVisibility = true;
-            //UserNameValue = args.RowData.profileID;
-            //RealNameValue = args.RowData.Name;
-            //EMailValue = args.RowData.EMail;
-            //AbteilungValue = args.RowData.FunctionInFirma;
-            //BindUsersRoleList();
-
             CMSProfileModel _cmsProfile = _CMSProfile.Load(args.RowData.profileID);
 
             var ProfileStatusInfo = new StatusProfileModel()
@@ -200,14 +190,25 @@
                 cmsProfile = _cmsProfile
             };
 
-            storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+            await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
 
             NavManager.NavigateTo("/admin/profiles/step1");
 
         }
-        if (args.CommandColumn.Type == CommandButtonType.Save)
+        if (args.CommandColumn.Type == CommandButtonType.None)
         {
-            // Perform required operations here
+            var _UsersModel = await storageService.GetItemAsync<UsersModel>("User");
+            CMSProfileModel _cmsProfile = await _CMSProfile.ProfilCopy(args.RowData.profileID, _UsersModel.ContactID);
+
+            var ProfileStatusInfo = new StatusProfileModel()
+            {
+                Step = 5,
+                cmsProfile = _cmsProfile
+            };
+
+            await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+
+            NavManager.NavigateTo("/admin/profiles/step1");
         }
     }
 }

@@ -12,7 +12,8 @@
 @inject IStringLocalizer<App> Localizer
 @inject IFiltersData _filtersData;
 @inject ILocalUserData _localUserData;
-
+@inject ILocalStorageService storageService
+@inject NavigationManager NavigationManager
 
 @attribute [Authorize]
 
@@ -112,7 +113,46 @@
         </div>
     </div>
 
+    @if (!ShowDashboardComponent)
+    {
+        <div class="row row_padding">
+            <div class="col-sm-5 form-inline control_padding">
 
+            </div>
+
+            <div class="col-sm-3 form-inline control_padding">
+                <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Result"]</label>
+                <div class="col-sm-8 control_padding">
+                    <SfComboBox @ref="ResultComboObj" TValue="string" TItem="FiltersModels.CaseResultModel" ShowClearButton="false" @bind-Index="@ResultDefaultIndex" DataSource="@_Results">
+                        <ComboBoxEvents TItem="FiltersModels.CaseResultModel" TValue="string" ValueChange="onChangeResult"></ComboBoxEvents>
+                        <ComboBoxFieldSettings Text="CaseResult" Value="CaseResultID"></ComboBoxFieldSettings>
+                    </SfComboBox>
+                </div>
+            </div>
+            <div class="col-sm-4 control_padding">
+
+            </div>
+        </div>
+
+        <div class="row row_padding">
+            <div class="col-sm-5 form-inline control_padding">
+
+            </div>
+
+            <div class="col-sm-3 form-inline control_padding">
+                <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Status"]</label>
+                <div class="col-sm-8 control_padding">
+                    <SfComboBox @ref="StatusComboObj" TValue="string" TItem="FiltersModels.CaseStatusModel" ShowClearButton="false" @bind-Index="@StatusDefaultIndex" DataSource="@_Statuses">
+                        <ComboBoxEvents TItem="FiltersModels.CaseStatusModel" TValue="string" ValueChange="onChangeStatus"></ComboBoxEvents>
+                        <ComboBoxFieldSettings Text="CaseStatus" Value="CaseStatusID"></ComboBoxFieldSettings>
+                    </SfComboBox>
+                </div>
+            </div>
+            <div class="col-sm-4 control_padding">
+
+            </div>
+        </div>
+    }
 
     <div class="row">
         <hr style="background-color: #ABC3D7;height:1px;width:100%" />
@@ -125,13 +165,40 @@
         </div>
     </div>
 
+    <div class="row">
+        <hr style="background-color: #ABC3D7;height:1px;width:100%" />
+    </div>
 
 
 </div>
 
 @if (ShowDashboardComponent)
 {
-<Dashboard ParentReports="@this" />
+    <Dashboard ParentReports="@this" OnChangeStatusClick=@OnChangeStatusEvent OnChangeResultClick=@OnChangeResultEvent OnChangeCaseCountClick=@OnChangeCaseCountEvent />
+}
+
+@if (!ShowDashboardComponent)
+{
+    <SfGrid @ref="CasesObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+        <GridPageSettings PageSize="25"></GridPageSettings>
+        <GridEvents CommandClicked="OnCommandClicked" TValue="Case"></GridEvents>
+        <GridColumns>
+            <GridColumn Field=@nameof(Case.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(Case.ProfileName) HeaderText="@Localizer["Label_Filter_ProfileID"]" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(Case.Subject) HeaderText="@Localizer["Cases_List_Subject"]"></GridColumn>
+            <GridColumn Field=@nameof(Case.CaseType) HeaderText="@Localizer["Cases_List_Category"]" Width="100"></GridColumn>
+            <GridColumn Field=@nameof(Case.CaseStatus) HeaderText="@Localizer["Cases_List_Status"]" Width="100"></GridColumn>
+            <GridColumn Field=@nameof(Case.CaseResult) HeaderText="@Localizer["Cases_List_Ergebnis"]" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(Case.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(Case.SapUser)></GridColumn>
+            <GridColumn Field=@nameof(Case.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" Width="80"></GridColumn>
+            <GridColumn HeaderText="" Width="80">
+                <GridCommandColumns>
+                    <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
+                </GridCommandColumns>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
 }
 
 
@@ -143,25 +210,32 @@
     public Action<bool> FilterChanged { get; set; }
 
     bool ShowDashboardComponent { get; set; } = true;
-    bool ShowGridReportComponent { get; set; } = false;
 
     private int? GateDefaultIndex { get; set; } = 0;
     private int? CategoryDefaultIndex { get; set; } = 0;
     private int? ProfileDefaultIndex { get; set; } = 0;
+    private int? ResultDefaultIndex { get; set; } = 0;
+    private int? StatusDefaultIndex { get; set; } = 0;
     public int AppID { get; set; }
     public int? CaseTypeID { get; set; }
     public int? ProfileID { get; set; }
+    public int? StatusID { get; set; }
+    public int? ResultID { get; set; }
+    public int? WithAliasID { get; set; }
 
+    SfGrid<Case> CasesObj;
     SfComboBox<string, FiltersModels.GateModel> GateComboObj;
     SfComboBox<string, FiltersModels.CategoryModel> CategoryComboObj;
     SfComboBox<string, FiltersModels.ProfileModel> ProfileComboObj;
+    SfComboBox<string, FiltersModels.CaseResultModel> ResultComboObj;
+    SfComboBox<string, FiltersModels.CaseStatusModel> StatusComboObj;
     SfDatePicker<DateTime?> CreateFromDateObj;
     SfDatePicker<DateTime?> CreateToDateObj;
     SfDatePicker<DateTime?> ModifyFromDateObj;
     SfDatePicker<DateTime?> ModifyToDateObj;
 
     public DateTime? CreateFromDateValue { get; set; } // = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-    public DateTime? CreateToDateValue { get; set; }  = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    public DateTime? CreateToDateValue { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
     //public DateTime MinDate { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 05);
     //public DateTime MaxDate { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27);
     public DateTime? ModifyFromDateValue { get; set; } // = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
@@ -177,22 +251,29 @@
     private List<FiltersModels.GateModel> _Gates;
     private List<FiltersModels.CategoryModel> _Category;
     private List<FiltersModels.ProfileModel> _Profile;
+    private List<FiltersModels.CaseStatusModel> _Statuses;
+    private List<FiltersModels.CaseResultModel> _Results;
+
+    private List<Case> _Cases;
 
     protected override async Task OnInitializedAsync()
     {
         AppID = 1;
         _Gates = _filtersData.GetGates();
-        if (_Gates!= null && _Gates.Count>0)
+        if (_Gates != null && _Gates.Count > 0)
         {
             AppID = (Convert.ToInt32(_Gates[0].appID));
             BindFilterListBox();
         }
     }
+
     private void BindFilterListBox()
     {
 
         _Category = _filtersData.GetCategories(AppID);
         _Profile = _filtersData.GetProfiles(AppID);
+        _Statuses = _filtersData.GetStatuses();
+        _Results = _filtersData.GetResults(AppID);
 
         FiltersModels.CategoryModel _FilterCategoryModel = new FiltersModels.CategoryModel();
         _FilterCategoryModel.CaseType = Localizer["Value_All_Text"];
@@ -204,15 +285,31 @@
         _FilterProfileModel.ProfileID = -1;
         _Profile.Insert(0, _FilterProfileModel);
 
+        FiltersModels.CaseResultModel _FilterCaseResultModel = new FiltersModels.CaseResultModel();
+        _FilterCaseResultModel.CaseResult = Localizer["Value_All_Text"];
+        _FilterCaseResultModel.CaseResultID = -1;
+        _Results.Insert(0, _FilterCaseResultModel);
+
+        FiltersModels.CaseStatusModel _FilterCaseStatusModel = new FiltersModels.CaseStatusModel();
+        _FilterCaseStatusModel.CaseStatus = Localizer["Value_All_Text"];
+        _FilterCaseStatusModel.CaseStatusID = -1;
+        _Statuses.Insert(0, _FilterCaseStatusModel);
+
         CaseTypeID = _Category[0].CaseTypeID == -1 ? null : _Category[0].CaseTypeID;
         ProfileID = _Profile[0].ProfileID == -1 ? null : _Profile[0].ProfileID;
+        StatusID = _Statuses[0].CaseStatusID == -1 ? null : _Statuses[0].CaseStatusID;
+        ResultID = _Results[0].CaseResultID == -1 ? null : _Results[0].CaseResultID;
 
         StateHasChanged();
     }
 
     async Task onGo_Click()
     {
-
+        if (ShowDashboardComponent)
+        {
+            FilterChanged?.Invoke(true);
+            return;
+        }
 
         int? _caseid = null;
         try
@@ -223,28 +320,33 @@
         catch { };
 
 
-        int? _casetypeid = null;
+
+        int? _resultid = null;
         try
         {
-            if (!string.IsNullOrEmpty(CategoryComboObj.Value))
-                _casetypeid = Convert.ToInt32(CategoryComboObj.Value);
+            if (ResultComboObj != null && !string.IsNullOrEmpty(ResultComboObj.Value))
+                _resultid = Convert.ToInt32(ResultComboObj.Value);
         }
         catch { };
 
-        int? ProfileID = null;
-        try
-        {
-            if (!string.IsNullOrEmpty(ProfileComboObj.Value))
-                ProfileID = Convert.ToInt32(ProfileComboObj.Value);
-        }
-        catch { };
+
 
         int contactID = await _localUserData.GetContactID();
 
-        ShowDashboardComponent = false;
+        //ShowDashboardComponent = false;
 
-        //        Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, contactID,
-        //CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, ProfileID, FilterCustomerNameValue);
+        if (WithAliasID != null)
+        {
+            _Cases = await _ICMSAPI.GetCaseList(_caseid, AppID, CaseTypeID, StatusID, contactID,
+                CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, ProfileID, FilterCustomerNameValue);
+        }
+        else
+        {
+            _Cases = await _ICMSAPI.GetCaseList(_caseid, AppID, CaseTypeID, StatusID, contactID,
+                CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, ProfileID, FilterCustomerNameValue);
+        }
+
+
 
     }
     async Task ClearFilter()
@@ -261,17 +363,32 @@
         OnlyActiveIsChecked = true;
     }
 
+    public async void OnCommandClicked(CommandClickEventArgs<Case> args)
+    {
+        if (args.CommandColumn.Type == CommandButtonType.Edit)
+        {
+            await storageService.SetItemAsync("CaseViewID", args.RowData.CaseID);
+
+            NavigationManager.NavigateTo("/case/details", forceLoad: true);
+        }
+    }
 
     private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.GateModel> args)
     {
-        AppID = (Convert.ToInt32(args.ItemData.appID));
+        int _AppID = -1;
+        if (Int32.TryParse(args.ItemData.appID, out _AppID))
+        {
+            // AppID = (Convert.ToInt32(args.ItemData.appID));
+            AppID = _AppID;
 
-        this.CategoryComboObj.Clear();
-        this.ProfileComboObj.Clear();
+            this.CategoryComboObj.Clear();
+            this.ProfileComboObj.Clear();
 
-        BindFilterListBox();
-        FilterChanged?.Invoke(true);
-        StateHasChanged();
+            BindFilterListBox();
+            FilterChanged?.Invoke(true);
+            StateHasChanged();
+        }
+
     }
     private void onChangeProfile(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.ProfileModel> args)
     {
@@ -287,6 +404,24 @@
         CaseTypeID = (Convert.ToInt32(args.ItemData.CaseTypeID));
         if (CaseTypeID == -1)
             CaseTypeID = null;
+
+        FilterChanged?.Invoke(true);
+        StateHasChanged();
+    }
+    private void onChangeResult(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.CaseResultModel> args)
+    {
+        ResultID = (Convert.ToInt32(args.ItemData.CaseResultID));
+        if (ResultID == -1)
+            ResultID = null;
+
+        FilterChanged?.Invoke(true);
+        StateHasChanged();
+    }
+    private void onChangeStatus(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.CaseStatusModel> args)
+    {
+        StatusID = (Convert.ToInt32(args.ItemData.CaseStatusID));
+        if (StatusID == -1)
+            StatusID = null;
 
         FilterChanged?.Invoke(true);
         StateHasChanged();
@@ -330,6 +465,34 @@
     private void OnlyActive_OnChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
     {
         OnlyActiveIsChecked = args.Checked;
+        StateHasChanged();
+    }
+
+    private async Task OnChangeStatusEvent(int value)
+    {
+        StatusID = value;
+        ResultID = null;
+        WithAliasID = null;
+        ShowDashboardComponent = false;
+        await onGo_Click();
+        StateHasChanged();
+    }
+    private async Task OnChangeResultEvent(int value)
+    {
+        StatusID = null;
+        ResultID = value;
+        WithAliasID = null;
+        ShowDashboardComponent = false;
+        await onGo_Click();
+        StateHasChanged();
+    }
+    private async Task OnChangeCaseCountEvent(int value)
+    {
+        StatusID = null;
+        ResultID = null;
+        WithAliasID = value;
+        ShowDashboardComponent = false;
+        await onGo_Click();
         StateHasChanged();
     }
 
