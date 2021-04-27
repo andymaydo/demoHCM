@@ -1134,6 +1134,9 @@
   <data name="String3" xml:space="preserve">
     <value>it - after verification of the hit - in the menu</value>
   </data>
+  <data name="Uploader_Browse" xml:space="preserve">
+    <value>Durchsuche…</value>
+  </data>
   <data name="UserRole_1" xml:space="preserve">
     <value>Administration</value>
   </data>

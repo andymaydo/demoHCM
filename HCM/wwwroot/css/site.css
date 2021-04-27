@@ -65,6 +65,9 @@ UI
 .row_padding {
     padding-bottom: 5px !important;
 }
+.row_padding_left {
+    padding-left: 30px !important;
+}
 .control_padding {
     padding-left: 0px !important;
     padding-right: 5px !important;
@@ -207,4 +210,103 @@ UI
     color: #298083;
     font-weight: bold;
 }
+
+.itemDetail {
+    font-weight: normal;
+    padding-left: 5px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 11px;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+.itemDetail2 {
+    font-weight: bold;
+    padding-left: 0px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 12px;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+
+
+a.btnAddMessage {
+    background-repeat: no-repeat;
+    background-image: url(/images/copy_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 11px;
+}
+a.btnAddUser {
+    background-repeat: no-repeat;
+    background-image: url(/images/user_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 11px;
+}
+a.btnUpdate {
+    background-repeat: no-repeat;
+    background-image: url(/images/save_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 11px;
+}
+a.btnAddAlias {
+    background-repeat: no-repeat;
+    background-image: url(/images/edit_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 11px;
+}
+.bottom_line_bg {
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../images/subMenuBg2.gif);
+    padding: 4px 5px 3px 5px;
+    height: 25px;
+}
+.tLabel2 {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #444444;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.tLabel3 {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #444444;
+    padding-left: 5px;
+    text-align: justify;
+}
+.e-custom-height {
+    height: 150px;
+    width: 200px;
+} 
 

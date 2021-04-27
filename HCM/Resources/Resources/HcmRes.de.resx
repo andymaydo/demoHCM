@@ -1137,6 +1137,9 @@
   <data name="String4" xml:space="preserve">
     <value>Treffers - im Menü "Aliasmanager" wieder.</value>
   </data>
+  <data name="Uploader_Browse" xml:space="preserve">
+    <value>Durchsuche…</value>
+  </data>
   <data name="UserRole_1" xml:space="preserve">
     <value>Administration</value>
   </data>

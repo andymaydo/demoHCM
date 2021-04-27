@@ -10,6 +10,8 @@ using System.Linq;
 using Syncfusion.Blazor;
 using Microsoft.AspNetCore.Components.Authorization;
 using Blazored.LocalStorage;
+using HCM.Options;
+using System.Configuration;
 
 namespace HCM
 {
@@ -26,11 +28,15 @@ namespace HCM
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var cmsSettings = new CMSSettings();
+            Configuration.Bind(nameof(cmsSettings), cmsSettings);
+            services.AddSingleton(cmsSettings);
+
             services.AddControllers();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            //services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
             services.AddSingleton<IReportsCaseData, ReportsCaseData>();
             services.AddSingleton<IFiltersData, FiltersData>();

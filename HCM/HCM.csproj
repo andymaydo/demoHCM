@@ -10,19 +10,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Radzen.Blazor" Version="2.18.6" />
     <PackageReference Include="Syncfusion.Blazor" Version="18.3.0.53" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HCMApi\HCMApi.csproj" />
     <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources\Resources\HcmRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>HcmRes.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +28,14 @@
     <EmbeddedResource Update="Resources\App.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources\HcmRes.de.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources\HcmRes.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Resources\HcmRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>HcmRes.Designer.cs</LastGenOutput>
+      <Generator></Generator>
     </EmbeddedResource>
   </ItemGroup>
 

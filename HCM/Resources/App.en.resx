@@ -1174,4 +1174,7 @@ it - after verification of the hit - in the menu
   <data name="Profile_User_Role_3" xml:space="preserve">
     <value>Alias manager</value>
   </data>
+  <data name="Uploader_Browse" xml:space="preserve">
+    <value>Durchsuche…</value>
+  </data>
 </root>

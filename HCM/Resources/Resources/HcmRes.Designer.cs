@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HCM.Resources {
+namespace HCM.Resources.Resources {
     using System;
     
     
@@ -3117,6 +3117,15 @@ namespace HCM.Resources {
         public static string String4 {
             get {
                 return ResourceManager.GetString("String4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchsuche….
+        /// </summary>
+        public static string Uploader_Browse {
+            get {
+                return ResourceManager.GetString("Uploader_Browse", resourceCulture);
             }
         }
         
