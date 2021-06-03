@@ -295,8 +295,8 @@ CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
         if (args.CommandColumn.Type == CommandButtonType.Edit)
         {
             //await storageService.SetItemAsync("CaseView", args.RowData);
-            Case _Case = await _ICMSAPI.LoadCase(args.RowData.CaseID);
-            await storageService.SetItemAsync("CaseView", _Case);
+            //Case _Case = await _ICMSAPI.LoadCase(args.RowData.CaseID);
+            await storageService.SetItemAsync("CaseView", args.RowData.CaseID);
 
             NavigationManager.NavigateTo("/case/details", forceLoad: true);
         }

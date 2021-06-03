@@ -42,8 +42,8 @@ namespace HCMApi
 
         static bool cms_participantschanged(CaseEvent cEvent)
         {
-            //Case lCase = new Case(cEvent.caseID);
-            //lCase.UpdateParticipants(cEvent.CaseEventData);
+            Case lCase = new Case(cEvent.GetIConfiguration());
+            lCase.UpdateParticipants(cEvent.caseID, cEvent.CaseEventData);
             return true;
         }
     }

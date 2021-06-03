@@ -39,5 +39,8 @@ namespace HCMApi
         Task<Case> Load(int _caseID);
 
         Task<int> Create();
+
+        int UpdateParticipants(int _caseID, string _participants);
+
         }
 }

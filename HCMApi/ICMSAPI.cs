@@ -15,5 +15,8 @@ namespace HCMApi
 
         Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, bool NotifyParticipants);
         Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, List<CaseContact> xmlNotifyList);
+
+
+        Task ChangeParticipants(int IssuedByID, int caseID, XmlDocument xmlData, string EventText);
     }
 }

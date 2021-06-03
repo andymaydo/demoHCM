@@ -739,7 +739,9 @@
 
         if (await _storageService.ContainKeyAsync("CaseView"))
         {
-            _Case = await _storageService.GetItemAsync<Case>("CaseView");
+
+            int _CaseID = await _storageService.GetItemAsync<int>("CaseView");
+            _Case = await _ICMSAPI.LoadCase(_CaseID);
 
             if (_Case.CaseStatusID == 0)
             {
@@ -1291,7 +1293,21 @@
     }
     public async Task AddUserDialog_Save()
     {
+        XmlDocument xDoc = new XmlDocument();
+        string s = @"<ContactList>";
+        foreach (CaseContact c in _CaseContactList)
+        {
+            s += c.AsXml();
+        }
+        s += @"</ContactList>";
+        xDoc.LoadXml(s);
 
+        await _ICMSAPI.ChangeParticipants(_UsersModel.ContactID, _Case.CaseID, xDoc, "");
+        _CaseContactList.Clear();
+        await NewUserDialog_AllUsersComboObj.Clear();
+        this.NewUserDialogVisibility = false;
+        StateHasChanged();
+        await GetInitDataAsync();
     }
 
 }

@@ -105,5 +105,27 @@ namespace HCMApi
 
         }
         #endregion
+
+        /**************************************************
+         * ChangeParticipants
+         * **********************************************/
+         public async Task ChangeParticipants(int IssuedByID, int caseID, XmlDocument xmlData, string EventText)
+         {
+            Case lCase = await _iCase.Load(caseID);
+            await runChangeParticipants(IssuedByID, lCase, xmlData, EventText, new List<CaseContact>());
+         }
+        protected async Task<bool> runChangeParticipants(int IssuedByID, Case lCase, XmlDocument xmlData, string EventText, List<CaseContact> NotifyList)
+        {
+            CaseEvent lCaseEvent = new CaseEvent(_iCaseEvent.GetIConfiguration());
+            lCaseEvent.caseID = lCase.CaseID;
+            lCaseEvent.IssuedByID = IssuedByID;
+            lCaseEvent.eventID = "cms.participantschanged";
+            lCaseEvent.CaseEventData = xmlData.InnerXml;
+            lCaseEvent.CaseEventText = EventText;
+            lCaseEvent.CaseEventNotifyContacts = CaseContactList.AsXmlStringFromList(NotifyList);
+
+            await onEvent(lCase, lCaseEvent, IssuedByID);
+            return true;
+        }
     }
 }
