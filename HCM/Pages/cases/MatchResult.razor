@@ -1,0 +1,46 @@
+﻿@page "/case/matchresult"
+
+@using HCMApi;
+@using HCM.Data;
+@using HCMDataAccess;
+@using HCMDataAccess.Models;
+@using System.Xml;
+@using System.Xml.Xsl;
+@using System.Xml.XPath;
+@using System.IO;
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc;
+
+@inject ILocalStorageService _storageService;
+
+<div class="container">
+    <div class="row row_padding">
+        @((MarkupString)myMarkup)
+    </div>
+</div>
+
+    @code {
+
+
+        private UsersModel _UsersModel { get; set; }
+        private Case _Case { get; set; }
+        string myMarkup = "";
+
+        protected override async Task OnInitializedAsync()
+        {
+            _UsersModel = await _storageService.GetItemAsync<UsersModel>("User");
+
+            if (await _storageService.ContainKeyAsync("CaseView"))
+            {
+                _Case = await _storageService.GetItemAsync<Case>("CaseView");
+
+                int _CaseTypeID = _Case.CaseTypeID == null ? 0 : Convert.ToInt32(_Case.CaseTypeID);
+
+                myMarkup = Common.HCMXslTransform.GetHtmlResult(_Case.CaseData, _CaseTypeID);             
+
+            }
+
+        }
+
+       
+    }

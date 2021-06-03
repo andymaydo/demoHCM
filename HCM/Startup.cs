@@ -12,6 +12,12 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Blazored.LocalStorage;
 using HCM.Options;
 using System.Configuration;
+using System.Globalization;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Localization;
+using blazorInputs;
+using BlazorDownloadFile;
+using System;
 
 namespace HCM
 {
@@ -34,6 +40,26 @@ namespace HCM
 
             services.AddControllers();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddSyncfusionBlazor();
+            //services.Configure<RequestLocalizationOptions>(options =>
+            //{
+            //    // define the list of cultures your app will support
+            //    var supportedCultures = new List<CultureInfo>()
+            //    {
+            //        new CultureInfo("de")
+            //    };
+            //    // set the default culture
+            //    options.DefaultRequestCulture = new RequestCulture("de");
+            //    options.SupportedCultures = supportedCultures;
+            //    options.SupportedUICultures = supportedCultures;
+            //    options.RequestCultureProviders = new List<IRequestCultureProvider>() {
+            //     new QueryStringRequestCultureProvider() // Here, You can also use other localization provider
+            //    };
+            //});
+            //services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
+
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             //services.AddSingleton<WeatherForecastService>();
@@ -41,6 +67,9 @@ namespace HCM
             services.AddSingleton<IReportsCaseData, ReportsCaseData>();
             services.AddSingleton<IFiltersData, FiltersData>();
             services.AddSingleton<ICase, Case>();
+            services.AddSingleton<ICaseEvent, CaseEvent>();
+            services.AddSingleton<ICMSEvent, CMSEvent>();
+             services.AddSingleton<ICaseDoc, CaseDoc>();
             services.AddSingleton<ICaseContact, CaseContact>();
             services.AddSingleton<ICMSAPI, CMSAPI>();
             services.AddSingleton<ILoginData, LoginData>();
@@ -54,8 +83,8 @@ namespace HCM
             services.AddOptions();
             services.AddAuthorizationCore();
             services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
-
-            services.AddSyncfusionBlazor();
+            services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
+            
 
         }
 
@@ -102,6 +131,9 @@ namespace HCM
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            AppDomain.CurrentDomain.SetData("ContentRootPath", env.ContentRootPath);
+            AppDomain.CurrentDomain.SetData("WebRootPath", env.WebRootPath);
         }
     }
 }

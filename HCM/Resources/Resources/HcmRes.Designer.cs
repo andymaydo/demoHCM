@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HCM.Resources.Resources {
+namespace HCM.Resources {
     using System;
     
     

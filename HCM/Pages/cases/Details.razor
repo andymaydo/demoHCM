@@ -1,13 +1,32 @@
 ﻿@page "/case/details"
 
 @using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Grids
 @using System.IO
 @using Options
+@using HCMApi;
+@using HCMApi.Models;
+@using System.Globalization
+@using BlazorDownloadFile;
+@using HCMDataAccess.Models;
+@using Syncfusion.Blazor.Lists
+@using System.Xml
+@using Syncfusion.Blazor.DropDowns
+@using HCMDataAccess;
 
 @inject IStringLocalizer<App> Localizer
 @inject CMSSettings cmsSettings
+@inject ICaseDoc _caseDoc;
+@inject ILocalStorageService _storageService;
+@inject ICMSAPI _ICMSAPI;
+@inject ICMSProfile _CMSProfile;
+@inject IBlazorDownloadFileService _blazorDownloadFileService;
+@inject IJSRuntime  _IJSRuntime;
+@inject ICaseContact _caseContact;
+@inject IUsersData _usersData;
 
 @attribute [Authorize]
+
 
 <h3>@Localizer["Cases_Detail_Title"]</h3>
 
@@ -25,10 +44,18 @@
                 <a href="" @onclick="@(() => AddUserDialogSetStatus())" @onclick:preventDefault class="btnAddUser">@Localizer["Cases_Detail_Action_AddUser"]</a>
             </div>
             <div class="col-sm-12 row row_padding">
-                <a href="" @onclick="@(() => ChangeStatusDialogSetStatus())" @onclick:preventDefault class="btnUpdate">@Localizer["Cases_Detail_Action_ChangeStatus"]</a>
+                @if (ShowChangeStatusDialog)
+                {
+                    <a href="" @onclick="@(() => ChangeStatusDialogSetStatus())" @onclick:preventDefault class="btnUpdate">@Localizer["Cases_Detail_Action_ChangeStatus"]</a>
+                }
+
             </div>
             <div class="col-sm-12 row row_padding">
-                <a href="" @onclick="@(() => AddAliasDialogSetStatus())" @onclick:preventDefault class="btnAddAlias">@Localizer["Cases_Detail_Action_AddAlias"]</a>
+                @if (ShowAddAliasDialog)
+                {
+                    <a href="" @onclick="@(() => AddAliasDialogSetStatus())" @onclick:preventDefault class="btnAddAlias">@Localizer["Cases_Detail_Action_AddAlias"]</a>
+                }
+
             </div>
 
 
@@ -40,7 +67,7 @@
             </div>
             <div class="col-sm-12 row">
                 <div class="col-sm-12 itemDetail">
-                    aus SAP ID1 KM DEFAULT Variante
+                    @_Case?.Subject
                 </div>
             </div>
             <div class="col-sm-12 row">
@@ -53,14 +80,22 @@
             </div>
             <div class="col-sm-12 row">
                 <div class="col-sm-12 itemDetail">
-                    ALFA Trading GmbH
+                    @_Case?.CustomerName
                 </div>
             </div>
             <div class="col-sm-12 row">
                 <div class="col-sm-12 itemDetail">
-                    DENIED PARTIES Trefferbericht
+                    @if (HasMatchXMl)
+                    {
+                        <a href="" @onclick="@(() => ShowMatchResult())" @onclick:preventDefault class="btnShowMatch">@Localizer["Cases_Detail_Label_MatchXml"]</a>
+
+                        @*<a href="/cases/dpfmacthresult.aspx?id=@_Case?.CaseID&culture=@CultureInfo.CurrentCulture&caseType=@_Case?.CaseTypeID"
+                            class="btnShowMatch" target="_blank">@Localizer["Cases_Detail_Label_MatchXml"]</a>*@
+                    }
+
                 </div>
             </div>
+
             <div class="col-sm-12 row">
                 &nbsp;
             </div>
@@ -70,29 +105,137 @@
                 <h5 class="tLabel bottom_blue_bg col-sm-12">@Localizer["Cases_Detail_Label_History"]</h5>
             </div>
 
-            <div class="col-sm-12 row">
-                <div class="col-sm-12 row_padding_left">
-                    <div class="col-sm-12 row  bottom_line_bg">
-                        <div class="col-sm-6 itemDetail2">
-                            in Bearbeitung
+            @foreach (CaseEvent ev in _CaseEventList)
+            {
+                <div class="col-sm-12 row mt-3">
+                    <div class="col-sm-12 row_padding_left">
+                        <div class="col-sm-12 row  bottom_line_bg">
+                            <div class="col-sm-6 itemDetail2">
+                                @Localizer["event_" + ev.eventID.Replace(".", "_")]
+                            </div>
+                            <div class="col-sm-3 itemDetail">
+                                @ev.CreateDate
+                            </div>
+                            <div class="col-sm-3 itemDetail">
+                                @ev.ContactName
+                            </div>
                         </div>
-                        <div class="col-sm-3 itemDetail">
-                            26.04.2021 10:50:23
+                        <div class="col-sm-12 row itemDetail">
+                            @ev.CaseEventText?.Replace("\n", "<br>")
                         </div>
-                        <div class="col-sm-3 itemDetail">
-                            SI Administrator
+                        <div class="col-sm-12 row itemDetail">
+
+                            @if (ev.CaseEventNotifyContacts.IndexOf(@"<ContactList>") == 0)
+                            {
+                                _CaseNotifyContactList = CaseContactList.LoadFromXmlAsList(ev.CaseEventNotifyContacts);
+
+                                <h5 class="itemDetail mt-3">@Localizer["Cases_Detail_History_NotifyContact"]</h5>
+
+                                <div class="col-sm-12 row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-11 row">
+                                        @foreach (CaseContact c in _CaseNotifyContactList)
+                                        {
+                                            <div class="col-sm-12 row_padding_left">
+                                                <div class="col-sm-12 row itemDetail">
+                                                    @c.Name &nbsp;@c.Email
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+
+
+                            @if (ev.CaseEventData?.IndexOf(@"<CaseDocList>") == 0)
+                            {
+                                _DocList = _caseDoc.LoadFromXml(ev.CaseEventData);
+                                if (_DocList.Count > 0)
+                                {
+                                    <h5 class="itemDetail mt-3">@Localizer["Cases_Detail_Label_AttachInformation"]</h5>
+
+                                    foreach (CaseDoc cd in _DocList)
+                                    {
+                                        <div class="col-sm-12 row">
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-6">
+                                                <h5 class="itemDetail col-sm-12">
+                                                    <a href="" @onclick="@(() => StartDownload(cd.CaseID,cd.FilePath,cd.DocName))" @onclick:preventDefault class="btnUpdate">@cd.OrgFileName</a>
+                                                </h5>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <h5 class="itemDetail col-sm-12">@(cd.DocSize / 1024) Kb</h5>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5 class="itemDetail col-sm-12">@cd.ContactName</h5>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                if (ev.eventID == @"cms.addnote" || ev.eventID == @"dpf.addalias")
+                                {
+                                    System.Xml.XmlDocument xDoc = new System.Xml.XmlDocument();
+                                    xDoc.LoadXml(ev.CaseEventData);
+                                    System.Xml.XmlNode addReport = xDoc.SelectSingleNode("/CaseDocList/AddReport");
+
+                                    if (addReport != null)
+                                    {
+
+                                        <div class="col-sm-12 row mt-3">
+                                            <h5 class="itemDetail col-sm-12">@Localizer["Cases_AddMessage_AddReport"]: @Localizer["Status_Yes"]</h5>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-12 row mt-3">
+                                            <h5 class="itemDetail col-sm-12">@Localizer["Cases_AddMessage_AddReport"]: @Localizer["Status_NO"]</h5>
+                                        </div>
+                                    }
+                                }
+
+                            }
+                            else if (ev.eventID == @"cms.addnote" || ev.eventID == @"dpf.addalias")
+                            {
+                                <div class="col-sm-12 row mt-3">
+                                    <h5 class="itemDetail col-sm-12">@Localizer["Cases_AddMessage_AddReport"]: @Localizer["Status_NO"]</h5>
+                                </div>
+                            }
                         </div>
-                    </div>
-                    <div class="col-sm-12 row itemDetail">
-                        Case geöffnet
+
                     </div>
 
+                    @if (ev.eventID == @"cms.participantschanged")
+                    {
+                        @if (ev.CaseEventData.IndexOf(@"<ContactList>") == 0)
+                        {
+                            <div class="col-sm-12 row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-11">
+                                    <h5 class="itemDetail col-sm-12">@Localizer["Cases_Detail_Label_Users"]</h5>
+                                    <div class="col-sm-12 row">
+                                        @foreach (CaseContact c in _CaseParticipantsList)
+                                        {
+                                            <div class="col-sm-12 row_padding_left">
+                                                <div class="col-sm-12 row itemDetail">
+                                                    @c.Name &nbsp;@c.Email
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
-            </div>
+
+
+            }
+
         </div>
         <div class="col-sm-3 control_padding">
             <div class="col-sm-12 row row_padding">
-                <h5 class="tLabel bottom_blue_bg col-sm-12">@Localizer["Cases_Detail_Label_AttachInformation"]</h5>
+                <h5 class="tLabel bottom_blue_bg col-sm-12">@Localizer["Cases_Detail_Label_Detail"]</h5>
             </div>
 
 
@@ -101,7 +244,7 @@
                     @Localizer["Cases_Detail_Label_ProfileName"]
                 </div>
                 <div>
-
+                    @_Case?.ProfileName
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -109,7 +252,7 @@
                     @Localizer["Cases_Detail_Label_ID"]
                 </div>
                 <div>
-
+                    @_Case?.CaseID
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -117,7 +260,7 @@
                     @Localizer["Cases_Detail_Label_Platform"]
                 </div>
                 <div>
-
+                    @_Case?.appName
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -125,7 +268,7 @@
                     @Localizer["Cases_Detail_Label_Category"]
                 </div>
                 <div>
-
+                    @_Case?.CaseType
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -133,7 +276,7 @@
                     @Localizer["Cases_Detail_Label_Source"]
                 </div>
                 <div>
-
+                    @_Case?.CaseSource
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -141,7 +284,7 @@
                     @Localizer["Cases_Detail_Label_Status"]
                 </div>
                 <div>
-
+                    @Localizer["Case_Status_" + _Case?.CaseStatusID.ToString()]
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -149,7 +292,7 @@
                     @Localizer["Cases_Detail_Label_Result"]
                 </div>
                 <div>
-
+                    @Localizer["Case_Result_" + _Case?.CaseResultID.ToString()]
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -157,7 +300,7 @@
                     @Localizer["Cases_Detail_Label_CreateOn"]
                 </div>
                 <div>
-
+                    @_Case?.CreateDate
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -165,7 +308,7 @@
                     @Localizer["Cases_Detail_Label_CreateBy"]
                 </div>
                 <div>
-
+                    @_Case?.ContactName
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -173,7 +316,7 @@
                     @Localizer["Cases_List_User"]
                 </div>
                 <div>
-
+                    @_Case?.SapUser
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -181,7 +324,7 @@
                     @Localizer["Cases_Detail_Label_LastModifyOn"]
                 </div>
                 <div>
-
+                    @_Case?.LastActivity
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
@@ -189,29 +332,60 @@
                     @Localizer["Cases_Detail_Label_LastModifyBy"]
                 </div>
                 <div>
-
+                    @_Case?.ModifiedByName
                 </div>
             </div>
             <div class="col-sm-12 itemDetail row row_padding">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     @Localizer["Cases_Detail_Label_Duration"]
                 </div>
                 <div>
-
+                    @GetCaseDuration(@_Case?.Duration)
                 </div>
             </div>
 
 
             <div class="col-sm-12 row row_padding">
                 <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_ProfileUsers"]</h5>
+
+                @if (_CMSProfileModel.profileParticipants != null)
+                    @foreach (CaseContact c in _CMSProfileModel.profileParticipants)
+                    {
+                        <div class="col-sm-12 row_padding_left">
+                            <div class="col-sm-12 row itemDetail">
+                                @c.Name (&nbsp;@c.Function) (&nbsp;@c.ProfileRole)
+                            </div>
+                        </div>
+                    }
+
             </div>
 
             <div class="col-sm-12 row row_padding">
                 <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_EscalationUsers"]</h5>
+
+                @if (_CMSProfileModel.escalationUsers != null)
+                    @foreach (CaseContact c in _CMSProfileModel.escalationUsers)
+                    {
+                        <div class="col-sm-12 row_padding_left">
+                            <div class="col-sm-12 row itemDetail">
+                                @c.Name (&nbsp;@c.Function) (&nbsp;@c.ProfileRole)
+                            </div>
+                        </div>
+                    }
+
             </div>
 
             <div class="col-sm-12 row row_padding">
                 <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_Users"]</h5>
+                @if (_CaseParticipantsList != null)
+                    @foreach (CaseContact c in _CaseParticipantsList)
+                    {
+                        <div class="col-sm-12 row_padding_left">
+                            <div class="col-sm-12 row itemDetail">
+                                @c.Name (&nbsp;@c.Function) (&nbsp;@c.ProfileRole)
+                            </div>
+                        </div>
+                    }
             </div>
         </div>
     </div>
@@ -219,7 +393,7 @@
 </div>
 
 
-<SfDialog @ref="NewNoteDialogID" ShowCloseIcon="true" Width="800px" Height="500px" IsModal="true" @bind-Visible="NewNoteDialogVisibility">
+<SfDialog @ref="NewNoteDialogID" ShowCloseIcon="true" Width="800px" Height="600px" IsModal="true" @bind-Visible="NewNoteDialogVisibility">
     <DialogTemplates>
         <Header>
             <h3 class="title">@Localizer["Cases_AddMessage_Title"]</h3>
@@ -229,38 +403,116 @@
                 <table width="75%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="tLabel2" width="15%" align="left" valign="top">@Localizer["Cases_AddMessage_Subject"]:</td>
-                        <td class="tLabel3" width="85%" align="left" valign="top"></td>
+                        <td class="tLabel3" width="85%" align="left" valign="top">@_Case?.Subject</td>
                     </tr>
                 </table>
-                <br />
 
                 <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
-                    <tr>
-                        <td class="tLabel2">@Localizer["Cases_AddMessage_Note"]</td>
-                        <td width="20px" valign="top">
-                        </td>
-                        <td class="tLabel2 bottom_line_bg">@Localizer["Cases_AddMessage_NotifyUsers"]</td>
-                    </tr>
+
                     <tr>
                         <td valign="top">
-                            <SfTextBox @ref="tSubject" CssClass="e-custom-height" Multiline="true" Value="@tSubjectValue">
+
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddMessage_Note"]</h5>
+
+                            <SfTextBox @ref="tSubject" CssClass="e-custom-height" Multiline="true" @bind-Value="@tSubjectValue">
                             </SfTextBox>
                             <br /><br />
                             <SfCheckBox @bind-Checked="AddReportToEmailIsChecked" Label="@Localizer["Cases_AddMessage_AddReport"]" ValueChange="@AddReportToEmail_OnChange" TChecked="bool"></SfCheckBox>
                             <br /><br />
 
-                            <SfUploader AutoUpload="false" Locale="de">
-                                <UploaderEvents ValueChange="UploaderOnChange"></UploaderEvents>
+
+                            <SfUploader @ref="AddMessage_UploadObj" AutoUpload="false" Locale="de">
+                                <UploaderEvents ValueChange="UploaderOnChange" OnRemove="UploaderOnRemove"></UploaderEvents>
                             </SfUploader>
                         </td>
                         <td width="20px" valign="top">
                         </td>
                         <td width="200px" valign="top">
+
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddMessage_NotifyUsers"]</h5>
+
+                            <div class="col-sm-12 row_padding itemDetail">
+
+                                <SfListView DataSource="@AllUsers_CheckboxListData" ShowCheckBox="true">
+                                    <ListViewEvents TValue="CheckboxListDataModel"
+                                                    Clicked="@(e => AllUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                    <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text"></ListViewFieldSettings>
+                                </SfListView>
+
+                            </div>
+                            <br />
+
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_ProfileUsers"]</h5>
+                            @if (_CMSProfileModel.profileParticipants != null)
+                            {
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@ProfileUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+
+                            }
+                            <br />
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_Users"]</h5>
+                            @if (_CaseParticipantsList != null)
+                            {
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@ParticipantsUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewEvents TValue="CheckboxListDataModel"
+                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+                            }
+
+
+                            @if (SentToCreator)
+                            {
+                                <br />
+                                <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddMessage_Creator"]</h5>
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@CreatorUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+                            }
+
+                            <br />
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddMessage_ExEmails"]</h5>
+                            <div class="col-sm-12 row_padding itemDetail">
+
+                                <SfTextBox @ref="tAnotherEmails1" Multiline="false" @bind-Value="@tAnotherEmails1Value">
+                                </SfTextBox>
+
+                            </div>
+
+                            <div class="col-sm-12 row_padding itemDetail">
+
+                                <SfTextBox @ref="tAnotherEmails2" Multiline="false" @bind-Value="@tAnotherEmails2Value">
+                                </SfTextBox>
+
+                            </div>
+
                         </td>
                     </tr>
                 </table>
-
-
+                <br />
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="top_blue_bg">
+                            <SfButton @onclick="NewNoteDialog_Save" CssClass="e-flat e-info col-sm-2">@Localizer["Button_Save"]</SfButton>
+                        </td>
+                    </tr>
+                </table>
 
             </div>
         </Content>
@@ -272,30 +524,338 @@
 
 </SfDialog>
 
+<SfDialog @ref="NewUserDialogID" ShowCloseIcon="true" Width="800px" Height="600px" IsModal="true" @bind-Visible="NewUserDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Cases_ChangeUsers_Title"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+                <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="tLabelDisabled" align="left">@Localizer["Cases_Detail_Label_ProfileUsers"]</td>
+                    </tr>
+                </table>
+                <br />
+
+                <table width="99%" border="0" cellspacing="0" cellpadding="0" class="tbTitle" align="center">
+                    <tr>
+                        <th width="100" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Name"]</th>
+                        <th width="200" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Email"]</th>
+                        <th width="200" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Devision"]</th>
+                        <th class="disabledtext">&nbsp;</th>
+                    </tr>
+                    @if (_CMSProfileModel.profileParticipants != null)
+                        @foreach (CaseContact c in _CMSProfileModel.profileParticipants)
+                        {
+                            <tr>
+                                <td class="disabledtext">@c.Name</td>
+                                <td class="disabledtext">@c.Email&nbsp;</td>
+                                <td class="disabledtext">@c.Function&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        }
+                </table>
+
+                @if (_CMSProfileModel.escalationUsers != null)
+                {
+                    <br />
+                    <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
+                        <tr>
+                            <td class="tLabelDisabled" align="left">@Localizer["Cases_Detail_Label_EscalationUsers"]</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table width="99%" border="0" cellspacing="0" cellpadding="0" class="tbTitle" align="center">
+                        <tr>
+                            <th width="100" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Name"]</th>
+                            <th width="200" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Email"]</th>
+                            <th width="200" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Devision"]</th>
+                            <th class="disabledtext">&nbsp;</th>
+                        </tr>
+                        @foreach (CaseContact c in _CMSProfileModel.escalationUsers)
+                        {
+                            <tr>
+                                <td class="disabledtext">@c.Name</td>
+                                <td class="disabledtext">@c.Email&nbsp;</td>
+                                <td class="disabledtext">@c.Function&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        }
+                    </table>
+                }
+                <br />
+                <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="tLabel" align="left">@Localizer["Cases_ChangeUsers_ListUsers"]</td>
+                    </tr>
+                </table>
+                <br />
+                <table width="99%" border="0" cellspacing="0" cellpadding="0" class="tbTitle" align="center">
+                    <tr>
+                        <th width="100">@Localizer["Cases_ChangeUsers_List_Name"]</th>
+                        <th width="200">@Localizer["Cases_ChangeUsers_List_Email"]</th>
+                        <th width="200">@Localizer["Cases_ChangeUsers_List_Devision"]</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    @foreach (CaseContact c in _CaseContactList)
+                    {
+                        <tr>
+                            <td class="disabledtext">@c.Name</td>
+                            <td class="disabledtext">@c.Email&nbsp;</td>
+                            <td class="disabledtext">@c.Function&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    }
+                </table>
+
+
+                <br />
+                <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="tLabel bottom_blue_bg" align="left">@Localizer["Cases_ChangeUsers_AddUser"]</td>
+                    </tr>
+                </table>
+                <br />
+                <table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="tLabel" width="60%">
+                            &nbsp;&nbsp;@Localizer["Cases_ChangeUsers_FullUserList"]&nbsp;&nbsp;
+                            <SfComboBox TValue="string" @ref="NewUserDialog_AllUsersComboObj" TItem="UsersModel" Query="@Query" DataSource="@UsersList" AllowFiltering="true" @bind-Value="@NewUserDialog_ContactID">
+                                <ComboBoxFieldSettings Text="FullNameEmailFunction" Value="ContactID"></ComboBoxFieldSettings>
+                            </SfComboBox>
+                        </td>
+                        <td align="left" valign="bottom">
+                            &nbsp;&nbsp;<SfButton @onclick="AddUserDialog_AddUser" CssClass="e-flat e-info col-sm-2">@Localizer["Button_Add"]</SfButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="text" id="tUsersIDs" runat="server" class="hUsersIDs" style="visibility:hidden" /></td>
+                    </tr>
+                </table>
+
+                <br />
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="top_blue_bg">
+                            <SfButton @onclick="AddUserDialog_Save" CssClass="e-flat e-info col-sm-2">@Localizer["Button_Save"]</SfButton>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    <DialogEvents OnOpen="@NewUserDialogBeforeOpen"></DialogEvents>
+
+</SfDialog>
+
+<SfDialog Header="@ErrDialogHeader" Content="@ErrDialogContent" @ref="ErrDialogID" Width="335px" IsModal="true" @bind-Visible="ErrDialogVisibility">
+    <DialogTemplates>
+
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@ErrDialogButtonClick" />
+    </DialogButtons>
+
+    <DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>
+</SfDialog>
+
 
 @code {
+    public class CheckboxListDataModel
+    {
+        public string Text { get; set; }
+        public string Id { get; set; }
+        public bool IsChecked { get; set; }
+        public bool Enabled { get; set; }
+    }
+
+
     SfDialog NewNoteDialogID;
     private bool NewNoteDialogVisibility { get; set; } = false;
+
+    SfDialog NewUserDialogID;
+    private bool NewUserDialogVisibility { get; set; } = false;
 
     SfTextBox tSubject;
     public string tSubjectValue { get; set; }
 
-    private bool AddReportToEmailIsChecked = false;
 
-    private void NewNoteDialogBeforeOpen(BeforeOpenEventArgs args)
+    private bool AddReportToEmailIsChecked = false;
+    private bool HasMatchXMl { get; set; } = false;
+    private bool ShowChangeStatusDialog { get; set; } = false;
+    private bool ShowAddAliasDialog { get; set; } = false;
+
+    private List<CaseDoc> _DocList;
+    public List<CaseDoc> _AddDocList = new List<CaseDoc>();
+
+    private List<CaseContact> _CaseParticipantsList { get; set; } = new List<CaseContact>();
+    private List<CaseContact> _CaseNotifyContactList { get; set; } = new List<CaseContact>();
+    private List<CaseContact> _CaseContactList { get; set; } = new List<CaseContact>();
+    private List<CaseEvent> _CaseEventList { get; set; } = new List<CaseEvent>();
+    private Case _Case { get; set; }
+    private CMSProfileModel _CMSProfileModel { get; set; } = new CMSProfileModel();
+    private UsersModel _UsersModel { get; set; }
+
+    private List<CheckboxListDataModel> AllUsers_CheckboxListData = new List<CheckboxListDataModel>();
+    private List<CheckboxListDataModel> ProfileUsers_CheckboxListData = new List<CheckboxListDataModel>();
+    private List<CheckboxListDataModel> ParticipantsUsers_CheckboxListData = new List<CheckboxListDataModel>();
+    private List<CheckboxListDataModel> CreatorUsers_CheckboxListData = new List<CheckboxListDataModel>();
+    public bool SentToCreator { get; set; } = false;
+    public string SentToCreatorName { get; set; }
+    public string SentToCreatorEmail { get; set; }
+
+    SfTextBox tAnotherEmails1;
+    public string tAnotherEmails1Value { get; set; }
+    SfTextBox tAnotherEmails2;
+    public string tAnotherEmails2Value { get; set; }
+
+    private bool ErrDialogVisibility { get; set; } = false;
+    SfDialog ErrDialogID;
+    private string ErrDialogHeader { get; set; }
+    private string ErrDialogContent { get; set; }
+    SfUploader AddMessage_UploadObj;
+
+    SfComboBox<string, UsersModel> NewUserDialog_AllUsersComboObj { get; set; }
+    public Syncfusion.Blazor.Data.Query Query = new Syncfusion.Blazor.Data.Query();
+    private List<UsersModel> UsersList { get; set; }
+    public string NewUserDialog_ContactID { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetInitDataAsync();
+    }
+
+    private async Task GetInitDataAsync()
+    {
+        _UsersModel = await _storageService.GetItemAsync<UsersModel>("User");
+
+        UsersList = await _usersData.UsersList(_UsersModel.UserID);
+
+        if (await _storageService.ContainKeyAsync("CaseView"))
+        {
+            _Case = await _storageService.GetItemAsync<Case>("CaseView");
+
+            if (_Case.CaseStatusID == 0)
+            {
+                await _ICMSAPI.OnEvent(CMSSettings.EventDpfChecking, _UsersModel.ContactID, _Case.CaseID, new System.Xml.XmlDocument(), Localizer["Cases_SetStatus_InProgress"], false);
+            }
+
+            AllUsers_CheckboxListData.Clear();
+            CreatorUsers_CheckboxListData.Clear();
+            ParticipantsUsers_CheckboxListData.Clear();
+            ProfileUsers_CheckboxListData.Clear();
+
+            // all users check box
+            CheckboxListDataModel _CheckboxListDataModel = new CheckboxListDataModel();
+            _CheckboxListDataModel.Text = Localizer["Value_All_Text"];
+            _CheckboxListDataModel.Id = "-100";
+            _CheckboxListDataModel.IsChecked = false;
+            _CheckboxListDataModel.Enabled = true;
+
+
+            AllUsers_CheckboxListData.Add(_CheckboxListDataModel);
+
+            if (!string.IsNullOrEmpty(_Case.CaseData))
+            {
+                HasMatchXMl = true;
+                //_CaseDocList_AddNew = _caseDoc.LoadFromXml(_Case.CaseData);
+
+                // Creator?
+                XmlDocument _XmlDocument = new XmlDocument();
+                _XmlDocument.LoadXml(_Case.CaseData);
+                if (_XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/NAMEFIRST") != null)
+                {
+                    SentToCreator = true;
+                    SentToCreatorEmail = _XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/EMAIL").InnerText;
+                    SentToCreatorName = _XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/NAMEFIRST").InnerText;
+                    if (_XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/NAMELAST") != null)
+                    {
+                        SentToCreatorName += " " + _XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/NAMELAST").InnerText;
+                    }
+
+                    _CheckboxListDataModel = new CheckboxListDataModel();
+                    _CheckboxListDataModel.Text = SentToCreatorName;
+                    _CheckboxListDataModel.Id = "-200";
+                    _CheckboxListDataModel.IsChecked = false;
+                    _CheckboxListDataModel.Enabled = true;
+
+                    CreatorUsers_CheckboxListData.Add(_CheckboxListDataModel);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(_Case.Participants))
+            {
+                _CaseParticipantsList = CaseContactList.LoadFromXmlAsList(_Case.Participants);
+                _CaseContactList = _CaseParticipantsList;
+                foreach (CaseContact c in _CaseParticipantsList)
+                {
+                    _CheckboxListDataModel = new CheckboxListDataModel();
+                    _CheckboxListDataModel.Text = c.Name;
+                    _CheckboxListDataModel.Id = c.ContactID.ToString();
+                    _CheckboxListDataModel.IsChecked = false;
+                    _CheckboxListDataModel.Enabled = true;
+
+                    ParticipantsUsers_CheckboxListData.Add(_CheckboxListDataModel);
+                }
+            }
+
+            _CaseEventList = await _ICMSAPI.GetEventList(_Case.CaseID);
+
+            _CMSProfileModel = _CMSProfile.Load(_Case.ProfileID);
+
+            if (_CMSProfileModel.profileParticipants != null)
+            {
+                foreach (CaseContact c in _CMSProfileModel.profileParticipants)
+                {
+                    _CheckboxListDataModel = new CheckboxListDataModel();
+                    _CheckboxListDataModel.Text = c.Name;
+                    _CheckboxListDataModel.Id = c.ContactID.ToString();
+                    _CheckboxListDataModel.IsChecked = false;
+                    _CheckboxListDataModel.Enabled = true;
+                    if (_CMSProfileModel.NotifyAllProfileParticipants)
+                    {
+                        _CheckboxListDataModel.IsChecked = true;
+                        _CheckboxListDataModel.Enabled = false;
+                    }
+                    ProfileUsers_CheckboxListData.Add(_CheckboxListDataModel);
+                }
+
+
+            }
+
+            await IsUserAliasManager();
+            await IsUserModerator();
+
+            StateHasChanged();
+        }
+    }
+
+    private void NewNoteDialogBeforeOpen(Syncfusion.Blazor.Popups.BeforeOpenEventArgs args)
+    {
+        args.MaxHeight = null;
+    }
+
+    private void NewUserDialogBeforeOpen(Syncfusion.Blazor.Popups.BeforeOpenEventArgs args)
     {
         args.MaxHeight = null;
     }
 
     private async Task AddMessageDialogSetStatus()
     {
+
         this.NewNoteDialogVisibility = true;
         StateHasChanged();
     }
 
     private async Task AddUserDialogSetStatus()
     {
-        this.NewNoteDialogVisibility = true;
+        this.NewUserDialogVisibility = true;
         StateHasChanged();
     }
 
@@ -329,14 +889,409 @@
             _filename += DateTime.Now.Millisecond.ToString();
             _filename += "_" + Path.GetFileName(file.FileInfo.Name);
 
-            var path = cmsSettings.CmsDocPath + (1).ToString();
+            var path = cmsSettings.CmsDocPath;
             if (!System.IO.Directory.Exists(path))
                 System.IO.Directory.CreateDirectory(path);
 
             FileStream filestream = new FileStream(path + "\\" + _filename, FileMode.Create, FileAccess.Write);
             file.Stream.WriteTo(filestream);
+
+
+            CaseDoc doc = new CaseDoc();
+            doc.DocID = Guid.NewGuid().ToString();
+            doc.CaseID = _Case.CaseID;
+            doc.DocName = _filename;
+            doc.DocSize = Convert.ToInt32(file.FileInfo.Size);
+            doc.FilePath = _filename;
+            doc.OrgFileName = file.FileInfo.Name;
+            doc.ContactID = _UsersModel.UserID;
+            doc.CreatedOn = DateTime.Now;
+
+            _AddDocList.Add(doc);
+
             filestream.Close();
             file.Stream.Close();
         }
     }
+    private void UploaderOnRemove(RemovingEventArgs args)
+    {
+        var path = cmsSettings.CmsDocPath;
+
+        foreach (var removeFile in args.FilesData)
+        {
+            string _realFileName = _AddDocList.Find(f => f.OrgFileName == removeFile.Name).FilePath;
+
+            if (File.Exists(Path.Combine(path, _realFileName)))
+            {
+                File.Delete(Path.Combine(path, _realFileName));
+                _AddDocList.Remove(_AddDocList.Find(f => f.OrgFileName == removeFile.Name));
+            }
+        }
+    }
+
+    public string GetCaseDuration(int? MinDuration)
+    {
+        string _duration = "";
+        if (MinDuration != null)
+        {
+            int _days = (int)MinDuration / 1440;
+            double _hours = (((int)MinDuration / 1440.0) - _days) * 24;
+
+            _duration = _days.ToString() + " " + Localizer["Cases_Detail_Label_Duration_Day"];
+            _duration += " - " + ((int)(_hours) % 24).ToString() + " " + Localizer["Cases_Detail_Label_Duration_Hour"];
+            _duration += " - " + (MinDuration % 60).ToString() + " " + Localizer["Cases_Detail_Label_Duration_Min"];
+        }
+
+
+        return _duration;
+    }
+
+
+    public async Task StartDownload(int CaseID, string FilePath, string DocName)
+    {
+        var memory = new MemoryStream();
+        string fullPath = cmsSettings.CmsDocPath + FilePath;
+
+        if (File.Exists(fullPath))
+        {
+            await using (var stream = new FileStream(fullPath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+
+            await _blazorDownloadFileService.DownloadFile(DocName, memory, "application/octet-stream");
+        }
+
+
+    }
+
+    public async Task IsUserAliasManager()
+    {
+        ShowAddAliasDialog = false;
+        ShowChangeStatusDialog = false;
+
+        if (_CMSProfileModel != null)
+        {
+            if (_CMSProfileModel.profileParticipants != null)
+            {
+                foreach (CaseContact c in _CMSProfileModel.profileParticipants)
+                {
+                    if (c.ProfileRole == "AliasManager" && c.ContactID == _UsersModel.ContactID)
+                    {
+                        ShowAddAliasDialog = true;
+                        ShowChangeStatusDialog = true;
+                        return;
+                    }
+                }
+            }
+
+            if (_CMSProfileModel.escalationUsers != null)
+            {
+                foreach (CaseContact c in _CMSProfileModel.escalationUsers)
+                {
+                    if (c.ProfileRole == "AliasManager" && c.ContactID == _UsersModel.ContactID)
+                    {
+                        ShowAddAliasDialog = true;
+                        ShowChangeStatusDialog = true;
+                        return;
+                    }
+                }
+            }
+        }
+
+    }
+
+    public async Task IsUserModerator()
+    {
+        ShowChangeStatusDialog = false;
+
+        if (_CMSProfileModel != null)
+        {
+
+            if (_CMSProfileModel.profileParticipants != null)
+            {
+                foreach (CaseContact c in _CMSProfileModel.profileParticipants)
+                {
+                    if (c.ProfileRole == "Moderator" && c.ContactID == _UsersModel.ContactID)
+                    {
+                        ShowChangeStatusDialog = true;
+                        return;
+                    }
+                }
+            }
+
+            if (_CMSProfileModel.escalationUsers != null)
+            {
+                foreach (CaseContact c in _CMSProfileModel.escalationUsers)
+                {
+                    if (c.ProfileRole == "Moderator" && c.ContactID == _UsersModel.ContactID)
+                    {
+                        ShowChangeStatusDialog = true;
+                        return;
+                    }
+                }
+            }
+        }
+
+    }
+
+    private async Task ShowMatchResult()
+    {
+        await _IJSRuntime.InvokeAsync<object>("open", "/case/matchresult", "_blank");
+    }
+
+    private void ErrDialogButtonClick()
+    {
+        this.ErrDialogVisibility = false;
+    }
+
+    // **************************************************************************************************
+    // ADD MESSAGE
+    // **************************************************************************************************
+
+    public void AllUsers_CheckboxList_Event(bool isChecked)
+    {
+        if (isChecked)
+        {
+            foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+            {
+                cb.IsChecked = true;
+            }
+            foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
+            {
+                cb.IsChecked = true;
+            }
+        }
+        else
+        {
+            foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+            {
+                cb.IsChecked = false;
+            }
+            foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
+            {
+                cb.IsChecked = false;
+            }
+        }
+        StateHasChanged();
+    }
+    public void ParticipantsUsers_CheckboxList_Event(bool isChecked)
+    {
+        if (!isChecked)
+        {
+            foreach (CheckboxListDataModel cb in AllUsers_CheckboxListData)
+            {
+                cb.IsChecked = false;
+            }
+            StateHasChanged();
+        }
+    }
+    public async Task NewNoteDialog_Save()
+    {
+        if (string.IsNullOrEmpty(tSubjectValue))
+        {
+            ErrDialogHeader = Localizer["Cases_AddMessage_Validation_Title"];
+            ErrDialogContent = Localizer["Cases_AddMessage_Validation_Note"];
+            this.ErrDialogVisibility = true;
+            return;
+        }
+
+        XmlDocument xDoc = new XmlDocument();
+        string s = @"<CaseDocList>";
+        foreach (CaseDoc d in _AddDocList)
+        {
+            s += d.AsXml();
+        }
+        s += @"</CaseDocList>";
+        xDoc.LoadXml(s);
+
+        if (AddReportToEmailIsChecked)
+        {
+            int _CaseTypeID = _Case.CaseTypeID == null ? 0 : Convert.ToInt32(_Case.CaseTypeID);
+            string htmlResult = Common.HCMXslTransform.GetHtmlResult(_Case.CaseData, _CaseTypeID);
+            XmlElement addReport = xDoc.CreateElement("AddReport");
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
+            addReport.InnerText = System.Convert.ToBase64String(plainTextBytes);
+            xDoc.DocumentElement.AppendChild(addReport);
+        }
+
+        // get contact users
+        string _usersID = "";
+        foreach (CheckboxListDataModel cb in ProfileUsers_CheckboxListData)
+        {
+            if (cb.IsChecked)
+            {
+                _usersID += cb.Id + ",";
+            }
+        }
+        foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+        {
+            if (cb.IsChecked)
+            {
+                _usersID += cb.Id + ",";
+            }
+        }
+
+
+        if (string.IsNullOrEmpty(_usersID) && string.IsNullOrEmpty(tAnotherEmails1Value.Trim()) && string.IsNullOrEmpty(tAnotherEmails1Value.Trim()))
+        {
+            await _ICMSAPI.OnEvent(CMSSettings.EventAddMessage, _UsersModel.ContactID, _Case.CaseID, xDoc, tSubjectValue, false);
+        }
+        else
+        {
+            List<CaseContact> _contactList = new List<CaseContact>();
+
+            if (!string.IsNullOrEmpty(_usersID))
+            {
+                List<CaseContact> _caseContactList = await _caseContact.Contact_GetAll();
+                string[] _ids = _usersID.Split(',');
+                foreach (CaseContact c in _caseContactList)
+                {
+                    bool found = false;
+                    int _id = -1;
+                    for (int i = 0; i < _ids.Length; i++)
+                    {
+                        int.TryParse(_ids[i], out _id);
+                        if (_id == c.ContactID)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found)
+                    {
+                        _contactList.Add(c);
+                    }
+                }
+            }
+
+            int AnotherEmailsID = -1;
+
+            if (tAnotherEmails1Value != null && tAnotherEmails1Value.Trim().Length > 0)
+            {
+                CaseContact c = new CaseContact();
+                c.ContactID = AnotherEmailsID;
+                c.ContactData = "";
+                c.ContactURI = "";
+                c.Email = tAnotherEmails1Value;
+                c.ForeingID = "";
+                c.Name = "Extern";
+                c.NickName = "";
+                c.Function = "";
+
+
+                _contactList.Add(c);
+                AnotherEmailsID--;
+            }
+
+            if (tAnotherEmails2Value != null && tAnotherEmails2Value.Trim().Length > 0)
+            {
+                CaseContact c = new CaseContact();
+                c.ContactID = AnotherEmailsID;
+                c.ContactData = "";
+                c.ContactURI = "";
+                c.Email = tAnotherEmails2Value;
+                c.ForeingID = "";
+                c.Name = "Extern";
+                c.NickName = "";
+                c.Function = "";
+
+
+                _contactList.Add(c);
+                AnotherEmailsID--;
+            }
+
+            foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
+            {
+                if (cb.IsChecked)
+                {
+                    CaseContact c = new CaseContact();
+                    c.ContactID = AnotherEmailsID;
+                    c.ContactData = "";
+                    c.ContactURI = "";
+                    c.Email = SentToCreatorEmail;
+                    c.ForeingID = "";
+                    c.Name = SentToCreatorName;
+                    c.NickName = "";
+                    c.Function = "Creator";
+
+
+                    _contactList.Add(c);
+                    AnotherEmailsID--;
+                }
+            }
+
+            await _ICMSAPI.OnEvent(CMSSettings.EventAddMessage, _UsersModel.ContactID, _Case.CaseID, xDoc, tSubjectValue, _contactList);
+
+        }
+
+        this.NewNoteDialogVisibility = false;
+        _AddDocList.Clear();
+        tAnotherEmails1Value = "";
+        tAnotherEmails2Value = "";
+        tSubjectValue = "";
+
+        foreach (CheckboxListDataModel cb in AllUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
+        }
+        foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
+        }
+
+        await AddMessage_UploadObj.ClearAll();
+        AddReportToEmailIsChecked = false;
+
+        StateHasChanged();
+        await GetInitDataAsync();
+    }
+
+    // **************************************************************************************************
+    // ADD USERS
+    // **************************************************************************************************
+    public async Task AddUserDialog_AddUser()
+    {
+        if (! string.IsNullOrEmpty(NewUserDialog_ContactID) )
+        {
+            UsersModel u = UsersList.FirstOrDefault< UsersModel >(u1 => u1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+
+            bool hasCaseContactList = false;
+            bool hasprofileParticipantsList = false;
+            bool hasescalationUsersList = false;
+            CaseContact _f1 = _CaseContactList.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            if ( _f1 != null )
+                hasCaseContactList = true;
+
+            _f1 = _CMSProfileModel.profileParticipants.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            if (_f1 != null)
+                hasprofileParticipantsList = true;
+
+            _f1 = _CMSProfileModel.escalationUsers.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            if (_f1 != null)
+                hasescalationUsersList = true;
+
+            if (!hasCaseContactList && !hasprofileParticipantsList && !hasescalationUsersList)
+            {
+                CaseContact c = new CaseContact();
+                c.ProfileRole = "User";
+                c.ContactID = u.ContactID;
+                c.Name = u.Name;
+                c.Email = u.EMail;
+                c.Function = u.FunctionInFirma;
+                _CaseContactList.Add(c);
+
+                await NewUserDialog_AllUsersComboObj.Clear();
+                StateHasChanged();
+            }
+
+        }
+    }
+    public async Task AddUserDialog_Save()
+    {
+
+    }
+
 }

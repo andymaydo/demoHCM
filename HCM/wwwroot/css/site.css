@@ -9,7 +9,7 @@ a, .btn-link {
 }
 body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 
@@ -308,5 +308,86 @@ a.btnAddAlias {
 .e-custom-height {
     height: 150px;
     width: 200px;
-} 
+}
+.e-upload .e-file-select-wrap {
+    padding: 0px !important;
+}
+
+/****************************************************** 
+CHECKBOX LIST VIEW
+******************************************************/
+.e-listview.e-control {
+    width: 100% !important;
+}
+.e-listview {
+    border: 0px !important;
+}
+    .e-listview .e-list-item {
+        height: 26px !important;
+        padding: 0px !important;
+        font-size: 10px !important;
+        border: 0px !important;
+    }
+
+/****************************************************** 
+NEW USER
+******************************************************/
+.tLabelDisabled {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #777;
+    padding-left: 5px;
+}
+.tbTitle {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 15px;
+}
+
+    .tbTitle th {
+        padding-left: 5px;
+        text-align: left;
+        font-weight: bold;
+        color: #444444;
+        border-width: 1px;
+        border-collapse: collapse;
+        border-bottom-color: #000;
+        border-bottom-style: solid;
+        height: 25px;
+        background-color: #EBEBEB;
+        text-decoration: none;
+    }
+
+    .tbTitle td {
+        padding-left: 5px;
+        color: #000;
+        border-width: 1px;
+        border-collapse: collapse;
+        border-bottom-color: #aaaaaa;
+        border-bottom-style: solid;
+        height: 20px;
+        text-decoration: none;
+    }
+.tbTitle td.disabledtext {
+    padding-left: 5px;
+    color: #666;
+    border-width: 1px;
+    border-collapse: collapse;
+    border-bottom-color: #aaaaaa;
+    border-bottom-style: solid;
+    height: 20px;
+    text-decoration: none;
+}
+
+.tbTitle th.disabledtext {
+    padding-left: 5px;
+    color: #777;
+    border-width: 1px;
+    border-collapse: collapse;
+    border-bottom-color: #aaaaaa;
+    border-bottom-style: solid;
+    height: 20px;
+    text-decoration: none;
+}
 

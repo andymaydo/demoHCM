@@ -359,5 +359,16 @@ namespace HCMApi
             s += @"</ContactList>";
             return s;
         }
+        public static string AsXmlStringFromList(List<CaseContact> NotifyList)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            string s = @"<ContactList>";
+            foreach (CaseContact c in NotifyList)
+            {
+                s += c.AsXml();
+            }
+            s += @"</ContactList>";
+            return s;
+        }
     }
 }

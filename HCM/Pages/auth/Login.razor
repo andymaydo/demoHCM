@@ -90,7 +90,7 @@
     {
         cultures = Configuration.GetSection("Cultures")
             .GetChildren().ToDictionary(x => x.Key, x => x.Value);
-
+        selectedCulture = "de-DE";
     }
 
     public async Task LoginUser()

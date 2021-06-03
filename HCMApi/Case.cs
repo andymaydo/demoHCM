@@ -18,7 +18,7 @@ namespace HCMApi
         public int CaseID { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime LastActivity { get; set; }
-        public int IssuedByID { get; set; }
+        public int IssuedID { get; set; }
         public int? CaseStatusID { get; set; }
         public string CaseStatus { get; set; }
         public int CaseResultID { get; set; }
@@ -34,9 +34,29 @@ namespace HCMApi
         public string CaseSource { get; set; }
         public int ModifiedByID { get; set; }
         public string ModifiedByName { get; set; }
-        public int MinDuration { get; set; }
-        //public CaseContactList Participants { get; set; }
-        public XmlDocument CaseData { get; set; }
+        public int Duration { get; set; }
+
+        public CaseContactList ParticipantsAsCaseContactList 
+        { 
+            get
+            {
+                return CaseContactList.LoadFromXml(Participants);
+            }
+        }
+        public List<CaseContact> ParticipantsAsList 
+        { 
+            get
+            {
+                return CaseContactList.LoadFromXmlAsList(Participants);
+            }
+        }
+        public string Participants { get; set; }
+        public XmlDocument ParticipantsAsXml { get; set; }
+        
+        public string CaseData { get; set; }
+        public XmlDocument CaseDataAsXml 
+        { get; set; }
+
         public string CustomerName { get; set; }
         public string SapUser { get; set; }
 
@@ -54,7 +74,7 @@ namespace HCMApi
 
         //public Case(int _caseID)
         //{
-        //    Load(_caseID);
+        //    await Load(_caseID);
         //}
 
         public async Task<List<Case>> GetCasesList(int? filterCaseID, int? appID, int? caseTypeID, int? caseStatusID, int loginUserID,
@@ -121,6 +141,131 @@ namespace HCMApi
             //parms[10].Value = CustomerName;
 
             //return DAO.ExecSqlProcedureReturnDt("Case_GetList", parms);
+        }
+
+        public async Task<Case> Load(int _caseID)
+        {
+
+            var procedure = "Case_GetOne";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@caseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: _caseID);
+
+            try
+            {
+                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                {
+                    var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<Case> _CaseList = result.ToList<Case>();
+                    if (_CaseList.Count > 0)
+                    {
+                        Case _Case = new Case();
+                        _Case = _CaseList[0];
+
+                        //_Case.ParticipantsAsXml = CaseContactList.LoadFromXml(_CaseList[0].Participants);
+
+                        //if ( ! string.IsNullOrEmpty(_CaseList[0].CaseData) )
+                        //{
+                        //    _Case.CaseDataAsXml = new XmlDocument();
+                        //    _Case.CaseDataAsXml.LoadXml(_CaseList[0].CaseData);
+                        //}
+                        
+
+                        return _Case;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+
+            //SqlParameter[] parms = new SqlParameter[] {
+            //               new SqlParameter("@caseID", SqlDbType.Int)
+            //};
+            //parms[0].Value = _caseID;
+
+            //DataTable dt = DAO.ExecSqlProcedureReturnDt("Case_GetOne", parms);
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    CaseID          = _caseID;
+            //    IssuedByID      = Convert.ToInt32(dr["IssuedID"]);
+            //    CreateDate      = Convert.ToDateTime(dr["CreateDate"]);
+            //    LastActivity    = Convert.ToDateTime(dr["LastActivity"]);
+            //    CaseStatusID    = Convert.ToInt32(dr["CaseStatusID"]);
+            //    CaseStatus      = dr["CaseStatus"].ToString();
+            //    CaseResultID    = Convert.ToInt32(dr["CaseResultID"]);
+            //    CaseResult      = dr["CaseResult"].ToString();
+            //    CaseTypeID      = Convert.ToInt32(dr["CaseTypeID"]);
+            //    CaseType        = dr["CaseType"].ToString();
+            //    appID           = Convert.ToInt32(dr["appID"]);
+            //    appName         = dr["appName"].ToString();
+            //    ProfileID       = Convert.ToInt32(dr["ProfileID"]);
+            //    ProfileName     = dr["profileName"].ToString();
+            //    Participants    = CaseContactList.LoadFromXml(dr["Participants"].ToString());
+            //    ContactName     = dr["ContactName"].ToString();
+            //    CaseSource      = dr["CaseSource"].ToString();
+            //    CustomerName    = dr["CustomerName"].ToString();
+
+            //    //ModifiedByID    = Convert.ToInt32(dr["ModifiedByID"]);
+            //    ModifiedByName = dr["ModifiedByName"].ToString();
+            //    SapUser = dr["SapUser"].ToString();
+
+            //    MinDuration = Convert.ToInt32(dr["Duration"]);
+
+            //    CaseData = null;
+            //    if ( ! string.IsNullOrEmpty(dr["CaseData"].ToString()) )
+            //    {
+            //        CaseData = new XmlDocument();
+            //        CaseData.LoadXml(dr["CaseData"].ToString());
+            //    }
+
+            //    Subject = dr["Subject"].ToString();
+            //}
+        }
+
+        public async Task<int> Create()
+        {
+
+            var procedure = "Case_Create";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@IssuedID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: IssuedID);
+            _params.Add(name: "@CaseStatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseStatusID);
+            _params.Add(name: "@CaseResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseResultID);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
+            _params.Add(name: "@CaseData", dbType: DbType.Xml, direction: ParameterDirection.Input, value: CaseDataAsXml);
+            _params.Add(name: "@Participants", dbType: DbType.Xml, direction: ParameterDirection.Input, value: ParticipantsAsXml);
+            _params.Add(name: "@Subject", dbType: DbType.String, direction: ParameterDirection.Input, value: Subject);
+            _params.Add(name: "@CaseSource", dbType: DbType.String, direction: ParameterDirection.Input, value: CaseSource);
+
+            try
+            {
+                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                {
+                    var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<Case> _CaseList = result.ToList<Case>();
+                    if (_CaseList.Count > 0)
+                    {
+                        return _CaseList[0].CaseID;
+                    }
+                    return -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+
+
+            
         }
     }
 }

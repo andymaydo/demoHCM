@@ -5,10 +5,13 @@
 @using HCMDataAccess;
 @using HCMDataAccess.Models;
 
+
+
 @inject IStringLocalizer<App> Localizer
 @inject IUsersData _usersData;
 @inject IUserRolesData _userRolesData;
 @inject ILocalStorageService storageService
+
 
 @attribute [Authorize]
 
@@ -145,7 +148,7 @@
                 <SfGrid DataSource="@UsersRoleList" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
                     <GridEvents TValue="UserRolesModel"></GridEvents>
                     <GridColumns>
-                        <GridColumn  Field=@nameof(UserRolesModel.LocalizerRoleName)  TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
+                        <GridColumn Field=@nameof(UserRolesModel.LocalizerRoleName) TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
 
                     </GridColumns>
                 </SfGrid>
@@ -199,7 +202,7 @@
     private void BindUsersRoleList()
     {
         UsersRoleList = _userRolesData.GetLocalizatedNames();
-        foreach(UserRolesModel r in UsersRoleList)
+        foreach (UserRolesModel r in UsersRoleList)
         {
             r.LocalizerRoleName = Localizer["UserRole_" + r.RoleID.ToString()];
         }

@@ -14,6 +14,14 @@ namespace HCMDataAccess.Models
         public int Enable { get; set; }
         public string EMail { get; set; }
         public string FullName { get; set; }
+
+        public string FullNameEmailFunction 
+        { 
+            get
+            {
+                return Name + " (" + EMail + ") " + FunctionInFirma;
+            }
+        }
         public string Name { get; set; }
         public string NickName { get; set; }
         public XmlDocument ContactData { get; set; }
