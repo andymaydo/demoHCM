@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
+using static HCMApi.Case;
 
 namespace HCMApi
 {
@@ -41,6 +42,8 @@ namespace HCMApi
         Task<int> Create();
 
         int UpdateParticipants(int _caseID, string _participants);
+
+        Task<List<CaseEventStatus>> GetStatusByCase(int caseID);
 
         }
 }

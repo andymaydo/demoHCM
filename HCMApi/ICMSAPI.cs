@@ -18,5 +18,7 @@ namespace HCMApi
 
 
         Task ChangeParticipants(int IssuedByID, int caseID, XmlDocument xmlData, string EventText);
+
+        Task<List<Case.CaseEventStatus>> GetStatusByCase(int caseID);
     }
 }

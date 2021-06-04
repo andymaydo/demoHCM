@@ -294,5 +294,41 @@ namespace HCMApi
 
             
         }
+
+
+
+        public class CaseEventStatus
+        {
+            public string EventID { get; set; }
+            public string EventText { get; set; }
+        }
+
+        public async Task<List<CaseEventStatus>> GetStatusByCase(int caseID)
+        {
+
+            var procedure = "Case_GetEventByStatus";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@caseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseID);
+            
+
+            try
+            {
+                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                {
+                    var result = await conn.QueryAsync<CaseEventStatus>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CaseEventStatus> _CaseStatusList = result.ToList<CaseEventStatus>();
+                    return _CaseStatusList;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+            
+        }
     }
 }

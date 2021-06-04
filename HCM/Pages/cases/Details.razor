@@ -653,6 +653,101 @@
 
 </SfDialog>
 
+<SfDialog @ref="StatusChangeDialogID" ShowCloseIcon="true" Width="800px" Height="600px" IsModal="true" @bind-Visible="StatusChangeDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Cases_ChangeStatus_Title"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+                <table width="65%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="tLabel2" width="25%" align="left" valign="top">@Localizer["Cases_AddMessage_Subject"]:</td>
+                        <td class="tLabel3" width="75%" align="left" valign="top">@_Case?.Subject</td>
+                    </tr>
+                    <tr>
+                        <td class="tLabel2" align="left" valign="top">@Localizer["Case_Status_" + @_Case?.CaseStatusID.ToString()]:</td>
+                        <td class="tLabel3" align="left" valign="top">@_Case?.CaseStatus</td>
+                    </tr>
+                    <tr>
+                        <td class="tLabel2" align="left" valign="top">@Localizer["Cases_ChangeStatus_SelectStatus"]:</td>
+                        <td class="tLabel3" align="left" valign="top">
+                            <SfComboBox TValue="string" @ref="StatusChangeDialog_StatusComboObj" TItem="Case.CaseEventStatus" DataSource="@StatusList" @bind-Value="@StatusChangeDialog_StatusID">
+                                <ComboBoxFieldSettings Text="EventText" Value="EventID"></ComboBoxFieldSettings>
+                            </SfComboBox>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+                    <tr>
+                        <td valign="top">
+
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddMessage_Note"]</h5>
+
+                            <SfTextBox @ref="StatusChangeDialog_Subject" CssClass="e-custom-height" Multiline="true" @bind-Value="@StatusChangeDialog_SubjectValue">
+                            </SfTextBox>
+                            
+                        </td>
+                        <td width="20px" valign="top">
+                        </td>
+                        <td width="200px" valign="top">                            
+
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_ProfileUsers"]</h5>
+                            @if (_CMSProfileModel.profileParticipants != null)
+                            {
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@ProfileUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+
+                            }
+                            <br />
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_Users"]</h5>
+                            @if (_CaseParticipantsList != null)
+                            {
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@ParticipantsUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewEvents TValue="CheckboxListDataModel"
+                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+                            }
+
+
+                            
+
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="top_blue_bg">
+                            <SfButton @onclick="StatusChangeDialog_Save" CssClass="e-flat e-info col-sm-2">@Localizer["Button_Save"]</SfButton>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    <DialogEvents Closed="StatusChangeDialogClosed"></DialogEvents>
+
+</SfDialog>
+
 <SfDialog Header="@ErrDialogHeader" Content="@ErrDialogContent" @ref="ErrDialogID" Width="335px" IsModal="true" @bind-Visible="ErrDialogVisibility">
     <DialogTemplates>
 
@@ -680,6 +775,11 @@
 
     SfDialog NewUserDialogID;
     private bool NewUserDialogVisibility { get; set; } = false;
+
+    SfDialog StatusChangeDialogID;
+    private bool StatusChangeDialogVisibility { get; set; } = false;
+    SfTextBox StatusChangeDialog_Subject;
+    public string StatusChangeDialog_SubjectValue { get; set; }
 
     SfTextBox tSubject;
     public string tSubjectValue { get; set; }
@@ -725,6 +825,10 @@
     private List<UsersModel> UsersList { get; set; }
     public string NewUserDialog_ContactID { get; set; }
 
+    SfComboBox<string, HCMApi.Case.CaseEventStatus> StatusChangeDialog_StatusComboObj { get; set; }
+    private List<HCMApi.Case.CaseEventStatus> StatusList { get; set; }
+    public string StatusChangeDialog_StatusID { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -742,6 +846,12 @@
 
             int _CaseID = await _storageService.GetItemAsync<int>("CaseView");
             _Case = await _ICMSAPI.LoadCase(_CaseID);
+
+            StatusList = await _ICMSAPI.GetStatusByCase(_CaseID);
+            foreach (Case.CaseEventStatus s in StatusList)
+            {
+                s.EventText = Localizer["event_" + s.EventID.Replace(".", "_")];
+            }
 
             if (_Case.CaseStatusID == 0)
             {
@@ -848,6 +958,15 @@
         args.MaxHeight = null;
     }
 
+    private void StatusChangeDialogClosed(Syncfusion.Blazor.Popups.CloseEventArgs args)
+    {
+        foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
+            cb.Enabled = true;
+        }
+    }
+
     private async Task AddMessageDialogSetStatus()
     {
 
@@ -863,7 +982,13 @@
 
     private async Task ChangeStatusDialogSetStatus()
     {
-        this.NewNoteDialogVisibility = true;
+
+        foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+        {
+            cb.IsChecked = true;
+            cb.Enabled = false;
+        }
+        this.StatusChangeDialogVisibility = true;
         StateHasChanged();
     }
 
@@ -1306,6 +1431,84 @@
         _CaseContactList.Clear();
         await NewUserDialog_AllUsersComboObj.Clear();
         this.NewUserDialogVisibility = false;
+        StateHasChanged();
+        await GetInitDataAsync();
+    }
+
+    // **************************************************************************************************
+    // CHANGE STATUS
+    // **************************************************************************************************
+    public async Task StatusChangeDialog_Save()
+    {
+        if (string.IsNullOrEmpty(StatusChangeDialog_SubjectValue) || string.IsNullOrEmpty(StatusChangeDialog_StatusID))
+        {
+            ErrDialogHeader = Localizer["Cases_ChangeStatus_Validation_Title"];
+            ErrDialogContent = Localizer["Cases_ChangeStatus_Validation_Note"];
+            this.ErrDialogVisibility = true;
+            return;
+        }
+
+        // get contact users
+        string _usersID = "";
+        foreach (CheckboxListDataModel cb in ProfileUsers_CheckboxListData)
+        {
+            if (cb.IsChecked)
+            {
+                _usersID += cb.Id + ",";
+            }
+        }
+        foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+        {
+            if (cb.IsChecked)
+            {
+                _usersID += cb.Id + ",";
+            }
+        }
+
+        XmlDocument xDoc = new XmlDocument();
+        if (string.IsNullOrEmpty(_usersID) )
+        {
+            await _ICMSAPI.OnEvent(StatusChangeDialog_StatusID, _UsersModel.ContactID, _Case.CaseID, _Case.ParticipantsAsXml, StatusChangeDialog_SubjectValue, _Case.ParticipantsAsList);
+        }
+        else
+        {
+            List<CaseContact> _contactList = new List<CaseContact>();
+
+            if (!string.IsNullOrEmpty(_usersID))
+            {
+                List<CaseContact> _caseContactList = await _caseContact.Contact_GetAll();
+                string[] _ids = _usersID.Split(',');
+                foreach (CaseContact c in _caseContactList)
+                {
+                    bool found = false;
+                    int _id = -1;
+                    for (int i = 0; i < _ids.Length; i++)
+                    {
+                        int.TryParse(_ids[i], out _id);
+                        if (_id == c.ContactID)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found)
+                    {
+                        _contactList.Add(c);
+                    }
+                }
+            }
+
+
+            xDoc.LoadXml(CaseContactList.AsXmlStringFromList(_contactList));
+
+            await _ICMSAPI.OnEvent(StatusChangeDialog_StatusID, _UsersModel.ContactID, _Case.CaseID, xDoc, StatusChangeDialog_SubjectValue, _contactList);
+
+        }
+
+        this.StatusChangeDialogVisibility = false;
+        StatusChangeDialog_SubjectValue = "";
+
         StateHasChanged();
         await GetInitDataAsync();
     }

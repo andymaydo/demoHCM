@@ -33,6 +33,10 @@ namespace HCMApi
         {
             return await _iCase.Load(caseID);
         }
+        public async Task<List<Case.CaseEventStatus>> GetStatusByCase(int caseID)
+        {
+            return await _iCase.GetStatusByCase(caseID);
+        }
         #endregion
 
         #region Event
