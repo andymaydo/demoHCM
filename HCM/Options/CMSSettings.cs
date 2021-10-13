@@ -8,6 +8,8 @@ namespace HCM.Options
     public class CMSSettings
     {
         public string CmsDocPath { get; set; }
+        public string AliasApiUsr { get; set; }
+        public string AliasApiPwd { get; set; }
 
         public static string EventAddMessage       = "cms.addnote";
         public static string EventNotifyContact    = "cms.notifycontact";
@@ -18,4 +20,6 @@ namespace HCM.Options
         public static string EventDpfOnMatchFound  = "dpf.onmatchfound";
         public static string EventDpfYesMatch      = "dpf.yesmatch";
     }
+
+
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HCMDataAccess.Models
+namespace HCMModels
 {
     public class FiltersModels
     {
@@ -21,16 +21,17 @@ namespace HCMDataAccess.Models
             public int CaseTypeID { get; set; }
             public string CaseType { get; set; }
         }
-        public class CaseResultModel
-        {
-            public int CaseResultID { get; set; }
-            public string CaseResult { get; set; }
-        }
         public class CaseStatusModel
         {
             public int CaseStatusID { get; set; }
             public string CaseStatus { get; set; }
         }
+        public class CaseResultModel
+        {
+            public int CaseResultID { get; set; }
+            public string CaseResult { get; set; }
+        }
+        
         public class ProfileStatusModel
         {
             public int ProfileStatusID { get; set; }

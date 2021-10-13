@@ -8,7 +8,7 @@ a, .btn-link {
     color: #0366d6;
 }
 body {
-    padding-top: 50px;
+    padding-top: 90px;
     padding-bottom: 40px;
 }
 
@@ -79,7 +79,7 @@ UI
 .blue_bg {
     background-repeat: repeat-x;
     background-position: top;
-    background-image: url(../images/bg-title.gif);
+    background-image: url(../images/bg-title.png);
     padding: 5px 0px 0px 5px;
 }
 .bottom_blue_bg {
@@ -122,12 +122,12 @@ UI
     padding-left: 4px;
     padding-top: 2px;
     padding-bottom: 2px;
-    font-size: 12px;
-    color: #444444;
-    background-color: #EBEBEB;
+    font-size: 14px;
+    color: #1A525D;
+    background-color: #BDD4D8;
 }
 .ReportItem, .ReportItem a {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
     text-align: left;
     width: 100%;
@@ -135,14 +135,18 @@ UI
     text-decoration: none;
     padding-left: 6px;
     padding-top: 2px;
-    color: #444444;
+    color: #1A525D !important;
     display: block;
 }
 .ReportItemNormal {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
     padding-right: 5px;
     text-align: right !important;
+}
+a.ReportItemNormal {
+    color: #1A525D !important;
+    text-decoration: underline;
 }
 .nav-item a {
     height: 2rem !important;
@@ -202,6 +206,18 @@ UI
 }
 .e-hcm-search:before {
     content: '\e724';
+    color: #ffffff;
+}
+.e-hcm-login:before {
+    content: '\e778';
+    color: #ffffff;
+}
+.e-hcm-logout:before {
+    content: '\e709';
+    color: #ffffff;
+}
+.e-hcm-save:before {
+    content: '\e74d';
     color: #ffffff;
 }
 
@@ -336,7 +352,7 @@ NEW USER
     font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
     font-size: 13px;
     font-weight: bold;
-    color: #777;
+    color: #1A525D;
     padding-left: 5px;
 }
 .tbTitle {
@@ -348,14 +364,14 @@ NEW USER
     .tbTitle th {
         padding-left: 5px;
         text-align: left;
-        font-weight: bold;
-        color: #444444;
+        font-weight: normal;
+        color: #FFF;
         border-width: 1px;
         border-collapse: collapse;
-        border-bottom-color: #000;
+        border-bottom-color: #FFF;
         border-bottom-style: solid;
-        height: 25px;
-        background-color: #EBEBEB;
+        height: 20px;
+        background-color: #346C77;
         text-decoration: none;
     }
 
@@ -364,7 +380,7 @@ NEW USER
         color: #000;
         border-width: 1px;
         border-collapse: collapse;
-        border-bottom-color: #aaaaaa;
+        border-bottom-color: #FFF;
         border-bottom-style: solid;
         height: 20px;
         text-decoration: none;
@@ -374,7 +390,7 @@ NEW USER
     color: #666;
     border-width: 1px;
     border-collapse: collapse;
-    border-bottom-color: #aaaaaa;
+    border-bottom-color: #FFF;
     border-bottom-style: solid;
     height: 20px;
     text-decoration: none;
@@ -382,12 +398,106 @@ NEW USER
 
 .tbTitle th.disabledtext {
     padding-left: 5px;
-    color: #777;
+    color: #FFF;
     border-width: 1px;
     border-collapse: collapse;
-    border-bottom-color: #aaaaaa;
+    border-bottom-color: #FFF;
     border-bottom-style: solid;
     height: 20px;
     text-decoration: none;
 }
+
+
+
+.bg-info {
+    background-color: #1a535d !important;
+}
+.bg-secondary {
+    background-color: #1a535d !important;
+}
+.footer {
+    padding: 0 !important;    
+}
+.e-btn.e-flat.e-primary, .e-css.e-btn.e-flat.e-primary {
+    background-color: #1a535d !important;
+    border-color: #f8f9fa !important;
+    color: #fff !important;
+}
+.e-btn.e-flat, .e-css.e-btn.e-flat {
+    background-color: #1a535d !important;
+    border-color: #f8f9fa !important;
+    box-shadow: none;
+    color: #fff !important;
+}
+.e-btn .e-btn-icon, .e-css.e-btn .e-btn-icon {
+    font-size: 10px !important;
+}
+.nav-item a {
+    height: 1.5rem !important;
+}
+.e-grid .e-unboundcelldiv > button {
+    margin: 0 0px !important;
+}
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover {
+    background: #1a535d !important;
+    color: #fff !important;
+    opacity: 1;
+}
+.e-pager .e-numericitem {
+    background: #fff;
+    border-right-color: #ddd;
+    color: #1a535d !important;
+}
+.e-pager .e-currentitem  {
+    color: #fff !important;
+}
+.e-btn .e-btn-icon, .e-css.e-btn .e-btn-icon {
+    width: 2em !important;
+}
+.e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    bottom: 2px;
+    float: right;
+    height: 28px !important;
+    left: 0;
+    position: relative;
+    width: 28px !important;
+}
+.e-icon-dlg-close {
+    color: #fff !important;
+}
+.e-checkbox-wrapper .e-frame.e-check, .e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: #1a535d !important;
+    border-color: #1a535d !important;
+    color: #fff;
+}
+.LoginViewName {
+    color: #fff;
+    font-size: 14px;
+}
+a.btnShowMatch {
+    color: #1a535d !important;
+    text-decoration: underline !important;
+    background-color: transparent;
+}
+.e-listview .e-list-item.e-focused,
+.e-listview .e-list-item.e-focused.e-active.e-checklist {
+    background-color: #fff !important;
+    color: #1a535d !important;
+}
+.e-listview .e-list-item {
+    font-size: 12px !important;
+}
+.newProfileLink {
+    color: #1a535d !important;
+}
+.e-hcm-custom-btn {
+    border-radius: 0;
+    height: 30px !important;
+    width: 280px !important;
+}
+
+
 

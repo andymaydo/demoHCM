@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace HCMDataAccess.Models
+namespace HCMModels
 {
     public class LoginRequest
     {

@@ -4,7 +4,7 @@
 
 @using Syncfusion.Blazor.Inputs
 @using HCMDataAccess;
-@using HCMDataAccess.Models;
+@using HCMModels;
 
 @inject ILoginData loginData
 @inject ILocalStorageService storageService
@@ -20,56 +20,56 @@
 <EditForm Model="loginModel" OnValidSubmit="LoginUser">
 
 
-        
-
-        <div class="row justify-content-sm-center mt-4">
-
-            <div class="row col-sm-4 justify-content-sm-center border">
-
-                <div class="col-sm-12 form-inline m-sm-2">
-                    <DataAnnotationsValidator />
-                    <ValidationSummary />
-                </div>
-
-                <div class="col-sm-12 form-inline m-sm-2">
-                    <label class="col-sm-4 form_name">Email:</label>
-                    <div class="col-sm-8">
-                        <SfTextBox @bind-Value="@loginModel.UserName">
-                        </SfTextBox>
-                    </div>
-                </div>
-                <div class="col-sm-12 form-inline m-sm-2">
-                    <label class="col-sm-4 form_name">Password:</label>
-                    <div class="col-sm-8">
-                        <SfTextBox @bind-Value="@loginModel.Password">
-                        </SfTextBox>
-                    </div>
-                </div>
-                <div class="col-sm-12 form-inline m-sm-2">
-                    <label class="col-sm-4 form_name">Sprache:</label>
-                    <div class="col-sm-8">
-                        <select class="form-control mr-2 col-sm-12" @bind="selectedCulture">
-                            @foreach (var culture in cultures)
-                            {
-                                <option value="@culture.Key">@culture.Value</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="col-sm-12 form-inline m-sm-2">
-                    <label class="col-sm-4 filter_title">&nbsp;</label>
-                    <div class="col-sm-8">
-                        <SfButton Type="submit" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" CssClass="e-flat e-info col-sm-12">Login</SfButton>
-                    </div>
-                </div>
 
 
+    <div class="row justify-content-sm-center mt-4">
+
+        <div class="row col-sm-4 justify-content-sm-center border">
+
+            <div class="col-sm-12 form-inline m-sm-2">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
             </div>
-        
+
+            <div class="col-sm-12 form-inline m-sm-2">
+                <label class="col-sm-4 form_name">Email:</label>
+                <div class="col-sm-8">
+                    <SfTextBox @bind-Value="@loginModel.UserName">
+                    </SfTextBox>
+                </div>
+            </div>
+            <div class="col-sm-12 form-inline m-sm-2">
+                <label class="col-sm-4 form_name">Password:</label>
+                <div class="col-sm-8">
+                    <SfTextBox @bind-Value="@loginModel.Password">
+                    </SfTextBox>
+                </div>
+            </div>
+            <div class="col-sm-12 form-inline m-sm-2">
+                <label class="col-sm-4 form_name">Sprache:</label>
+                <div class="col-sm-8">
+                    <select class="form-control mr-2 col-sm-12" @bind="selectedCulture">
+                        @foreach (var culture in cultures)
+                        {
+                            <option value="@culture.Key">@culture.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="col-sm-12 form-inline m-sm-2">
+                <label class="col-sm-4 filter_title">&nbsp;</label>
+                <div class="col-sm-8">
+                    <SfButton Type="submit" IsPrimary="true" IconCss="e-icons-hcm e-hcm-login" CssClass="e-flat e-info col-sm-12">Login</SfButton>
+                </div>
+            </div>
+
+
         </div>
+
+    </div>
 
 
 </EditForm>
@@ -80,7 +80,7 @@
 
 
 @code {
-    HCMDataAccess.Models.LoginRequest loginModel = new HCMDataAccess.Models.LoginRequest();
+    LoginRequest loginModel = new LoginRequest();
     private string selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
     private Dictionary<string, string> cultures;
 
@@ -95,7 +95,7 @@
 
     public async Task LoginUser()
     {
-        HCMDataAccess.Models.LoginResponse _LoginResponse = await loginData.Login(loginModel.UserName, loginModel.Password);
+        LoginResponse _LoginResponse = await loginData.Login(loginModel.UserName, loginModel.Password);
 
         if (_LoginResponse.Success)
         {

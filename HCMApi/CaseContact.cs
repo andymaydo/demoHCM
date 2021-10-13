@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using HCMDataAccess;
+using HCMModels;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections;
@@ -19,28 +20,8 @@ namespace HCMApi
     [Serializable]
     [DataContract(Namespace = "DominoCMS")]
     [XmlRootAttribute("Contact")]
-    public class CaseContact : ICaseContact
-    {
-        [XmlAttribute("ContactID")]
-        public int ContactID { get; set; }
-        [XmlElement("Email")]
-        public string Email { get; set; }
-        [XmlElement("ContactURI")]
-        public string ContactURI { get; set; }
-        [XmlElement("ForeingID")]
-        public string ForeingID { get; set; }
-        [XmlElement("Name")]
-        public string Name { get; set; }
-        [XmlElement("NickName")]
-        public string NickName { get; set; }
-        [XmlElement("ContactData")]
-        public string ContactData { get; set; }
-        [XmlElement("ProfileRole")]
-        public string ProfileRole { get; set; }
-        [XmlElement("Function")]
-        public string Function { get; set; }
-
-
+    public class CaseContact : CaseContactModel, ICaseContact
+    {    
         private readonly IConfiguration _config;
         private readonly ISqlDataAccess _db;
         public CaseContact(IConfiguration config, ISqlDataAccess db)

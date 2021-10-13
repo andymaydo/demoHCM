@@ -1,19 +1,22 @@
-﻿using HCMDataAccess.Models;
+﻿using HCMModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static HCMDataAccess.Models.ReportsModels;
+
 
 namespace HCMDataAccess
 {
     public interface IReportsCaseData
     {
-        Task<List<ReportCaseByStatusModels>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
+        Task<List<CaseModel>> CaseDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
+        DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
+
+        Task<List<CaseModel>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
 
-        Task<List<ReportCaseByResultModels>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
+        Task<List<CaseModel>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
-        Task<List<ReportAliasCountModels>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
+        Task<List<CaseModel>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
     }
 }

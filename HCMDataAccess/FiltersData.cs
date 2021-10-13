@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HCMDataAccess.Models.FiltersModels;
+using static HCMModels.FiltersModels;
 
 namespace HCMDataAccess
 {

@@ -3,7 +3,7 @@
 @using HCMApi;
 @using HCM.Data;
 @using HCMDataAccess;
-@using HCMDataAccess.Models;
+@using HCMModels;
 @using System.Xml;
 @using System.Xml.Xsl;
 @using System.Xml.XPath;
@@ -19,28 +19,28 @@
     </div>
 </div>
 
-    @code {
+@code {
 
 
-        private UsersModel _UsersModel { get; set; }
-        private Case _Case { get; set; }
-        string myMarkup = "";
+    private UsersModel _UsersModel { get; set; }
+    private Case _Case { get; set; }
+    string myMarkup = "";
 
-        protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
+    {
+        _UsersModel = await _storageService.GetItemAsync<UsersModel>("User");
+
+        if (await _storageService.ContainKeyAsync("CaseView"))
         {
-            _UsersModel = await _storageService.GetItemAsync<UsersModel>("User");
+            _Case = await _storageService.GetItemAsync<Case>("CaseView");
 
-            if (await _storageService.ContainKeyAsync("CaseView"))
-            {
-                _Case = await _storageService.GetItemAsync<Case>("CaseView");
+            int _CaseTypeID = _Case.CaseTypeID == null ? 0 : Convert.ToInt32(_Case.CaseTypeID);
 
-                int _CaseTypeID = _Case.CaseTypeID == null ? 0 : Convert.ToInt32(_Case.CaseTypeID);
-
-                myMarkup = Common.HCMXslTransform.GetHtmlResult(_Case.CaseData, _CaseTypeID);             
-
-            }
+            myMarkup = Common.HCMXslTransform.GetHtmlResult(_Case.CaseData, _CaseTypeID);
 
         }
 
-       
     }
+
+
+}

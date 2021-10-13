@@ -1,5 +1,4 @@
 ﻿using HCMDataAccess;
-using HCMDataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using System;

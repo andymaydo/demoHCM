@@ -4,7 +4,7 @@
 @using HCMApi.Models;
 @using HCM.Data;
 @using HCMDataAccess;
-@using HCMDataAccess.Models;
+@using HCMModels;
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
@@ -67,8 +67,8 @@
 
     <div class="row">
         <div class="col-sm">
-            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Filter"]" Click="onGo_Click" Size="ButtonSize.Small" />
-            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Filter_Reset"]" Click="ClearFilter" Size="ButtonSize.Small" />
+            <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer["Button_Filter"]" IsToggle="true" @onclick="onGo_Click"></SfButton>
+            <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]" IsToggle="true" @onclick="ClearFilter"></SfButton>
         </div>
     </div>
 
@@ -82,11 +82,11 @@
             <h4 class="mt-1">@Localizer["Profile_List"]</h4>
 
         </div>
-        <div class="col-sm-8 form-inline control_padding">
+        <div class="col-sm-7 form-inline control_padding">
             &nbsp;
         </div>
-        <div class="col-sm-1 form-inline control_padding">
-            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Profile_CreateNew"]" Click="onCreateNew_Click" Size="ButtonSize.Small" />
+        <div class="col-sm-2 control_padding text-right">
+            <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Profile_CreateNew"]" @onclick="onCreateNew_Click"></SfButton>
         </div>
 
     </div>

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
+    <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
   </ItemGroup>
 
 </Project>

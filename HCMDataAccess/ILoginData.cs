@@ -1,4 +1,4 @@
-﻿using HCMDataAccess.Models;
+﻿using HCMModels;
 using System.Threading.Tasks;
 
 namespace HCMDataAccess

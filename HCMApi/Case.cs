@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using HCMModels;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -13,28 +14,8 @@ namespace HCMApi
 {
     [Serializable]
     [DataContract(Namespace = "DominoCMS")]
-    public class Case : ICase
-    {
-        public int CaseID { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime LastActivity { get; set; }
-        public int IssuedID { get; set; }
-        public int? CaseStatusID { get; set; }
-        public string CaseStatus { get; set; }
-        public int CaseResultID { get; set; }
-        public string CaseResult { get; set; }
-        public string CaseType { get; set; }
-        public int? CaseTypeID { get; set; }
-        public int ProfileID { get; set; }
-        public string ProfileName { get; set; }
-        public string Subject { get; set; }
-        public int? appID { get; set; }
-        public string appName { get; set; }
-        public string ContactName { get; set; }
-        public string CaseSource { get; set; }
-        public int ModifiedByID { get; set; }
-        public string ModifiedByName { get; set; }
-        public int Duration { get; set; }
+    public class Case : CaseModel, ICase
+    {       
 
         public CaseContactList ParticipantsAsCaseContactList 
         { 
@@ -50,15 +31,7 @@ namespace HCMApi
                 return CaseContactList.LoadFromXmlAsList(Participants);
             }
         }
-        public string Participants { get; set; }
-        public XmlDocument ParticipantsAsXml { get; set; }
         
-        public string CaseData { get; set; }
-        public XmlDocument CaseDataAsXml 
-        { get; set; }
-
-        public string CustomerName { get; set; }
-        public string SapUser { get; set; }
 
         private readonly IConfiguration _config;
 
@@ -297,13 +270,9 @@ namespace HCMApi
 
 
 
-        public class CaseEventStatus
-        {
-            public string EventID { get; set; }
-            public string EventText { get; set; }
-        }
 
-        public async Task<List<CaseEventStatus>> GetStatusByCase(int caseID)
+
+        public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID)
         {
 
             var procedure = "Case_GetEventByStatus";
@@ -316,9 +285,9 @@ namespace HCMApi
             {
                 using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
                 {
-                    var result = await conn.QueryAsync<CaseEventStatus>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<CaseModel.CaseEventStatus>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CaseEventStatus> _CaseStatusList = result.ToList<CaseEventStatus>();
+                    List<CaseModel.CaseEventStatus> _CaseStatusList = result.ToList<CaseModel.CaseEventStatus>();
                     return _CaseStatusList;
                 }
             }

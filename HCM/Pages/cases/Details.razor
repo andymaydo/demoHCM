@@ -8,11 +8,11 @@
 @using HCMApi.Models;
 @using System.Globalization
 @using BlazorDownloadFile;
-@using HCMDataAccess.Models;
 @using Syncfusion.Blazor.Lists
 @using System.Xml
 @using Syncfusion.Blazor.DropDowns
 @using HCMDataAccess;
+@using HCMModels;
 
 @inject IStringLocalizer<App> Localizer
 @inject CMSSettings cmsSettings
@@ -24,6 +24,7 @@
 @inject IJSRuntime  _IJSRuntime;
 @inject ICaseContact _caseContact;
 @inject IUsersData _usersData;
+@inject ISettingsData _settingsData;
 
 @attribute [Authorize]
 
@@ -536,7 +537,7 @@
                         <td class="tLabelDisabled" align="left">@Localizer["Cases_Detail_Label_ProfileUsers"]</td>
                     </tr>
                 </table>
-                <br />
+
 
                 <table width="99%" border="0" cellspacing="0" cellpadding="0" class="tbTitle" align="center">
                     <tr>
@@ -565,7 +566,6 @@
                             <td class="tLabelDisabled" align="left">@Localizer["Cases_Detail_Label_EscalationUsers"]</td>
                         </tr>
                     </table>
-                    <br />
                     <table width="99%" border="0" cellspacing="0" cellpadding="0" class="tbTitle" align="center">
                         <tr>
                             <th width="100" class="disabledtext">@Localizer["Cases_ChangeUsers_List_Name"]</th>
@@ -590,7 +590,6 @@
                         <td class="tLabel" align="left">@Localizer["Cases_ChangeUsers_ListUsers"]</td>
                     </tr>
                 </table>
-                <br />
                 <table width="99%" border="0" cellspacing="0" cellpadding="0" class="tbTitle" align="center">
                     <tr>
                         <th width="100">@Localizer["Cases_ChangeUsers_List_Name"]</th>
@@ -626,7 +625,7 @@
                             </SfComboBox>
                         </td>
                         <td align="left" valign="bottom">
-                            &nbsp;&nbsp;<SfButton @onclick="AddUserDialog_AddUser" CssClass="e-flat e-info col-sm-2">@Localizer["Button_Add"]</SfButton>
+                            &nbsp;&nbsp;<SfButton @onclick="AddUserDialog_AddUser" CssClass="e-flat e-info col-sm-4">@Localizer["Button_Add"]</SfButton>
                         </td>
                     </tr>
                     <tr>
@@ -672,7 +671,7 @@
                     <tr>
                         <td class="tLabel2" align="left" valign="top">@Localizer["Cases_ChangeStatus_SelectStatus"]:</td>
                         <td class="tLabel3" align="left" valign="top">
-                            <SfComboBox TValue="string" @ref="StatusChangeDialog_StatusComboObj" TItem="Case.CaseEventStatus" DataSource="@StatusList" @bind-Value="@StatusChangeDialog_StatusID">
+                            <SfComboBox TValue="string" @ref="StatusChangeDialog_StatusComboObj" TItem="CaseModel.CaseEventStatus" DataSource="@StatusList" @bind-Value="@StatusChangeDialog_StatusID">
                                 <ComboBoxFieldSettings Text="EventText" Value="EventID"></ComboBoxFieldSettings>
                             </SfComboBox>
                         </td>
@@ -688,11 +687,11 @@
 
                             <SfTextBox @ref="StatusChangeDialog_Subject" CssClass="e-custom-height" Multiline="true" @bind-Value="@StatusChangeDialog_SubjectValue">
                             </SfTextBox>
-                            
+
                         </td>
                         <td width="20px" valign="top">
                         </td>
-                        <td width="200px" valign="top">                            
+                        <td width="200px" valign="top">
 
                             <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_ProfileUsers"]</h5>
                             @if (_CMSProfileModel.profileParticipants != null)
@@ -724,7 +723,7 @@
                             }
 
 
-                            
+
 
                         </td>
                     </tr>
@@ -745,6 +744,141 @@
     </DialogTemplates>
 
     <DialogEvents Closed="StatusChangeDialogClosed"></DialogEvents>
+
+</SfDialog>
+
+<SfDialog @ref="AddAliasDialogID" ShowCloseIcon="true" Width="800px" Height="600px" IsModal="true" @bind-Visible="AddAliasDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Cases_AddAlias_Title"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="tLabel2" width="25%" align="left" valign="top">@Localizer["Cases_AddMessage_Subject"]:</td>
+                                    <td class="tLabel3" width="75%" align="left" valign="top">@_Case?.Subject</td>
+                                </tr>
+                                <tr>
+                                    <td class="tLabel2" align="left" valign="top">@Localizer["Cases_AddAlias_SelectLiz"]:</td>
+                                    <td class="tLabel3" align="left" valign="top">
+                                        <SfComboBox TValue="string" @ref="AddAliasDialog_LizComboObj" TItem="CaseModel.AliasLizStatus" DataSource="@LizList" @bind-Value="@AddAliasDialog_LizID">
+                                            <ComboBoxFieldSettings Text="LizText" Value="LizID"></ComboBoxFieldSettings>
+                                        </SfComboBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td align="left" height="30px" class="tLabel3" style="padding-left:5px;">@Localizer["Cases_AddAlias_AliasTitle"]</td>
+                                </tr>
+                                <tr>
+                                    <td class="tLabel2" width="25%" align="left" valign="top">@Localizer["Cases_AddAlias_Name"]:</td>
+                                    <td class="tLabel3" width="75%" align="left" valign="top">
+                                        <SfTextBox @ref="AddAliasDialog_AliasName" Enabled="false" @bind-Value="@AddAliasDialog_AliasNameValue">
+                                        </SfTextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tLabel2" width="25%" align="left" valign="top">@Localizer["Cases_AddAlias_Street"]:</td>
+                                    <td class="tLabel3" width="75%" align="left" valign="top">
+                                        <SfTextBox @ref="AddAliasDialog_AliasStreet" Enabled="false" @bind-Value="@AddAliasDialog_AliasStreetValue">
+                                        </SfTextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td align="left" height="30px" class="tLabel3" style="padding-left:5px;">@Localizer["Cases_AddAlias_RealNameTitle"]</td>
+                                </tr>
+                            </table>
+
+                        </td>
+                        <td width="20px" valign="top" rowspan="2">
+                        </td>
+                        <td width="200px" valign="top" rowspan="2">
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_ProfileUsers"]</h5>
+                            @if (_CMSProfileModel.profileParticipants != null)
+                            {
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@ProfileUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+
+                            }
+                            <br />
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_Detail_Label_Users"]</h5>
+                            @if (_CaseParticipantsList != null)
+                            {
+
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfListView DataSource="@ParticipantsUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewEvents TValue="CheckboxListDataModel"
+                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                    </SfListView>
+
+                                </div>
+                            }
+                            <br />
+
+                            @if (SentToCreator)
+                            {
+                                <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddMessage_Creator"]</h5>
+                                <div class="col-sm-12 row_padding itemDetail">
+
+                                    <SfCheckBox @bind-Checked="AddAlias_SentToCreatorIsChecked" Label="@SentToCreatorName" ValueChange="@AddAlias_SentToCreator_OnChange" TChecked="bool"></SfCheckBox>
+
+                                </div>
+                            }
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td valign="top">
+
+                            <h5 class="tLabel bottom_line_bg col-sm-12">@Localizer["Cases_AddAlias_Note"]</h5>
+
+                            <SfTextBox @ref="AddAliasDialog_Subject" CssClass="e-custom-height" Multiline="true" @bind-Value="@AddAliasDialog_SubjectValue">
+                            </SfTextBox>
+
+                            <br />
+                            <SfCheckBox @bind-Checked="AddAlias_ReportToEmailIsChecked" Label="@Localizer["Cases_AddMessage_AddReport"]" ValueChange="@AddAlias_ReportToEmail_OnChange" TChecked="bool"></SfCheckBox>
+
+
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="top_blue_bg">
+                            <SfButton @onclick="AddAliasDialogDialog_Save" CssClass="e-flat e-info col-sm-2">@Localizer["Button_Save"]</SfButton>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    @*<DialogEvents Closed="StatusChangeDialogClosed"></DialogEvents>*@
 
 </SfDialog>
 
@@ -781,6 +915,15 @@
     SfTextBox StatusChangeDialog_Subject;
     public string StatusChangeDialog_SubjectValue { get; set; }
 
+    SfDialog AddAliasDialogID;
+    private bool AddAliasDialogVisibility { get; set; } = false;
+    SfTextBox AddAliasDialog_AliasName;
+    SfTextBox AddAliasDialog_AliasStreet;
+    public string AddAliasDialog_AliasNameValue { get; set; }
+    public string AddAliasDialog_AliasStreetValue { get; set; }
+    SfTextBox AddAliasDialog_Subject;
+    public string AddAliasDialog_SubjectValue { get; set; }
+
     SfTextBox tSubject;
     public string tSubjectValue { get; set; }
 
@@ -789,6 +932,8 @@
     private bool HasMatchXMl { get; set; } = false;
     private bool ShowChangeStatusDialog { get; set; } = false;
     private bool ShowAddAliasDialog { get; set; } = false;
+    private bool AddAlias_ReportToEmailIsChecked = false;
+    private bool AddAlias_SentToCreatorIsChecked = false;
 
     private List<CaseDoc> _DocList;
     public List<CaseDoc> _AddDocList = new List<CaseDoc>();
@@ -825,9 +970,26 @@
     private List<UsersModel> UsersList { get; set; }
     public string NewUserDialog_ContactID { get; set; }
 
-    SfComboBox<string, HCMApi.Case.CaseEventStatus> StatusChangeDialog_StatusComboObj { get; set; }
-    private List<HCMApi.Case.CaseEventStatus> StatusList { get; set; }
+    SfComboBox<string, CaseModel.CaseEventStatus> StatusChangeDialog_StatusComboObj { get; set; }
+    private List<CaseModel.CaseEventStatus> StatusList { get; set; }
     public string StatusChangeDialog_StatusID { get; set; }
+
+    SfComboBox<string, CaseModel.AliasLizStatus> AddAliasDialog_LizComboObj { get; set; }
+    //private List<CasetModels.AliasLizStatus> LizList { get; set; }
+    public string AddAliasDialog_LizID { get; set; }
+    private List<CaseModel.AliasLizStatus> _LizList = new List<CaseModel.AliasLizStatus>();
+
+
+    AliasApiWebRef.AliasApi.AliasApiSoapClient aliasapi = new AliasApiWebRef.AliasApi.AliasApiSoapClient(AliasApiWebRef.AliasApi.AliasApiSoapClient.EndpointConfiguration.AliasApiSoap12);
+
+    private List<CaseModel.AliasLizStatus> LizList
+    {
+        get
+        {
+
+            return _LizList;
+        }
+    }
 
 
     protected override async Task OnInitializedAsync()
@@ -848,7 +1010,7 @@
             _Case = await _ICMSAPI.LoadCase(_CaseID);
 
             StatusList = await _ICMSAPI.GetStatusByCase(_CaseID);
-            foreach (Case.CaseEventStatus s in StatusList)
+            foreach (CaseModel.CaseEventStatus s in StatusList)
             {
                 s.EventText = Localizer["event_" + s.EventID.Replace(".", "_")];
             }
@@ -872,6 +1034,21 @@
 
 
             AllUsers_CheckboxListData.Add(_CheckboxListDataModel);
+
+            CaseModel.AliasLizStatus _AliasLizStatus = new CaseModel.AliasLizStatus();
+            _AliasLizStatus.LizID = "";
+            _AliasLizStatus.LizText = "- - - - - - - - - -";
+            _LizList.Add(_AliasLizStatus);
+
+            _AliasLizStatus = new CaseModel.AliasLizStatus();
+            _AliasLizStatus.LizID = "all";
+            _AliasLizStatus.LizText = Localizer["Cases_AddAlias_AllLiz"];
+            _LizList.Add(_AliasLizStatus);
+
+            _AliasLizStatus = new CaseModel.AliasLizStatus();
+            _AliasLizStatus.LizID = "own";
+            _AliasLizStatus.LizText = Localizer["Cases_AddAlias_OwnLiz"];
+            _LizList.Add(_AliasLizStatus);
 
             if (!string.IsNullOrEmpty(_Case.CaseData))
             {
@@ -899,6 +1076,55 @@
 
                     CreatorUsers_CheckboxListData.Add(_CheckboxListDataModel);
                 }
+
+                // Alias?
+                if (_XmlDocument.SelectSingleNode("/Root/Tran/Settings/sapip") != null)
+                {
+                    AddAliasDialog_AliasNameValue = _XmlDocument.SelectSingleNode("/Root/Tran/Src/name").InnerText;
+                    AddAliasDialog_AliasStreetValue = _XmlDocument.SelectSingleNode("/Root/Tran/Src/street").InnerText;
+                }
+                else if (_XmlDocument.SelectSingleNode("/Root/Batch/Settings/sapip") != null)
+                {
+                    AddAliasDialog_AliasNameValue = _XmlDocument.SelectSingleNode("/Root/Batch/Src/name").InnerText;
+                    AddAliasDialog_AliasStreetValue = _XmlDocument.SelectSingleNode("/Root/Batch/Src/street").InnerText;
+                }
+                else if (_XmlDocument.SelectSingleNode("/Root/Batch/Settings/profileid") != null)
+                {
+                    AddAliasDialog_AliasNameValue = _XmlDocument.SelectSingleNode("/Root/Batch/Src/name").InnerText;
+                    AddAliasDialog_AliasStreetValue = _XmlDocument.SelectSingleNode("/Root/Batch/Src/street").InnerText;
+                }
+                else if (_XmlDocument.SelectSingleNode("/Root/Tran/Settings/profileid") != null)
+                {
+                    AddAliasDialog_AliasNameValue = _XmlDocument.SelectSingleNode("/Root/Tran/Src/name").InnerText;
+                    AddAliasDialog_AliasStreetValue = _XmlDocument.SelectSingleNode("/Root/Tran/Src/street").InnerText;
+                }
+
+                if (_XmlDocument.SelectSingleNode("/Root/Tran/Src/vbeln") != null)
+                {
+                    if (!string.IsNullOrEmpty(_XmlDocument.SelectSingleNode("/Root/Tran/Src/vbeln").InnerText))
+                    {
+                        _AliasLizStatus = new CaseModel.AliasLizStatus();
+                        _AliasLizStatus.LizID = "beleg";
+                        _AliasLizStatus.LizText = Localizer["Cases_AddAlias_Beleg"];
+                        _LizList.Add(_AliasLizStatus);
+                    }
+
+                }
+
+                if (_XmlDocument.SelectSingleNode("/Root/Batch/Src/vbeln") != null)
+                {
+                    if (!string.IsNullOrEmpty(_XmlDocument.SelectSingleNode("/Root/Batch/Src/vbeln").InnerText))
+                    {
+
+                        _AliasLizStatus = new CaseModel.AliasLizStatus();
+                        _AliasLizStatus.LizID = "beleg";
+                        _AliasLizStatus.LizText = Localizer["Cases_AddAlias_Beleg"];
+                        _LizList.Add(_AliasLizStatus);
+                    }
+
+                }
+
+
             }
 
             if (!string.IsNullOrEmpty(_Case.Participants))
@@ -994,12 +1220,26 @@
 
     private async Task AddAliasDialogSetStatus()
     {
-        this.NewNoteDialogVisibility = true;
+        this.AddAliasDialogVisibility = true;
+        AddAliasDialog_LizID = "";
         StateHasChanged();
     }
+
     private void AddReportToEmail_OnChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
     {
         AddReportToEmailIsChecked = args.Checked;
+        StateHasChanged();
+    }
+
+    private void AddAlias_ReportToEmail_OnChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
+    {
+        AddAlias_ReportToEmailIsChecked = args.Checked;
+        StateHasChanged();
+    }
+
+    private void AddAlias_SentToCreator_OnChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
+    {
+        AddAlias_SentToCreatorIsChecked = args.Checked;
         StateHasChanged();
     }
 
@@ -1381,15 +1621,15 @@
     // **************************************************************************************************
     public async Task AddUserDialog_AddUser()
     {
-        if (! string.IsNullOrEmpty(NewUserDialog_ContactID) )
+        if (!string.IsNullOrEmpty(NewUserDialog_ContactID))
         {
-            UsersModel u = UsersList.FirstOrDefault< UsersModel >(u1 => u1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            UsersModel u = UsersList.FirstOrDefault<UsersModel>(u1 => u1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
 
             bool hasCaseContactList = false;
             bool hasprofileParticipantsList = false;
             bool hasescalationUsersList = false;
             CaseContact _f1 = _CaseContactList.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
-            if ( _f1 != null )
+            if (_f1 != null)
                 hasCaseContactList = true;
 
             _f1 = _CMSProfileModel.profileParticipants.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
@@ -1466,7 +1706,7 @@
         }
 
         XmlDocument xDoc = new XmlDocument();
-        if (string.IsNullOrEmpty(_usersID) )
+        if (string.IsNullOrEmpty(_usersID))
         {
             await _ICMSAPI.OnEvent(StatusChangeDialog_StatusID, _UsersModel.ContactID, _Case.CaseID, _Case.ParticipantsAsXml, StatusChangeDialog_SubjectValue, _Case.ParticipantsAsList);
         }
@@ -1513,4 +1753,140 @@
         await GetInitDataAsync();
     }
 
+    // **************************************************************************************************
+    // ADD ALIAS
+    // **************************************************************************************************
+    public async Task AddAliasDialogDialog_Save()
+    {
+        string xmlResult = "";//aliasout.AsXml().ToString();
+
+        AliasOut aliasout = new AliasOut();
+
+        aliasout.aliasauth.username = cmsSettings.AliasApiUsr;
+        aliasout.aliasauth.pwd = cmsSettings.AliasApiPwd;
+        aliasout.aliasauth.profileid = "";
+        aliasout.aliasauth.sapip = "";
+        aliasout.aliasauth.sapgw = "";
+        aliasout.aliasauth.sapmandant = "";
+
+        aliasout.data.aliasname = System.Net.WebUtility.UrlDecode(AddAliasDialog_AliasNameValue);
+        aliasout.data.aliasaddress = System.Net.WebUtility.UrlDecode(AddAliasDialog_AliasStreetValue);
+        aliasout.data.realname = "";
+        aliasout.data.realaddress = "";
+        aliasout.data.aliasnote = System.Net.WebUtility.UrlDecode(AddAliasDialog_SubjectValue);
+        aliasout.data.hcmUserFullName = System.Net.WebUtility.UrlDecode(_UsersModel.FullName);
+
+        XmlDocument xDoc = new XmlDocument();
+        string s = @"<CaseDocList>";
+        foreach (CaseDoc d in _AddDocList)
+        {
+            s += d.AsXml();
+        }
+        s += @"</CaseDocList>";
+        xDoc.LoadXml(s);
+
+        // add report
+        if (AddAlias_ReportToEmailIsChecked)
+        {
+            int _CaseTypeID = _Case.CaseTypeID == null ? 0 : Convert.ToInt32(_Case.CaseTypeID);
+            string htmlResult = Common.HCMXslTransform.GetHtmlResult(_Case.CaseData, _CaseTypeID);
+            XmlElement addReport = xDoc.CreateElement("AddReport");
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
+            addReport.InnerText = System.Convert.ToBase64String(plainTextBytes);
+            xDoc.DocumentElement.AppendChild(addReport);
+        }
+
+        // get case url
+        List<SettingsModel> settingsData = await _settingsData.GetSettings();
+        if (settingsData.Count > 0)
+        {
+            aliasout.data.caseurl = "<a href=\"" + settingsData[0].AppUrl + "/cases/detail.aspx?id=" + _Case.CaseID.ToString() + "\" target=\"_blank\">" + _Case.CaseID.ToString() + "</a>";
+        }
+
+
+        if (!string.IsNullOrEmpty(_Case.CaseData))
+        {
+            XmlDocument _XmlDocument = new XmlDocument();
+            _XmlDocument.LoadXml(_Case.CaseData);
+            if (_XmlDocument.SelectSingleNode("/Root/Tran/Settings/sapip") != null)
+            {
+                if (AddAliasDialog_LizID == "own" || AddAliasDialog_LizID == "beleg")
+                {
+                    aliasout.aliasauth.sapip = _XmlDocument.SelectSingleNode("/Root/Tran/Settings/sapip").InnerText;
+                    aliasout.aliasauth.sapgw = _XmlDocument.SelectSingleNode("/Root/Tran/Settings/sapgw").InnerText;
+                    aliasout.aliasauth.sapmandant = _XmlDocument.SelectSingleNode("/Root/Tran/Settings/sapmandant").InnerText;
+                    aliasout.data.verid = Convert.ToInt32(_XmlDocument.SelectSingleNode("/Root/Tran/Settings/verid").InnerText);
+
+                    if (AddAliasDialog_LizID == "beleg")
+                    {
+                        aliasout.aliasauth.saptranid = _XmlDocument.SelectSingleNode("/Root/Tran/Src/vbeln").InnerText;
+                    }
+
+                }
+                else
+                {
+                    aliasout.aliasauth.profileid = "-100";
+                }
+            }
+            else if (_XmlDocument.SelectSingleNode("/Root/Batch/Settings/sapip") != null)
+            {
+                if (AddAliasDialog_LizID == "own" || AddAliasDialog_LizID == "beleg")
+                {
+                    aliasout.aliasauth.sapip = _XmlDocument.SelectSingleNode("/Root/Batch/Settings/sapip").InnerText;
+                    aliasout.aliasauth.sapgw = _XmlDocument.SelectSingleNode("/Root/Batch/Settings/sapgw").InnerText;
+                    aliasout.aliasauth.sapmandant = _XmlDocument.SelectSingleNode("/Root/Batch/Settings/sapmandant").InnerText;
+                    aliasout.data.verid = Convert.ToInt32(_XmlDocument.SelectSingleNode("/Root/Batch/Settings/verid").InnerText);
+
+                    if (AddAliasDialog_LizID == "beleg")
+                    {
+                        aliasout.aliasauth.saptranid = _XmlDocument.SelectSingleNode("/Root/Batch/Src/vbeln").InnerText;
+                    }
+                }
+                else
+                {
+                    aliasout.aliasauth.profileid = "-100";
+                }
+            }
+            // chekc batch
+            else if (_XmlDocument.SelectSingleNode("/Root/Batch/Settings/profileid") != null)
+            {
+                if (AddAliasDialog_LizID == "own")
+                {
+                    aliasout.aliasauth.profileid = _XmlDocument.SelectSingleNode("/Root/Batch/Settings/profileid").InnerText;
+                }
+                else
+                {
+                    aliasout.aliasauth.profileid = "-100";
+                }
+                aliasout.data.verid = Convert.ToInt32(_XmlDocument.SelectSingleNode("/Root/Batch/Settings/verid").InnerText);
+            }
+            // chekc perpetum
+            else if (_XmlDocument.SelectSingleNode("/Root/Tran/Settings/profileid") != null)
+            {
+                if (AddAliasDialog_LizID == "own")
+                {
+                    aliasout.aliasauth.profileid = _XmlDocument.SelectSingleNode("/Root/Tran/Settings/profileid").InnerText;
+                }
+                else
+                {
+                    aliasout.aliasauth.profileid = "-100";
+                }
+                aliasout.data.verid = Convert.ToInt32(_XmlDocument.SelectSingleNode("/Root/Tran/Settings/verid").InnerText);
+            }
+
+            // ????????????????????????????????????????????????????????????????????????????????????
+            //if (_XmlDocument.SelectSingleNode("/Root/Tran/Settings/appid") != null)
+            //{
+            //    aliasout.data.appid = _XmlDocument.SelectSingleNode("/Root/Tran/Settings/appid").InnerText;
+            //}
+            //if (_XmlDocument.SelectSingleNode("/Root/Batch/Settings/appid") != null)
+            //{
+            //    aliasout.data.appid = _XmlDocument.SelectSingleNode("/Root/Batch/Settings/appid").InnerText;
+            //}
+            // ????????????????????????????????????????????????????????????????????????????????????
+        }
+
+        AliasApiWebRef.AliasApi.AliasCreateResponse aliasResponse = await aliasapi.AliasCreateAsync(aliasout.AsXml());
+        string response = aliasResponse.Body.ToString();
+    }
 }

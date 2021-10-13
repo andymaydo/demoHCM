@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using HCMDataAccess.Models;
+using HCMModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HCMDataAccess.Models.ReportsModels;
+
 
 namespace HCMDataAccess
 {
@@ -19,7 +19,50 @@ namespace HCMDataAccess
             _db = db;
         }
 
-        public async Task<List<ReportCaseByStatusModels>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
+        public async Task<List<CaseModel>> CaseDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
+        DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
+        {
+
+            var procedure = "REPORT_CaseDetail";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
+            _params.Add(name: "@StatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: StatusID);
+            _params.Add(name: "@ResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ResultID);
+
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+
+            try
+            {
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                {
+                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CaseModel> _CaseModel = result.ToList<CaseModel>();
+
+                    return _CaseModel;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            
+
+            //return DAO.ExecSqlProcedureReturnDt("REPORT_CaseDetail", parms);
+        }
+
+        public async Task<List<CaseModel>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
         {
             var procedure = "REPORT_CaseByStatus";
@@ -44,11 +87,11 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<ReportCaseByStatusModels>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<ReportCaseByStatusModels> _ReportCaseByStatus = result.ToList<ReportCaseByStatusModels>();
+                    List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
-                    return _ReportCaseByStatus;
+                    return _CaseModel;
                 }
             }
             catch (Exception ex)
@@ -57,7 +100,7 @@ namespace HCMDataAccess
             }
         }
 
-        public async Task<List<ReportCaseByResultModels>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
+        public async Task<List<CaseModel>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
         {
             var procedure = "REPORT_CaseByResult";
@@ -82,11 +125,11 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<ReportCaseByResultModels>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<ReportCaseByResultModels> _ReportCaseByResult = result.ToList<ReportCaseByResultModels>();
+                    List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
-                    return _ReportCaseByResult;
+                    return _CaseModel;
                 }
             }
             catch (Exception ex)
@@ -95,7 +138,7 @@ namespace HCMDataAccess
             }
         }
 
-        public async Task<List<ReportAliasCountModels>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
+        public async Task<List<CaseModel>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
         {
             var procedure = "REPORT_CaseByAlias";
@@ -120,11 +163,47 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<ReportAliasCountModels>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);                                      
 
-                    List<ReportAliasCountModels> _ReportAliasCount = result.ToList<ReportAliasCountModels>();
+                    return result.ToList<CaseModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
-                    return _ReportAliasCount;
+        public async Task<List<CaseModel>> AliasDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
+            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID)
+        {
+            var procedure = "REPORT_CaseAliasDetail";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
+            _params.Add(name: "@StatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: StatusID);
+            _params.Add(name: "@ResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ResultID);
+
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
+
+            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            try
+            {
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                {
+                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CaseModel> _CaseModel = result.ToList<CaseModel>();
+
+                    return _CaseModel;
                 }
             }
             catch (Exception ex)

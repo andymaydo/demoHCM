@@ -1,8 +1,8 @@
 ﻿@using HCMApi;
 @using HCM.Data;
 @using HCMDataAccess;
-@using HCMDataAccess.Models;
 @using Syncfusion.Blazor.DropDowns
+@using HCMModels;
 
 @inject IStringLocalizer<App> Localizer
 @inject IReportsCaseData _reportsCaseData;
@@ -17,14 +17,14 @@
             <div class="col-sm-12 control_padding">
                 <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Status_Group_Title"]</label>
             </div>
-            @foreach (ReportsModels.ReportCaseByStatusModels r in _ReportCaseByStatusList)
+            @foreach (CaseModel r in _ReportCaseByStatusList)
             {
                 <div class="col-sm-12 control_padding form-inline">
                     <div class="col-sm-6 control_padding">
                         <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Status_" + r.CaseStatusID]</span>
                     </div>
                     <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal"><a href="" @onclick="@(() => SetFilterByStatusID(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => SetFilterByStatusID(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
                     </div>
                 </div>
             }
@@ -34,14 +34,14 @@
             <div class="col-sm-12 control_padding">
                 <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Result_Group_Title"]</label>
             </div>
-            @foreach (ReportsModels.ReportCaseByResultModels r in _ReportCaseByResultList)
+            @foreach (CaseModel r in _ReportCaseByResultList)
             {
                 <div class="col-sm-12 control_padding form-inline">
                     <div class="col-sm-6 control_padding">
                         <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Result_" + r.CaseResultID]</span>
                     </div>
                     <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal"><a href="" @onclick="@(() => SetFilterByResultID(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => SetFilterByResultID(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
                     </div>
                 </div>
             }
@@ -57,14 +57,14 @@
             <div class="col-sm-12 control_padding">
                 <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Alias_Group_Title"]</label>
             </div>
-            @foreach (ReportsModels.ReportAliasCountModels r in _ReportAliasCountList)
+            @foreach (CaseModel r in _ReportAliasCountList)
             {
                 <div class="col-sm-12 control_padding form-inline">
                     <div class="col-sm-6 control_padding">
                         <span class="col-sm-12 text-left ReportItem">@Localizer["Label_Report_Alias_Group_Count"]</span>
                     </div>
                     <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal"><a href="" @onclick="@(() => SetFilterByCaseCount(r.CaseCount))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => SetFilterByCaseCount(r.CaseCount))" @onclick:preventDefault>@r.CaseCount</a></span>
                     </div>
                 </div>
             }
@@ -91,9 +91,9 @@
     public EventCallback<int> OnChangeCaseCountClick { get; set; }
 
 
-    List<ReportsModels.ReportCaseByStatusModels> _ReportCaseByStatusList { get; set; }
-    List<ReportsModels.ReportCaseByResultModels> _ReportCaseByResultList { get; set; }
-    List<ReportsModels.ReportAliasCountModels> _ReportAliasCountList { get; set; }
+    List<CaseModel> _ReportCaseByStatusList { get; set; }
+    List<CaseModel> _ReportCaseByResultList { get; set; }
+    List<CaseModel> _ReportAliasCountList { get; set; }
 
     int? _contactID = null;
     int? _caseid = null;

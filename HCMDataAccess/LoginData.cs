@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using HCMDataAccess.Models;
+using HCMModels;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

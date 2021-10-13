@@ -8,13 +8,15 @@
 
 <nav class="navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow mb-3 fixed-top">
     <div class="container">
-        @*<div class="row row_padding">
+        <div class="row row_padding">
                 <div class="col-sm-12 control_padding">
                     <img alt="SAPPER H.C.M." src="/images/logo.jpg" height="80" width="1000">
                 </div>
-            </div>*@
+            </div>
         <div class="row row_padding">
-            <div class="col-sm-12 control_padding">
+
+
+            <div class="col-sm-6 control_padding">
                 <button class="navbar-toggler" @onclick="ToggleNavMenu" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,6 +38,8 @@
                     </ul>
                 </div>
             </div>
+            
+
         </div>
         <div class="row row_padding">
             <div class="col-sm-6 control_padding">
@@ -54,7 +58,7 @@
                 </ul>
                 }
             </div>
-            <div class="col-sm-6 control_padding">
+            <div class="col-sm-6 control_padding text-right">
                 <UserStatus />
             </div>
         </div>

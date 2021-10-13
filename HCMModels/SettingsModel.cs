@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HCMDataAccess.Models
+namespace HCMModels
 {
     public class SettingsModel
     {
@@ -11,5 +11,7 @@ namespace HCMDataAccess.Models
         public bool SMTPServerAuth { get; set; }
         public string SMTPServerUser { get; set; }
         public string SMTPServerPass { get; set; }
+
+        public string AppUrl { get; set; }
     }
 }

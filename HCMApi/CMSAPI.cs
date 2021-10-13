@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCMModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace HCMApi
         {
             return await _iCase.Load(caseID);
         }
-        public async Task<List<Case.CaseEventStatus>> GetStatusByCase(int caseID)
+        public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID)
         {
             return await _iCase.GetStatusByCase(caseID);
         }

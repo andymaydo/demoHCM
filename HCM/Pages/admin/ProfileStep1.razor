@@ -2,7 +2,7 @@
 @using HCMApi.Models;
 @using HCM.Data;
 @using HCMDataAccess;
-@using HCMDataAccess.Models;
+@using HCMModels;
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
@@ -51,7 +51,7 @@
     <div class="col-sm-12 form-inline control_padding mt-3">
         <label class="col-sm-4 control_padding mylabel-left profilWizadrdText">@Localizer["Profile_Description"]</label>
         <div class="col-sm-8 control_padding">
-            <SfTextBox Placeholder="@Localizer["Profile_Description"]" @bind-Value="@_NewProfile_Step1.ProfileDescription"  Multiline="true">
+            <SfTextBox Placeholder="@Localizer["Profile_Description"]" @bind-Value="@_NewProfile_Step1.ProfileDescription" Multiline="true">
             </SfTextBox>
         </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="row mt-3">
         <div class="col-sm-12 top_blue_bg">
             <div class="col-sm-1 form-inline control_padding">
-                <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Text="@Localizer["Button_Save"]" Size="ButtonSize.Small" />
+                <SfButton CssClass="e-flat e-hcm-custom-btn" IconCss="e-icons-hcm e-hcm-save" Type="submit" IsPrimary="true" Content="@Localizer["Button_Save"]" IsToggle="true"></SfButton>
             </div>
 
         </div>
@@ -103,7 +103,7 @@
     {
         _Gates = _filtersData.GetGates();
         _LanguageList = new List<ProfileEmailLanguageData>
-        {
+    {
             new ProfileEmailLanguageData() { LangID = "de-DE",  LangValue = "Deutsch" },
             new ProfileEmailLanguageData() { LangID = "en-US",  LangValue = "English" }
         };

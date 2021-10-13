@@ -1,14 +1,47 @@
-﻿@inject AuthenticationStateProvider authenticationStateProvider
+﻿@using HCMDataAccess;
+@using HCMModels;
+
+
+@inject AuthenticationStateProvider authenticationStateProvider
 @inject NavigationManager  navigationManager
 
+@inject IUsersData _usersData;
+@inject ILocalStorageService storageService
+@inject IStringLocalizer<App> Localizer
+
 <AuthorizeView>
-    <RadzenButton ButtonStyle="ButtonStyle.Info" Text="Logout" Click="Logout" Size="ButtonSize.Small" />
+    <table cellpadding="0" cellspacing="0" border="0" align="right">
+        <tr>
+            <td class="LoginViewName">
+                @Localizer["LoginLabel_AccountName"]&nbsp;
+            </td>
+            <td class="LoginViewName">
+                @_userInfo.FullName&nbsp;(@_userInfo.NickName)
+            </td>
+
+            <td class="leerCell">&nbsp;</td>
+            <td class="LoginViewStatus">
+                <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-logout" Content="@Content" IsToggle="true" @onclick="Logout"></SfButton>
+            </td>
+            <td class="leerCell"></td>
+        </tr>
+    </table>
+
 </AuthorizeView>
 
-@code { async Task Logout()
-            {
-                var localStateProvider = (LocalAuthenticationStateProvider)authenticationStateProvider;
-                await localStateProvider.LogoutAsync();
-                navigationManager.NavigateTo("/auth/login");
-            } 
+@code {
+
+    public string Content = "Logout";
+    UsersModel _userInfo;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _userInfo = await storageService.GetItemAsync<UsersModel>("User");
+    }
+    async Task Logout()
+    {
+        var localStateProvider = (LocalAuthenticationStateProvider)authenticationStateProvider;
+        await localStateProvider.LogoutAsync();
+        navigationManager.NavigateTo("/auth/login");
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using HCMDataAccess;
-using HCMDataAccess.Models;
+using HCMModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

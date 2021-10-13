@@ -2,7 +2,7 @@
 
 @using Syncfusion.Blazor.Popups
 @using HCMDataAccess;
-@using HCMDataAccess.Models;
+@using HCMModels;
 
 @inject IStringLocalizer<App> Localizer
 @inject ISettingsData _settingsData;
@@ -134,7 +134,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        List<HCMDataAccess.Models.SettingsModel> _Settings = await _settingsData.GetSettings();
+        List<SettingsModel> _Settings = await _settingsData.GetSettings();
         if (_Settings != null && _Settings.Count > 0)
         {
             SmtpServerValue = _Settings[0].SMTPServer;
