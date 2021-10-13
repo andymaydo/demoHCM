@@ -1,7 +1,6 @@
 ﻿@page "/case/list"
 
 @using HCMApi;
-@using HCM.Data;
 @using HCMDataAccess;
 @using HCMModels;
 @using Syncfusion.Blazor.Grids
@@ -14,8 +13,7 @@
 @inject ICMSAPI _ICMSAPI;
 @inject IStringLocalizer<App> Localizer
 @inject IFiltersData _filtersData;
-@inject ILocalUserData _localUserData;
-@inject ILocalStorageService storageService
+@inject ILocalStorageService _storageService
 @inject NavigationManager NavigationManager
 
 
@@ -160,7 +158,17 @@
         <GridColumn Field=@nameof(Case.ProfileID) HeaderText="@Localizer["Label_Filter_ProfileID"]" Width="80" MinWidth="80" MaxWidth="200"></GridColumn>
         <GridColumn Field=@nameof(Case.Subject) HeaderText="@Localizer["Cases_List_Subject"]"></GridColumn>
         <GridColumn Field=@nameof(Case.CaseType) HeaderText="@Localizer["Cases_List_Category"]" Width="100"></GridColumn>
-        <GridColumn Field=@nameof(Case.CaseStatus) HeaderText="@Localizer["Cases_List_Status"]" Width="100"></GridColumn>
+        <GridColumn HeaderText="@Localizer["Cases_List_Status"]" Width="100">
+            <Template>
+                @{
+                    var _Case = (context as Case);
+                    <div>
+                        @Localizer["Case_Status_" + _Case.CaseStatusID.ToString()]
+                    </div>
+                }
+            </Template>
+
+        </GridColumn>
         <GridColumn Field=@nameof(Case.CaseResult) HeaderText="@Localizer["Cases_List_Ergebnis"]" Width="80"></GridColumn>
         <GridColumn Field=@nameof(Case.CustomerName) HeaderText="@Localizer["Cases_List_GeprufterName"]"></GridColumn>
         <GridColumn Field=@nameof(Case.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Width="80"></GridColumn>
@@ -272,7 +280,12 @@
         }
         catch { };
 
-        int contactID = await _localUserData.GetContactID();
+        int contactID = -1;
+        if (await _storageService.ContainKeyAsync("User"))
+        {
+            var userInfo = await _storageService.GetItemAsync<UsersModel>("User");
+            contactID = userInfo.ContactID;
+        }
 
         Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, contactID,
 CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, ProfileID, FilterCustomerNameValue);
@@ -300,7 +313,7 @@ CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
         {
             //await storageService.SetItemAsync("CaseView", args.RowData);
             //Case _Case = await _ICMSAPI.LoadCase(args.RowData.CaseID);
-            await storageService.SetItemAsync("CaseView", args.RowData.CaseID);
+            await _storageService.SetItemAsync("CaseView", args.RowData.CaseID);
 
             NavigationManager.NavigateTo("/case/details", forceLoad: true);
         }

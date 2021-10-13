@@ -1,4 +1,4 @@
-using HCM.Data;
+
 using HCMApi;
 using HCMDataAccess;
 using Microsoft.AspNetCore.Builder;
@@ -62,7 +62,7 @@ namespace HCM
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            //services.AddSingleton<WeatherForecastService>();
+
             services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
             services.AddSingleton<IReportsCaseData, ReportsCaseData>();
             services.AddSingleton<IFiltersData, FiltersData>();
@@ -73,7 +73,6 @@ namespace HCM
             services.AddSingleton<ICaseContact, CaseContact>();
             services.AddSingleton<ICMSAPI, CMSAPI>();
             services.AddSingleton<ILoginData, LoginData>();
-            services.AddScoped<ILocalUserData, LocalUserData>();
             services.AddSingleton<ISettingsData, SettingsData>();
             services.AddSingleton<IUsersData, UsersData>();
             services.AddSingleton<IUserRolesData, UserRolesData>();
