@@ -26,5 +26,12 @@ namespace HCMModels
         public string NickName { get; set; }
         public XmlDocument ContactData { get; set; }
         public string FunctionInFirma { get; set; }
+
+        public bool Status { 
+            get
+            {
+                return Enable == 1 ? true:false;
+            }
+        }
     }
 }

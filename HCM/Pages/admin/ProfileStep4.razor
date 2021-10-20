@@ -18,13 +18,22 @@
 
 <h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Status"] (@_CMSProfileModel?.profileName)</h5>
 
+<div class="container">
+    <div class="row row_padding mt-1">
+        <div class="col-sm-12 form-inline control_padding">
+            <h5 class="mt-1">@Localizer["Profile_ProfileStatus"]</h5>
+        </div>
+
+    </div>
+</div>
+
 <EditForm Model="@_StatusValidation" OnValidSubmit="SaveStep_Click">
     <DataAnnotationsValidator />
     <div class="row row_padding">
         <div class="col-sm-3 control_padding">
-            <h5 class="tLabel">@Localizer["Profile_ProfileStatus"] </h5>
+            @*<h5 class="tLabel">@Localizer["Profile_ProfileStatus"] </h5>*@
         </div>
-        <div class="col-sm-3 control_padding">
+        <div class="col-sm-6 control_padding">
 
 
             <SfRadioButton @bind-Checked="@_StatusValidation.StatusText" Label="@Localizer["Profile_Status_Active"]" @onclick="@(() => ChangeStatus("Active"))" Name="Status" Value="Active"></SfRadioButton>
@@ -34,31 +43,38 @@
             <SfRadioButton @bind-Checked="@_StatusValidation.StatusText" Label="@Localizer["Profile_Status_Delete"]" @onclick="@(() => ChangeStatus("Delete"))" Name="Status" Value="Delete"></SfRadioButton>
             <br />
             <HcmCustomValidator @ref="customValidator" />
-            <SfTextBox @ref="DeleteTextObj" @bind-Value="@_StatusValidation.DeleteStatusText" Multiline="true" Enabled=@deleteTextBoxStatus>
+            <SfTextBox @ref="DeleteTextObj" CssClass="e-hcm-custom-textarea" @bind-Value="@_StatusValidation.DeleteStatusText" Multiline="true" Enabled=@deleteTextBoxStatus>
             </SfTextBox>
             <ValidationMessage For="@(()=>_StatusValidation.DeleteStatusText)" />
 
             @*<div class="form-group">
-            <label for="EmailAddress">Email address</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@@</span>
+                    <label for="EmailAddress">Email address</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@@</span>
+                        </div>
+                        <SfTextBox @ref="DeleteTextObj" @bind-Value="@_StatusValidation.DeleteStatusText" Multiline="true" Enabled=@deleteTextBoxStatus>
+                        </SfTextBox>
+
+                    </div>
+                </div>*@
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-12 top_blue_bg">
+                <div class="col-sm-12 form-inline control_padding">
+                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Type="submit" IsPrimary="true" Content="@Localizer["Button_Save"]" IsToggle="true"></SfButton>
                 </div>
-                <SfTextBox @ref="DeleteTextObj" @bind-Value="@_StatusValidation.DeleteStatusText" Multiline="true" Enabled=@deleteTextBoxStatus>
-                </SfTextBox>
 
             </div>
-        </div>*@
-
         </div>
     </div>
 
-    <div class="row row_padding top_blue_bg mt-3">
-        <div class="col-sm-1 form-inline control_padding">
-            <SfButton Type="submit" IconCss="e-icons-hcm e-hcm-search" CssClass="e-flat e-info col-sm-12">@Localizer["Button_Save"]</SfButton>
-        </div>
 
-    </div>
 </EditForm>
 
 

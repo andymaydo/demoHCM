@@ -13,7 +13,18 @@
 
 <h3 class="title">@Localizer["Administration_Settings_Title"]</h3>
 
-<h4 class="blue_bg mt-3 subtitle">@Localizer["SMTP_1"]</h4>
+<div class="container">
+    <div class="row row_padding blue_bg mt-3">
+        <div class="col-sm-12 form-inline control_padding">
+            <h5 class="mt-1">@Localizer["SMTP_1"]</h5>
+
+        </div>
+
+    </div>
+</div>
+
+
+
 
 <div class="container">
 
@@ -69,8 +80,8 @@
     </div>
 
     <div class="row">
-        <div class="col-sm">
-            <RadzenButton ButtonStyle="ButtonStyle.Info" Text="@Localizer["Button_Save"]" Click="onSave_Click" Size="ButtonSize.Small" />
+        <div class="col-sm-12">
+            <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" IsPrimary="true" Content="@Localizer["Button_Save"]" @onclick="onSave_Click"></SfButton>
         </div>
     </div>
 

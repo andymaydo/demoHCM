@@ -42,7 +42,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" ShowClearButton="false" @bind-Index="@GateDefaultIndex" DataSource="@_Gates">
+                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" ShowClearButton="false" @bind-Value="@GateDefaultValue" DataSource="@_Gates">
                     @*<SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>*@
                     <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
@@ -77,7 +77,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_ProfileID"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" ShowClearButton="false" @bind-Index="@ProfileDefaultIndex" DataSource="@_Profile">
+                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" ShowClearButton="false" @bind-Value="@ProfileDefaultValue" DataSource="@_Profile">
                     <ComboBoxEvents TItem="FiltersModels.ProfileModel" TValue="string" ValueChange="onChangeProfile"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
                 </SfComboBox>
@@ -103,7 +103,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Category"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" ShowClearButton="false" @bind-Index="@CategoryDefaultIndex" DataSource="@_Category">
+                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" ShowClearButton="false" @bind-Value="@CategoryDefaultValue" DataSource="@_Category">
                     <ComboBoxEvents TItem="FiltersModels.CategoryModel" TValue="string" ValueChange="onChangeCategory"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="CaseType" Value="CaseTypeID"></ComboBoxFieldSettings>
                 </SfComboBox>
@@ -124,7 +124,7 @@
             <div class="col-sm-3 form-inline control_padding">
                 <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Result"]</label>
                 <div class="col-sm-8 control_padding">
-                    <SfComboBox @ref="ResultComboObj" TValue="string" TItem="FiltersModels.CaseResultModel" ShowClearButton="false" @bind-Index="@ResultDefaultIndex" DataSource="@_Results">
+                    <SfComboBox @ref="ResultComboObj" TValue="string" TItem="FiltersModels.CaseResultModel" ShowClearButton="false" @bind-Value="@ResultDefaultValue" DataSource="@_Results">
                         <ComboBoxEvents TItem="FiltersModels.CaseResultModel" TValue="string" ValueChange="onChangeResult"></ComboBoxEvents>
                         <ComboBoxFieldSettings Text="CaseResult" Value="CaseResultID"></ComboBoxFieldSettings>
                     </SfComboBox>
@@ -249,10 +249,10 @@
 
     bool ShowDashboardComponent { get; set; } = true;
 
-    private int? GateDefaultIndex { get; set; } = 0;
-    private int? CategoryDefaultIndex { get; set; } = 0;
-    private int? ProfileDefaultIndex { get; set; } = 0;
-    private int? ResultDefaultIndex { get; set; } = 0;
+    private string GateDefaultValue { get; set; } = "-1";
+    private string CategoryDefaultValue { get; set; } = "-1";
+    private string ProfileDefaultValue { get; set; } = "-1";
+    private string ResultDefaultValue { get; set; } = "-1";
     private string StatusDefaultValue { get; set; } = "-1";
     public int AppID { get; set; }
     public int? CaseTypeID { get; set; }
@@ -305,6 +305,12 @@
             AppID = (Convert.ToInt32(_Gates[0].appID));
             BindFilterListBox();
         }
+
+
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        await OnInitializedAsync();
     }
 
 
@@ -429,10 +435,10 @@
     async Task ClearFilter()
     {
 
-        GateDefaultIndex = 0;
-        CategoryDefaultIndex = 0;
-        ProfileDefaultIndex = 0;
-        ResultDefaultIndex = 0;
+        GateDefaultValue = "-1";
+        CategoryDefaultValue = "-1";
+        ProfileDefaultValue = "-1";
+        ResultDefaultValue = "-1";
         StatusDefaultValue = "-1";
 
         CreateFromDateValue = null;
@@ -494,6 +500,8 @@
             if (ProfileID == -1)
                 ProfileID = null;
 
+            ProfileDefaultValue = ProfileID == null ? "-1" : ProfileID.ToString();
+
             FilterChanged?.Invoke(true);
         }
 
@@ -507,6 +515,8 @@
             if (CaseTypeID == -1)
                 CaseTypeID = null;
 
+            CategoryDefaultValue = CaseTypeID == null ? "-1" : CaseTypeID.ToString();
+
             FilterChanged?.Invoke(true);
         }
 
@@ -517,6 +527,8 @@
         ResultID = (Convert.ToInt32(args.ItemData.CaseResultID));
         if (ResultID == -1)
             ResultID = null;
+
+        ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
 
         FilterChanged?.Invoke(true);
         StateHasChanged();
@@ -579,6 +591,7 @@
         StatusID = value;
         StatusDefaultValue = StatusID == null ? "-1" : StatusID.ToString();
         ResultID = null;
+        ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
         WithAliasID = null;
         ShowDashboardComponent = false;
         await onGo_Click();
@@ -587,7 +600,9 @@
     private async Task OnChangeResultEvent(int value)
     {
         StatusID = null;
+        StatusDefaultValue = StatusID == null ? "-1" : StatusID.ToString();
         ResultID = value;
+        ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
         WithAliasID = null;
         ShowDashboardComponent = false;
         await onGo_Click();

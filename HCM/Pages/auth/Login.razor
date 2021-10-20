@@ -109,7 +109,8 @@
                 //ContactURI = _LoginResponse.ContactURI,
                 //ForeingID = _LoginResponse.ForeingID,
                 Name = _LoginResponse.Name,
-                ContactData = _LoginResponse.ContactData
+                ContactData = _LoginResponse.ContactData,
+                LoginName = loginModel.UserName
             };
 
             await storageService.SetItemAsync("User", userInfo);

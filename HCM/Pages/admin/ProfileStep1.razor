@@ -17,6 +17,16 @@
 
 <h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Allgemeine"]</h5>
 
+<div class="container">
+    <div class="row row_padding mt-1">
+        <div class="col-sm-12 form-inline control_padding">
+            <h5 class="mt-1">@Localizer["Profile_Step_Allgemeine"]</h5>
+
+        </div>
+
+    </div>
+</div>
+
 <EditForm Model="@_NewProfile_Step1" OnValidSubmit="onSave_Click">
     <DataAnnotationsValidator />
     <div class="col-sm-12 form-inline control_padding">
@@ -55,13 +65,14 @@
             </SfTextBox>
         </div>
     </div>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-12 top_blue_bg">
+                <div class="col-sm-12 form-inline control_padding">
+                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Type="submit" IsPrimary="true" Content="@Localizer["Button_Save"]" IsToggle="true"></SfButton>
+                </div>
 
-    <div class="row mt-3">
-        <div class="col-sm-12 top_blue_bg">
-            <div class="col-sm-1 form-inline control_padding">
-                <SfButton CssClass="e-flat e-hcm-custom-btn" IconCss="e-icons-hcm e-hcm-save" Type="submit" IsPrimary="true" Content="@Localizer["Button_Save"]" IsToggle="true"></SfButton>
             </div>
-
         </div>
     </div>
 

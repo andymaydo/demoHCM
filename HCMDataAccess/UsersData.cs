@@ -108,7 +108,7 @@ namespace HCMDataAccess
 
         public async Task<int> ChangePassword(int UserID, string newPass, int ModifyUserID)
         {
-            var procedure = "USERS_CREATE";
+            var procedure = "USERS_CHANGEPASSWORD";
             var _params = new DynamicParameters();
 
             _params.Add(name: "@userID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: UserID);

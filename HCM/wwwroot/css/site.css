@@ -203,6 +203,7 @@ a.ReportItemNormal {
     font-weight: normal;
     line-height: 1;
     text-transform: none;
+    margin-right:5px;
 }
 .e-hcm-search:before {
     content: '\e724';
@@ -218,6 +219,14 @@ a.ReportItemNormal {
 }
 .e-hcm-save:before {
     content: '\e74d';
+    color: #ffffff;
+}
+.e-hcm-edit:before {
+    content: '\e78f';
+    color: #ffffff;
+}
+.e-hcm-delete:before {
+    content: '\e773';
     color: #ffffff;
 }
 
@@ -497,6 +506,19 @@ a.btnShowMatch {
     border-radius: 0;
     height: 30px !important;
     width: 280px !important;
+}
+.e-hcm-custom-textarea {
+    line-height: 1.5;
+    min-height: 100px !important;
+}
+
+.bottom_blue_bg_2 {
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../images/subMenuBg.jpg);
+    padding: 0px 0px 10px 5px;
+    
+    height: 25px;
 }
 
 
