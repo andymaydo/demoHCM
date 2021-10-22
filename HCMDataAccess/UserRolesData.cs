@@ -126,15 +126,18 @@ namespace HCMDataAccess
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
-                    var result =  conn.Query<object>(procedure, _params, commandType: CommandType.StoredProcedure);
-                    int ReturnValue = _params.Get<int>("@ReturnValue");
-                    return ReturnValue > 0 ? true : false;
+                    //var result =  conn.Query<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    //int ReturnValue = _params.Get<int>("@ReturnValue");
+                    //return ReturnValue > 0 ? true : false;
 
 
-                    //var result = await conn.Query<UserRolesModel>(procedure, _params, commandType: CommandType.StoredProcedure);
-
-                    //List<UserRolesModel> _UserRolesModel = result.ToList<UserRolesModel>();
-
+                    var result =  conn.Query<UserRolesModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    List<UserRolesModel> _UserRolesModel = result.ToList<UserRolesModel>();
+                    if ( _UserRolesModel.Count > 0 && _UserRolesModel[0].RoleCount > 0 )
+                    {
+                        return true;
+                    }
+                    return false;
 
                 }
             }

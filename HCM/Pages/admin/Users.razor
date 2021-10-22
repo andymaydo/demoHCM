@@ -26,7 +26,12 @@
 
         </div>
         <div class="col-sm-2 control_padding text-right">
+            @if ((_userRolesData.IsUserInRole(_userInfo.LoginName, "admin") || _userRolesData.IsUserInRole(_userInfo.LoginName, "userCreate")) )
+            {
             <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Menu_Users_Create"]" @onclick="onCreateNew_Click"></SfButton>
+
+            }
+            
         </div>
     </div>
 </div>
@@ -99,7 +104,7 @@
                                 <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" @bind-Value="@_editUserInfo.LoginName">
                                 </SfTextBox>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -202,13 +207,19 @@
 
                 <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_EditUsers_RoleList"]</h4>
 
-                <SfGrid DataSource="@UsersRoleList" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+                <SfGrid ID="UsersRoleGrid" DataSource="@UsersRoleList" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
                     <GridEvents TValue="UserRolesModel"></GridEvents>
                     <GridColumns>
                         <GridColumn Field=@nameof(UserRolesModel.LocalizerRoleName) TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
 
                     </GridColumns>
                 </SfGrid>
+
+                <style>
+                    #UsersRoleGrid.e-grid .e-gridheader .e-columnheader {
+                        display: none;
+                    }
+                </style>
 
             </div>
         </Content>
