@@ -20,11 +20,14 @@
 
 <div class="container">
     <div class="row row_padding blue_bg mt-3">
-        <div class="col-sm-12 form-inline control_padding">
+
+        <div class="col-sm-10 form-inline control_padding">
             <h5 class="mt-1">@Localizer["Administration_Users_List_Table_Title"]</h5>
 
         </div>
-
+        <div class="col-sm-2 control_padding text-right">
+            <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Menu_Users_Create"]" @onclick="onCreateNew_Click"></SfButton>
+        </div>
     </div>
 </div>
 
@@ -87,80 +90,75 @@
             <div class="dialogContent">
                 <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_EditUsers_GeneralData"]</h4>
 
-                <div class="row ml-3 row_padding">
-                    <div class="col-sm-12 form-inline control_padding">
-                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
-                        <div class="col-sm-6 control_padding">
-                            <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" Value="@_editUserInfo?.LoginName">
-                            </SfTextBox>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row ml-3 row_padding">
-                    <div class="col-sm-12 form-inline control_padding">
-                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_RealNameLabel"]</label>
-                        <div class="col-sm-6 control_padding">
-                            <SfTextBox @ref="RealNameID" Placeholder="@Localizer["Admin_Users_RealNameLabel"]" Value="@_editUserInfo?.Name">
-                            </SfTextBox>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row ml-3 row_padding">
-                    <div class="col-sm-12 form-inline control_padding">
-                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_EmailLabel"]</label>
-                        <div class="col-sm-6 control_padding">
-                            <SfTextBox @ref="EMailID" Placeholder="@Localizer["Admin_Users_EmailLabel"]" Value="@_editUserInfo?.EMail">
-                            </SfTextBox>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row ml-3 row_padding">
-                    <div class="col-sm-12 form-inline control_padding">
-                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_AbteilungLabel"]</label>
-                        <div class="col-sm-6 control_padding">
-                            <SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_Users_AbteilungLabel"]" Value="@_editUserInfo?.FunctionInFirma">
-                            </SfTextBox>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row ml-3 row_padding">
-                    <div class="col-sm-12 form-inline control_padding">
-                        <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersIsApprovedLabel"]</label>
-                        <div class="col-sm-6 control_padding">
-                            @*<SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_UsersIsApprovedLabel"]" Value="@AbteilungValue">
-                                </SfTextBox>*@
-                        </div>
-                    </div>
-                </div>
-
-                @*<div class="row ml-1 row_padding">
-                        <hr style="background-color: #ABC3D7;height:1px;width:100%" />
-                    </div>*@
-
-                @*<div class="row ml-3 row_padding">
+                <EditForm Model="@_editUserInfo" OnValidSubmit="onUpdateUserInfo_Click">
+                    <DataAnnotationsValidator />
+                    <div class="row ml-3 row_padding">
                         <div class="col-sm-12 form-inline control_padding">
-                            <div class="col-sm-12 control_padding">
-
-                                <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]" @onclick="onUpdateUserInfo_Click"></SfButton>
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" @bind-Value="@_editUserInfo.LoginName">
+                                </SfTextBox>
                             </div>
-                        </div>
-                    </div>*@
-
-                <div class="container">
-                    <div class="row mt-3 mb-4">
-                        <div class="col-sm-12 top_blue_bg">
-                            <div class="col-sm-12 form-inline control_padding">
-                                <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]" @onclick="onUpdateUserInfo_Click"></SfButton>
-                            </div>
-
+                            
                         </div>
                     </div>
-                </div>
+
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_RealNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="RealNameID" Placeholder="@Localizer["Admin_Users_RealNameLabel"]" @bind-Value="@_editUserInfo.Name">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _editUserInfo.Name)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_EmailLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="EMailID" Placeholder="@Localizer["Admin_Users_EmailLabel"]" @bind-Value="@_editUserInfo.EMail">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _editUserInfo.EMail)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_AbteilungLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_Users_AbteilungLabel"]" @bind-Value="@_editUserInfo.FunctionInFirma">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _editUserInfo.FunctionInFirma)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersIsApprovedLabel"]</label>
+                            <div class="col-sm-6 control_padding">
+                                <SfCheckBox @bind-Checked="_editUserInfo.Status" TChecked="bool"></SfCheckBox>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="row mt-3 mb-4">
+                            <div class="col-sm-12 top_blue_bg">
+                                <div class="col-sm-12 form-inline control_padding">
+                                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]" Type="submit" IsPrimary="true"></SfButton>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </EditForm>
 
                 <h4 class="blue_bg mt-3 subtitle">@Localizer["Admin_UsersChangePassowrdTitle"]</h4>
 
@@ -222,12 +220,136 @@
     @*<DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>*@
 </SfDialog>
 
+<SfDialog Header="@ErrDialogHeader" Content="@ErrDialogContent" Width="335px" IsModal="true" @bind-Visible="ErrDialogVisibility">
+    <DialogTemplates>
+
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@ErrDialogButtonClick" />
+    </DialogButtons>
+    <DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>
+</SfDialog>
+
+<SfDialog Header="@DeleteUserDialogHeader" Content="@DeleteUserDialogContent" Width="335px" IsModal="true" @bind-Visible="DeleteUserDialogVisibility">
+    <DialogTemplates>
+
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@DeleteUserDialogButtonOKClick" />
+        <DialogButton Content="Cancel" OnClick="@DeleteUserDialogButtonCancelClick" />
+    </DialogButtons>
+    <DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>
+</SfDialog>
+
+<SfDialog Header="@NewUserDialogHeader" ShowCloseIcon="true" Width="650px" Height="420px" IsModal="true" @bind-Visible="NewUserDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Admin_Users_CreateUserTitle"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+
+
+                <EditForm Model="@_newUserInfo" OnValidSubmit="onCreateNewUser_Click" On>
+                    <DataAnnotationsValidator />
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" @bind-Value="@_newUserInfo.LoginName">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.LoginName)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_PasswordLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_PasswordLabel"]" @bind-Value="@_newUserInfo.Password">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.Password)" /> </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_RealNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="RealNameID" Placeholder="@Localizer["Admin_Users_RealNameLabel"]" @bind-Value="@_newUserInfo.Name">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.Name)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_EmailLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="EMailID" Placeholder="@Localizer["Admin_Users_EmailLabel"]" @bind-Value="@_newUserInfo.EMail">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.EMail)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_AbteilungLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_Users_AbteilungLabel"]" @bind-Value="@_newUserInfo.FunctionInFirma">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.FunctionInFirma)" /> </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="row mt-3 mb-4">
+                            <div class="col-sm-12 top_blue_bg">
+                                <div class="col-sm-12 form-inline control_padding">
+                                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]" Type="submit" IsPrimary="true"></SfButton>
+                                    <SfButton Type="button" CssClass="e-flat e-hcm-custom-btn col-sm-2" Content="@Localizer["Button_Cancel"]" IsToggle="false " IsPrimary="false"  @onclick="onCreateNewUserCancel_Click"></SfButton>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </EditForm>
+              
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    <DialogEvents OnOpen="@NewUserDialogBeforeOpen"></DialogEvents>
+</SfDialog>
+
 @code {
 
     private List<UsersModel> UsersList { get; set; }
     private bool EditDialogVisibility { get; set; } = false;
     SfDialog EditDialogID;
     private string EditDialogHeader { get; set; }
+
+    private bool ErrDialogVisibility { get; set; } = false;
+    private string ErrDialogHeader { get; set; }
+    private string ErrDialogContent { get; set; }
+
+    private bool DeleteUserDialogVisibility { get; set; } = false;
+    private string DeleteUserDialogHeader { get; set; }
+    private string DeleteUserDialogContent { get; set; }
+
+    private bool NewUserDialogVisibility { get; set; } = false;
+    private string NewUserDialogHeader { get; set; }
 
     SfTextBox UserNameID;
     SfTextBox RealNameID;
@@ -249,6 +371,36 @@
         [Compare("Password1Value", ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
         public string Password2Value { get; set; }
     }
+    public class EditUsersModel
+    {
+        public int UserID { get; set; }
+        public string LoginName { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string EMail { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string Name { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string FunctionInFirma { get; set; }
+        public bool Status { get; set; }
+
+    }
+    public class NewUsersModel
+    {
+        public int UserID { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string LoginName { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string EMail { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string Name { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string FunctionInFirma { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(3, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        public string Password { get; set; }
+
+    }
+
 
     //public class CustomValidationAttribute : ValidationAttribute
     //{
@@ -267,8 +419,9 @@
 
 
     private List<UserRolesModel> UsersRoleList { get; set; }
-    UsersModel _userInfo;
-    UsersModel _editUserInfo;
+    UsersModel _userInfo = new UsersModel();
+    EditUsersModel _editUserInfo = new EditUsersModel();
+    NewUsersModel _newUserInfo = new NewUsersModel();
 
     protected override async Task OnInitializedAsync()
     {
@@ -278,11 +431,59 @@
     }
     async Task onUpdateUserInfo_Click()
     {
-
+        int result = await _usersData.SaveData(_editUserInfo.UserID, _editUserInfo.EMail, _editUserInfo.Name, _editUserInfo.FunctionInFirma, _editUserInfo.Status, _userInfo.UserID);
+        if (result == -1)
+        {
+            ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassConfirmFailure"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgUserSaved"] + "</p>";
+            this.ErrDialogVisibility = true;
+            UsersList = await _usersData.UsersList(_userInfo.UserID);
+            //StateHasChanged();
+        }
     }
     async Task onUpdatePassword_Click()
     {
-        //await _usersData.ChangePassword()
+        int result = await _usersData.ChangePassword(_editUserInfo.UserID, _HCMChangePassword.Password1Value, _userInfo.UserID);
+        if (result == -1)
+        {
+            ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassConfirmFailure"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            _HCMChangePassword = new HCMChangePassword();
+
+            ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassChanged"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+    }
+    async Task onCreateNewUser_Click()
+    {
+        int result = await _usersData.CreateUser(_newUserInfo.LoginName, _newUserInfo.Password, _newUserInfo.EMail, _newUserInfo.Name, _newUserInfo.FunctionInFirma, true, _userInfo.UserID);
+        if (result == -1)
+        {
+            //ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Create_Error"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            //ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Create_Success"] + "</p>";
+            this.ErrDialogVisibility = true;
+            UsersList = await _usersData.UsersList(_userInfo.UserID);
+            _newUserInfo = new NewUsersModel();
+            this.NewUserDialogVisibility = false;
+            //StateHasChanged();
+        }
     }
     private void BindUsersRoleList()
     {
@@ -313,20 +514,70 @@
     public void EditUser(UsersModel model)
     {
         this.EditDialogVisibility = true;
-        _editUserInfo = model;
+        _editUserInfo.UserID = model.UserID;
+        _editUserInfo.EMail = model.EMail;
+        _editUserInfo.Name = model.Name;
+        _editUserInfo.FunctionInFirma = model.FunctionInFirma;
+        _editUserInfo.LoginName = model.LoginName;
+        _editUserInfo.Status = model.Status;
+
         _HCMChangePassword = new HCMChangePassword();
         BindUsersRoleList();
     }
     public void DeleteUser(UsersModel model)
     {
+        //DeleteUserDialogHeader = Localizer["MsgPanel_Error_Title"];
+        DeleteUserDialogContent = "<p>" + Localizer["Admin_Users_DeleteConfirm"] + "</p>";
+        this.DeleteUserDialogVisibility = true;
 
+        _editUserInfo.UserID = model.UserID;
+
+    }
+
+    private void onCreateNew_Click()
+    {
+        this.NewUserDialogVisibility = true;
+    }
+    private void onCreateNewUserCancel_Click()
+    {
+        this.NewUserDialogVisibility = false;
     }
 
     private void EditDialogBeforeOpen(BeforeOpenEventArgs args)
     {
         args.MaxHeight = null;
     }
+    private void NewUserDialogBeforeOpen(BeforeOpenEventArgs args)
+    {
+        args.MaxHeight = null;
+    }
 
+    private void ErrDialogButtonClick()
+    {
+        this.ErrDialogVisibility = false;
+    }
+    private void DeleteUserDialogButtonCancelClick()
+    {
+        this.DeleteUserDialogVisibility = false;
+    }
+    async Task DeleteUserDialogButtonOKClick()
+    {
+        this.DeleteUserDialogVisibility = false;
 
+        int result = await _usersData.DeleteUser(_editUserInfo.UserID, _userInfo.UserID);
+        if (result == -1)
+        {
+            //ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Delete_Error"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
 
+            //ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Delete_Success"] + "</p>";
+            this.ErrDialogVisibility = true;
+            UsersList = await _usersData.UsersList(_userInfo.UserID);
+        }
+    }
 }
