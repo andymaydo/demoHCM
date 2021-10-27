@@ -212,14 +212,51 @@
                     <GridColumns>
                         <GridColumn Field=@nameof(UserRolesModel.LocalizerRoleName) TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
 
+                        <GridColumn HeaderText="" Width="100" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right">
+                            <Template>
+                                @{
+                                    var _context = (context as UserRolesModel);
+
+                                    if (_userRolesData.IsUserInRole(_editUserInfo.LoginName, _context.RoleName))
+                                    {
+                                        <span class="e-hcm-statusInRole">@Localizer["Admin_Users2RoleStatusAssignText"]</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="e-hcm-statusNotInRole">@Localizer["Admin_Users2RoleStatusUnAssignText"]</span>
+                                    }
+                                }
+                            </Template>
+
+                        </GridColumn>
+                        <GridColumn HeaderText="" Width="150" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right">
+                            <Template>
+                                @{
+                                    var _context = (context as UserRolesModel);
+
+                                    if (_userRolesData.IsUserInRole(_editUserInfo.LoginName, _context.RoleName))
+                                    {
+                                        <SfButton OnClick="@(()=>onUpdateUserRole_Click(_context.RoleName,_editUserInfo.LoginName,"Unassign"))" IconCss="e-icons-hcm e-hcm-edit" CssClass="e-user-in-role-flat">@Localizer["Admin_Users2RoleButtonUnAssignText"]</SfButton>
+
+                                    }
+                                    else
+                                    {
+                                        <SfButton OnClick="@(()=>onUpdateUserRole_Click(_context.RoleName,_editUserInfo.LoginName,"Assign"))" IconCss="e-icons-hcm e-hcm-edit" CssClass="e-user-not-in-role-flat">@Localizer["Admin_Users2RoleButtonAssignText"]</SfButton>
+                                    }
+                                }
+                            </Template>
+
+                        </GridColumn>
+
                     </GridColumns>
                 </SfGrid>
 
                 <style>
-                    #UsersRoleGrid.e-grid .e-gridheader .e-columnheader {
+#UsersRoleGrid.e-grid .e-gridheader .e-columnheader {
                         display: none;
-                    }
-                </style>
+                        }
+                                    </style>
 
             </div>
         </Content>
@@ -475,6 +512,22 @@
             ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassChanged"] + "</p>";
             this.ErrDialogVisibility = true;
         }
+    }
+    async Task onUpdateUserRole_Click(string _RoleName, string userName, string command)
+    {
+        int result = 0;
+        if (command == "Assign")
+        {
+            result = await _userRolesData.AddUserInRole(_RoleName, userName, _userInfo.UserID);
+        }
+        else
+        {
+            result = await _userRolesData.DelUserInRole(_RoleName, userName, _userInfo.UserID);
+        }
+
+        BindUsersRoleList();
+        StateHasChanged();
+
     }
     async Task onCreateNewUser_Click()
     {

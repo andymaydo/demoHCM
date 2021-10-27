@@ -520,6 +520,33 @@ a.btnShowMatch {
     
     height: 25px;
 }
+.e-hcm-statusInRole {
+    text-decoration: none;
+    color: #006800;
+    text-align: center;
+    padding-left: 15px;
+    padding-top: 2px;
+}
+
+.e-hcm-statusNotInRole {
+    text-decoration: none;
+    color: #ff0000;
+    text-align: center;
+    padding-left: 15px;
+    padding-top: 2px;
+}
+.e-btn.e-user-in-role-flat, .e-css.e-btn.e-user-in-role-flat {
+    background-color: #ff0000 !important;
+    border-color: #ff0000 !important;
+    box-shadow: none;
+    color: #fff !important;
+}
+.e-btn.e-user-not-in-role-flat, .e-css.e-btn.e-user-not-in-role-flat {
+    background-color: #006800 !important;
+    border-color: #006800 !important;
+    box-shadow: none;
+    color: #fff !important;
+}
 
 
 
