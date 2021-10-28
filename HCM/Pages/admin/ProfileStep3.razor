@@ -16,7 +16,7 @@
 @attribute [Authorize]
 
 
-<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Escalation"]</h5>
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Escalation"] (@_CMSProfileModel?.profileName)</h5>
 
 @*<h4 class="tLabel">@Localizer["Profile_Step_Escalation_RuleList"]</h4>*@
 
@@ -188,6 +188,7 @@
         public List<UserRolesModel> UserRolesList;
         protected SfDropDownList<string, CaseContact> _caseContactDropDownListObj;
         public List<CaseContact> _caseContactList = new List<CaseContact>();
+        HCMApi.Models.CMSProfileModel _CMSProfileModel;
 
         public class RuleValidation
         {
@@ -239,6 +240,10 @@
             });
 
             var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+            if (ProfileStatusInfo.cmsProfile != null)
+            {
+                _CMSProfileModel = ProfileStatusInfo.cmsProfile;
+            }
             if (ProfileStatusInfo.cmsProfile.escalationRules != null && ProfileStatusInfo.cmsProfile.escalationRules.Count > 0)
             {
                 _caseRuleList = new List<CaseRule>();

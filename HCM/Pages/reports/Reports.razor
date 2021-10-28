@@ -303,6 +303,7 @@
         if (_Gates != null && _Gates.Count > 0)
         {
             AppID = (Convert.ToInt32(_Gates[0].appID));
+            GateDefaultValue = AppID.ToString();
             BindFilterListBox();
         }
 
@@ -319,7 +320,7 @@
 
         _Category = _filtersData.GetCategories(AppID);
         _Profile = _filtersData.GetProfiles(AppID);
-        _Statuses = _filtersData.GetStatuses();
+        _Statuses = _filtersData.GetStatuses4Application(AppID);
         _Results = _filtersData.GetResults(AppID);
 
         FiltersModels.CategoryModel _FilterCategoryModel = new FiltersModels.CategoryModel();
@@ -435,7 +436,15 @@
     async Task ClearFilter()
     {
 
-        GateDefaultValue = "-1";
+        AppID = 1;
+
+        _Gates = _filtersData.GetGates();
+        if (_Gates != null && _Gates.Count > 0)
+        {
+            AppID = (Convert.ToInt32(_Gates[0].appID));
+            GateDefaultValue = AppID.ToString();
+        }
+
         CategoryDefaultValue = "-1";
         ProfileDefaultValue = "-1";
         ResultDefaultValue = "-1";
@@ -478,10 +487,14 @@
             {
                 AppID = _AppID;
 
-                this.CategoryComboObj.Clear();
-                this.ProfileComboObj.Clear();
-                this.ResultComboObj.Clear();
-                this.StatusComboObj.Clear();
+                if (this.CategoryComboObj != null )
+                    this.CategoryComboObj.Clear();
+                if (this.ProfileComboObj != null)
+                    this.ProfileComboObj.Clear();
+                if (this.ResultComboObj != null)
+                    this.ResultComboObj.Clear();
+                if (this.StatusComboObj != null)
+                    this.StatusComboObj.Clear();
 
                 BindFilterListBox();
                 FilterChanged?.Invoke(true);

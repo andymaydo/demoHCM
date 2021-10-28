@@ -15,7 +15,7 @@
 
 @attribute [Authorize]
 
-<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Allgemeine"]</h5>
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Allgemeine"] (@_CMSProfileModel?.profileName)</h5>
 
 <div class="container">
     <div class="row row_padding mt-1">
@@ -94,6 +94,7 @@
     private List<ProfileEmailLanguageData> _LanguageList;
 
     NewProfile_Step1 _NewProfile_Step1 = new NewProfile_Step1();
+    HCMApi.Models.CMSProfileModel _CMSProfileModel;
 
     public class ProfileEmailLanguageData
     {
@@ -123,6 +124,7 @@
         {
             if (profileStatusInfo.cmsProfile.profileID > 0)
             {
+                _CMSProfileModel = profileStatusInfo.cmsProfile;
                 _NewProfile_Step1.ProfileName = profileStatusInfo.cmsProfile.profileName;
                 _NewProfile_Step1.ProfileDescription = profileStatusInfo.cmsProfile.profilDescr;
             }
@@ -139,9 +141,13 @@
             profileStatusInfo.cmsProfile.profilDescr = _NewProfile_Step1.ProfileDescription;
             profileStatusInfo.cmsProfile.EmailLanguage = _NewProfile_Step1.ProfileEmailLanguage;
             profileStatusInfo.cmsProfile.appID = int.Parse(_NewProfile_Step1.ProfileGate);
+            profileStatusInfo.Step = 2;
+
             await storageService.SetItemAsync("ProfileStatusInfo", profileStatusInfo);
 
             await _CMSProfile.UpdateGeneralInfoAsync(profileStatusInfo.cmsProfile);
+
+            await OnChangeFormClick.InvokeAsync(1);
         }
         else
         {

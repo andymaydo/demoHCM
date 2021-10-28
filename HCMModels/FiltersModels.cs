@@ -26,11 +26,13 @@ namespace HCMModels
             public int CaseStatusID { get; set; }
             public string CaseStatus { get; set; }
         }
+
         public class CaseResultModel
         {
             public int CaseResultID { get; set; }
             public string CaseResult { get; set; }
         }
+
         
         public class ProfileStatusModel
         {

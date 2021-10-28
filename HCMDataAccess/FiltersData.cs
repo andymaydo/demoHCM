@@ -145,6 +145,32 @@ namespace HCMDataAccess
             }
         }
 
+        public List<CaseStatusModel> GetStatuses4Application(int appID)
+        {
+            var procedure = "CaseData_Status_4Application";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
+
+            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            try
+            {
+                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+                {
+                    var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
+
+                    return _FilterStatusModel;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public List<CaseStatusModel> GetStatusesForEscalation()
         {
             var procedure = "CaseStatus_GetForEscalation";

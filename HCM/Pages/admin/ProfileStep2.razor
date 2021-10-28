@@ -16,7 +16,7 @@
 @attribute [Authorize]
 
 
-<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Teilnehmen"]</h5>
+<h5 class="tLabel bottom_blue_bg">@Localizer["Profile_Step_Teilnehmen"] (@_CMSProfileModel?.profileName)</h5>
 
 @*<h4 class="tLabel">@Localizer["Profile_Step2_TeilnehmerListe"]</h4>*@
 
@@ -117,6 +117,7 @@
 
         protected SfDropDownList<string, CaseContact> _caseContactDropDownListObj;
         SfGrid<CaseContact> _caseResponsiblesObj;
+        HCMApi.Models.CMSProfileModel _CMSProfileModel;
 
         public class CaseContactValidation
         {
@@ -148,6 +149,10 @@
             });
 
             var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+            if (ProfileStatusInfo.cmsProfile != null)
+            {
+                _CMSProfileModel = ProfileStatusInfo.cmsProfile;
+            }
             if (ProfileStatusInfo.cmsProfile.profileParticipants != null && ProfileStatusInfo.cmsProfile.profileParticipants.Count > 0)
             {
                 _caseResponsibles = ProfileStatusInfo.cmsProfile.profileParticipants;

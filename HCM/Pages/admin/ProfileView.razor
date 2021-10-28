@@ -135,9 +135,14 @@
         </div>
     </div>
 
-
-
-    <h4 class="tLabel">@_CMSProfileModel?.profileStatus</h4>
+    <h4 class="tLabel">@if ( _CMSProfileModel?.profileStatusID == 0 )
+    {
+        @Localizer["Profile_Status_InActive"]
+    }
+    else
+    {
+        @Localizer["Profile_Status_Active"]
+    } </h4>
 
     @code {
         [Parameter]
