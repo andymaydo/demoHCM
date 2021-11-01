@@ -19,6 +19,7 @@ namespace HCM.Options
         public static string EventDpfNoMatch       = "dpf.nomatch";
         public static string EventDpfOnMatchFound  = "dpf.onmatchfound";
         public static string EventDpfYesMatch      = "dpf.yesmatch";
+        public static string EventAddAlias          = "dpf.addalias";
     }
 
 

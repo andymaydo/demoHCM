@@ -12,6 +12,7 @@
 @using Microsoft.AspNetCore.Mvc;
 
 @inject ILocalStorageService _storageService;
+@inject ICMSAPI _ICMSAPI;
 
 <div class="container">
     <div class="row row_padding">
@@ -30,9 +31,12 @@
     {
         _UsersModel = await _storageService.GetItemAsync<UsersModel>("User");
 
-        if (await _storageService.ContainKeyAsync("CaseView"))
+        if (await _storageService.ContainKeyAsync("CaseViewID"))
         {
-            _Case = await _storageService.GetItemAsync<Case>("CaseView");
+            int _CaseID = await _storageService.GetItemAsync<int>("CaseViewID");
+            _Case = await _ICMSAPI.LoadCase(_CaseID);
+
+            //_Case = await _storageService.GetItemAsync<Case>("CaseView");
 
             int _CaseTypeID = _Case.CaseTypeID == null ? 0 : Convert.ToInt32(_Case.CaseTypeID);
 

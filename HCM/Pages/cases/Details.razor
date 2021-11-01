@@ -44,23 +44,23 @@
             <div class="col-sm-12 row row_padding">
                 <a href="" @onclick="@(() => AddUserDialogSetStatus())" @onclick:preventDefault class="btnAddUser">@Localizer["Cases_Detail_Action_AddUser"]</a>
             </div>
-            <div class="col-sm-12 row row_padding">
-                @if (ShowChangeStatusDialog)
-                {
+
+            @if (ShowChangeStatusDialog)
+            {
+                <div class="col-sm-12 row row_padding">
                     <a href="" @onclick="@(() => ChangeStatusDialogSetStatus())" @onclick:preventDefault class="btnUpdate">@Localizer["Cases_Detail_Action_ChangeStatus"]</a>
-                }
+                </div>
+            }
 
-            </div>
-            <div class="col-sm-12 row row_padding">
-                @if (ShowAddAliasDialog)
-                {
+            @if (ShowAddAliasDialog)
+            {
+                <div class="col-sm-12 row row_padding">
+
                     <a href="" @onclick="@(() => AddAliasDialogSetStatus())" @onclick:preventDefault class="btnAddAlias">@Localizer["Cases_Detail_Action_AddAlias"]</a>
-                }
+                </div>
+            }
 
             </div>
-
-
-        </div>
         <div class="col-sm-7  control_padding">
             @*-------------------------- Subject ----------------------------------*@
             <div class="col-sm-12 row row_padding">
@@ -450,6 +450,8 @@
                                 <div class="col-sm-12 row_padding itemDetail">
 
                                     <SfListView DataSource="@ProfileUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewEvents TValue="CheckboxListDataModel"
+                                                        Clicked="@(e => ProfileUsers_CheckboxList_Event(e))"></ListViewEvents>
                                         <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
                                     </SfListView>
 
@@ -465,7 +467,7 @@
 
                                     <SfListView DataSource="@ParticipantsUsers_CheckboxListData" ShowCheckBox="true">
                                         <ListViewEvents TValue="CheckboxListDataModel"
-                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e))"></ListViewEvents>
                                         <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
                                     </SfListView>
 
@@ -700,6 +702,8 @@
                                 <div class="col-sm-12 row_padding itemDetail">
 
                                     <SfListView DataSource="@ProfileUsers_CheckboxListData" ShowCheckBox="true">
+                                        <ListViewEvents TValue="CheckboxListDataModel"
+                                                        Clicked="@(e => ProfileUsers_CheckboxList_Event(e))"></ListViewEvents>
                                         <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
                                     </SfListView>
 
@@ -715,7 +719,7 @@
 
                                     <SfListView DataSource="@ParticipantsUsers_CheckboxListData" ShowCheckBox="true">
                                         <ListViewEvents TValue="CheckboxListDataModel"
-                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e))"></ListViewEvents>
                                         <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
                                     </SfListView>
 
@@ -812,7 +816,10 @@
                                 <div class="col-sm-12 row_padding itemDetail">
 
                                     <SfListView DataSource="@ProfileUsers_CheckboxListData" ShowCheckBox="true">
-                                        <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
+                                        <ListViewEvents TValue="CheckboxListDataModel"
+                                                        Clicked="@(e => ProfileUsers_CheckboxList_Event(e))"></ListViewEvents>
+                                        <ListViewFieldSettings TValue="CheckboxListDataModel"
+                                                               Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
                                     </SfListView>
 
                                 </div>
@@ -827,7 +834,7 @@
 
                                     <SfListView DataSource="@ParticipantsUsers_CheckboxListData" ShowCheckBox="true">
                                         <ListViewEvents TValue="CheckboxListDataModel"
-                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e.IsChecked))"></ListViewEvents>
+                                                        Clicked="@(e => ParticipantsUsers_CheckboxList_Event(e))"></ListViewEvents>
                                         <ListViewFieldSettings TValue="CheckboxListDataModel" Id="Id" Text="Text" IsChecked="IsChecked" Enabled="Enabled"></ListViewFieldSettings>
                                     </SfListView>
 
@@ -1003,10 +1010,10 @@
 
         UsersList = await _usersData.UsersList(_UsersModel.UserID);
 
-        if (await _storageService.ContainKeyAsync("CaseView"))
+        if (await _storageService.ContainKeyAsync("CaseViewID"))
         {
 
-            int _CaseID = await _storageService.GetItemAsync<int>("CaseView");
+            int _CaseID = await _storageService.GetItemAsync<int>("CaseViewID");
             _Case = await _ICMSAPI.LoadCase(_CaseID);
 
             StatusList = await _ICMSAPI.GetStatusByCase(_CaseID);
@@ -1167,6 +1174,9 @@
 
             }
 
+            ShowAddAliasDialog = false;
+            ShowChangeStatusDialog = false;
+
             await IsUserAliasManager();
             await IsUserModerator();
 
@@ -1195,20 +1205,21 @@
 
     private async Task AddMessageDialogSetStatus()
     {
-
+        ClearAllCheckboxList();
         this.NewNoteDialogVisibility = true;
         StateHasChanged();
     }
 
     private async Task AddUserDialogSetStatus()
     {
+        ClearAllCheckboxList();
         this.NewUserDialogVisibility = true;
         StateHasChanged();
     }
 
     private async Task ChangeStatusDialogSetStatus()
     {
-
+        ClearAllCheckboxList();
         foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
         {
             cb.IsChecked = true;
@@ -1220,6 +1231,7 @@
 
     private async Task AddAliasDialogSetStatus()
     {
+        ClearAllCheckboxList();
         this.AddAliasDialogVisibility = true;
         AddAliasDialog_LizID = "";
         StateHasChanged();
@@ -1335,8 +1347,7 @@
 
     public async Task IsUserAliasManager()
     {
-        ShowAddAliasDialog = false;
-        ShowChangeStatusDialog = false;
+
 
         if (_CMSProfileModel != null)
         {
@@ -1371,8 +1382,6 @@
 
     public async Task IsUserModerator()
     {
-        ShowChangeStatusDialog = false;
-
         if (_CMSProfileModel != null)
         {
 
@@ -1413,10 +1422,6 @@
         this.ErrDialogVisibility = false;
     }
 
-    // **************************************************************************************************
-    // ADD MESSAGE
-    // **************************************************************************************************
-
     public void AllUsers_CheckboxList_Event(bool isChecked)
     {
         if (isChecked)
@@ -1443,17 +1448,51 @@
         }
         StateHasChanged();
     }
-    public void ParticipantsUsers_CheckboxList_Event(bool isChecked)
+    public void ParticipantsUsers_CheckboxList_Event(ClickEventArgs<CheckboxListDataModel> args)
     {
-        if (!isChecked)
+        foreach (CheckboxListDataModel cb in AllUsers_CheckboxListData)
         {
-            foreach (CheckboxListDataModel cb in AllUsers_CheckboxListData)
+            if (args.Text == cb.Text)
             {
-                cb.IsChecked = false;
+                cb.IsChecked = args.IsChecked;
             }
-            StateHasChanged();
+        }
+        StateHasChanged();
+    }
+    public void ProfileUsers_CheckboxList_Event(ClickEventArgs<CheckboxListDataModel> args)
+    {
+        foreach (CheckboxListDataModel cb in ProfileUsers_CheckboxListData)
+        {
+            if ( args.Text == cb.Text)
+            {
+                cb.IsChecked = args.IsChecked;
+            }
+        }
+        StateHasChanged();
+    }
+    private void ClearAllCheckboxList()
+    {
+        foreach (CheckboxListDataModel cb in AllUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
+        }
+        foreach (CheckboxListDataModel cb in ProfileUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
+        }
+        foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
+        }
+        foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
+        {
+            cb.IsChecked = false;
         }
     }
+
+    // **************************************************************************************************
+    // ADD MESSAGE
+    // **************************************************************************************************
     public async Task NewNoteDialog_Save()
     {
         if (string.IsNullOrEmpty(tSubjectValue))
@@ -1501,7 +1540,7 @@
         }
 
 
-        if (string.IsNullOrEmpty(_usersID) && string.IsNullOrEmpty(tAnotherEmails1Value.Trim()) && string.IsNullOrEmpty(tAnotherEmails1Value.Trim()))
+        if (string.IsNullOrEmpty(_usersID) && string.IsNullOrEmpty(tAnotherEmails1Value) && string.IsNullOrEmpty(tAnotherEmails2Value))
         {
             await _ICMSAPI.OnEvent(CMSSettings.EventAddMessage, _UsersModel.ContactID, _Case.CaseID, xDoc, tSubjectValue, false);
         }
@@ -1600,15 +1639,6 @@
         tAnotherEmails2Value = "";
         tSubjectValue = "";
 
-        foreach (CheckboxListDataModel cb in AllUsers_CheckboxListData)
-        {
-            cb.IsChecked = false;
-        }
-        foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
-        {
-            cb.IsChecked = false;
-        }
-
         await AddMessage_UploadObj.ClearAll();
         AddReportToEmailIsChecked = false;
 
@@ -1628,15 +1658,15 @@
             bool hasCaseContactList = false;
             bool hasprofileParticipantsList = false;
             bool hasescalationUsersList = false;
-            CaseContact _f1 = _CaseContactList.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            CaseContact _f1 = _CaseContactList?.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
             if (_f1 != null)
                 hasCaseContactList = true;
 
-            _f1 = _CMSProfileModel.profileParticipants.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            _f1 = _CMSProfileModel.profileParticipants?.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
             if (_f1 != null)
                 hasprofileParticipantsList = true;
 
-            _f1 = _CMSProfileModel.escalationUsers.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
+            _f1 = _CMSProfileModel.escalationUsers?.Find(c1 => c1.ContactID == Convert.ToInt32(NewUserDialog_ContactID));
             if (_f1 != null)
                 hasescalationUsersList = true;
 
@@ -1887,6 +1917,115 @@
         }
 
         AliasApiWebRef.AliasApi.AliasCreateResponse aliasResponse = await aliasapi.AliasCreateAsync(aliasout.AsXml());
-        string response = aliasResponse.Body.ToString();
+        string response = aliasResponse.Body.AliasCreateResult.ToString();
+
+        if ( string.IsNullOrEmpty(response))
+        {
+            ErrDialogHeader = "";
+            ErrDialogContent = Localizer["AliasApiError_110000"];
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            XmlDocument resultxml = new XmlDocument();
+            resultxml.LoadXml(response);
+
+            if (resultxml.SelectSingleNode("/root/status/statuscode").InnerText != "0")
+            {
+                ErrDialogHeader = "";
+                ErrDialogContent = Localizer["AliasApiError_" + resultxml.SelectSingleNode("/root/status/statuscode").InnerText];
+                this.ErrDialogVisibility = true;
+            }
+            else
+            {
+                List<CaseContact> _contactList = new List<CaseContact>();
+
+                string _usersID = "";
+                foreach (CheckboxListDataModel cb in ProfileUsers_CheckboxListData)
+                {
+                    if (cb.IsChecked)
+                    {
+                        _usersID += cb.Id + ",";
+                    }
+                }
+                foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
+                {
+                    if (cb.IsChecked)
+                    {
+                        _usersID += cb.Id + ",";
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(_usersID))
+                {
+                    List<CaseContact> _caseContactList = await _caseContact.Contact_GetAll();
+                    string[] _ids = _usersID.Split(',');
+                    foreach (CaseContact c in _caseContactList)
+                    {
+                        bool found = false;
+                        int _id = -1;
+                        for (int i = 0; i < _ids.Length; i++)
+                        {
+                            int.TryParse(_ids[i], out _id);
+                            if (_id == c.ContactID)
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (found)
+                        {
+                            _contactList.Add(c);
+                        }
+                    }
+                }
+
+                foreach (CheckboxListDataModel cb in CreatorUsers_CheckboxListData)
+                {
+                    if (cb.IsChecked)
+                    {
+                        string _Email = "";
+                        string _Name = "";
+
+                        if (!string.IsNullOrEmpty(_Case.CaseData))
+                        {
+                            XmlDocument _XmlDocument = new XmlDocument();
+                            _XmlDocument.LoadXml(_Case.CaseData);
+
+                            _Email = _XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/EMAIL").InnerText;
+                            _Name = _XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/NAMEFIRST").InnerText;
+                            _Name += " " + _XmlDocument.SelectSingleNode("/Root/Tran/BENUTZER/NAMELAST").InnerText;
+                        }
+
+
+
+                        CaseContact c = new CaseContact();
+                        c.ContactID = -1;
+                        c.ContactData = "";
+                        c.ContactURI = "";
+                        c.Email = _Email;
+                        c.ForeingID = "";
+                        c.Name = _Name;
+                        c.NickName = "";
+                        c.Function = "Creator";
+
+
+                        _contactList.Add(c);
+                    }
+                }
+
+
+
+
+                await _ICMSAPI.OnEvent(CMSSettings.EventAddMessage, _UsersModel.ContactID, _Case.CaseID, xDoc, tSubjectValue, _contactList);
+
+
+
+                this.AddAliasDialogVisibility = false;
+
+                await GetInitDataAsync();
+            }
+        }
     }
 }
