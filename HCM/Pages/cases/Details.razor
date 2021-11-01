@@ -770,7 +770,7 @@
                                 <tr>
                                     <td class="tLabel2" align="left" valign="top">@Localizer["Cases_AddAlias_SelectLiz"]:</td>
                                     <td class="tLabel3" align="left" valign="top">
-                                        <SfComboBox TValue="string" @ref="AddAliasDialog_LizComboObj" TItem="CaseModel.AliasLizStatus" DataSource="@LizList" @bind-Value="@AddAliasDialog_LizID">
+                                        <SfComboBox TValue="string" @ref="AddAliasDialog_LizComboObj" TItem="CaseModel.AliasLizStatus" DataSource="@AliasLizStatus" @bind-Value="@AddAliasDialog_LizID">
                                             <ComboBoxFieldSettings Text="LizText" Value="LizID"></ComboBoxFieldSettings>
                                         </SfComboBox>
                                     </td>
@@ -982,19 +982,18 @@
     public string StatusChangeDialog_StatusID { get; set; }
 
     SfComboBox<string, CaseModel.AliasLizStatus> AddAliasDialog_LizComboObj { get; set; }
-    //private List<CasetModels.AliasLizStatus> LizList { get; set; }
     public string AddAliasDialog_LizID { get; set; }
-    private List<CaseModel.AliasLizStatus> _LizList = new List<CaseModel.AliasLizStatus>();
+    private List<CaseModel.AliasLizStatus> _AliasLizStatus = new List<CaseModel.AliasLizStatus>();
 
 
     AliasApiWebRef.AliasApi.AliasApiSoapClient aliasapi = new AliasApiWebRef.AliasApi.AliasApiSoapClient(AliasApiWebRef.AliasApi.AliasApiSoapClient.EndpointConfiguration.AliasApiSoap12);
 
-    private List<CaseModel.AliasLizStatus> LizList
+    private List<CaseModel.AliasLizStatus> AliasLizStatus
     {
         get
         {
 
-            return _LizList;
+            return _AliasLizStatus;
         }
     }
 
@@ -1042,20 +1041,21 @@
 
             AllUsers_CheckboxListData.Add(_CheckboxListDataModel);
 
-            CaseModel.AliasLizStatus _AliasLizStatus = new CaseModel.AliasLizStatus();
-            _AliasLizStatus.LizID = "";
-            _AliasLizStatus.LizText = "- - - - - - - - - -";
-            _LizList.Add(_AliasLizStatus);
+            _AliasLizStatus = new List<CaseModel.AliasLizStatus>();
+            CaseModel.AliasLizStatus AliasLizStatusModel = new CaseModel.AliasLizStatus();
+            AliasLizStatusModel.LizID = "";
+            AliasLizStatusModel.LizText = "- - - - - - - - - -";
+            _AliasLizStatus.Add(AliasLizStatusModel);
 
-            _AliasLizStatus = new CaseModel.AliasLizStatus();
-            _AliasLizStatus.LizID = "all";
-            _AliasLizStatus.LizText = Localizer["Cases_AddAlias_AllLiz"];
-            _LizList.Add(_AliasLizStatus);
+            AliasLizStatusModel = new CaseModel.AliasLizStatus();
+            AliasLizStatusModel.LizID = "all";
+            AliasLizStatusModel.LizText = Localizer["Cases_AddAlias_AllLiz"];
+            _AliasLizStatus.Add(AliasLizStatusModel);
 
-            _AliasLizStatus = new CaseModel.AliasLizStatus();
-            _AliasLizStatus.LizID = "own";
-            _AliasLizStatus.LizText = Localizer["Cases_AddAlias_OwnLiz"];
-            _LizList.Add(_AliasLizStatus);
+            AliasLizStatusModel = new CaseModel.AliasLizStatus();
+            AliasLizStatusModel.LizID = "own";
+            AliasLizStatusModel.LizText = Localizer["Cases_AddAlias_OwnLiz"];
+            _AliasLizStatus.Add(AliasLizStatusModel);
 
             if (!string.IsNullOrEmpty(_Case.CaseData))
             {
@@ -1110,10 +1110,10 @@
                 {
                     if (!string.IsNullOrEmpty(_XmlDocument.SelectSingleNode("/Root/Tran/Src/vbeln").InnerText))
                     {
-                        _AliasLizStatus = new CaseModel.AliasLizStatus();
-                        _AliasLizStatus.LizID = "beleg";
-                        _AliasLizStatus.LizText = Localizer["Cases_AddAlias_Beleg"];
-                        _LizList.Add(_AliasLizStatus);
+                        AliasLizStatusModel = new CaseModel.AliasLizStatus();
+                        AliasLizStatusModel.LizID = "beleg";
+                        AliasLizStatusModel.LizText = Localizer["Cases_AddAlias_Beleg"];
+                        _AliasLizStatus.Add(AliasLizStatusModel);
                     }
 
                 }
@@ -1123,10 +1123,10 @@
                     if (!string.IsNullOrEmpty(_XmlDocument.SelectSingleNode("/Root/Batch/Src/vbeln").InnerText))
                     {
 
-                        _AliasLizStatus = new CaseModel.AliasLizStatus();
-                        _AliasLizStatus.LizID = "beleg";
-                        _AliasLizStatus.LizText = Localizer["Cases_AddAlias_Beleg"];
-                        _LizList.Add(_AliasLizStatus);
+                        AliasLizStatusModel = new CaseModel.AliasLizStatus();
+                        AliasLizStatusModel.LizID = "beleg";
+                        AliasLizStatusModel.LizText = Localizer["Cases_AddAlias_Beleg"];
+                        _AliasLizStatus.Add(AliasLizStatusModel);
                     }
 
                 }
