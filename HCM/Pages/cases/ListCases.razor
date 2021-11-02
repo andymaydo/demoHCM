@@ -154,8 +154,8 @@
     <GridPageSettings PageSize="25"></GridPageSettings>
     <GridEvents CommandClicked="OnCommandClicked" TValue="Case"></GridEvents>
     <GridColumns>
-        <GridColumn Field=@nameof(Case.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" MinWidth="80" MaxWidth="120" Width="80"></GridColumn>
-        <GridColumn Field=@nameof(Case.ProfileID) HeaderText="@Localizer["Label_Filter_ProfileID"]" Width="80" MinWidth="80" MaxWidth="200"></GridColumn>
+        <GridColumn Field=@nameof(Case.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" MinWidth="70" MaxWidth="80" Width="70"></GridColumn>
+        <GridColumn Field=@nameof(Case.ProfileID) HeaderText="@Localizer["Label_Filter_ProfileID"]" Width="70" MinWidth="70" MaxWidth="80"></GridColumn>
         <GridColumn Field=@nameof(Case.Subject) HeaderText="@Localizer["Cases_List_Subject"]"></GridColumn>
         <GridColumn Field=@nameof(Case.CaseType) HeaderText="@Localizer["Cases_List_Category"]" Width="100"></GridColumn>
         <GridColumn HeaderText="@Localizer["Cases_List_Status"]" Width="100">
@@ -171,9 +171,9 @@
         </GridColumn>
         <GridColumn Field=@nameof(Case.CaseResult) HeaderText="@Localizer["Cases_List_Ergebnis"]" Width="80"></GridColumn>
         <GridColumn Field=@nameof(Case.CustomerName) HeaderText="@Localizer["Cases_List_GeprufterName"]"></GridColumn>
-        <GridColumn Field=@nameof(Case.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Width="80"></GridColumn>
+        <GridColumn Field=@nameof(Case.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Width="100"></GridColumn>
         <GridColumn Field=@nameof(Case.SapUser)></GridColumn>
-        <GridColumn Field=@nameof(Case.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" Width="80"></GridColumn>
+        <GridColumn Field=@nameof(Case.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" Width="100"></GridColumn>
         <GridColumn HeaderText="" Width="40">
             <GridCommandColumns>
                 <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
@@ -313,7 +313,7 @@ CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
         {
             //await storageService.SetItemAsync("CaseView", args.RowData);
             //Case _Case = await _ICMSAPI.LoadCase(args.RowData.CaseID);
-            await _storageService.SetItemAsync("CaseView", args.RowData.CaseID);
+            await _storageService.SetItemAsync("CaseViewID", args.RowData.CaseID);
 
             NavigationManager.NavigateTo("/case/details", forceLoad: true);
         }

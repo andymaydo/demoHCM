@@ -21,7 +21,7 @@ namespace HCM.Controllers
             }
 
             //return LocalRedirect(redirectUri);
-            return LocalRedirect("/");
+            return LocalRedirect("/home");
 
         }
     }

@@ -2,7 +2,7 @@
 
 
 <body>
-    <NavMenu />
+    <NavMenu OnChangeLocationClick=@OnChangeLocationEvent />
 
     <div class="container">
         @Body
@@ -11,6 +11,14 @@
 
 <footer class="border-top footer text-muted fixed-bottom">
     <div class="container mt-0 mb-0">
-        &copy; 2010 - Sapper 
+        &copy; 2010 - Sapper
     </div>
 </footer>
+
+
+@code {
+    private async Task OnChangeLocationEvent(string location)
+    {
+        string _location = location;
+    }
+}

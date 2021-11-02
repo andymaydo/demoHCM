@@ -29,55 +29,45 @@
 <title>DPF RFC Service Report</title>
 <xsl:text disable-output-escaping="yes"><![CDATA[
 <style type="text/css">
-body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 9px;
-	color: #666666;
-	background-color: #FFFFFF;
-	margin: 0px;
-	padding: 0px;
-}
-form {
-	margin: 0px;
-	padding: 0px;
-}
-
-
-TD, UL, OL, LI {
-   font-family: Verdana, Arial, Helvetica;
-   font-weight: normal;
-   font-size: 9px;
-   color: #004181;
-   text-decoration: none;
-}
 TD.contenttitle
 {
 	FONT-FAMILY:verdana;
-	font-size: 14pt;	
+	font-size: 13pt;	
 	color: #0e3d6b;
 }
 TD.contentitemb
 {
 	FONT-FAMILY:verdana;
 	font-size: 8pt;	
-	FONT-WEIGHT: bold
+	FONT-WEIGHT: bold;
 }
 
 @media screen,print 
 {
 .tblHead {
-   background-color: #B7BAD9;
+   background-color: #1a535d;
+   color: #FFFFFF;
    padding-left:2;
    padding-top:2;
    padding-bottom:2;
    margin-top:2;
+font-size: 14px;
+   font-family: Helvetica, Verdana, Arial;
 }
-.fcol {
+.fcol_match_result {
    border: solid 1px #FFFFFF;
 }
-.col {
+.col_match_resul {
    border: solid 1px #FFFFFF;
    border-left-width:0;
+}
+td.fcol_match_result
+{
+  padding-left:3px;
+}
+td.col_match_resul
+{
+  padding-left:3px;
 }
 .tblRow {
    padding-left:2;
@@ -91,7 +81,7 @@ TD.contentitemb
    background-color: #E7E9F5;
    border: solid 1px #FFFFFF;
    border-top:0;
-   font-size: 10px;
+   font-size: 11px;
    font-family: Helvetica, Verdana, Arial;
 }
 .colitem
@@ -101,7 +91,11 @@ TD.contentitemb
    border-left-width:0;
    border-top:0;
    font-family: Helvetica,Verdana, Arial;
-   font-size: 10px;
+   font-size: 12px;
+}
+td.colitem
+{
+  padding-left:3px;
 }
 .colitem a
 {
@@ -109,12 +103,26 @@ TD.contentitemb
 }
 .colitemredalert
 {
+   background-color: #dee2e6;
+   border: solid 1px #FFFFFF;
+   border-left-width:0;
+   border-top:0;
+   font-family: Helvetica,Verdana, Arial;
+   font-size: 12px;
+}
+.firstcolitemredalert
+{
    background-color: #E19379;
    border: solid 1px #FFFFFF;
    border-left-width:0;
    border-top:0;
    font-family: Helvetica,Verdana, Arial;
-   font-size: 10px;
+   font-size: 12px;
+  FONT-WEIGHT: bold;
+}
+td.colitemredalert
+{
+  padding-left:3px;
 }
 .colitemredalert a
 {
@@ -127,8 +135,13 @@ TD.contentitemb
    border-left-width:0;
    border-top:0;
    font-family: Helvetica,Verdana, Arial;
-   font-size: 10px;
+   font-size: 12px;
 }
+td.colitemcustomer
+{
+  padding-left:2px;
+}
+
 .colitemcustomer a
 {
    color: #0000FF;
@@ -138,7 +151,7 @@ TD.contentitemb
 ]]></xsl:text>
 </head>
 <body>
-<table cellpadding="0" cellspacing="0" width="800" border="0">
+<table cellpadding="0" cellspacing="0" width="100%" border="0">
 <tr>
 	<td valign="top">
 	
@@ -156,21 +169,20 @@ TD.contentitemb
 	
 	
 	<table cellpadding="0" cellspacing="0" width="100%" border="0">
-	<tr><td width="1" height="20"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
+	<tr><td width="1" height="10"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
 	<tr><td class="contenttitle">Source</td></tr>
-	<tr><td width="1" height="5"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
     <tr>
-      <td>------------------------------------------------------------------------------------------</td>
+      <td>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
     </tr>
-	<tr><td width="1" height="5"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
+	
 	</table>	
 		
-	<table cellpadding="0" cellspacing="0" width="540" border="0">
+	<table cellpadding="0" cellspacing="0" width="100%" border="0">
 	<tr>
 		<td width="10" rowspan="13"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td>
 		<td width="250" class="contentitemb">hostname</td>
 		<td width="10" class="contentitemb" align="center">:</td>
-		<td width="270" class="contentitemb">[<xsl:value-of select="/Tran/Settings/sapip"/>]</td>
+		<td  class="contentitemb">[<xsl:value-of select="/Tran/Settings/sapip"/>]</td>
 	</tr>
 	<tr>
 		<td class="contentitemb">system number</td>
@@ -289,17 +301,7 @@ TD.contentitemb
         <td class="contenttitle">Runtime</td>
       </tr>
       <tr>
-        <td width="1" height="5">
-          <DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV>
-        </td>
-      </tr>
-      <tr>
-        <td>------------------------------------------------------------------------------------------</td>
-      </tr>
-      <tr>
-        <td width="1" height="5">
-          <DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV>
-        </td>
+        <td>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
       </tr>
     </table>
     
@@ -310,7 +312,7 @@ TD.contentitemb
         </td>
         <td width="250" class="contentitemb">started on</td>
         <td width="10" class="contentitemb" align="center">:</td>
-        <td width="270" class="contentitemb">
+        <td class="contentitemb">
           [<xsl:value-of select="DominoFormat:GetDateTime(/Tran/Settings/startedon,'G')"/>]
         </td>
       </tr>
@@ -328,22 +330,22 @@ TD.contentitemb
     <table cellpadding="0" cellspacing="0" width="100%" border="0">
 	<tr><td width="1" height="20"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
 	<tr><td class="contenttitle">Matching Settings</td></tr>
-	<tr><td width="1" height="5"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
+	
       <tr>
-        <td>------------------------------------------------------------------------------------------</td>
+        <td>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
       </tr>
-	<tr><td width="1" height="5"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
+	
 	</table>	
 	
 		
-	<table cellpadding="0" cellspacing="0" width="540" border="0">
+	<table cellpadding="0" cellspacing="0" width="100%" border="0">
     <tr>
       <td width="10" rowspan="7">
         <DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV>
       </td>
       <td width="250" class="contentitemb">variant</td>
       <td width="10" class="contentitemb" align="center">:</td>
-      <td width="270" class="contentitemb">
+      <td class="contentitemb">
         [<xsl:value-of select="/Tran/Settings/sapvar"/>]
       </td>
     </tr>
@@ -425,24 +427,26 @@ TD.contentitemb
 	<tr><td width="1" height="20"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
 	</table>
 	
-	<table cellpadding="0" cellspacing="0" width="800" border="0">
+	<table cellpadding="0" cellspacing="0" width="100%" border="0">
 	<tr class="tblHead">
-		<td width="30" class="fcol" align="center">%</td>
-		<td width="30" class="col">CLID</td>
-		<td width="30" class="col">SRCID</td>
-		<td width="150" class="col">Name</td>
-		<td width="150" class="col">Street</td>
-		<td width="90" class="col">City</td>
-		<td width="50" class="col">Zip</td>
-		<td width="30" class="col">State</td>
-		<td width="30" class="col">Country</td>
-		<td width="50" class="col">List</td>
-		<td width="70" class="col">Date</td>
-		<td width="90" class="col">Details</td>
+		<td width="50" class="fcol_match_result" align="center">%</td>
+		<td width="80" class="col_match_resul">CLID</td>
+		<td width="80" class="col_match_resul">SRCID</td>
+		<td class="col_match_resul">Name</td>
+		<td  class="col_match_resul">Street</td>
+		<td width="80" class="col_match_resul">City</td>
+		<td width="60" class="col_match_resul">Zip</td>
+		<td width="60" class="col_match_resul">State</td>
+		<td width="80" class="col_match_resul">Country</td>
+		<td width="80" class="col_match_resul">List</td>
+		<td width="70" class="col_match_resul">Date</td>
+		<td class="col_match_resul">Details</td>
 	</tr>
-	<tr><td colspan="12" height="5"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
-	<tr><TD vAlign="top" bgColor="#4F8EB6" colspan="12" height="1"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></TD></tr>
-	<tr><td colspan="12" height="5"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
+    <tr>
+      <td colspan="12" height="5">
+        <DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV>
+      </td>
+    </tr>
 		
 	<xsl:apply-templates select="/Tran/Src"/>	
 	</table>
@@ -482,7 +486,7 @@ TD.contentitemb
 			<TD align="center">
 				<xsl:choose>
 					<xsl:when test="(res > /Tran/Settings/redalert)">
-						<xsl:attribute name="class">colitemredalert</xsl:attribute>
+						<xsl:attribute name="class">firstcolitemredalert</xsl:attribute>
 						<xsl:value-of select="DominoFormat:ReplaceEmpty(res)"/>
 					</xsl:when>
 					<xsl:otherwise>
@@ -647,7 +651,7 @@ TD.contentitemb
 		
 	</xsl:for-each>
 
-	<tr><TD vAlign="top" bgColor="#4F8EB6" colspan="12" height="3"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></TD></tr>
+	<tr><TD vAlign="top" bgColor="#1a535d" colspan="12" height="3"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></TD></tr>
 	<tr><td colspan="12" height="15"><DIV style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 1px; PADDING-TOP: 0px"></DIV></td></tr>
 
 
