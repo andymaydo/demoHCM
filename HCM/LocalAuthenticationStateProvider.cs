@@ -17,27 +17,35 @@ namespace HCM
 
         public async override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            if (await _storageService.ContainKeyAsync("User"))
+            try
             {
-                var userInfo = await _storageService.GetItemAsync<UsersModel>("User");
-
-                var claims = new[]
+                if (await _storageService.ContainKeyAsync("User"))
                 {
-                    new Claim("UserID", userInfo.UserID.ToString()),
-                    new Claim("ContactID", userInfo.ContactID.ToString()),
-                    new Claim("FullName", string.IsNullOrEmpty(userInfo.FullName) ? "FullName":userInfo.FullName ),
-                    new Claim("NickName", string.IsNullOrEmpty(userInfo.NickName) ? "NikName":userInfo.NickName),
-                    new Claim(ClaimTypes.NameIdentifier, userInfo.UserID.ToString()),
-                };
+                    var userInfo = await _storageService.GetItemAsync<UsersModel>("User");
 
-                var identity = new ClaimsIdentity(claims, "BearerToken");
-                var user = new ClaimsPrincipal(identity);
-                var state = new AuthenticationState(user);
-                NotifyAuthenticationStateChanged(Task.FromResult(state));
-                return state;
+                    var claims = new[]
+                    {
+                        new Claim("UserID", userInfo.UserID.ToString()),
+                        new Claim("ContactID", userInfo.ContactID.ToString()),
+                        new Claim("FullName", string.IsNullOrEmpty(userInfo.FullName) ? "FullName":userInfo.FullName ),
+                        new Claim("NickName", string.IsNullOrEmpty(userInfo.NickName) ? "NikName":userInfo.NickName),
+                        new Claim(ClaimTypes.NameIdentifier, userInfo.UserID.ToString()),
+                    };
+
+                    var identity = new ClaimsIdentity(claims, "BearerToken");
+                    var user = new ClaimsPrincipal(identity);
+                    var state = new AuthenticationState(user);
+                    NotifyAuthenticationStateChanged(Task.FromResult(state));
+                    return state;
+                }
+
+                return new AuthenticationState(new ClaimsPrincipal());
             }
-
-            return new AuthenticationState(new ClaimsPrincipal());
+            catch
+            {
+                return new AuthenticationState(new ClaimsPrincipal());
+            }
+            
         }
 
         public async Task LogoutAsync()

@@ -78,6 +78,8 @@ namespace HCM
             services.AddSingleton<IUserRolesData, UserRolesData>();
             services.AddSingleton<ICMSProfile, CMSProfile>();
 
+            services.AddSingleton<AppState, AppState>();
+
             services.AddBlazoredLocalStorage();
             services.AddOptions();
             services.AddAuthorizationCore();

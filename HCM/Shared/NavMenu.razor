@@ -2,7 +2,7 @@
 
 @inject IStringLocalizer<App> Localizer
 @inject NavigationManager MyNavigationManager
-
+@inject AppState _AppState
 
 
 
@@ -69,8 +69,8 @@
 
 
 @code {
-    [Parameter]
-    public EventCallback<string> OnChangeLocationClick { get; set; }
+    //[Parameter]
+    //public EventCallback<string> OnChangeLocationClick { get; set; }
 
     bool collapseNavMenu = true;
     bool showSubMenu = false;
@@ -115,14 +115,18 @@
     private void OnLocationChanged(object sender, LocationChangedEventArgs args)
     {
         NewLocation = args.Location;
-        base.InvokeAsync(async () =>
-        {
-            await Task.Delay(1);  // wait for blazor to populate route parameters
-            await OnChangeLocationClick.InvokeAsync(NewLocation);
-            StateHasChanged();
-        });
 
-        
+        _AppState.SetUrl(NewLocation);
+
+
+        //base.InvokeAsync(async () =>
+        //{
+        //    await Task.Delay(1);  // wait for blazor to populate route parameters
+        //    await OnChangeLocationClick.InvokeAsync(NewLocation);
+        //    StateHasChanged();
+        //});
+
+
     }
 
 

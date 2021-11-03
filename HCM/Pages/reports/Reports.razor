@@ -15,6 +15,7 @@
 @inject IFiltersData _filtersData;
 @inject ILocalStorageService _storageService
 @inject NavigationManager NavigationManager
+@inject AppState _AppState
 
 @attribute [Authorize]
 
@@ -209,32 +210,32 @@
     }
     else
     {
-<SfGrid @ref="AliasDetailObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
-    <GridPageSettings PageSize="25"></GridPageSettings>
-    <GridEvents CommandClicked="AliasDetailSfGrid_OnCommandClicked" TValue="CaseModel"></GridEvents>
-    <GridColumns>
-        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80"></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer["Cases_List_Category"]" Width="120"></GridColumn>
-        <GridColumn HeaderText="@Localizer["Cases_List_Status"]" Width="100">
-            <Template>
-                @{
-                    var aliasCases = (context as CaseModel);
-                    <div>
-                        @Localizer["Case_Status_" + aliasCases.CaseStatusID.ToString()]
-                    </div>
-                }
-            </Template>
-        </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.AliasName) HeaderText="@Localizer["Cases_List_AliasName"]"></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.ContactName) HeaderText="@Localizer["Cases_List_Contact"]" Width="120"></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Type="ColumnType.Date" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="140"></GridColumn>
-        <GridColumn HeaderText="" Width="80">
-            <GridCommandColumns>
-                <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
-            </GridCommandColumns>
-        </GridColumn>
-    </GridColumns>
-</SfGrid>
+        <SfGrid @ref="AliasDetailObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+            <GridPageSettings PageSize="25"></GridPageSettings>
+            <GridEvents CommandClicked="AliasDetailSfGrid_OnCommandClicked" TValue="CaseModel"></GridEvents>
+            <GridColumns>
+                <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80"></GridColumn>
+                <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer["Cases_List_Category"]" Width="120"></GridColumn>
+                <GridColumn HeaderText="@Localizer["Cases_List_Status"]" Width="100">
+                    <Template>
+                        @{
+                            var aliasCases = (context as CaseModel);
+                            <div>
+                                @Localizer["Case_Status_" + aliasCases.CaseStatusID.ToString()]
+                            </div>
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn Field=@nameof(CaseModel.AliasName) HeaderText="@Localizer["Cases_List_AliasName"]"></GridColumn>
+                <GridColumn Field=@nameof(CaseModel.ContactName) HeaderText="@Localizer["Cases_List_Contact"]" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" Type="ColumnType.Date" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="140"></GridColumn>
+                <GridColumn HeaderText="" Width="80">
+                    <GridCommandColumns>
+                        <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
+                    </GridCommandColumns>
+                </GridColumn>
+            </GridColumns>
+        </SfGrid>
     }
 
 }
@@ -307,8 +308,33 @@
             BindFilterListBox();
         }
 
+        _AppState.OnChange -= onUrlChanged;
+        _AppState.OnChange += onUrlChanged;
+    }
+
+    private void onUrlChanged()
+    {
+        if (_AppState.SelectedUrl.Contains("reports/reports") )
+        {
+
+            ShowDashboardComponent = true;
+            _Cases = new List<CaseModel>() { };
+
+            //StatusID = null;
+            //StatusDefaultValue = StatusID == null ? "-1" : StatusID.ToString();
+            //ResultID = null;
+            //ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
+            //WithAliasID = null;
+
+            base.InvokeAsync(async () =>
+            {
+                StateHasChanged();
+            });
+
+        }
 
     }
+
     protected override async Task OnParametersSetAsync()
     {
         await OnInitializedAsync();
@@ -409,7 +435,7 @@
         }
         catch { };
 
-        int contactID  =-1;
+        int contactID = -1;
         if (await _storageService.ContainKeyAsync("User"))
         {
             var userInfo = await _storageService.GetItemAsync<UsersModel>("User");
@@ -430,7 +456,7 @@
                 CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, _caseid, ProfileID, FilterCustomerNameValue);
         }
 
-        StateHasChanged();
+        //StateHasChanged();
 
     }
     async Task ClearFilter()
@@ -487,7 +513,7 @@
             {
                 AppID = _AppID;
 
-                if (this.CategoryComboObj != null )
+                if (this.CategoryComboObj != null)
                     this.CategoryComboObj.Clear();
                 if (this.ProfileComboObj != null)
                     this.ProfileComboObj.Clear();
@@ -552,7 +578,7 @@
         if (StatusID == -1)
             StatusID = null;
 
-        StatusDefaultValue = StatusID == null ? "-1": StatusID.ToString();
+        StatusDefaultValue = StatusID == null ? "-1" : StatusID.ToString();
 
         FilterChanged?.Invoke(true);
         StateHasChanged();
@@ -607,8 +633,10 @@
         ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
         WithAliasID = null;
         ShowDashboardComponent = false;
-        await onGo_Click();
+        //await onGo_Click();
         StateHasChanged();
+        await Task.Delay(2000);  // wait for blazor to populate route parameters
+        await onGo_Click();
     }
     private async Task OnChangeResultEvent(int value)
     {
@@ -618,17 +646,23 @@
         ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
         WithAliasID = null;
         ShowDashboardComponent = false;
-        await onGo_Click();
+        //await onGo_Click();
         StateHasChanged();
+        await Task.Delay(2000);  // wait for blazor to populate route parameters
+        await onGo_Click();
     }
     private async Task OnChangeCaseCountEvent(int value)
     {
         StatusID = null;
+        StatusDefaultValue = StatusID == null ? "-1" : StatusID.ToString();
         ResultID = null;
+        ResultDefaultValue = ResultID == null ? "-1" : ResultID.ToString();
         WithAliasID = value;
         ShowDashboardComponent = false;
-        await onGo_Click();
+        //await onGo_Click();
         StateHasChanged();
+        await Task.Delay(2000);  // wait for blazor to populate route parameters
+        await onGo_Click();
     }
 
 }
