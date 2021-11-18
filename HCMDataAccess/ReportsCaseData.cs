@@ -45,14 +45,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
                     return _CaseModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -87,14 +87,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
                     return _CaseModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -125,14 +125,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
                     return _CaseModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -163,12 +163,12 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);                                      
+                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);                                      
 
                     return result.ToList<CaseModel>();
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -199,14 +199,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
                     return _CaseModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }

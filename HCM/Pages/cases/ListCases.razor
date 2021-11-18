@@ -43,11 +43,12 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@_NoItemSelected">
-                    <SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>
-                    <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
+                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@Localizer["Value_All_Text"]" ShowClearButton="true" DataSource="@_Gates">
+                    @*<SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@_NoItemSelected">*@
+                    @*<SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>*@
+                    <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform" Created="GateComboObj_OnCreated"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
-                </SfComboBox>
+                     </SfComboBox>
             </div>
         </div>
         <div class="col-sm-4 form-inline control_padding">
@@ -78,7 +79,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_ProfileID"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" Placeholder="@_NoItemSelected" DataSource="@_Profile">
+                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Profile">
                     <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -103,7 +104,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Category"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" Placeholder="@_NoItemSelected" DataSource="@_Category">
+                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Category">
                     <ComboBoxFieldSettings Text="CaseType" Value="CaseTypeID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -218,6 +219,8 @@
 
     private bool OnlyActiveIsChecked = true;
 
+    private List<FiltersModels.GateModel> _Gates;
+
     private List<Case> Cases { get; set; }
     //private List<Order> Orders { get; set; }
     private List<FiltersModels.CaseStatusModel> Statuses
@@ -237,9 +240,15 @@
 
 
 
-    protected override async Task OnInitializedAsync()
-    {
+    //protected override async Task OnInitializedAsync()
+    //{
+        //_Gates = await _filtersData.GetGates();
         //_listCase = await _caseDB.GetCasesList(null, null, null, null, 1, null, null, null, null, null, "a");
+    //}
+    public async void GateComboObj_OnCreated()
+    {
+        _Gates = await _filtersData.GetGates();
+        StateHasChanged();
     }
     async Task onGo_Click()
     {

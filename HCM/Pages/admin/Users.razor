@@ -101,7 +101,7 @@
                         <div class="col-sm-12 form-inline control_padding">
                             <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
                             <div class="col-sm-5 control_padding">
-                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" @bind-Value="@_editUserInfo.LoginName">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" Readonly="true" @bind-Value="@_editUserInfo.LoginName">
                                 </SfTextBox>
                             </div>
 
@@ -173,7 +173,7 @@
                         <div class="col-sm-12 form-inline control_padding">
                             <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersNewPassowrdLabel"]</label>
                             <div class="col-sm-4 control_padding">
-                                <SfTextBox @ref="Password1ID" Placeholder="@Localizer["Admin_UsersNewPassowrdLabel"]" @bind-Value="_HCMChangePassword.Password1Value">
+                                <SfTextBox @ref="Password1ID" Placeholder="@Localizer["Admin_UsersNewPassowrdLabel"]" Type="InputType.Password" @bind-Value="_HCMChangePassword.Password1Value">
                                 </SfTextBox>
                             </div>
                             <div class="col-md-5 profilWizadrdText"><ValidationMessage For="@(() => _HCMChangePassword.Password1Value)" /> </div>
@@ -184,7 +184,7 @@
                         <div class="col-sm-12 form-inline control_padding">
                             <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersPassowrdConfirmLabel"]</label>
                             <div class="col-sm-4 control_padding">
-                                <SfTextBox @ref="Password2ID" Placeholder="@Localizer["Admin_UsersPassowrdConfirmLabel"]" @bind-Value="_HCMChangePassword.Password2Value">
+                                <SfTextBox @ref="Password2ID" Placeholder="@Localizer["Admin_UsersPassowrdConfirmLabel"]" Type="InputType.Password" @bind-Value="_HCMChangePassword.Password2Value">
                                 </SfTextBox>
                             </div>
                             <div class="col-md-5 profilWizadrdText"><ValidationMessage For="@(() => _HCMChangePassword.Password1Value)" /> </div>
@@ -315,7 +315,7 @@
                         <div class="col-sm-12 form-inline control_padding">
                             <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_PasswordLabel"]</label>
                             <div class="col-sm-5 control_padding">
-                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_PasswordLabel"]" @bind-Value="@_newUserInfo.Password">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_PasswordLabel"]" Type="InputType.Password"  @bind-Value="@_newUserInfo.Password">
                                 </SfTextBox>
                             </div>
                             <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.Password)" /> </div>
@@ -412,10 +412,10 @@
     public class HCMChangePassword
     {
         [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
-        [MinLength(3, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(6, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
         public string Password1Value { get; set; }
         [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
-        [MinLength(3, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(6, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
         [Compare("Password1Value", ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
         public string Password2Value { get; set; }
     }
@@ -444,7 +444,7 @@
         [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
         public string FunctionInFirma { get; set; }
         [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
-        [MinLength(3, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(6, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
         public string Password { get; set; }
 
     }
@@ -536,6 +536,11 @@
         {
             //ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
             ErrDialogContent = "<p>" + Localizer["Admin_Users_Create_Error"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else if (result == -100)
+        {
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_UserNameExists"] + "</p>";
             this.ErrDialogVisibility = true;
         }
         else

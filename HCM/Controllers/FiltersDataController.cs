@@ -22,23 +22,8 @@ namespace HCM.Controllers
         [Route("GetGates")]
         public object GetGates()
         {
-            return _filtersData.GetGates().AsQueryable();
-
-            //IQueryable<FiltersModels.FilterGateModel> data = _filtersData.GetGates().AsQueryable();
-            //var count = data.Count();
-            //var queryString = Request.Query;
-            //if (queryString.Keys.Contains("$inlinecount"))
-            //{
-            //    StringValues Skip;
-            //    StringValues Take;
-            //    int skip = (queryString.TryGetValue("$skip", out Skip)) ? Convert.ToInt32(Skip[0]) : 0;
-            //    int top = (queryString.TryGetValue("$top", out Take)) ? Convert.ToInt32(Take[0]) : data.Count();
-            //    return new { Items = data.Skip(skip).Take(top), Count = count };
-            //}
-            //else
-            //{
-            //    return data;
-            //}
+            //return _filtersData.GetGates().AsQueryable();
+            return null;
         }
 
         //[HttpGet]

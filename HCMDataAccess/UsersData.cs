@@ -30,14 +30,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<UsersModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<UsersModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<UsersModel> _UsersModel = result.ToList<UsersModel>();
 
                     return _UsersModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -161,30 +161,30 @@ namespace HCMDataAccess
             }
         }
 
-        public async Task<int> IsUsernameExists(string LoginName)
-        {
-            var procedure = "USERS_IsUsernameExists";
-            var _params = new DynamicParameters();
+        //public async Task<int> IsUsernameExists(string LoginName)
+        //{
+        //    var procedure = "USERS_IsUsernameExists";
+        //    var _params = new DynamicParameters();
 
-            _params.Add(name: "@userID", dbType: DbType.String, direction: ParameterDirection.Input, value: LoginName);
+        //    _params.Add(name: "@userID", dbType: DbType.String, direction: ParameterDirection.Input, value: LoginName);
 
-            _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+        //    _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
-                {
+        //    try
+        //    {
+        //        using (var conn = new SqlConnection(_db.GetConnStrName()))
+        //        {
 
-                    var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
-                    int ReturnValue = _params.Get<int>("@ReturnValue");
-                    return ReturnValue;
+        //            var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+        //            int ReturnValue = _params.Get<int>("@ReturnValue");
+        //            return ReturnValue;
 
-                }
-            }
-            catch
-            {
-                return -1;
-            }
-        }
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return -1;
+        //    }
+        //}
     }
 }

@@ -124,7 +124,7 @@ namespace HCMApi
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -211,7 +211,7 @@ namespace HCMApi
 
                 }
             }
-            catch ( Exception ex)
+            catch //( Exception ex)
             {
                 return false;
             }
@@ -245,7 +245,7 @@ namespace HCMApi
 
                 }
             }
-            catch ( Exception ex)
+            catch //( Exception ex)
             {
                 return false;
             }
@@ -281,7 +281,7 @@ namespace HCMApi
 
                 }
             }
-            catch ( Exception ex)
+            catch //( Exception ex)
             {
                 return false;
             }
@@ -316,7 +316,7 @@ namespace HCMApi
 
                 }
             }
-            catch ( Exception ex)
+            catch //( Exception ex)
             {
                 return false;
             }
@@ -363,7 +363,7 @@ namespace HCMApi
                     return _CMSProfile;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }

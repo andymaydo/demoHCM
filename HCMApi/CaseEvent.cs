@@ -61,7 +61,7 @@ namespace HCMApi
                     return _CaseEvent;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -105,7 +105,7 @@ namespace HCMApi
 
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return -1;
             }
@@ -237,7 +237,7 @@ namespace HCMApi
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }

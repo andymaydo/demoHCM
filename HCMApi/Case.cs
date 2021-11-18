@@ -82,7 +82,7 @@ namespace HCMApi
                     return _CaseList;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -150,7 +150,7 @@ namespace HCMApi
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -231,7 +231,7 @@ namespace HCMApi
                     return -1;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return -1;
             }
@@ -258,7 +258,7 @@ namespace HCMApi
                     return 1;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return -1;
             }
@@ -291,7 +291,7 @@ namespace HCMApi
                     return _CaseStatusList;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }

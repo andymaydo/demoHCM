@@ -1177,8 +1177,8 @@
             ShowAddAliasDialog = false;
             ShowChangeStatusDialog = false;
 
-            await IsUserAliasManager();
-            await IsUserModerator();
+            IsUserAliasManager();
+            IsUserModerator();
 
             StateHasChanged();
         }
@@ -1203,21 +1203,21 @@
         }
     }
 
-    private async Task AddMessageDialogSetStatus()
+    private void AddMessageDialogSetStatus()
     {
         ClearAllCheckboxList();
         this.NewNoteDialogVisibility = true;
         StateHasChanged();
     }
 
-    private async Task AddUserDialogSetStatus()
+    private void AddUserDialogSetStatus()
     {
         ClearAllCheckboxList();
         this.NewUserDialogVisibility = true;
         StateHasChanged();
     }
 
-    private async Task ChangeStatusDialogSetStatus()
+    private void ChangeStatusDialogSetStatus()
     {
         ClearAllCheckboxList();
         foreach (CheckboxListDataModel cb in ParticipantsUsers_CheckboxListData)
@@ -1229,7 +1229,7 @@
         StateHasChanged();
     }
 
-    private async Task AddAliasDialogSetStatus()
+    private void AddAliasDialogSetStatus()
     {
         ClearAllCheckboxList();
         this.AddAliasDialogVisibility = true;
@@ -1345,7 +1345,7 @@
 
     }
 
-    public async Task IsUserAliasManager()
+    public void IsUserAliasManager()
     {
 
 
@@ -1380,7 +1380,7 @@
 
     }
 
-    public async Task IsUserModerator()
+    public void IsUserModerator()
     {
         if (_CMSProfileModel != null)
         {
@@ -1788,7 +1788,7 @@
     // **************************************************************************************************
     public async Task AddAliasDialogDialog_Save()
     {
-        string xmlResult = "";//aliasout.AsXml().ToString();
+        //string xmlResult = "";//aliasout.AsXml().ToString();
 
         AliasOut aliasout = new AliasOut();
 

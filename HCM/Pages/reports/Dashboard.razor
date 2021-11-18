@@ -91,9 +91,9 @@
     public EventCallback<int> OnChangeCaseCountClick { get; set; }
 
 
-    List<CaseModel> _ReportCaseByStatusList { get; set; }
-    List<CaseModel> _ReportCaseByResultList { get; set; }
-    List<CaseModel> _ReportAliasCountList { get; set; }
+    List<CaseModel> _ReportCaseByStatusList { get; set; } = new List<CaseModel>();
+    List<CaseModel> _ReportCaseByResultList { get; set; } = new List<CaseModel>();
+    List<CaseModel> _ReportAliasCountList { get; set; } = new List<CaseModel>();
 
     int? _contactID = null;
     int? _caseid = null;
@@ -104,10 +104,10 @@
     protected override async Task OnInitializedAsync()
     {
         ParentReports.FilterChanged += FilterChangedEvent;
-        BindDashboardData();
+        await BindDashboardData();
 
     }
-    private async void BindDashboardData()
+    private async Task  BindDashboardData()
     {
 
         _ReportCaseByStatusList = await _reportsCaseData.CaseByStatus(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
@@ -127,7 +127,10 @@
 
     public void FilterChangedEvent(bool IsAction)
     {
-        BindDashboardData();
+        base.InvokeAsync(async () =>
+        {
+            await BindDashboardData();
+        });
     }
 
     private async Task SetFilterByStatusID(int filter)

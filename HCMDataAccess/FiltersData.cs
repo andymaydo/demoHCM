@@ -21,7 +21,7 @@ namespace HCMDataAccess
             _db = db;
         }
 
-        public List<GateModel> GetGates()
+        public async Task<List<GateModel>> GetGates()
         {
             var procedure = "CaseData_Application_GetList";
             var _params = new DynamicParameters();
@@ -32,14 +32,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result =  conn.Query<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result =  await conn.QueryAsync<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<GateModel> _FilterGateModel = result.ToList<GateModel>();
 
                     return _FilterGateModel;
                 }
             }
-            catch ( Exception ex)
+            catch //( Exception ex)
             {
                 return null;
             }
@@ -64,7 +64,7 @@ namespace HCMDataAccess
                     return _FilterProfileModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -89,7 +89,7 @@ namespace HCMDataAccess
                     return _FilterCategoryModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -115,7 +115,7 @@ namespace HCMDataAccess
                     return _FilterResultsModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -139,7 +139,7 @@ namespace HCMDataAccess
                     return _FilterStatusModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -165,7 +165,7 @@ namespace HCMDataAccess
                     return _FilterStatusModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -189,7 +189,7 @@ namespace HCMDataAccess
                     return _FilterStatusModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
@@ -214,7 +214,7 @@ namespace HCMDataAccess
                     return _ProfileStatusModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }

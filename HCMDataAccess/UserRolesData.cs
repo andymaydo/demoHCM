@@ -41,7 +41,7 @@ namespace HCMDataAccess
                     return _UserRolesModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }

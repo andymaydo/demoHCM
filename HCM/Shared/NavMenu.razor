@@ -79,7 +79,7 @@
 
     public string NewLocation { get; set; } = "";
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         //showSubMenu = false;
         //if (MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri).IndexOf("admin") != -1)
@@ -92,7 +92,7 @@
         NewLocation = MyNavigationManager.Uri;
 
     }
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
         showSubMenu = false;
         if (MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri).IndexOf("admin") != -1)

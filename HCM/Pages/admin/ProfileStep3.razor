@@ -103,7 +103,7 @@
 
     <SfGrid @ref="_caseEscalationUsersObj" DataSource="@_caseEscalationUsers" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
         <GridPageSettings PageSize="25"></GridPageSettings>
-        <GridEvents CommandClicked="caseEscalationUsers_OnCommandClicked" TValue="CaseContact"></GridEvents>
+        @*<GridEvents CommandClicked="caseEscalationUsers_OnCommandClicked" TValue="CaseContact"></GridEvents>*@
         <GridColumns>
             <GridColumn Field=@nameof(CaseContact.Name) HeaderText="@Localizer["Cases_ChangeUsers_List_Name"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left"></GridColumn>
             <GridColumn Field=@nameof(CaseContact.Email) HeaderText="@Localizer["Cases_ChangeUsers_List_Email"]" Width="150"></GridColumn>
@@ -278,8 +278,8 @@
                 StateHasChanged();
             }
         }
-        async Task caseEscalationUsers_OnCommandClicked(CommandClickEventArgs<CaseContact> args)
-        {
+        //async Task caseEscalationUsers_OnCommandClicked(CommandClickEventArgs<CaseContact> args)
+        //{
             //if (args.CommandColumn.Type == CommandButtonType.Delete)
             //{
             //    var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
@@ -295,7 +295,7 @@
 
             //    StateHasChanged();
             //}
-        }
+        //}
 
         protected override void OnAfterRender(bool firstRender)
         {

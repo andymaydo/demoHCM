@@ -27,9 +27,11 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@Localizer["Value_All_Text"]">
-                    <SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>
+                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@Localizer["Value_All_Text"]" ShowClearButton="false" DataSource="@_Gates">
+                    @*<SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" Placeholder="@Localizer["Value_All_Text"]">*@
+                    @*<SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>*@
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
+                    <ComboBoxEvents TValue="String" TItem="FiltersModels.GateModel" Created="GateComboObj_OnCreated"></ComboBoxEvents>
                 </SfComboBox>
             </div>
         </div>
@@ -68,7 +70,7 @@
     <div class="row">
         <div class="col-sm">
             <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer["Button_Filter"]" IsToggle="true" @onclick="onGo_Click"></SfButton>
-            <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]" IsToggle="true" @onclick="ClearFilter"></SfButton>
+            @*<SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]" IsToggle="true" @onclick="ClearFilter"></SfButton>*@
         </div>
     </div>
 
@@ -92,7 +94,7 @@
     </div>
 </div>
 
-<SfGrid DataSource="@ProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true">
+<SfGrid DataSource="@_ProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true">
     <GridPageSettings PageSize="25"></GridPageSettings>
     <GridEvents CommandClicked="OnCommandClicked" TValue="CMSProfile"></GridEvents>
     <GridColumns>
@@ -110,11 +112,13 @@
 </SfGrid>
 
 @code {
+
+    private List<FiltersModels.GateModel> _Gates { get; set; }
+
     SfComboBox<string, FiltersModels.GateModel> GateComboObj;
     SfComboBox<string, FiltersModels.ProfileStatusModel> StatusComboObj;
     private bool ShowDeletedIsChecked = true;
-    //private string _NoItemSelected = Localizer["Value_All_Text"];
-    private List<CMSProfile> ProfileList { get; set; }
+    private List<CMSProfile> _ProfileList { get; set; }
 
     private List<FiltersModels.ProfileStatusModel> Statuses
     {
@@ -134,8 +138,18 @@
 
     protected override async Task OnInitializedAsync()
     {
-        ProfileList = await _CMSProfile.GetList(null, null);
+        _ProfileList = await _CMSProfile.GetList(null, null);
+        StateHasChanged();
+        await base.OnInitializedAsync();
+
     }
+    public async void GateComboObj_OnCreated()
+    {
+        _Gates = await _filtersData.GetGates();
+        StateHasChanged();
+    }
+
+
 
     async Task onGo_Click()
     {
@@ -153,11 +167,11 @@
                 _profilestatusid = Convert.ToInt32(StatusComboObj.Value);
         }
         catch { };
-        ProfileList = await _CMSProfile.GetList(_appid, _profilestatusid);
+        _ProfileList = await _CMSProfile.GetList(_appid, _profilestatusid);
     }
-    async Task ClearFilter()
-    {
-    }
+    //async Task ClearFilter()
+    //{
+    //}
     async Task onCreateNew_Click()
     {
         var ProfileStatusInfo = new StatusProfileModel()

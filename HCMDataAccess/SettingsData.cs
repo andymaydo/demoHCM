@@ -31,14 +31,14 @@ namespace HCMDataAccess
             {
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = conn.Query<SettingsModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<SettingsModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                     List<SettingsModel> _SettingsModel = result.ToList<SettingsModel>();
 
                     return _SettingsModel;
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 return null;
             }
