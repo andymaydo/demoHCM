@@ -1,29 +1,30 @@
 ﻿
 @inject IStringLocalizer<App> Localizer
 @inject ILocalStorageService storageService;
+@inject NavigationManager MyNavigationManager
 
 
 @attribute [Authorize]
 
 
-<div class="col-12 control_padding">
-    <SfButton CssClass="e-link newProfileLink" OnClick="onMenu1Click">@Localizer["Profile_Step_Allgemeine"]</SfButton>
+<div class="col-12 control_padding @Menu1CSS">
+    <SfButton CssClass="e-link profileLink" OnClick="onMenu1Click">@Localizer["Profile_Step_Allgemeine"]</SfButton>
 </div>
-<div class="col-12 control_padding">
-    <SfButton CssClass="e-link newProfileLink" OnClick="onMenu2Click">@Localizer["Profile_Step_Teilnehmen"]</SfButton>
+<div class="col-12 control_padding @Menu2CSS">
+    <SfButton CssClass="e-link profileLink" OnClick="onMenu2Click">@Localizer["Profile_Step_Teilnehmen"]</SfButton>
 </div>
-<div class="col-12 control_padding">
-    <SfButton CssClass="e-link newProfileLink" OnClick="onMenu3Click">@Localizer["Profile_Step_Escalation"]</SfButton>
+<div class="col-12 control_padding @Menu3CSS">
+    <SfButton CssClass="e-link profileLink" OnClick="onMenu3Click">@Localizer["Profile_Step_Escalation"]</SfButton>
 </div>
-<div class="col-12 control_padding">
-    <SfButton CssClass="e-link newProfileLink" OnClick="onMenu4Click">@Localizer["Profile_Step_Status"]</SfButton>
+<div class="col-12 control_padding @Menu4CSS">
+    <SfButton CssClass="e-link profileLink" OnClick="onMenu4Click">@Localizer["Profile_Step_Status"]</SfButton>
 </div>
 <div class="row">
     <br />
 </div>
 
-<div class="col-12 control_padding">
-    <SfButton CssClass="e-link newProfileLink" OnClick="onMenu5Click">@Localizer["Profile_Step_AllView"]</SfButton>
+<div class="col-12 control_padding @Menu5CSS">
+    <SfButton CssClass="e-link profileLink" OnClick="onMenu5Click">@Localizer["Profile_Step_AllView"]</SfButton>
 </div>
 
 
@@ -35,10 +36,15 @@
     public int Step { get; set; }
 
     public bool Menu1Disabled = true;
+    public string Menu1CSS = "profile-menu-item-normal";
     public bool Menu2Disabled = true;
+    public string Menu2CSS = "profile-menu-item-normal";
     public bool Menu3Disabled = true;
+    public string Menu3CSS = "profile-menu-item-normal";
     public bool Menu4Disabled = true;
+    public string Menu4CSS = "profile-menu-item-normal";
     public bool Menu5Disabled = true;
+    public string Menu5CSS = "profile-menu-item-normal";
 
     protected override async Task OnInitializedAsync()
     {
@@ -99,17 +105,34 @@
         if (Step == 1)
         {
             Menu1Disabled = false;
+            Menu1CSS = "profile-menu-item-while";
+            Menu2CSS = "profile-menu-item-normal";
+            Menu3CSS = "profile-menu-item-normal";
+            Menu4CSS = "profile-menu-item-normal";
+            Menu5CSS = "profile-menu-item-normal";
         }
         else if (Step == 2)
         {
             Menu1Disabled = false;
             Menu2Disabled = false;
+
+            Menu1CSS = "profile-menu-item-normal";
+            Menu2CSS = "profile-menu-item-while";
+            Menu3CSS = "profile-menu-item-normal";
+            Menu4CSS = "profile-menu-item-normal";
+            Menu5CSS = "profile-menu-item-normal";
         }
         else if (Step == 3)
         {
             Menu1Disabled = false;
             Menu2Disabled = false;
             Menu3Disabled = false;
+
+            Menu1CSS = "profile-menu-item-normal";
+            Menu2CSS = "profile-menu-item-normal";
+            Menu3CSS = "profile-menu-item-while";
+            Menu4CSS = "profile-menu-item-normal";
+            Menu5CSS = "profile-menu-item-normal";
         }
         else if (Step == 4)
         {
@@ -117,6 +140,12 @@
             Menu2Disabled = false;
             Menu3Disabled = false;
             Menu4Disabled = false;
+
+            Menu1CSS = "profile-menu-item-normal";
+            Menu2CSS = "profile-menu-item-normal";
+            Menu3CSS = "profile-menu-item-normal";
+            Menu4CSS = "profile-menu-item-while";
+            Menu5CSS = "profile-menu-item-normal";
         }
         else if (Step == 5)
         {
@@ -125,6 +154,12 @@
             Menu3Disabled = false;
             Menu4Disabled = false;
             Menu5Disabled = false;
+
+            Menu1CSS = "profile-menu-item-normal";
+            Menu2CSS = "profile-menu-item-normal";
+            Menu3CSS = "profile-menu-item-normal";
+            Menu4CSS = "profile-menu-item-normal";
+            Menu5CSS = "profile-menu-item-while";
         }
         StateHasChanged();
     }

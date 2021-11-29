@@ -103,7 +103,7 @@
 
     <SfGrid @ref="_caseEscalationUsersObj" DataSource="@_caseEscalationUsers" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
         <GridPageSettings PageSize="25"></GridPageSettings>
-        @*<GridEvents CommandClicked="caseEscalationUsers_OnCommandClicked" TValue="CaseContact"></GridEvents>*@
+        <GridEvents CommandClicked="caseEscalationUsers_OnCommandClicked" TValue="CaseContact"></GridEvents>
         <GridColumns>
             <GridColumn Field=@nameof(CaseContact.Name) HeaderText="@Localizer["Cases_ChangeUsers_List_Name"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left"></GridColumn>
             <GridColumn Field=@nameof(CaseContact.Email) HeaderText="@Localizer["Cases_ChangeUsers_List_Email"]" Width="150"></GridColumn>
@@ -278,24 +278,24 @@
                 StateHasChanged();
             }
         }
-        //async Task caseEscalationUsers_OnCommandClicked(CommandClickEventArgs<CaseContact> args)
-        //{
-            //if (args.CommandColumn.Type == CommandButtonType.Delete)
-            //{
-            //    var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
-            //    if (ProfileStatusInfo.cmsProfile.escalationRules != null && ProfileStatusInfo.cmsProfile.escalationRules.Count > 0)
-            //    {
-            //        CaseRule _CaseRule = ProfileStatusInfo.cmsProfile.escalationRules.Where(c => c.CaseStatusID == args.RowData.CaseStatusID).FirstOrDefault();
-            //        if (_CaseRule != null)
-            //            ProfileStatusInfo.cmsProfile.escalationRules.Remove(_CaseRule);
-            //    }
+        async Task caseEscalationUsers_OnCommandClicked(CommandClickEventArgs<CaseContact> args)
+        {
+            if (args.CommandColumn.Type == CommandButtonType.Delete)
+            {
+                var ProfileStatusInfo = await storageService.GetItemAsync<StatusProfileModel>("ProfileStatusInfo");
+                if (ProfileStatusInfo.cmsProfile.escalationUsers != null && ProfileStatusInfo.cmsProfile.escalationUsers.Count > 0)
+                {
+                    CaseContact _CaseContact = ProfileStatusInfo.cmsProfile.escalationUsers.Where(c => c.ContactID == args.RowData.ContactID).FirstOrDefault();
+                    if (_CaseContact != null)
+                        ProfileStatusInfo.cmsProfile.escalationUsers.Remove(_CaseContact);
+                }
 
-            //    await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
-            //    _caseRuleList = ProfileStatusInfo.cmsProfile.escalationRules;
+                await storageService.SetItemAsync("ProfileStatusInfo", ProfileStatusInfo);
+                _caseEscalationUsers = ProfileStatusInfo.cmsProfile.escalationUsers;
 
-            //    StateHasChanged();
-            //}
-        //}
+                StateHasChanged();
+            }
+        }
 
         protected override void OnAfterRender(bool firstRender)
         {

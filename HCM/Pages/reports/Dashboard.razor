@@ -6,6 +6,7 @@
 
 @inject IStringLocalizer<App> Localizer
 @inject IReportsCaseData _reportsCaseData;
+@inject ILocalStorageService _storageService
 
 @attribute [Authorize]
 
@@ -107,8 +108,15 @@
         await BindDashboardData();
 
     }
-    private async Task  BindDashboardData()
+    private async Task BindDashboardData()
     {
+        if (await _storageService.ContainKeyAsync("ReportFilterModel"))
+        {
+            var filterInfo = await _storageService.GetItemAsync<FiltersModels.ReportFilterModel>("ReportFilterModel");
+            _contactID = filterInfo.ContactID;
+            _caseid = filterInfo.CaseID;
+            _customerName = filterInfo.CustomerName;
+        }
 
         _ReportCaseByStatusList = await _reportsCaseData.CaseByStatus(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
             ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,

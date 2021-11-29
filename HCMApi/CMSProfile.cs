@@ -370,6 +370,41 @@ namespace HCMApi
 
         }
 
+        public async Task<List<CMSProfile>> GetDeleteList(int? AppID)
+        {
+            var procedure = "Profile_GetDeleteList";
+            var _params = new DynamicParameters();
+
+            if (AppID == null)
+            {
+                _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: System.DBNull.Value);
+            }
+            else
+            {
+                _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: AppID);
+            }
+            
+            
+            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            try
+            {
+                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                {
+                    var result = await conn.QueryAsync<CMSProfile>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                    List<CMSProfile> _CMSProfile = result.ToList<CMSProfile>();
+
+                    return _CMSProfile;
+                }
+            }
+            catch //(Exception ex)
+            {
+                return null;
+            }
+
+        }
+
         //public static DataTable GetDeleteList(int? AppID)
         //{
         //    SqlParameter[] parms = new SqlParameter[] {

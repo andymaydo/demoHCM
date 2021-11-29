@@ -34,20 +34,21 @@
             <div class="col-sm-5 form-inline control_padding">
                 <label class="col-sm-3 control_padding">@Localizer["SMTP_2"]</label>
                 <div class="col-sm-7 control_padding">
-                    <SfTextBox Placeholder="@Localizer["SMTP_2"]" @bind-Value="@_SettingsModel.SMTPServer">
+                    <SfTextBox Placeholder="@Localizer["SMTP_2"]" @bind-Value="@_SettingsModel.SMTPServer" ValueChange="SmtpServer_ValueChange">
                     </SfTextBox>
                 </div>
-                <div class="col-md-2 profilWizadrdText"><ValidationMessage For="@(() => _SettingsModel.SMTPServer)" /> </div>
             </div>
+            <div class="col-md-2 profilWizadrdText"><ValidationMessage For="@(() => _SettingsModel.SMTPServer)" /> </div>
         </div>
         <div class="row row_padding">
             <div class="col-sm-5 form-inline control_padding">
                 <label class="col-sm-3 control_padding">@Localizer["SMTP_3"]</label>
                 <div class="col-sm-3 control_padding">
-                    <SfTextBox @ref="SmtpServerPortID" Placeholder="@Localizer["SMTP_3"]" Value="@SmtpServerPortValue" ValueChange="SmtpServerPort_ValueChange">
+                    <SfTextBox Placeholder="@Localizer["SMTP_3"]" @bind-Value="@_SettingsModel.SMTPServerPort" ValueChange="SmtpServerPort_ValueChange">
                     </SfTextBox>
                 </div>
             </div>
+            <div class="col-md-2 profilWizadrdText"><ValidationMessage For="@(() => _SettingsModel.SMTPServerPort)" /> </div>
         </div>
         <div class="row row_padding">
             <div class="col-sm-5 form-inline control_padding">
@@ -62,20 +63,22 @@
                 <label class="col-sm-3 control_padding">&nbsp;</label>
                 <label class="col-sm-3 control_padding">@Localizer["SMTP_5"]</label>
                 <div class="col-sm-6 control_padding">
-                    <SfTextBox @ref="SmtpServerAuthUserID" Placeholder="@Localizer["SMTP_5"]" Value="@SmtpServerAuthUser" ValueChange="SmtpServerAuthUser_ValueChange">
+                    <SfTextBox  Placeholder="@Localizer["SMTP_5"]" @bind-Value="@_SettingsModel.SMTPServerUser" ValueChange="SmtpServerAuthUser_ValueChange">
                     </SfTextBox>
                 </div>
             </div>
+            <div class="col-md-2 profilWizadrdText"><ValidationMessage For="@(() => _SettingsModel.SMTPServerUser)" /> </div>
         </div>
         <div class="row row_padding">
             <div class="col-sm-5 form-inline control_padding">
                 <label class="col-sm-3 control_padding">&nbsp;</label>
                 <label class="col-sm-3 control_padding">@Localizer["SMTP_6"]</label>
                 <div class="col-sm-6 control_padding">
-                    <SfTextBox @ref="SmtpServerAuthPwdID" Placeholder="@Localizer["SMTP_6"]" Value="@SmtpServerAuthPwd" ValueChange="SmtpServerAuthPwd_ValueChange">
+                    <SfTextBox  Placeholder="@Localizer["SMTP_6"]" @bind-Value="@_SettingsModel.SMTPServerPass" ValueChange="SmtpServerAuthPwd_ValueChange">
                     </SfTextBox>
                 </div>
             </div>
+            <div class="col-md-2 profilWizadrdText"><ValidationMessage For="@(() => _SettingsModel.SMTPServerPass)" /> </div>
         </div>
 
         <div class="row">
@@ -105,18 +108,8 @@
 
 @code {
 
-
-    SfTextBox SmtpServerPortID;
-    public string SmtpServerPortValue { get; set; }
     int smtpPort = 25;
-
     private bool SmtpServerAuth = true;
-
-    SfTextBox SmtpServerAuthUserID;
-    public string SmtpServerAuthUser { get; set; }
-
-    SfTextBox SmtpServerAuthPwdID;
-    public string SmtpServerAuthPwd { get; set; }
 
     private bool ErrDialogVisibility { get; set; } = false;
     SfDialog ErrDialogID;
@@ -124,33 +117,43 @@
     private string ErrDialogContent { get; set; }
 
     SettingsModel _SettingsModel = new SettingsModel();
+#nullable enable
     private ValidationMessageStore? messageStore;
+#nullable disable
     private EditContext _SettingsEditContext;
 
     private void SmtpServer_ValueChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
     {
         //SmtpServerValue = args.Value;
         _SettingsModel.SMTPServer = args.Value;
+        HandleValidationRequested(null, null);
         StateHasChanged();
     }
     private void SmtpServerPort_ValueChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
     {
-        SmtpServerPortValue = args.Value;
+        //SmtpServerPortValue = args.Value;
+        _SettingsModel.SMTPServerPort = args.Value;
+        HandleValidationRequested(null,null);
         StateHasChanged();
     }
     private void SmtpServerAuth_OnChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
     {
         SmtpServerAuth = args.Checked;
+        HandleValidationRequested(null, null);
         StateHasChanged();
     }
     private void SmtpServerAuthUser_ValueChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
     {
-        SmtpServerAuthUser = args.Value;
+        //SmtpServerAuthUser = args.Value;
+        _SettingsModel.SMTPServerUser = args.Value;
+        HandleValidationRequested(null, null);
         StateHasChanged();
     }
     private void SmtpServerAuthPwd_ValueChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
     {
-        SmtpServerAuthPwd = args.Value;
+        //SmtpServerAuthPwd = args.Value;
+        _SettingsModel.SMTPServerPass = args.Value;
+        HandleValidationRequested(null, null);
         StateHasChanged();
     }
 
@@ -164,10 +167,10 @@
         if (_Settings != null && _Settings.Count > 0)
         {
             _SettingsModel.SMTPServer = _Settings[0].SMTPServer;
-            SmtpServerPortValue = _Settings[0].SMTPServerPort;
+            _SettingsModel.SMTPServerPort = _Settings[0].SMTPServerPort;
             SmtpServerAuth = _Settings[0].SMTPServerAuth;
-            SmtpServerAuthUser = _Settings[0].SMTPServerUser;
-            SmtpServerAuthPwd = _Settings[0].SMTPServerPass;
+            _SettingsModel.SMTPServerUser = _Settings[0].SMTPServerUser;
+            _SettingsModel.SMTPServerPass = _Settings[0].SMTPServerPass;
         }
 
 
@@ -177,10 +180,31 @@
     {
         messageStore?.Clear();
 
-        if (_SettingsModel?.SMTPServer == "")
+        if (string.IsNullOrEmpty(_SettingsModel?.SMTPServer))
         {
             messageStore?.Add(() => _SettingsModel.SMTPServer, Localizer["SMTP_9"]);
         }
+        if (string.IsNullOrEmpty(_SettingsModel?.SMTPServerPort))
+        {
+            messageStore?.Add(() => _SettingsModel.SMTPServerPort, Localizer["SMTP_10"]);
+        }
+        int _SMTPServerPort = 0;
+        if (!Int32.TryParse(_SettingsModel?.SMTPServerPort, out _SMTPServerPort))
+        {
+            messageStore?.Add(() => _SettingsModel.SMTPServerPort, Localizer["SMTP_10"]);
+        }
+        if (SmtpServerAuth)
+        {
+            if (string.IsNullOrEmpty(_SettingsModel?.SMTPServerUser ))
+            {
+                messageStore?.Add(() => _SettingsModel.SMTPServerUser, Localizer["SMTP_11"]);
+            }
+            if (string.IsNullOrEmpty(_SettingsModel?.SMTPServerPass))
+            {
+                messageStore?.Add(() => _SettingsModel.SMTPServerPass, Localizer["SMTP_12"]);
+            }
+        }
+
     }
 
 
@@ -199,41 +223,41 @@
         //    this.ErrDialogVisibility = true;
         //    return;
         //}
-        if (string.IsNullOrEmpty(SmtpServerPortValue))
-        {
-            ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
-            ErrDialogContent = "<p>" + Localizer["SMTP_10"] + "</p>";
-            this.ErrDialogVisibility = true;
-            return;
-        }
-        if (!Int32.TryParse(SmtpServerPortValue, out smtpPort))
-        {
-            ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
-            ErrDialogContent = "<p>" + Localizer["SMTP_10"] + "</p>";
-            this.ErrDialogVisibility = true;
-            return;
-        }
+        //if (string.IsNullOrEmpty(SmtpServerPortValue))
+        //{
+        //    ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+        //    ErrDialogContent = "<p>" + Localizer["SMTP_10"] + "</p>";
+        //    this.ErrDialogVisibility = true;
+        //    return;
+        //}
+        //if (!Int32.TryParse(SmtpServerPortValue, out smtpPort))
+        //{
+        //    ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+        //    ErrDialogContent = "<p>" + Localizer["SMTP_10"] + "</p>";
+        //    this.ErrDialogVisibility = true;
+        //    return;
+        //}
 
-        if (SmtpServerAuth)
-        {
-            if (string.IsNullOrEmpty(SmtpServerAuthUser))
-            {
-                ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
-                ErrDialogContent = "<p>" + Localizer["SMTP_11"] + "</p>";
-                this.ErrDialogVisibility = true;
-                return;
-            }
-            if (string.IsNullOrEmpty(SmtpServerAuthPwd))
-            {
-                ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
-                ErrDialogContent = "<p>" + Localizer["SMTP_12"] + "</p>";
-                this.ErrDialogVisibility = true;
-                return;
-            }
-        }
+        //if (SmtpServerAuth)
+        //{
+        //    if (string.IsNullOrEmpty(SmtpServerAuthUser))
+        //    {
+        //        ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+        //        ErrDialogContent = "<p>" + Localizer["SMTP_11"] + "</p>";
+        //        this.ErrDialogVisibility = true;
+        //        return;
+        //    }
+        //    if (string.IsNullOrEmpty(SmtpServerAuthPwd))
+        //    {
+        //        ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+        //        ErrDialogContent = "<p>" + Localizer["SMTP_12"] + "</p>";
+        //        this.ErrDialogVisibility = true;
+        //        return;
+        //    }
+        //}
 
         UsersModel _userInfo = await storageService.GetItemAsync<UsersModel>("User");
-        int resul = await _settingsData.ChangeSettings(_userInfo.UserID, _SettingsModel.SMTPServer, smtpPort, SmtpServerAuth, SmtpServerAuthUser, SmtpServerAuthPwd);
+        int resul = await _settingsData.ChangeSettings(_userInfo.UserID, _SettingsModel.SMTPServer, Convert.ToInt32(_SettingsModel.SMTPServerPort), SmtpServerAuth, _SettingsModel.SMTPServerUser, _SettingsModel.SMTPServerPass);
 
         if (resul == 0)
         {

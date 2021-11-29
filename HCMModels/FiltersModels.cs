@@ -39,5 +39,12 @@ namespace HCMModels
             public int ProfileStatusID { get; set; }
             public string ProfileStatus { get; set; }
         }
+
+        public class ReportFilterModel
+        {
+            public int? CaseID { get; set; }
+            public int? ContactID { get; set; }
+            public string CustomerName { get; set; }
+        }
     }
 }

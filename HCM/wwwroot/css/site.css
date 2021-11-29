@@ -42,6 +42,31 @@ body {
     /*line-height: 3rem;*/
     /*margin-top: 12px;*/
 }
+.profile-menu-item-while {
+    background-color: #598992;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+    .profile-menu-item-while .profileLink {
+        color: white !important;
+    }
+.profile-menu-item-normal {
+    background-color: #FFFFFF;
+}
+
+    .profile-menu-item-normal .profileLink {
+        color: #1a535d !important;
+    }
+
+
+
+/*.profileLinkWhite {
+    color: #FFFFFF !important;
+}
+.profileLink {
+    color: #1a535d !important;
+}*/
 
 .content {
     padding-top: 1.1rem;
@@ -510,9 +535,7 @@ a.btnShowMatch {
 .e-listview .e-list-item {
     font-size: 12px !important;
 }
-.newProfileLink {
-    color: #1a535d !important;
-}
+
 .e-hcm-custom-btn {
     border-radius: 0;
     height: 30px !important;

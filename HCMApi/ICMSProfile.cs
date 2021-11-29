@@ -8,6 +8,7 @@ namespace HCMApi
     {      
 
         Task<List<CMSProfile>> GetList(int? AppID, int? StatusID);
+        Task<List<CMSProfile>> GetDeleteList(int? AppID);
         Task<CMSProfileModel> CreateNew(int ModifiedBy, int appID, string profileName, string profilDescr, string EmailLanguage);
         Task<CMSProfileModel> ProfilCopy(int SourceProfilID, int ModifiedBy);
         CMSProfileModel Load(int _profileID);

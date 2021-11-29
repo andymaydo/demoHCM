@@ -187,7 +187,7 @@
 {
     if (WithAliasID == null)
     {
-        <SfGrid @ref="CaseDetailObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+        <SfGrid @ref="CaseDetailObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowSorting="true" AllowTextWrap="true">
             <GridPageSettings PageSize="25"></GridPageSettings>
             <GridEvents CommandClicked="CaseDetail_OnCommandClicked" TValue="CaseModel"></GridEvents>
             <GridColumns>
@@ -210,7 +210,7 @@
     }
     else
     {
-        <SfGrid @ref="AliasDetailObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+        <SfGrid @ref="AliasDetailObj" DataSource="@_Cases" AllowPaging="false" AllowResizing="false" AllowSorting="true" AllowTextWrap="true">
             <GridPageSettings PageSize="25"></GridPageSettings>
             <GridEvents CommandClicked="AliasDetailSfGrid_OnCommandClicked" TValue="CaseModel"></GridEvents>
             <GridColumns>
@@ -292,7 +292,7 @@
 
     public List<CaseModel> _Cases = new List<CaseModel>() { };
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         _AppState.OnChange -= onUrlChanged;
         _AppState.OnChange += onUrlChanged;
@@ -356,10 +356,21 @@
         _FilterProfileModel.ProfileID = -1;
         _Profile.Insert(0, _FilterProfileModel);
 
+        foreach (FiltersModels.CaseResultModel result in _Results)
+        {
+            result.CaseResult = Localizer["Case_Result_" + result.CaseResultID.ToString()];
+        }
+
         FiltersModels.CaseResultModel _FilterCaseResultModel = new FiltersModels.CaseResultModel();
         _FilterCaseResultModel.CaseResult = Localizer["Value_All_Text"];
         _FilterCaseResultModel.CaseResultID = -1;
         _Results.Insert(0, _FilterCaseResultModel);
+
+
+        foreach (FiltersModels.CaseStatusModel status in _Statuses)
+        {
+            status.CaseStatus = Localizer["Case_Status_" + status.CaseStatusID.ToString()];
+        }
 
         FiltersModels.CaseStatusModel _FilterCaseStatusModel = new FiltersModels.CaseStatusModel();
         _FilterCaseStatusModel.CaseStatus = Localizer["Value_All_Text"];
@@ -376,12 +387,6 @@
 
     async Task onGo_Click()
     {
-        if (ShowDashboardComponent)
-        {
-            FilterChanged?.Invoke(true);
-            return;
-        }
-
         int? _caseid = null;
         try
         {
@@ -389,6 +394,23 @@
                 _caseid = Convert.ToInt32(FilterCaseIDValue);
         }
         catch { };
+
+        var filterInfo = new FiltersModels.ReportFilterModel()
+        {
+            CaseID = _caseid,
+            CustomerName = FilterCustomerNameValue
+        };
+
+        await _storageService.SetItemAsync("ReportFilterModel", filterInfo);
+
+
+        if (ShowDashboardComponent)
+        {
+            FilterChanged?.Invoke(true);
+            return;
+        }
+
+
 
 
 
