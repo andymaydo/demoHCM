@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>25d027fb-faa0-4922-93ec-c6fbbe1b3a9f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorDownloadFile" Version="2.1.6" />
-    <PackageReference Include="Blazored.LocalStorage" Version="4.1.2" />
+    <PackageReference Include="BlazorDownloadFile" Version="2.3.1" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Radzen.Blazor" Version="2.18.6" />
