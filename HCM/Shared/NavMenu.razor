@@ -1,52 +1,47 @@
-﻿
-
-@inject IStringLocalizer<App> Localizer
+﻿@inject IStringLocalizer<App> Localizer
 @inject NavigationManager MyNavigationManager
 @inject AppState _AppState
 
 
 
-<nav class="navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow mb-3 fixed-top">
-    <div class="container">
-        <div class="row row_padding">
-            <div class="col-sm-12 control_padding">
-                <img alt="SAPPER H.C.M." src="/images/logo.jpg" height="80" width="1000">
+<nav class="navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 fixed-top">
+    <div class="container-fluid">
+
+        <div class="col-sm-12">
+            <img alt="SAPPER H.C.M." src="/images/sapper_logo.jpg">
+        </div>
+
+        <div class="col-sm-12">
+            <button class="navbar-toggler" @onclick="ToggleNavMenu" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onmousedown="() => expandAdmin = false">@Localizer["MainMenu_Home"]</NavLink>                            
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="case/list"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer["MainMenu_MyCases"]</NavLink>                            
+                    </li>
+
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="reports/reports"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer["MainMenu_Reports"]</NavLink>                            
+                    </li>
+
+
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="admin/" @onclick:preventDefault @onmousedown="() => expandAdmin = !expandAdmin"  Match="NavLinkMatch.Prefix" >@Localizer["MainMenu_Administration"]</NavLink>                            
+                    </li>
+
+                </ul>
             </div>
         </div>
-        <div class="row row_padding">
 
 
-            <div class="col-sm-6 control_padding">
-                <button class="navbar-toggler" @onclick="ToggleNavMenu" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="@NavMenuCssClass navbar-collapse d-sm-inline-flex flex-sm-row-reverse" @onclick="CollapseNavMenu">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="@(NewLocation.Contains("/home") ? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="/home">@Localizer["MainMenu_Home"]</a>
-                        </li>
-                        <li class="@( (NewLocation.Contains("case/list") || NewLocation.Contains("case/details") || NewLocation.Contains("case/matchresult"))? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="case/list">@Localizer["MainMenu_MyCases"]</a>
-                        </li>
-
-
-                        <li class="@(NewLocation.Contains("reports/reports") ? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="reports/reports">@Localizer["MainMenu_Reports"]</a>
-                        </li>
-                        <li class="@( (NewLocation.Contains("admin/users") || NewLocation.Contains("admin/profiles") || NewLocation.Contains("admin/settings"))? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="admin/users">@Localizer["MainMenu_Administration"]</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="row row_padding">
-            <div class="col-sm-6 control_padding">
-                @if (showSubMenu)
-                {
+        @if (expandAdmin)
+        {
+            <div class="col-sm-12">
+               
                     <ul class="navbar-nav flex-grow-1">
                         <li class="@(NewLocation.Contains("admin/profiles") ? "nav-item-set" : "nav-item")">
                             <a class="nav-link text-light" href="admin/profiles">@Localizer["Menu_Profiles"]</a>
@@ -58,76 +53,33 @@
                             <a class="nav-link text-light" href="admin/settings">@Localizer["Menu_Settings"]</a>
                         </li>
                     </ul>
-                }
+               
             </div>
-            <div class="col-sm-6 control_padding text-right">
-                <UserStatus />
-            </div>
+
+        }
+        <div class="col-sm-12 text-right">
+            <LoginDisplay />
         </div>
+           
     </div>
 </nav>
 
 
 @code {
-    //[Parameter]
-    //public EventCallback<string> OnChangeLocationClick { get; set; }
 
     bool collapseNavMenu = true;
-    bool showSubMenu = false;
+    bool expandAdmin = false;
 
-    string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    string baseMenuClass = " navbar-collapse d-xl-inline-flex ";
+
+    string NavMenuCssClass => baseMenuClass + (collapseNavMenu ? " collapse" : "");
 
     public string NewLocation { get; set; } = "";
-
-    protected override void OnInitialized()
-    {
-        //showSubMenu = false;
-        //if (MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri).IndexOf("admin") != -1)
-        //{
-        //    showSubMenu = true;
-        //    StateHasChanged();
-        //}
-
-        MyNavigationManager.LocationChanged += OnLocationChanged;
-        NewLocation = MyNavigationManager.Uri;
-
-    }
-    protected override void OnAfterRender(bool firstRender)
-    {
-        showSubMenu = false;
-        if (MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri).IndexOf("admin") != -1)
-        {
-            showSubMenu = true;
-        }
-        StateHasChanged();
-    }
 
 
     void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
-
-    void CollapseNavMenu()
-    {
-        collapseNavMenu = true;
-    }
-    private void OnLocationChanged(object sender, LocationChangedEventArgs args)
-    {
-        NewLocation = args.Location;
-
-        _AppState.SetUrl(NewLocation);
-
-
-        //base.InvokeAsync(async () =>
-        //{
-        //    await Task.Delay(1);  // wait for blazor to populate route parameters
-        //    await OnChangeLocationClick.InvokeAsync(NewLocation);
-        //    StateHasChanged();
-        //});
-
-
-    }
-
 
 }

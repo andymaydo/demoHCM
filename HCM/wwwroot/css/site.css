@@ -460,9 +460,7 @@ NEW USER
 .bg-secondary {
     background-color: #1a535d !important;
 }
-.footer {
-    padding: 0 !important;    
-}
+
 .e-btn.e-flat.e-primary, .e-css.e-btn.e-flat.e-primary {
     background-color: #1a535d !important;
     border-color: #f8f9fa !important;

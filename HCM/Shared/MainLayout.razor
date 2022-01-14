@@ -1,24 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
+<header>
+    <NavMenu />
+</header>
 
-<body>
-    @*<NavMenu OnChangeLocationClick=@OnChangeLocationEvent />*@
-    <NavMenu  />
-    <div class="container">
+<div clas="page">    
+    <div class="container-fluid">
         @Body
     </div>
-</body>
+</div>
 
-<footer class="border-top footer text-muted fixed-bottom">
-    <div class="container mt-0 mb-0">
-        &copy; 2010 - Sapper
+<footer class="footer border-top text-muted fixed-bottom bg-light container-fluid">
+    <div class="row">
+        <div class="col">&copy; @DateTime.Now.Year &nbsp;<a href="https://sapper.de" target="_blank">SAPPER</a></div>
+        <div class="col text-right">v @typeof(Program).Assembly.GetName().Version</div>
     </div>
 </footer>
-
-
-@*@code {
-    private async Task OnChangeLocationEvent(string location)
-    {
-        string _location = location;
-    }
-}*@
