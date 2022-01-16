@@ -3,12 +3,16 @@
         <ul class="navbar-nav flex-grow-1 flex-row-reverse">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="/Logout">
-                    <span class="oi oi-account-logout" title="Logout" aria-hidden="true"></span>
+                     <div class="align-items-center">
+                        <span class="oi oi-account-logout" title="Logout" aria-hidden="true"></span> LogOut
+                     </div> 
                 </NavLink>
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link">
-                    <span class="oi oi-person" aria-hidden="true"></span> @context.User.Identity.Name
+                    <div class="align-items-center">
+                        <span class="oi oi-person" aria-hidden="true"></span> @context.User.Claims.Where(c=>c.Type=="FullName").FirstOrDefault().Value.ToString()
+                    </div>                    
                 </NavLink>
             </li>
         </ul>
