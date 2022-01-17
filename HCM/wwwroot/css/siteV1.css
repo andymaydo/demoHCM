@@ -8,10 +8,13 @@ a, .btn-link {
     color: #0366d6;
 }
 body {
-    padding-top: 90px;
+    padding-top: 220px;
     padding-bottom: 40px;
 }
 
+.bg-dark {
+    background-color: rgb(64,0,0) !important;
+}
 
 .nav-item a {
     color: #d7d7d7;
