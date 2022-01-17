@@ -57,7 +57,8 @@ namespace HCM
             //     new QueryStringRequestCultureProvider() // Here, You can also use other localization provider
             //    };
             //});
-            //services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
+            
+            services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
 
             services.AddRazorPages();

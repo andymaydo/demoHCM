@@ -122,9 +122,9 @@
             var query = $"?culture={Uri.EscapeDataString(selectedCulture)}&" +
                 $"redirectUri={Uri.EscapeDataString(uri)}";
 
-            NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+            //NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
 
-            //navigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/");
         }
         else
         {

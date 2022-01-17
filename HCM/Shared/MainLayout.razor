@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@using System.Security.Claims
+@using System.Globalization
 
 <header>
     <NavMenu />
@@ -6,7 +8,11 @@
 
 <div clas="page">    
     <div class="container-fluid">
-        @Body
+        <CascadingValue Value="@CurrentPrincipal" Name="CurrentPrincipal">
+            <CascadingValue Value="@CurrentCulture" Name="CurrentCulture">
+                @Body
+            </CascadingValue>
+        </CascadingValue>
     </div>
 </div>
 
@@ -16,3 +22,20 @@
         <div class="col text-right">v @typeof(Program).Assembly.GetName().Version</div>
     </div>
 </footer>
+
+@code {
+
+    [Inject] private AuthenticationStateProvider AuthenticationState { get; set; }
+
+    protected ClaimsPrincipal CurrentPrincipal { get; set; }
+    protected string CurrentCulture { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var auth = await AuthenticationState.GetAuthenticationStateAsync();
+        CurrentPrincipal = auth.User;
+        CurrentCulture = CultureInfo.CurrentCulture.Name;
+
+        await base.OnInitializedAsync();
+    }
+}

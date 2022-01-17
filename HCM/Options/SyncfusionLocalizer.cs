@@ -3,23 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HCM.Resources;
 
 namespace blazorInputs
 {
- public class SyncfusionLocalizer //: ISyncfusionStringLocalizer
+ public class SyncfusionLocalizer : ISyncfusionStringLocalizer
     {
 
-        //public string GetText(string key)
-        //{
-        //    return this.ResourceManager.GetString(key);
-        //}
+        public string GetText(string key)
+        {
+            return this.ResourceManager.GetString(key);
+        }
 
-        //public System.Resources.ResourceManager ResourceManager
-        //{
-        //    get
-        //    {
-        //        return HCM.Resources.HcmRes;
-        //    }
-        //}
+        public System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                return SfResources.ResourceManager;
+            }
+        }
     }
 }
