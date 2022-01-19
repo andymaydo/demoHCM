@@ -25,24 +25,14 @@ namespace HCMDataAccess
         {
             var procedure = "CaseData_Application_GetList";
             var _params = new DynamicParameters();
-
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-            try
+         
+            using (var conn = new SqlConnection(_db.GetConnStrName()))
             {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
-                {
-                    var result =  await conn.QueryAsync<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);
-
-                    List<GateModel> _FilterGateModel = result.ToList<GateModel>();
-
-                    return _FilterGateModel;
-                }
+                var result =  await conn.QueryAsync<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);                
+                return result.ToList();
             }
-            catch //( Exception ex)
-            {
-                return null;
-            }
+         
+            
         }
         public  List<ProfileModel> GetProfiles(int appID)
         {
@@ -51,23 +41,13 @@ namespace HCMDataAccess
 
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<ProfileModel>(procedure, _params, commandType: CommandType.StoredProcedure);
-
-                    List<ProfileModel> _FilterProfileModel = result.ToList<ProfileModel>();
-
-                    return _FilterProfileModel;
-                }
+                var result = conn.Query<ProfileModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                return result.ToList();
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+
         }
         public  List<CategoryModel> GetCategories(int appID)
         {
@@ -76,23 +56,13 @@ namespace HCMDataAccess
 
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<CategoryModel>(procedure, _params, commandType: CommandType.StoredProcedure);
-
-                    List<CategoryModel> _FilterCategoryModel = result.ToList<CategoryModel>();
-
-                    return _FilterCategoryModel;
-                }
+                var result = conn.Query<CategoryModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                return result.ToList();
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+
         }
 
          public List<CaseResultModel> GetResults(int appID)

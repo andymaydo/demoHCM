@@ -1,0 +1,46 @@
+﻿@page
+
+@model HCM.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>@Model._commonLocalizer["Login_TitleText"]</h1>
+
+<div class="row">
+    <div class="col-md-5">
+        <hr class="pb-3" />
+        
+        <section>
+            <form id="account" method="post">
+                @*<h4>@Model._commonLocalizer["Login_TitleText"]</h4>*@
+                
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Culture"></label>
+                    <select asp-for="Input.Culture" asp-items="Model.AvailableCultures" class="form-control" ></select>
+                    <span asp-validation-for="Input.Culture" class="text-danger"></span>
+                </div>
+
+                
+                <div class="form-group">
+                    <label asp-for="Input.UserName"></label>
+                    <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" />
+                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <button id="login-submit" type="submit" class="btn btn-primary">@Model._commonLocalizer["Login_ButtonText"]</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

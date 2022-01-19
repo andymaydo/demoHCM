@@ -1,6 +1,8 @@
 ﻿using Blazored.LocalStorage;
 using HCMModels;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -8,20 +10,23 @@ namespace HCM
 {
     public class LocalAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private readonly ILocalStorageService _storageService;
+        private readonly ProtectedSessionStorage _storageService;
+    
 
-        public LocalAuthenticationStateProvider(ILocalStorageService storageService)
+        public LocalAuthenticationStateProvider(ProtectedSessionStorage storageService)
         {
             _storageService = storageService;
         }
 
+       
         public async override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             try
             {
-                if (await _storageService.ContainKeyAsync("User"))
+                var sessionUser = await _storageService.GetAsync<UsersModel>("User");
+                if (sessionUser.Success)
                 {
-                    var userInfo = await _storageService.GetItemAsync<UsersModel>("User");
+                    var userInfo = sessionUser.Value;
 
                     var claims = new[]
                     {
@@ -33,8 +38,8 @@ namespace HCM
                     };
 
                     var identity = new ClaimsIdentity(claims, "BearerToken");
-                    var user = new ClaimsPrincipal(identity);
-                    var state = new AuthenticationState(user);
+                    var principal = new ClaimsPrincipal(identity);
+                    var state = new AuthenticationState(principal);
                     NotifyAuthenticationStateChanged(Task.FromResult(state));
                     return state;
                 }
@@ -50,7 +55,7 @@ namespace HCM
 
         public async Task LogoutAsync()
         {
-            await _storageService.RemoveItemAsync("User");
+            await _storageService.DeleteAsync("User");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(new ClaimsPrincipal())));
         }
 

@@ -1,20 +1,21 @@
 ﻿@page "/auth/login"
 
 @layout AuthLayout
-
+@using System.Security.Claims
 @using Syncfusion.Blazor.Inputs
 @using HCMDataAccess;
 @using HCMModels;
 
 @inject ILoginData loginData
-@inject ILocalStorageService storageService
+@*@inject ILocalStorageService storageService*@
+@inject ProtectedSessionStorage ProtectedSessionStore
 @inject AuthenticationStateProvider  authenticationStateProvider
 
 
 @inject NavigationManager NavigationManager
 @inject IConfiguration Configuration
 
-
+@attribute [AllowAnonymous]
 
 
 <EditForm Model="loginModel" OnValidSubmit="LoginUser">
@@ -45,7 +46,7 @@
                     </SfTextBox>
                 </div>
             </div>
-            <div class="col-sm-12 form-inline m-sm-2">
+            @*<div class="col-sm-12 form-inline m-sm-2">
                 <label class="col-sm-4 form_name">Sprache:</label>
                 <div class="col-sm-8">
                     <select class="form-control mr-2 col-sm-12" @bind="selectedCulture">
@@ -55,7 +56,7 @@
                         }
                     </select>
                 </div>
-            </div>
+            </div>*@
 
             <hr />
 
@@ -80,6 +81,7 @@
 
 
 @code {
+
     LoginRequest loginModel = new LoginRequest();
     private string selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
     private Dictionary<string, string> cultures;
@@ -93,6 +95,7 @@
         selectedCulture = "de-DE";
     }
 
+    
     public async Task LoginUser()
     {
         LoginResponse _LoginResponse = await loginData.Login(loginModel.UserName, loginModel.Password);
@@ -112,15 +115,16 @@
                 ContactData = _LoginResponse.ContactData,
                 LoginName = loginModel.UserName
             };
-
-            await storageService.SetItemAsync("User", userInfo);
+            
+            
+            await ProtectedSessionStore.SetAsync("User", userInfo);
             await authenticationStateProvider.GetAuthenticationStateAsync();
 
-            var uri = new Uri(NavigationManager.Uri)
-            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+            //var uri = new Uri(NavigationManager.Uri)
+            //.GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
 
-            var query = $"?culture={Uri.EscapeDataString(selectedCulture)}&" +
-                $"redirectUri={Uri.EscapeDataString(uri)}";
+            //var query = $"?culture={Uri.EscapeDataString(selectedCulture)}&" +
+            //    $"redirectUri={Uri.EscapeDataString(uri)}";
 
             //NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
 

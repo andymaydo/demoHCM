@@ -18,6 +18,9 @@ using Microsoft.AspNetCore.Localization;
 using blazorInputs;
 using BlazorDownloadFile;
 using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using System.Reflection;
 
 namespace HCM
 {
@@ -39,25 +42,37 @@ namespace HCM
             services.AddSingleton(cmsSettings);
 
             services.AddControllers();
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
+            services.AddHttpContextAccessor();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                  .AddCookie(cookieOptions =>
+                  {
+                      cookieOptions.Cookie.Name = "HCM_ClaimIdentity";
+                      cookieOptions.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                      cookieOptions.SlidingExpiration = true;
+                      cookieOptions.LoginPath = "/Login";
+                      cookieOptions.Cookie.IsEssential = true;
+                  });
 
-            services.AddSyncfusionBlazor();
-            //services.Configure<RequestLocalizationOptions>(options =>
-            //{
-            //    // define the list of cultures your app will support
-            //    var supportedCultures = new List<CultureInfo>()
-            //    {
-            //        new CultureInfo("de")
-            //    };
-            //    // set the default culture
-            //    options.DefaultRequestCulture = new RequestCulture("de");
-            //    options.SupportedCultures = supportedCultures;
-            //    options.SupportedUICultures = supportedCultures;
-            //    options.RequestCultureProviders = new List<IRequestCultureProvider>() {
-            //     new QueryStringRequestCultureProvider() // Here, You can also use other localization provider
-            //    };
-            //});
-            
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization(Options =>
+            {
+                Options.DataAnnotationLocalizerProvider = (type, factory) =>
+                {
+                    var assemblyName = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
+                    return factory.Create(nameof(App), assemblyName.Name);
+                };
+            });
+
+            services.AddSyncfusionBlazor();                     
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
 
@@ -84,7 +99,7 @@ namespace HCM
             services.AddBlazoredLocalStorage();
             services.AddOptions();
             services.AddAuthorizationCore();
-            services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
+            //services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
             services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
             
 
@@ -126,6 +141,8 @@ namespace HCM
             app.UseRequestLocalization(GetLocalizationOptions());
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

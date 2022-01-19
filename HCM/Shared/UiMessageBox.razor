@@ -1,0 +1,20 @@
+﻿
+    @foreach (Message msg in Data)
+    {
+        var i = 0;
+
+        <Collapsable Title="@msg.Short" Style="@(msg.isError ? "alert-danger" : "alert-success")" Collapsed="true">
+             @msg.Detail
+        </Collapsable>
+
+        i++;
+
+    }
+    
+
+
+@code {
+
+    [Parameter] public List<Message> Data { get; set; }
+   
+}

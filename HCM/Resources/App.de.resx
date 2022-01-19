@@ -1181,4 +1181,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Uploader_Browse" xml:space="preserve">
     <value>Durchsuche…</value>
   </data>
+  <data name="Login_ErrorLoginNotPossible" xml:space="preserve">
+    <value>Ihre Zugangsdaten stimmen nicht überein !</value>
+  </data>
 </root>

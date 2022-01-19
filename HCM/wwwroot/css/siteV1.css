@@ -8,7 +8,7 @@ a, .btn-link {
     color: #0366d6;
 }
 body {
-    padding-top: 220px;
+    padding-top: 200px;
     padding-bottom: 40px;
 }
 
@@ -119,20 +119,21 @@ UI
     background-repeat: repeat-x;
     background-position: top;
     background-image: url(../images/bg-title.png);
-    padding: 5px 0px 0px 5px;
+    /*padding: 5px 0px 0px 5px;*/
+    height: 25px;
 }
 .bottom_blue_bg {
     background-repeat: repeat-x;
-    background-position: top;
-    background-image: url(../images/subMenuBg.jpg);
-    padding: 4px 5px 3px 5px;
+    background-position: bottom;
+    background-image: url(../images/subMenuBg2.gif);
+    /*padding: 4px 5px 3px 5px;*/
     height: 25px;
 }
 .top_blue_bg {
     background-repeat: repeat-x;
     background-position: top;
     background-image: url(../images/subMenuBg3.gif);
-    padding: 10px 5px 3px 5px;
+    /*padding: 10px 5px 3px 5px;*/
     height: 25px;
 }
 .tLabel {
@@ -140,7 +141,7 @@ UI
     font-size: 13px;
     font-weight: bold;
     color: #444444;
-    padding-left: 5px;
+    /*padding-left: 5px;*/
 }
 
 .subtitle {

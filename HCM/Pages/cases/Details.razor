@@ -17,7 +17,8 @@
 @inject IStringLocalizer<App> Localizer
 @inject CMSSettings cmsSettings
 @inject ICaseDoc _caseDoc;
-@inject ILocalStorageService _storageService;
+
+@inject ProtectedSessionStorage ProtectedSessionStore
 @inject ICMSAPI _ICMSAPI;
 @inject ICMSProfile _CMSProfile;
 @inject IBlazorDownloadFileService _blazorDownloadFileService;
@@ -1005,14 +1006,17 @@
 
     private async Task GetInitDataAsync()
     {
-        _UsersModel = await _storageService.GetItemAsync<UsersModel>("User");
+        var getUsersModel = await ProtectedSessionStore.GetAsync<UsersModel>("User");
+        _UsersModel = getUsersModel.Value;
 
         UsersList = await _usersData.UsersList(_UsersModel.UserID);
 
-        if (await _storageService.ContainKeyAsync("CaseViewID"))
+        var getCaseId = await ProtectedSessionStore.GetAsync<int>("CaseViewID");
+    
+        if ( getCaseId.Success)
         {
-
-            int _CaseID = await _storageService.GetItemAsync<int>("CaseViewID");
+            
+            int _CaseID = getCaseId.Value;
             _Case = await _ICMSAPI.LoadCase(_CaseID);
 
             StatusList = await _ICMSAPI.GetStatusByCase(_CaseID);

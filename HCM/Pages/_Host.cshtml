@@ -1,7 +1,9 @@
 ﻿@page "/"
 @namespace HCM.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
 </head>
 <body>
 
-    <component type="typeof(App)" render-mode="ServerPrerendered" />
+    <component type="typeof(App)" render-mode="Server" />
 
     <script src="_framework/blazor.server.js"></script>
 </body>

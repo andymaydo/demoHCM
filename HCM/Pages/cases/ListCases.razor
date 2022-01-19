@@ -9,19 +9,24 @@
 @using System.Security.Claims
 
 
+@inject ProtectedSessionStorage ProtectedSessionStore
+
 
 @inject ICMSAPI _ICMSAPI;
 @inject IStringLocalizer<App> Localizer
 @inject IFiltersData _filtersData;
-@inject ILocalStorageService _storageService
+@*@inject ILocalStorageService _storageService*@
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 
 @attribute [Authorize]
 
 <h3>@Localizer["Cases_Title"]</h3>
+<h6>@Localizer["Label_Filter"]</h6>
 
-<h4 class="tLabel bottom_blue_bg">@Localizer["Label_Filter"]</h4>
+
+<div class="top_blue_bg"></div>
 
 <div class="container-fluid">
     <div class="row row_padding">
@@ -39,7 +44,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" @bind-Value="appId" Placeholder="@Localizer["Value_All_Text"]" ShowClearButton="true" DataSource="@_Gates">
+                <SfComboBox TValue="string" TItem="FiltersModels.GateModel" @bind-Value="_selectedAppId" Placeholder="@Localizer["Value_All_Text"]" ShowClearButton="true" DataSource="@_Gates">
                     <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
                 </SfComboBox>
@@ -48,7 +53,7 @@
         <div class="col-sm-4 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_CaseID"]</label>
             <div class="col-sm-8 control_padding">
-                <SfTextBox @ref="FilterCaseIDObj" Placeholder="@Localizer["Label_Filter_Case_CaseID"]" @bind-Value="@FilterCaseIDValue"></SfTextBox>
+                <SfTextBox Placeholder="@Localizer["Label_Filter_Case_CaseID"]" @bind-Value="@FilterCaseIDValue"></SfTextBox>
             </div>
         </div>
     </div>
@@ -68,7 +73,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_ProfileID"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="ProfileComboObj" TValue="string" TItem="FiltersModels.ProfileModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Profile">
+                <SfComboBox TValue="string" TItem="FiltersModels.ProfileModel" @bind-Value='@_selectedProfileId'  Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Profile">
                     <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -76,7 +81,7 @@
         <div class="col-sm-4 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_CustomerName"]</label>
             <div class="col-sm-8 control_padding">
-                <SfTextBox @ref="FilterCustomerNameObj" Placeholder="@Localizer["Label_Filter_CustomerName"]" @bind-Value="@FilterCustomerNameValue" ></SfTextBox>
+                <SfTextBox Placeholder="@Localizer["Label_Filter_CustomerName"]" @bind-Value="@FilterCustomerNameValue" ></SfTextBox>
             </div>
         </div>
     </div>
@@ -92,7 +97,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Category"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="CategoryComboObj" TValue="string" TItem="FiltersModels.CategoryModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Category">
+                <SfComboBox TValue="string" TItem="FiltersModels.CategoryModel"  @bind-Value='@_selectedCategory' Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Category">
                     <ComboBoxFieldSettings Text="CaseType" Value="CaseTypeID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -109,7 +114,7 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Status"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="StatusComboObj" TValue="string" TItem="FiltersModels.CaseStatusModel" Placeholder="@Localizer["Value_All_Text"]" DataSource="@Statuses">
+                <SfComboBox TValue="string" TItem="FiltersModels.CaseStatusModel"  @bind-Value='@_selectedStatusId' Placeholder="@Localizer["Value_All_Text"]" DataSource="@Statuses">
                     <ComboBoxFieldSettings Text="CaseStatus" Value="CaseStatusID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -118,25 +123,22 @@
 
         </div>
     </div>
-
-    <div class="row">
-        <hr style="background-color: #598992;height: 1px;width: 100%" />
-    </div>
-
-    <div class="row">
-        <div class="col-sm">
-            <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer["Button_Filter"]" IsToggle="true" @onclick="onGo_Click"></SfButton>
-            <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]" IsToggle="true" @onclick="ClearFilter"></SfButton>
-        </div>
-    </div>
-
-
-
 </div>
 
-<h4 class="blue_bg mt-3">@Localizer["Cases_ListCases"]</h4>
+<div class="bottom_blue_bg"></div>
 
-<SfGrid @ref="CaseGrid" DataSource="@Cases" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@CurrentCulture">
+<div class="row py-3">
+    <div class="col-sm">
+        <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer["Button_Filter"]" IsToggle="true" @onclick="onGo_Click"></SfButton>
+        <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]" IsToggle="true" @onclick="ClearFilter"></SfButton>
+    </div>
+</div>
+
+<div class="blue_bg"></div>
+
+<h4>@Localizer["Cases_ListCases"]</h4>
+
+<SfGrid DataSource="@Cases" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@CurrentCulture">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
     <GridPageSettings PageSizes="true" ></GridPageSettings>
     <GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="Case"></GridEvents>
@@ -169,47 +171,44 @@
     </GridColumns>
 </SfGrid>
 
-<div class="row">
-    <hr style="        background-color: #598992;
-        height: 1px;
-        width: 100%" />
+<div class="pt-3">
+    <UiMessageBox Data="Messages.List" />
 </div>
-<div class="row">
-    &nbsp;
-</div>
+
+<div class="blue_bg mt-3"></div>
+
+
+
+
+
 
 
 @code {
 
+    [Inject] private ILogger<ListCases> _logger { get; set; }
+
     [CascadingParameter(Name = "CurrentCulture")] protected string CurrentCulture { get; set; }
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
 
-    SfComboBox<string, FiltersModels.GateModel> GateComboObj;
-    SfComboBox<string, FiltersModels.CategoryModel> CategoryComboObj;
-    SfComboBox<string, FiltersModels.CaseStatusModel> StatusComboObj;
-    SfComboBox<string, FiltersModels.ProfileModel> ProfileComboObj;
+    private UiMessages Messages { get; set; }
 
-    private SfGrid<Case> CaseGrid; 
+    private DateTime? CreateFromDateValue { get; set; } 
+    private DateTime? CreateToDateValue { get; set; } 
 
-    public DateTime? CreateFromDateValue { get; set; } // = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-    public DateTime? CreateToDateValue { get; set; } // = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-                                                     //public DateTime MinDate { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 05);
-                                                     //public DateTime MaxDate { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27);
-    public DateTime? ModifyFromDateValue { get; set; } // = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-    public DateTime? ModifyToDateValue { get; set; } // = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    private DateTime? ModifyFromDateValue { get; set; } 
+    private DateTime? ModifyToDateValue { get; set; } 
 
-    SfTextBox FilterCaseIDObj;
-    public string FilterCaseIDValue { get; set; } // = "Hello, World!";
-    SfTextBox FilterCustomerNameObj;
-    public string FilterCustomerNameValue { get; set; } // = "Hello, World!";
+
+    private string FilterCaseIDValue { get; set; } 
+    private string FilterCustomerNameValue { get; set; } 
 
     private bool OnlyActiveIsChecked = true;
 
-    private string appId { get; set; }
+
+    private string _selectedAppId { get; set; }
     private List<FiltersModels.GateModel> _Gates;
 
-    private List<Case> Cases { get; set; }
- 
+    private string _selectedStatusId { get; set; }
     private List<FiltersModels.CaseStatusModel> Statuses
     {
         get
@@ -222,79 +221,70 @@
             return _Statuses;
         }
     }
+
+    private string _selectedCategory { get; set; }
     private List<FiltersModels.CategoryModel> _Category;
+
+    private string _selectedProfileId { get; set; }
     private List<FiltersModels.ProfileModel> _Profile;
-    private int[] GridPageSizes;
+
+    private List<Case> Cases { get; set; }
 
 
     protected override async Task OnInitializedAsync()
     {
-        GridPageSizes = new int[] {0, 5, 10, 20, 50 };
-        _Gates = await _filtersData.GetGates();
-        appId = _Gates[0].appID;
-        onChangePlatform();
+        await base.OnInitializedAsync();
+        try
+        {
+            Messages = new UiMessages();
+            _Gates = await _filtersData.GetGates();
+            _selectedAppId = _Gates[0].appID;
+        }
+        catch (Exception ex)
+        {            
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+        onChangePlatform();        
     }
 
     async Task onGo_Click()
     {
-        int? _caseid = null;
-        try
-        {
-            if (!string.IsNullOrEmpty(FilterCaseIDValue))
-                _caseid = Convert.ToInt32(FilterCaseIDValue);
-        }
-        catch { };
+        Messages.List.Clear();
 
-        int? _appid = null;
-        try
-        {
-            if (!string.IsNullOrEmpty(GateComboObj.Value))
-                _appid = Convert.ToInt32(GateComboObj.Value);
-        }
-        catch { };
-        int? _casetypeid = null;
-        try
-        {
-            if (!string.IsNullOrEmpty(CategoryComboObj.Value))
-                _casetypeid = Convert.ToInt32(CategoryComboObj.Value);
-        }
-        catch { };
-        int? _casestatusid = null;
-        try
-        {
-            if (!string.IsNullOrEmpty(StatusComboObj.Value))
-                _casestatusid = Convert.ToInt32(StatusComboObj.Value);
-        }
-        catch { };
-        int? ProfileID = null;
-        try
-        {
-            if (!string.IsNullOrEmpty(ProfileComboObj.Value))
-                ProfileID = Convert.ToInt32(ProfileComboObj.Value);
-        }
-        catch { };
+        int tempVal;
+        int? _caseid = int.TryParse(FilterCaseIDValue, out tempVal) ? tempVal : (int?)null;
+        int? _appid = int.TryParse(_selectedAppId, out tempVal) ? tempVal : (int?)null;
+        int? _casetypeid = int.TryParse(_selectedCategory, out tempVal) ? tempVal : (int?)null;
+        int? _casestatusid = int.TryParse(_selectedStatusId, out tempVal) ? tempVal : (int?)null;
+        int? _profileID = int.TryParse(_selectedProfileId, out tempVal) ? tempVal : (int?)null;
+
+        int _contactID = int.TryParse(CurrentPrincipal.Claims.Where(c => c.Type == "ContactID").FirstOrDefault().Value.ToString(),out tempVal) 
+            ? tempVal : -1;
 
 
-        int contactID;
         try
         {
-            contactID = int.Parse(CurrentPrincipal.Claims.Where(c => c.Type == "ContactID").FirstOrDefault().Value.ToString());
-        }
-        catch
-        {
-            contactID = -1;
-        }
-
-        Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, contactID,
+            Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, _contactID,
                         CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
-                        ProfileID, FilterCustomerNameValue);
+                        _profileID, FilterCustomerNameValue);
+        }
+        catch (Exception ex)
+        {            
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
     }
-    async Task ClearFilter()
+
+
+    protected void ClearFilter()
     {
-        await this.GateComboObj.Clear();
-        await this.CategoryComboObj.Clear();
-        await this.StatusComboObj.Clear();
-        await this.ProfileComboObj.Clear();
+        _selectedAppId = _Gates[0].appID;
+        _selectedStatusId = null;
+        _selectedCategory = null;
+        _selectedProfileId = null;
         CreateFromDateValue = null;
         CreateToDateValue = null;
         ModifyFromDateValue = null;
@@ -304,28 +294,30 @@
         OnlyActiveIsChecked = true;
     }
 
-     public async Task RecordDoubleClickHandler(RecordDoubleClickEventArgs<Case> args)
+    public async Task RecordDoubleClickHandler(RecordDoubleClickEventArgs<Case> args)
     {
-         await _storageService.SetItemAsync("CaseViewID", args.RowData.CaseID);
+        await ProtectedSessionStore.SetAsync("CaseViewID", args.RowData.CaseID);
 
-         NavigationManager.NavigateTo("/case/details", forceLoad: true);
+        //NavigationManager.NavigateTo("/case/details", forceLoad: true);
+        await JSRuntime.InvokeAsync<object>("open", "/case/details", "_blank");
     }
 
-      private void onChangePlatform()
+    private void onChangePlatform()
     {
-        int intAppId;
+        Messages.List.Clear();
+        int intAppId = Int32.TryParse(_selectedAppId, out var tempVal) ? tempVal : -1;
+
         try
         {
-            intAppId = int.Parse(appId);
+            _Category = _filtersData.GetCategories(intAppId);
+            _Profile = _filtersData.GetProfiles(intAppId); 
         }
-        catch
-        {
-            intAppId = -1;  
+        catch (Exception ex)
+        {            
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
         }
-       
-        _Category = _filtersData.GetCategories(intAppId);
-        _Profile = _filtersData.GetProfiles(intAppId);
-
     }
 
 }

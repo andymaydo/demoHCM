@@ -1177,4 +1177,7 @@ it - after verification of the hit - in the menu
   <data name="Uploader_Browse" xml:space="preserve">
     <value>Durchsuche…</value>
   </data>
+  <data name="Login_ErrorLoginNotPossible" xml:space="preserve">
+    <value>Authentication failed</value>
+  </data>
 </root>

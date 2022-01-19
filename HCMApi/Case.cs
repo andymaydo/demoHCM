@@ -72,20 +72,15 @@ namespace HCMApi
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
 
-            try
+            
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<Case> _CaseList = result.ToList<Case>();
-                    return _CaseList;
-                }
+                List<Case> _CaseList = result.ToList<Case>();
+                return _CaseList;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
 
 
             //SqlParameter[] parms = new SqlParameter[] {
