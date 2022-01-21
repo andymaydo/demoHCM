@@ -187,8 +187,8 @@
 
     [Inject] private ILogger<ListCases> _logger { get; set; }
 
-    [CascadingParameter(Name = "CurrentCulture")] protected string CurrentCulture { get; set; }
-    [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
+    [CascadingParameter(Name = "CurrentContactId")] protected string CurrentContactId { get; set; }
+   
 
     private UiMessages Messages { get; set; }
 
@@ -260,13 +260,13 @@
         int? _casestatusid = int.TryParse(_selectedStatusId, out tempVal) ? tempVal : (int?)null;
         int? _profileID = int.TryParse(_selectedProfileId, out tempVal) ? tempVal : (int?)null;
 
-        int _contactID = int.TryParse(CurrentPrincipal.Claims.Where(c => c.Type == "ContactID").FirstOrDefault().Value.ToString(),out tempVal) 
-            ? tempVal : -1;
+        //int _contactID = int.TryParse(CurrentPrincipal.Claims.Where(c => c.Type == "ContactID").FirstOrDefault().Value.ToString(),out tempVal) 
+        //    ? tempVal : -1;
 
 
         try
         {
-            Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, _contactID,
+            Cases = await _ICMSAPI.GetCaseList(_caseid, _appid, _casetypeid, _casestatusid, CurrentContactId,
                         CreateFromDateValue, CreateToDateValue, ModifyFromDateValue, ModifyToDateValue, 
                         _profileID, FilterCustomerNameValue);
         }

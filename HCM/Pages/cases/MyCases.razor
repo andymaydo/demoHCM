@@ -1,0 +1,21 @@
+﻿@page "/MyCases"
+@attribute [Authorize]
+@using System.Globalization
+
+<h3>@Localizer["Cases_Title"]</h3>
+
+<CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture"></CaseReport>
+
+
+@code {
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+
+    protected CaseFilterModel MyFilter { get; set; }
+    protected string CurrentCulture { get; set; }
+
+    protected override void OnInitialized()
+    {
+        MyFilter = new CaseFilterModel();
+        CurrentCulture = CultureInfo.CurrentCulture.Name;
+    }
+}

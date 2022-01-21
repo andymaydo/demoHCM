@@ -43,9 +43,9 @@
         <div class="col-sm-3 form-inline control_padding">
             <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Platform"]</label>
             <div class="col-sm-8 control_padding">
-                <SfComboBox @ref="GateComboObj" TValue="string" TItem="FiltersModels.GateModel" ShowClearButton="false" @bind-Value="@GateDefaultValue" Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Gates">
+                <SfComboBox @ref="GateComboObj" TValue="int" TItem="FiltersModels.GateModel" ShowClearButton="false" @bind-Value="@GateDefaultValue" Placeholder="@Localizer["Value_All_Text"]" DataSource="@_Gates">
                     @*<SfDataManager Url="api/FiltersData/GetGates" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>*@
-                    <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="string" ValueChange="onChangePlatform" Created="GateComboObj_OnCreated"></ComboBoxEvents>
+                    <ComboBoxEvents TItem="FiltersModels.GateModel" TValue="int" ValueChange="onChangePlatform" Created="GateComboObj_OnCreated"></ComboBoxEvents>
                     <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
                 </SfComboBox>
             </div>
@@ -249,7 +249,7 @@
     public Action<bool> FilterChanged { get; set; }
 
     bool ShowDashboardComponent { get; set; } = true;
-    public string GateDefaultValue { get; set; }
+    public int GateDefaultValue { get; set; }
 
     public int AppID { get; set; }
     public int? CaseTypeID { get; set; }
@@ -260,7 +260,7 @@
 
     SfGrid<CaseModel> CaseDetailObj;
     SfGrid<CaseModel> AliasDetailObj;
-    SfComboBox<string, FiltersModels.GateModel> GateComboObj;
+    SfComboBox<int, FiltersModels.GateModel> GateComboObj;
     SfComboBox<string, FiltersModels.CategoryModel> CategoryComboObj;
     SfComboBox<string, FiltersModels.ProfileModel> ProfileComboObj;
     SfComboBox<string, FiltersModels.CaseResultModel> ResultComboObj;
@@ -322,15 +322,15 @@
 
     }
 
-    public async void GateComboObj_OnCreated()
+    public  void GateComboObj_OnCreated()
     {
         AppID = 1;
 
-        _Gates = await _filtersData.GetGates();
+        _Gates =  _filtersData.GetGates();
         if (_Gates != null && _Gates.Count > 0)
         {
             AppID = (Convert.ToInt32(_Gates[0].appID));
-            GateDefaultValue = _Gates[0].appID;
+            GateDefaultValue = AppID;// _Gates[0].appID;
             BindFilterListBox();
             FilterChanged?.Invoke(true);
         }
@@ -478,12 +478,12 @@
         //StateHasChanged();
 
     }
-    async Task ClearFilter()
+     void ClearFilter()
     {
 
         AppID = 1;
 
-        _Gates = await _filtersData.GetGates();
+        _Gates =  _filtersData.GetGates();
         if (_Gates != null && _Gates.Count > 0)
         {
             AppID = (Convert.ToInt32(_Gates[0].appID));
@@ -517,14 +517,14 @@
         }
     }
 
-    private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FiltersModels.GateModel> args)
+    private void onChangePlatform(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int, FiltersModels.GateModel> args)
     {
         int _AppID = -1;
         if (args.ItemData != null)
         {
-            if (Int32.TryParse(args.ItemData.appID, out _AppID))
-            {
-                AppID = _AppID;
+            //if (Int32.TryParse(args.ItemData.appID, out _AppID))
+            //{
+                AppID = args.ItemData.appID;
 
                 if (this.CategoryComboObj != null)
                     this.CategoryComboObj.Clear();
@@ -538,7 +538,7 @@
                 BindFilterListBox();
                 FilterChanged?.Invoke(true);
 
-            }
+            //}
         }
 
         StateHasChanged();

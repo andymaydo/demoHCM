@@ -1,0 +1,42 @@
+﻿
+
+<h6>@Localizer["Label_Filter"]</h6>
+<div class="top_blue_bg"></div>
+
+<CaseFilter InputModel="@InputFilter" Culture="@Culture" OnValidSubmit="ShowReport"></CaseFilter>
+
+<div class="blue_bg"></div>
+<h4>@Localizer["Cases_ListCases"]</h4>
+
+
+<CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGrid>
+
+
+@code {
+
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public CaseFilterModel InputFilter { get; set; }
+    [Parameter] public string Culture  { get; set; }
+
+    protected CaseFilterModel SubmitedFilter { get; set; }
+   
+
+
+    protected override void OnInitialized()
+    {
+        
+    }
+
+    protected void  ShowReport(CaseFilterModel filter)
+    {
+        SubmitedFilter = ObjHelper.Clone<CaseFilterModel>(filter);       
+
+    }
+
+    protected void ShowCaseDetails(int caseId)
+    {
+        
+    }
+}

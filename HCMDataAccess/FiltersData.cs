@@ -21,14 +21,14 @@ namespace HCMDataAccess
             _db = db;
         }
 
-        public async Task<List<GateModel>> GetGates()
+        public List<GateModel> GetGates()
         {
             var procedure = "CaseData_Application_GetList";
             var _params = new DynamicParameters();
          
             using (var conn = new SqlConnection(_db.GetConnStrName()))
             {
-                var result =  await conn.QueryAsync<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);                
+                var result =  conn.Query<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);                
                 return result.ToList();
             }
          
@@ -74,21 +74,16 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<CaseResultModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = conn.Query<CaseResultModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CaseResultModel> _FilterResultsModel = result.ToList<CaseResultModel>();
+                List<CaseResultModel> _FilterResultsModel = result.ToList<CaseResultModel>();
 
-                    return _FilterResultsModel;
-                }
+                return _FilterResultsModel;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
         }
 
         public List<CaseStatusModel> GetStatuses()
@@ -98,21 +93,16 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
+                List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
 
-                    return _FilterStatusModel;
-                }
+                return _FilterStatusModel;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
         }
 
         public List<CaseStatusModel> GetStatuses4Application(int appID)
@@ -124,21 +114,16 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
+                List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
 
-                    return _FilterStatusModel;
-                }
+                return _FilterStatusModel;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
         }
 
         public List<CaseStatusModel> GetStatusesForEscalation()
@@ -148,21 +133,15 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
+                List<CaseStatusModel> _FilterStatusModel = result.ToList<CaseStatusModel>();
 
-                    return _FilterStatusModel;
-                }
+                return _FilterStatusModel;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
         }
 
 
@@ -173,21 +152,16 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
-                    var result = conn.Query<ProfileStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = conn.Query<ProfileStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<ProfileStatusModel> _ProfileStatusModel = result.ToList<ProfileStatusModel>();
+                List<ProfileStatusModel> _ProfileStatusModel = result.ToList<ProfileStatusModel>();
 
-                    return _ProfileStatusModel;
-                }
+                return _ProfileStatusModel;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+           
         }
     }
 }

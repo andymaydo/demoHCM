@@ -9,7 +9,7 @@
 <div clas="page">    
     <div class="container-fluid">
         <CascadingValue Value="@CurrentPrincipal" Name="CurrentPrincipal">
-            <CascadingValue Value="@CurrentCulture" Name="CurrentCulture">
+            <CascadingValue Value="@CurrentContactId" Name="CurrentContactId">
                 @Body
             </CascadingValue>
         </CascadingValue>
@@ -28,13 +28,16 @@
     [Inject] private AuthenticationStateProvider AuthenticationState { get; set; }
 
     protected ClaimsPrincipal CurrentPrincipal { get; set; }
-    protected string CurrentCulture { get; set; }
+    protected int CurrentContactId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         var auth = await AuthenticationState.GetAuthenticationStateAsync();
         CurrentPrincipal = auth.User;
-        CurrentCulture = CultureInfo.CurrentCulture.Name;
+        CurrentContactId = int.TryParse(
+                                CurrentPrincipal.Claims.Where(c => c.Type == "ContactID").FirstOrDefault().Value.ToString(),
+                                out var tempVal
+                            ) ? tempVal : -1;
 
         await base.OnInitializedAsync();
     }

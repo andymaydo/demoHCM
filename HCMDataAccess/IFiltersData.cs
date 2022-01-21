@@ -8,8 +8,8 @@ namespace HCMDataAccess
     {
         List<FiltersModels.CategoryModel> GetCategories(int appID);
 
-        Task<List<FiltersModels.GateModel>> GetGates();
-        //List<FiltersModels.GateModel> GetGates();
+        //Task<List<FiltersModels.GateModel>> GetGates();
+        List<FiltersModels.GateModel> GetGates();
         List<FiltersModels.ProfileModel> GetProfiles(int appID);
         List<FiltersModels.CaseResultModel> GetResults(int appID);
         List<FiltersModels.CaseStatusModel> GetStatuses();

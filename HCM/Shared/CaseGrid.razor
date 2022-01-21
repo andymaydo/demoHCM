@@ -1,0 +1,111 @@
+﻿@using HCMApi;
+@using HCMDataAccess;
+@using HCMModels;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+
+
+
+<SfGrid DataSource="@CaseList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture">
+    <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
+    <GridPageSettings PageSizes="true" ></GridPageSettings>
+    <GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="CaseModel"></GridEvents>
+    <GridColumns>
+        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="90"></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer["Label_Filter_ProfileID"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer["Cases_List_Subject"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer["Cases_List_Category"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer["Cases_List_Status"]" >
+            <Template>
+                @{
+                    var _Case = (context as CaseModel);
+                    <div>
+                        @Localizer["Case_Status_" + _Case.CaseStatusID.ToString()]
+                    </div>
+                }
+            </Template>
+        </GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CaseResult) HeaderText="@Localizer["Cases_List_Ergebnis"]">
+            <Template>
+                @{
+                    var _Case = (context as CaseModel);
+                    <div>
+                        @Localizer["Case_Result_" + _Case.CaseResultID.ToString()]
+                    </div>
+                }
+            </Template>
+        </GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer["Cases_List_GeprufterName"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" ></GridColumn>        
+        <GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.SapUser)></GridColumn>
+        @*<GridColumn HeaderText="" Width="40">
+            <GridCommandColumns>
+                <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
+            </GridCommandColumns>
+        </GridColumn>*@
+    </GridColumns>
+</SfGrid>
+
+@code {
+    [Inject] private IReportsCaseData ReportService { get; set; }
+    [Inject] private ILogger<CaseGrid> _logger { get; set; }
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+
+    [Parameter] public CaseFilterModel InputFilter { get; set; }
+    [Parameter] public int ContactId { get; set; }
+    [Parameter] public string Culture  { get; set; }    
+    [Parameter] public EventCallback<int> OnCaseDetailsClicked { get; set; }
+
+    protected UiMessages Messages { get; set; }
+    protected List<CaseModel> CaseList { get; set; }
+
+    private CaseFilterModel _inputFilter;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();       
+        Messages = new UiMessages();
+        _inputFilter = ObjHelper.Clone(InputFilter);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+        try
+        {
+
+            Messages.List.Clear();
+            if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
+            {
+                _inputFilter = ObjHelper.Clone(InputFilter);
+                await LoadCaseList();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+    }
+
+    public async Task RecordDoubleClickHandler(RecordDoubleClickEventArgs<CaseModel> args)
+    {     
+        await OnCaseDetailsClicked.InvokeAsync(args.RowData.CaseID);
+    }
+
+    private async Task LoadCaseList()
+    {
+                       
+            int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
+
+            CaseList = await ReportService.CaseDetail(InputFilter.GateId, InputFilter.CategoryId, _contactID, 
+                InputFilter.StatusId, InputFilter.ResultId,
+                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
+                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
+
+    }
+}

@@ -8,7 +8,7 @@ namespace HCMModels
     {
         public class GateModel
         {
-            public string appID { get; set; }
+            public int appID { get; set; }
             public string appName { get; set; }
         }
         public class ProfileModel

@@ -195,9 +195,9 @@
         await base.OnInitializedAsync();
 
     }
-    public async void GateComboObj_OnCreated()
+    public  void GateComboObj_OnCreated()
     {
-        _Gates = await _filtersData.GetGates();
+        _Gates =  _filtersData.GetGates();
         StateHasChanged();
     }
 

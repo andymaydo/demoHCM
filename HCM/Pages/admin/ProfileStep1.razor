@@ -113,7 +113,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _Gates = await _filtersData.GetGates();
+        _Gates =  _filtersData.GetGates();
         _LanguageList = new List<ProfileEmailLanguageData>
     {
             new ProfileEmailLanguageData() { LangID = "de-DE",  LangValue = "Deutsch" },
