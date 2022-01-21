@@ -15,7 +15,7 @@
 
     protected override void OnInitialized()
     {
-        MyFilter = new CaseFilterModel();
+        MyFilter = new CaseFilterModel(showOnlyOpenCases:true);
         CurrentCulture = CultureInfo.CurrentCulture.Name;
     }
 }

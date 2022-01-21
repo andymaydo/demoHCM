@@ -1,13 +1,8 @@
 ﻿
 
-<h6>@Localizer["Label_Filter"]</h6>
-<div class="top_blue_bg"></div>
+
 
 <CaseFilter InputModel="@InputFilter" Culture="@Culture" OnValidSubmit="ShowReport"></CaseFilter>
-
-<div class="blue_bg"></div>
-<h4>@Localizer["Cases_ListCases"]</h4>
-
 
 <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGrid>
 

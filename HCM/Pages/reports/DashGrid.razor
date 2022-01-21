@@ -4,14 +4,93 @@
 @using Syncfusion.Blazor.DropDowns
 @using HCMModels;
 
+<div class="blue_bg"></div>
+<h4>@Localizer["Label_Report_Result_Title"]</h4>
+
+@if(@_loadingStatus == 1)
+{
+    <div class="container">
+        <div class="row row_padding">
+            <div class="col-sm-6 control_padding">
+                <div class="col-sm-12 control_padding">
+                    <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Status_Group_Title"]</label>
+                </div>
+                @foreach (CaseModel r in CaseByStatusList)
+                {
+                    <div class="col-sm-12 control_padding form-inline">
+                        <div class="col-sm-6 control_padding">
+                            <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Status_" + r.CaseStatusID]</span>
+                        </div>
+                        <div class="col-sm-6 control_padding text-right">
+                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnStatusClicked.InvokeAsync(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-sm-6 control_padding">
+                <div class="col-sm-12 control_padding">
+                    <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Result_Group_Title"]</label>
+                </div>
+                @foreach (CaseModel r in CaseByResultList)
+                {
+                    <div class="col-sm-12 control_padding form-inline">
+                        <div class="col-sm-6 control_padding">
+                            <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Result_" + r.CaseResultID]</span>
+                        </div>
+                        <div class="col-sm-6 control_padding text-right">
+                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnResultClicked.InvokeAsync(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+
+
+
+        <div class="row row_padding">
+            <div class="col-sm-6 control_padding">
+                <div class="col-sm-12 control_padding">
+                    <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Alias_Group_Title"]</label>
+                </div>
+                @foreach (CaseModel r in CaseByAliasList)
+                {
+                    <div class="col-sm-12 control_padding form-inline">
+                        <div class="col-sm-6 control_padding">
+                            <span class="col-sm-12 text-left ReportItem">@Localizer["Label_Report_Alias_Group_Count"]</span>
+                        </div>
+                        <div class="col-sm-6 control_padding text-right">
+                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnAliasClicked.InvokeAsync(r.CaseCount))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-sm-6 control_padding">
+                &nbsp;
+            </div>
+        </div>
+
+    </div>
+}
+
+
+<div class="pt-3">
+    <UiMessageBox Data="Messages.List" />
+</div>
+
 @code {
 
     [Inject] private ILogger<DashGrid> _logger { get; set; }
     [Inject] private IStringLocalizer<App> Localizer { get; set; }
-    
+    [Inject] private IReportsCaseData ReportService { get; set; }
+
+
     [Parameter] public CaseFilterModel InputFilter { get; set; }
     [Parameter] public int ContactId { get; set; }
-      
+
     [Parameter] public EventCallback<int> OnStatusClicked { get; set; }
     [Parameter] public EventCallback<int> OnResultClicked { get; set; }
     [Parameter] public EventCallback<int> OnAliasClicked { get; set; }
@@ -23,12 +102,12 @@
 
 
     private CaseFilterModel _inputFilter;
+    private int _loadingStatus;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();       
-        Messages = new UiMessages();
-        _inputFilter = ObjHelper.Clone(InputFilter);
+            await base.OnInitializedAsync();
+            Messages = new UiMessages(); 
     }
 
     protected override async Task OnParametersSetAsync()
@@ -36,6 +115,7 @@
         base.OnParametersSet();
         try
         {
+            _loadingStatus = 0;
 
             Messages.List.Clear();
             if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
@@ -44,48 +124,34 @@
                 await LoadCaseList();
             }
 
+            _loadingStatus = 1;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex.Message);
             _logger.LogDebug(ex, ex.Message);
             Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
         }
     }
 
-    //public async Task RecordDoubleClickHandler(RecordDoubleClickEventArgs<CaseModel> args)
-    //{     
-    //    await OnCaseDetailsClicked.InvokeAsync(args.RowData.CaseID);
-    //}
-
+ 
     private async Task LoadCaseList()
-    {
-
-            //int tempVal;
-            //int _appid = int.TryParse(InputFilter.GateId, out tempVal) ? tempVal : 1; // default and only (for now) DPFGate
-
-            //int? _casetypeid = int.TryParse(InputFilter.CategoryId, out tempVal) ? tempVal : (int?)null;
-            //int? _casesresultid = int.TryParse(InputFilter.ResultId, out tempVal) ? tempVal : (int?)null;
-            //int? _casestatusid = int.TryParse(InputFilter.StatusId, out tempVal) ? tempVal : (int?)null;
-            ////int? _profileID = int.TryParse(InputFilter.ProfilId, out tempVal) ? tempVal : (int?)null;
-                       
+    {                                   
             int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
 
-            //CaseList = await ReportService.CaseDetail(_appid, _casetypeid, _contactID, _casestatusid, _casesresultid,
-            //    InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
-            //    InputFilter.CaseId, _profileID, InputFilter.SearchedName);
+            CaseByStatusList = await ReportService.CaseByStatus(InputFilter.GateId, InputFilter.CategoryId, _contactID,
+                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
+                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
 
-            //_ReportCaseByStatusList = await _reportsCaseData.CaseByStatus(_appid, ParentReports.CaseTypeID, _contactID,
-            //    ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
-            //    _caseid, ParentReports.ProfileID, _customerName);
+            CaseByResultList = await ReportService.CaseByResult(InputFilter.GateId, InputFilter.CategoryId, _contactID,
+                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
+                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
 
-            //_ReportCaseByResultList = await _reportsCaseData.CaseByResult(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            //    ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
-            //    _caseid, ParentReports.ProfileID, _customerName);
-
-            //_ReportAliasCountList = await _reportsCaseData.AliasCount(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            //    ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
-            //    _caseid, ParentReports.ProfileID, _customerName);
+            CaseByAliasList = await ReportService.AliasCount(InputFilter.GateId, InputFilter.CategoryId, _contactID,
+                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
+                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
 
     }
 }

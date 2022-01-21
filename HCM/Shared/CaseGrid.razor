@@ -7,6 +7,9 @@
 
 
 
+<div class="blue_bg"></div>
+<h4>@Localizer["Cases_ListCases"]</h4>
+
 <SfGrid DataSource="@CaseList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
     <GridPageSettings PageSizes="true" ></GridPageSettings>
@@ -47,6 +50,10 @@
         </GridColumn>*@
     </GridColumns>
 </SfGrid>
+
+<div class="pt-3">
+    <UiMessageBox Data="Messages.List" />
+</div>
 
 @code {
     [Inject] private IReportsCaseData ReportService { get; set; }

@@ -41,21 +41,15 @@ namespace HCMDataAccess
             _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
-            try
+            using (var conn = new SqlConnection(_db.GetConnStrName()))
             {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
-                {
-                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CaseModel> _CaseModel = result.ToList<CaseModel>();
+                List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
-                    return _CaseModel;
-                }
+                return _CaseModel;
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+          
 
             
 
@@ -83,8 +77,7 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -93,11 +86,7 @@ namespace HCMDataAccess
 
                     return _CaseModel;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
         }
 
         public async Task<List<CaseModel>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
@@ -121,9 +110,7 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
+               using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -131,11 +118,7 @@ namespace HCMDataAccess
 
                     return _CaseModel;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+          
         }
 
         public async Task<List<CaseModel>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
@@ -159,19 +142,13 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
+            using (var conn = new SqlConnection(_db.GetConnStrName()))
             {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
-                {
-                    var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);                                      
+                var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);                                      
 
-                    return result.ToList<CaseModel>();
-                }
+                return result.ToList<CaseModel>();
             }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+         
         }
 
         public async Task<List<CaseModel>> AliasDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
@@ -195,9 +172,7 @@ namespace HCMDataAccess
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
+             using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -205,11 +180,7 @@ namespace HCMDataAccess
 
                     return _CaseModel;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+           
         }
     }
 }

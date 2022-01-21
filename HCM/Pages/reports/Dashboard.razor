@@ -1,160 +1,47 @@
-﻿@using HCMApi;
-
-@using HCMDataAccess;
-@using Syncfusion.Blazor.DropDowns
-@using HCMModels;
-
-@inject IStringLocalizer<App> Localizer
-@inject IReportsCaseData _reportsCaseData;
-@inject ILocalStorageService _storageService
-
+﻿@page "/Reports/DashBoard"
 @attribute [Authorize]
-
-<h4 class="blue_bg mt-3">@Localizer["Label_Report_Result_Title"]</h4>
-
-<div class="container">
-    <div class="row row_padding">
-        <div class="col-sm-6 control_padding">
-            <div class="col-sm-12 control_padding">
-                <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Status_Group_Title"]</label>
-            </div>
-            @foreach (CaseModel r in _ReportCaseByStatusList)
-            {
-                <div class="col-sm-12 control_padding form-inline">
-                    <div class="col-sm-6 control_padding">
-                        <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Status_" + r.CaseStatusID]</span>
-                    </div>
-                    <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => SetFilterByStatusID(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
-                    </div>
-                </div>
-            }
-        </div>
-
-        <div class="col-sm-6 control_padding">
-            <div class="col-sm-12 control_padding">
-                <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Result_Group_Title"]</label>
-            </div>
-            @foreach (CaseModel r in _ReportCaseByResultList)
-            {
-                <div class="col-sm-12 control_padding form-inline">
-                    <div class="col-sm-6 control_padding">
-                        <span class="col-sm-12 text-left ReportItem">@Localizer["Case_Result_" + r.CaseResultID]</span>
-                    </div>
-                    <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => SetFilterByResultID(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
-                    </div>
-                </div>
-            }
-        </div>
-
-
-    </div>
+@using System.Globalization
 
 
 
-    <div class="row row_padding">
-        <div class="col-sm-6 control_padding">
-            <div class="col-sm-12 control_padding">
-                <label class="col-sm-12 text-left ReportHeader">@Localizer["Label_Report_Alias_Group_Title"]</label>
-            </div>
-            @foreach (CaseModel r in _ReportAliasCountList)
-            {
-                <div class="col-sm-12 control_padding form-inline">
-                    <div class="col-sm-6 control_padding">
-                        <span class="col-sm-12 text-left ReportItem">@Localizer["Label_Report_Alias_Group_Count"]</span>
-                    </div>
-                    <div class="col-sm-6 control_padding text-right">
-                        <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => SetFilterByCaseCount(r.CaseCount))" @onclick:preventDefault>@r.CaseCount</a></span>
-                    </div>
-                </div>
-            }
-        </div>
+<h3>@Localizer["Reports_Title"]</h3>
 
-        <div class="col-sm-6 control_padding">
-            &nbsp;
-        </div>
-    </div>
 
-</div>
+<CaseFilter InputModel="@InputFilter" Culture="@CurrentCulture" OnValidSubmit="ShowReport"></CaseFilter>
+
+
+<DashGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" ></DashGrid>
+
+
+
 
 @code {
-    [Parameter]
-    public Reports ParentReports { get; set; }
 
-    [Parameter]
-    public EventCallback<int> OnChangeStatusClick { get; set; }
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
 
-    [Parameter]
-    public EventCallback<int> OnChangeResultClick { get; set; }
-
-    [Parameter]
-    public EventCallback<int> OnChangeCaseCountClick { get; set; }
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
 
 
-    List<CaseModel> _ReportCaseByStatusList { get; set; } = new List<CaseModel>();
-    List<CaseModel> _ReportCaseByResultList { get; set; } = new List<CaseModel>();
-    List<CaseModel> _ReportAliasCountList { get; set; } = new List<CaseModel>();
+    protected CaseFilterModel InputFilter { get; set; }
+    protected CaseFilterModel SubmitedFilter { get; set; }
+    protected string CurrentCulture { get; set; }
 
-    int? _contactID = null;
-    int? _caseid = null;
-    string _customerName = "";
-
-
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        ParentReports.FilterChanged += FilterChangedEvent;
-        await BindDashboardData();
-
-    }
-    private async Task BindDashboardData()
-    {
-        if (await _storageService.ContainKeyAsync("ReportFilterModel"))
-        {
-            var filterInfo = await _storageService.GetItemAsync<FiltersModels.ReportFilterModel>("ReportFilterModel");
-            _contactID = filterInfo.ContactID;
-            _caseid = filterInfo.CaseID;
-            _customerName = filterInfo.CustomerName;
-        }
-
-        _ReportCaseByStatusList = await _reportsCaseData.CaseByStatus(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
-            _caseid, ParentReports.ProfileID, _customerName);
-
-        _ReportCaseByResultList = await _reportsCaseData.CaseByResult(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
-            _caseid, ParentReports.ProfileID, _customerName);
-
-        _ReportAliasCountList = await _reportsCaseData.AliasCount(ParentReports.AppID, ParentReports.CaseTypeID, _contactID,
-            ParentReports.CreateFromDateValue, ParentReports.CreateToDateValue, ParentReports.ModifyFromDateValue, ParentReports.ModifyToDateValue,
-            _caseid, ParentReports.ProfileID, _customerName);
-
-        StateHasChanged();
+        InputFilter = new CaseFilterModel(showStatus:false, showResult:false);        
+        CurrentCulture = CultureInfo.CurrentCulture.Name;
+        ShowReport(InputFilter);
     }
 
-    public void FilterChangedEvent(bool IsAction)
+    protected void  ShowReport(CaseFilterModel filter)
     {
-        base.InvokeAsync(async () =>
-        {
-            await BindDashboardData();
-        });
+        SubmitedFilter = ObjHelper.Clone<CaseFilterModel>(filter);       
+
     }
 
-    private async Task SetFilterByStatusID(int filter)
+    protected void ShowCaseDetails(int caseId)
     {
-        await OnChangeStatusClick.InvokeAsync(filter);
-        StateHasChanged();
-    }
-    private async Task SetFilterByResultID(int filter)
-    {
-        await OnChangeResultClick.InvokeAsync(filter);
-        StateHasChanged();
-    }
-    private async Task SetFilterByCaseCount(int filter)
-    {
-        await OnChangeCaseCountClick.InvokeAsync(filter);
-        StateHasChanged();
+        
     }
 
 
