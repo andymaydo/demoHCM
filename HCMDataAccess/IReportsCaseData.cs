@@ -20,6 +20,6 @@ namespace HCMDataAccess
             DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
 
         Task<List<CaseModel>> AliasDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID);
+            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
     }
 }

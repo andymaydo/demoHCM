@@ -9,7 +9,7 @@
 
 @if(@_loadingStatus == 1)
 {
-    <div class="container">
+    <div class="container-fluid">
         <div class="row row_padding">
             <div class="col-sm-6 control_padding">
                 <div class="col-sm-12 control_padding">
@@ -45,10 +45,7 @@
                 }
             </div>
 
-
         </div>
-
-
 
         <div class="row row_padding">
             <div class="col-sm-6 control_padding">
@@ -62,7 +59,7 @@
                             <span class="col-sm-12 text-left ReportItem">@Localizer["Label_Report_Alias_Group_Count"]</span>
                         </div>
                         <div class="col-sm-6 control_padding text-right">
-                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnAliasClicked.InvokeAsync(r.CaseCount))" @onclick:preventDefault>@r.CaseCount</a></span>
+                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnAliasClicked.InvokeAsync())" @onclick:preventDefault>@r.CaseCount</a></span>
                         </div>
                     </div>
                 }
@@ -93,7 +90,7 @@
 
     [Parameter] public EventCallback<int> OnStatusClicked { get; set; }
     [Parameter] public EventCallback<int> OnResultClicked { get; set; }
-    [Parameter] public EventCallback<int> OnAliasClicked { get; set; }
+    [Parameter] public EventCallback OnAliasClicked { get; set; }
 
     protected UiMessages Messages { get; set; }
     protected List<CaseModel> CaseByStatusList { get; set; }

@@ -1180,4 +1180,7 @@ it - after verification of the hit - in the menu
   <data name="Login_ErrorLoginNotPossible" xml:space="preserve">
     <value>Authentication failed</value>
   </data>
+  <data name="Cases_ListCases_withAlias" xml:space="preserve">
+    <value>Case List (with Alias)</value>
+  </data>
 </root>

@@ -8,7 +8,7 @@
 
 
 <div class="blue_bg"></div>
-<h4>@Localizer["Cases_ListCases"]</h4>
+<h4>@Localizer["Cases_ListCases_withAlias"]</h4>
 
 <SfGrid DataSource="@CaseList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
@@ -17,9 +17,9 @@
     <GridColumns>
         <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="90"></GridColumn>
         <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer["Label_Filter_ProfileID"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer["Cases_List_Subject"]" ></GridColumn>
+        @*<GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer["Cases_List_Subject"]" ></GridColumn>*@
         <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer["Cases_List_Category"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer["Cases_List_Status"]" >
+       @* <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer["Cases_List_Status"]" >
             <Template>
                 @{
                     var _Case = (context as CaseModel);
@@ -38,11 +38,14 @@
                     </div>
                 }
             </Template>
-        </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer["Cases_List_GeprufterName"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" ></GridColumn>        
-        <GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.SapUser)></GridColumn>
+        </GridColumn>*@
+        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer["Cases_List_AliasName"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" ></GridColumn>  
+        
+        <GridColumn Field=@nameof(CaseModel.ContactName) HeaderText="@Localizer["Cases_List_Contact"]" ></GridColumn>
+        
+        @*<GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.SapUser)></GridColumn>*@
         @*<GridColumn HeaderText="" Width="40">
             <GridCommandColumns>
                 <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
@@ -108,11 +111,10 @@
     {
 
         int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
-       
-        CaseList = await ReportService.CaseDetail(InputFilter.GateId, InputFilter.CategoryId, _contactID, 
-            InputFilter.StatusId, InputFilter.ResultId,
-            InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
-            InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
-
+        
+        CaseList = await ReportService.AliasDetail(InputFilter.GateId, InputFilter.CategoryId, _contactID, 
+                InputFilter.StatusId, InputFilter.ResultId,
+                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate,
+                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
     }
 }

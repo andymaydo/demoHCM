@@ -95,15 +95,19 @@
                 <div class="col-sm-5 form-inline control_padding">
 
                 </div>
-                <div class="col-sm-3 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Result"]</label>
-                    <div class="col-sm-8 control_padding">
-                        <SfComboBox TValue="int?" TItem="FiltersModels.CaseResultModel"  @bind-Value='_localModel.ResultId' 
-                            Placeholder="@Localizer["Value_All_Text"]" Enabled="!_localModel.ShowOnlyOpenCases" DataSource="@ResultList">
-                            <ComboBoxFieldSettings Text="CaseResult" Value="CaseResultID"></ComboBoxFieldSettings>
-                        </SfComboBox>
-                    </div>
-                </div>
+                @if (_localModel.ShowResult)
+                {
+                  <div class="col-sm-3 form-inline control_padding">
+                        <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Result"]</label>
+                        <div class="col-sm-8 control_padding">
+                            <SfComboBox TValue="int?" TItem="FiltersModels.CaseResultModel"  @bind-Value='_localModel.ResultId' 
+                                Placeholder="@Localizer["Value_All_Text"]" Enabled="!_localModel.ShowOnlyOpenCases" DataSource="@ResultList">
+                                <ComboBoxFieldSettings Text="CaseResult" Value="CaseResultID"></ComboBoxFieldSettings>
+                            </SfComboBox>
+                        </div>
+                    </div>  
+                }
+                
                 <div class="col-sm-4 control_padding">
 
                 </div>
@@ -113,14 +117,18 @@
                 <div class="col-sm-5 form-inline control_padding">
 
                 </div>
-                <div class="col-sm-3 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Status"]</label>
-                    <div class="col-sm-8 control_padding">
-                        <SfComboBox TValue="int?" TItem="FiltersModels.CaseStatusModel"  @bind-Value='_localModel.StatusId' Placeholder="@Localizer["Value_All_Text"]" DataSource="@StatusList">
-                            <ComboBoxFieldSettings Text="CaseStatus" Value="CaseStatusID"></ComboBoxFieldSettings>
-                        </SfComboBox>
-                    </div>
-                </div>
+                @if (_localModel.ShowStatus)
+                {
+                    <div class="col-sm-3 form-inline control_padding">
+                        <label class="col-sm-4 control_padding">@Localizer["Label_Filter_Case_Status"]</label>
+                        <div class="col-sm-8 control_padding">
+                            <SfComboBox TValue="int?" TItem="FiltersModels.CaseStatusModel"  @bind-Value='_localModel.StatusId' Placeholder="@Localizer["Value_All_Text"]" DataSource="@StatusList">
+                                <ComboBoxFieldSettings Text="CaseStatus" Value="CaseStatusID"></ComboBoxFieldSettings>
+                            </SfComboBox>
+                        </div>
+                    </div>  
+                }
+                
                 <div class="col-sm-4 control_padding">
 
                 </div>
@@ -131,8 +139,8 @@
 
         <div class="row py-3">
             <div class="col-sm">
-                <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer["Button_Filter"]" ></SfButton>
-                <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]"  @onclick="ClearFilter"></SfButton>
+                <SfButton Type="submit" CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer["Button_Filter"]" ></SfButton>
+                <SfButton Type="button" CssClass="e-flat" IsPrimary="true" Content="@Localizer["Button_Filter_Reset"]"  @onclick="ClearFilter"></SfButton>
             </div>
         </div>
 
@@ -166,11 +174,14 @@
     protected List<FiltersModels.CaseStatusModel> StatusList;
 
     private int _loadingStatus;
+    private bool _comboLoaded;
 
 
     protected override void OnInitialized()
     {     
         Messages = new UiMessages();
+        _comboLoaded = false;
+        InitializeFilterValues();
     }
 
     protected override void OnParametersSet()
@@ -178,18 +189,20 @@
         base.OnParametersSet();
         try
         {
-           _loadingStatus = 0;
+            if (!_comboLoaded)
+            {
+                _loadingStatus = 0;
+                InitializeFilterComboBoxes();
+                _loadingStatus = 1;
+            }
 
-            InitializeFilterComboBoxes();
-            InitializeFilterValues();
-
-            _loadingStatus = 1; 
         }
         catch (Exception ex)
-        {            
+        {                        
             _logger.LogError(ex.Message);
             _logger.LogDebug(ex, ex.Message);
             Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
             _loadingStatus = 2;
         }
     }
@@ -237,9 +250,11 @@
         GateList =  FiltersDataService.GetGates();
         int intdpfGate = 1;
 
-        ProfileList =  FiltersDataService.GetProfiles(intdpfGate); 
+        ProfileList =  FiltersDataService.GetProfiles(intdpfGate);
         CategoryList =  FiltersDataService.GetCategories(intdpfGate);
         ResultList =  GetLocalizedResultLis(intdpfGate);
-        StatusList =  GetLocalizedStatusLis(intdpfGate); 
+        StatusList =  GetLocalizedStatusLis(intdpfGate);
+
+        _comboLoaded = true;
     }
 }

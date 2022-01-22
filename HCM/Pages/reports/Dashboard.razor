@@ -10,7 +10,11 @@
 <CaseFilter InputModel="@InputFilter" Culture="@CurrentCulture" OnValidSubmit="ShowReport"></CaseFilter>
 
 
-<DashGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" ></DashGrid>
+<DashGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" 
+            OnStatusClicked="ShowDetailedReportByStatus" 
+            OnResultClicked="ShowDetailedReportByResult" 
+            OnAliasClicked="ShowDetailedReportByAlias">
+</DashGrid>
 
 
 
@@ -18,6 +22,9 @@
 @code {
 
     [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
+
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
 
@@ -28,7 +35,7 @@
 
     protected override void OnInitialized()
     {
-        InputFilter = new CaseFilterModel(showStatus:false, showResult:false);        
+        InputFilter = new CaseFilterModel(showStatus:false, showResult:false, showOnlyOpenCases:false);        
         CurrentCulture = CultureInfo.CurrentCulture.Name;
         ShowReport(InputFilter);
     }
@@ -39,10 +46,37 @@
 
     }
 
-    protected void ShowCaseDetails(int caseId)
+    protected async Task ShowDetailedReportByStatus(int statusId)
     {
-        
+        var filterDetailedReport =  ObjHelper.Clone<CaseFilterModel>(SubmitedFilter);
+        filterDetailedReport.ShowResult = true;
+        filterDetailedReport.ShowStatus = true;
+        filterDetailedReport.StatusId = statusId;
+        await ProtectedSessionStore.SetAsync("FilterDetailedReport", filterDetailedReport);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed", "_blank");
+    }
+     
+    protected async Task ShowDetailedReportByResult(int resultId)
+    {
+        var filterDetailedReport =  ObjHelper.Clone<CaseFilterModel>(SubmitedFilter);
+        filterDetailedReport.ShowResult = true;
+        filterDetailedReport.ShowStatus = true;
+        filterDetailedReport.ResultId = resultId;
+        await ProtectedSessionStore.SetAsync("FilterDetailedReport", filterDetailedReport);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed", "_blank");
     }
 
+    protected async Task ShowDetailedReportByAlias()
+    {
+        var filterDetailedReport =  ObjHelper.Clone<CaseFilterModel>(SubmitedFilter);
+        filterDetailedReport.ShowResult = true;
+        filterDetailedReport.ShowStatus = true;
+        filterDetailedReport.ResultId = null;
+        filterDetailedReport.StatusId = null;
+        await ProtectedSessionStore.SetAsync("FilterDetailedReport", filterDetailedReport);
 
+        await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed/Alias", "_blank");
+    }
 }

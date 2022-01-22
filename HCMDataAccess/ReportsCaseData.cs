@@ -152,7 +152,7 @@ namespace HCMDataAccess
         }
 
         public async Task<List<CaseModel>> AliasDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID)
+            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
         {
             var procedure = "REPORT_CaseAliasDetail";
             var _params = new DynamicParameters();
@@ -169,10 +169,13 @@ namespace HCMDataAccess
             _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
 
             _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-             using (var conn = new SqlConnection(_db.GetConnStrName()))
+            using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 

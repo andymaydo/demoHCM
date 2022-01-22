@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Content Remove="Pages\cases\ListCases.razor" />
+    <Content Remove="Pages\reports\Reports.razor" />
   </ItemGroup>
 
   <ItemGroup>

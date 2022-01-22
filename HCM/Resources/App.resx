@@ -1184,4 +1184,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Login_ErrorLoginNotPossible" xml:space="preserve">
     <value>Ihre Zugangsdaten stimmen nicht überein !</value>
   </data>
+  <data name="Cases_ListCases_withAlias" xml:space="preserve">
+    <value>Case Liste (mit Alias)</value>
+  </data>
 </root>

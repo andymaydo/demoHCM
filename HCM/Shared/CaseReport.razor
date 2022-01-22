@@ -1,10 +1,15 @@
 ﻿
 
-
-
 <CaseFilter InputModel="@InputFilter" Culture="@Culture" OnValidSubmit="ShowReport"></CaseFilter>
 
-<CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGrid>
+@if(ReportType == "Alias")
+{
+    <CaseGridAliasOnly InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGridAliasOnly>    
+}
+else
+{
+    <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGrid>   
+}
 
 
 @code {
@@ -14,14 +19,19 @@
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public CaseFilterModel InputFilter { get; set; }
     [Parameter] public string Culture  { get; set; }
+    [Parameter] public bool ExecOnInit { get; set; }
+    [Parameter] public string ReportType { get; set; }
 
     protected CaseFilterModel SubmitedFilter { get; set; }
-   
+
 
 
     protected override void OnInitialized()
     {
-        
+        if (ExecOnInit)
+        {
+            ShowReport(InputFilter);
+        }   
     }
 
     protected void  ShowReport(CaseFilterModel filter)

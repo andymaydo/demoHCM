@@ -1,0 +1,36 @@
+﻿@page "/Reports/ReportDetailed"
+@page "/Reports/ReportDetailed/{ReportType}"
+@attribute [Authorize]
+@using System.Globalization
+
+<h3>@Localizer["Reports_Title"]</h3>
+@if(MyFilter != null)
+{
+    <CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture" 
+            ReportType="@ReportType" ExecOnInit="true"></CaseReport>
+}
+
+
+
+@code {
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
+
+    [Parameter] public string ReportType { get; set; }
+
+
+
+    protected CaseFilterModel MyFilter { get; set; }
+    protected string CurrentCulture { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var sessionFilter = await ProtectedSessionStore.GetAsync<CaseFilterModel>("FilterDetailedReport");
+        MyFilter = sessionFilter.Success ? sessionFilter.Value : new CaseFilterModel();
+
+        CurrentCulture = CultureInfo.CurrentCulture.Name;
+        
+    }
+
+    
+}
