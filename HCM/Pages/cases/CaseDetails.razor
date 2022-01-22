@@ -1,0 +1,94 @@
+﻿@page "/Cases/CaseDetails"
+@using HCMApi
+@using HCMApi.Models
+
+
+
+<div class="container-fluid">
+    <h3>@Localizer["Cases_Detail_Title"]</h3>
+    
+    @if (_loadingStatus == 0)
+    {
+        <p><em>Loading...</em></p>
+    }
+
+    @if (_loadingStatus == 1)
+    {
+        
+        <div class="row">
+            <div class="col-md-3">
+                <CaseActionPan CaseRole="AliasManager"></CaseActionPan>
+            </div>
+            <div class="col-md-6">
+                <CaseSubjPan CaseSubject="@MyCase.Subject"></CaseSubjPan>
+                <CaseMatchPan CaseCustomerName="@MyCase.CustomerName"></CaseMatchPan>
+                <CaseHistoryPan></CaseHistoryPan>
+            </div>
+            <div class="col-md-3">
+                <CaseOverviewPan Source="@MyCase"></CaseOverviewPan>
+                <CaseContactPan Source="@ProfileModel.profileParticipants" Title="@Localizer["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
+                <CaseContactPan Source="@ProfileModel.escalationUsers" Title="@Localizer["Cases_Detail_Label_EscalationUsers"]"></CaseContactPan>
+                <CaseContactPan Source="@CaseParticipants" Title=@Localizer["Cases_Detail_Label_Users"]></CaseContactPan>
+            </div>
+        </div>
+       
+    }
+   
+
+    <div class="pt-3">
+        <UiMessageBox Data="Messages.List" />
+    </div>
+
+</div>
+
+@code {
+    [Inject] private ILogger<CaseDetails> _logger { get; set; }
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ICMSAPI CmsService { get; set; }
+    [Inject] private ICMSProfile ProileService { get; set; }
+
+
+    protected int CaseId { get; set; }
+    protected Case MyCase { get; set; }
+    protected CMSProfileModel ProfileModel { get; set; } = new CMSProfileModel();
+    protected List<CaseContact> CaseParticipants { get; set; } = new List<CaseContact>();
+
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        Messages = new UiMessages();
+        CaseId = 87300;
+
+        _loadingStatus = 0;
+        try
+        {
+            await LoadCaseData();
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+    }
+
+   
+    protected async Task LoadCaseData()
+    {
+
+        MyCase = await CmsService.LoadCase(CaseId);
+        if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
+        
+        ProfileModel = ProileService.Load(MyCase.ProfileID);
+        CaseParticipants = CaseContactList.LoadFromXmlAsList(MyCase.Participants);
+
+    }
+
+}

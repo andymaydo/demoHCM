@@ -1,0 +1,42 @@
+﻿
+
+    <h5 class="tLabel">@Localizer["Cases_Detail_Actions"]</h5>
+    <div class="top_blue_bg"></div>
+
+    <div class="row pb-5">
+        <div class="col-sm-12 ">
+            <a href="" @onclick="@(() => OnNoteAction.InvokeAsync())" @onclick:preventDefault class="btnAddMessage">@Localizer["Cases_Detail_Action_AddMessage"]</a>
+        </div>
+        <div class="col-sm-12 ">
+            <a href="" @onclick="@(() => OnAddUserAction.InvokeAsync())" @onclick:preventDefault class="btnAddUser">@Localizer["Cases_Detail_Action_AddUser"]</a>
+        </div>
+
+        @if (CaseRole == "Moderator" || CaseRole == "AliasManager")
+        {
+            <div class="col-sm-12 ">
+                <a href="" @onclick="@(() => OnChangeStatusAction.InvokeAsync())" @onclick:preventDefault class="btnUpdate">@Localizer["Cases_Detail_Action_ChangeStatus"]</a>
+            </div>
+        }
+
+        @if (CaseRole == "AliasManager")
+        {
+            <div class="col-sm-12 ">
+
+                <a href="" @onclick="@(() => OnAddAliasAction.InvokeAsync())" @onclick:preventDefault class="btnAddAlias">@Localizer["Cases_Detail_Action_AddAlias"]</a>
+            </div>
+        }
+        </div>
+    
+
+
+
+@code {
+    
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+
+    [Parameter] public string CaseRole { get; set; }
+    [Parameter] public EventCallback OnNoteAction { get; set; }
+    [Parameter] public EventCallback OnAddUserAction { get; set; }
+    [Parameter] public EventCallback OnChangeStatusAction { get; set; }
+    [Parameter] public EventCallback OnAddAliasAction { get; set; }
+}

@@ -11,6 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
+    <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
+    <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
     <Content Remove="Pages\cases\ListCases.razor" />
     <Content Remove="Pages\reports\Reports.razor" />
   </ItemGroup>

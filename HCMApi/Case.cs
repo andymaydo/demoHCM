@@ -119,8 +119,7 @@ namespace HCMApi
 
             _params.Add(name: "@caseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: _caseID);
 
-            try
-            {
+            
                 using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
                 {
                     var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -144,11 +143,7 @@ namespace HCMApi
                     }
                     return null;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+           
 
 
 
