@@ -24,14 +24,12 @@
 
         }
 
-        @if (MatchReportAdded)
-        {
-             <div class="row">
-                <div class="col-8 itemDetail">@Localizer["Cases_AddMessage_AddReport"]</div>
-                <div class="col-4 itemDetail text-right">@Localizer["Status_Yes"]</div>                
-            </div>
-           
-        }
+        
+        <div class="row">
+            <div class="col-8 itemDetail">@Localizer["Cases_AddMessage_AddReport"]</div>
+            <div class="col-4 itemDetail text-right">@MatchReportAdded</div>                
+        </div>
+       
     </div>
 
     
@@ -52,7 +50,7 @@
 
 
     protected List<CaseDoc> DocList { get; set; } = new List<CaseDoc>();
-    protected bool MatchReportAdded = false;
+    protected string MatchReportAdded;
     private string _xmlDocList;
 
 
@@ -81,11 +79,11 @@
                 xDoc.LoadXml(XmlDocList);
                 addedReport = xDoc.SelectSingleNode("/CaseDocList/AddReport");
 
-                MatchReportAdded = (addedReport != null);
+                MatchReportAdded = (addedReport != null) ? @Localizer["Status_Yes"] : @Localizer["Status_NO"];
             }
             catch(XmlException ex)
             {
-                MatchReportAdded = false;
+                MatchReportAdded = @Localizer["Status_NO"];
             }
         }
 
