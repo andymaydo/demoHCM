@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <CaseSubjPan CaseSubject="@MyCase.Subject"></CaseSubjPan>
                 <CaseMatchPan CaseCustomerName="@MyCase.CustomerName"></CaseMatchPan>
-                <CaseHistoryPan></CaseHistoryPan>
+                <CaseHistoryPan Source="@CaseEvents"></CaseHistoryPan>
             </div>
             <div class="col-md-3">
                 <CaseOverviewPan Source="@MyCase"></CaseOverviewPan>
@@ -44,6 +44,7 @@
 @code {
     [Inject] private ILogger<CaseDetails> _logger { get; set; }
     [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
     [Inject] private ICMSAPI CmsService { get; set; }
     [Inject] private ICMSProfile ProileService { get; set; }
 
@@ -52,6 +53,8 @@
     protected Case MyCase { get; set; }
     protected CMSProfileModel ProfileModel { get; set; } = new CMSProfileModel();
     protected List<CaseContact> CaseParticipants { get; set; } = new List<CaseContact>();
+    protected List<CaseEvent> CaseEvents { get; set; } = new List<CaseEvent>();
+    
 
     protected UiMessages Messages { get; set; }
     private int _loadingStatus;
@@ -61,7 +64,9 @@
         base.OnInitialized();
 
         Messages = new UiMessages();
-        CaseId = 87300;
+
+        var caseId = await ProtectedSessionStorage.GetAsync<int>("CaseId");
+        CaseId = caseId.Success ? caseId.Value : -1;
 
         _loadingStatus = 0;
         try
@@ -88,6 +93,7 @@
         
         ProfileModel = ProileService.Load(MyCase.ProfileID);
         CaseParticipants = CaseContactList.LoadFromXmlAsList(MyCase.Participants);
+        CaseEvents = await CmsService.GetEventList(CaseId);
 
     }
 

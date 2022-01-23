@@ -1,0 +1,51 @@
+﻿@using HCMApi
+
+@if(NotifyList?.Count > 0)
+{
+    <h5 class="itemDetail mt-3">@Localizer["Cases_Detail_History_NotifyContact"]</h5>
+    
+    <div class="container bg-light">              
+       
+        @foreach (CaseContact c in NotifyList)
+        {
+                <div class="row">
+                <div class="col-12 itemDetail">
+                    @c.Name (@c.Email)
+                </div>
+            </div>
+                       
+        }    
+        
+    </div>
+}
+    
+        
+
+@code {
+
+    [Inject] public IStringLocalizer<App> Localizer { get; set; }
+
+    [Parameter] public string XmlNotifyList { get; set; }
+
+
+    protected List<CaseContact> NotifyList { get; set; } = new List<CaseContact>();
+    private string _xmlNotifyList;
+
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if(_xmlNotifyList != XmlNotifyList)
+        {
+            _xmlNotifyList = XmlNotifyList;
+            if(_xmlNotifyList?.IndexOf("<ContactList>") == 0)
+            {
+                NotifyList = CaseContactList.LoadFromXmlAsList(_xmlNotifyList);
+            }
+        }
+
+    }
+
+                                
+}

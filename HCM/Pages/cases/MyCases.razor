@@ -4,11 +4,13 @@
 
 <h3>@Localizer["Cases_Title"]</h3>
 
-<CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture"></CaseReport>
+<CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture" OnCaseDetailsClicked="ShowCaseDetails"></CaseReport>
 
 
 @code {
     [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
 
     protected CaseFilterModel MyFilter { get; set; }
     protected string CurrentCulture { get; set; }
@@ -17,5 +19,12 @@
     {
         MyFilter = new CaseFilterModel(showOnlyOpenCases:true);
         CurrentCulture = CultureInfo.CurrentCulture.Name;
+    }
+
+    protected async Task ShowCaseDetails(int caseId)
+    {
+        await ProtectedSessionStorage.SetAsync("CaseId", caseId);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
     }
 }

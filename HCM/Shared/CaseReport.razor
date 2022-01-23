@@ -4,11 +4,11 @@
 
 @if(ReportType == "Alias")
 {
-    <CaseGridAliasOnly InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGridAliasOnly>    
+    <CaseGridAliasOnly InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGridAliasOnly>    
 }
 else
 {
-    <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="ShowCaseDetails"></CaseGrid>   
+    <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGrid>   
 }
 
 
@@ -21,6 +21,7 @@ else
     [Parameter] public string Culture  { get; set; }
     [Parameter] public bool ExecOnInit { get; set; }
     [Parameter] public string ReportType { get; set; }
+    [Parameter] public EventCallback<int> OnCaseDetailsClicked { get; set; }
 
     protected CaseFilterModel SubmitedFilter { get; set; }
 
@@ -40,8 +41,5 @@ else
 
     }
 
-    protected void ShowCaseDetails(int caseId)
-    {
-        
-    }
+    
 }

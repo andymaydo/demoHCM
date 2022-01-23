@@ -1,0 +1,113 @@
+﻿@using HCMApi
+@using BlazorDownloadFile;
+@using System.IO
+@using HCM.Options
+@using System.Xml
+
+@if(DocList?.Count > 0)
+{
+    <h5 class="itemDetail mt-3">@Localizer["Cases_Detail_Label_AttachInformation"]</h5>
+    
+    <div class="container bg-light">              
+
+        @foreach (CaseDoc cd in DocList)
+        {
+            <div class="row mb-1">
+                <div class="col-8 itemDetail">
+                   <a href="" @onclick="@(() => StartDownload(cd.CaseID,cd.FilePath,cd.DocName))" @onclick:preventDefault class="btnUpdate">@cd.OrgFileName</a>
+                </div>
+                <div class="col-4 itemDetail text-right">
+                    @(cd.DocSize / 1024) Kb
+                </div>
+                
+            </div>
+
+        }
+
+        @if (MatchReportAdded)
+        {
+             <div class="row">
+                <div class="col-8 itemDetail">@Localizer["Cases_AddMessage_AddReport"]</div>
+                <div class="col-4 itemDetail text-right">@Localizer["Status_Yes"]</div>                
+            </div>
+           
+        }
+    </div>
+
+    
+    
+}
+    
+        
+
+@code {
+
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ICaseDoc CaseDocService { get; set; }
+    [Inject] private CMSSettings cmsSettingsService { get; set; }
+    [Inject] private IBlazorDownloadFileService blazorDownloadFileService { get; set; }
+
+
+    [Parameter] public string XmlDocList { get; set; }
+
+
+    protected List<CaseDoc> DocList { get; set; } = new List<CaseDoc>();
+    protected bool MatchReportAdded = false;
+    private string _xmlDocList;
+
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if(!String.IsNullOrEmpty(XmlDocList))
+        {
+            // Docs Uploaded?
+            if(XmlDocList.IndexOf("<CaseDocList>") == 0)
+            {
+                try
+                {
+                    DocList = CaseDocService.LoadFromXml(XmlDocList);
+                }
+                catch { };
+            }
+
+            //MatchReport attached?
+            var xDoc = new XmlDocument();
+            XmlNode addedReport;
+            try
+            {
+                xDoc.LoadXml(XmlDocList);
+                addedReport = xDoc.SelectSingleNode("/CaseDocList/AddReport");
+
+                MatchReportAdded = (addedReport != null);
+            }
+            catch(XmlException ex)
+            {
+                MatchReportAdded = false;
+            }
+        }
+
+    }
+
+
+    public async Task StartDownload(int CaseID, string FilePath, string DocName)
+    {
+        var memory = new MemoryStream();
+        string fullPath = cmsSettingsService.CmsDocPath + FilePath;
+
+        if (File.Exists(fullPath))
+        {
+            await using (var stream = new FileStream(fullPath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+
+            await blazorDownloadFileService.DownloadFile(DocName, memory, "application/octet-stream");
+        }
+
+
+    }                            
+}
