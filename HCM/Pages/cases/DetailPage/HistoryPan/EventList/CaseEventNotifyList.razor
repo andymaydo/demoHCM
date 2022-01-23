@@ -8,7 +8,7 @@
        
         @foreach (CaseContact c in NotifyList)
         {
-                <div class="row">
+            <div class="row">
                 <div class="col-12 itemDetail">
                     @c.Name (@c.Email)
                 </div>
@@ -29,21 +29,23 @@
 
 
     protected List<CaseContact> NotifyList { get; set; } = new List<CaseContact>();
-    private string _xmlNotifyList;
 
 
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        if(_xmlNotifyList != XmlNotifyList)
+
+
+        if(XmlNotifyList?.IndexOf("<ContactList>") == 0)
         {
-            _xmlNotifyList = XmlNotifyList;
-            if(_xmlNotifyList?.IndexOf("<ContactList>") == 0)
+            try
             {
-                NotifyList = CaseContactList.LoadFromXmlAsList(_xmlNotifyList);
+                NotifyList = CaseContactList.LoadFromXmlAsList(XmlNotifyList);
             }
+            catch { }
         }
+       
 
     }
 

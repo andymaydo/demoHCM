@@ -26,11 +26,19 @@
             @Source.CaseEventText?.Replace("\n", "<br>")
         </div>
 
-        @*event notification mail list*@
+        @*notification mail list*@
         <CaseEventNotifyList XmlNotifyList="@Source.CaseEventNotifyContacts"></CaseEventNotifyList>
 
-        @*event attached doc list*@
+        @*attached doc list*@
         <CaseEventDocList XmlDocList="@Source.CaseEventData"></CaseEventDocList>
+
+        @*added participant list*@
+        @if(Source.eventID == "cms.participantschanged")
+        {
+            <CaseEventParticipList XmlParticipList="@Source.CaseEventData"></CaseEventParticipList>   
+        }
+        
+
     </div>  
 }
 
