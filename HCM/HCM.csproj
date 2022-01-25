@@ -11,14 +11,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\admin\**" />
+    <Compile Remove="Pages\auth\**" />
+    <Compile Remove="Resources\Resources\**" />
+    <Content Remove="Pages\admin\**" />
+    <Content Remove="Pages\auth\**" />
+    <Content Remove="Resources\Resources\**" />
+    <EmbeddedResource Remove="Pages\admin\**" />
+    <EmbeddedResource Remove="Pages\auth\**" />
+    <EmbeddedResource Remove="Resources\Resources\**" />
+    <None Remove="Pages\admin\**" />
+    <None Remove="Pages\auth\**" />
+    <None Remove="Resources\Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="LocalAuthenticationStateProvider.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
     <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
     <Content Remove="Pages\cases\ListCases.razor" />
     <Content Remove="Pages\reports\Reports.razor" />
+    <Content Remove="Shared\ChooseLanguage.razor" />
+    <Content Remove="Shared\SurveyPrompt.razor" />
+    <Content Remove="Shared\UserStatus.razor" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="BlazorDownloadFile" Version="2.3.1" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
@@ -46,27 +70,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\App.de.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\App.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\App.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resources\HcmRes.de.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resources\HcmRes.en.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resources\HcmRes.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SfResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -96,6 +106,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SfResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\SharedResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 

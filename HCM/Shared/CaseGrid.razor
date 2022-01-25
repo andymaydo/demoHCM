@@ -8,40 +8,40 @@
 
 
 <div class="blue_bg"></div>
-<h4>@Localizer["Cases_ListCases"]</h4>
+<h4>@Localizer.Str["Cases_ListCases"]</h4>
 
 <SfGrid DataSource="@CaseList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
     <GridPageSettings PageSizes="true" ></GridPageSettings>
     <GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="CaseModel"></GridEvents>
     <GridColumns>
-        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="90"></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer["Label_Filter_ProfileID"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer["Cases_List_Subject"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer["Cases_List_Category"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer["Cases_List_Status"]" >
+        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer.Str["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="90"></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer.Str["Label_Filter_ProfileID"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer.Str["Cases_List_Subject"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer.Str["Cases_List_Category"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer.Str["Cases_List_Status"]" >
             <Template>
                 @{
                     var _Case = (context as CaseModel);
                     <div>
-                        @Localizer["Case_Status_" + _Case.CaseStatusID.ToString()]
+                        @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
                     </div>
                 }
             </Template>
         </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseResult) HeaderText="@Localizer["Cases_List_Ergebnis"]">
+        <GridColumn Field=@nameof(CaseModel.CaseResult) HeaderText="@Localizer.Str["Cases_List_Ergebnis"]">
             <Template>
                 @{
                     var _Case = (context as CaseModel);
                     <div>
-                        @Localizer["Case_Result_" + _Case.CaseResultID.ToString()]
+                        @Localizer.Str["Case_Result_" + _Case.CaseResultID.ToString()]
                     </div>
                 }
             </Template>
         </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer["Cases_List_GeprufterName"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer["Cases_List_CreateOn"]" ></GridColumn>        
-        <GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer["Cases_List_LastModify"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer.Str["Cases_List_GeprufterName"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer.Str["Cases_List_CreateOn"]" ></GridColumn>        
+        <GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer.Str["Cases_List_LastModify"]" ></GridColumn>
         <GridColumn Field=@nameof(CaseModel.SapUser)></GridColumn>
         @*<GridColumn HeaderText="" Width="40">
             <GridCommandColumns>
@@ -58,7 +58,7 @@
 @code {
     [Inject] private IReportsCaseData ReportService { get; set; }
     [Inject] private ILogger<CaseGrid> _logger { get; set; }
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
 
     [Parameter] public CaseFilterModel InputFilter { get; set; }
     [Parameter] public int ContactId { get; set; }
@@ -95,7 +95,7 @@
         {
             _logger.LogError(ex.Message);
             _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
         }
     }
 

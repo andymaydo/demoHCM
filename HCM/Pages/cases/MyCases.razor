@@ -2,13 +2,13 @@
 @attribute [Authorize]
 @using System.Globalization
 
-<h3>@Localizer["Cases_Title"]</h3>
+<h3>@Localizer.Str["Cases_Title"]</h3>
 
 <CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture" OnCaseDetailsClicked="ShowCaseDetails"></CaseReport>
 
 
 @code {
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
 

@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
 using HCMDataAccess;
 using Microsoft.Extensions.Configuration;
+using HCM.Options;
 
 namespace HCM.Pages
 {
@@ -26,7 +27,7 @@ namespace HCM.Pages
         private ILogger<LoginModel> _logger;
         private ILoginData _loginData;
         private readonly IConfiguration _configuration;
-        public IStringLocalizer<App> _commonLocalizer;
+        public CommonLocalizationService _commonLocalizer;
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -106,7 +107,7 @@ namespace HCM.Pages
             return res;
         }       
 
-        public LoginModel(ILogger<LoginModel> logger, IHttpContextAccessor httpContext, IStringLocalizer<App> localizer, IConfiguration Configuration, ILoginData loginData)
+        public LoginModel(ILogger<LoginModel> logger, IHttpContextAccessor httpContext, CommonLocalizationService localizer, IConfiguration Configuration, ILoginData loginData)
         {
             _logger = logger;
             _httpContext = httpContext;
@@ -157,7 +158,7 @@ namespace HCM.Pages
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, @_commonLocalizer["Login_ErrorLoginNotPossible"]);
+                        ModelState.AddModelError(string.Empty, @_commonLocalizer.Str["Login_ErrorLoginNotPossible"]);
                         return Page();
                     }
                 }

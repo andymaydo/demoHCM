@@ -1,0 +1,84 @@
+﻿@using HCMApi
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+
+@if(Source != null)
+{
+    <div class="container-fluid mb-5">
+        
+        @*event header*@ 
+        <div class="row">
+            <div class="col-6 tLabel2">
+                @Localizer.Str["event_" + Source.eventID?.Replace(".", "_")]
+            </div>
+            <div class="col-6 itemDetail text-right">
+                @Source.CreateDate
+            </div>
+         </div>
+         <div class="col-12 top_blue_bg_thin"></div>
+
+         <div class="row">
+            <div class="col-12 itemDetail text-right">
+                @Source.ContactName
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            @*event text*@
+            <div class="row col-12  itemDetail my-3">
+                @Source.CaseEventText?.Replace("\n", "<br>")
+            </div>
+
+            @*notification mail list*@
+            <div class="my-3">
+                <CaseContactPan Source="@NotifyContacts" ShowStriped="true" ShowEmail="true" Title="@Localizer.Str["Cases_Detail_History_NotifyContact"]"></CaseContactPan>
+            </div>
+            
+
+            @*attached doc list*@
+            <div class="my-3">
+                <CaseEventDocList XmlDocList="@Source.CaseEventData"></CaseEventDocList>
+            </div>
+
+
+            @*added participant list*@
+            <div class="my-3">
+                @if(Source.eventID == "cms.participantschanged")
+                {
+                    <CaseContactPan Source="@AddedCaseParticipants" ShowStriped="true" ShowFunction="true" ShowRole="true" Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
+                }
+            </div>
+        </div>
+
+    </div>  
+}
+
+        
+
+    
+         
+
+
+@code {
+
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+    [Parameter] public CaseEvent Source { get; set; }
+    protected List<CaseContactSelectable> NotifyContacts { get; set; }
+    protected List<CaseContactSelectable> AddedCaseParticipants { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        var contactList = CaseContactList.LoadFromXmlAsList(Source.CaseEventNotifyContacts);        
+        NotifyContacts = _mapper.Map<List<CaseContactSelectable>>(contactList);
+
+        contactList = CaseContactList.LoadFromXmlAsList(Source.CaseEventData);        
+        AddedCaseParticipants = _mapper.Map<List<CaseContactSelectable>>(contactList);
+       
+
+    }
+}

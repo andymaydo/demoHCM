@@ -4,7 +4,7 @@
 
 
 
-<h3>@Localizer["Reports_Title"]</h3>
+<h3>@Localizer.Str["Reports_Title"]</h3>
 
 
 <CaseFilter InputModel="@InputFilter" Culture="@CurrentCulture" OnValidSubmit="ShowReport"></CaseFilter>
@@ -21,7 +21,7 @@
 
 @code {
 
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
 

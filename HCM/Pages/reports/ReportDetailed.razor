@@ -3,7 +3,7 @@
 @attribute [Authorize]
 @using System.Globalization
 
-<h3>@Localizer["Reports_Title"]</h3>
+<h3>@Localizer.Str["Reports_Title"]</h3>
 @if(MyFilter != null)
 {
     <CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture" 
@@ -13,7 +13,7 @@
 
 
 @code {
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
 
     [Parameter] public string ReportType { get; set; }

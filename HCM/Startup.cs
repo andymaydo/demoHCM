@@ -21,6 +21,9 @@ using System;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
+using AutoMapper;
+using HCM.Models;
+using HCM.Resources;
 
 namespace HCM
 {
@@ -67,10 +70,13 @@ namespace HCM
             {
                 Options.DataAnnotationLocalizerProvider = (type, factory) =>
                 {
-                    var assemblyName = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
-                    return factory.Create(nameof(App), assemblyName.Name);
+                    var assemblyName = new AssemblyName(typeof(SharedResources).GetTypeInfo().Assembly.FullName);
+                    return factory.Create(nameof(SharedResources), assemblyName.Name);
                 };
             });
+            services.AddSingleton<CommonLocalizationService>();
+
+            services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddSyncfusionBlazor();                     
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));

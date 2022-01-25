@@ -14,7 +14,7 @@ else
 
 @code {
 
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public CaseFilterModel InputFilter { get; set; }

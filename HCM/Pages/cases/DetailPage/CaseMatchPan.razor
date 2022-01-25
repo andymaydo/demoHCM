@@ -1,15 +1,15 @@
 ﻿
     
         
-    <h5 class="tLabel">@Localizer["Cases_Detail_Label_AttachInformation"]</h5>
+    <h5 class="tLabel">@Localizer.Str["Cases_Detail_Label_AttachInformation"]</h5>
     <div class="top_blue_bg"></div>
 
-    <div class="row mb-5">
+    <div class="row">
         <div class="col-sm-12 itemDetail">@CaseCustomerName</div>
             
         <div class="col-sm-12 itemDetail">
             <a href="" @onclick="@(() => OnShowMatch.InvokeAsync())" @onclick:preventDefault class="btnShowMatch">
-                @Localizer["Cases_Detail_Label_MatchXml"]</a>
+                @Localizer.Str["Cases_Detail_Label_MatchXml"]</a>
         </div>
     </div>
     
@@ -17,7 +17,7 @@
 
 @code {
     
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
 
     [Parameter] public string CaseCustomerName { get; set; }
     [Parameter] public EventCallback OnShowMatch { get; set; }

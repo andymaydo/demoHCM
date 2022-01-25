@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace HCM.Models
 {
@@ -50,5 +53,26 @@ namespace HCM.Models
 
             return objJson == anotherJson;
         }
+
+        public static T FromXml<T>(this string value)
+        {
+            using TextReader reader = new StringReader(value);
+            return (T)new XmlSerializer(typeof(T)).Deserialize(reader);
+        }
+
+        public static string ToXml(this object objectInstance)
+        {
+            var serializer = new XmlSerializer(objectInstance.GetType());
+            var sb = new StringBuilder();
+
+            using (TextWriter writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, objectInstance);
+            }
+
+            return sb.ToString();
+        }
+
+        
     }
 }

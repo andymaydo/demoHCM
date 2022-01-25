@@ -6,33 +6,31 @@
 
 @if(DocList?.Count > 0)
 {
-    <h5 class="itemDetail mt-3">@Localizer["Cases_Detail_Label_AttachInformation"]</h5>
-    
-    <div class="container bg-light">              
+    <h5 class="tLabel2">@Localizer.Str["Cases_Detail_Label_AttachInformation"]</h5>
+    <div class="top_blue_bg"></div>
+               
+     <table class="table table-striped table-borderless table-sm">              
+        <tbody class="itemDetail">
 
-        @foreach (CaseDoc cd in DocList)
-        {
-            <div class="row mb-1">
-                <div class="col-8 itemDetail">
-                   <a href="" @onclick="@(() => StartDownload(cd.CaseID,cd.FilePath,cd.DocName))" @onclick:preventDefault class="btnUpdate">@cd.OrgFileName</a>
-                </div>
-                <div class="col-4 itemDetail text-right">
-                    @(cd.DocSize / 1024) Kb
-                </div>
-                
-            </div>
+            @foreach (CaseDoc cd in DocList)
+            {
+                <tr>                  
+                    <td>
+                        <a href="" @onclick="@(() => StartDownload(cd.CaseID,cd.FilePath,cd.DocName))" @onclick:preventDefault class="btnUpdate">@cd.OrgFileName</a>
+                    </td>  
+                    <td align="right">
+                         @(cd.DocSize / 1024) Kb
+                    </td>                                        
+                </tr>
+            }
+                <tr>                  
+                    <td>@Localizer.Str["Cases_AddMessage_AddReport"]</td>  
+                    <td align="right">@MatchReportAdded</td>                                        
+                </tr>
 
-        }
-
-        
-        <div class="row">
-            <div class="col-8 itemDetail">@Localizer["Cases_AddMessage_AddReport"]</div>
-            <div class="col-4 itemDetail text-right">@MatchReportAdded</div>                
-        </div>
-       
-    </div>
-
-    
+            </tbody>
+    </table>
+   
     
 }
     
@@ -40,7 +38,7 @@
 
 @code {
 
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ICaseDoc CaseDocService { get; set; }
     [Inject] private CMSSettings cmsSettingsService { get; set; }
     [Inject] private IBlazorDownloadFileService blazorDownloadFileService { get; set; }
@@ -79,11 +77,11 @@
                 xDoc.LoadXml(XmlDocList);
                 addedReport = xDoc.SelectSingleNode("/CaseDocList/AddReport");
 
-                MatchReportAdded = (addedReport != null) ? @Localizer["Status_Yes"] : @Localizer["Status_NO"];
+                MatchReportAdded = (addedReport != null) ? @Localizer.Str["Status_Yes"] : @Localizer.Str["Status_NO"];
             }
             catch(XmlException ex)
             {
-                MatchReportAdded = @Localizer["Status_NO"];
+                MatchReportAdded = @Localizer.Str["Status_NO"];
             }
         }
 

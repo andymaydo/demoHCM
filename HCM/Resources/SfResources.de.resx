@@ -153,4 +153,70 @@
   <data name="Pager_TotalItemsInfo" xml:space="preserve">
     <value>({0} Artikel)</value>
   </data>
+  <data name="Uploader_Abort" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Uploader_Browse" xml:space="preserve">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="Uploader_Cancel" xml:space="preserve">
+    <value>Stornieren</value>
+  </data>
+  <data name="Uploader_Clear" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Uploader_Delete" xml:space="preserve">
+    <value>Datei löschen</value>
+  </data>
+  <data name="Uploader_DropFilesHint" xml:space="preserve">
+    <value>Oder legen Sie Dateien hier ab</value>
+  </data>
+  <data name="Uploader_FileUploadCancel" xml:space="preserve">
+    <value>Datei-Upload abgebrochen</value>
+  </data>
+  <data name="Uploader_InProgress" xml:space="preserve">
+    <value>Hochladen</value>
+  </data>
+  <data name="Uploader_InvalidFileType" xml:space="preserve">
+    <value>Dateityp ist nicht erlaubt</value>
+  </data>
+  <data name="Uploader_InvalidMaxFileSize" xml:space="preserve">
+    <value>Dateigröße ist zu groß</value>
+  </data>
+  <data name="Uploader_invalidMinFileSize" xml:space="preserve">
+    <value>Dateigröße ist zu klein</value>
+  </data>
+  <data name="Uploader_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Uploader_PauseUpload" xml:space="preserve">
+    <value>Datei-Upload angehalten</value>
+  </data>
+  <data name="Uploader_ReadyToUploadMessage" xml:space="preserve">
+    <value>Bereit zum Hochladen</value>
+  </data>
+  <data name="Uploader_Remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="Uploader_RemovedFailedMessage" xml:space="preserve">
+    <value>Datei kann nicht entfernt werden</value>
+  </data>
+  <data name="Uploader_RemovedSuccessMessage" xml:space="preserve">
+    <value>Datei erfolgreich entfernt</value>
+  </data>
+  <data name="Uploader_Resume" xml:space="preserve">
+    <value>Fortsetzen</value>
+  </data>
+  <data name="Uploader_Retry" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="Uploader_Upload" xml:space="preserve">
+    <value>Hochladen</value>
+  </data>
+  <data name="Uploader_UploadFailedMessage" xml:space="preserve">
+    <value>Datei konnte nicht hochgeladen werden</value>
+  </data>
+  <data name="Uploader_UploadSuccessMessage" xml:space="preserve">
+    <value>Datei erfolgreich hochgeladen</value>
+  </data>
 </root>

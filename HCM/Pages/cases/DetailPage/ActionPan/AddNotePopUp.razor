@@ -1,0 +1,199 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+
+@if (ShowModal)
+{
+    <SfDialog Width="850px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
+        <DialogTemplates>
+            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_AddMessage_Title"]</div></Header>
+            <Content>
+                <div class="mx-4">
+                     <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
+                        <DataAnnotationsValidator />
+                        <div class="row">
+                            <div class="col-sm-6">
+                               
+                                <label class="col-2 font-weight-bold">@Localizer.Str["Cases_AddMessage_Note"]</label>
+                                <div class="col-10">@FormModel.CaseSubject</div>
+
+                                <div class="form-group col-12">
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddMessage_Note"]</label>
+                                    <SfTextBox CssClass="e-custom-height" Multiline="true" @bind-Value="@FormModel.Note"></SfTextBox>
+                                    <ValidationMessage For="@(() => FormModel.Note)" />
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <SfCheckBox @bind-Checked="@FormModel.WithMatchReport" Label="@Localizer.Str["Cases_AddMessage_AddReport"]"></SfCheckBox>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <SfUploader  AutoUpload="false" Locale="@(CultureInfo.CurrentCulture.Name)">
+                                        <UploaderEvents ValueChange="UploaderOnChange" OnRemove="UploaderOnRemove"></UploaderEvents>
+                                    </SfUploader>
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-2">
+                                
+                            </div>
+                            <div class="col-sm-4">
+                                <h5 class="tLabel">@Localizer.Str["Cases_AddMessage_NotifyUsers"]</h5>
+                                <div class="top_blue_bg_thin"></div>
+
+                                <div class="col-12 mb-3">
+                                    <SfCheckBox @bind-Checked="@FormModel.NotifyAll" Label="@Localizer.Str["Value_All_Text"]"></SfCheckBox>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <div class="itemDetail">@Localizer.Str["Cases_Detail_Label_ProfileUsers"]</div>
+                                    <div class="top_blue_bg_thin"></div>
+                                    <SfListView DataSource="@FormModel.ProfileParticipants" ShowCheckBox="true" >
+                                        <ListViewFieldSettings TValue="CaseContactSelectable" Id="ContactID" Text="Name" IsChecked="Selected"></ListViewFieldSettings>
+                                    </SfListView>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <div class="itemDetail">@Localizer.Str["Cases_Detail_Label_Users"]</div>
+                                    <div class="top_blue_bg_thin"></div>
+                                    <SfListView DataSource="@FormModel.CaseParticipants" ShowCheckBox="true">
+                                        <ListViewFieldSettings TValue="CaseContactSelectable" Id="ContactID" Text="Name" IsChecked="Selected"></ListViewFieldSettings>
+                                    </SfListView>
+                                </div>
+
+                               @* <div class="col-12 mb-3">
+                                    <div class="itemDetail">@Localizer.Str["Cases_AddMessage_Creator"]</div>
+                                    <div class="top_blue_bg_thin"></div>
+                                    <SfCheckBox  @bind-Checked="@FormModel.Originator.Selected" Label="@FormModel.Originator.USERNAME"></SfCheckBox>
+                                </div>*@
+
+                                 <div class="col-12 mb-3">
+                                    <div class="itemDetail">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
+                                    <div class="top_blue_bg_thin"></div>
+                                    <SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail1"></SfTextBox>
+                                    <ValidationMessage For="@(() => FormModel.ExtEmail1)" />                                 
+                                    @*<SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail2"></SfTextBox>*@
+                                
+                                </div>
+                                
+                                
+
+                            </div>
+                        </div>
+                         
+                     </EditForm>
+                </div>
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+
+    <style>
+        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+            background-color: lightblue;
+        }
+    </style>
+}
+
+
+
+
+@code {
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+    [Parameter] public Case CaseModel { get; set; }
+    [Parameter] public CMSProfileModel ProfileModel { get; set; }
+    [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+
+    protected AddNoteForm FormModel { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        FormModel = new AddNoteForm();
+        FormModel.CaseSubject = CaseModel.Subject;
+        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
+        FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
+
+    }
+
+    public void Show(string licId, string licName)
+    {
+        ShowModal = true;
+    }
+
+    public void CloseDialog()
+    {
+        ShowModal = false;
+    }
+
+
+    protected void ValidFormSubmited()
+    {
+        
+    }
+
+
+     private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
+    {
+        //foreach (var file in args.Files)
+        //{
+        //    string _filename = DateTime.Now.Year.ToString();
+        //    _filename += DateTime.Now.Month.ToString();
+        //    _filename += DateTime.Now.Day.ToString();
+        //    _filename += DateTime.Now.Hour.ToString();
+        //    _filename += DateTime.Now.Minute.ToString();
+        //    _filename += DateTime.Now.Second.ToString();
+        //    _filename += DateTime.Now.Millisecond.ToString();
+        //    _filename += "_" + Path.GetFileName(file.FileInfo.Name);
+
+        //    var path = cmsSettings.CmsDocPath;
+        //    if (!System.IO.Directory.Exists(path))
+        //        System.IO.Directory.CreateDirectory(path);
+
+        //    FileStream filestream = new FileStream(path + "\\" + _filename, FileMode.Create, FileAccess.Write);
+        //    file.Stream.WriteTo(filestream);
+
+
+        //    CaseDoc doc = new CaseDoc();
+        //    doc.DocID = Guid.NewGuid().ToString();
+        //    doc.CaseID = _Case.CaseID;
+        //    doc.DocName = _filename;
+        //    doc.DocSize = Convert.ToInt32(file.FileInfo.Size);
+        //    doc.FilePath = _filename;
+        //    doc.OrgFileName = file.FileInfo.Name;
+        //    doc.ContactID = _UsersModel.UserID;
+        //    doc.CreatedOn = DateTime.Now;
+
+        //    _AddDocList.Add(doc);
+
+        //    filestream.Close();
+        //    file.Stream.Close();
+        //}
+    }
+    private void UploaderOnRemove(RemovingEventArgs args)
+    {
+        //var path = cmsSettings.CmsDocPath;
+
+        //foreach (var removeFile in args.FilesData)
+        //{
+        //    string _realFileName = _AddDocList.Find(f => f.OrgFileName == removeFile.Name).FilePath;
+
+        //    if (File.Exists(Path.Combine(path, _realFileName)))
+        //    {
+        //        File.Delete(Path.Combine(path, _realFileName));
+        //        _AddDocList.Remove(_AddDocList.Find(f => f.OrgFileName == removeFile.Name));
+        //    }
+        //}
+    }
+}

@@ -1,16 +1,16 @@
 ﻿
     
-        <h5 class="tLabel">@Localizer["Cases_Detail_Label_Subject"]</h5>
+        <h5 class="tLabel">@Localizer.Str["Cases_Detail_Label_Subject"]</h5>
         <div class="top_blue_bg"></div>
     
-        <div class="row pb-5">
+        <div class="row">
             <div class=" col-md-12 itemDetail">@CaseSubject</div>
         </div>
 
 
 @code {
     
-    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
 
     [Parameter] public string CaseSubject { get; set; }
     

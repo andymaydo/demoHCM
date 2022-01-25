@@ -5,7 +5,7 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>@Model._commonLocalizer["Login_TitleText"]</h1>
+<h1>@Model._commonLocalizer.Str["Login_TitleText"]</h1>
 
 <div class="row">
     <div class="col-md-5">
@@ -38,7 +38,7 @@
 
 
                 <div class="form-group">
-                    <button id="login-submit" type="submit" class="btn btn-primary">@Model._commonLocalizer["Login_ButtonText"]</button>
+                    <button id="login-submit" type="submit" class="btn btn-primary">@Model._commonLocalizer.Str["Login_ButtonText"]</button>
                 </div>
             </form>
         </section>

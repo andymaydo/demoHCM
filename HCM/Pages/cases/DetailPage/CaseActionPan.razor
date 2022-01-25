@@ -1,0 +1,105 @@
+﻿@using HCMApi
+@using HCMApi.Models
+@using HCM.Pages.cases.DetailPage.ActionPan
+
+    <h5 class="tLabel">@Localizer.Str["Cases_Detail_Actions"]</h5>
+    <div class="top_blue_bg"></div>
+
+    <div class="row pb-5">
+        <div class="col-sm-12 ">
+            <a href="" @onclick="@AddNote" @onclick:preventDefault class="btnAddMessage">@Localizer.Str["Cases_Detail_Action_AddMessage"]</a>
+        </div>
+        <div class="col-sm-12 ">
+            <a href="" @onclick="@(() => OnAddUserAction.InvokeAsync())" @onclick:preventDefault class="btnAddUser">@Localizer.Str["Cases_Detail_Action_AddUser"]</a>
+        </div>
+
+        @if (CaseRole == "Moderator" || CaseRole == "AliasManager")
+        {
+            <div class="col-sm-12 ">
+                <a href="" @onclick="@(() => OnChangeStatusAction.InvokeAsync())" @onclick:preventDefault class="btnUpdate">@Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
+            </div>
+        }
+
+        @if (CaseRole == "AliasManager")
+        {
+            <div class="col-sm-12 ">
+
+                <a href="" @onclick="@(() => OnAddAliasAction.InvokeAsync())" @onclick:preventDefault class="btnAddAlias">@Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
+            </div>
+        }
+        </div>
+    
+
+        <AddNotePopUp @bind-ShowModal="showActionPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel"></AddNotePopUp>
+
+@code {
+
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public Case CaseModel { get; set; }
+    [Parameter] public CMSProfileModel ProfileModel { get; set; }
+
+
+    [Parameter] public EventCallback OnNoteAction { get; set; }
+    [Parameter] public EventCallback OnAddUserAction { get; set; }
+    [Parameter] public EventCallback OnChangeStatusAction { get; set; }
+    [Parameter] public EventCallback OnAddAliasAction { get; set; }
+
+
+    protected string CaseRole { get; set; }
+    protected bool showActionPopUp { get; set; }
+    
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GetContactsCaseRole();
+
+    }
+    protected void AddNote()
+    {   
+        showActionPopUp = true;
+    }
+
+    protected void GetContactsCaseRole()
+    {
+        CaseRole = "AliasManager";
+    }
+
+     public void IsUserAliasManager()
+    {
+
+
+        //if (_CMSProfileModel != null)
+        //{
+        //    if (_CMSProfileModel.profileParticipants != null)
+        //    {
+        //        foreach (CaseContact c in _CMSProfileModel.profileParticipants)
+        //        {
+        //            if (c.ProfileRole == "AliasManager" && c.ContactID == _UsersModel.ContactID)
+        //            {
+        //                ShowAddAliasDialog = true;
+        //                ShowChangeStatusDialog = true;
+        //                return;
+        //            }
+        //        }
+        //    }
+
+        //    if (_CMSProfileModel.escalationUsers != null)
+        //    {
+        //        foreach (CaseContact c in _CMSProfileModel.escalationUsers)
+        //        {
+        //            if (c.ProfileRole == "AliasManager" && c.ContactID == _UsersModel.ContactID)
+        //            {
+        //                ShowAddAliasDialog = true;
+        //                ShowChangeStatusDialog = true;
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
+
+    }
+}

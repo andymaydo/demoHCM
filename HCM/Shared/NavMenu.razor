@@ -1,4 +1,4 @@
-﻿@inject IStringLocalizer<App> Localizer
+﻿@inject CommonLocalizationService Localizer
 @inject NavigationManager MyNavigationManager
 @inject AppState _AppState
 
@@ -18,19 +18,19 @@
             <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onmousedown="() => expandAdmin = false">@Localizer["MainMenu_Home"]</NavLink>                            
+                        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Home"]</NavLink>                            
                     </li>
                     <li class="nav-item">
-                        <NavLink class="nav-link" href="/Cases"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer["MainMenu_MyCases"]</NavLink>                            
+                        <NavLink class="nav-link" href="/Cases"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_MyCases"]</NavLink>                            
                     </li>
 
                     <li class="nav-item">
-                        <NavLink class="nav-link" href="/Reports"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer["MainMenu_Reports"]</NavLink>                            
+                        <NavLink class="nav-link" href="/Reports"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Reports"]</NavLink>                            
                     </li>
 
 
                     <li class="nav-item">
-                        <NavLink class="nav-link" href="admin/" @onclick:preventDefault @onmousedown="() => expandAdmin = !expandAdmin"  Match="NavLinkMatch.Prefix" >@Localizer["MainMenu_Administration"]</NavLink>                            
+                        <NavLink class="nav-link" href="admin/" @onclick:preventDefault @onmousedown="() => expandAdmin = !expandAdmin"  Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Administration"]</NavLink>                            
                     </li>
 
                 </ul>
@@ -44,13 +44,13 @@
                
                     <ul class="navbar-nav flex-grow-1">
                         <li class="@(NewLocation.Contains("admin/profiles") ? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="admin/profiles">@Localizer["Menu_Profiles"]</a>
+                            <a class="nav-link text-light" href="admin/profiles">@Localizer.Str["Menu_Profiles"]</a>
                         </li>
                         <li class="@(NewLocation.Contains("admin/users") ? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="admin/users">@Localizer["Menu_Users"]</a>
+                            <a class="nav-link text-light" href="admin/users">@Localizer.Str["Menu_Users"]</a>
                         </li>
                         <li class="@(NewLocation.Contains("admin/settings") ? "nav-item-set" : "nav-item")">
-                            <a class="nav-link text-light" href="admin/settings">@Localizer["Menu_Settings"]</a>
+                            <a class="nav-link text-light" href="admin/settings">@Localizer.Str["Menu_Settings"]</a>
                         </li>
                     </ul>
                
