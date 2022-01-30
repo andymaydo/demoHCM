@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Compile Remove="LocalAuthenticationStateProvider.cs" />
+    <Compile Remove="Models\CaseActionVM.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +35,19 @@
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
     <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
     <Content Remove="Pages\cases\ListCases.razor" />
+    <Content Remove="Pages\cases\MatchResult.razor" />
     <Content Remove="Pages\reports\Reports.razor" />
     <Content Remove="Shared\ChooseLanguage.razor" />
     <Content Remove="Shared\SurveyPrompt.razor" />
     <Content Remove="Shared\UserStatus.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\cases\Details.razor.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\cases\Details.razor.txt" />
   </ItemGroup>
 
   <ItemGroup>

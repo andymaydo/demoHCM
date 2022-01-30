@@ -10,6 +10,7 @@
 @using HCMApi.Models
 @using System.Globalization
 @using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
 
 @if (ShowModal)
 {
@@ -55,19 +56,11 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <div class="itemDetail">@Localizer.Str["Cases_Detail_Label_ProfileUsers"]</div>
-                                    <div class="top_blue_bg_thin"></div>
-                                    <SfListView DataSource="@FormModel.ProfileParticipants" ShowCheckBox="true" >
-                                        <ListViewFieldSettings TValue="CaseContactSelectable" Id="ContactID" Text="Name" IsChecked="Selected"></ListViewFieldSettings>
-                                    </SfListView>
+                                    <CaseContactPan Source="@FormModel.ProfileParticipants" ShowStriped="true" Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <div class="itemDetail">@Localizer.Str["Cases_Detail_Label_Users"]</div>
-                                    <div class="top_blue_bg_thin"></div>
-                                    <SfListView DataSource="@FormModel.CaseParticipants" ShowCheckBox="true">
-                                        <ListViewFieldSettings TValue="CaseContactSelectable" Id="ContactID" Text="Name" IsChecked="Selected"></ListViewFieldSettings>
-                                    </SfListView>
+                                    <CaseContactPan Source="@FormModel.CaseParticipants" ShowStriped="true" Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
                                 </div>
 
                                @* <div class="col-12 mb-3">
@@ -78,7 +71,7 @@
 
                                  <div class="col-12 mb-3">
                                     <div class="itemDetail">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
-                                    <div class="top_blue_bg_thin"></div>
+                                    <div class="top_blue_bg"></div>
                                     <SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail1"></SfTextBox>
                                     <ValidationMessage For="@(() => FormModel.ExtEmail1)" />                                 
                                     @*<SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail2"></SfTextBox>*@
