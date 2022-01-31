@@ -3,26 +3,31 @@
     
 @if(Source?.Count > 0)
 {
+    
     <h5 class="tLabel2">@Title</h5>
     <div class="top_blue_bg"></div>
 
          
-    <table class="table @(ShowStriped ? "table-striped" : "") table-borderless table-sm">              
+    <table class="table @(ShowStriped && Source.Count > 2 ? "table-striped" : "") table-borderless table-sm">              
         <tbody class="itemDetail">
+            
             
             @foreach (CaseContactSelectable c in Source)
             {
+                var itemName = c.Name;
+                itemName = itemName + (@ShowFunction ? " (" + c.Function + ")" : "");
+                itemName = itemName + (@ShowRole ? " (" + c.ProfileRole + ")" : "");
+                itemName = itemName + (@ShowEmail ? " (" + c.Email + ")" : "");
                 <tr>                  
                     <td>
                         @if (@ShowCheckBox)
                         {
-                            <SfCheckBox @bind-Checked="@c.Selected"></SfCheckBox> 
+                            <SfCheckBox @bind-Checked="@c.Selected" Label="@itemName"></SfCheckBox>
                         }
-                        
-                        @c.Name 
-                        @(@ShowFunction? "(" + c.Function + ")" : "")
-                        @(@ShowRole? "(" + c.ProfileRole + ")" : "")
-                        @(@ShowEmail? "(" + c.Email + ")" : "")
+                        else
+                        {
+                            @itemName
+                        }
 
                     </td>                                 
                 </tr>       

@@ -11,7 +11,7 @@
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
-@using System.Xml
+
 
 @if (ShowModal)
 {
@@ -57,26 +57,24 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <CaseContactPan Source="@FormModel.ProfileParticipants" ShowStriped="true" Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
+                                    <CaseContactPan Source="@FormModel.ProfileParticipants" ShowCheckBox="true" ShowStriped="true" 
+                                        Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <CaseContactPan Source="@FormModel.CaseParticipants" ShowStriped="true" Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
+                                    <CaseContactPan Source="@FormModel.CaseParticipants" ShowCheckBox="true" ShowStriped="true" 
+                                        Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
                                 </div>
 
-                               @* <div class="col-12 mb-3">
-                                    <div class="itemDetail">@Localizer.Str["Cases_AddMessage_Creator"]</div>
-                                    <div class="top_blue_bg_thin"></div>
-                                    <SfCheckBox  @bind-Checked="@FormModel.Originator.Selected" Label="@FormModel.Originator.USERNAME"></SfCheckBox>
-                                </div>*@
+                                <div class="col-12 mb-3">
+                                    <CaseOriginatorPan Originator="FormModel.Originator" CaseDataXML="@CaseModel.CaseData"  ShowCheckBox="true"></CaseOriginatorPan>
+                                </div>
 
                                  <div class="col-12 mb-3">
-                                    <div class="itemDetail">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
+                                    <div class="tLabel2">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
                                     <div class="top_blue_bg"></div>
                                     <SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail1"></SfTextBox>
                                     <ValidationMessage For="@(() => FormModel.ExtEmail1)" />                                 
-                                    @*<SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail2"></SfTextBox>*@
-                                
                                 </div>
                                 
                                 
@@ -118,7 +116,6 @@
         FormModel.CaseSubject = CaseModel.Subject;
         FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
-        FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(GetCaseOriginator(CaseModel.CaseData));
 
     }
 
@@ -138,18 +135,7 @@
         
     }
 
-    protected CaseOriginator GetCaseOriginator(string CaseData)
-    {
-        XmlDocument doc = new XmlDocument();
-        doc.LoadXml(CaseData);
-        XmlElement root = doc.DocumentElement;
-        var benutzerNode = root.SelectSingleNode("/Root/Tran/BENUTZER");
-
-        var benutzerXml = benutzerNode.OuterXml;
-        var originator = benutzerXml.FromXml<CaseOriginator>("BENUTZER");
-        return originator;
-
-    }
+    
 
      private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
     {

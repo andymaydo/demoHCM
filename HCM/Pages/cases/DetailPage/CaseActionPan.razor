@@ -27,10 +27,12 @@
                 <a href="" @onclick="@(() => OnAddAliasAction.InvokeAsync())" @onclick:preventDefault class="btnAddAlias">@Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
             </div>
         }
-        </div>
+    </div>
     
-
-        <AddNotePopUp @bind-ShowModal="showActionPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel"></AddNotePopUp>
+    @if (showAddNotePopUp)
+    {
+       <AddNotePopUp @bind-ShowModal="showAddNotePopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel"></AddNotePopUp> 
+    }
 
 @code {
 
@@ -48,7 +50,7 @@
 
 
     protected string CaseRole { get; set; }
-    protected bool showActionPopUp { get; set; }
+    protected bool showAddNotePopUp { get; set; }
     
 
 
@@ -60,7 +62,7 @@
     }
     protected void AddNote()
     {   
-        showActionPopUp = true;
+        showAddNotePopUp = true;
     }
 
     protected void GetContactsCaseRole()

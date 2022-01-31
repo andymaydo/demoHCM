@@ -11,4 +11,9 @@
         public string MOBEXT { get; set; }
         public string EMAIL { get; set; }
     }
+
+    public class CaseOriginatorSelectable : CaseOriginator
+    {
+        public bool Selected { get; set; }
+    }
 }

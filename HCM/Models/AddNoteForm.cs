@@ -31,15 +31,5 @@ namespace HCM.Models
         public string ExtEmail1 { get; set; }
         public string ExtEmail2 { get; set; }
     }
-
-
-    public class CaseContactSelectable : CaseContact
-    {
-        public bool Selected { get; set; }
-    }
-
-    public class CaseOriginatorSelectable : CaseOriginator
-    {
-        public bool Selected { get; set; }
-    }
+ 
 }
