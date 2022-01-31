@@ -17,6 +17,9 @@ namespace HCM.Models
             CreateMap<CaseContactSelectable, CaseContact>();
             CreateMap<CaseContact, CaseContactSelectable>();
 
+            CreateMap<CaseOriginator, CaseOriginatorSelectable>();
+            CreateMap<CaseOriginatorSelectable, CaseOriginator>();
+
         }
     }
 

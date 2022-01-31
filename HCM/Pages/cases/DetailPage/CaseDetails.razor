@@ -6,6 +6,7 @@
 @using AutoMapper
 
 
+
 <div class="container-fluid">
     <h3>@Localizer.Str["Cases_Detail_Title"]</h3>
     
@@ -75,7 +76,7 @@
     protected List<CaseContactSelectable> ProfileParticipants { get; set; }
     protected List<CaseContactSelectable> EscalationParticipants { get; set; }
     protected List<CaseEvent> CaseEvents { get; set; } = new List<CaseEvent>();
-    
+
 
     protected UiMessages Messages { get; set; }
     private int _loadingStatus;
@@ -105,13 +106,13 @@
         }
     }
 
-   
+
     protected async Task LoadCaseData()
     {
 
         MyCase = await CmsService.LoadCase(CaseId);
         if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
-        
+
         ProfileModel = ProileService.Load(MyCase.ProfileID);
         CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
         ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
@@ -119,7 +120,8 @@
         CaseEvents = await CmsService.GetEventList(CaseId);
 
 
-        
+
     }
 
+   
 }

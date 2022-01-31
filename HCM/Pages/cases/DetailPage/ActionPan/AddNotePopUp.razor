@@ -1,4 +1,4 @@
-﻿
+﻿                 
 @using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.Logging
 @using Syncfusion.Blazor.Popups
@@ -11,6 +11,7 @@
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
+@using System.Xml
 
 @if (ShowModal)
 {
@@ -117,6 +118,7 @@
         FormModel.CaseSubject = CaseModel.Subject;
         FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
+        FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(GetCaseOriginator(CaseModel.CaseData));
 
     }
 
@@ -136,6 +138,18 @@
         
     }
 
+    protected CaseOriginator GetCaseOriginator(string CaseData)
+    {
+        XmlDocument doc = new XmlDocument();
+        doc.LoadXml(CaseData);
+        XmlElement root = doc.DocumentElement;
+        var benutzerNode = root.SelectSingleNode("/Root/Tran/BENUTZER");
+
+        var benutzerXml = benutzerNode.OuterXml;
+        var originator = benutzerXml.FromXml<CaseOriginator>("BENUTZER");
+        return originator;
+
+    }
 
      private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
     {
