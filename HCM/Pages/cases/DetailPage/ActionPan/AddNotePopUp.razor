@@ -19,7 +19,13 @@
         <DialogTemplates>
             <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_AddMessage_Title"]</div></Header>
             <Content>
-                <div class="mx-4">
+                @if (_loadingStatus == 0)
+                {
+                    <p><em>Loading...</em></p>
+                }
+                @if (_loadingStatus == 1)
+                {
+                    <div class="mx-4">
                      <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                         <DataAnnotationsValidator />
                         <div class="row">
@@ -53,11 +59,11 @@
                                 <div class="top_blue_bg_thin"></div>
 
                                 <div class="col-12 mb-3">
-                                    <SfCheckBox @bind-Checked="@FormModel.NotifyAll" Label="@Localizer.Str["Value_All_Text"]"></SfCheckBox>
+                                    <SfCheckBox @bind-Checked="@FormModel.NotifyAll" @onchange="NotifyAllOnChange" Label="@Localizer.Str["Value_All_Text"]"></SfCheckBox>
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <CaseContactPan Source="@FormModel.ProfileParticipants" ShowCheckBox="true" ShowStriped="true" 
+                                    <CaseContactPan Source="@FormModel.ProfileParticipants" ShowCheckBox="true" CheckBoxDisabled="@ProfileModel.NotifyAllProfileParticipants" ShowStriped="true" 
                                         Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
                                 </div>
 
@@ -83,6 +89,10 @@
                         </div>
                          
                      </EditForm>
+                    </div>
+                }
+                <div class="py-3">
+                    <UiMessageBox Data="Messages.List" />
                 </div>
             </Content>
         </DialogTemplates>
@@ -99,6 +109,7 @@
 
 
 @code {
+    [Inject] private ILogger<AddNotePopUp> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
 
@@ -108,16 +119,40 @@
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
 
     protected AddNoteForm FormModel { get; set; }
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        Messages = new UiMessages();
         FormModel = new AddNoteForm();
-        FormModel.CaseSubject = CaseModel.Subject;
-        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
-        FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
-        FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
+        _loadingStatus = 0;
 
+        try
+        {
+            if(CaseModel == null )
+            {               
+                throw new ArgumentNullException("CaseModel");
+            }
+            if(ProfileModel == null )
+            {               
+                throw new ArgumentNullException("ProfileModel");
+            }
+
+            InitFormModel();
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
     }
 
     public void Show(string licId, string licName)
@@ -133,12 +168,43 @@
 
     protected void ValidFormSubmited()
     {
-        
+
     }
 
-    
+    private void InitFormModel()
+    {
+        FormModel.CaseSubject = CaseModel.Subject;
+        FormModel.ProfileParticipants = GetProfileParticipants();
+        FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
+        FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
+    }
 
-     private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
+    private List<CaseContactSelectable> GetProfileParticipants()
+    {
+        var participants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
+        if (ProfileModel.NotifyAllProfileParticipants)
+        {
+            participants?.ForEach(p => p.Selected = true);
+        }
+        return participants;
+    }
+
+    private void NotifyAllOnChange(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+    {
+        if (!ProfileModel.NotifyAllProfileParticipants)
+        {
+            FormModel.ProfileParticipants?.ForEach(p => p.Selected = (bool)args.Value);
+        }
+
+        FormModel.CaseParticipants?.ForEach(p => p.Selected = (bool)args.Value);
+
+        if(FormModel.Originator != null)
+        {
+            FormModel.Originator.Selected = (bool)args.Value;
+        }        
+    }
+
+    private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
     {
         //foreach (var file in args.Files)
         //{

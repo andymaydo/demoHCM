@@ -22,7 +22,7 @@
                     <td>
                         @if (@ShowCheckBox)
                         {
-                            <SfCheckBox @bind-Checked="@c.Selected" Label="@itemName"></SfCheckBox>
+                            <SfCheckBox @bind-Checked="@c.Selected" Label="@itemName" Disabled="@CheckBoxDisabled"></SfCheckBox>
                         }
                         else
                         {
@@ -48,6 +48,7 @@
     [Parameter] public string Title { get; set; }
 
     [Parameter] public bool ShowCheckBox { get; set; }
+    [Parameter] public bool CheckBoxDisabled { get; set; }
     [Parameter] public bool ShowFunction { get; set; }
     [Parameter] public bool ShowRole { get; set; }
     [Parameter] public bool ShowEmail { get; set; }
