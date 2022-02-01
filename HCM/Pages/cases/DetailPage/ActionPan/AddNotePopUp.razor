@@ -67,7 +67,7 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <CaseOriginatorPan Originator="FormModel.Originator" CaseDataXML="@CaseModel.CaseData"  ShowCheckBox="true"></CaseOriginatorPan>
+                                    <CaseOriginatorPan Source="FormModel.Originator" ShowCheckBox="true"></CaseOriginatorPan>
                                 </div>
 
                                  <div class="col-12 mb-3">
@@ -116,6 +116,7 @@
         FormModel.CaseSubject = CaseModel.Subject;
         FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
+        FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
 
     }
 

@@ -16,7 +16,21 @@ namespace HCMApi
     [DataContract(Namespace = "DominoCMS")]
     public class Case : CaseModel, ICase
     {       
+        public CaseOriginator Originator
+        {
+            get
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(CaseData);
+                XmlElement root = doc.DocumentElement;
+                var benutzerNode = root.SelectSingleNode("/Root/Tran/BENUTZER");
 
+                var benutzerXml = benutzerNode?.OuterXml;
+                var originator = benutzerXml?.FromXml<CaseOriginator>("BENUTZER");
+                return originator;
+                
+            }
+        }
         public CaseContactList ParticipantsAsCaseContactList 
         { 
             get

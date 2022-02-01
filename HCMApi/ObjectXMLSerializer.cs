@@ -85,5 +85,28 @@ namespace HCMApi
 
             return xmlDoc;
         }
+
+        public static T FromXml<T>(this string value, string rootElement)
+        {
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = rootElement;
+            xRoot.IsNullable = true;
+
+            using TextReader reader = new StringReader(value);
+            return (T)new XmlSerializer(typeof(T), xRoot).Deserialize(reader);
+        }
+
+        public static string ToXml(this object objectInstance)
+        {
+            var serializer = new XmlSerializer(objectInstance.GetType());
+            var sb = new StringBuilder();
+
+            using (TextWriter writer = new StringWriter(sb))
+            {
+                serializer.Serialize(writer, objectInstance);
+            }
+
+            return sb.ToString();
+        }
     }
 }

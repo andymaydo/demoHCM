@@ -1,7 +1,8 @@
 ﻿@using System.Xml
 @using AutoMapper
+@using static HCMModels.CaseModel
 
-@if(Originator != null)
+@if(Source != null)
 {
     <h5 class="tLabel2">@Localizer.Str["Cases_AddMessage_Creator"]</h5>
     <div class="top_blue_bg"></div>
@@ -13,11 +14,11 @@
                 <td>
                     @if (@ShowCheckBox)
                     {
-                        <SfCheckBox @bind-Checked="@Originator.Selected" Label="@Originator.USERNAME"></SfCheckBox>
+                        <SfCheckBox @bind-Checked="@Source.Selected" Label="@Source.USERNAME"></SfCheckBox>
                     }
                     else
                     {
-                        @Originator.USERNAME
+                        @Source.USERNAME
                     }
 
                 </td>                                 
@@ -34,29 +35,7 @@
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
 
-    [Parameter] public CaseOriginatorSelectable Originator { get; set; }
-    [Parameter] public string CaseDataXML { get; set; }
+    [Parameter] public CaseOriginatorSelectable Source { get; set; }
     [Parameter] public bool ShowCheckBox { get; set; }
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        Originator = _mapper.Map<CaseOriginatorSelectable>(GetCaseOriginator(CaseDataXML));
-    }
-
-    
-
-
-    protected CaseOriginator GetCaseOriginator(string CaseData)
-    {
-        XmlDocument doc = new XmlDocument();
-        doc.LoadXml(CaseData);
-        XmlElement root = doc.DocumentElement;
-        var benutzerNode = root.SelectSingleNode("/Root/Tran/BENUTZER");
-
-        var benutzerXml = benutzerNode?.OuterXml;
-        var originator = benutzerXml?.FromXml<CaseOriginator>("BENUTZER");
-        return originator;
-
-    }
 }
