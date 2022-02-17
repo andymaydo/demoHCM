@@ -11,6 +11,8 @@
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
+@using System.IO
+@using System.Xml
 
 
 @if (ShowModal)
@@ -29,7 +31,7 @@
                      <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                         <DataAnnotationsValidator />
                         <div class="row">
-                            <div class="col-sm-6">                             
+                            <div class="col-sm-7">                             
                                 <label class="col-2 font-weight-bold">@Localizer.Str["Cases_AddMessage_Subject"]</label>
                                 <div class="col-10">@FormModel.CaseSubject</div>
 
@@ -44,12 +46,10 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <SfUploader  AutoUpload="false" Locale="@(CultureInfo.CurrentCulture.Name)">
-                                        <UploaderEvents ValueChange="UploaderOnChange" OnRemove="UploaderOnRemove"></UploaderEvents>
-                                    </SfUploader>
+                                    <FileUploadPan CaseId=CaseModel.CaseID CaseDocs=@CaseDocs></FileUploadPan>
                                 </div>   
                             </div>
-                            <div class="col-sm-2">                           
+                            <div class="col-sm-1">                           
                             </div>
                             <div class="col-sm-4">
                                 <h5 class="tLabel">@Localizer.Str["Cases_AddMessage_NotifyUsers"]</h5>
@@ -81,7 +81,8 @@
                                 </div>
                             </div>
                         </div>
-                       <div class="row py-3 top_blue_bg">
+                       <div class="row py-2 top_blue_bg"></div>
+                       <div class="row">
                             <div class="col-12 ">
                                 <div class="col-12">
                                     <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
@@ -114,12 +115,17 @@
     [Inject] private ILogger<AddNotePopUp> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
+    [Inject] public ICMSAPI CmsService{ get; set; }
+    [Inject] public CMSSettings cmsSettings{ get; set; }
 
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public Case CaseModel { get; set; }
     [Parameter] public CMSProfileModel ProfileModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+    [Parameter] public EventCallback OnNoteSaved { get; set; }
 
+    protected CaseDocs CaseDocs { get; set; }
     protected AddNoteForm FormModel { get; set; }
     protected UiMessages Messages { get; set; }
     private int _loadingStatus;
@@ -130,6 +136,8 @@
         base.OnInitialized();
         Messages = new UiMessages();
         FormModel = new AddNoteForm();
+        CaseDocs = new CaseDocs();
+
         _loadingStatus = 0;
 
         try
@@ -168,11 +176,67 @@
     }
 
 
-    protected void ValidFormSubmited()
+    protected async Task ValidFormSubmited()
     {
-        var f = FormModel;
+        try
+        {
+            var CaseCont = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
+            var ProfCont = _mapper.Map<List<CaseContact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
+            var Originator = FormModel.Originator;
+            var ExtEmail = FormModel.ExtEmail1;
 
-         await _ICMSAPI.OnEvent(CMSSettings.EventAddMessage, _UsersModel.ContactID, _Case.CaseID, xDoc, tSubjectValue, _contactList);
+            #region NotifyList
+            List<CaseContact> notifyList = new List<CaseContact>();
+            notifyList.AddRange(CaseCont);
+            notifyList.AddRange(ProfCont);
+
+            if ((bool)Originator?.Selected)
+            {
+                notifyList.Add(new CaseContact() 
+                        { 
+                            Email = Originator.EMAIL, 
+                            Name = Originator.NAMELAST, 
+                            Function = "Verursacher/Originator" });
+            }
+
+            if (!String.IsNullOrEmpty(ExtEmail))
+            {
+                notifyList.Add(new CaseContact() 
+                        { 
+                            Email = ExtEmail, 
+                            Name = "Extern" });
+            }
+            #endregion
+
+            #region DocumentList
+            if (FormModel.WithMatchReport)
+            {
+                int caseTypeId = CaseModel.CaseTypeID == null ? 0 : (int)CaseModel.CaseTypeID;
+                string htmlResult = Common.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
+                byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
+
+                CaseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);
+            }
+
+            XmlDocument docsXML = new XmlDocument();
+            docsXML.LoadXml(CaseDocs.ObjToXml());
+            #endregion
+
+
+            await CmsService.OnEvent(CMSSettings.EventAddMessage, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);
+            
+
+            await OnNoteSaved.InvokeAsync();
+            CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+        }
+
     }
 
     private void InitFormModel()
@@ -207,57 +271,5 @@
             FormModel.Originator.Selected = (bool)args.Value;
         }        
     }
-
-    private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
-    {
-        //foreach (var file in args.Files)
-        //{
-        //    string _filename = DateTime.Now.Year.ToString();
-        //    _filename += DateTime.Now.Month.ToString();
-        //    _filename += DateTime.Now.Day.ToString();
-        //    _filename += DateTime.Now.Hour.ToString();
-        //    _filename += DateTime.Now.Minute.ToString();
-        //    _filename += DateTime.Now.Second.ToString();
-        //    _filename += DateTime.Now.Millisecond.ToString();
-        //    _filename += "_" + Path.GetFileName(file.FileInfo.Name);
-
-        //    var path = cmsSettings.CmsDocPath;
-        //    if (!System.IO.Directory.Exists(path))
-        //        System.IO.Directory.CreateDirectory(path);
-
-        //    FileStream filestream = new FileStream(path + "\\" + _filename, FileMode.Create, FileAccess.Write);
-        //    file.Stream.WriteTo(filestream);
-
-
-        //    CaseDoc doc = new CaseDoc();
-        //    doc.DocID = Guid.NewGuid().ToString();
-        //    doc.CaseID = _Case.CaseID;
-        //    doc.DocName = _filename;
-        //    doc.DocSize = Convert.ToInt32(file.FileInfo.Size);
-        //    doc.FilePath = _filename;
-        //    doc.OrgFileName = file.FileInfo.Name;
-        //    doc.ContactID = _UsersModel.UserID;
-        //    doc.CreatedOn = DateTime.Now;
-
-        //    _AddDocList.Add(doc);
-
-        //    filestream.Close();
-        //    file.Stream.Close();
-        //}
-    }
-    private void UploaderOnRemove(RemovingEventArgs args)
-    {
-        //var path = cmsSettings.CmsDocPath;
-
-        //foreach (var removeFile in args.FilesData)
-        //{
-        //    string _realFileName = _AddDocList.Find(f => f.OrgFileName == removeFile.Name).FilePath;
-
-        //    if (File.Exists(Path.Combine(path, _realFileName)))
-        //    {
-        //        File.Delete(Path.Combine(path, _realFileName));
-        //        _AddDocList.Remove(_AddDocList.Find(f => f.OrgFileName == removeFile.Name));
-        //    }
-        //}
-    }
+   
 }

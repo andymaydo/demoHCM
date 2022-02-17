@@ -4,15 +4,15 @@
 @using HCM.Options
 @using System.Xml
 
-@if(DocList?.Count > 0)
+@if(DocList != null)
 {
     <h5 class="tLabel2">@Localizer.Str["Cases_Detail_Label_AttachInformation"]</h5>
     <div class="top_blue_bg"></div>
                
-     <table class="table table-striped table-borderless table-sm">              
+    <table class="table table-striped table-borderless table-sm">              
         <tbody class="itemDetail">
 
-            @foreach (CaseDoc cd in DocList)
+            @foreach (CaseDoc cd in DocList.CaseDocList)
             {
                 <tr>                  
                     <td>
@@ -28,8 +28,16 @@
                     <td align="right">@MatchReportAdded</td>                                        
                 </tr>
 
+                @*<tr>
+                    <td colspan=2>
+                        <UiMessageBox Data="Messages.List" />
+                    </td>                    
+                </tr>*@
             </tbody>
     </table>
+    <div>
+        <UiMessageBox Data="Messages.List" />
+    </div>
    
     
 }
@@ -37,7 +45,7 @@
         
 
 @code {
-
+    [Inject] private ILogger<CaseEventDocList> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ICaseDoc CaseDocService { get; set; }
     [Inject] private CMSSettings cmsSettingsService { get; set; }
@@ -46,62 +54,54 @@
 
     [Parameter] public string XmlDocList { get; set; }
 
-
-    protected List<CaseDoc> DocList { get; set; } = new List<CaseDoc>();
+    protected CaseDocs DocList = new CaseDocs();
     protected string MatchReportAdded;
-    private string _xmlDocList;
+    protected UiMessages Messages { get; set; } = new UiMessages();
 
 
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-
-        if(!String.IsNullOrEmpty(XmlDocList))
+        try
         {
-            // Docs Uploaded?
-            if(XmlDocList.IndexOf("<CaseDocList>") == 0)
-            {
-                try
-                {
-                    DocList = CaseDocService.LoadFromXml(XmlDocList);
-                }
-                catch { };
-            }
-
-            //MatchReport attached?
-            var xDoc = new XmlDocument();
-            XmlNode addedReport;
-            try
-            {
-                xDoc.LoadXml(XmlDocList);
-                addedReport = xDoc.SelectSingleNode("/CaseDocList/AddReport");
-
-                MatchReportAdded = (addedReport != null) ? @Localizer.Str["Status_Yes"] : @Localizer.Str["Status_NO"];
-            }
-            catch(XmlException ex)
-            {
-                MatchReportAdded = @Localizer.Str["Status_NO"];
-            }
+            Messages.List.Clear();
+            DocList = ObjHelper.FromXml<CaseDocs>(XmlDocList, "CaseDocs");
         }
+        catch { };
+
+        MatchReportAdded = (String.IsNullOrEmpty(DocList?.AddReport )) ? @Localizer.Str["Status_NO"] : @Localizer.Str["Status_Yes"];        
 
     }
 
 
     public async Task StartDownload(int CaseID, string FilePath, string DocName)
     {
-        var memory = new MemoryStream();
-        string fullPath = cmsSettingsService.CmsDocPath + FilePath;
-
-        if (File.Exists(fullPath))
+        try
         {
-            await using (var stream = new FileStream(fullPath, FileMode.Open))
-            {
-                await stream.CopyToAsync(memory);
-            }
-            memory.Position = 0;
+            var memory = new MemoryStream();
+            var contentRootPath = (string)AppDomain.CurrentDomain.GetData("ContentRootPath");
+            string path = Path.Combine(contentRootPath, cmsSettingsService.CmsDocPath);
+            string fullPath = path + "\\" +  FilePath;
 
-            await blazorDownloadFileService.DownloadFile(DocName, memory, "application/octet-stream");
+            if (File.Exists(fullPath))
+            {
+                await using (var stream = new FileStream(fullPath, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+
+                await blazorDownloadFileService.DownloadFile(DocName, memory, "application/octet-stream");                
+            }
+            
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
         }
 
 

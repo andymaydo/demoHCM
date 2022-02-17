@@ -31,7 +31,7 @@
     
     @if (showAddNotePopUp)
     {
-       <AddNotePopUp @bind-ShowModal="showAddNotePopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel"></AddNotePopUp> 
+       <AddNotePopUp @bind-ShowModal="showAddNotePopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnNoteSaved=@(() => OnNoteAction.InvokeAsync())></AddNotePopUp> 
     }
 
 @code {
@@ -51,7 +51,7 @@
 
     protected string CaseRole { get; set; }
     protected bool showAddNotePopUp { get; set; }
-    
+
 
 
     protected override void OnInitialized()
@@ -70,7 +70,7 @@
         CaseRole = "AliasManager";
     }
 
-     public void IsUserAliasManager()
+    public void IsUserAliasManager()
     {
 
 
@@ -104,4 +104,5 @@
         //}
 
     }
+
 }

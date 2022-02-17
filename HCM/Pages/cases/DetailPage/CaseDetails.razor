@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="py-3">
-                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel"></CaseActionPan>
+                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" OnNoteAction="NoteAdded"></CaseActionPan>
                 </div>
             </div>
             <div class="col-md-6">
@@ -119,9 +119,20 @@
         EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
         CaseEvents = await CmsService.GetEventList(CaseId);
 
-
-
     }
 
-   
+    protected async Task NoteAdded()
+    {
+        try
+        {
+            Messages.List.Clear();
+            CaseEvents = await CmsService.GetEventList(CaseId);
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+    }
 }

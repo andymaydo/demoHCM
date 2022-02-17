@@ -64,7 +64,7 @@ namespace HCM.Models
             return (T)new XmlSerializer(typeof(T), xRoot).Deserialize(reader);
         }
 
-        public static string ToXml(this object objectInstance)
+        public static string ObjToXml(this object objectInstance)
         {
             var serializer = new XmlSerializer(objectInstance.GetType());
             var sb = new StringBuilder();

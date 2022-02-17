@@ -1,0 +1,121 @@
+﻿@using System.Globalization
+@using System.IO
+@using HCMApi
+
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+
+@if (_loadingStatus == 1)
+{
+    <SfUploader AutoUpload="true" Locale="@(CultureInfo.CurrentCulture.Name)">
+        <UploaderEvents ValueChange="UploaderOnChange"></UploaderEvents>
+        <UploaderEvents OnRemove="UploaderOnRemove"></UploaderEvents>   
+    </SfUploader>
+}
+else
+{
+    <p><em>FileUpload component failed...</em></p>
+}
+
+
+@code {
+
+    [Inject] public CMSSettings cmsSettings{ get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public int CaseId { get; set; }
+    [Parameter] public CaseDocs CaseDocs { get; set; }
+
+    private int _loadingStatus;
+
+
+     protected override void OnInitialized()
+    {
+        base.OnInitialized();
+       
+        _loadingStatus = 0;
+
+        try
+        {
+            if(CaseId == default )
+            {               
+                throw new ArgumentNullException("CaseId");
+            }
+            if(CaseDocs == null )
+            {               
+                throw new ArgumentNullException("CaseDocs");
+            }           
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _loadingStatus = 2;
+        }
+    }
+
+    private void UploaderOnChange(Syncfusion.Blazor.Inputs.UploadChangeEventArgs args)
+    {
+        foreach (var file in args.Files)
+        {
+            if (file.FileInfo.StatusCode == "1")
+            {
+                 string _filename = DateTime.Now.Year.ToString();
+                _filename += DateTime.Now.Month.ToString();
+                _filename += DateTime.Now.Day.ToString();
+                _filename += DateTime.Now.Hour.ToString();
+                _filename += DateTime.Now.Minute.ToString();
+                _filename += DateTime.Now.Second.ToString();
+                _filename += DateTime.Now.Millisecond.ToString();
+                _filename += "_" + Path.GetFileName(file.FileInfo.Name);
+
+                var contentRootPath = (string)AppDomain.CurrentDomain.GetData("ContentRootPath");
+                string path = Path.Combine(contentRootPath, cmsSettings.CmsDocPath);
+
+                if (!System.IO.Directory.Exists(path))
+                    System.IO.Directory.CreateDirectory(path);
+
+                FileStream filestream = new FileStream(path + "\\" + _filename, FileMode.Create, FileAccess.Write);
+                file.Stream.WriteTo(filestream);
+
+                CaseDocs.CaseDocList.Add(new CaseDoc()
+                    { 
+                        DocID = Guid.NewGuid().ToString(),
+                        CaseID = CaseId,
+                        DocName = _filename,
+                        DocSize = Convert.ToInt32(file.FileInfo.Size),
+                        FilePath = _filename,
+                        OrgFileName = file.FileInfo.Name,
+                        ContactID = CurrentContactId,
+                        CreatedOn = DateTime.Now
+
+                    });
+
+                filestream.Close();
+                file.Stream.Close();
+            }
+           
+        }
+    }
+    private void UploaderOnRemove(RemovingEventArgs args)
+    {
+        var contentRootPath = (string)AppDomain.CurrentDomain.GetData("ContentRootPath");
+        string path = Path.Combine(contentRootPath, cmsSettings.CmsDocPath);
+
+
+        foreach (var removeFile in args.FilesData)
+        {
+            string _realFileName = CaseDocs.CaseDocList.Find(f => f.OrgFileName == removeFile.Name)?.FilePath;
+
+            if (!String.IsNullOrEmpty(_realFileName) && File.Exists(Path.Combine(path, _realFileName)))
+            {
+                File.Delete(Path.Combine(path, _realFileName));
+                CaseDocs.CaseDocList.Remove(CaseDocs.CaseDocList.Find(f => f.OrgFileName == removeFile.Name));
+            }
+        }
+    }
+
+ 
+}

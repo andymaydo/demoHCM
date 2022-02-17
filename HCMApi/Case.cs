@@ -221,8 +221,8 @@ namespace HCMApi
             _params.Add(name: "@Subject", dbType: DbType.String, direction: ParameterDirection.Input, value: Subject);
             _params.Add(name: "@CaseSource", dbType: DbType.String, direction: ParameterDirection.Input, value: CaseSource);
 
-            try
-            {
+            //try
+            //{
                 using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
                 {
                     var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -234,11 +234,11 @@ namespace HCMApi
                     }
                     return -1;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return -1;
-            }
+            //}
+            //catch //(Exception ex)
+            //{
+            //    return -1;
+            //}
 
 
 

@@ -89,9 +89,9 @@ namespace HCMApi
 
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
-                 using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            //try
+            //{
+                using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
                 {
 
                     var result = await conn.QueryAsync<CaseEvent>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -104,11 +104,11 @@ namespace HCMApi
                     return 1;
 
                 }
-            }
-            catch //(Exception ex)
-            {
-                return -1;
-            }
+            //}
+            //catch //(Exception ex)
+            //{
+            //    return -1;
+            //}
             
 
         }

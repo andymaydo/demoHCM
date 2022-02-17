@@ -43,14 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Pages\cases\Details.razor.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\cases\Details.razor.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="BlazorDownloadFile" Version="2.3.1" />
@@ -92,6 +84,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Docs\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\xsl\" />
   </ItemGroup>
