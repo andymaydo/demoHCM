@@ -467,13 +467,16 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>Status auswählen</value>
   </data>
   <data name="Cases_ChangeStatus_Subject" xml:space="preserve">
-    <value>Betrifft:</value>
+    <value>Betrifft</value>
   </data>
   <data name="Cases_ChangeStatus_Title" xml:space="preserve">
     <value>Case Status ändern</value>
   </data>
   <data name="Cases_ChangeStatus_Validation_Note" xml:space="preserve">
     <value>Bitte tragen Sie eine Begründung ein.</value>
+  </data>
+  <data name="Cases_ChangeStatus_Validation_Status" xml:space="preserve">
+    <value>Bitte wählen Sie einen Status aus!</value>
   </data>
   <data name="Cases_ChangeStatus_Validation_Title" xml:space="preserve">
     <value>Achtung!</value>
@@ -1176,6 +1179,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   </data>
   <data name="Value_False_Text" xml:space="preserve">
     <value>nein</value>
+  </data>
+  <data name="Value_Select_Text" xml:space="preserve">
+    <value>Bitte auswählen</value>
   </data>
   <data name="Value_True_Text" xml:space="preserve">
     <value>ja</value>

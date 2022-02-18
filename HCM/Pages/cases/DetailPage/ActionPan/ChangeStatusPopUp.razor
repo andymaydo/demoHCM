@@ -13,6 +13,7 @@
 @using HCM.Pages.cases.DetailPage.Shared
 @using System.IO
 @using System.Xml
+@using static HCMModels.CaseModel
 
 
 @if (ShowModal)
@@ -20,7 +21,7 @@
     <SfDialog Width="950px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
         <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
         <DialogTemplates>
-            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_AddMessage_Title"]</div></Header>
+            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_ChangeStatus_Title"]</div></Header>
             <Content>
                 @if (_loadingStatus == 0)
                 {
@@ -32,25 +33,35 @@
                      <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                         <DataAnnotationsValidator />
                         <div class="row">
-                            <div class="col-sm-7">        
+                            <div class="col-sm-7">      
                                 <div class="form-group col-12">
-                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddMessage_Subject"]</label>
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeStatus_Subject"]</label>
                                     <div>@FormModel.CaseSubject</div>
                                 </div>
                                 <div class="form-group col-12">
-                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddMessage_Note"]</label>
-                                    <SfTextBox CssClass="e-custom-height" Multiline="true" @bind-Value="@FormModel.Note"></SfTextBox>
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_Detail_Label_Status"]</label>
+                                    <div>@Localizer.Str["Case_Status_" + @FormModel.CurrentStatusId.ToString()]</div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeStatus_SelectStatus"]</label>                                    
+                                    <SfComboBox TValue="string" TItem="CaseEventStatus" DataSource="@StatusList" @bind-Value="@FormModel.NewStatusId"
+                                        Placeholder="@Localizer.Str["Value_Select_Text"]">
+                                        <ComboBoxFieldSettings Text="EventText" Value="EventID"></ComboBoxFieldSettings>
+                                    </SfComboBox>      
+                                    <ValidationMessage For="@(() => FormModel.NewStatusId)" />
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeStatus_Note"]</label>
+                                    <SfTextBox CssClass="e-custom-height" Multiline="true"  @bind-Value="@FormModel.Note"></SfTextBox>
                                     <ValidationMessage For="@(() => FormModel.Note)" />
                                 </div>
 
                                 <div class="col-12 mb-3">
                                     <SfCheckBox @bind-Checked="@FormModel.WithMatchReport" Label="@Localizer.Str["Cases_AddMessage_AddReport"]"></SfCheckBox>
-                                </div>
-
-                                <div class="col-12 mb-3">
-                                    <FileUploadPan CaseId=CaseModel.CaseID CaseDocs=@CaseDocs></FileUploadPan>
-                                </div>   
+                                </div>                                 
                             </div>
+
                             <div class="col-sm-1">                           
                             </div>
                             <div class="col-sm-4">
@@ -73,14 +84,7 @@
 
                                 <div class="col-12 mb-3">
                                     <CaseOriginatorPan Source="FormModel.Originator" ShowCheckBox="true"></CaseOriginatorPan>
-                                </div>
-
-                                 <div class="col-12 mb-3">
-                                    <div class="tLabel2">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
-                                    <div class="top_blue_bg"></div>
-                                    <SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail1"></SfTextBox>
-                                    <ValidationMessage For="@(() => FormModel.ExtEmail1)" />                                 
-                                </div>
+                                </div>                                 
                             </div>
                         </div>
                        <div class="row py-2 top_blue_bg"></div>
@@ -105,7 +109,7 @@
 
     <style>
         .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
-            background-color: lightblue;
+            background-color: lightcoral;
         }
     </style>
 }
@@ -118,26 +122,28 @@
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
     [Inject] public ICMSAPI CmsService{ get; set; }
-    [Inject] public CMSSettings cmsSettings{ get; set; }
+
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public Case CaseModel { get; set; }
     [Parameter] public CMSProfileModel ProfileModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
-    [Parameter] public EventCallback OnNoteSaved { get; set; }
+    [Parameter] public EventCallback OnStatusSaved { get; set; }
 
+
+    protected ChangeStatusForm FormModel { get; set; }
+    protected List<CaseEventStatus> StatusList { get; set; }
     protected CaseDocs CaseDocs { get; set; }
-    protected AddNoteForm FormModel { get; set; }
     protected UiMessages Messages { get; set; }
     private int _loadingStatus;
 
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
+        await base.OnInitializedAsync();
         Messages = new UiMessages();
-        FormModel = new AddNoteForm();
+        FormModel = new ChangeStatusForm();
         CaseDocs = new CaseDocs();
 
         _loadingStatus = 0;
@@ -153,7 +159,7 @@
                 throw new ArgumentNullException("ProfileModel");
             }
 
-            InitFormModel();
+            await InitFormModel();
 
             _loadingStatus = 1;
         }
@@ -167,10 +173,6 @@
         }
     }
 
-    public void Show(string licId, string licName)
-    {
-        ShowModal = true;
-    }
 
     public async Task CloseDialog()
     {
@@ -185,8 +187,7 @@
         {
             var CaseCont = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
             var ProfCont = _mapper.Map<List<CaseContact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
-            var Originator = FormModel.Originator;
-            var ExtEmail = FormModel.ExtEmail1;
+            var Originator = FormModel.Originator;            
 
             #region NotifyList
             List<CaseContact> notifyList = new List<CaseContact>();
@@ -200,15 +201,7 @@
                             Email = Originator.EMAIL, 
                             Name = Originator.NAMELAST, 
                             Function = "Verursacher/Originator" });
-            }
-
-            if (!String.IsNullOrEmpty(ExtEmail))
-            {
-                notifyList.Add(new CaseContact() 
-                        { 
-                            Email = ExtEmail, 
-                            Name = "Extern" });
-            }
+            }            
             #endregion
 
             #region DocumentList
@@ -226,10 +219,10 @@
             #endregion
 
 
-            await CmsService.OnEvent(CMSSettings.EventAddMessage, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);
-            
+            await CmsService.OnEvent(FormModel.NewStatusId, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);
 
-            await OnNoteSaved.InvokeAsync();
+
+            await OnStatusSaved.InvokeAsync();
             await CloseDialog();
         }
         catch (Exception ex)
@@ -242,12 +235,20 @@
 
     }
 
-    private void InitFormModel()
+    private async Task InitFormModel()
     {
         FormModel.CaseSubject = CaseModel.Subject;
+        FormModel.CurrentStatusId = CaseModel.CaseStatusID;
         FormModel.ProfileParticipants = GetProfileParticipants();
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
         FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
+
+        StatusList = await CmsService.GetStatusByCase(CaseModel.CaseID);
+        foreach (CaseEventStatus s in StatusList)
+        {
+            s.EventText = Localizer.Str["event_" + s.EventID.Replace(".", "_")];
+        }
+        
     }
 
     private List<CaseContactSelectable> GetProfileParticipants()

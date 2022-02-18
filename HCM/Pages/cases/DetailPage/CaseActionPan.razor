@@ -7,7 +7,7 @@
 
     <div class="row pb-5">
         <div class="col-sm-12 ">
-            <a href="" @onclick="@AddNote" @onclick:preventDefault class="btnAddMessage">@Localizer.Str["Cases_Detail_Action_AddMessage"]</a>
+            <a href="" @onclick="@(() => showAddNotePopUp = true)" @onclick:preventDefault class="btnAddMessage">@Localizer.Str["Cases_Detail_Action_AddMessage"]</a>
         </div>
         <div class="col-sm-12 ">
             <a href="" @onclick="@(() => OnAddUserAction.InvokeAsync())" @onclick:preventDefault class="btnAddUser">@Localizer.Str["Cases_Detail_Action_AddUser"]</a>
@@ -16,7 +16,7 @@
         @if (CaseRole == "Moderator" || CaseRole == "AliasManager")
         {
             <div class="col-sm-12 ">
-                <a href="" @onclick="@(() => OnChangeStatusAction.InvokeAsync())" @onclick:preventDefault class="btnUpdate">@Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
+                <a href="" @onclick="@(() => showChangeStatusPopUp = true)" @onclick:preventDefault class="btnUpdate">@Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
             </div>
         }
 
@@ -32,6 +32,10 @@
     @if (showAddNotePopUp)
     {
        <AddNotePopUp @bind-ShowModal="showAddNotePopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnNoteSaved=@(() => OnNoteAction.InvokeAsync())></AddNotePopUp> 
+    }
+    @if (showChangeStatusPopUp)
+    {
+       <ChangeStatusPopUp @bind-ShowModal="showChangeStatusPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnStatusSaved=@(() => OnChangeStatusAction.InvokeAsync())></ChangeStatusPopUp> 
     }
 
 @code {
@@ -51,6 +55,7 @@
 
     protected string CaseRole { get; set; }
     protected bool showAddNotePopUp { get; set; }
+    protected bool showChangeStatusPopUp { get; set; }
 
 
 
@@ -60,10 +65,14 @@
         GetContactsCaseRole();
 
     }
-    protected void AddNote()
-    {   
-        showAddNotePopUp = true;
-    }
+    //protected void AddNote()
+    //{   
+    //    showAddNotePopUp = true;
+    //}
+    //protected void ChangeStatus()
+    //{   
+    //    showChangeStatusPopUp = true;
+    //}
 
     protected void GetContactsCaseRole()
     {

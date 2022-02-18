@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="py-3">
-                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" OnNoteAction="NoteAdded"></CaseActionPan>
+                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" OnNoteAction="NoteAdded" OnChangeStatusAction="StatusChanged"></CaseActionPan>
                 </div>
             </div>
             <div class="col-md-6">
@@ -126,6 +126,22 @@
         try
         {
             Messages.List.Clear();
+            CaseEvents = await CmsService.GetEventList(CaseId);
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+    }
+
+    protected async Task StatusChanged()
+    {
+        try
+        {
+            Messages.List.Clear();
+            MyCase = await CmsService.LoadCase(CaseId);
             CaseEvents = await CmsService.GetEventList(CaseId);
         }
         catch (Exception ex)

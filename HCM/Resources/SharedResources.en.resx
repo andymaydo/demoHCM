@@ -475,6 +475,9 @@ it - after verification of the hit - in the menu
   <data name="Cases_ChangeStatus_Validation_Note" xml:space="preserve">
     <value>Please fill in an explanation!</value>
   </data>
+  <data name="Cases_ChangeStatus_Validation_Status" xml:space="preserve">
+    <value>Please select a status !</value>
+  </data>
   <data name="Cases_ChangeStatus_Validation_Title" xml:space="preserve">
     <value>Attention!</value>
   </data>
@@ -1176,6 +1179,9 @@ it - after verification of the hit - in the menu
   </data>
   <data name="Value_False_Text" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="Value_Select_Text" xml:space="preserve">
+    <value>Please select</value>
   </data>
   <data name="Value_True_Text" xml:space="preserve">
     <value>Yes</value>

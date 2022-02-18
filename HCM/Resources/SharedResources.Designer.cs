@@ -1256,6 +1256,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitte wählen Sie einen Status aus!.
+        /// </summary>
+        public static string Cases_ChangeStatus_Validation_Status {
+            get {
+                return ResourceManager.GetString("Cases_ChangeStatus_Validation_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Achtung!.
         /// </summary>
         public static string Cases_ChangeStatus_Validation_Title {
@@ -3223,6 +3232,15 @@ namespace HCM.Resources {
         public static string Value_False_Text {
             get {
                 return ResourceManager.GetString("Value_False_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte auswählen.
+        /// </summary>
+        public static string Value_Select_Text {
+            get {
+                return ResourceManager.GetString("Value_Select_Text", resourceCulture);
             }
         }
         
