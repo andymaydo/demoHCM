@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using HCM.Resources;
+using System.Xml.Serialization;
 
 namespace HCM.Models
 {
@@ -44,5 +45,14 @@ namespace HCM.Models
 
         [Required(ErrorMessageResourceName = "Cases_ChangeStatus_Validation_Status", ErrorMessageResourceType = typeof(SharedResources))]
         public string NewStatusId { get; set; }
+    }
+
+    public class AddParticipantForm
+    {
+        public string NewCaseParticipantId { get; set; }
+
+        public List<CaseContactSelectable> ProfileParticipants { get; set; }
+        public List<CaseContactSelectable> EscalationParticipants { get; set; }
+        public List<CaseContactSelectable> CaseParticipants { get; set; } 
     }
 }

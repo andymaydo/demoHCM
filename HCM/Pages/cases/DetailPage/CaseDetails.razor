@@ -21,7 +21,11 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="py-3">
-                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" OnNoteAction="NoteAdded" OnChangeStatusAction="StatusChanged"></CaseActionPan>
+                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" 
+                        OnNoteAction="ReloadCase" 
+                        OnChangeStatusAction="ReloadCase"
+                        OnAddUserAction="ReloadCase">                        
+                    </CaseActionPan>
                 </div>
             </div>
             <div class="col-md-6">
@@ -113,35 +117,23 @@
         MyCase = await CmsService.LoadCase(CaseId);
         if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
 
-        ProfileModel = ProileService.Load(MyCase.ProfileID);
         CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
-        ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
-        EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
         CaseEvents = await CmsService.GetEventList(CaseId);
 
+        ProfileModel = ProileService.Load(MyCase.ProfileID);
+        ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
+        EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
+
     }
 
-    protected async Task NoteAdded()
-    {
-        try
-        {
-            Messages.List.Clear();
-            CaseEvents = await CmsService.GetEventList(CaseId);
-        }
-        catch (Exception ex)
-        {                        
-            _logger.LogError(ex.Message);
-            _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
-        }
-    }
 
-    protected async Task StatusChanged()
+    protected async Task ReloadCase()
     {
         try
         {
             Messages.List.Clear();
             MyCase = await CmsService.LoadCase(CaseId);
+            CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
             CaseEvents = await CmsService.GetEventList(CaseId);
         }
         catch (Exception ex)

@@ -490,6 +490,9 @@ it - after verification of the hit - in the menu
   <data name="Cases_ChangeUsers_ListUsers" xml:space="preserve">
     <value>Consulted Participants</value>
   </data>
+  <data name="Cases_ChangeUsers_ListUsers_New" xml:space="preserve">
+    <value>New Consulted Participants</value>
+  </data>
   <data name="Cases_ChangeUsers_List_Devision" xml:space="preserve">
     <value>Function</value>
   </data>

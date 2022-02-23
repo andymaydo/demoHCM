@@ -254,18 +254,18 @@ namespace HCMApi
             _params.Add(name: "@caseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: _caseID);
             _params.Add(name: "@Participants", dbType: DbType.Xml, direction: ParameterDirection.Input, value: _participants);
 
-            try
-            {
+            //try
+            //{
                 using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
                 {
                     conn.Query(procedure, _params, commandType: CommandType.StoredProcedure);
                     return 1;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return -1;
-            }
+            //}
+            //catch //(Exception ex)
+            //{
+            //    return -1;
+            //}
 
 
 

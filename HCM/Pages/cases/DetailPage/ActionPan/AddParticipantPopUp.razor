@@ -1,0 +1,338 @@
+﻿                 
+@using HCMDataAccess
+@using HCMModels
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+@using System.IO
+@using System.Xml
+@using System.Xml.Serialization
+@using System.Xml.Linq
+
+
+@if (ShowModal)
+{
+    <SfDialog Width="950px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
+        <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
+        <DialogTemplates>
+            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_ChangeUsers_Title"]</div></Header>
+            <Content>
+                @if (_loadingStatus == 0)
+                {
+                    <p><em>Loading...</em></p>
+                }
+                @if (_loadingStatus == 1)
+                {
+                    <div class="mx-4">
+                     <EditForm Context="Cntx" Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
+                        <DataAnnotationsValidator />
+                        <div class="row">
+                            <div class="col-md-12 mb-3 bg-light">                               
+                                <CaseContactPan Source="@FormModel.ProfileParticipants"                                    
+                                    ShowEmail = "true"
+                                    ShowFunction = "true"
+                                    ShowRole = "true"
+                                    Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]">
+                                </CaseContactPan>
+                            </div>
+
+                            <div class="col-md-12 mb-3 bg-light">
+                                <CaseContactPan Source="@FormModel.EscalationParticipants"                                     
+                                    ShowEmail = "true"
+                                    ShowFunction = "true"
+                                    ShowRole = "true"
+                                    Title="@Localizer.Str["Cases_Detail_Label_EscalationUsers"]">
+                                </CaseContactPan>
+                            </div>
+
+                            @*<div class="col-md-12 mb-3 bg-light">
+                                <CaseContactPan Source="@FormModel.CaseParticipants"                                     
+                                    ShowEmail = "true"
+                                    ShowFunction = "true"
+                                    ShowRole = "true"                                                                        
+                                    Title="@Localizer.Str["Cases_ChangeUsers_ListUsers"]">
+                                </CaseContactPan>
+                            </div>*@
+
+                            <div class="col-md-12 mb-3">
+                                <CaseContactPan Source="@FormModel.CaseParticipants"                                     
+                                    ShowEmail = "true"
+                                    ShowFunction = "true"
+                                    ShowRole = "true"
+                                    AllowDelete = "true"
+                                    OnSorceItemDeleted = "RefreshUserList"
+                                    Title="@Localizer.Str["Cases_ChangeUsers_ListUsers"]">
+                                </CaseContactPan>
+                            </div>
+
+                            <div class="row col-md-12 mb-3">
+                                <label class="col-md-12 font-weight-bold">@Localizer.Str["Cases_ChangeUsers_AddUser"]</label>
+                                <div class="col-md-10">
+                                    <SfComboBox @ref="comboObj" TValue="string" TItem="UsersModel" 
+                                        DataSource="@UserList"  
+                                        @bind-Value="@FormModel.NewCaseParticipantId"
+                                        Placeholder="@Localizer.Str["Value_Select_Text"]"  
+                                        AllowFiltering="true"
+                                        Autofill="false">
+                                        <ComboBoxTemplates TItem="UsersModel">
+                                            <HeaderTemplate>
+                                                <span class="head">
+                                                    <span class="login">@Localizer.Str["LoginLabel_UserName"]</span>
+                                                    <span class="name">@Localizer.Str["Cases_ChangeUsers_List_Name"]</span>
+                                                    <span class="email">@Localizer.Str["Cases_ChangeUsers_List_Email"]</span>
+                                                    <span class="func">@Localizer.Str["Cases_ChangeUsers_List_Devision"]</span>
+                                                </span>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <span class="item">
+                                                    <span class="login">@((context  as UsersModel).LoginName)</span>
+                                                    <span class="name">@((context  as UsersModel).Name)</span>
+                                                    <span class="email">@((context  as UsersModel).EMail)</span>
+                                                    <span class="func">@((context  as UsersModel).FunctionInFirma)</span>
+                                                </span>
+                                            </ItemTemplate>
+                                        </ComboBoxTemplates>                                       
+
+                                        <ComboBoxFieldSettings Text="Name" Value="ContactID"></ComboBoxFieldSettings>
+                                        <ComboBoxEvents TValue="string" TItem="UsersModel" Filtering="OnFilter"></ComboBoxEvents>
+                                    </SfComboBox>
+                                </div>
+                                <div class="col-md-2">
+                                    <SfButton Type="button" @onclick="AddCaseParticipant" CssClass="e-flat e-info">@Localizer.Str["Button_Add"]</SfButton>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        <div class="row py-2 top_blue_bg"></div>
+                        <div class="row">
+                            <div class="col-12 ">
+                                <div class="col-12">
+                                    <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                                </div>
+                            </div>
+                        </div>
+                     </EditForm>
+                    </div>
+                }
+                <div class="py-3">
+                    <UiMessageBox Data="Messages.List" />
+                </div>
+
+                 
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+
+    <style>
+        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+            background-color: lightblue;
+        }
+
+        .head, .item {
+        display: table;
+        width: 100%;
+        margin: auto;
+        }
+
+        .head {
+            height: 40px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .name, .login, .func, .email {
+            display: table-cell;
+            vertical-align: middle;
+            width: 25%;
+        }
+
+        .head .login {
+            text-indent: 16px;
+        }
+    </style>
+}
+
+
+
+
+@code {
+    [Inject] private ILogger<AddParticipantPopUp> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+    [Inject] public ICMSAPI CmsService{ get; set; }
+    [Inject] public CMSSettings cmsSettings{ get; set; }
+    [Inject] public IUsersData UserService { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public Case CaseModel { get; set; }
+    [Parameter] public CMSProfileModel ProfileModel { get; set; }
+    [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+    [Parameter] public EventCallback OnParticipantSaved { get; set; }
+
+
+    protected AddParticipantForm FormModel { get; set; }
+    protected List<UsersModel> UserList { get; set; }
+    protected UiMessages Messages { get; set; }
+
+    protected SfComboBox<string, UsersModel> comboObj { get; set; }
+    private int _loadingStatus;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Messages = new UiMessages();
+        FormModel = new AddParticipantForm();
+        UserList = new List<UsersModel>();
+
+        _loadingStatus = 0;
+
+        try
+        {
+            if(CaseModel == null )
+            {               
+                throw new ArgumentNullException("CaseModel");
+            }
+            if(ProfileModel == null )
+            {               
+                throw new ArgumentNullException("ProfileModel");
+            }
+
+            await InitFormModel();
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+    }
+
+
+    public async Task CloseDialog()
+    {
+        ShowModal = false;
+        await ShowModalChanged.InvokeAsync(ShowModal);
+    }
+
+
+    protected async Task ValidFormSubmited()
+    {
+        try
+        {
+            CaseContactSerializable contacts = new CaseContactSerializable();
+            contacts.ContactList = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants);
+
+            XmlDocument AddedCaseParticipantsXml = new XmlDocument();
+            AddedCaseParticipantsXml.LoadXml(contacts.ObjToXml());
+            //remove the root node
+            var ixml = AddedCaseParticipantsXml.DocumentElement.InnerXml;
+            AddedCaseParticipantsXml.LoadXml(ixml);
+
+            await CmsService.ChangeParticipants(CurrentContactId, CaseModel.CaseID, AddedCaseParticipantsXml, "");
+
+            await OnParticipantSaved.InvokeAsync();
+            await CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+        }
+
+    }
+
+    private async Task InitFormModel()
+    {        
+        
+        FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
+        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
+        FormModel.EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
+
+        await LoadUserList();
+
+    }
+
+    private async Task LoadUserList()
+    {
+        var TotalUserList = await UserService.UsersList(CurrentContactId);
+        UserList = TotalUserList
+                    .Where(x=>!FormModel.CaseParticipants.Any(y=>y.ContactID == x.ContactID))                    
+                    .Where(x=>!FormModel.ProfileParticipants.Any(y=>y.ContactID == x.ContactID))
+                    .Where(x=>!FormModel.EscalationParticipants.Any(y=>y.ContactID == x.ContactID))
+                    .ToList();  
+    }
+
+    private async Task RefreshUserList()
+    {
+        try
+        {
+            await LoadUserList();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+        }
+    }
+
+    private async Task AddCaseParticipant()
+    {
+        int cId;
+        bool successfullyParsed = int.TryParse(FormModel.NewCaseParticipantId, out cId);
+        if (successfullyParsed){
+            var usr = UserList.Find(x => x.ContactID == cId);
+            FormModel.CaseParticipants.Add(new CaseContactSelectable()
+                {
+                    ContactID = usr.ContactID,
+                    Name = usr.Name,
+                    Email = usr.EMail,
+                    Function = usr.FunctionInFirma,
+                    ProfileRole = "User"
+                });
+
+
+            await RefreshUserList();
+            FormModel.NewCaseParticipantId = null;
+        }
+    }
+    private async Task OnFilter(FilteringEventArgs args)
+    {
+        args.PreventDefaultAction = true;
+
+        var pre = new WhereFilter(); 
+        var predicate = new List<WhereFilter>(){ 
+                        new WhereFilter(){ Field = "Name", Operator = "contains", value = args.Text, IgnoreCase = true }, 
+                        new WhereFilter(){ Field = "LoginName", Operator = "contains", value = args.Text, IgnoreCase = true },
+                        new WhereFilter(){ Field = "EMail", Operator = "contains", value = args.Text, IgnoreCase = true }
+        }; 
+        pre = WhereFilter.Or(predicate); 
+
+        var query = new Query().Where(pre);
+              
+        query = !string.IsNullOrEmpty(args.Text) ? query : new Query();
+
+        await comboObj.Filter(UserList, query);
+        
+    }
+}

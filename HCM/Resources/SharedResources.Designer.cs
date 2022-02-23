@@ -1346,6 +1346,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Neue hinzugezogene Teilnehmer.
+        /// </summary>
+        public static string Cases_ChangeUsers_ListUsers_New {
+            get {
+                return ResourceManager.GetString("Cases_ChangeUsers_ListUsers_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Übersicht aller Teilnehmer .
         /// </summary>
         public static string Cases_ChangeUsers_Title {

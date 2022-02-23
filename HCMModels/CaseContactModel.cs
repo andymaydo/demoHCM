@@ -6,7 +6,7 @@ namespace HCMModels
 {
     [Serializable]
     [DataContract(Namespace = "DominoCMS")]
-    [XmlRootAttribute("Contact")]
+    [XmlRoot("Contact")]
 
     public class CaseContactModel
     {

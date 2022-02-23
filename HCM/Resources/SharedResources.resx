@@ -490,6 +490,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Cases_ChangeUsers_ListUsers" xml:space="preserve">
     <value>Hinzugezogene Teilnehmer</value>
   </data>
+  <data name="Cases_ChangeUsers_ListUsers_New" xml:space="preserve">
+    <value>Neue hinzugezogene Teilnehmer</value>
+  </data>
   <data name="Cases_ChangeUsers_List_Devision" xml:space="preserve">
     <value>Funktion</value>
   </data>

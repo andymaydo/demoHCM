@@ -8,7 +8,7 @@
     <div class="top_blue_bg"></div>
 
          
-    <table class="table @(ShowStriped && Source.Count > 2 ? "table-striped" : "") table-borderless table-sm">              
+    <table class="table @(ShowStriped && Source.Count > 2 ? "table-striped" : "") table-hover table-borderless table-sm">              
         <tbody class="itemDetail">
             
             
@@ -29,7 +29,13 @@
                             @itemName
                         }
 
-                    </td>                                 
+                    </td>  
+                    @if (@AllowDelete)
+                    {
+                        <td>
+                            <a href="" @onclick="@(() => DeleteFromList(c.ContactID))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
+                        </td>
+                    }
                 </tr>       
             }
             
@@ -53,6 +59,12 @@
     [Parameter] public bool ShowRole { get; set; }
     [Parameter] public bool ShowEmail { get; set; }
     [Parameter] public bool ShowStriped { get; set; }
+    [Parameter] public bool AllowDelete { get; set; }
+    [Parameter] public EventCallback OnSorceItemDeleted { get; set; }
 
-    
+    protected async Task DeleteFromList(int cid)
+    {
+        Source.RemoveAll(r => r.ContactID == cid);
+        await OnSorceItemDeleted.InvokeAsync();
+    }
 }

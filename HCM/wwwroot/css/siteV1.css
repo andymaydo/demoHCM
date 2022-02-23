@@ -355,6 +355,19 @@ a.btnAddAlias {
     font-family: Arial, Tahoma,Helvetica, sans-serif;
     font-size: 14px;
 }
+a.btnRemove {
+    background-repeat: no-repeat;
+    background-image: url(/images/del_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 14px;
+}
 .bottom_line_bg {
     background-repeat: repeat-x;
     background-position: top;

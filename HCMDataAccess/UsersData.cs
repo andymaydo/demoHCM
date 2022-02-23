@@ -26,8 +26,8 @@ namespace HCMDataAccess
             _params.Add(name: "@userID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: userID);
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+            //try
+            //{
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn.QueryAsync<UsersModel>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -36,11 +36,11 @@ namespace HCMDataAccess
 
                     return _UsersModel;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            //}
+            //catch //(Exception ex)
+            //{
+            //    return null;
+            //}
         }
 
         public async Task<int> SaveData(int userID, string Email, string FullName, string Department, bool Enable, int ModifyUserID)

@@ -19,7 +19,7 @@ namespace HCMApi
 {
     [Serializable]
     [DataContract(Namespace = "DominoCMS")]
-    [XmlRootAttribute("Contact")]
+    [XmlRoot("Contact")]
     public class CaseContact : CaseContactModel, ICaseContact
     {    
         private readonly IConfiguration _config;
