@@ -23,23 +23,26 @@
         @if (CaseRole == "AliasManager")
         {
             <div class="col-sm-12 ">
-
-                <a href="" @onclick="@(() => OnAddAliasAction.InvokeAsync())" @onclick:preventDefault class="btnAddAlias">@Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
+                <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault class="btnAddAlias">@Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
             </div>
         }
     </div>
     
     @if (showAddNotePopUp)
     {
-       <AddNotePopUp @bind-ShowModal="showAddNotePopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnNoteSaved=@(() => OnNoteAction.InvokeAsync())></AddNotePopUp> 
+       <AddNotePopUp @bind-ShowModal="showAddNotePopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnFormSaved=@(() => OnNoteAction.InvokeAsync())></AddNotePopUp> 
     }
     @if (showChangeStatusPopUp)
     {
-       <ChangeStatusPopUp @bind-ShowModal="showChangeStatusPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnStatusSaved=@(() => OnChangeStatusAction.InvokeAsync())></ChangeStatusPopUp> 
+       <ChangeStatusPopUp @bind-ShowModal="showChangeStatusPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnFormSaved=@(() => OnChangeStatusAction.InvokeAsync())></ChangeStatusPopUp> 
     }
     @if (showAddParticipantPopUp)
     {
-       <AddParticipantPopUp @bind-ShowModal="showAddParticipantPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnParticipantSaved=@(() => OnAddUserAction.InvokeAsync())></AddParticipantPopUp> 
+       <AddParticipantPopUp @bind-ShowModal="showAddParticipantPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnFormSaved=@(() => OnAddUserAction.InvokeAsync())></AddParticipantPopUp> 
+    }
+    @if (showAddAliasPopUp)
+    {
+       <AddAliasPopUp @bind-ShowModal="showAddAliasPopUp" CaseModel="@CaseModel" ProfileModel="@ProfileModel" OnFormSaved=@(() => OnAddAliasAction.InvokeAsync())></AddAliasPopUp> 
     }
 
 @code {
@@ -61,7 +64,7 @@
     protected bool showAddNotePopUp { get; set; }
     protected bool showChangeStatusPopUp { get; set; }
     protected bool showAddParticipantPopUp { get; set; }
-
+    protected bool showAddAliasPopUp { get; set; }
 
     protected override void OnInitialized()
     {

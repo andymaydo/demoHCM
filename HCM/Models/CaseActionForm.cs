@@ -55,4 +55,20 @@ namespace HCM.Models
         public List<CaseContactSelectable> EscalationParticipants { get; set; }
         public List<CaseContactSelectable> CaseParticipants { get; set; } 
     }
+
+    public class AddAliasForm : CaseActionForm
+    {
+        [Display(Name = "Cases_AddAlias_Note", ResourceType = typeof(SharedResources))]
+        [Required(ErrorMessageResourceName = "Cases_AddAlias_Validation_Note", ErrorMessageResourceType = typeof(SharedResources))]
+        public string Note { get; set; }
+
+
+        [Required(ErrorMessageResourceName = "Cases_AddAlias_Validation_Note", ErrorMessageResourceType = typeof(SharedResources))]
+        public string LizIdType { get; set; }
+
+
+        public string AliasName { get; set; }
+        public string AliasStreet { get; set; }
+
+    }
 }

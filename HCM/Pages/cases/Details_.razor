@@ -986,7 +986,7 @@
     private List<CaseModel.AliasLizStatus> _AliasLizStatus = new List<CaseModel.AliasLizStatus>();
 
 
-    AliasApiWebRef.AliasApi.AliasApiSoapClient aliasapi = new AliasApiWebRef.AliasApi.AliasApiSoapClient(AliasApiWebRef.AliasApi.AliasApiSoapClient.EndpointConfiguration.AliasApiSoap12);
+    //AliasApiWebRef.AliasApi.AliasApiSoapClient aliasapi = new AliasApiWebRef.AliasApi.AliasApiSoapClient(AliasApiWebRef.AliasApi.AliasApiSoapClient.EndpointConfiguration.AliasApiSoap12);
 
     private List<CaseModel.AliasLizStatus> AliasLizStatus
     {
@@ -1011,10 +1011,10 @@
         UsersList = await _usersData.UsersList(_UsersModel.UserID);
 
         var getCaseId = await ProtectedSessionStore.GetAsync<int>("CaseViewID");
-    
+
         if ( getCaseId.Success)
         {
-            
+
             int _CaseID = getCaseId.Value;
             _Case = await _ICMSAPI.LoadCase(_CaseID);
 
@@ -1919,8 +1919,8 @@
             // ????????????????????????????????????????????????????????????????????????????????????
         }
 
-        AliasApiWebRef.AliasApi.AliasCreateResponse aliasResponse = await aliasapi.AliasCreateAsync(aliasout.AsXml());
-        string response = aliasResponse.Body.AliasCreateResult.ToString();
+        //AliasApiWebRef.AliasApi.AliasCreateResponse aliasResponse = await aliasapi.AliasCreateAsync(aliasout.AsXml());
+        string response = "";// aliasResponse.Body.AliasCreateResult.ToString();
 
         if ( string.IsNullOrEmpty(response))
         {

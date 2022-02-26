@@ -125,7 +125,7 @@
     [Parameter] public CMSProfileModel ProfileModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
-    [Parameter] public EventCallback OnNoteSaved { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
 
     protected CaseDocs CaseDocs { get; set; }
     protected AddNoteForm FormModel { get; set; }
@@ -183,53 +183,14 @@
     {
         try
         {
-            var CaseCont = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
-            var ProfCont = _mapper.Map<List<CaseContact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
-            var Originator = FormModel.Originator;
-            var ExtEmail = FormModel.ExtEmail1;
+            Messages.List.Clear();
 
-            #region NotifyList
-            List<CaseContact> notifyList = new List<CaseContact>();
-            notifyList.AddRange(CaseCont);
-            notifyList.AddRange(ProfCont);
+            var notifyList = GetNotifyList();
+            var docsXML = GetAttachedDocs();
 
-            if ((bool)Originator?.Selected)
-            {
-                notifyList.Add(new CaseContact() 
-                        { 
-                            Email = Originator.EMAIL, 
-                            Name = Originator.NAMELAST, 
-                            Function = "Verursacher/Originator" });
-            }
+            await CmsService.OnEvent(CMSSettings.EventAddMessage, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);            
 
-            if (!String.IsNullOrEmpty(ExtEmail))
-            {
-                notifyList.Add(new CaseContact() 
-                        { 
-                            Email = ExtEmail, 
-                            Name = "Extern" });
-            }
-            #endregion
-
-            #region DocumentList
-            if (FormModel.WithMatchReport)
-            {
-                int caseTypeId = CaseModel.CaseTypeID == null ? 0 : (int)CaseModel.CaseTypeID;
-                string htmlResult = Common.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
-                byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
-
-                CaseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);
-            }
-
-            XmlDocument docsXML = new XmlDocument();
-            docsXML.LoadXml(CaseDocs.ObjToXml());
-            #endregion
-
-
-            await CmsService.OnEvent(CMSSettings.EventAddMessage, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);
-            
-
-            await OnNoteSaved.InvokeAsync();
+            await OnFormSaved.InvokeAsync();
             await CloseDialog();
         }
         catch (Exception ex)
@@ -240,6 +201,54 @@
 
         }
 
+    }
+
+    private List<CaseContact> GetNotifyList()
+    {
+        var CaseCont = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
+        var ProfCont = _mapper.Map<List<CaseContact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
+        var Originator = FormModel.Originator;
+        var ExtEmail = FormModel.ExtEmail1;          
+
+        List<CaseContact> notifyList = new List<CaseContact>();
+        notifyList.AddRange(CaseCont);
+        notifyList.AddRange(ProfCont);
+
+
+        if (Originator?.Selected ?? false)
+        {
+            notifyList.Add(new CaseContact() 
+                    { 
+                        Email = Originator.EMAIL, 
+                        Name = Originator.NAMELAST, 
+                        Function = "Verursacher/Originator" });
+        }
+
+        if (!String.IsNullOrEmpty(ExtEmail))
+        {
+            notifyList.Add(new CaseContact() 
+                    { 
+                        Email = ExtEmail, 
+                        Name = "Extern" });
+        }
+        return notifyList;
+    }
+
+    private XmlDocument GetAttachedDocs()
+    {
+        if (FormModel.WithMatchReport)
+        {
+            int caseTypeId = CaseModel.CaseTypeID == null ? 0 : (int)CaseModel.CaseTypeID;
+            string htmlResult = Common.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
+            byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
+
+            CaseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);
+        }
+
+        XmlDocument docsXML = new XmlDocument();
+        docsXML.LoadXml(CaseDocs.ObjToXml());
+
+        return docsXML;
     }
 
     private void InitFormModel()

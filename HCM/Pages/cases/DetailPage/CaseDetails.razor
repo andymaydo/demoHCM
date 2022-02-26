@@ -22,9 +22,10 @@
             <div class="col-md-3">
                 <div class="py-3">
                     <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" 
-                        OnNoteAction="ReloadCase" 
+                        OnNoteAction="ReloadCaseHistory" 
                         OnChangeStatusAction="ReloadCase"
-                        OnAddUserAction="ReloadCase">                        
+                        OnAddUserAction="ReloadCase"
+                        OnAddAliasAction="ReloadCaseHistory">                        
                     </CaseActionPan>
                 </div>
             </div>
@@ -134,6 +135,21 @@
             Messages.List.Clear();
             MyCase = await CmsService.LoadCase(CaseId);
             CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
+            CaseEvents = await CmsService.GetEventList(CaseId);
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+    }
+
+    protected async Task ReloadCaseHistory()
+    {
+        try
+        {
+            Messages.List.Clear();                        
             CaseEvents = await CmsService.GetEventList(CaseId);
         }
         catch (Exception ex)

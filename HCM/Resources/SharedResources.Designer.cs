@@ -394,7 +394,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to undefined error.
+        ///   Looks up a localized string similar to Algemeiner Fehler beim Aufrufen der Alias-Schnittstelle.
         /// </summary>
         public static string AliasApiError_100000 {
             get {

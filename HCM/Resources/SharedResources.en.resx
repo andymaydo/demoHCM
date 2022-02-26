@@ -229,7 +229,7 @@
     <value>Attention!</value>
   </data>
   <data name="AliasApiError_100000" xml:space="preserve">
-    <value>Undefined error</value>
+    <value>General error in Alias-Api</value>
   </data>
   <data name="AliasApiError_100501" xml:space="preserve">
     <value>Missing username</value>

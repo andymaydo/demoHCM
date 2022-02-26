@@ -11,15 +11,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Connected Services\**" />
     <Compile Remove="Pages\admin\**" />
     <Compile Remove="Pages\auth\**" />
     <Compile Remove="Resources\Resources\**" />
+    <Content Remove="Connected Services\**" />
     <Content Remove="Pages\admin\**" />
     <Content Remove="Pages\auth\**" />
     <Content Remove="Resources\Resources\**" />
+    <EmbeddedResource Remove="Connected Services\**" />
     <EmbeddedResource Remove="Pages\admin\**" />
     <EmbeddedResource Remove="Pages\auth\**" />
     <EmbeddedResource Remove="Resources\Resources\**" />
+    <None Remove="Connected Services\**" />
     <None Remove="Pages\admin\**" />
     <None Remove="Pages\auth\**" />
     <None Remove="Resources\Resources\**" />
@@ -43,6 +47,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Connected Services\AliasApi\Reference.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="BlazorDownloadFile" Version="2.3.1" />
@@ -61,8 +69,11 @@
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
     <PackageReference Include="Syncfusion.Blazor" Version="18.3.0.53" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.*" />
     <PackageReference Include="System.ServiceModel.Http" Version="4.8.1" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.*" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.8.1" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.8.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -96,10 +107,7 @@
     <None Include="wwwroot\css\open-iconic\README.md" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.ServiceModel" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>

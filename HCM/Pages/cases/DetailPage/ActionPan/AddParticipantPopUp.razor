@@ -179,7 +179,7 @@
     [Parameter] public CMSProfileModel ProfileModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
-    [Parameter] public EventCallback OnParticipantSaved { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
 
 
     protected AddParticipantForm FormModel { get; set; }
@@ -247,7 +247,7 @@
 
             await CmsService.ChangeParticipants(CurrentContactId, CaseModel.CaseID, AddedCaseParticipantsXml, "");
 
-            await OnParticipantSaved.InvokeAsync();
+            await OnFormSaved.InvokeAsync();
             await CloseDialog();
         }
         catch (Exception ex)

@@ -14,6 +14,9 @@
 @using System.IO
 @using System.Xml
 @using static HCMModels.CaseModel
+@using HCMDataAccess
+@using AliasApi
+@using static AliasApi.AliasApiSoapClient
 
 
 @if (ShowModal)
@@ -21,7 +24,7 @@
     <SfDialog Width="950px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
         <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
         <DialogTemplates>
-            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_ChangeStatus_Title"]</div></Header>
+            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Cases_AddAlias_Title"]</div></Header>
             <Content>
                 @if (_loadingStatus == 0)
                 {
@@ -35,24 +38,33 @@
                         <div class="row">
                             <div class="col-sm-7">      
                                 <div class="form-group col-12">
-                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeStatus_Subject"]</label>
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddMessage_Subject"]</label>
                                     <div>@FormModel.CaseSubject</div>
                                 </div>
-                                <div class="form-group col-12">
-                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_Detail_Label_Status"]</label>
-                                    <div>@Localizer.Str["Case_Status_" + @FormModel.CurrentStatusId.ToString()]</div>
-                                </div>
-                                <div class="form-group col-12">
-                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeStatus_SelectStatus"]</label>                                    
-                                    <SfComboBox TValue="string" TItem="CaseEventStatus" DataSource="@StatusList" @bind-Value="@FormModel.NewStatusId"
+                                 <div class="form-group col-12">
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddAlias_SelectLiz"]</label>                                    
+                                    <SfComboBox TValue="string" TItem="AliasLizStatus" DataSource="@LizTypeList" @bind-Value="@FormModel.LizIdType"
                                         Placeholder="@Localizer.Str["Value_Select_Text"]">
-                                        <ComboBoxFieldSettings Text="EventText" Value="EventID"></ComboBoxFieldSettings>
+                                        <ComboBoxFieldSettings Text="LizText" Value="LizID"></ComboBoxFieldSettings>
                                     </SfComboBox>      
-                                    <ValidationMessage For="@(() => FormModel.NewStatusId)" />
+                                    <ValidationMessage For="@(() => FormModel.LizIdType)" />
+                                </div>
+
+                               <div class="form-group col-12">
+                                    <label class="col-form-label">@Localizer.Str["Cases_AddAlias_AliasTitle"]</label>
+                                    <div class="row">
+                                        <div class="col-2 font-weight-bold">@Localizer.Str["Cases_AddAlias_Name"]:</div>
+                                        <div class="col-10">@FormModel.AliasName</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2 font-weight-bold">@Localizer.Str["Cases_AddAlias_Street"]:</div>
+                                        <div class="col-10">@FormModel.AliasStreet</div>
+                                    </div>
+                                    <label class="col-form-label">@Localizer.Str["Cases_AddAlias_RealNameTitle"]</label>
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeStatus_Note"]</label>
+                                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddAlias_Note"]</label>
                                     <SfTextBox CssClass="e-custom-height" Multiline="true"  @bind-Value="@FormModel.Note"></SfTextBox>
                                     <ValidationMessage For="@(() => FormModel.Note)" />
                                 </div>
@@ -94,7 +106,7 @@
                                     <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
                                 </div>
                             </div>
-                        </div>
+                       </div>
                      </EditForm>
                     </div>
                 }
@@ -118,13 +130,17 @@
 
 
 @code {
-    [Inject] private ILogger<AddNotePopUp> _logger { get; set; }
+    [Inject] private ILogger<AddAliasPopUp> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
     [Inject] public ICMSAPI CmsService{ get; set; }
+    [Inject] public CMSSettings cmsSettings { get; set; }
+    [Inject] public ISettingsData dbSettingsService { get; set; }
 
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
+
     [Parameter] public Case CaseModel { get; set; }
     [Parameter] public CMSProfileModel ProfileModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
@@ -132,10 +148,11 @@
     [Parameter] public EventCallback OnFormSaved { get; set; }
 
 
-    protected ChangeStatusForm FormModel { get; set; }
-    protected List<CaseEventStatus> StatusList { get; set; }
-    protected CaseDocs CaseDocs { get; set; }
+    protected AddAliasForm FormModel { get; set; }
+    protected List<AliasLizStatus> LizTypeList { get; set; }
+
     protected UiMessages Messages { get; set; }
+    private AliasApiSoapClient AliasApiClient { get; set; }
     private int _loadingStatus;
 
 
@@ -143,8 +160,9 @@
     {
         await base.OnInitializedAsync();
         Messages = new UiMessages();
-        FormModel = new ChangeStatusForm();
-        CaseDocs = new CaseDocs();
+        FormModel = new AddAliasForm();
+        LizTypeList = new List<AliasLizStatus>();
+
 
         _loadingStatus = 0;
 
@@ -159,7 +177,8 @@
                 throw new ArgumentNullException("ProfileModel");
             }
 
-            await InitFormModel();
+            InitAliasApiClient();
+            InitFormModel();
 
             _loadingStatus = 1;
         }
@@ -173,13 +192,11 @@
         }
     }
 
-
     public async Task CloseDialog()
     {
         ShowModal = false;
         await ShowModalChanged.InvokeAsync(ShowModal);
     }
-
 
     protected async Task ValidFormSubmited()
     {
@@ -189,8 +206,17 @@
 
             var notifyList = GetNotifyList();
             var docsXML = GetAttachedDocs();
-                      
-            await CmsService.OnEvent(FormModel.NewStatusId, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);
+
+            var statusCode = await CreateAlias();
+
+            if(statusCode == 0)
+            {
+                await CmsService.OnEvent(CMSSettings.EventAddAlias, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);    
+            }
+            else
+            {
+                throw new Exception(Localizer.Str["AliasApiError_" + statusCode.ToString()]);
+            }
 
 
             await OnFormSaved.InvokeAsync();
@@ -205,13 +231,11 @@
         }
 
     }
-
-     private List<CaseContact> GetNotifyList()
+    private List<CaseContact> GetNotifyList()
     {
         var CaseCont = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
         var ProfCont = _mapper.Map<List<CaseContact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
-        var Originator = FormModel.Originator;
-          
+        var Originator = FormModel.Originator;            
 
         List<CaseContact> notifyList = new List<CaseContact>();
         notifyList.AddRange(CaseCont);
@@ -226,43 +250,123 @@
                         Name = Originator.NAMELAST, 
                         Function = "Verursacher/Originator" });
         }
-
-       
         return notifyList;
     }
 
     private XmlDocument GetAttachedDocs()
     {
+        CaseDocs caseDocs = new CaseDocs();
         if (FormModel.WithMatchReport)
         {
             int caseTypeId = CaseModel.CaseTypeID == null ? 0 : (int)CaseModel.CaseTypeID;
             string htmlResult = Common.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
             byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
 
-            CaseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);
+            caseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);
         }
 
         XmlDocument docsXML = new XmlDocument();
-        docsXML.LoadXml(CaseDocs.ObjToXml());
-
+        docsXML.LoadXml(caseDocs.ObjToXml());
         return docsXML;
     }
 
-
-    private async Task InitFormModel()
+    private async Task<int> CreateAlias()
     {
+        var dbSettings = await dbSettingsService.GetSettings();
+        var appUrl = dbSettings?[0].AppUrl;
+
+        AliasOut aliasRequest = new AliasOut();
+        aliasRequest.aliasauth.username = cmsSettings.AliasApiUsr;
+        aliasRequest.aliasauth.pwd = cmsSettings.AliasApiPwd;
+
+        //sap
+        if(CaseModel.SettingsData.sapip != null)
+        {
+            if(FormModel.LizIdType == "own" || FormModel.LizIdType == "beleg")
+            {
+                aliasRequest.aliasauth.sapip = CaseModel.SettingsData?.sapip;
+                aliasRequest.aliasauth.sapgw = CaseModel.SettingsData?.sapgw;
+                aliasRequest.aliasauth.sapmandant = CaseModel.SettingsData?.sapmandant;
+
+                if(FormModel.LizIdType == "beleg")
+                {
+                    aliasRequest.aliasauth.saptranid = CaseModel.SrcData?.vbeln;
+                }
+            }
+            else
+            {
+                aliasRequest.aliasauth.profileid = "-100";
+            }
+        }
+
+        //non sap
+        if(CaseModel.SettingsData.profileid != 0)
+        {
+            if(FormModel.LizIdType == "own")
+            {
+                aliasRequest.aliasauth.profileid = CaseModel.SettingsData?.profileid.ToString();
+            }
+            else
+            {
+                aliasRequest.aliasauth.profileid = "-100";
+            }
+        }
+
+
+        aliasRequest.data.aliasname = System.Net.WebUtility.UrlDecode(FormModel.AliasName);
+        aliasRequest.data.aliasaddress = System.Net.WebUtility.UrlDecode(FormModel.AliasStreet);
+        aliasRequest.data.aliasnote = System.Net.WebUtility.UrlDecode(FormModel.Note);
+
+        aliasRequest.data.hcmUserFullName = System.Net.WebUtility.UrlDecode(CurrentPrincipal.Claims.Where(c=>c.Type=="FullName").FirstOrDefault().Value.ToString());
+
+        aliasRequest.data.verid = CaseModel.SettingsData.verid;
+
+        aliasRequest.data.caseurl = "<a href=\"" + appUrl + "/cases/detail.aspx?id=" + CaseModel.CaseID.ToString() + "\" target=\"_blank\">" + CaseModel.CaseID.ToString() + "</a>";
+
+        ////api request
+        //var aliasResponse = await AliasApiClient.AliasCreateAsync(aliasRequest.AsXml());       
+
+        //XmlDocument resultxml = new XmlDocument();
+        //resultxml.LoadXml(aliasResponse.Body.AliasCreateResult);
+        //_logger.LogError(resultxml.InnerText);
+
+        //int statusCode;
+        //bool successfullyParsed = int.TryParse(resultxml.SelectSingleNode("/root/status/statuscode").InnerText, out statusCode);
+        //if (successfullyParsed)
+        //{
+        //    return statusCode;
+        //}
+        //else
+        //{
+        //    return 110000;
+        //}
+
+        return 0;
+
+    } 
+    private  void InitAliasApiClient()
+    {
+        var apiUrl = cmsSettings.AliasApiUrl;
+        //apiUrl = "http://localhost:1123/AliasApi.asmx";
+        AliasApiClient = new AliasApiSoapClient(EndpointConfiguration.AliasApiSoap12, apiUrl);
+    }
+    private void InitFormModel()
+    {
+
+        LizTypeList.Add(new AliasLizStatus() { LizID = "all", LizText = Localizer.Str["Cases_AddAlias_AllLiz"] });
+        LizTypeList.Add(new AliasLizStatus() { LizID = "own", LizText = Localizer.Str["Cases_AddAlias_OwnLiz"] });
+        if (!String.IsNullOrEmpty(CaseModel.SrcData.vbeln))
+        {
+            LizTypeList.Add(new AliasLizStatus() { LizID = "beleg", LizText = Localizer.Str["Cases_AddAlias_Beleg"] });
+        }
+
         FormModel.CaseSubject = CaseModel.Subject;
-        FormModel.CurrentStatusId = CaseModel.CaseStatusID;
+        FormModel.AliasName = CaseModel.SrcData.name;
+        FormModel.AliasStreet = CaseModel.SrcData.street;        
         FormModel.ProfileParticipants = GetProfileParticipants();
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
         FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
-
-        StatusList = await CmsService.GetStatusByCase(CaseModel.CaseID);
-        foreach (CaseEventStatus s in StatusList)
-        {
-            s.EventText = Localizer.Str["event_" + s.EventID.Replace(".", "_")];
-        }
-        
+       
     }
 
     private List<CaseContactSelectable> GetProfileParticipants()
