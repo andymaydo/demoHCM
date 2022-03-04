@@ -89,8 +89,7 @@ namespace HCMDataAccess
 
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+           
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
@@ -99,11 +98,7 @@ namespace HCMDataAccess
                     return ReturnValue;
 
                 }
-            }
-            catch
-            {
-                return -1;
-            }
+            
         }
 
         public async Task<int> ChangePassword(int UserID, string newPass, int ModifyUserID)
@@ -117,8 +112,7 @@ namespace HCMDataAccess
 
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+           
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
@@ -127,11 +121,7 @@ namespace HCMDataAccess
                     return ReturnValue;
 
                 }
-            }
-            catch
-            {
-                return -1;
-            }
+           
         }
 
         public async Task<int> DeleteUser(int UserID, int ModifyUserID)
@@ -144,8 +134,7 @@ namespace HCMDataAccess
 
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
@@ -154,11 +143,7 @@ namespace HCMDataAccess
                     return ReturnValue;
 
                 }
-            }
-            catch
-            {
-                return -1;
-            }
+             
         }
 
         //public async Task<int> IsUsernameExists(string LoginName)

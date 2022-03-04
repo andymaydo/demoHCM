@@ -127,7 +127,7 @@
     <value>Change User Information</value>
   </data>
   <data name="Admin_EditUsers_RoleList" xml:space="preserve">
-    <value>Change Authorizations</value>
+    <value>Change User Rights</value>
   </data>
   <data name="Admin_Users2RoleButtonAssignText" xml:space="preserve">
     <value>Enable</value>
@@ -167,6 +167,12 @@
   </data>
   <data name="Admin_UsersRoleNameLabel" xml:space="preserve">
     <value>Privileges</value>
+  </data>
+  <data name="Admin_UsersRoleSave_ErrMsg" xml:space="preserve">
+    <value>Error saving user rights!</value>
+  </data>
+  <data name="Admin_UsersRoleSave_SuccessMsg" xml:space="preserve">
+    <value>User Rights saved successfully!</value>
   </data>
   <data name="Admin_Users_AbteilungLabel" xml:space="preserve">
     <value>Function in Company</value>
@@ -799,6 +805,18 @@ it - after verification of the hit - in the menu
   <data name="Filter_Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
+  <data name="Form_ConfirmPass_Error" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="Form_Field_RegularExpression" xml:space="preserve">
+    <value>The field "{0}" has no valid content</value>
+  </data>
+  <data name="Form_Field_Required" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
+  <data name="Form_Field_StringLength" xml:space="preserve">
+    <value>The field "{0}" must be between {2} and {1} characters.</value>
+  </data>
   <data name="JavaScript_DeleteConfirm" xml:space="preserve">
     <value>ZZ Delete......\r\nAre you sure?</value>
   </data>
@@ -915,6 +933,9 @@ it - after verification of the hit - in the menu
   </data>
   <data name="Menu_Users_List" xml:space="preserve">
     <value>User Administration</value>
+  </data>
+  <data name="MsgPanel_Confirm_Title" xml:space="preserve">
+    <value>Confirmation</value>
   </data>
   <data name="MsgPanel_Error_Title" xml:space="preserve">
     <value>Error!</value>

@@ -1,0 +1,651 @@
+﻿@page "/admin/users"
+
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Popups
+@using HCMDataAccess;
+@using HCMModels;
+@using System.ComponentModel.DataAnnotations;
+
+
+@*@inject IStringLocalizer<App> Localizer*@
+@inject IUsersData _usersData;
+@inject IUserRolesData _userRolesData;
+@inject ILocalStorageService _storageService
+
+
+@attribute [Authorize]
+
+<h3 class="title">@Localizer["Menu_Users_List"]</h3>
+
+<div class="container">
+    <div class="row row_padding blue_bg mt-3">
+
+        <div class="col-sm-10 form-inline control_padding">
+            <h5 class="mt-1">@Localizer["Administration_Users_List_Table_Title"]</h5>
+
+        </div>
+        <div class="col-sm-2 control_padding text-right">
+            @if ((_userRolesData.IsUserInRole(_userInfo.LoginName, "admin") || _userRolesData.IsUserInRole(_userInfo.LoginName, "userCreate")) )
+            {
+            <SfButton CssClass="e-flat" IsPrimary="true" Content="@Localizer["Menu_Users_Create"]" @onclick="onCreateNew_Click"></SfButton>
+
+            }
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+<SfGrid DataSource="@UsersList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true" Width="100%">
+    <GridPageSettings PageSize="25"></GridPageSettings>
+    @*<GridEvents RowDataBound="UsersList_RowDataBound" TValue="UsersModel"></GridEvents>*@
+    <GridColumns>
+        <GridColumn Field=@nameof(UsersModel.LoginName) HeaderText="@Localizer["Admin_Users_UserNameLabel"]" Width="0%" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.Name) HeaderText="@Localizer["Admin_Users_RealNameLabel"]" Width="19%"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.FunctionInFirma) HeaderText="@Localizer["Admin_Users_AbteilungLabel"]" Width="25%"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.EMail) HeaderText="@Localizer["Admin_Users_EmailLabel"]" Width="20%"></GridColumn>
+        <GridColumn Field=@nameof(UsersModel.Status) HeaderText="@Localizer["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" Width="7%" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center"></GridColumn>
+        <GridColumn HeaderText="" Width="11%" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right">
+            <Template>
+                @{
+                    var _context = (context as UsersModel);
+
+                    if ((_userRolesData.IsUserInRole(_userInfo.LoginName, "admin") || _userRolesData.IsUserInRole(_userInfo.LoginName, "userCreate")) || (_userInfo.LoginName == _context.LoginName))
+                    {
+                        <SfButton OnClick="@(()=>EditUser(_context))" IconCss="e-icons-hcm e-hcm-edit" CssClass="e-flat">@Localizer["Value_Edit_Text"]</SfButton>
+
+                    }
+                }
+            </Template>
+
+        </GridColumn>
+
+        <GridColumn HeaderText="" Width="9%" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right">
+            <Template>
+                @{
+                    var _context = (context as UsersModel);
+
+
+                    if (_userRolesData.IsUserInRole(_userInfo.LoginName, "admin") && (_userInfo.LoginName != _context.LoginName))
+                    {
+                        <SfButton OnClick="@(()=>DeleteUser(_context))" IconCss="e-icons-hcm e-hcm-delete" CssClass="e-flat">@Localizer["Button_Del"]</SfButton>
+                    }
+                }
+            </Template>
+            @*<GridCommandColumns>
+                    <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat", Content=Localizer["Value_Edit_Text"]})"></GridCommandColumn>
+                    <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-delete", CssClass="e-flat", Content=Localizer["Button_Del"]})"></GridCommandColumn>
+                </GridCommandColumns>*@
+        </GridColumn>
+
+
+
+    </GridColumns>
+</SfGrid>
+
+<SfDialog Header="@EditDialogHeader" @ref="EditDialogID" ShowCloseIcon="true" Width="650px" Height="820px" IsModal="true" @bind-Visible="EditDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Admin_Users_EditUserTitle"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+                <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_EditUsers_GeneralData"]</h4>
+
+                <EditForm Model="@_editUserInfo" OnValidSubmit="onUpdateUserInfo_Click">
+                    <DataAnnotationsValidator />
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" Readonly="true" @bind-Value="@_editUserInfo.LoginName">
+                                </SfTextBox>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_RealNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="RealNameID" Placeholder="@Localizer["Admin_Users_RealNameLabel"]" @bind-Value="@_editUserInfo.Name">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _editUserInfo.Name)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_EmailLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="EMailID" Placeholder="@Localizer["Admin_Users_EmailLabel"]" @bind-Value="@_editUserInfo.EMail">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _editUserInfo.EMail)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_AbteilungLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_Users_AbteilungLabel"]" @bind-Value="@_editUserInfo.FunctionInFirma">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _editUserInfo.FunctionInFirma)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersIsApprovedLabel"]</label>
+                            <div class="col-sm-6 control_padding">
+                                <SfCheckBox @bind-Checked="_editUserInfo.Status" TChecked="bool"></SfCheckBox>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="row mt-3 mb-4">
+                            <div class="col-sm-12 top_blue_bg">
+                                <div class="col-sm-12 form-inline control_padding">
+                                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]" Type="submit" IsPrimary="true"></SfButton>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </EditForm>
+
+                <h4 class="blue_bg mt-3 subtitle">@Localizer["Admin_UsersChangePassowrdTitle"]</h4>
+
+                <EditForm Model="@_HCMChangePassword" OnValidSubmit="onUpdatePassword_Click">
+                    <DataAnnotationsValidator />
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersNewPassowrdLabel"]</label>
+                            <div class="col-sm-4 control_padding">
+                                <SfTextBox @ref="Password1ID" Placeholder="@Localizer["Admin_UsersNewPassowrdLabel"]" Type="InputType.Password" @bind-Value="_HCMChangePassword.Password1Value">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-5 profilWizadrdText"><ValidationMessage For="@(() => _HCMChangePassword.Password1Value)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_UsersPassowrdConfirmLabel"]</label>
+                            <div class="col-sm-4 control_padding">
+                                <SfTextBox @ref="Password2ID" Placeholder="@Localizer["Admin_UsersPassowrdConfirmLabel"]" Type="InputType.Password" @bind-Value="_HCMChangePassword.Password2Value">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-5 profilWizadrdText"><ValidationMessage For="@(() => _HCMChangePassword.Password1Value)" /> </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="row mt-3 mb-4">
+                            <div class="col-sm-12 top_blue_bg">
+                                <div class="col-sm-12 form-inline control_padding">
+                                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" Type="submit" IsPrimary="true" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]"></SfButton>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </EditForm>
+
+                <h4 class="blue_bg mt-1 subtitle">@Localizer["Admin_EditUsers_RoleList"]</h4>
+
+                <SfGrid ID="UsersRoleGrid" DataSource="@UsersRoleList" AllowPaging="false" AllowResizing="false" AllowTextWrap="true">
+                    <GridEvents TValue="UserRolesModel"></GridEvents>
+                    <GridColumns>
+                        <GridColumn Field=@nameof(UserRolesModel.LocalizerRoleName) TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="160"></GridColumn>
+
+                        <GridColumn HeaderText="" Width="100" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right">
+                            <Template>
+                                @{
+                                    var _context = (context as UserRolesModel);
+
+                                    if (_userRolesData.IsUserInRole(_editUserInfo.LoginName, _context.RoleName))
+                                    {
+                                        <span class="e-hcm-statusInRole">@Localizer["Admin_Users2RoleStatusAssignText"]</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="e-hcm-statusNotInRole">@Localizer["Admin_Users2RoleStatusUnAssignText"]</span>
+                                    }
+                                }
+                            </Template>
+
+                        </GridColumn>
+                        <GridColumn HeaderText="" Width="150" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right">
+                            <Template>
+                                @{
+                                    var _context = (context as UserRolesModel);
+
+                                    if (_userRolesData.IsUserInRole(_editUserInfo.LoginName, _context.RoleName))
+                                    {
+                                        <SfButton OnClick="@(()=>onUpdateUserRole_Click(_context.RoleName,_editUserInfo.LoginName,"Unassign"))" IconCss="e-icons-hcm e-hcm-edit" CssClass="e-user-in-role-flat">@Localizer["Admin_Users2RoleButtonUnAssignText"]</SfButton>
+
+                                    }
+                                    else
+                                    {
+                                        <SfButton OnClick="@(()=>onUpdateUserRole_Click(_context.RoleName,_editUserInfo.LoginName,"Assign"))" IconCss="e-icons-hcm e-hcm-edit" CssClass="e-user-not-in-role-flat">@Localizer["Admin_Users2RoleButtonAssignText"]</SfButton>
+                                    }
+                                }
+                            </Template>
+
+                        </GridColumn>
+
+                    </GridColumns>
+                </SfGrid>
+
+                <style>
+#UsersRoleGrid.e-grid .e-gridheader .e-columnheader {
+                        display: none;
+                        }
+                                    </style>
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    <DialogEvents OnOpen="@EditDialogBeforeOpen"></DialogEvents>
+    @*<DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>*@
+</SfDialog>
+
+<SfDialog Header="@ErrDialogHeader" Content="@ErrDialogContent" Width="335px" IsModal="true" @bind-Visible="ErrDialogVisibility">
+    <DialogTemplates>
+
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@ErrDialogButtonClick" />
+    </DialogButtons>
+    <DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>
+</SfDialog>
+
+<SfDialog Header="@DeleteUserDialogHeader" Content="@DeleteUserDialogContent" Width="335px" IsModal="true" @bind-Visible="DeleteUserDialogVisibility">
+    <DialogTemplates>
+
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@DeleteUserDialogButtonOKClick" />
+        <DialogButton Content="Cancel" OnClick="@DeleteUserDialogButtonCancelClick" />
+    </DialogButtons>
+    <DialogAnimationSettings Effect="@DialogEffect.None"></DialogAnimationSettings>
+</SfDialog>
+
+<SfDialog Header="@NewUserDialogHeader" ShowCloseIcon="true" Width="650px" Height="420px" IsModal="true" @bind-Visible="NewUserDialogVisibility">
+    <DialogTemplates>
+        <Header>
+            <h3 class="title">@Localizer["Admin_Users_CreateUserTitle"]</h3>
+        </Header>
+        <Content>
+            <div class="dialogContent">
+
+
+                <EditForm Model="@_newUserInfo" OnValidSubmit="onCreateNewUser_Click" On>
+                    <DataAnnotationsValidator />
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_UserNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_UserNameLabel"]" @bind-Value="@_newUserInfo.LoginName">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.LoginName)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_PasswordLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="UserNameID" Placeholder="@Localizer["Admin_Users_PasswordLabel"]" Type="InputType.Password"  @bind-Value="@_newUserInfo.Password">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.Password)" /> </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_RealNameLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="RealNameID" Placeholder="@Localizer["Admin_Users_RealNameLabel"]" @bind-Value="@_newUserInfo.Name">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.Name)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_EmailLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="EMailID" Placeholder="@Localizer["Admin_Users_EmailLabel"]" @bind-Value="@_newUserInfo.EMail">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.EMail)" /> </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 row_padding">
+                        <div class="col-sm-12 form-inline control_padding">
+                            <label class="col-sm-3 control_padding mylabel-left">@Localizer["Admin_Users_AbteilungLabel"]</label>
+                            <div class="col-sm-5 control_padding">
+                                <SfTextBox @ref="AbteilungID" Placeholder="@Localizer["Admin_Users_AbteilungLabel"]" @bind-Value="@_newUserInfo.FunctionInFirma">
+                                </SfTextBox>
+                            </div>
+                            <div class="col-md-4 profilWizadrdText"><ValidationMessage For="@(() => _newUserInfo.FunctionInFirma)" /> </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="row mt-3 mb-4">
+                            <div class="col-sm-12 top_blue_bg">
+                                <div class="col-sm-12 form-inline control_padding">
+                                    <SfButton CssClass="e-flat e-hcm-custom-btn col-sm-2" IconCss="e-icons-hcm e-hcm-save" Content="@Localizer["Button_Save"]" Type="submit" IsPrimary="true"></SfButton>
+                                    <SfButton Type="button" CssClass="e-flat e-hcm-custom-btn col-sm-2" Content="@Localizer["Button_Cancel"]" IsToggle="false " IsPrimary="false"  @onclick="onCreateNewUserCancel_Click"></SfButton>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </EditForm>
+              
+
+            </div>
+        </Content>
+
+
+    </DialogTemplates>
+
+    <DialogEvents OnOpen="@NewUserDialogBeforeOpen"></DialogEvents>
+</SfDialog>
+
+@code {
+
+    private List<UsersModel> UsersList { get; set; }
+    private bool EditDialogVisibility { get; set; } = false;
+    SfDialog EditDialogID;
+    private string EditDialogHeader { get; set; }
+
+    private bool ErrDialogVisibility { get; set; } = false;
+    private string ErrDialogHeader { get; set; }
+    private string ErrDialogContent { get; set; }
+
+    private bool DeleteUserDialogVisibility { get; set; } = false;
+    private string DeleteUserDialogHeader { get; set; }
+    private string DeleteUserDialogContent { get; set; }
+
+    private bool NewUserDialogVisibility { get; set; } = false;
+    private string NewUserDialogHeader { get; set; }
+
+    SfTextBox UserNameID;
+    SfTextBox RealNameID;
+    SfTextBox EMailID;
+    SfTextBox AbteilungID;
+
+    SfTextBox Password1ID;
+    SfTextBox Password2ID;
+
+    HCMChangePassword _HCMChangePassword = new HCMChangePassword();
+
+    public class HCMChangePassword
+    {
+        [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(6, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        public string Password1Value { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(6, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [Compare("Password1Value", ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        public string Password2Value { get; set; }
+    }
+    public class EditUsersModel
+    {
+        public int UserID { get; set; }
+        public string LoginName { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string EMail { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string Name { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string FunctionInFirma { get; set; }
+        public bool Status { get; set; }
+
+    }
+    public class NewUsersModel
+    {
+        public int UserID { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string LoginName { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string EMail { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string Name { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsg_ValidatorSettings", ErrorMessageResourceType = typeof(HCM.Resources.HcmRes))]
+        public string FunctionInFirma { get; set; }
+        [Required(ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        [MinLength(6, ErrorMessageResourceName = "Admin_UsersMsgPassConfirmFailure", ErrorMessageResourceType = typeof(HcmRes))]
+        public string Password { get; set; }
+
+    }
+
+
+    //public class CustomValidationAttribute : ValidationAttribute
+    //{
+    //    public string ValidPassword { get; set; }
+
+    //    protected override ValidationResult IsValid(object password, ValidationContext validationContext)
+    //    {
+    //        var content = password.ToString().ToLower();
+    //        if (content.Equals(ValidPassword.ToLower()))
+    //        {
+    //            return null;
+    //        }
+    //        return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
+    //    }
+    //}
+
+
+    private List<UserRolesModel> UsersRoleList { get; set; }
+    UsersModel _userInfo = new UsersModel();
+    EditUsersModel _editUserInfo = new EditUsersModel();
+    NewUsersModel _newUserInfo = new NewUsersModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _userInfo = await _storageService.GetItemAsync<UsersModel>("User");
+        UsersList = await _usersData.UsersList(_userInfo.UserID);
+        //_HCMChangePassword = new HCMChangePassword();
+    }
+    async Task onUpdateUserInfo_Click()
+    {
+        int result = await _usersData.SaveData(_editUserInfo.UserID, _editUserInfo.EMail, _editUserInfo.Name, _editUserInfo.FunctionInFirma, _editUserInfo.Status, _userInfo.UserID);
+        if (result == -1)
+        {
+            ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassConfirmFailure"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgUserSaved"] + "</p>";
+            this.ErrDialogVisibility = true;
+            UsersList = await _usersData.UsersList(_userInfo.UserID);
+            //StateHasChanged();
+        }
+    }
+    async Task onUpdatePassword_Click()
+    {
+        int result = await _usersData.ChangePassword(_editUserInfo.UserID, _HCMChangePassword.Password1Value, _userInfo.UserID);
+        if (result == -1)
+        {
+            ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassConfirmFailure"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            _HCMChangePassword = new HCMChangePassword();
+
+            ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_UsersMsgPassChanged"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+    }
+    async Task onUpdateUserRole_Click(string _RoleName, string userName, string command)
+    {
+        int result = 0;
+        if (command == "Assign")
+        {
+            result = await _userRolesData.AddUserInRole(_RoleName, userName, _userInfo.UserID);
+        }
+        else
+        {
+            result = await _userRolesData.DelUserInRole(_RoleName, userName, _userInfo.UserID);
+        }
+
+        BindUsersRoleList();
+        StateHasChanged();
+
+    }
+    async Task onCreateNewUser_Click()
+    {
+        int result = await _usersData.CreateUser(_newUserInfo.LoginName, _newUserInfo.Password, _newUserInfo.EMail, _newUserInfo.Name, _newUserInfo.FunctionInFirma, true, _userInfo.UserID);
+        if (result == -1)
+        {
+            //ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Create_Error"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else if (result == -100)
+        {
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_UserNameExists"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+            //ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Create_Success"] + "</p>";
+            this.ErrDialogVisibility = true;
+            UsersList = await _usersData.UsersList(_userInfo.UserID);
+            _newUserInfo = new NewUsersModel();
+            this.NewUserDialogVisibility = false;
+            //StateHasChanged();
+        }
+    }
+    private void BindUsersRoleList()
+    {
+        UsersRoleList = _userRolesData.GetLocalizatedNames();
+        foreach (UserRolesModel r in UsersRoleList)
+        {
+            r.LocalizerRoleName = Localizer["UserRole_" + r.RoleID.ToString()];
+        }
+    }
+    //public void UsersList_OnCommandClicked(CommandClickEventArgs<UsersModel> args)
+    //{
+    //    if (args.CommandColumn.Type == CommandButtonType.Edit)
+    //    {
+    //        this.EditDialogVisibility = true;
+    //        UserNameValue = args.RowData.LoginName;
+    //        RealNameValue = args.RowData.Name;
+    //        EMailValue = args.RowData.EMail;
+    //        AbteilungValue = args.RowData.FunctionInFirma;
+    //        BindUsersRoleList();
+
+    //    }
+    //    if (args.CommandColumn.Type == CommandButtonType.Delete)
+    //    {
+    //        // Perform required operations here
+    //    }
+    //}
+
+    public void EditUser(UsersModel model)
+    {
+        this.EditDialogVisibility = true;
+        _editUserInfo.UserID = model.UserID;
+        _editUserInfo.EMail = model.EMail;
+        _editUserInfo.Name = model.Name;
+        _editUserInfo.FunctionInFirma = model.FunctionInFirma;
+        _editUserInfo.LoginName = model.LoginName;
+        _editUserInfo.Status = model.Status;
+
+        _HCMChangePassword = new HCMChangePassword();
+        BindUsersRoleList();
+    }
+    public void DeleteUser(UsersModel model)
+    {
+        //DeleteUserDialogHeader = Localizer["MsgPanel_Error_Title"];
+        DeleteUserDialogContent = "<p>" + Localizer["Admin_Users_DeleteConfirm"] + "</p>";
+        this.DeleteUserDialogVisibility = true;
+
+        _editUserInfo.UserID = model.UserID;
+
+    }
+
+    private void onCreateNew_Click()
+    {
+        this.NewUserDialogVisibility = true;
+    }
+    private void onCreateNewUserCancel_Click()
+    {
+        this.NewUserDialogVisibility = false;
+    }
+
+    private void EditDialogBeforeOpen(BeforeOpenEventArgs args)
+    {
+        args.MaxHeight = null;
+    }
+    private void NewUserDialogBeforeOpen(BeforeOpenEventArgs args)
+    {
+        args.MaxHeight = null;
+    }
+
+    private void ErrDialogButtonClick()
+    {
+        this.ErrDialogVisibility = false;
+    }
+    private void DeleteUserDialogButtonCancelClick()
+    {
+        this.DeleteUserDialogVisibility = false;
+    }
+    async Task DeleteUserDialogButtonOKClick()
+    {
+        this.DeleteUserDialogVisibility = false;
+
+        int result = await _usersData.DeleteUser(_editUserInfo.UserID, _userInfo.UserID);
+        if (result == -1)
+        {
+            //ErrDialogHeader = Localizer["MsgPanel_Error_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Delete_Error"] + "</p>";
+            this.ErrDialogVisibility = true;
+        }
+        else
+        {
+
+            //ErrDialogHeader = Localizer["MsgPanel_Success_Title"];
+            ErrDialogContent = "<p>" + Localizer["Admin_Users_Delete_Success"] + "</p>";
+            this.ErrDialogVisibility = true;
+            UsersList = await _usersData.UsersList(_userInfo.UserID);
+        }
+    }
+}

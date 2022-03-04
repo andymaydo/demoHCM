@@ -1,0 +1,136 @@
+﻿@page "/admin/users/UserList"
+@attribute [Authorize]
+
+@using HCMApi;
+@using HCMDataAccess;
+@using HCMModels;
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+
+
+<h3>@Localizer.Str["Menu_Users_List"]</h3>
+
+<div class="blue_bg"></div>
+<h4>@Localizer.Str["Administration_Users_List_Table_Title"]</h4>
+
+<div class="text-right mb-3">
+    <SfButton @onclick="@(() => showAddUserPopUp = true)" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
+</div>
+
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+
+@if (_loadingStatus == 1)
+{
+    <SfGrid DataSource="@UserList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
+        <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
+        <GridPageSettings PageSizes="true" ></GridPageSettings>
+        
+        <GridColumns>
+            <GridColumn Field=@nameof(UsersModel.LoginName) HeaderText="@Localizer.Str["Admin_Users_UserNameLabel"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" ></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.Name) HeaderText="@Localizer.Str["Admin_Users_RealNameLabel"]" ></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.FunctionInFirma) HeaderText="@Localizer.Str["Admin_Users_AbteilungLabel"]" ></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.EMail) HeaderText="@Localizer.Str["Admin_Users_EmailLabel"]" ></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.Status) HeaderText="@Localizer.Str["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center"></GridColumn>
+            <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=100>
+                <Template>
+                    @{
+                        var _User = (context as UsersModel);
+                        <div>
+                             <a href="" @onclick="@(() => EditUser(_User))" @onclick:preventDefault class="btnUpdate">@Localizer.Str["Value_Edit_Text"]</a>                             
+                        </div>
+                    }
+                </Template>
+            </GridColumn>
+            <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=90>
+                <Template>
+                    @{
+                        var _User = (context as UsersModel);
+                        <div>                            
+                             <a href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
+                        </div>
+                    }
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+<div class="py-3">
+    <UiMessageBox Data="Messages.List" />
+</div>
+
+
+@if (showAddUserPopUp)
+{
+    <AddUserPopUp @bind-ShowModal="showAddUserPopUp" OnFormSaved=@LoadUserList></AddUserPopUp> 
+}
+
+@if (showEditUserPopUp)
+{
+    <EditUserPopUp @bind-ShowModal="showEditUserPopUp" OnFormSaved=@LoadUserList UserModel="CurrentUser"></EditUserPopUp> 
+}
+
+@if (showDeleteUserPopUp)
+{
+    <DeleteUserPopUp @bind-ShowModal="showDeleteUserPopUp" OnFormSaved=@LoadUserList UserId="CurrentUser.UserID"></DeleteUserPopUp> 
+}
+
+@code {
+    [Inject] private IUsersData UserService { get; set; }
+    [Inject] private ILogger<UserPage> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+
+    protected UiMessages Messages { get; set; }
+    protected List<UsersModel> UserList { get; set; }
+    protected UsersModel CurrentUser { get; set; }
+    protected bool showAddUserPopUp { get; set; }
+    protected bool showEditUserPopUp { get; set; }
+    protected bool showDeleteUserPopUp { get; set; }
+    private int _loadingStatus;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();       
+        Messages = new UiMessages();
+        CurrentUser = new UsersModel();
+
+        await LoadUserList();
+
+    }
+
+
+    private async Task LoadUserList()
+    {
+        _loadingStatus = 0;
+        try
+        {
+            UserList = await UserService.UsersList(CurrentContactId);
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }       
+    }
+
+    private void EditUser(UsersModel user)
+    {
+        CurrentUser = user;
+        showEditUserPopUp = true;
+    }
+
+    private void DeleteUser(UsersModel user)
+    {
+        CurrentUser = user;
+        showDeleteUserPopUp = true;
+    }
+}

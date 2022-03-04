@@ -1,0 +1,157 @@
+﻿                 
+@using HCMDataAccess
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+@using System.IO
+@using System.Xml
+
+
+@if (ShowModal)
+{
+    <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
+        <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
+        <DialogTemplates>
+            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Admin_Users_CreateUserTitle"]</div></Header>
+            <Content>
+                <div class="mx-4">
+                    <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
+                    <DataAnnotationsValidator />
+                    <div class=" form-group row">                                                               
+                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_UserNameLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@FormModel.LoginName"></SfTextBox>
+                            <ValidationMessage For="@(() => FormModel.LoginName)" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_PasswordLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password" @bind-Value="@FormModel.Password"></SfTextBox>
+                            <ValidationMessage For="@(() => FormModel.Password)" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_UsersPassowrdConfirmLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password"  @bind-Value="@FormModel.ConformPass"></SfTextBox>
+                            <ValidationMessage For="@(() => FormModel.ConformPass)" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_RealNameLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@FormModel.Name"></SfTextBox>
+                            <ValidationMessage For="@(() => FormModel.Name)" />     
+                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_EmailLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@FormModel.EMail"></SfTextBox>
+                            <ValidationMessage For="@(() => FormModel.EMail)" /> 
+                        </div>                                
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_AbteilungLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@FormModel.FunctionInFirma"></SfTextBox>
+                            <ValidationMessage For="@(() => FormModel.FunctionInFirma)" /> 
+                        </div>
+                    </div>                                               
+                   
+                    @*<div class="row py-2 top_blue_bg"></div>*@
+                    <div class="row">                       
+                        <div class="col-12 text-right">
+                            <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div>                       
+                    </div>
+                    </EditForm>
+                </div>
+               
+                <div class="py-3">
+                    <UiMessageBox Data="Messages.List" />
+                </div>
+
+                 
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+
+    <style>
+        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+            background-color: lightblue;
+        }
+    </style>
+}
+
+
+
+
+@code {
+    [Inject] private IUsersData UserService { get; set; }
+    [Inject] private ILogger<AddUserPopUp> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
+
+    protected AddUserForm FormModel { get; set; }
+    protected UiMessages Messages { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Messages = new UiMessages();
+        FormModel = new AddUserForm();
+    }
+
+
+    public async Task CloseDialog()
+    {
+        ShowModal = false;
+        await ShowModalChanged.InvokeAsync(ShowModal);
+    }
+
+
+    protected async Task ValidFormSubmited()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+
+            int result = await UserService.CreateUser(FormModel.LoginName, FormModel.Password, FormModel.EMail, FormModel.Name, FormModel.FunctionInFirma, true, CurrentContactId);
+            if (result == -100)
+            {
+                throw new Exception(@Localizer.Str["Admin_Users_UserNameExists"]); 
+            }
+            
+            Messages.AddInfo(@Localizer.Str["Admin_Users_Create_Success"]);
+            await OnFormSaved.InvokeAsync();
+            //await CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["Admin_Users_Create_Error"], ex.Message);
+
+        }
+
+    }  
+}

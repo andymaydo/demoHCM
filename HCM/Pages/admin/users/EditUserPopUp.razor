@@ -1,0 +1,336 @@
+﻿                 
+@using HCMDataAccess
+@using HCMModels
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+@using System.IO
+@using System.Xml
+
+
+@if (ShowModal)
+{
+    <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
+        <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
+        <DialogTemplates>
+            <Header><div class=" font-weight-bold">@Localizer.Str["Admin_Users_EditUserTitle"]</div></Header>
+            <Content>
+
+                <h4 class="tLabel2">@Localizer.Str["Admin_EditUsers_GeneralData"]</h4>
+                <div class="top_blue_bg"></div>                
+                <div class="mx-4 e-small">
+                    <EditForm Model="@UserInfoModel" OnValidSubmit="@ValidUserInfoFormSubmited" >
+                    <DataAnnotationsValidator />
+                    <div class="row">                                                               
+                        <label class="col-4">@Localizer.Str["Admin_Users_UserNameLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox Enabled="false"  @bind-Value="@UserInfoModel.LoginName"></SfTextBox>
+                            <ValidationMessage For="@(() => UserInfoModel.LoginName)" />
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <label class="col-4">@Localizer.Str["Admin_Users_RealNameLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@UserInfoModel.Name"></SfTextBox>
+                            <ValidationMessage For="@(() => UserInfoModel.Name)" />     
+                         </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-4">@Localizer.Str["Admin_Users_EmailLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@UserInfoModel.EMail"></SfTextBox>
+                            <ValidationMessage For="@(() => UserInfoModel.EMail)" /> 
+                        </div>                                
+                    </div>
+                    <div class="row">
+                        <label class="col-4">@Localizer.Str["Admin_Users_AbteilungLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox @bind-Value="@UserInfoModel.FunctionInFirma"></SfTextBox>
+                            <ValidationMessage For="@(() => UserInfoModel.FunctionInFirma)" /> 
+                        </div>
+                    </div>        
+                    <div class="row">
+                        <label class="col-4">@Localizer.Str["Admin_UsersIsApprovedLabel"]</label>
+                        <div class = "col-8">
+                            <SfCheckBox @bind-Checked="@UserInfoModel.Status"></SfCheckBox>
+                            <ValidationMessage For="@(() => UserInfoModel.Status)" /> 
+                        </div>
+                    </div>     
+                    <div class="row">                       
+                        <div class="col-12 text-right">
+                            <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div>                       
+                    </div>
+                    </EditForm>
+                </div>
+
+                <h4 class="tLabel2">@Localizer.Str["Admin_UsersChangePassowrdTitle"]</h4>
+                <div class="top_blue_bg"></div>
+                <div class="mx-4 e-small">
+                    <EditForm Model="@UserPassModel" OnValidSubmit="@ValidUserPassFormSubmited" >
+                    <DataAnnotationsValidator />
+
+                    <div class="row">
+                        <label class="col-4">@Localizer.Str["Admin_Users_PasswordLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password" @bind-Value="@UserPassModel.Password"></SfTextBox>
+                            <ValidationMessage For="@(() => UserPassModel.Password)" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-4">@Localizer.Str["Admin_UsersPassowrdConfirmLabel"]</label>
+                        <div class = "col-8">
+                            <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password"  @bind-Value="@UserPassModel.ConformPass"></SfTextBox>
+                            <ValidationMessage For="@(() => UserPassModel.ConformPass)" />
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-2">                       
+                        <div class="col-12 text-right">
+                            <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div>                       
+                    </div>
+                    </EditForm>
+                </div>
+                 
+                <h4 class="tLabel2">@Localizer.Str["Admin_EditUsers_RoleList"]</h4>
+                <div class="top_blue_bg"></div>
+                <div class="mx-4 ">
+                    <div class="row">
+                        <div class="col-12">
+                            <SfCheckBox @bind-Checked="@AdminRoleModel.IsSelected" 
+                                @onchange="AdminRoleOnChange"
+                                Label="@AdminRoleModel.LocalizerRoleName" 
+                                Disabled="@AdminRoleModel.IsDisabled"></SfCheckBox>
+                        </div>
+                    </div>
+                    @foreach (var item in UserRoleList)
+                    {   
+                        <div class="row">
+                            <div class="col-12">
+                                <SfCheckBox @bind-Checked="@item.IsSelected"                                     
+                                    Label="@item.LocalizerRoleName" 
+                                    Disabled="@item.IsDisabled"></SfCheckBox>
+                            </div>
+                        </div>
+                    }
+
+                     <div class="row e-small">                       
+                        <div class="col-12 text-right">
+                            <SfButton OnClick="UserRolesUpdate" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div>                       
+                    </div>
+                </div>
+                
+
+                <div class="py-3">
+                    <UiMessageBox Data="Messages.List"/>
+                </div>
+
+                 
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+
+    <style>
+        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+            background-color: lightblue;
+        }
+    </style>
+}
+
+
+
+
+@code {
+    [Inject] private IUsersData UserService { get; set; }
+    [Inject] private IUserRolesData UserRolesService { get; set; }
+
+    [Inject] private ILogger<EditUserPopUp> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public UsersModel UserModel { get; set; }
+    [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
+
+    protected EditUserForm UserInfoModel { get; set; }
+    protected PassUserForm UserPassModel { get; set; }
+    protected List<UserRolesForm> UserRoleList { get; set; }
+    protected UserRolesForm AdminRoleModel { get; set; }
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        try
+        {
+            _loadingStatus = 0;
+
+            if(UserModel == null )
+            {               
+                throw new ArgumentNullException("UserModel");
+            }
+
+            Messages = new UiMessages();
+            UserInfoModel = new EditUserForm();
+            UserPassModel = new PassUserForm();
+
+            UserInfoModel = _mapper.Map<EditUserForm>(UserModel);
+            UserPassModel = _mapper.Map<PassUserForm>(UserModel);
+
+            InitUserRoleList();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+
+    }
+
+    public void InitUserRoleList()
+    {
+        var roleList = UserRolesService.GetLocalizatedNames();
+
+        foreach (UserRolesModel r in roleList)
+        {
+            r.LocalizerRoleName = Localizer.Str["UserRole_" + r.RoleID.ToString()];
+        }
+
+        UserRoleList = _mapper.Map<List<UserRolesForm>>(roleList);
+
+        AdminRoleModel = UserRoleList.First(item => item.RoleName == "admin");
+        AdminRoleModel.IsSelected = UserRolesService.IsUserInRole(UserModel.LoginName,"admin");
+
+        UserRoleList.Remove(AdminRoleModel);
+
+
+        if (AdminRoleModel.IsSelected)
+        {
+            UserRoleList?.ForEach(i => i.IsSelected = false);
+            UserRoleList?.ForEach(i => i.IsDisabled = true);
+        }
+        else
+        {
+            foreach (UserRolesForm rf in UserRoleList)
+            {
+                if( UserRolesService.IsUserInRole(UserModel.LoginName, rf.RoleName))
+                {
+                    rf.IsSelected = true;
+                    rf.IsDisabled = AdminRoleModel.IsSelected;
+                }            
+            }
+        }
+
+    }
+
+    public async Task CloseDialog()
+    {
+        ShowModal = false;
+        await ShowModalChanged.InvokeAsync(ShowModal);
+    }
+
+    private void AdminRoleOnChange(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+    {
+        UserRoleList?.ForEach(i => i.IsSelected = false);
+        UserRoleList?.ForEach(i => i.IsDisabled = (bool)args.Value);        
+    }
+
+    protected async Task ValidUserPassFormSubmited()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+            int result = await UserService.ChangePassword(UserModel.UserID, UserPassModel.Password, CurrentContactId);            
+
+            Messages.AddInfo(@Localizer.Str["Admin_UsersMsgPassChanged"]);
+            //await OnFormSaved.InvokeAsync();
+            //await CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+
+    }  
+    protected async Task ValidUserInfoFormSubmited()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+            int result = await UserService.SaveData(UserModel.UserID, UserInfoModel.EMail, UserInfoModel.Name, UserInfoModel.FunctionInFirma, UserInfoModel.Status, CurrentContactId);
+
+            Messages.AddInfo(@Localizer.Str["Admin_UsersMsgUserSaved"]);
+            await OnFormSaved.InvokeAsync();
+            //await CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+
+    }  
+
+    protected async Task UserRolesUpdate()
+    {
+        try
+        {
+            Messages.List.Clear();
+            if (AdminRoleModel.IsSelected)
+            {
+                await UserRolesService.AddUserInRole(AdminRoleModel.RoleName, UserModel.LoginName, CurrentContactId);
+            }
+            else
+            {
+                await UserRolesService.DelUserInRole(AdminRoleModel.RoleName, UserModel.LoginName, CurrentContactId);
+
+                foreach (var item in UserRoleList)
+                {
+                    if (item.IsSelected)
+                    {
+                        await UserRolesService.AddUserInRole(item.RoleName, UserModel.LoginName, CurrentContactId);
+                    }
+                    else
+                    {
+                         await UserRolesService.DelUserInRole(item.RoleName, UserModel.LoginName, CurrentContactId);
+                    }
+                }
+            }
+            Messages.AddInfo(@Localizer.Str["Admin_UsersRoleSave_SuccessMsg"]);
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+    }
+}

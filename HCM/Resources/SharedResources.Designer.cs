@@ -340,6 +340,24 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fehler bei der Speicherung der Berechtigungen!.
+        /// </summary>
+        public static string Admin_UsersRoleSave_ErrMsg {
+            get {
+                return ResourceManager.GetString("Admin_UsersRoleSave_ErrMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzer Berechtigungen erfolgreich gespeichert!.
+        /// </summary>
+        public static string Admin_UsersRoleSave_SuccessMsg {
+            get {
+                return ResourceManager.GetString("Admin_UsersRoleSave_SuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Systemeinstellungen.
         /// </summary>
         public static string Administration_Settings_Title {
@@ -2093,6 +2111,42 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passwort und Bestätigung stimmen nicht überein..
+        /// </summary>
+        public static string Form_ConfirmPass_Error {
+            get {
+                return ResourceManager.GetString("Form_ConfirmPass_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Feld &quot;{0}&quot; hat einen ungültigen Inhalt!.
+        /// </summary>
+        public static string Form_Field_RegularExpression {
+            get {
+                return ResourceManager.GetString("Form_Field_RegularExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Feld &quot;{0}&quot; ist ein Pflichtfeld..
+        /// </summary>
+        public static string Form_Field_Required {
+            get {
+                return ResourceManager.GetString("Form_Field_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Feld &quot;{0}&quot; muss eine Länge zwischen {2} und {1} Zeichen haben..
+        /// </summary>
+        public static string Form_Field_StringLength {
+            get {
+                return ResourceManager.GetString("Form_Field_StringLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ZZ Delete......\r\nAre you sure?.
         /// </summary>
         public static string JavaScript_DeleteConfirm {
@@ -2440,6 +2494,15 @@ namespace HCM.Resources {
         public static string Menu_Users_List {
             get {
                 return ResourceManager.GetString("Menu_Users_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestätigung.
+        /// </summary>
+        public static string MsgPanel_Confirm_Title {
+            get {
+                return ResourceManager.GetString("MsgPanel_Confirm_Title", resourceCulture);
             }
         }
         

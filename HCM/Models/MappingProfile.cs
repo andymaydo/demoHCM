@@ -2,6 +2,7 @@
 using AutoMapper;
 using HCM.Models;
 using HCMApi;
+using HCMModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace HCM.Models
             CreateMap<CaseOriginator, CaseOriginatorSelectable>();
             CreateMap<CaseOriginatorSelectable, CaseOriginator>();
 
+            CreateMap<UsersModel, EditUserForm>();
+            CreateMap<UsersModel, PassUserForm>();
+
+            CreateMap<UserRolesModel, UserRolesForm>();
         }
     }
 

@@ -168,6 +168,12 @@
   <data name="Admin_UsersRoleNameLabel" xml:space="preserve">
     <value>Berechtigungen</value>
   </data>
+  <data name="Admin_UsersRoleSave_ErrMsg" xml:space="preserve">
+    <value>Fehler bei der Speicherung der Berechtigungen!</value>
+  </data>
+  <data name="Admin_UsersRoleSave_SuccessMsg" xml:space="preserve">
+    <value>Benutzer Berechtigungen erfolgreich gespeichert!</value>
+  </data>
   <data name="Admin_Users_AbteilungLabel" xml:space="preserve">
     <value>Funktion in der Firma</value>
   </data>
@@ -799,6 +805,18 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Filter_Yesterday" xml:space="preserve">
     <value>gestern</value>
   </data>
+  <data name="Form_ConfirmPass_Error" xml:space="preserve">
+    <value>Passwort und Bestätigung stimmen nicht überein.</value>
+  </data>
+  <data name="Form_Field_RegularExpression" xml:space="preserve">
+    <value>Das Feld "{0}" hat einen ungültigen Inhalt!</value>
+  </data>
+  <data name="Form_Field_Required" xml:space="preserve">
+    <value>Das Feld "{0}" ist ein Pflichtfeld.</value>
+  </data>
+  <data name="Form_Field_StringLength" xml:space="preserve">
+    <value>Das Feld "{0}" muss eine Länge zwischen {2} und {1} Zeichen haben.</value>
+  </data>
   <data name="JavaScript_DeleteConfirm" xml:space="preserve">
     <value>ZZ Delete......\r\nAre you sure?</value>
   </data>
@@ -915,6 +933,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   </data>
   <data name="Menu_Users_List" xml:space="preserve">
     <value>Benutzerverwaltung</value>
+  </data>
+  <data name="MsgPanel_Confirm_Title" xml:space="preserve">
+    <value>Bestätigung</value>
   </data>
   <data name="MsgPanel_Error_Title" xml:space="preserve">
     <value>Fehler!</value>

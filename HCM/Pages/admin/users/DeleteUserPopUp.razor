@@ -1,0 +1,103 @@
+﻿                 
+@using HCMDataAccess
+@using HCMModels
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+@using System.IO
+@using System.Xml
+
+
+@if (ShowModal)
+{
+    <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
+        <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
+        <DialogTemplates>
+            <Header><div class=" font-weight-bold">@Localizer.Str["MsgPanel_Confirm_Title"]</div></Header>
+            <Content>
+                <p class="text-center">@Localizer.Str["Admin_Users_DeleteConfirm"]</p>
+
+                <div class="py-3">
+                    <UiMessageBox Data="Messages.List"/>
+                </div>
+            </Content>            
+        </DialogTemplates>
+        <DialogButtons>
+            <div class="text-center">
+                <SfButton OnClick="CloseDialog" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Cancel"]" ></SfButton>
+                <SfButton OnClick="DeleteUser" CssClass="e-flat e-info" Content="@Localizer.Str["Button_Del"]" ></SfButton>                
+            </div>                
+        </DialogButtons>
+    </SfDialog>
+
+    <style>
+        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+            background-color: lightsalmon;
+        }
+    </style>
+}
+
+
+
+
+@code {
+    [Inject] private IUsersData UserService { get; set; }
+ 
+    [Inject] private ILogger<DeleteUserPopUp> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public int UserId { get; set; }
+    [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
+
+    protected UiMessages Messages { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Messages = new UiMessages();        
+    }
+
+   
+    public async Task CloseDialog()
+    {
+        ShowModal = false;
+        await ShowModalChanged.InvokeAsync(ShowModal);
+    }
+
+   
+    protected async Task DeleteUser()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+            await UserService.DeleteUser(UserId, CurrentContactId);            
+
+            Messages.AddInfo(@Localizer.Str["Admin_Users_Delete_Success"]);
+            await OnFormSaved.InvokeAsync();
+            await CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+
+    }  
+}

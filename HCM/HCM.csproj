@@ -12,19 +12,19 @@
 
   <ItemGroup>
     <Compile Remove="Connected Services\**" />
-    <Compile Remove="Pages\admin\**" />
+    <Compile Remove="Pages\admin_\**" />
     <Compile Remove="Pages\auth\**" />
     <Compile Remove="Resources\Resources\**" />
     <Content Remove="Connected Services\**" />
-    <Content Remove="Pages\admin\**" />
+    <Content Remove="Pages\admin_\**" />
     <Content Remove="Pages\auth\**" />
     <Content Remove="Resources\Resources\**" />
     <EmbeddedResource Remove="Connected Services\**" />
-    <EmbeddedResource Remove="Pages\admin\**" />
+    <EmbeddedResource Remove="Pages\admin_\**" />
     <EmbeddedResource Remove="Pages\auth\**" />
     <EmbeddedResource Remove="Resources\Resources\**" />
     <None Remove="Connected Services\**" />
-    <None Remove="Pages\admin\**" />
+    <None Remove="Pages\admin_\**" />
     <None Remove="Pages\auth\**" />
     <None Remove="Resources\Resources\**" />
   </ItemGroup>
@@ -38,6 +38,7 @@
     <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
     <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
+    <Content Remove="Pages\cases\Details_.razor" />
     <Content Remove="Pages\cases\ListCases.razor" />
     <Content Remove="Pages\cases\MatchResult.razor" />
     <Content Remove="Pages\reports\Reports.razor" />
@@ -47,7 +48,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\admin\users\Users.razor.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Connected Services\AliasApi\Reference.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\admin\users\Users.razor.txt" />
   </ItemGroup>
 
   <ItemGroup>
