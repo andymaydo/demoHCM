@@ -61,6 +61,24 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to aktivieren.
+        /// </summary>
+        public static string Action_Activate {
+            get {
+                return ResourceManager.GetString("Action_Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to deaktivieren.
+        /// </summary>
+        public static string Action_DeActivate {
+            get {
+                return ResourceManager.GetString("Action_DeActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Benutzerdaten ändern.
         /// </summary>
         public static string Admin_EditUsers_GeneralData {

@@ -342,6 +342,33 @@ a.btnUpdate {
     font-family: Arial, Tahoma,Helvetica, sans-serif;
     font-size: 14px;
 }
+
+a.btnEdit {
+    background-repeat: no-repeat;
+    background-image: url(/images/edit_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 14px;
+}
+a.btnCopy {
+    background-repeat: no-repeat;
+    background-image: url(/images/copy_inline.gif);
+    background-position: left;
+    text-decoration: none;
+    color: #0E3D6B;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: normal;
+    height: 16px;
+    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    font-size: 14px;
+}
 a.btnAddAlias {
     background-repeat: no-repeat;
     background-image: url(/images/edit_inline.gif);

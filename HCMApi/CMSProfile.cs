@@ -352,8 +352,7 @@ namespace HCMApi
             
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+           
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn.QueryAsync<CMSProfile>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -362,11 +361,7 @@ namespace HCMApi
 
                     return _CMSProfile;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
 
         }
 
@@ -387,8 +382,7 @@ namespace HCMApi
             
             //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+           
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
                     var result = await conn.QueryAsync<CMSProfile>(procedure, _params, commandType: CommandType.StoredProcedure);
@@ -397,11 +391,7 @@ namespace HCMApi
 
                     return _CMSProfile;
                 }
-            }
-            catch //(Exception ex)
-            {
-                return null;
-            }
+            
 
         }
 
@@ -432,8 +422,7 @@ namespace HCMApi
             _params.Add(name: "@ProfilID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-            try
-            {
+            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
@@ -448,11 +437,7 @@ namespace HCMApi
                     return null;
 
                 }
-            }
-            catch
-            {
-                return null;
-            }
+            
 
 
 
@@ -469,8 +454,7 @@ namespace HCMApi
             _params.Add(name: "@ProfilID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-            try
-            {
+            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
@@ -485,11 +469,7 @@ namespace HCMApi
                     return null;
 
                 }
-            }
-            catch
-            {
-                return null;
-            }
+            
 
         }
 
