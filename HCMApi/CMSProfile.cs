@@ -327,7 +327,7 @@ namespace HCMApi
 
 
 
-        public async Task<List<CMSProfile>> GetList(int? AppID, int? StatusID)
+        public async Task<List<CMSProfileModel>> GetList(int? AppID, int? StatusID)
         {
             var procedure = "Profile_GetList";
             var _params = new DynamicParameters();
@@ -355,9 +355,9 @@ namespace HCMApi
            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = await conn.QueryAsync<CMSProfile>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<CMSProfileModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CMSProfile> _CMSProfile = result.ToList<CMSProfile>();
+                    List<CMSProfileModel> _CMSProfile = result.ToList<CMSProfileModel>();
 
                     return _CMSProfile;
                 }
@@ -365,7 +365,7 @@ namespace HCMApi
 
         }
 
-        public async Task<List<CMSProfile>> GetDeleteList(int? AppID)
+        public async Task<List<CMSProfileModel>> GetDeleteList(int? AppID)
         {
             var procedure = "Profile_GetDeleteList";
             var _params = new DynamicParameters();
@@ -385,9 +385,9 @@ namespace HCMApi
            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
-                    var result = await conn.QueryAsync<CMSProfile>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<CMSProfileModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<CMSProfile> _CMSProfile = result.ToList<CMSProfile>();
+                    List<CMSProfileModel> _CMSProfile = result.ToList<CMSProfileModel>();
 
                     return _CMSProfile;
                 }

@@ -2,6 +2,7 @@
 @attribute [Authorize]
 
 @using HCMApi;
+@using HCMApi.Models
 @using HCMDataAccess;
 @using HCMModels;
 @using Syncfusion.Blazor.Grids
@@ -30,13 +31,13 @@
         <GridPageSettings PageSizes="true" ></GridPageSettings>
         
         <GridColumns>
-            <GridColumn Field=@nameof(CMSProfile.profileID) HeaderText="@Localizer.Str["Profile_ProfileID"]" Width="80"></GridColumn>
-            <GridColumn Field=@nameof(CMSProfile.appName) HeaderText="@Localizer.Str["Profile_Platform"]" ></GridColumn>
-            <GridColumn Field=@nameof(CMSProfile.profileName) HeaderText="@Localizer.Str["Profile_ProfileName"]" ></GridColumn>            
-            <GridColumn Field=@nameof(CMSProfile.profileStatus) HeaderText="@Localizer.Str["Profile_ProfileStatus"]" >
+            <GridColumn Field=@nameof(CMSProfileModel.profileID) HeaderText="@Localizer.Str["Profile_ProfileID"]" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(CMSProfileModel.appName) HeaderText="@Localizer.Str["Profile_Platform"]" ></GridColumn>
+            <GridColumn Field=@nameof(CMSProfileModel.profileName) HeaderText="@Localizer.Str["Profile_ProfileName"]" ></GridColumn>            
+            <GridColumn Field=@nameof(CMSProfileModel.profileStatus) HeaderText="@Localizer.Str["Profile_ProfileStatus"]" >
                  <Template>
                  @{
-                    var _profile = (context as CMSProfile);
+                    var _profile = (context as CMSProfileModel);
                     if(_profile.profileStatusID == 1)
                     {
                         <div style="color:darkgreen">@Localizer.Str["Status_Activate"]</div>                        
@@ -51,7 +52,7 @@
              <GridColumn HeaderText="" Width=120>
                 <Template>
                 @{
-                    var _profile = (context as CMSProfile);
+                    var _profile = (context as CMSProfileModel);
                     if(_profile.profileStatusID == 1)
                     {
                        <div>
@@ -70,7 +71,7 @@
             <GridColumn HeaderText="" Width=100>
                 <Template>
                     @{
-                        var _profile = (context as CMSProfile);
+                        var _profile = (context as CMSProfileModel);
                         <div>
                              <a href="" @onclick="@(() => EditProfile(_profile))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Value_Edit_Text"]</a>                             
                         </div>
@@ -80,7 +81,7 @@
             <GridColumn HeaderText="" Width=100>
                 <Template>
                     @{
-                        var _profile = (context as CMSProfile);
+                        var _profile = (context as CMSProfileModel);
                         <div>
                              <a href="" @onclick="@(() => CopyProfile(_profile))" @onclick:preventDefault class="btnCopy">@Localizer.Str["Value_Copy_Text"]</a>                             
                         </div>
@@ -90,7 +91,7 @@
             <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=100>
                 <Template>
                     @{
-                        var _profile = (context as CMSProfile);
+                        var _profile = (context as CMSProfileModel);
                         <div>                            
                              <a href="" @onclick="@(() => DeleteProfile(_profile))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
                         </div>
@@ -105,6 +106,11 @@
 </div>
 
 
+@if (showAddProfilePopUp)
+{
+    <AddProfilePopUp @bind-ShowModal="showAddProfilePopUp" OnFormSaved=@LoadProfileList></AddProfilePopUp> 
+}
+
 
 
 @code {
@@ -115,9 +121,9 @@
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
 
     protected UiMessages Messages { get; set; }
-    protected List<CMSProfile> ProfileList { get; set; }
-    protected List<CMSProfile> DeletedProfileList { get; set; }
-    protected CMSProfile CurrentProfile { get; set; }
+    protected List<CMSProfileModel> ProfileList { get; set; }
+    protected List<CMSProfileModel> DeletedProfileList { get; set; }
+    protected CMSProfileModel CurrentProfile { get; set; }
     protected bool showAddProfilePopUp { get; set; }
     protected bool showEditProfilePopUp { get; set; }
     protected bool showDeleteProfilePopUp { get; set; }
@@ -127,7 +133,7 @@
     {
         await base.OnInitializedAsync();       
         Messages = new UiMessages();
-        CurrentProfile = new CMSProfile();
+        CurrentProfile = new CMSProfileModel();
 
         await LoadProfileList();
 
@@ -152,19 +158,25 @@
         }       
     }
 
-    private void EditProfile(CMSProfile profile)
+     private async Task AddProfile()
+    {
+        CurrentProfile = await ProfileService.CreateNew(CurrentContactId,1,null,null,"de-DE");
+        showEditProfilePopUp = true;
+    }
+
+    private void EditProfile(CMSProfileModel profile)
     {
         CurrentProfile = profile;
         showEditProfilePopUp = true;
     }
 
-     private void CopyProfile(CMSProfile profile)
+     private void CopyProfile(CMSProfileModel profile)
     {
         CurrentProfile = profile;
         showEditProfilePopUp = true;
     }
 
-    private void DeleteProfile(CMSProfile profile)
+    private void DeleteProfile(CMSProfileModel profile)
     {
         CurrentProfile = profile;
         showDeleteProfilePopUp = true;

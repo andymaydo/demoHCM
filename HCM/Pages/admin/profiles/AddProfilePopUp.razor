@@ -1,0 +1,129 @@
+﻿                 
+@using HCMDataAccess
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using Syncfusion.Blazor.Navigations
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+@using System.IO
+@using System.Xml
+
+
+@if (ShowModal)
+{
+    <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
+        <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
+        <DialogTemplates>
+            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Profile_Title"]</div></Header>
+            <Content>
+                
+                
+                <SfTab LoadOn="ContentLoad.Init" CssClass="e-fill">
+                    <TabItems>
+                        <TabItem>
+                            <HeaderTemplate>@Localizer.Str["Profile_Step_Allgemeine"]</HeaderTemplate>
+                            <ContentTemplate>
+                                sddfsdf
+                             </ContentTemplate>
+                        </TabItem>
+                        <TabItem>
+                            <HeaderTemplate>@Localizer.Str["Profile_Step_Teilnehmen"]</HeaderTemplate>
+                            <ContentTemplate>
+                                sdsadasdf
+                            </ContentTemplate>
+                        </TabItem>
+                        <TabItem>
+                            <HeaderTemplate>@Localizer.Str["Profile_Step_Escalation"]</HeaderTemplate>
+                            <ContentTemplate>
+                                asdasdfasdf
+                            </ContentTemplate>
+                        </TabItem>
+                        
+                    </TabItems>
+                </SfTab>
+               
+                <div class="py-3">
+                    <UiMessageBox Data="Messages.List" />
+                </div>
+
+                 
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+
+    <style>
+        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+            background-color: lightblue;
+        }
+    </style>
+}
+
+
+
+
+@code {
+    [Inject] private ICMSProfile ProfileService { get; set; }
+    [Inject] private ILogger<AddProfilePopUp> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
+
+    protected AddUserForm FormModel { get; set; }
+    protected UiMessages Messages { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Messages = new UiMessages();
+        FormModel = new AddUserForm();
+    }
+
+
+    public async Task CloseDialog()
+    {
+        ShowModal = false;
+        await ShowModalChanged.InvokeAsync(ShowModal);
+    }
+
+
+    protected async Task ValidFormSubmited()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+
+            //int result = await ProfileService.CreateUser(FormModel.LoginName, FormModel.Password, FormModel.EMail, FormModel.Name, FormModel.FunctionInFirma, true, CurrentContactId);
+            //if (result == -100)
+            //{
+            //    throw new Exception(@Localizer.Str["Admin_Users_UserNameExists"]); 
+            //}
+            
+            //Messages.AddInfo(@Localizer.Str["Admin_Users_Create_Success"]);
+            //await OnFormSaved.InvokeAsync();
+            ////await CloseDialog();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["Admin_Users_Create_Error"], ex.Message);
+
+        }
+
+    }  
+}
