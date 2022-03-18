@@ -517,6 +517,13 @@ NEW USER
     border-color: #f8f9fa !important;
     color: #fff !important;
 }
+.e-btn.e-flat.e-primary:disabled, .e-css.e-btn.e-flat.e-primary:disabled {
+    background-color: rgba(26, 83, 93, 0.65) !important;
+    border-color: transparent !important;
+    box-shadow: none;
+    color: #fff !important;
+}
+
 .e-btn.e-flat, .e-css.e-btn.e-flat {
     background-color: #1a535d !important;
     border-color: #f8f9fa !important;
@@ -545,9 +552,9 @@ NEW USER
 .e-pager .e-currentitem  {
     color: #fff !important;
 }
-.e-btn .e-btn-icon, .e-css.e-btn .e-btn-icon {
+/*.e-btn .e-btn-icon, .e-css.e-btn .e-btn-icon {
     width: 2em !important;
-}
+}*/
 .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
     background-color: transparent;
     border-color: transparent;

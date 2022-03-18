@@ -261,30 +261,18 @@ namespace HCMApi
             _params.Add(name: "@ProfileName", dbType: DbType.String, direction: ParameterDirection.Input, value: cmsProfileModel.profileName);
             _params.Add(name: "@ProfilDescr", dbType: DbType.String, direction: ParameterDirection.Input, value: cmsProfileModel.profilDescr);
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: cmsProfileModel.appID);
-            _params.Add(name: "@NotificationLang", dbType: DbType.String, direction: ParameterDirection.Input, value: cmsProfileModel.EmailLanguage);
+            _params.Add(name: "@NotificationLang", dbType: DbType.String, direction: ParameterDirection.Input, value: cmsProfileModel.NotificationLang);
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+           
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
-                    var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
-                    int ReturnValue = _params.Get<int>("@ReturnValue");
-
-                    if (ReturnValue != 0)
-                    {
-                        throw new Exception("UpdateGeneralInfoAsync.UndefinedError");
-                    }
-
+                    var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);                    
                     return true;
 
                 }
-            }
-            catch //( Exception ex)
-            {
-                return false;
-            }
+           
 
             
         }

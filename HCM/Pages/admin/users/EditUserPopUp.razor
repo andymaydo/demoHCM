@@ -195,6 +195,8 @@
             UserPassModel = _mapper.Map<PassUserForm>(UserModel);
 
             InitUserRoleList();
+
+            _loadingStatus = 1;
         }
         catch (Exception ex)
         {                        

@@ -1,0 +1,64 @@
+﻿@using HCMApi
+@using Syncfusion.Blazor.Lists
+    
+@if(Source?.Count > 0)
+{
+    
+    <h5 class="tLabel2">@Title</h5>
+    <div class="top_blue_bg"></div>
+
+         
+    <table class="table @(ShowStriped && Source.Count > 2 ? "table-striped" : "") table-hover table-borderless table-sm">
+        <thead>
+            <tr>
+              <th scope="col">@Localizer.Str["Profile_Step_Escalation_RuleList_Name"]</th>
+              <th scope="col">@Localizer.Str["Profile_Step_Escalation_RuleList_Days"]</th>
+              <th scope="col"></th>             
+            </tr>
+        </thead>
+        <tbody class="itemDetail">
+            
+            
+            @foreach (CaseRule c in Source)
+            {
+                <tr>                  
+                    <td>                       
+                        @Localizer.Str["Case_Status_" + c.CaseStatusID.ToString()]
+                    </td> 
+                    <td>                       
+                        @c.CaseStatusDays
+                    </td>
+                    <td align="right">
+                        @if (@AllowDelete)
+                        {                        
+                            <a href="" @onclick="@(() => DeleteFromList(c.CaseStatusID))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>                        
+                        }
+                    </td>
+                </tr>       
+            }
+            
+        </tbody>
+    </table>
+}        
+        
+
+
+@code {
+
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+
+    [Parameter] public List<CaseRule> Source { get; set; }
+    [Parameter] public string Title { get; set; }
+
+    [Parameter] public bool ShowStriped { get; set; }
+    [Parameter] public bool AllowDelete { get; set; }
+    [Parameter] public EventCallback OnSorceItemDeleted { get; set; }
+
+    protected async Task DeleteFromList(int cid)
+    {
+        Source.RemoveAll(r => r.CaseStatusID == cid);
+        await OnSorceItemDeleted.InvokeAsync();
+    }
+   
+}

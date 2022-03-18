@@ -823,6 +823,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Form_Field_StringLength" xml:space="preserve">
     <value>Das Feld "{0}" muss eine Länge zwischen {2} und {1} Zeichen haben.</value>
   </data>
+  <data name="Form_Saved" xml:space="preserve">
+    <value>Formular erfolgreich gespeichert</value>
+  </data>
   <data name="JavaScript_DeleteConfirm" xml:space="preserve">
     <value>ZZ Delete......\r\nAre you sure?</value>
   </data>
@@ -887,7 +890,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>Benutzer</value>
   </data>
   <data name="LoginLabel_UserName" xml:space="preserve">
-    <value>Benutzername</value>
+    <value>Login</value>
   </data>
   <data name="Login_ButtonText" xml:space="preserve">
     <value>anmelden</value>
@@ -952,11 +955,20 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="MsgPanel_Validator_Title" xml:space="preserve">
     <value>Validierungsfehler!</value>
   </data>
+  <data name="Profile_Activate_Confirm" xml:space="preserve">
+    <value>Möchten Sie das Profil wirklich aktivieren ?</value>
+  </data>
   <data name="Profile_CreateNew" xml:space="preserve">
     <value>neues Profil anlegen</value>
   </data>
+  <data name="Profile_Deactivate_Confirm" xml:space="preserve">
+    <value>Möchten Sie das Profil wirklich deaktivieren ?</value>
+  </data>
   <data name="Profile_DeleteProfile" xml:space="preserve">
     <value>gelöschte Profile anzeigen</value>
+  </data>
+  <data name="Profile_Delete_Confirm" xml:space="preserve">
+    <value>Möchten Sie das Profil wirklich löschen ?</value>
   </data>
   <data name="Profile_Delete_List" xml:space="preserve">
     <value>Liste der gelöschten Profile</value>
@@ -993,6 +1005,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   </data>
   <data name="Profile_Status_InActive" xml:space="preserve">
     <value>nicht aktiviert</value>
+  </data>
+  <data name="Profile_Status_Incomplete" xml:space="preserve">
+    <value>unvollständig</value>
   </data>
   <data name="Profile_Step2_cbNotifyAll" xml:space="preserve">
     <value>automatische Mitteilung an alle</value>

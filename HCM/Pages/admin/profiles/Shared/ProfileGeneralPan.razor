@@ -1,0 +1,43 @@
+﻿
+
+    <h5 class="tLabel2">@Localizer.Str["Profile_Step_Allgemeine"]</h5>
+    <div class="top_blue_bg"></div>
+
+    <div class="row">                                                               
+        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_ProfileStatus"]</label>
+        <div class = "col-8 col-form-label">@ShowStatusLocalized()</div>
+    </div>
+
+    <div class="row">                                                               
+        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_ProfileName"]</label>
+        <div class = "col-8 col-form-label">@ViewModel.CurrentProfile.profileName</div>
+    </div>
+
+    <div class="row">                                                               
+        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_Email_Language"]</label>
+        <div class = "col-8 col-form-label">@ViewModel.CurrentProfile.NotificationLang</div>
+    </div>
+
+    <div class="row">                                                               
+        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_Description"]</label>
+        <div class = "col-8 col-form-label">@ViewModel.CurrentProfile.profilDescr</div>
+    </div>
+
+@code {
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+    [Parameter] public ProfileWizardVM ViewModel { get; set; }
+
+
+    protected string ShowStatusLocalized()
+    {
+        if (ViewModel.IsCompleted)
+        {
+            return @Localizer.Str["Profile_Status_"+ViewModel.CurrentProfile.profileStatus];
+        }
+        else
+        {
+            return @Localizer.Str["Profile_Status_Incomplete"];
+        }   
+    }
+}

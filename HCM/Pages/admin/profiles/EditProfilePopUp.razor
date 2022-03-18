@@ -32,32 +32,32 @@
                 </Header>
                 <Content>
 
-                    <SfTab @ref="Tab" LoadOn="ContentLoad.Dynamic">
+                    <SfTab SelectedItemChanged="OnTabChanged" @ref="Tab" LoadOn="ContentLoad.Dynamic">
                         <TabItems>
-                            <TabItem >
-                                <HeaderTemplate>@Localizer.Str["Profile_Step_Allgemeine"]</HeaderTemplate>
-                                <ContentTemplate>
-                                    <ProfileGeneralTab ViewModel="ProfileVM" OnFormSaved="GenInfoSaved"></ProfileGeneralTab>
-                                </ContentTemplate>
-                            </TabItem>
-                            <TabItem >
-                                <HeaderTemplate>@Localizer.Str["Profile_Step_Teilnehmen"]</HeaderTemplate>
-                                <ContentTemplate>
-                                    <ProfileContactsTab ViewModel="ProfileVM" OnFormSaved="ContactsSaved"></ProfileContactsTab>
-                                </ContentTemplate>
-                            </TabItem>
-                            <TabItem >
-                                <HeaderTemplate>@Localizer.Str["Profile_Step_Escalation"]</HeaderTemplate>
-                                <ContentTemplate>
-                                    <ProfileEscalationTab ViewModel="ProfileVM" OnFormSaved="EscalationSaved"></ProfileEscalationTab>
-                                </ContentTemplate>
-                            </TabItem>
                             <TabItem >
                                 <HeaderTemplate>@Localizer.Str["Profile_Step_AllView"]</HeaderTemplate>
                                 <ContentTemplate>
                                     <ProfileOverviewTab ViewModel="ProfileVM"></ProfileOverviewTab>
                                 </ContentTemplate>
                             </TabItem>
+                            <TabItem >
+                                <HeaderTemplate>@Localizer.Str["Profile_Step_Allgemeine"]</HeaderTemplate>
+                                <ContentTemplate>
+                                    <ProfileGeneralTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileGeneralTab>
+                                </ContentTemplate>
+                            </TabItem>
+                            <TabItem >
+                                <HeaderTemplate>@Localizer.Str["Profile_Step_Teilnehmen"]</HeaderTemplate>
+                                <ContentTemplate>
+                                    <ProfileContactsTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileContactsTab>
+                                </ContentTemplate>
+                            </TabItem>
+                            <TabItem >
+                                <HeaderTemplate>@Localizer.Str["Profile_Step_Escalation"]</HeaderTemplate>
+                                <ContentTemplate>
+                                    <ProfileEscalationTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileEscalationTab>
+                                </ContentTemplate>
+                            </TabItem>                            
                         </TabItems>
                     </SfTab>
 
@@ -76,6 +76,7 @@
             }
         </style>
     }
+
 }
 
 
@@ -83,7 +84,7 @@
 
 @code {
 
-    [Inject] private ILogger<AddProfilePopUp> _logger { get; set; }
+    [Inject] private ILogger<EditProfilePopUp> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
 
@@ -133,19 +134,15 @@
     }
 
 
-    protected void GenInfoSaved()
+    protected void FormSaved()
     {        
-        Tab.Select(1);
+        Messages.AddInfo(@Localizer.Str["Form_Saved"]);
     }
 
-    protected void ContactsSaved()
+    protected void OnTabChanged(int TabId)
     {
-        Tab.Select(2);
+        Messages.List.Clear();
     }
 
-    protected void EscalationSaved()
-    {        
-        Tab.Select(3);
-    }
     
 }

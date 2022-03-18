@@ -8,6 +8,7 @@
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
+@using System.Globalization
 
 
 <h3>@Localizer.Str["Profile_List_Title"]</h3>
@@ -15,9 +16,7 @@
 <div class="blue_bg"></div>
 <h4>@Localizer.Str["Profile_List"]</h4>
 
-<div class="text-right mb-3">
-    <SfButton @onclick="@(() => showAddProfilePopUp = true)" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Profile_CreateNew"]" ></SfButton>
-</div>
+
 
 @if (_loadingStatus == 0)
 {
@@ -26,6 +25,10 @@
 
 @if (_loadingStatus == 1)
 {
+    <div class="text-right mb-3">
+        <SfButton @onclick="@(() => AddProfile())" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Profile_CreateNew"]" ></SfButton>
+    </div>
+
     <SfGrid DataSource="@ProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
         <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
         <GridPageSettings PageSizes="true" ></GridPageSettings>
@@ -56,13 +59,13 @@
                     if(_profile.profileStatusID == 1)
                     {
                        <div>
-                             <a href="" @onclick="@(() => EditProfile(_profile))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Action_DeActivate"]</a>                             
+                             <a href="" @onclick="@(() => ChangeStatus(_profile, "InActive"))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Action_DeActivate"]</a>                             
                         </div>
                     }
                     else
                     {
                        <div>
-                             <a href="" @onclick="@(() => EditProfile(_profile))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Action_Activate"]</a>                             
+                             <a href="" @onclick="@(() => ChangeStatus(_profile, "Active"))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Action_Activate"]</a>                             
                         </div> 
                     }    
                 }
@@ -93,7 +96,7 @@
                     @{
                         var _profile = (context as CMSProfileModel);
                         <div>                            
-                             <a href="" @onclick="@(() => DeleteProfile(_profile))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
+                             <a href="" @onclick="@(() => ChangeStatus(_profile, "Deleted"))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
                         </div>
                     }
                 </Template>
@@ -108,12 +111,31 @@
 
 @if (showAddProfilePopUp)
 {
-    <AddProfilePopUp @bind-ShowModal="showAddProfilePopUp" OnFormSaved=@LoadProfileList></AddProfilePopUp> 
+    <AddProfilePopUp @bind-ShowModal="showAddProfilePopUp" 
+        ProfileVM="@ProfileVM" 
+        OnDialogClosed=@LoadProfileList>
+    </AddProfilePopUp> 
 }
 
+@if (showEditProfilePopUp)
+{
+    <EditProfilePopUp @bind-ShowModal="showEditProfilePopUp" 
+        ProfileVM="@ProfileVM" 
+        OnDialogClosed=@LoadProfileList>
+    </EditProfilePopUp> 
+}
 
+@if (showStatusChangePopUp)
+{
+    <StatusChangePopUp @bind-ShowModal="showStatusChangePopUp" 
+        CurrentProfile="@CurrentProfile" 
+        NewStatus = "@NewStatusName"
+        OnDialogClosed=@LoadProfileList>
+    </StatusChangePopUp> 
+}
 
 @code {
+    [Inject] private ProfileWizardVM ProfileVM { get; set; }
     [Inject] private ICMSProfile ProfileService { get; set; }
     [Inject] private ILogger<ProfilePage> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
@@ -124,19 +146,18 @@
     protected List<CMSProfileModel> ProfileList { get; set; }
     protected List<CMSProfileModel> DeletedProfileList { get; set; }
     protected CMSProfileModel CurrentProfile { get; set; }
+    protected string NewStatusName { get; set; }
     protected bool showAddProfilePopUp { get; set; }
     protected bool showEditProfilePopUp { get; set; }
-    protected bool showDeleteProfilePopUp { get; set; }
+    protected bool showStatusChangePopUp { get; set; }
     private int _loadingStatus;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();       
         Messages = new UiMessages();
-        CurrentProfile = new CMSProfileModel();
 
         await LoadProfileList();
-
     }
 
 
@@ -145,7 +166,7 @@
         _loadingStatus = 0;
         try
         {
-            ProfileList = await ProfileService.GetList(null, null);
+            ProfileList = await ProfileService.GetList(null, null);            
             _loadingStatus = 1;
         }
         catch (Exception ex)
@@ -158,27 +179,56 @@
         }       
     }
 
-     private async Task AddProfile()
+    private async Task AddProfile()
     {
-        CurrentProfile = await ProfileService.CreateNew(CurrentContactId,1,null,null,"de-DE");
-        showEditProfilePopUp = true;
+        try
+        {
+            await ProfileVM.AddNewProfileAsync(CurrentContactId, null, null, CultureInfo.CurrentCulture.Name);
+            showAddProfilePopUp = true;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+        }  
     }
 
     private void EditProfile(CMSProfileModel profile)
     {
-        CurrentProfile = profile;
-        showEditProfilePopUp = true;
+        try
+        {
+            ProfileVM.LoadProfile(profile.profileID);
+            showEditProfilePopUp = true;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+        } 
+
     }
 
-     private void CopyProfile(CMSProfileModel profile)
+    private async Task CopyProfile(CMSProfileModel profile)
     {
-        CurrentProfile = profile;
-        showEditProfilePopUp = true;
+        try
+        {
+            await ProfileVM.CopyProfileAsync(profile.profileID, CurrentContactId);
+            showEditProfilePopUp = true;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+        } 
     }
 
-    private void DeleteProfile(CMSProfileModel profile)
+    private void ChangeStatus(CMSProfileModel profile, string newStatus)
     {
         CurrentProfile = profile;
-        showDeleteProfilePopUp = true;
+        NewStatusName = newStatus;
+        showStatusChangePopUp = true;
     }
 }

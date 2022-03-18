@@ -12,12 +12,12 @@ namespace HCMApi.Models
         public int appID { get; set; }
         public string appName { get; set; }
         public int profileStatusID { get; set; }
-        public string profileStatus { get; set; }
+        public string profileStatus { get; set; }     
         public int profileType { get; set; }
 
         public string profileName { get; set; }
         public string profilDescr { get; set; }
-        public string EmailLanguage { get; set; }
+        public string NotificationLang { get; set; }
 
         public List<CaseContact> profileParticipants { get; set; }
         public List<CaseContact> escalationUsers { get; set; }
@@ -76,7 +76,7 @@ namespace HCMApi.Models
 
         public string profileName { get; set; }
         public string profilDescr { get; set; }
-        public string EmailLanguage { get; set; }
+        public string NotificationLang { get; set; }
 
         public string profileParticipants { get; set; }
         public string escalationUsers { get; set; }

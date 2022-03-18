@@ -1,0 +1,306 @@
+﻿                 
+@using HCMDataAccess
+@using HCMModels
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using Syncfusion.Blazor.Navigations
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+        
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+@if (_loadingStatus == 1)
+{
+    <div class="mx-4 mt-5">
+        <CaseContactPan Source="ProfileContacts" Title="@Localizer.Str["Profile_Step2_TeilnehmerListe"]" 
+            ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true" AllowDelete="true"
+            OnSorceItemDeleted = "LoadUserList">
+        </CaseContactPan>
+        @if (ProfileContacts?.Count > 0)
+        {
+            <div class="bg-light mb-3">
+                <SfCheckBox @bind-Checked="@ViewModel.ContactsForm.NotifyAllProfileParticipants" 
+                    Label="@Localizer.Str["Profile_Step2_cbNotifyAll"]" 
+                    TChecked="bool">
+                </SfCheckBox>
+            </div>
+        }
+
+        <EditForm Model="@ViewModel.ContactsForm" OnValidSubmit="AddProfileContact">
+            <DataAnnotationsValidator />       
+            <div class="row mb-3">             
+                <div class="form-group col-md-8">
+                    <label class="col-form-label font-weight-bold">@Localizer.Str["Profile_Step2_TeilnehmerAnlegen"]</label>
+                    <div>
+                        <SfComboBox @ref="comboObj" TValue="string" TItem="UsersModel" 
+                            DataSource="@UserList"  
+                            @bind-Value="@ViewModel.ContactsForm.NewContactId"
+                            Placeholder="@Localizer.Str["Value_Select_Text"]"  
+                            AllowFiltering="true"
+                            Autofill="false">
+                            <ComboBoxTemplates TItem="UsersModel">
+                                <HeaderTemplate>
+                                    <span class="head">
+                                        <span class="login">@Localizer.Str["LoginLabel_UserName"]</span>
+                                        <span class="name">@Localizer.Str["Cases_ChangeUsers_List_Name"]</span>
+
+                                        <span class="func">@Localizer.Str["Cases_ChangeUsers_List_Devision"]</span>
+                                    </span>
+                                </HeaderTemplate>
+                                <ItemTemplate Context="ctx">
+                                    <span class="item">
+                                        <span class="login">@((ctx  as UsersModel).LoginName)</span>
+                                        <span class="name">@((ctx  as UsersModel).Name)</span>
+
+                                        <span class="func">@((ctx  as UsersModel).FunctionInFirma)</span>
+                                    </span>
+                                </ItemTemplate>
+                            </ComboBoxTemplates>                                       
+
+                            <ComboBoxFieldSettings Text="Name" Value="ContactID"></ComboBoxFieldSettings>
+                            <ComboBoxEvents TValue="string" TItem="UsersModel" Filtering="OnFilter"></ComboBoxEvents>
+                        </SfComboBox>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeUsers_List_Role"]</label>
+                    <div>
+                        <SfDropDownList TValue="string" TItem="ProfileRole" DataSource="@ProfileRoleList" 
+                            @bind-Value="@ViewModel.ContactsForm.NewContactRole"
+                            Placeholder="@Localizer.Str["Value_Select_Text"]">
+                            <DropDownListFieldSettings Text="Description" Value="Key"></DropDownListFieldSettings>
+                        </SfDropDownList>
+
+                    </div>                    
+                </div>
+                <div class="form-group col-md-1">
+                    <label class="col-form-label font-weight-bold">&nbsp;</label>
+                    <div>
+                        <SfButton>+</SfButton>
+                    </div>                        
+                </div>                          
+            </div>
+        </EditForm> 
+
+        <div class="col-12 py-2 top_blue_bg"></div>
+        <div class="row">
+
+            <div class="col-12 text-right">
+                <SfButton Disabled="@(ProfileContacts?.Count == 0)" OnClick="SaveContactForm" CssClass="e-flat" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+            </div>
+
+        </div>
+    </div>
+}    
+
+<div class="py-3">
+    <UiMessageBox Data="Messages.List"/>
+</div>
+
+<style>
+        
+    .head, .item {
+    display: table;
+    width: 100%;
+    margin: auto;
+    }
+
+    .head {
+        height: 40px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .name, .login, .func, .email {
+        display: table-cell;
+        vertical-align: middle;
+        width: 25%;
+    }
+
+    .head .login {
+        text-indent: 16px;
+    }
+</style>
+
+
+@code {
+    [Inject] private IUsersData UserService { get; set; }
+    [Inject] private ILogger<ProfileContactsTab> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IConfiguration Configuration { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+
+    [Parameter] public ProfileWizardVM ViewModel { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
+
+    protected List<CaseContactSelectable> ProfileContacts { get; set; }
+    protected List<UsersModel> UserList { get; set; }
+    protected List<ProfileRole> ProfileRoleList { get; set; }
+    protected SfComboBox<string, UsersModel> comboObj { get; set; }
+
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            _loadingStatus = 0;
+
+            if(ViewModel == null )
+            {               
+                throw new ArgumentNullException("CurrentProfile");
+            }
+
+            Messages = new UiMessages();
+
+            ViewModel.InitForms();         
+
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.ContactsForm.profileParticipants);            
+
+            InitRoleList();
+            await LoadUserList();
+
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+
+    }
+
+
+    protected async Task LoadUserList()
+    {
+        try
+        {
+            var TotalUserList = await UserService.UsersList(CurrentContactId);
+            UserList = TotalUserList
+                        .Where(x=>!ProfileContacts.Any(y=>y.ContactID == x.ContactID))                                        
+                        .ToList();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+
+    }
+    protected void InitRoleList()
+    {
+        ProfileRoleList = new List<ProfileRole>()
+        {
+            new ProfileRole(){ Key = "User", Description = Localizer.Str["Profile_User_Role_1"] },
+            new ProfileRole(){ Key = "Moderator", Description = Localizer.Str["Profile_User_Role_2"] },
+            new ProfileRole(){ Key = "AliasManager", Description = Localizer.Str["Profile_User_Role_3"] }
+        };
+
+    }
+
+    protected async Task SaveContactForm()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+            _mapper.Map(ProfileContacts, ViewModel.ContactsForm.profileParticipants);
+
+            if(ProfileContacts.Count > 0)
+            {
+                ViewModel.IsCompleted = true;
+            }            
+
+            await ViewModel.SaveContacts(CurrentContactId);
+
+            await OnFormSaved.InvokeAsync();
+
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+
+    }  
+
+    private async Task AddProfileContact()
+    {
+        try
+        {
+            int cId;
+            bool successfullyParsed = int.TryParse(ViewModel.ContactsForm.NewContactId, out cId);
+            if (successfullyParsed)
+            {
+                var usr = UserList.Find(x => x.ContactID == cId);
+                ProfileContacts.Add(new CaseContactSelectable()
+                    {
+                        ContactID = usr.ContactID,
+                        Name = usr.Name,
+                        Email = usr.EMail,
+                        Function = usr.FunctionInFirma,
+                        ProfileRole = ViewModel.ContactsForm.NewContactRole
+                    });
+
+
+                await LoadUserList();
+                ViewModel.ContactsForm.NewContactId = null;
+                ViewModel.ContactsForm.NewContactRole = null;
+            }
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"], ex.Message);
+        }
+       
+    }
+    private async Task OnFilter(FilteringEventArgs args)
+    {
+        args.PreventDefaultAction = true;
+
+        var pre = new WhereFilter(); 
+        var predicate = new List<WhereFilter>(){ 
+                        new WhereFilter(){ Field = "Name", Operator = "contains", value = args.Text, IgnoreCase = true }, 
+                        new WhereFilter(){ Field = "LoginName", Operator = "contains", value = args.Text, IgnoreCase = true },
+                        new WhereFilter(){ Field = "EMail", Operator = "contains", value = args.Text, IgnoreCase = true }
+        }; 
+        pre = WhereFilter.Or(predicate); 
+
+        var query = new Query().Where(pre);
+              
+        query = !string.IsNullOrEmpty(args.Text) ? query : new Query();
+
+        await comboObj.Filter(UserList, query);
+        
+    }
+   
+}

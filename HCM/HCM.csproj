@@ -36,6 +36,10 @@
 
   <ItemGroup>
     <Content Remove="Pages\admin\profiles\NewProfile.razor" />
+    <Content Remove="Pages\admin\profiles\ProfileStep1.razor" />
+    <Content Remove="Pages\admin\profiles\ProfileStep2.razor" />
+    <Content Remove="Pages\admin\profiles\ProfileStep3.razor" />
+    <Content Remove="Pages\admin\profiles\ProfileView.razor" />
     <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
     <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
@@ -54,10 +58,6 @@
 
   <ItemGroup>
     <Compile Include="Connected Services\AliasApi\Reference.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\admin\users\Users.razor.txt" />
   </ItemGroup>
 
   <ItemGroup>

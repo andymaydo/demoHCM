@@ -2165,6 +2165,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formular erfolgreich gespeichert.
+        /// </summary>
+        public static string Form_Saved {
+            get {
+                return ResourceManager.GetString("Form_Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ZZ Delete......\r\nAre you sure?.
         /// </summary>
         public static string JavaScript_DeleteConfirm {
@@ -2417,7 +2426,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzername.
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LoginLabel_UserName {
             get {
@@ -2552,11 +2561,38 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie das Profil wirklich aktivieren ?.
+        /// </summary>
+        public static string Profile_Activate_Confirm {
+            get {
+                return ResourceManager.GetString("Profile_Activate_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to neues Profil anlegen.
         /// </summary>
         public static string Profile_CreateNew {
             get {
                 return ResourceManager.GetString("Profile_CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie das Profil wirklich deaktivieren ?.
+        /// </summary>
+        public static string Profile_Deactivate_Confirm {
+            get {
+                return ResourceManager.GetString("Profile_Deactivate_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie das Profil wirklich löschen ?.
+        /// </summary>
+        public static string Profile_Delete_Confirm {
+            get {
+                return ResourceManager.GetString("Profile_Delete_Confirm", resourceCulture);
             }
         }
         
@@ -2674,6 +2710,15 @@ namespace HCM.Resources {
         public static string Profile_Status_InActive {
             get {
                 return ResourceManager.GetString("Profile_Status_InActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unvollständig.
+        /// </summary>
+        public static string Profile_Status_Incomplete {
+            get {
+                return ResourceManager.GetString("Profile_Status_Incomplete", resourceCulture);
             }
         }
         

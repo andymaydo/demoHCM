@@ -1,0 +1,144 @@
+﻿                 
+@using HCMDataAccess
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using Syncfusion.Blazor.Navigations
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+
+
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}        
+@if (_loadingStatus == 1)
+{
+    <div class="mx-4 mt-5">
+        <EditForm Model="@ViewModel.GenInfoForm" OnValidSubmit="@ValidGenInfoFormSubmited" >
+            <DataAnnotationsValidator />
+            <div class="form-group row">                                                               
+                <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_ProfileName"]</label>
+                <div class = "col-8">
+                    <SfTextBox   @bind-Value="@ViewModel.GenInfoForm.profileName"></SfTextBox>
+                    <ValidationMessage For="@(() => ViewModel.GenInfoForm.profileName)" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_Email_Language"]</label>
+                <div class = "col-8">
+                    <SfComboBox  DataSource="@Languages" TValue="string" TItem="Language" ShowClearButton="false" @bind-Value="ViewModel.GenInfoForm.NotificationLang">
+                        <ComboBoxFieldSettings Text="Description" Value="Key"></ComboBoxFieldSettings>
+                    </SfComboBox>
+                    <ValidationMessage For="@(() => ViewModel.GenInfoForm.NotificationLang)" />     
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_Description"]</label>
+                <div class = "col-8">
+                    <SfTextBox Multiline="true" @bind-Value="@ViewModel.GenInfoForm.profilDescr"></SfTextBox>
+                    <ValidationMessage For="@(() => ViewModel.GenInfoForm.profilDescr)" /> 
+                </div>                                
+            </div>
+
+            <div class="col-12 py-2 top_blue_bg"></div>
+            <div class="row">                       
+                <div class="col-12 text-right">
+                    <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                </div>                       
+            </div>
+        </EditForm>
+    </div>
+}
+
+<div class="py-3">
+    <UiMessageBox Data="Messages.List"/>
+</div>
+
+
+
+@code {
+    //[Inject] private ICMSProfile ProfileService { get; set; }
+    [Inject] private ILogger<ProfileGeneralTab> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IConfiguration Configuration { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    //[Parameter] public CMSProfileModel CurrentProfile { get; set; }    
+    [Parameter] public ProfileWizardVM ViewModel { get; set; }
+    [Parameter] public EventCallback OnFormSaved { get; set; }
+
+    //protected ProfileGenInfoForm GenInfoModel { get; set; }
+    protected List<Language> Languages { get; set; }
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        try
+        {
+            _loadingStatus = 0;
+
+            if(ViewModel == null )
+            {               
+                throw new ArgumentNullException("CurrentProfile");
+            }
+
+            Messages = new UiMessages();
+            ViewModel.InitForms();            
+
+            Languages = Configuration.GetSection("Cultures")
+                .GetChildren()
+                .Select(c => new Language { Key = c.Key, Description = c.Value })
+                .ToList();
+
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+
+    }
+
+    protected async Task ValidGenInfoFormSubmited()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+            await ViewModel.SaveGenInfo(CurrentContactId);            
+
+            await OnFormSaved.InvokeAsync();            
+           
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+
+    }  
+   
+
+   
+}

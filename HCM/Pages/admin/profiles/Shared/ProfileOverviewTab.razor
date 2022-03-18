@@ -1,0 +1,115 @@
+﻿                 
+@using HCMDataAccess
+@using HCMModels
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Logging
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Lists
+@using Syncfusion.Blazor.Navigations
+@using System.Security.Claims
+@using HCMApi
+@using HCMApi.Models
+@using System.Globalization
+@using AutoMapper
+@using HCM.Pages.cases.DetailPage.Shared
+@using static HCMModels.FiltersModels
+        
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+@if (_loadingStatus == 1)
+{
+    <div class="mx-4 mt-5">
+                
+        <ProfileGeneralPan ViewModel="ViewModel"></ProfileGeneralPan>
+
+        <div class="col-12 py-2"></div>
+
+        <CaseContactPan Source="ProfileContacts" 
+            Title="@Localizer.Str["Profile_Step2_TeilnehmerListe"]" 
+            ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true">
+        </CaseContactPan>
+        @if (ProfileContacts?.Count > 0)
+        {
+            <div class="bg-light mb-3">
+                <SfCheckBox Checked="@ViewModel.CurrentProfile.NotifyAllProfileParticipants" 
+                    Label="@Localizer.Str["Profile_Step2_cbNotifyAll"]" 
+                    Disabled="true">
+                </SfCheckBox>
+            </div>
+        }
+
+        <div class="col-12 py-2"></div>
+
+        <ProfileEscalationRulesPan Source="ViewModel.CurrentProfile.escalationRules" 
+            Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
+            ShowStriped="true" AllowDelete="false">
+        </ProfileEscalationRulesPan>
+        
+
+        <div class="col-12 py-2"></div>
+
+        <CaseContactPan Source="EscalationContacts" 
+            Title="@Localizer.Str["Profile_Step3_TeilnehmerListe"]" 
+            ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true">
+        </CaseContactPan>         
+        
+    </div>
+}    
+
+<div class="py-3">
+    <UiMessageBox Data="Messages.List"/>
+</div>
+
+
+
+@code {
+
+    [Inject] private ILogger<ProfileOverviewTab> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }   
+    [Inject] private IMapper _mapper { get; set; }
+
+    [Parameter] public ProfileWizardVM ViewModel { get; set; }
+
+    protected List<CaseContactSelectable> ProfileContacts { get; set; }
+    protected List<CaseContactSelectable> EscalationContacts { get; set; }
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            _loadingStatus = 0;
+
+            if(ViewModel == null )
+            {               
+                throw new ArgumentNullException("CurrentProfile");
+            }
+
+            Messages = new UiMessages();
+
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.profileParticipants);            
+            EscalationContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.escalationUsers);            
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+
+    }
+
+}

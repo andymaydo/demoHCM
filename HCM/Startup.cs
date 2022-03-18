@@ -91,7 +91,7 @@ namespace HCM
             services.AddSingleton<ICase, Case>();
             services.AddSingleton<ICaseEvent, CaseEvent>();
             services.AddSingleton<ICMSEvent, CMSEvent>();
-             services.AddSingleton<ICaseDoc, CaseDoc>();
+            services.AddSingleton<ICaseDoc, CaseDoc>();
             services.AddSingleton<ICaseContact, CaseContact>();
             services.AddSingleton<ICMSAPI, CMSAPI>();
             services.AddSingleton<ILoginData, LoginData>();
@@ -99,6 +99,7 @@ namespace HCM
             services.AddSingleton<IUsersData, UsersData>();
             services.AddSingleton<IUserRolesData, UserRolesData>();
             services.AddSingleton<ICMSProfile, CMSProfile>();
+            services.AddTransient<ProfileWizardVM>();
 
             services.AddSingleton<AppState, AppState>();
 
