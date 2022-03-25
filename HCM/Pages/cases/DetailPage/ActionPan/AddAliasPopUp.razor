@@ -273,7 +273,7 @@
     private async Task<int> CreateAlias()
     {
         var dbSettings = await dbSettingsService.GetSettings();
-        var appUrl = dbSettings?[0].AppUrl;
+        var appUrl = dbSettings?.AppUrl;
 
         AliasOut aliasRequest = new AliasOut();
         aliasRequest.aliasauth.username = cmsSettings.AliasApiUsr;

@@ -967,6 +967,9 @@ it - after verification of the hit - in the menu
   <data name="Profile_DeleteProfile" xml:space="preserve">
     <value>Show deleted Profiles</value>
   </data>
+  <data name="Profile_DeleteProfile_hide" xml:space="preserve">
+    <value>Hide deleted Profiles</value>
+  </data>
   <data name="Profile_Delete_Confirm" xml:space="preserve">
     <value>Do you really want to delete the profile?</value>
   </data>
@@ -997,16 +1000,16 @@ it - after verification of the hit - in the menu
   <data name="Profile_ProfileStatus" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="Profile_Status_Active" xml:space="preserve">
-    <value>Activated</value>
-  </data>
-  <data name="Profile_Status_Delete" xml:space="preserve">
+  <data name="Profile_Status_-1" xml:space="preserve">
     <value>Deleted</value>
   </data>
-  <data name="Profile_Status_InActive" xml:space="preserve">
+  <data name="Profile_Status_0" xml:space="preserve">
     <value>Deactivated</value>
   </data>
-  <data name="Profile_Status_Incomplete" xml:space="preserve">
+  <data name="Profile_Status_1" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="Profile_Status_2" xml:space="preserve">
     <value>Incomplete</value>
   </data>
   <data name="Profile_Step2_cbNotifyAll" xml:space="preserve">

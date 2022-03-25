@@ -1,0 +1,139 @@
+﻿@using AutoMapper
+@using HCMDataAccess
+@using HCMModels
+
+        
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+@if (_loadingStatus == 1)
+{
+    <h4>@Localizer.Str["SMTP_1"]</h4>
+
+    <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
+        <DataAnnotationsValidator />      
+                   
+        <div class="form-group">
+            <label class="col-form-label">@Localizer.Str["SMTP_2"]</label>            
+            <SfTextBox @bind-Value="@FormModel.SMTPServer"></SfTextBox>
+            <ValidationMessage For="@(() => FormModel.SMTPServer)" />     
+        </div>
+        
+        <div class="form-group">
+            <label class="col-form-label">@Localizer.Str["SMTP_3"]</label>
+            <SfTextBox @bind-Value="@FormModel.SMTPServerPort"></SfTextBox>
+            <ValidationMessage For="@(() => FormModel.SMTPServerPort)" />                                       
+        </div>
+        
+
+        <div class="row"> 
+            <div class="col-md-12">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <SfCheckBox 
+                            @bind-Checked="FormModel.SMTPServerAuth" 
+                            Label="@Localizer.Str["SMTP_4"]" 
+                            TChecked="bool">
+                        </SfCheckBox>
+                    </div>
+                    <div class="card-body">
+                        <div class=" form-group row">
+                            <label class="col-md-2">@Localizer.Str["SMTP_5"]</label>
+                            <div class = "col-md-10">
+                                <SfTextBox @bind-Value="@FormModel.SMTPServerUser"></SfTextBox>
+                                <ValidationMessage For="@(() => FormModel.SMTPServerUser)" /> 
+                            </div>                                
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2">@Localizer.Str["SMTP_6"]</label>
+                            <div class = "col-md-10">
+                                <SfTextBox @bind-Value="@FormModel.SMTPServerPass"
+                                    Type="Syncfusion.Blazor.Inputs.InputType.Password">
+                                </SfTextBox>
+                                <ValidationMessage For="@(() => FormModel.SMTPServerPass)" /> 
+                            </div>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>        
+     
+        <div class="row pt-2">                       
+            <div class="col-12 text-right">
+                <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+            </div>                       
+        </div>
+    </EditForm>
+}
+<div class="py-3">
+    <UiMessageBox Data="Messages.List"/>
+</div>
+
+@code {
+    [Inject] private ISettingsData SettingsService { get; set; }
+    [Inject] private ILogger<SettingsSMTPPan> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+
+    protected SettingsSMTPForm FormModel { get; set; }
+    protected UiMessages Messages { get; set; }
+    
+    private int _loadingStatus;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            _loadingStatus = 0;
+
+            Messages = new UiMessages();
+            await InitSMTPForm();
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+
+    }
+
+    protected async Task InitSMTPForm()
+    {
+        var smtpSettings = await SettingsService.GetSettings();
+        FormModel = _mapper.Map<SettingsSMTPForm>(smtpSettings);
+    }
+
+    protected async Task ValidFormSubmited()
+    {
+        try
+        {
+            Messages.List.Clear();
+
+            await SettingsService.ChangeSettings(
+                CurrentContactId, FormModel.SMTPServer, FormModel.SMTPServerPort, 
+                FormModel.SMTPServerAuth, FormModel.SMTPServerUser, FormModel.SMTPServerPass);
+
+            Messages.AddInfo(@Localizer.Str["SMTP_8"]);
+
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+        }
+
+    }  
+}

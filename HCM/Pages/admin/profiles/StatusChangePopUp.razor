@@ -56,13 +56,13 @@
 
 
 @code {
-    [Inject] private ICMSProfile profileService { get; set; }
+    
     [Inject] private ILogger<StatusChangePopUp> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
 
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
-    [Parameter] public CMSProfileModel CurrentProfile { get; set; }
+    [Parameter] public ProfileWizardVM ProfileVM { get; set; }
     [Parameter] public string NewStatus { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
@@ -82,7 +82,7 @@
         {
             _loadingStatus = 0;
 
-            if(CurrentProfile == null )
+            if(ProfileVM == null )
             {               
                 throw new ArgumentNullException("CurrentProfile");
             }
@@ -119,10 +119,7 @@
         {
             Messages.List.Clear();
 
-            CurrentProfile.ModifiedBy = CurrentContactId;
-            CurrentProfile.profileStatusID = newStatusId;
-
-            await profileService.UpdateStatusAsync(CurrentProfile);            
+            await ProfileVM.StatusUpdate(newStatusId,CurrentContactId);            
 
             await CloseDialog();
         }

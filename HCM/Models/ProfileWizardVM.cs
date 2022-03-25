@@ -46,6 +46,13 @@ namespace HCM.Models
             InitForms();
         }
 
+        public async Task StatusUpdate(int statusId, int modifierId)
+        {
+            CurrentProfile.ModifiedBy = modifierId;
+            CurrentProfile.profileStatusID = statusId;
+            await _profileService.UpdateStatusAsync(CurrentProfile);
+        }
+
         public  void LoadProfile(int profileId)
         {
             CurrentProfile = _profileService.Load(profileId);

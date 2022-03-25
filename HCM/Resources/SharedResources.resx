@@ -967,6 +967,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Profile_DeleteProfile" xml:space="preserve">
     <value>gelöschte Profile anzeigen</value>
   </data>
+  <data name="Profile_DeleteProfile_hide" xml:space="preserve">
+    <value>gelöschte Profile ausblenden</value>
+  </data>
   <data name="Profile_Delete_Confirm" xml:space="preserve">
     <value>Möchten Sie das Profil wirklich löschen ?</value>
   </data>
@@ -997,16 +1000,16 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Profile_ProfileStatus" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="Profile_Status_Active" xml:space="preserve">
-    <value>aktiviert</value>
-  </data>
-  <data name="Profile_Status_Delete" xml:space="preserve">
+  <data name="Profile_Status_-1" xml:space="preserve">
     <value>gelöscht</value>
   </data>
-  <data name="Profile_Status_InActive" xml:space="preserve">
+  <data name="Profile_Status_0" xml:space="preserve">
     <value>nicht aktiviert</value>
   </data>
-  <data name="Profile_Status_Incomplete" xml:space="preserve">
+  <data name="Profile_Status_1" xml:space="preserve">
+    <value>aktiviert</value>
+  </data>
+  <data name="Profile_Status_2" xml:space="preserve">
     <value>unvollständig</value>
   </data>
   <data name="Profile_Step2_cbNotifyAll" xml:space="preserve">

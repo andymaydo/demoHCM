@@ -56,6 +56,8 @@ namespace HCM.Models
             CreateMap<ProfileEscalationContactsForm, ProfileEscalationContactsForm>();
             CreateMap<ProfileEscalationRulesForm, ProfileEscalationRulesForm>();
 
+            CreateMap<SettingsModel, SettingsSMTPForm>().ReverseMap();
+
         }
     }
 

@@ -226,14 +226,9 @@
     {
         try
         {
-            Messages.List.Clear();
+            Messages.List.Clear();           
 
-            _mapper.Map(ProfileContacts, ViewModel.ContactsForm.profileParticipants);
-
-            if(ProfileContacts.Count > 0)
-            {
-                ViewModel.IsCompleted = true;
-            }            
+            _mapper.Map(ProfileContacts, ViewModel.ContactsForm.profileParticipants);                      
 
             await ViewModel.SaveContacts(CurrentContactId);
 

@@ -31,13 +31,8 @@
 
     protected string ShowStatusLocalized()
     {
-        if (ViewModel.IsCompleted)
-        {
-            return @Localizer.Str["Profile_Status_"+ViewModel.CurrentProfile.profileStatus];
-        }
-        else
-        {
-            return @Localizer.Str["Profile_Status_Incomplete"];
-        }   
+        
+        return @Localizer.Str["Profile_Status_"+ViewModel.CurrentProfile.profileStatusID.ToString()];
+         
     }
 }

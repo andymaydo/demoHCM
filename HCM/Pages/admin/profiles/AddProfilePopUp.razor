@@ -138,9 +138,10 @@
         Tab.Select(1);
     }
 
-    protected void ContactsSaved()
+    protected async Task ContactsSaved()
     {
-        Tab.Select(2);
+        await Tab.Select(2);
+        await ProfileVM.StatusUpdate(0, CurrentContactId);
     }
 
     protected void EscalationSaved()

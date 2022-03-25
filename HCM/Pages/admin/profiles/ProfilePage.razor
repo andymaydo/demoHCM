@@ -15,7 +15,16 @@
 
 <div class="blue_bg"></div>
 <h4>@Localizer.Str["Profile_List"]</h4>
-
+<a href="" @onclick="@(() => showlDeleted = !showlDeleted)" @onclick:preventDefault class="btnEdit">
+    @if (showlDeleted)
+    {
+        @Localizer.Str["Profile_DeleteProfile_hide"]
+    }
+    else
+    {
+        @Localizer.Str["Profile_DeleteProfile"]
+    }    
+</a>                             
 
 
 @if (_loadingStatus == 0)
@@ -29,26 +38,28 @@
         <SfButton @onclick="@(() => AddProfile())" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Profile_CreateNew"]" ></SfButton>
     </div>
 
-    <SfGrid DataSource="@ProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
-        <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
-        <GridPageSettings PageSizes="true" ></GridPageSettings>
-        
+    <SfGrid @ref="DefaultGrid" DataSource="@ProfileList" 
+        AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  
+        AllowSorting="true" SelectedRowIndex="0">
+
+        <GridEvents TValue="CMSProfileModel" DataBound="DataBoundHandler"></GridEvents> 
+        <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings>       
+        <GridPageSettings PageSize="20"  PageSizes = "@pageSizeList"></GridPageSettings>
+        <GridSortSettings>
+            <GridSortColumns>
+                <GridSortColumn Field="profileID" Direction="SortDirection.Descending"></GridSortColumn>
+            </GridSortColumns>
+        </GridSortSettings>
+
         <GridColumns>
-            <GridColumn Field=@nameof(CMSProfileModel.profileID) HeaderText="@Localizer.Str["Profile_ProfileID"]" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(CMSProfileModel.profileID) IsPrimaryKey="true" HeaderText="@Localizer.Str["Profile_ProfileID"]" Width="80"></GridColumn>
             <GridColumn Field=@nameof(CMSProfileModel.appName) HeaderText="@Localizer.Str["Profile_Platform"]" ></GridColumn>
             <GridColumn Field=@nameof(CMSProfileModel.profileName) HeaderText="@Localizer.Str["Profile_ProfileName"]" ></GridColumn>            
             <GridColumn Field=@nameof(CMSProfileModel.profileStatus) HeaderText="@Localizer.Str["Profile_ProfileStatus"]" >
-                 <Template>
-                 @{
+                <Template>
+                @{
                     var _profile = (context as CMSProfileModel);
-                    if(_profile.profileStatusID == 1)
-                    {
-                        <div style="color:darkgreen">@Localizer.Str["Status_Activate"]</div>                        
-                    }
-                    else
-                    {
-                        <div style="color:darkred">@Localizer.Str["Status_DeActivate"]</div>                        
-                    }   
+                    <div>@Localizer.Str["Profile_Status_" + _profile.profileStatusID.ToString()]</div>                     
                 }
                 </Template>
             </GridColumn>
@@ -62,7 +73,7 @@
                              <a href="" @onclick="@(() => ChangeStatus(_profile, "InActive"))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Action_DeActivate"]</a>                             
                         </div>
                     }
-                    else
+                    else if(_profile.profileStatusID == 0)
                     {
                        <div>
                              <a href="" @onclick="@(() => ChangeStatus(_profile, "Active"))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Action_Activate"]</a>                             
@@ -73,21 +84,27 @@
             </GridColumn>
             <GridColumn HeaderText="" Width=100>
                 <Template>
-                    @{
-                        var _profile = (context as CMSProfileModel);
+                @{
+                    var _profile = (context as CMSProfileModel);
+                    
                         <div>
-                             <a href="" @onclick="@(() => EditProfile(_profile))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Value_Edit_Text"]</a>                             
-                        </div>
-                    }
+                            <a href="" @onclick="@(() => EditProfile(_profile))" 
+                                @onclick:preventDefault class="btnEdit">@Localizer.Str["Value_Edit_Text"]</a>                             
+                        </div>                   
+                }
                 </Template>
             </GridColumn>
             <GridColumn HeaderText="" Width=100>
                 <Template>
                     @{
                         var _profile = (context as CMSProfileModel);
-                        <div>
-                             <a href="" @onclick="@(() => CopyProfile(_profile))" @onclick:preventDefault class="btnCopy">@Localizer.Str["Value_Copy_Text"]</a>                             
-                        </div>
+                        if (_profile.profileStatusID == 0 || _profile.profileStatusID == 1)
+                        {
+                            <div>
+                                 <a href="" @onclick="@(() => CopyProfile(_profile))" 
+                                    @onclick:preventDefault class="btnCopy">@Localizer.Str["Value_Copy_Text"]</a>                             
+                            </div>
+                        }
                     }
                 </Template>
             </GridColumn>
@@ -103,6 +120,58 @@
             </GridColumn>
         </GridColumns>
     </SfGrid>
+
+    @if (showlDeleted)
+    {
+        <div class="py-3"></div>        
+        <h4>@Localizer.Str["Profile_Delete_List"]</h4>
+        <div class="py-2"></div>
+
+        <SfGrid DataSource="@DeletedProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
+            <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
+            <GridPageSettings PageSizes="true" ></GridPageSettings>
+        
+            <GridColumns>
+                <GridColumn Field=@nameof(CMSProfileModel.profileID) HeaderText="@Localizer.Str["Profile_ProfileID"]" Width="80"></GridColumn>
+                <GridColumn Field=@nameof(CMSProfileModel.appName) HeaderText="@Localizer.Str["Profile_Platform"]" ></GridColumn>
+                <GridColumn Field=@nameof(CMSProfileModel.profileName) HeaderText="@Localizer.Str["Profile_ProfileName"]" ></GridColumn>            
+                <GridColumn Field=@nameof(CMSProfileModel.profileStatus) HeaderText="@Localizer.Str["Profile_ProfileStatus"]" >
+                     <Template>
+                     @{
+                        var _profile = (context as CMSProfileModel);
+                    
+                        <div style="color:darkgreen">@Localizer.Str["Profile_Status_" + _profile.profileStatusID.ToString()]</div>                        
+                     
+                    }
+                    </Template>
+                </GridColumn>
+                <GridColumn HeaderText="" Width=120></GridColumn>
+                <GridColumn HeaderText="" Width=100>
+                    <Template>
+                        @{
+                            var _profile = (context as CMSProfileModel);
+                            <div>
+                                 <a href="" @onclick="@(() => ShowProfile(_profile))" @onclick:preventDefault class="btnEdit">@Localizer.Str["Value_Edit_Text"]</a>                             
+                            </div>
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn HeaderText="" Width=100>
+                    <Template>
+                        @{
+                            var _profile = (context as CMSProfileModel);
+                            <div>
+                                 <a href="" @onclick="@(() => CopyProfile(_profile))" @onclick:preventDefault class="btnCopy">@Localizer.Str["Value_Copy_Text"]</a>                             
+                            </div>
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=100></GridColumn>
+            </GridColumns>
+        </SfGrid> 
+    }
+    
+
 }
 <div class="py-3">
     <UiMessageBox Data="Messages.List" />
@@ -125,10 +194,17 @@
     </EditProfilePopUp> 
 }
 
+@if (showViewProfilePopUp)
+{
+    <ViewProfilePopUp @bind-ShowModal="showViewProfilePopUp" 
+        ProfileVM="@ProfileVM">
+    </ViewProfilePopUp> 
+}
+
 @if (showStatusChangePopUp)
 {
     <StatusChangePopUp @bind-ShowModal="showStatusChangePopUp" 
-        CurrentProfile="@CurrentProfile" 
+        ProfileVM="@ProfileVM" 
         NewStatus = "@NewStatusName"
         OnDialogClosed=@LoadProfileList>
     </StatusChangePopUp> 
@@ -145,17 +221,30 @@
     protected UiMessages Messages { get; set; }
     protected List<CMSProfileModel> ProfileList { get; set; }
     protected List<CMSProfileModel> DeletedProfileList { get; set; }
+
     protected CMSProfileModel CurrentProfile { get; set; }
     protected string NewStatusName { get; set; }
     protected bool showAddProfilePopUp { get; set; }
     protected bool showEditProfilePopUp { get; set; }
+    protected bool showViewProfilePopUp { get; set; }
     protected bool showStatusChangePopUp { get; set; }
+    protected bool showlDeleted { get; set; }
     private int _loadingStatus;
+    private SfGrid<CMSProfileModel> DefaultGrid;
+    private int[] pageSizeList { get; set; }
+    private SfGridPosition currentGridPosition { get; set; }
+
+    private int currentPage = 1;
+    private bool repositionRequired;
+    private double selectedRow { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();       
         Messages = new UiMessages();
+        currentGridPosition = new SfGridPosition();
+        pageSizeList = new int[] {5, 10, 20, 50, 100 };
+
 
         await LoadProfileList();
     }
@@ -166,7 +255,8 @@
         _loadingStatus = 0;
         try
         {
-            ProfileList = await ProfileService.GetList(null, null);            
+            ProfileList = await ProfileService.GetList(null, null);           
+            DeletedProfileList = await ProfileService.GetDeleteList(null);
             _loadingStatus = 1;
         }
         catch (Exception ex)
@@ -194,12 +284,33 @@
         }  
     }
 
-    private void EditProfile(CMSProfileModel profile)
+    private async Task EditProfile(CMSProfileModel profile)
+    {
+        try
+        {
+            currentGridPosition.PageNr = DefaultGrid.PageSettings.CurrentPage;
+            currentGridPosition.RowIndex = await DefaultGrid.GetRowIndexByPrimaryKey(profile.profileID);
+            repositionRequired = true;
+
+
+            ProfileVM.LoadProfile(profile.profileID);
+            showEditProfilePopUp = true;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+        } 
+
+    }
+
+    private void ShowProfile(CMSProfileModel profile)
     {
         try
         {
             ProfileVM.LoadProfile(profile.profileID);
-            showEditProfilePopUp = true;
+            showViewProfilePopUp = true;
         }
         catch (Exception ex)
         {                        
@@ -225,10 +336,26 @@
         } 
     }
 
-    private void ChangeStatus(CMSProfileModel profile, string newStatus)
+    private async Task ChangeStatus(CMSProfileModel profile, string newStatus)
     {
-        CurrentProfile = profile;
+        currentGridPosition.PageNr = DefaultGrid.PageSettings.CurrentPage;
+        currentGridPosition.RowIndex = await DefaultGrid.GetRowIndexByPrimaryKey(profile.profileID);
+        repositionRequired = true;
+
+        ProfileVM.LoadProfile(profile.profileID);
         NewStatusName = newStatus;
         showStatusChangePopUp = true;
     }
+
+    private async Task DataBoundHandler(object args)
+    {       
+        if(repositionRequired)
+        {
+            await DefaultGrid.GoToPage(currentGridPosition.PageNr);
+            await DefaultGrid.SelectRow(currentGridPosition.RowIndex);
+            repositionRequired = false;
+        }
+        
+    }
+
 }

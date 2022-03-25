@@ -6,7 +6,7 @@ namespace HCMDataAccess
 {
     public interface ISettingsData
     {
-        Task<int> ChangeSettings(int IssuedByID, string SmtpServer, int SmtpPort, bool isAuth, string SmtpUser, string SmtpPwd);
-        Task<List<SettingsModel>> GetSettings();
+        Task<int> ChangeSettings(int IssuedByID, string SmtpServer, string SmtpPort, bool isAuth, string SmtpUser, string SmtpPwd);
+        Task<SettingsModel> GetSettings();
     }
 }

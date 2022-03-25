@@ -39,25 +39,7 @@
                                 <ContentTemplate>
                                     <ProfileOverviewTab ViewModel="ProfileVM"></ProfileOverviewTab>
                                 </ContentTemplate>
-                            </TabItem>
-                            <TabItem >
-                                <HeaderTemplate>@Localizer.Str["Profile_Step_Allgemeine"]</HeaderTemplate>
-                                <ContentTemplate>
-                                    <ProfileGeneralTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileGeneralTab>
-                                </ContentTemplate>
-                            </TabItem>
-                            <TabItem >
-                                <HeaderTemplate>@Localizer.Str["Profile_Step_Teilnehmen"]</HeaderTemplate>
-                                <ContentTemplate>
-                                    <ProfileContactsTab ViewModel="ProfileVM" OnFormSaved="ContactSaved"></ProfileContactsTab>
-                                </ContentTemplate>
-                            </TabItem>
-                            <TabItem >
-                                <HeaderTemplate>@Localizer.Str["Profile_Step_Escalation"]</HeaderTemplate>
-                                <ContentTemplate>
-                                    <ProfileEscalationTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileEscalationTab>
-                                </ContentTemplate>
-                            </TabItem>                            
+                            </TabItem>                           
                         </TabItems>
                     </SfTab>
 
@@ -139,16 +121,6 @@
         Messages.AddInfo(@Localizer.Str["Form_Saved"]);
     }
 
-    protected async Task ContactSaved()
-    {        
-        if(ProfileVM.CurrentProfile.profileStatusID == 2)
-        {
-             await ProfileVM.StatusUpdate(0, CurrentContactId);
-        }
-
-        FormSaved();
-    }
-    
     protected void OnTabChanged(int TabId)
     {
         Messages.List.Clear();

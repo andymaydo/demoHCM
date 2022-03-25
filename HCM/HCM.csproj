@@ -39,6 +39,7 @@
     <Content Remove="Pages\admin\profiles\ProfileStep1.razor" />
     <Content Remove="Pages\admin\profiles\ProfileStep2.razor" />
     <Content Remove="Pages\admin\profiles\ProfileStep3.razor" />
+    <Content Remove="Pages\admin\profiles\Profiles_.razor" />
     <Content Remove="Pages\admin\profiles\ProfileView.razor" />
     <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />

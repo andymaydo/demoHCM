@@ -2615,6 +2615,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to gelöschte Profile ausblenden.
+        /// </summary>
+        public static string Profile_DeleteProfile_hide {
+            get {
+                return ResourceManager.GetString("Profile_DeleteProfile_hide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beschreibung.
         /// </summary>
         public static string Profile_Description {
@@ -2687,38 +2696,38 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to aktiviert.
-        /// </summary>
-        public static string Profile_Status_Active {
-            get {
-                return ResourceManager.GetString("Profile_Status_Active", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to gelöscht.
         /// </summary>
-        public static string Profile_Status_Delete {
+        public static string Profile_Status__1 {
             get {
-                return ResourceManager.GetString("Profile_Status_Delete", resourceCulture);
+                return ResourceManager.GetString("Profile_Status_-1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to nicht aktiviert.
         /// </summary>
-        public static string Profile_Status_InActive {
+        public static string Profile_Status_0 {
             get {
-                return ResourceManager.GetString("Profile_Status_InActive", resourceCulture);
+                return ResourceManager.GetString("Profile_Status_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to aktiviert.
+        /// </summary>
+        public static string Profile_Status_1 {
+            get {
+                return ResourceManager.GetString("Profile_Status_1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to unvollständig.
         /// </summary>
-        public static string Profile_Status_Incomplete {
+        public static string Profile_Status_2 {
             get {
-                return ResourceManager.GetString("Profile_Status_Incomplete", resourceCulture);
+                return ResourceManager.GetString("Profile_Status_2", resourceCulture);
             }
         }
         

@@ -1,0 +1,25 @@
+﻿@page "/admin/settings"
+@attribute [Authorize]
+
+@using AutoMapper
+@using Syncfusion.Blazor.Popups
+@using HCMDataAccess;
+@using HCMModels;
+
+
+<h3>@Localizer.Str["Administration_Settings_Title"]</h3>
+<div class="blue_bg"></div>
+
+<div class="row">
+    <div class="col-md-6">
+        <SettingsSMTPPan></SettingsSMTPPan>
+    </div>
+</div>
+
+
+
+@code {
+    
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+}

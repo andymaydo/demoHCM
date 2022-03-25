@@ -20,7 +20,7 @@ namespace HCMDataAccess
             _db = db;
         }
 
-        public async Task<List<SettingsModel>> GetSettings()
+        public async Task<SettingsModel> GetSettings()
         {
             var procedure = "AppSettings_Get";
             var _params = new DynamicParameters();
@@ -33,7 +33,7 @@ namespace HCMDataAccess
                 {
                     var result = await conn.QueryAsync<SettingsModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    List<SettingsModel> _SettingsModel = result.ToList<SettingsModel>();
+                    SettingsModel _SettingsModel = result.FirstOrDefault();
 
                     return _SettingsModel;
                 }
@@ -44,13 +44,13 @@ namespace HCMDataAccess
             }
         }
 
-        public async Task<int> ChangeSettings(int IssuedByID, string SmtpServer, int SmtpPort, bool isAuth, string SmtpUser, string SmtpPwd)
+        public async Task<int> ChangeSettings(int IssuedByID, string SmtpServer, string SmtpPort, bool isAuth, string SmtpUser, string SmtpPwd)
         {
             var procedure = "pAppSettings_UpdateSMTP";
             var _params = new DynamicParameters();
 
             _params.Add(name: "@SMTPServer", dbType: DbType.String, direction: ParameterDirection.Input, value: SmtpServer);
-            _params.Add(name: "@SMTPPort", dbType: DbType.String, direction: ParameterDirection.Input, value: SmtpPort.ToString());
+            _params.Add(name: "@SMTPPort", dbType: DbType.String, direction: ParameterDirection.Input, value: SmtpPort);
             _params.Add(name: "@SMTPAuth", dbType: DbType.Boolean, direction: ParameterDirection.Input, value: isAuth);
             _params.Add(name: "@SMTPUser", dbType: DbType.String, direction: ParameterDirection.Input, value: SmtpUser);
             _params.Add(name: "@SMTPPass", dbType: DbType.String, direction: ParameterDirection.Input, value: SmtpPwd);
@@ -58,8 +58,7 @@ namespace HCMDataAccess
 
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            try
-            {
+            
                 using (var conn = new SqlConnection(_db.GetConnStrName()))
                 {
 
@@ -68,11 +67,7 @@ namespace HCMDataAccess
                     return ReturnValue;
 
                 }
-            }
-            catch
-            {
-                return -1;
-            }
+            
         }
     }
 }
