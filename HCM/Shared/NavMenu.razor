@@ -4,30 +4,33 @@
 
 
 
-<nav class="navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 fixed-top">
+<nav class="navbar-expand-md  navbar-dark bg-dark border-bottom box-shadow mb-3 fixed-top">
     <div class="container-fluid">
-
+         
         <div class="col-sm-12">
-            <img alt="SAPPER H.C.M." src="/images/sapper_logo.jpg">
+            <a class="navbar-toggler" @onclick="ToggleNavMenu" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+           <a class="navbar-brand" href="/">
+                <img alt="SAPPER H.C.M." src="/images/SAPPER-CLOUD_logo.png" width="200">
+            </a>            
         </div>
 
         <div class="col-sm-12">
-            <button class="navbar-toggler" @onclick="ToggleNavMenu" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+            
+            <div class="@NavMenuCssClass" >
+                
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
+                    <li class="nav-item" @onclick="ToggleNavMenu">
                         <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Home"]</NavLink>                            
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" @onclick="ToggleNavMenu">
                         <NavLink class="nav-link" href="/Cases"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_MyCases"]</NavLink>                            
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" @onclick="ToggleNavMenu">
                         <NavLink class="nav-link" href="/Reports"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Reports"]</NavLink>                            
                     </li>
-
 
                     <li class="nav-item">
                         <NavLink class="nav-link" href="admin/" @onclick:preventDefault @onmousedown="() => expandAdmin = !expandAdmin"  Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Administration"]</NavLink>                            
@@ -41,19 +44,19 @@
         @if (expandAdmin)
         {
             <div class="col-sm-12">
-               
+               <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="@(NewLocation.Contains("admin/profiles") ? "nav-item-set" : "nav-item")">
-                            <NavLink class="nav-link text-light" href="admin/profiles/ProfileList" Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Profiles"]</NavLink>
+                            <NavLink class="nav-link" href="admin/profiles/ProfileList" Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Profiles"]</NavLink>
                         </li>
                         <li class="@(NewLocation.Contains("admin/users/UserList") ? "nav-item-set" : "nav-item")">
-                            <NavLink class="nav-link text-light" href="admin/users/UserList"  Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Users"]</NavLink>
+                            <NavLink class="nav-link" href="admin/users/UserList"  Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Users"]</NavLink>
                         </li>
                         <li class="@(NewLocation.Contains("admin/settings") ? "nav-item-set" : "nav-item")">
-                            <NavLink class="nav-link text-light" href="admin/settings"  Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Settings"]</NavLink>
+                            <NavLink class="nav-link" href="admin/settings"  Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Settings"]</NavLink>
                         </li>
                     </ul>
-               
+               </div>
             </div>
 
         }
@@ -67,7 +70,7 @@
 
 @code {
 
-    bool collapseNavMenu = true;
+    bool collapseNavMenu = false;
     bool expandAdmin = false;
 
     string baseMenuClass = " navbar-collapse d-xl-inline-flex ";

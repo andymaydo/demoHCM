@@ -51,6 +51,7 @@
     <Content Remove="Shared\ChooseLanguage.razor" />
     <Content Remove="Shared\SurveyPrompt.razor" />
     <Content Remove="Shared\UserStatus.razor" />
+    <Content Remove="wwwroot\images\bg-title.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -107,7 +108,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Docs\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\xsl\" />
   </ItemGroup>
 

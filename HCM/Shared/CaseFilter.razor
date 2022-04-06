@@ -13,93 +13,93 @@
 {
     <EditForm Model="@_localModel" OnValidSubmit="ValidSubmit">
 
-        <div class="container-fluid">
+        <div class="container-fluid mt-3 itemDetail e-small">
             <div class="row row_padding">
-                <div class="col-sm-5 form-inline control_padding">
-                    <label class="col-sm-3  control_padding">@Localizer.Str["Label_Filter_Case_Created"]</label>
-                    <div class="col-sm-4 control_padding">
-                        <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.CreateFromDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>
+                <div class="col-md-5 form-inline ">
+                    <div class="col-md-3 control_padding">@Localizer.Str["Label_Filter_Case_Created"]</div>
+                    <div class="col-md-4 control_padding">
+                        <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.CreateFromDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>                        
                     </div>
-
-                    <label class="col-sm-1 control_padding">-</label>
-                    <div class="col-sm-4 control_padding">
+                    <div class="col-md-1 text-md-center control_padding">-</div>
+                    <div class="col-md-4 control_padding">
                         <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.CreateToDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>
                     </div>
                 </div>
-                <div class="col-sm-3 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_Case_Platform"]</label>
-                    <div class="col-sm-8 control_padding">
+                <div class="col-md-4 form-inline ">
+                    <div class="col-md-4 control_padding">@Localizer.Str["Label_Filter_Case_Platform"]</div>
+                    <div class="col-md-8 control_padding">
                         <SfComboBox TValue="int" TItem="FiltersModels.GateModel" @bind-Value="_localModel.GateId" ShowClearButton="false" DataSource="@GateList">                        
                             <ComboBoxFieldSettings Text="appName" Value="appID"></ComboBoxFieldSettings>
                         </SfComboBox>
                     </div>
                 </div>
-                <div class="col-sm-4 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_Case_CaseID"]</label>
-                    <div class="col-sm-8 control_padding">
+                <div class="col-md-3 form-inline ">
+                    <div class="col-md-5 control_padding">@Localizer.Str["Label_Filter_Case_CaseID"]</div>
+                    <div class="col-md-7 control_padding">
                         <SfNumericTextBox ShowSpinButton="false" ShowClearButton="true" Format="########"   Placeholder="@Localizer.Str["Label_Filter_Case_CaseID"]" @bind-Value="_localModel.CaseId"></SfNumericTextBox>
                     </div>
                 </div>
             </div>
 
             <div class="row row_padding">
-                <div class="col-sm-5 form-inline control_padding">
-                    <label class="col-sm-3 control_padding">@Localizer.Str["Label_Filter_Case_Modify"]</label>
-                    <div class="col-sm-4 control_padding">
+                <div class="col-md-5 form-inline ">
+                    <div class="col-md-3 control_padding">@Localizer.Str["Label_Filter_Case_Modify"]</div>
+                    <div class="col-md-4 control_padding">
                         <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.ModifyFromDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>
                     </div>
 
-                    <label class="col-sm-1 control_padding">-</label>
-                    <div class="col-sm-4 control_padding">
+                    <div class="col-md-1 text-md-center control_padding">-</div>
+                    <div class="col-md-4 control_padding">
                         <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.ModifyToDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>
                     </div>
                 </div>
-                <div class="col-sm-3 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_ProfileID"]</label>
-                    <div class="col-sm-8 control_padding">
+                <div class="col-md-4 form-inline ">
+                    <div class="col-md-4 control_padding">@Localizer.Str["Label_Filter_ProfileID"]</div>
+                    <div class="col-md-8 control_padding">
                         <SfComboBox TValue="int?" TItem="FiltersModels.ProfileModel" @bind-Value='_localModel.ProfilId'  Placeholder="@Localizer.Str["Value_All_Text"]" DataSource="@ProfileList">
                             <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
                         </SfComboBox>
                     </div>
                 </div>
-                <div class="col-sm-4 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_CustomerName"]</label>
-                    <div class="col-sm-8 control_padding">
+                <div class="col-md-3 form-inline ">
+                    <div class="col-md-5 control_padding">@Localizer.Str["Label_Filter_CustomerName"]</div>
+                    <div class="col-md-7 control_padding">
                         <SfTextBox Placeholder="@Localizer.Str["Label_Filter_CustomerName"]" @bind-Value="_localModel.SearchedName" ></SfTextBox>
                     </div>
                 </div>
             </div>
-
+            <!--
             <div class="row row_padding">
-                <div class="col-sm-5 form-inline control_padding">
-                    @*<label class="col-sm-3 control_padding">&nbsp;</label>
-                    <div class="col-sm-4 control_padding">
+                <div class="col-md-5 form-inline ">
+                    @*<div class="col-md-3 control_padding">&nbsp;</div>
+                    <div class="col-md-4 control_padding">
                         <SfCheckBox @bind-Checked="OnlyActiveIsChecked" Label="@Localizer.Str["Label_Filter_Case_OnlyActive"]" TChecked="bool" Disabled></SfCheckBox>
                     </div>*@
                 </div>
 
-                <div class="col-sm-3 form-inline control_padding">
-                    <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_Case_Category"]</label>
-                    <div class="col-sm-8 control_padding">
+                <div class="col-md-4 form-inline ">
+                    <div class="col-md-4 control_padding">@Localizer.Str["Label_Filter_Case_Category"]</div>
+                    <div class="col-md-8 control_padding">
                         <SfComboBox TValue="int?" TItem="FiltersModels.CategoryModel"  @bind-Value='_localModel.CategoryId' Placeholder="@Localizer.Str["Value_All_Text"]" DataSource="@CategoryList">
                             <ComboBoxFieldSettings Text="CaseType" Value="CaseTypeID"></ComboBoxFieldSettings>
                         </SfComboBox>
                     </div>
                 </div>
-                <div class="col-sm-4 control_padding">
+                <div class="col-md-3 ">
 
                 </div>
             </div>
+            -->
 
             <div class="row row_padding">
-                <div class="col-sm-5 form-inline control_padding">
+                <div class="col-md-5 form-inline ">
 
                 </div>
                 @if (_localModel.ShowResult)
                 {
-                  <div class="col-sm-3 form-inline control_padding">
-                        <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_Case_Result"]</label>
-                        <div class="col-sm-8 control_padding">
+                  <div class="col-md-4 form-inline ">
+                        <div class="col-md-4 control_padding">@Localizer.Str["Label_Filter_Case_Result"]</div>
+                        <div class="col-md-8 control_padding">
                             <SfComboBox TValue="int?" TItem="FiltersModels.CaseResultModel"  @bind-Value='_localModel.ResultId' 
                                 Placeholder="@Localizer.Str["Value_All_Text"]" Enabled="!_localModel.ShowOnlyOpenCases" DataSource="@ResultList">
                                 <ComboBoxFieldSettings Text="CaseResult" Value="CaseResultID"></ComboBoxFieldSettings>
@@ -108,20 +108,20 @@
                     </div>  
                 }
                 
-                <div class="col-sm-4 control_padding">
+                <div class="col-md-3 ">
 
                 </div>
             </div>
 
             <div class="row row_padding">
-                <div class="col-sm-5 form-inline control_padding">
+                <div class="col-md-5 form-inline ">
 
                 </div>
                 @if (_localModel.ShowStatus)
                 {
-                    <div class="col-sm-3 form-inline control_padding">
-                        <label class="col-sm-4 control_padding">@Localizer.Str["Label_Filter_Case_Status"]</label>
-                        <div class="col-sm-8 control_padding">
+                    <div class="col-md-4 form-inline ">
+                        <div class="col-md-4 control_padding">@Localizer.Str["Label_Filter_Case_Status"]</div>
+                        <div class="col-md-8 control_padding">
                             <SfComboBox TValue="int?" TItem="FiltersModels.CaseStatusModel"  @bind-Value='_localModel.StatusId' Placeholder="@Localizer.Str["Value_All_Text"]" DataSource="@StatusList">
                                 <ComboBoxFieldSettings Text="CaseStatus" Value="CaseStatusID"></ComboBoxFieldSettings>
                             </SfComboBox>
@@ -129,7 +129,7 @@
                     </div>  
                 }
                 
-                <div class="col-sm-4 control_padding">
+                <div class="col-md-3 ">
 
                 </div>
             </div>
@@ -138,9 +138,13 @@
         <div class="bottom_blue_bg"></div>
 
         <div class="row py-3">
-            <div class="col-sm">
+            <div class="col-md">
+                <!--
                 <SfButton Type="submit" CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer.Str["Button_Filter"]" ></SfButton>
                 <SfButton Type="button" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Button_Filter_Reset"]"  @onclick="ClearFilter"></SfButton>
+                -->
+                <button type="submit" class="btn btn-main btn-sm" >@Localizer.Str["Button_Filter"]</button>
+                <button type="button" class="btn btn-secondary btn-sm" @onclick="ClearFilter">@Localizer.Str["Button_Filter_Reset"]</button>
             </div>
         </div>
 
