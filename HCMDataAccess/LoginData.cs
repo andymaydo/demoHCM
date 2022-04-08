@@ -23,8 +23,8 @@ namespace HCMDataAccess
         {
             LoginResponse _LoginResponse = new LoginResponse();
 
-            try
-            {
+            //try
+            //{
                 var procedure = "USERS_LOGIN";
                 var _params = new DynamicParameters();
 
@@ -62,16 +62,16 @@ namespace HCMDataAccess
 
                     return _LoginResponse;
                 }
-            }
-            catch (Exception ex)
-            {
-                _LoginResponse.Success = false;
-                _LoginResponse.ErrCode = 100;
-                _LoginResponse.ErrDescr = ex.Message;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _LoginResponse.Success = false;
+            //    _LoginResponse.ErrCode = 100;
+            //    _LoginResponse.ErrDescr = ex.Message;
                 
-            }
+            //}
 
-            return _LoginResponse;
+            //return _LoginResponse;
         }
     }
 }

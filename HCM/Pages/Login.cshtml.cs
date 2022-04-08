@@ -56,8 +56,8 @@ namespace HCM.Pages
         private async Task<bool> SignInAsync(string userName, string password, string culture)
         {
             bool res;
-            try
-            {
+            //try
+            //{
                 var LoginResponse = await _loginData.Login(userName, password);
                 if (LoginResponse.Success)
                 {
@@ -96,14 +96,14 @@ namespace HCM.Pages
                     res = false;
                 }
                 
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                _logger.LogDebug(ex.StackTrace);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex.Message);
+            //    _logger.LogDebug(ex.StackTrace);
 
-                res = false;
-            }
+            //    res = false;
+            //}
             return res;
         }       
 
@@ -162,9 +162,11 @@ namespace HCM.Pages
                         return Page();
                     }
                 }
-               catch(Exception e)
+                catch(Exception e)
                 {
-                    ModelState.AddModelError(string.Empty, e.Message);
+                    ModelState.AddModelError(string.Empty, @_commonLocalizer.Str["ServerError"]);
+                    _logger.LogError(e.Message);
+                    _logger.LogDebug(e.StackTrace);
                     return Page();
                 }
             }

@@ -902,10 +902,10 @@ it - after verification of the hit - in the menu
     <value>Language</value>
   </data>
   <data name="Login_LabelPassword" xml:space="preserve">
-    <value>Password:</value>
+    <value>Password</value>
   </data>
   <data name="Login_LabelUserName" xml:space="preserve">
-    <value>User:</value>
+    <value>User</value>
   </data>
   <data name="Login_RememberMeText" xml:space="preserve">
     <value>Remember my access data</value>
@@ -1134,6 +1134,9 @@ it - after verification of the hit - in the menu
   </data>
   <data name="Reports_Title" xml:space="preserve">
     <value>Reports</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Server Error!</value>
   </data>
   <data name="SMTP_1" xml:space="preserve">
     <value>SMTP Configuration</value>

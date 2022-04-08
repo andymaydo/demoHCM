@@ -2381,7 +2381,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort:.
+        ///   Looks up a localized string similar to Passwort.
         /// </summary>
         public static string Login_LabelPassword {
             get {
@@ -2390,7 +2390,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzer:.
+        ///   Looks up a localized string similar to Benutzer.
         /// </summary>
         public static string Login_LabelUserName {
             get {
@@ -3097,6 +3097,15 @@ namespace HCM.Resources {
         public static string Reports_Title {
             get {
                 return ResourceManager.GetString("Reports_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serverfehler!.
+        /// </summary>
+        public static string ServerError {
+            get {
+                return ResourceManager.GetString("ServerError", resourceCulture);
             }
         }
         

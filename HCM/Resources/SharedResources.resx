@@ -902,10 +902,10 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>Sprache</value>
   </data>
   <data name="Login_LabelPassword" xml:space="preserve">
-    <value>Passwort:</value>
+    <value>Passwort</value>
   </data>
   <data name="Login_LabelUserName" xml:space="preserve">
-    <value>Benutzer:</value>
+    <value>Benutzer</value>
   </data>
   <data name="Login_RememberMeText" xml:space="preserve">
     <value>meine Zugangsdaten speichern</value>
@@ -1134,6 +1134,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   </data>
   <data name="Reports_Title" xml:space="preserve">
     <value>Berichte</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Serverfehler!</value>
   </data>
   <data name="SMTP_1" xml:space="preserve">
     <value>SMTP Einstellungen</value>

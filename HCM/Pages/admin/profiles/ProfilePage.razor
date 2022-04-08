@@ -14,7 +14,7 @@
 <h3>@Localizer.Str["Profile_List_Title"]</h3>
 
 <div class="blue_bg"></div>
-<h4>@Localizer.Str["Profile_List"]</h4>
+<h5>@Localizer.Str["Profile_List"]</h5>
 <a href="" @onclick="@(() => showlDeleted = !showlDeleted)" @onclick:preventDefault class="btnEdit">
     @if (showlDeleted)
     {
@@ -124,7 +124,7 @@
     @if (showlDeleted)
     {
         <div class="py-3"></div>        
-        <h4>@Localizer.Str["Profile_Delete_List"]</h4>
+        <h5>@Localizer.Str["Profile_Delete_List"]</h5>
         <div class="py-2"></div>
 
         <SfGrid DataSource="@DeletedProfileList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
