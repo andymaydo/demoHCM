@@ -11,35 +11,35 @@
 {
     <div class="container-fluid">
         <div class="row row_padding">
-            <div class="col-sm-6 control_padding">
-                <div class="col-sm-12 control_padding">
-                    <label class="col-sm-12 text-left ReportHeader">@Localizer.Str["Label_Report_Status_Group_Title"]</label>
+            <div class="col-md-6 control_padding">
+                <div class="col-md-12 control_padding">
+                    <label class="col-md-12 text-left ReportHeader">@Localizer.Str["Label_Report_Status_Group_Title"]</label>
                 </div>
                 @foreach (CaseModel r in CaseByStatusList)
                 {
-                    <div class="col-sm-12 control_padding form-inline">
-                        <div class="col-sm-6 control_padding">
-                            <span class="col-sm-12 text-left ReportItem">@Localizer.Str["Case_Status_" + r.CaseStatusID]</span>
+                    <div class="col-md-12 control_padding form-inline">
+                        <div class="col-md-6 control_padding">
+                            <span class="col-md-12 text-left ReportItem">@Localizer.Str["Case_Status_" + r.CaseStatusID]</span>
                         </div>
-                        <div class="col-sm-6 control_padding text-right">
-                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnStatusClicked.InvokeAsync(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        <div class="col-md-6 control_padding text-right">
+                            <span class="col-md-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnStatusClicked.InvokeAsync(r.CaseStatusID))" @onclick:preventDefault>@r.CaseCount</a></span>
                         </div>
                     </div>
                 }
             </div>
 
-            <div class="col-sm-6 control_padding">
-                <div class="col-sm-12 control_padding">
-                    <label class="col-sm-12 text-left ReportHeader">@Localizer.Str["Label_Report_Result_Group_Title"]</label>
+            <div class="col-md-6 control_padding">
+                <div class="col-md-12 control_padding">
+                    <label class="col-md-12 text-left ReportHeader">@Localizer.Str["Label_Report_Result_Group_Title"]</label>
                 </div>
                 @foreach (CaseModel r in CaseByResultList)
                 {
-                    <div class="col-sm-12 control_padding form-inline">
-                        <div class="col-sm-6 control_padding">
-                            <span class="col-sm-12 text-left ReportItem">@Localizer.Str["Case_Result_" + r.CaseResultID]</span>
+                    <div class="col-md-12 control_padding form-inline">
+                        <div class="col-md-6 control_padding">
+                            <span class="col-md-12 text-left ReportItem">@Localizer.Str["Case_Result_" + r.CaseResultID]</span>
                         </div>
-                        <div class="col-sm-6 control_padding text-right">
-                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnResultClicked.InvokeAsync(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
+                        <div class="col-md-6 control_padding text-right">
+                            <span class="col-md-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnResultClicked.InvokeAsync(r.CaseResultID))" @onclick:preventDefault>@r.CaseCount</a></span>
                         </div>
                     </div>
                 }
@@ -48,24 +48,24 @@
         </div>
 
         <div class="row row_padding">
-            <div class="col-sm-6 control_padding">
-                <div class="col-sm-12 control_padding">
-                    <label class="col-sm-12 text-left ReportHeader">@Localizer.Str["Label_Report_Alias_Group_Title"]</label>
+            <div class="col-md-6 control_padding">
+                <div class="col-md-12 control_padding">
+                    <label class="col-md-12 text-left ReportHeader">@Localizer.Str["Label_Report_Alias_Group_Title"]</label>
                 </div>
                 @foreach (CaseModel r in CaseByAliasList)
                 {
-                    <div class="col-sm-12 control_padding form-inline">
-                        <div class="col-sm-6 control_padding">
-                            <span class="col-sm-12 text-left ReportItem">@Localizer.Str["Label_Report_Alias_Group_Count"]</span>
+                    <div class="col-md-12 control_padding form-inline">
+                        <div class="col-md-6 control_padding">
+                            <span class="col-md-12 text-left ReportItem">@Localizer.Str["Label_Report_Alias_Group_Count"]</span>
                         </div>
-                        <div class="col-sm-6 control_padding text-right">
-                            <span class="col-sm-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnAliasClicked.InvokeAsync())" @onclick:preventDefault>@r.CaseCount</a></span>
+                        <div class="col-md-6 control_padding text-right">
+                            <span class="col-md-12 ReportItemNormal"><a href="" class="ReportItemNormal" @onclick="@(() => OnAliasClicked.InvokeAsync())" @onclick:preventDefault>@r.CaseCount</a></span>
                         </div>
                     </div>
                 }
             </div>
 
-            <div class="col-sm-6 control_padding">
+            <div class="col-md-6 control_padding">
                 &nbsp;
             </div>
         </div>

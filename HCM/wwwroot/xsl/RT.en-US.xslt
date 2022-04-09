@@ -245,7 +245,7 @@ font-family: Helvetica,Verdana, Arial;
 		
 	
 	
-	<table class="table table-striped col-sm-12">
+	<table class="table table-striped col-md-12">
     <thead>
 			<tr>
 				<th scope="col" align="center">%</th>

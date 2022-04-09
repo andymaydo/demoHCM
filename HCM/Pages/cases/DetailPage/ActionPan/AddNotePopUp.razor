@@ -32,7 +32,7 @@
                      <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                         <DataAnnotationsValidator />
                         <div class="row">
-                            <div class="col-sm-7">        
+                            <div class="col-md-7">        
                                 <div class="form-group col-12">
                                     <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_AddMessage_Subject"]</label>
                                     <div>@FormModel.CaseSubject</div>
@@ -51,9 +51,9 @@
                                     <FileUploadPan CaseId=CaseModel.CaseID CaseDocs=@CaseDocs></FileUploadPan>
                                 </div>   
                             </div>
-                            <div class="col-sm-1">                           
+                            <div class="col-md-1">                           
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
                                 <h5 class="tLabel">@Localizer.Str["Cases_AddMessage_NotifyUsers"]</h5>
                                 <div class="top_blue_bg_thin"></div>
 

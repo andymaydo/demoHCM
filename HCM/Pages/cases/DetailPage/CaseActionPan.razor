@@ -2,30 +2,26 @@
 @using HCMApi.Models
 @using HCM.Pages.cases.DetailPage.ActionPan
 
-    <h5 class="tLabel">@Localizer.Str["Cases_Detail_Actions"]</h5>
-    <div class="top_blue_bg"></div>
+    <div class="tLabel">@Localizer.Str["Cases_Detail_Actions"]</div>
+    <div class="top_blue_bg mb-2"></div>
 
-    <div class="row pb-5">
-        <div class="col-sm-12 ">
-            <a href="" @onclick="@(() => showAddNotePopUp = true)" @onclick:preventDefault class="btnAddMessage">@Localizer.Str["Cases_Detail_Action_AddMessage"]</a>
+    <div class="row pb-5 g-2">
+        <div class="col-lg-12">
+            <a href="" @onclick="@(() => showAddNotePopUp = true)" @onclick:preventDefault><span class="oi oi-tag"></span> @Localizer.Str["Cases_Detail_Action_AddMessage"]</a>
         </div>
-        <div class="col-sm-12 ">
-            <a href="" @onclick="@(() => showAddParticipantPopUp = true)" @onclick:preventDefault class="btnAddUser">@Localizer.Str["Cases_Detail_Action_AddUser"]</a>
+        <div class="col-lg-12">
+            <a href="" @onclick="@(() => showAddParticipantPopUp = true)" @onclick:preventDefault><span class="oi oi-person"></span> @Localizer.Str["Cases_Detail_Action_AddUser"]</a>
         </div>
 
-        @if (CaseRole == "Moderator" || CaseRole == "AliasManager")
-        {
-            <div class="col-sm-12 ">
-                <a href="" @onclick="@(() => showChangeStatusPopUp = true)" @onclick:preventDefault class="btnUpdate">@Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
-            </div>
-        }
-
-        @if (CaseRole == "AliasManager")
-        {
-            <div class="col-sm-12 ">
-                <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault class="btnAddAlias">@Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
-            </div>
-        }
+       
+        <div class="col-lg-12">
+            <a href="" @onclick="@(() => showChangeStatusPopUp = true)" @onclick:preventDefault><span class="oi oi-wrench"></span> @Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
+        </div>
+       
+        <div class="col-lg-12">
+            <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault><span class="oi oi-task"></span> @Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
+        </div>
+       
     </div>
     
     @if (showAddNotePopUp)

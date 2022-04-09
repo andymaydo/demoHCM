@@ -4,21 +4,21 @@
 
 @if(Source != null)
 {
-    <div class="container-fluid mb-5">
+    <div class="container-fluid mb-5 border border-1 border-primlight-05 bg-primlight-01">
         
         @*event header*@ 
         <div class="row mt-3">
             <div class="col-6 tLabel2">
                 @Localizer.Str["event_" + Source.eventID?.Replace(".", "_")]
             </div>
-            <div class="col-6 itemDetail text-right">
+            <div class="col-6 itemDetail text-end">
                 @Source.CreateDate
             </div>
          </div>
          <div class="col-12 top_blue_bg_thin"></div>
 
          <div class="row">
-            <div class="col-12 itemDetail text-right">
+            <div class="col-12 itemDetail text-en">
                 @Source.ContactName
             </div>
         </div>

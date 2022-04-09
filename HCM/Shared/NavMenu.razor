@@ -4,10 +4,10 @@
 
 
 
-<nav class="navbar-expand-md  navbar-dark bg-dark border-bottom box-shadow mb-3 fixed-top">
+<nav class="navbar-expand-md  navbar-dark bg-primdark border-bottom box-shadow mb-3 fixed-top">
     <div class="container-fluid">
          
-        <div class="col-sm-12">
+        <div class="col-md-12">
             <a class="navbar-toggler" @onclick="ToggleNavMenu" type="button">
                 <span class="navbar-toggler-icon"></span>
             </a>
@@ -16,7 +16,7 @@
             </a>            
         </div>
 
-        <div class="col-sm-12">
+        <div class="col-md-12">
             
             <div class="@NavMenuCssClass" >
                 
@@ -43,7 +43,7 @@
 
         @if (expandAdmin)
         {
-            <div class="col-sm-12">
+            <div class="col-md-12">
                <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="@(NewLocation.Contains("admin/profiles") ? "nav-item-set" : "nav-item")">
@@ -60,7 +60,7 @@
             </div>
 
         }
-        <div class="col-sm-12 text-right">
+        <div class="col-md-12 text-right">
             <LoginDisplay />
         </div>
            

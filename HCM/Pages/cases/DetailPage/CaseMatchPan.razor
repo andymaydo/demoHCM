@@ -1,15 +1,16 @@
 ﻿
     
         
-    <h5 class="tLabel">@Localizer.Str["Cases_Detail_Label_AttachInformation"]</h5>
+    <div class="tLabel">@Localizer.Str["Cases_Detail_Label_AttachInformation"]</div>
     <div class="top_blue_bg"></div>
 
     <div class="row">
-        <div class="col-sm-12 itemDetail">@CaseCustomerName</div>
+        <div class="col-md-12 itemDetail">@CaseCustomerName</div>
             
-        <div class="col-sm-12 itemDetail">
-            <a href="" @onclick="@(() => OnShowMatch.InvokeAsync())" @onclick:preventDefault class="btnShowMatch">
-                @Localizer.Str["Cases_Detail_Label_MatchXml"]</a>
+        <div class="col-md-12 itemDetail">
+            
+            <a href="" @onclick="@(() => OnShowMatch.InvokeAsync())" @onclick:preventDefault >
+                <span class="oi oi-spreadsheet"></span> @Localizer.Str["Cases_Detail_Label_MatchXml"]</a>
         </div>
     </div>
     
