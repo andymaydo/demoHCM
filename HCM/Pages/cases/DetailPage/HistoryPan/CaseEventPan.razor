@@ -2,10 +2,10 @@
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
 
-@if(Source != null)
+@if (Source != null)
 {
     <div class="container-fluid mb-5 border border-1 border-primlight-05 bg-primlight-01">
-        
+
         @*event header*@ 
         <div class="row mt-3">
             <div class="col-6 tLabel2">
@@ -14,40 +14,47 @@
             <div class="col-6 itemDetail text-end">
                 @Source.CreateDate
             </div>
-         </div>
-         <div class="col-12 top_blue_bg_thin"></div>
+        </div>
+        <div class="col-12 top_blue_bg_thin"></div>
 
-         <div class="row">
+        <div class="row">
             <div class="col-12 itemDetail text-en">
                 @Source.ContactName
             </div>
         </div>
-        
+
         <div class="container-fluid">
             @*event text*@
-            <div class="row col-12  itemDetail my-3">
-                @Source.CaseEventText?.Replace("\n", "<br>")
+            <div class="row col-12 itemDetail my-3 wraptxt">
+                @*@Source.CaseEventText?.Replace("\n", "<br>")*@
+                @Source.CaseEventText;
             </div>
 
             @*notification mail list*@
             <div class="my-3">
                 <CaseContactPan Source="@NotifyContacts" ShowStriped="true" ShowEmail="true" Title="@Localizer.Str["Cases_Detail_History_NotifyContact"]"></CaseContactPan>
             </div>
-            
+
 
             @*attached doc list*@
-            <div class="my-3">
-                <CaseEventDocList XmlDocList="@Source.CaseEventData"></CaseEventDocList>
-            </div>
-
+            @if (Source.eventID != CMSSettings.EventDpfOnMatchFound 
+                    && Source.eventID != CMSSettings.EventDpfChecking
+                    && Source.eventID != CMSSettings.EventParticipantsChanged)
+            {
+                <div class="my-3">
+                    <CaseEventDocList XmlDocList="@Source.CaseEventData"></CaseEventDocList>
+                </div>
+            }
 
             @*added participant list*@
-            <div class="my-3">
-                @if(Source.eventID == "cms.participantschanged")
-                {
+            
+            @if(Source.eventID == CMSSettings.EventParticipantsChanged)
+            {
+                <div class="my-3">
                     <CaseContactPan Source="@AddedCaseParticipants" ShowStriped="true" ShowFunction="true" ShowRole="true" Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
-                }
-            </div>
+                </div>
+            }
+            
         </div>
 
     </div>  
@@ -63,6 +70,7 @@
 
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IMapper _mapper { get; set; }
+    [Inject] public CMSSettings cmsSettings{ get; set; }
 
     [Parameter] public CaseEvent Source { get; set; }
     protected List<CaseContactSelectable> NotifyContacts { get; set; }

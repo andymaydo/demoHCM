@@ -3,7 +3,7 @@
 :root {
     --base-prim-dark: 64,0,0;
     --base-prim-light: 156,0,0;
-    --base-sec-dark: 30,64,200;
+    --base-sec-dark: 4,40,101;
     --base-sec-light: 30,64,200;
     --primlight: rgb(var(--base-prim-light));
     --primlight-05: rgba(var(--base-prim-light),0.5);
@@ -11,17 +11,23 @@
     --primdark: rgb(var(--base-prim-dark));
     --primdark-05: rgb(var(--base-prim-dark),0.5);
     --primdark-08: rgba(var(--base-prim-dark),0.8);
+    --secdark: rgb(var(--base-sec-dark));
+    --seclight: rgb(var(--base-sec-light));
     --seclight-01: rgba(var(--base-sec-light),0.1);
 }
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: gray;
+    /*color: gray;*/
+}
+div .wraptxt {
+    white-space: pre-wrap;
 }
 
 a, .btn-link {
     text-decoration: none;
     color: var(--primlight);
+    font-size:14px;
 }
     a:hover, .btn-link:hover {
         color: var(--primdark);
@@ -33,13 +39,16 @@ body {
 }
 
 .bg-primdark {
-    background-color: var(--primdark);
+    background-color: var(--primdark) !important;
 }
 .bg-primlight-01 {
-    background-color: var(--primlight-01);
+    background-color: var(--primlight-01) !important;
+}
+.bg-secdark {
+    background-color: var(--secdark) !important;
 }
 .bg-seclight-01 {
-    background-color: var(--seclight-01);
+    background-color: var(--seclight-01) !important;
 }
 
 .border-primlight-05 {
@@ -47,6 +56,9 @@ body {
 }
 .border-primlight {
     border-color: var(--primlight) !important;
+}
+.border-seclight {
+    border-color: var(--seclight) !important;
 }
 
 
@@ -98,7 +110,7 @@ h5 {
 
 
 
-
+/*
 .profile-menu-item-while {
     background-color: #598992;
     border-radius: 4px;
@@ -119,10 +131,10 @@ h5 {
 
 .content {
     padding-top: 1.1rem;
-}
+}*/
 
 
-
+/*
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
@@ -134,9 +146,20 @@ h5 {
 .validation-message {
     color: red;
 }
-
+*/
 
 /**** SyncFusion ****/
+
+.e-dialog .e-footer-content  {
+    background-color: #f8f8f8;
+    text-align: left;
+    border-color: #d9edf7
+}
+
+.e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+    background-color: #d9edf7;
+}
+
 
 .e-pager .e-spacing, .e-pager .e-numericitem:hover, .e-pager .e-currentitem {
     padding: 5px 5px 5px 5px !important;
@@ -199,28 +222,6 @@ h5 {
 
 
 
-/*.e-grid .e-sortfilterdiv {
-
-    margin: -18px -4px;
-
-}*/
-
-
-/*.e-grid .e-rowcell {
-    font-size: 12px !important;
-    padding: 2px 6px !important;
-}*/
-
-/*.e-grid .e-headercelldiv {
-    font-size: 12px !important;
-    padding: 0 0 !important;
-} */
-
-
-
-
-
-
 /*.e-btn.e-icon-btn, .e-css.e-btn.e-icon-btn {
     padding: 2px 4px !important;
 }
@@ -232,59 +233,12 @@ h5 {
 .e-thumbnail:before {
     content: '\e7b4';
 }
-.e-custom-height {
-    height: 100px;
-    width: 200px;
-}
 
-.e-upload .e-file-select-wrap {
-    padding: 0px !important;
-}
+
 .e-listview.e-control {
     width: 100% !important;
 }
 
-.e-listview {
-    border: 0px !important;
-}
-
-    .e-listview .e-list-item {
-        height: 26px !important;
-        padding: 0px !important;
-        font-size: 14px !important;
-        border: 0px !important;
-    }
-        .e-listview .e-list-item.e-focused,
-        .e-listview .e-list-item.e-focused.e-active.e-checklist {
-            background-color: #fff !important;
-            color: #1a535d !important;
-        }
-
-
-
-.e-btn.e-flat.e-primary, .e-css.e-btn.e-flat.e-primary {
-    background-color: #1a535d !important;
-    border-color: #f8f9fa !important;
-    color: #fff !important;
-}
-
-    .e-btn.e-flat.e-primary:disabled, .e-css.e-btn.e-flat.e-primary:disabled {
-        background-color: rgba(26, 83, 93, 0.65) !important;
-        border-color: transparent !important;
-        box-shadow: none;
-        color: #fff !important;
-    }
-
-.e-btn.e-flat, .e-css.e-btn.e-flat {
-    background-color: #1a535d !important;
-    border-color: #f8f9fa !important;
-    box-shadow: none;
-    color: #fff !important;
-}
-
-.e-btn .e-btn-icon, .e-css.e-btn .e-btn-icon {
-    font-size: 10px !important;
-}
 
 .e-grid .e-unboundcelldiv > button {
     margin: 0 0px !important;
@@ -379,6 +333,21 @@ UI
     font-weight: bold;
     color: #444444;
     /*padding-left: 5px;*/
+}
+.tLabel2 {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #444444;
+    /*padding-left: 5px;*/
+    font-weight: bold;
+}
+
+.tLabel3 {
+    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #444444;
+    padding-left: 5px;
+    text-align: justify;
 }
 
 .subtitle {
@@ -615,21 +584,7 @@ a.btnRemove {
     padding: 4px 5px 3px 5px;
     height: 25px;
 }
-.tLabel2 {
-    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #444444;
-    /*padding-left: 5px;*/
-    font-weight: bold;
-}
 
-.tLabel3 {
-    font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
-    font-size: 12px;
-    color: #444444;
-    padding-left: 5px;
-    text-align: justify;
-}
 
 
 /****************************************************** 

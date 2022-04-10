@@ -10,8 +10,7 @@
 @if (_loadingStatus == 1)
 {
     <SfUploader AutoUpload="true" Locale="@(CultureInfo.CurrentCulture.Name)">
-        <UploaderEvents ValueChange="UploaderOnChange"></UploaderEvents>
-        <UploaderEvents OnRemove="UploaderOnRemove"></UploaderEvents>   
+        <UploaderEvents ValueChange="UploaderOnChange" OnRemove="UploaderOnRemove"></UploaderEvents>        
     </SfUploader>
 }
 else

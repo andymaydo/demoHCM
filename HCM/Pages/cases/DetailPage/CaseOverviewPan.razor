@@ -15,14 +15,14 @@
                   <td>@Localizer.Str["Cases_Detail_Label_ID"]</td>
                   <td>@Source.CaseID</td>                  
                 </tr> 
-                <tr>                  
+                @*<tr>                  
                   <td>@Localizer.Str["Cases_Detail_Label_Platform"]</td>
                   <td>@Source.appName</td>                  
                 </tr>
                 <tr>                  
                   <td>@Localizer.Str["Cases_Detail_Label_Category"]</td>
                   <td>@Source.CaseType</td>                  
-                </tr>
+                </tr>*@
                 <tr>                  
                   <td>@Localizer.Str["Cases_Detail_Label_Source"]</td>
                   <td>@Source.CaseSource</td>                  
@@ -53,7 +53,7 @@
                 </tr>
                 <tr>                  
                   <td>@Localizer.Str["Cases_Detail_Label_Duration"]</td>
-                  <td>@Source.Duration</td>                  
+                  <td>@DaysFromMinutes(@Source.Duration)</td>                  
                 </tr>
               </tbody>
             </table>
@@ -65,11 +65,20 @@
 
 
 @code {
-    
+
     [Inject] private CommonLocalizationService Localizer { get; set; }
 
-    
+
     [Parameter] public Case Source { get; set; }
-    
-    
+
+    private string DaysFromMinutes(int minutes)
+    {
+        TimeSpan t = TimeSpan.FromMinutes(minutes);
+        string answer = string.Format("{0:D2}d:{1:D2}h:{2:D2}m", 
+                t.Days,
+                t.Hours, 
+                t.Minutes);
+
+        return answer;
+    }
 }

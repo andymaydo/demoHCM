@@ -73,6 +73,7 @@
     [Inject] private ICMSProfile ProileService { get; set; }
     [Inject] private IMapper _mapper { get; set; }
 
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
 
     protected int CaseId { get; set; }
     protected Case MyCase { get; set; }
@@ -117,6 +118,11 @@
 
         MyCase = await CmsService.LoadCase(CaseId);
         if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
+
+        if (MyCase.CaseStatusID == 0)
+        {
+            await CmsService.OnEvent(CMSSettings.EventDpfChecking, CurrentContactId, MyCase.CaseID, new System.Xml.XmlDocument(), Localizer.Str["Cases_SetStatus_InProgress"], false);                        
+        }
 
         CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
         CaseEvents = await CmsService.GetEventList(CaseId);
