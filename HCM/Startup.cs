@@ -129,8 +129,8 @@ namespace HCM
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY2NDYxQDMxMzgyZTMzMmUzMFZpZTdpa1NYK1c3blZLRlMwa0FCMldaK2grcUhSemVBY1hoaDZSZlc1ME09");
-
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY2NDYxQDMxMzgyZTMzMmUzMFZpZTdpa1NYK1c3blZLRlMwa0FCMldaK2grcUhSemVBY1hoaDZSZlc1ME09");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2VVhhQlFaclhJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdkFiWH5ecnNXR2FfUEQ=;NjEyODI3QDMyMzAyZTMxMmUzMGpSeERCWVl4Y2dUYlhSOEdLTFZtNzZlaTNzODF0TFcxeEJyWXFvMFR5dE09");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

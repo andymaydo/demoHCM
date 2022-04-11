@@ -106,6 +106,7 @@ h5 {
 
 .nav-item a {
     height: 2rem;
+    font-size:16px;
 }
 
 
@@ -134,7 +135,7 @@ h5 {
 }*/
 
 
-/*
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
@@ -146,7 +147,7 @@ h5 {
 .validation-message {
     color: red;
 }
-*/
+
 
 /**** SyncFusion ****/
 
@@ -336,7 +337,7 @@ UI
 }
 .tLabel2 {
     font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     color: #444444;
     /*padding-left: 5px;*/
     font-weight: bold;

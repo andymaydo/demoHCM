@@ -34,18 +34,16 @@
                             <DataAnnotationsValidator />
                             <div class="row">
                                 <div class="col-md-7">        
-                                    <div class="col-12">
+                                    <div class="col-12 mb-3">
                                         <label class="tLabel">@Localizer.Str["Cases_AddMessage_Subject"]</label>
                                         <div class="top_blue_bg_thin"></div>
                                         <div class="itemDetail">@FormModel.CaseSubject</div>
                                     </div>
-                                    <div class="col-12">
-                                        <label class="col-form-label tLabel2">@Localizer.Str["Cases_AddMessage_Note"]</label>
+                                    <div class="col-12 mb-3">
+                                        <label class="tLabel2">@Localizer.Str["Cases_AddMessage_Note"]</label>
                                         <SfTextBox Multiline="true" HtmlAttributes="@htmlAttribute" @bind-Value="@FormModel.Note"></SfTextBox>
                                         <ValidationMessage For="@(() => FormModel.Note)" />
-                                    </div>
 
-                                    <div class="col-12 mb-3">
                                         <SfCheckBox @bind-Checked="@FormModel.WithMatchReport" Label="@Localizer.Str["Cases_AddMessage_AddReport"]"></SfCheckBox>
                                     </div>
 
@@ -85,9 +83,11 @@
                                     </div>
                                 </div>
                             </div>
-                           @*<div class="row py-2 top_blue_bg"></div>*@
+                            <div class="py-3">
+                                <UiMessageBox Data="Messages.List" />
+                            </div>
                            <div class="row">
-                                <div class="col-12 e-footer-content py-2 border border-1">
+                                <div class="col-12 e-footer-content pt-2 border border-1">
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-main btn-sm" >@Localizer.Str["Button_Save"]</button>                        
                                     </div>
@@ -96,18 +96,12 @@
                             </EditForm>
                         </div>
                     }
-                    <div class="py-3">
-                        <UiMessageBox Data="Messages.List" />
-                    </div>
+                    
                 </Content>
             </DialogTemplates>
         
     </SfDialog>
 
-    <style>
-        
-
-    </style>
 }
 
 
@@ -285,7 +279,7 @@
     }
    
     private Dictionary<string, object> htmlAttribute = new Dictionary<string, object>() 
-{ 
+    { 
         {"rows", "4" } 
     }; 
 }
