@@ -6,8 +6,10 @@
 <h3>@Localizer.Str["Reports_Title"]</h3>
 @if(MyFilter != null)
 {
-    <CaseReport InputFilter="@MyFilter" Culture="@CurrentCulture" 
-            ReportType="@ReportType" ExecOnInit="true"></CaseReport>
+    <CaseReport 
+            InputFilter="@MyFilter" Culture="@CurrentCulture" 
+            ReportType="@ReportType" ExecOnInit="true">
+    </CaseReport>
 }
 
 

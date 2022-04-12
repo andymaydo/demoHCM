@@ -8,7 +8,9 @@
     --primlight: rgb(var(--base-prim-light));
     --primlight-05: rgba(var(--base-prim-light),0.5);
     --primlight-01: rgba(var(--base-prim-light),0.1);
+    --primlight-001: rgba(var(--base-prim-light),0.01);
     --primdark: rgb(var(--base-prim-dark));
+    --primdark-01: rgb(var(--base-prim-dark),0.2);
     --primdark-05: rgb(var(--base-prim-dark),0.5);
     --primdark-08: rgba(var(--base-prim-dark),0.8);
     --secdark: rgb(var(--base-sec-dark));
@@ -33,6 +35,11 @@ a, .btn-link {
         color: var(--primdark);
     }
 
+.alink {
+    cursor: pointer;
+}
+
+
 body {
     padding-top: 170px;
     padding-bottom: 40px;
@@ -41,8 +48,17 @@ body {
 .bg-primdark {
     background-color: var(--primdark) !important;
 }
+.bg-primdark-01 {
+    background-color: var(--primdark-01) !important;
+}
+.bg-primlight-001 {
+    background-color: var(--primlight-001) !important; 
+}
 .bg-primlight-01 {
     background-color: var(--primlight-01) !important;
+}
+.bg-primlight-05 {
+    background-color: var(--primlight-05) !important;
 }
 .bg-secdark {
     background-color: var(--secdark) !important;

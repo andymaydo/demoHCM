@@ -9,7 +9,65 @@
 
 @if(@_loadingStatus == 1)
 {
-    <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card h-100 border-primlight-05">
+            <div class="card-header bg-primlight-01 border-primlight-05">@Localizer.Str["Label_Report_Status_Group_Title"]</div>
+            <div class="card-body bg-primlight-001">
+                <table class="table table-striped table-borderless table-sm">              
+                    <tbody class="itemDetail">
+                    @foreach (CaseModel r in CaseByStatusList)
+                    {
+                        <tr class="alink" @onclick="@(() => OnStatusClicked.InvokeAsync(r.CaseStatusID))" @onclick:preventDefault>                  
+                            <td>@Localizer.Str["Case_Status_" + r.CaseStatusID]</td>
+                            <td align="right">@r.CaseCount</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 border-primlight-05">
+            <div class="card-header bg-primlight-01 border-primlight-05">@Localizer.Str["Label_Report_Result_Group_Title"]</div>
+            <div class="card-body bg-primlight-001">
+                <table class="table table-striped table-borderless table-sm">              
+                    <tbody class="itemDetail">
+                    @foreach (CaseModel r in CaseByResultList)
+                    {
+                        <tr class="alink" @onclick="@(() => OnResultClicked.InvokeAsync(r.CaseResultID))" @onclick:preventDefault>                  
+                            <td>@Localizer.Str["Case_Result_" + r.CaseResultID]</td>
+                            <td align="right">@r.CaseCount</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 border-primlight-05">
+            <div class="card-header bg-primlight-01 border-primlight-05">@Localizer.Str["Label_Report_Alias_Group_Title"]</div>
+            <div class="card-body bg-primlight-001">
+                <table class="table table-striped table-borderless table-sm">              
+                    <tbody class="itemDetail">
+                    @foreach (CaseModel r in CaseByAliasList)
+                    {
+                        <tr class="alink" @onclick="@(() => OnAliasClicked.InvokeAsync())" @onclick:preventDefault>                  
+                            <td>@Localizer.Str["Label_Report_Alias_Group_Count"]</td>
+                            <td align="right">@r.CaseCount</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div> 
+    </div>
+
+
+    @*<div class="container-fluid">
         <div class="row row_padding">
             <div class="col-md-6 control_padding">
                 <div class="col-md-12 control_padding">
@@ -70,7 +128,7 @@
             </div>
         </div>
 
-    </div>
+    </div>*@
 }
 
 

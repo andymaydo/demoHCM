@@ -77,6 +77,8 @@
     [Inject] private ILogger<CaseGrid> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
+    [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
 
     [Parameter] public CaseFilterModel InputFilter { get; set; }
     [Parameter] public int ContactId { get; set; }
@@ -128,15 +130,14 @@
         }
     }
 
-    //public async Task RecordDoubleClickHandler(RecordDoubleClickEventArgs<CaseModel> args)
-    //{     
-    //    await OnCaseDetailsClicked.InvokeAsync(args.RowData.CaseID);
-    //}
-
     public async Task RecordDoubleClickHandler(int caseId)
     {     
         await OnCaseDetailsClicked.InvokeAsync(caseId);
+        await ProtectedSessionStorage.SetAsync("CaseId", caseId);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
     }
+
 
     private async Task LoadCaseList()
     {

@@ -12,45 +12,26 @@
 
 <SfGrid DataSource="@CaseList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
-    <GridPageSettings PageSizes="true" ></GridPageSettings>
-    <GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="CaseModel"></GridEvents>
+    <GridPageSettings PageSizes="@pageSizes" PageSize="20"></GridPageSettings>
+    @*<GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="CaseModel"></GridEvents>*@
     <GridColumns>
-        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer.Str["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="90"></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer.Str["Label_Filter_ProfileID"]" ></GridColumn>
-        @*<GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer.Str["Cases_List_Subject"]" ></GridColumn>*@
-        <GridColumn Field=@nameof(CaseModel.CaseType) HeaderText="@Localizer.Str["Cases_List_Category"]" ></GridColumn>
-       @* <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer.Str["Cases_List_Status"]" >
+        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer.Str["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="90">
             <Template>
                 @{
                     var _Case = (context as CaseModel);
-                    <div>
-                        @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                    <div>                            
+                            <a href="" @onclick="@(() => RecordDoubleClickHandler(_Case.CaseID))" @onclick:preventDefault>@_Case.CaseID</a>
                     </div>
                 }
             </Template>
         </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseResult) HeaderText="@Localizer.Str["Cases_List_Ergebnis"]">
-            <Template>
-                @{
-                    var _Case = (context as CaseModel);
-                    <div>
-                        @Localizer.Str["Case_Result_" + _Case.CaseResultID.ToString()]
-                    </div>
-                }
-            </Template>
-        </GridColumn>*@
-        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer.Str["Cases_List_AliasName"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer.Str["Cases_List_CreateOn"]" ></GridColumn>  
+        <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer.Str["Label_Filter_ProfileID"]" Width="130"></GridColumn>
+     
+        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer.Str["Cases_List_AliasName"]" Width="250"></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer.Str["Cases_List_CreateOn"]" Width="150"></GridColumn>  
         
-        <GridColumn Field=@nameof(CaseModel.ContactName) HeaderText="@Localizer.Str["Cases_List_Contact"]" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.ContactName) HeaderText="@Localizer.Str["Cases_List_Contact"]" Width="150"></GridColumn>
         
-        @*<GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer.Str["Cases_List_LastModify"]" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.SapUser)></GridColumn>*@
-        @*<GridColumn HeaderText="" Width="40">
-            <GridCommandColumns>
-                <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() {IconCss="e-icons e-edit", CssClass="e-flat"})"></GridCommandColumn>
-            </GridCommandColumns>
-        </GridColumn>*@
     </GridColumns>
 </SfGrid>
 
@@ -62,6 +43,9 @@
     [Inject] private IReportsCaseData ReportService { get; set; }
     [Inject] private ILogger<CaseGrid> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
+    [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
 
     [Parameter] public CaseFilterModel InputFilter { get; set; }
     [Parameter] public int ContactId { get; set; }
@@ -72,12 +56,13 @@
     protected List<CaseModel> CaseList { get; set; }
 
     private CaseFilterModel _inputFilter;
+    private string[] pageSizes { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();       
         Messages = new UiMessages();
-        //_inputFilter = ObjHelper.Clone(InputFilter);
+        SetPageSizeDropDown();
     }
 
     protected override async Task OnParametersSetAsync()
@@ -102,9 +87,12 @@
         }
     }
 
-    public async Task RecordDoubleClickHandler(RecordDoubleClickEventArgs<CaseModel> args)
+    public async Task RecordDoubleClickHandler(int caseId)
     {     
-        await OnCaseDetailsClicked.InvokeAsync(args.RowData.CaseID);
+        await OnCaseDetailsClicked.InvokeAsync(caseId);
+        await ProtectedSessionStorage.SetAsync("CaseId", caseId);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
     }
 
     private async Task LoadCaseList()
@@ -116,5 +104,16 @@
                 InputFilter.StatusId, InputFilter.ResultId,
                 InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate,
                 InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
+    }
+    
+    private void SetPageSizeDropDown()
+    {
+        List<string> pageList = new List<string>();
+        pageList.Add(@SfLocalizer.GetText("Pager_All"));
+        pageList.Add("10");
+        pageList.Add("20");
+        pageList.Add("50");
+        pageList.Add("100");
+        pageSizes = pageList.ToArray();
     }
 }
