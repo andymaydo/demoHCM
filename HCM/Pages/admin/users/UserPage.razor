@@ -14,8 +14,8 @@
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Administration_Users_List_Table_Title"]</h5>
 
-<div class="text-right mb-3">
-    <SfButton @onclick="@(() => showAddUserPopUp = true)" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
+<div class="text-end mb-3">
+    <SfButton @onclick="@(() => showAddUserPopUp = true)" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
 </div>
 
 @if (_loadingStatus == 0)
@@ -30,12 +30,21 @@
         <GridPageSettings PageSizes="true" ></GridPageSettings>
         
         <GridColumns>
-            <GridColumn Field=@nameof(UsersModel.LoginName) HeaderText="@Localizer.Str["Admin_Users_UserNameLabel"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" ></GridColumn>
-            <GridColumn Field=@nameof(UsersModel.Name) HeaderText="@Localizer.Str["Admin_Users_RealNameLabel"]" ></GridColumn>
-            <GridColumn Field=@nameof(UsersModel.FunctionInFirma) HeaderText="@Localizer.Str["Admin_Users_AbteilungLabel"]" ></GridColumn>
-            <GridColumn Field=@nameof(UsersModel.EMail) HeaderText="@Localizer.Str["Admin_Users_EmailLabel"]" ></GridColumn>
-            <GridColumn Field=@nameof(UsersModel.Status) HeaderText="@Localizer.Str["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center"></GridColumn>
-            <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=100>
+            <GridColumn Field=@nameof(UsersModel.LoginName) HeaderText="@Localizer.Str["Admin_Users_UserNameLabel"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="150">
+                <Template>
+                    @{
+                        var _User = (context as UsersModel);
+                        <div>
+                             <div class="alink"  @onclick="@(() => EditUser(_User))"><span class="oi oi-zoom-in"></span> @_User.LoginName</div>                             
+                        </div>
+                    }
+                </Template>
+            </GridColumn>
+            <GridColumn Field=@nameof(UsersModel.Name) HeaderText="@Localizer.Str["Admin_Users_RealNameLabel"]" Width="180"></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.FunctionInFirma) HeaderText="@Localizer.Str["Admin_Users_AbteilungLabel"]" Width="150"></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.EMail) HeaderText="@Localizer.Str["Admin_Users_EmailLabel"]" Width="180"></GridColumn>
+            <GridColumn Field=@nameof(UsersModel.Status) HeaderText="@Localizer.Str["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center" Width="80"></GridColumn>
+@*            <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=100>
                 <Template>
                     @{
                         var _User = (context as UsersModel);
@@ -44,13 +53,13 @@
                         </div>
                     }
                 </Template>
-            </GridColumn>
+            </GridColumn>*@
             <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=90>
                 <Template>
                     @{
                         var _User = (context as UsersModel);
                         <div>                            
-                             <a href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
+                             <a href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
                         </div>
                     }
                 </Template>

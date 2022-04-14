@@ -184,7 +184,7 @@
     <value>Funktion in der Firma</value>
   </data>
   <data name="Admin_Users_CreateUserTitle" xml:space="preserve">
-    <value>Einen neuen Benutzer anlegen</value>
+    <value>Benutzer anlegen</value>
   </data>
   <data name="Admin_Users_Create_Error" xml:space="preserve">
     <value>Achtung!</value>

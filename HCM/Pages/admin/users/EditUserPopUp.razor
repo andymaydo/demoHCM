@@ -22,7 +22,7 @@
     <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
         <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
         <DialogTemplates>
-            <Header><div class=" font-weight-bold">@Localizer.Str["Admin_Users_EditUserTitle"]</div></Header>
+            <Header><div class="tLabel">@Localizer.Str["Admin_Users_EditUserTitle"]</div></Header>
             <Content>
 
                 <h5 class="tLabel2">@Localizer.Str["Admin_EditUsers_GeneralData"]</h5>
@@ -30,47 +30,42 @@
                 <div class="mx-4 e-small">
                     <EditForm Model="@UserInfoModel" OnValidSubmit="@ValidUserInfoFormSubmited" >
                     <DataAnnotationsValidator />
-                    <div class="row">                                                               
-                        <label class="col-4">@Localizer.Str["Admin_Users_UserNameLabel"]</label>
-                        <div class = "col-8">
+                    <div class="row g-2">                                                               
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_UserNameLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox Enabled="false"  @bind-Value="@UserInfoModel.LoginName"></SfTextBox>
                             <ValidationMessage For="@(() => UserInfoModel.LoginName)" />
                         </div>
-                    </div>
-                   
-                    <div class="row">
-                        <label class="col-4">@Localizer.Str["Admin_Users_RealNameLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_RealNameLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@UserInfoModel.Name"></SfTextBox>
                             <ValidationMessage For="@(() => UserInfoModel.Name)" />     
                          </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-4">@Localizer.Str["Admin_Users_EmailLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_EmailLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@UserInfoModel.EMail"></SfTextBox>
                             <ValidationMessage For="@(() => UserInfoModel.EMail)" /> 
-                        </div>                                
-                    </div>
-                    <div class="row">
-                        <label class="col-4">@Localizer.Str["Admin_Users_AbteilungLabel"]</label>
-                        <div class = "col-8">
+                        </div>
+                        
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_AbteilungLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@UserInfoModel.FunctionInFirma"></SfTextBox>
                             <ValidationMessage For="@(() => UserInfoModel.FunctionInFirma)" /> 
                         </div>
-                    </div>        
-                    <div class="row">
-                        <label class="col-4">@Localizer.Str["Admin_UsersIsApprovedLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_UsersIsApprovedLabel"]</label>
+                        <div class = "col-md-8">
                             <SfCheckBox @bind-Checked="@UserInfoModel.Status"></SfCheckBox>
                             <ValidationMessage For="@(() => UserInfoModel.Status)" /> 
                         </div>
-                    </div>     
-                    <div class="row">                       
-                        <div class="col-12 text-right">
-                            <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
-                        </div>                       
-                    </div>
+
+                         <div class="col-md-12 text-end">
+                            <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div>  
+
+                    </div>                   
                     </EditForm>
                 </div>
 
@@ -80,54 +75,50 @@
                     <EditForm Model="@UserPassModel" OnValidSubmit="@ValidUserPassFormSubmited" >
                     <DataAnnotationsValidator />
 
-                    <div class="row">
-                        <label class="col-4">@Localizer.Str["Admin_Users_PasswordLabel"]</label>
-                        <div class = "col-8">
+                    <div class="row g-2">
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_PasswordLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password" @bind-Value="@UserPassModel.Password"></SfTextBox>
                             <ValidationMessage For="@(() => UserPassModel.Password)" />
                         </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-4">@Localizer.Str["Admin_UsersPassowrdConfirmLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_UsersPassowrdConfirmLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password"  @bind-Value="@UserPassModel.ConformPass"></SfTextBox>
                             <ValidationMessage For="@(() => UserPassModel.ConformPass)" />
                         </div>
-                    </div>
-                    
-                    <div class="row mt-2">                       
-                        <div class="col-12 text-right">
-                            <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
-                        </div>                       
-                    </div>
+
+                        <div class="col-md-12 text-end">
+                            <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div>
+                    </div>                    
                     </EditForm>
                 </div>
                  
                 <h5 class="tLabel2">@Localizer.Str["Admin_EditUsers_RoleList"]</h5>
                 <div class="top_blue_bg"></div>
                 <div class="mx-4 ">
-                    <div class="row">
-                        <div class="col-12">
+                    <div class="row g-1">
+                        <div class="col-md-12">
                             <SfCheckBox @bind-Checked="@AdminRoleModel.IsSelected" 
                                 @onchange="AdminRoleOnChange"
                                 Label="@AdminRoleModel.LocalizerRoleName" 
                                 Disabled="@AdminRoleModel.IsDisabled"></SfCheckBox>
                         </div>
-                    </div>
-                    @foreach (var item in UserRoleList)
-                    {   
-                        <div class="row">
-                            <div class="col-12">
+
+                         @foreach (var item in UserRoleList)
+                        {                           
+                            <div class="col-md-6">
                                 <SfCheckBox @bind-Checked="@item.IsSelected"                                     
                                     Label="@item.LocalizerRoleName" 
                                     Disabled="@item.IsDisabled"></SfCheckBox>
-                            </div>
-                        </div>
-                    }
+                            </div>                        
+                        }
+                    </div>
 
                      <div class="row e-small">                       
-                        <div class="col-12 text-right">
-                            <SfButton OnClick="UserRolesUpdate" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        <div class="col-md-12 text-end">
+                            <SfButton OnClick="UserRolesUpdate" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
                         </div>                       
                     </div>
                 </div>
@@ -142,11 +133,6 @@
         </DialogTemplates>
     </SfDialog>
 
-    <style>
-        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
-            background-color: lightblue;
-        }
-    </style>
 }
 
 

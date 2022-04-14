@@ -20,7 +20,7 @@
                 @{
                     var _Case = (context as CaseModel);
                     <div>                            
-                            <a href="" @onclick="@(() => RecordDoubleClickHandler(_Case.CaseID))" @onclick:preventDefault>@_Case.CaseID</a>
+                            <a href="" @onclick="@(() => RecordDoubleClickHandler(_Case.CaseID))" @onclick:preventDefault><span class="oi oi-zoom-in"></span> @_Case.CaseID</a>
                     </div>
                 }
             </Template>

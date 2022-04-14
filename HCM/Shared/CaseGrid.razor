@@ -18,15 +18,15 @@
 {
     <SfGrid ID="Grid" DataSource="@CaseList" AllowPaging="true" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture" EnablePersistence="false">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
-    <GridPageSettings PageSizes="@pageSizes" PageSize="20"></GridPageSettings>
+    <GridPageSettings PageSizes="@pageSizes" PageSize="20" PageCount="2"></GridPageSettings>
     @*<GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="CaseModel"></GridEvents>*@
     <GridColumns>
-        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer.Str["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="70">
+        <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer.Str["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80">
             <Template>
                     @{
                         var _Case = (context as CaseModel);
                         <div>                            
-                             <a href="" @onclick="@(() => RecordDoubleClickHandler(_Case.CaseID))" @onclick:preventDefault>@_Case.CaseID</a>
+                             <div class="alink" @onclick="@(() => RecordDoubleClickHandler(_Case.CaseID))"><span class="oi oi-zoom-in"></span> @_Case.CaseID</div>
                         </div>
                     }
                 </Template>

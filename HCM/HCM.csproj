@@ -47,6 +47,7 @@
     <Content Remove="Pages\cases\Details_.razor" />
     <Content Remove="Pages\cases\ListCases.razor" />
     <Content Remove="Pages\cases\MatchResult.razor" />
+    <Content Remove="Pages\Counter.razor" />
     <Content Remove="Pages\reports\Reports.razor" />
     <Content Remove="Shared\ChooseLanguage.razor" />
     <Content Remove="Shared\SurveyPrompt.razor" />

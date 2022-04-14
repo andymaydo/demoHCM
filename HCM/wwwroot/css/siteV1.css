@@ -51,6 +51,9 @@ body {
 .bg-primdark-01 {
     background-color: var(--primdark-01) !important;
 }
+.bg-primlight {
+    background-color: var(--primlight) !important;
+}
 .bg-primlight-001 {
     background-color: var(--primlight-001) !important; 
 }
@@ -60,12 +63,7 @@ body {
 .bg-primlight-05 {
     background-color: var(--primlight-05) !important;
 }
-.bg-secdark {
-    background-color: var(--secdark) !important;
-}
-.bg-seclight-01 {
-    background-color: var(--seclight-01) !important;
-}
+
 
 .border-primlight-05 {
     border-color: var(--primlight-05) !important;
@@ -86,7 +84,7 @@ h5 {
     padding-top: 1rem;
 }
 
-.btn-main {
+/*.btn-main {
     color: #fff;
     background-color: var(--primlight);
     border-color: var(--primdark);
@@ -112,7 +110,7 @@ h5 {
         border-color: var(--primlight);
         box-shadow: none;
     }
-
+*/
 
 .navbar-toggler {
     /*display: block;*/
@@ -167,7 +165,13 @@ h5 {
 
 /**** SyncFusion ****/
 
-.e-dialog .e-footer-content  {
+@media screen and (max-width: 796px) {
+    .e-pager div.e-parentmsgbar {
+        width: calc(60% - 96px);
+    }
+}
+
+.e-dialog .e-footer-content {
     background-color: #f8f8f8;
     text-align: left;
     border-color: #d9edf7
@@ -176,6 +180,9 @@ h5 {
 .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
     background-color: #d9edf7;
 }
+
+/*
+
 
 
 .e-pager .e-spacing, .e-pager .e-numericitem:hover, .e-pager .e-currentitem {
@@ -210,11 +217,7 @@ h5 {
     color: #fff !important;
 }
 
-@media screen and (max-width: 769px)  {
-    .e-pager div.e-parentmsgbar {
-        width: calc(60% - 96px);
-    }
-}
+
 
 .e-dropdownbase .e-list-item.e-active, .e-dropdownbase .e-list-item.e-active.e-hover {
     background-color: var(--primlight);
@@ -235,7 +238,7 @@ h5 {
     box-shadow: 0 0 0 3px var(--primlight-01) !important;
 }
 
-
+*/
 
 
 

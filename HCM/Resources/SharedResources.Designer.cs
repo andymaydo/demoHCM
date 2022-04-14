@@ -142,7 +142,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einen neuen Benutzer anlegen.
+        ///   Looks up a localized string similar to Benutzer anlegen.
         /// </summary>
         public static string Admin_Users_CreateUserTitle {
             get {

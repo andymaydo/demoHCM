@@ -21,60 +21,54 @@
     <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
         <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
         <DialogTemplates>
-            <Header><div class=" ml-4 font-weight-bold">@Localizer.Str["Admin_Users_CreateUserTitle"]</div></Header>
+            <Header><div class="tLabel">@Localizer.Str["Admin_Users_CreateUserTitle"]</div></Header>
             <Content>
-                <div class="mx-4">
+                <h5 class="tLabel2">@Localizer.Str["Admin_Users_EditUserTitle"]</h5>
+                <div class="top_blue_bg"></div>    
+                <div class="mx-4 e-small">
                     <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                     <DataAnnotationsValidator />
-                    <div class=" form-group row">                                                               
-                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_UserNameLabel"]</label>
-                        <div class = "col-8">
+                    <div class="row g-2">                                                               
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_UserNameLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@FormModel.LoginName"></SfTextBox>
                             <ValidationMessage For="@(() => FormModel.LoginName)" />
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_PasswordLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_PasswordLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password" @bind-Value="@FormModel.Password"></SfTextBox>
                             <ValidationMessage For="@(() => FormModel.Password)" />
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_UsersPassowrdConfirmLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_UsersPassowrdConfirmLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox Type="Syncfusion.Blazor.Inputs.InputType.Password"  @bind-Value="@FormModel.ConformPass"></SfTextBox>
                             <ValidationMessage For="@(() => FormModel.ConformPass)" />
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_RealNameLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_RealNameLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@FormModel.Name"></SfTextBox>
                             <ValidationMessage For="@(() => FormModel.Name)" />     
                          </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_EmailLabel"]</label>
-                        <div class = "col-8">
+
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_EmailLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@FormModel.EMail"></SfTextBox>
                             <ValidationMessage For="@(() => FormModel.EMail)" /> 
-                        </div>                                
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Admin_Users_AbteilungLabel"]</label>
-                        <div class = "col-8">
+                        </div> 
+
+                        <label class="col-md-4">@Localizer.Str["Admin_Users_AbteilungLabel"]</label>
+                        <div class = "col-md-8">
                             <SfTextBox @bind-Value="@FormModel.FunctionInFirma"></SfTextBox>
                             <ValidationMessage For="@(() => FormModel.FunctionInFirma)" /> 
                         </div>
-                    </div>                                               
-                   
-                    @*<div class="row py-2 top_blue_bg"></div>*@
-                    <div class="row">                       
-                        <div class="col-12 text-right">
-                            <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
-                        </div>                       
-                    </div>
+
+                        <div class="col-md-12 text-end">
+                            <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                        </div> 
+                    </div>                   
                     </EditForm>
                 </div>
                
@@ -86,12 +80,6 @@
             </Content>
         </DialogTemplates>
     </SfDialog>
-
-    <style>
-        .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
-            background-color: lightblue;
-        }
-    </style>
 }
 
 

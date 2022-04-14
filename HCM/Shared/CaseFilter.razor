@@ -95,8 +95,8 @@
                 <SfButton Type="submit" CssClass="e-flat" IsPrimary="true" IconCss="e-icons-hcm e-hcm-search" Content="@Localizer.Str["Button_Filter"]" ></SfButton>
                 <SfButton Type="button" CssClass="e-flat" IsPrimary="true" Content="@Localizer.Str["Button_Filter_Reset"]"  @onclick="ClearFilter"></SfButton>
                 -->
-                <button type="submit" class="btn btn-main btn-sm" >@Localizer.Str["Button_Filter"]</button>
-                <button type="button" class="btn btn-secondary btn-sm" @onclick="ClearFilter">@Localizer.Str["Button_Filter_Reset"]</button>
+                <SfButton type="submit" IsPrimary="true">@Localizer.Str["Button_Filter"]</SfButton>
+                <SfButton type="button" IsPrimary="false" @onclick="ClearFilter">@Localizer.Str["Button_Filter_Reset"]</SfButton>
             </div>
         </div>
 
