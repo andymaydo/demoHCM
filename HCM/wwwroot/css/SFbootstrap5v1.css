@@ -28059,8 +28059,8 @@ li.e-separator.e-menu-item.e-excel-separator {
   border-color: #dee2e6; }
   .e-grid .e-content {
     background-color: #fff; }
-  .e-grid .e-icons:not(.e-btn-icon) {
-    color: #6c757d; }
+  /*.e-grid .e-icons:not(.e-btn-icon) {
+    color: #6c757d; }*/
   .e-grid .e-unboundcelldiv .e-icons:not(.e-btn-icon) {
     color: #6c757d; }
   .e-grid .e-unboundcelldiv .e-btn:hover .e-icons {

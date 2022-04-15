@@ -27,7 +27,7 @@
 {
     <SfGrid DataSource="@UserList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
         <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
-        <GridPageSettings PageSizes="true" ></GridPageSettings>
+        <GridPageSettings PageSizes="@pageSizes" PageSize="20" PageCount="3"></GridPageSettings>
         
         <GridColumns>
             <GridColumn Field=@nameof(UsersModel.LoginName) HeaderText="@Localizer.Str["Admin_Users_UserNameLabel"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="150">
@@ -44,16 +44,6 @@
             <GridColumn Field=@nameof(UsersModel.FunctionInFirma) HeaderText="@Localizer.Str["Admin_Users_AbteilungLabel"]" Width="150"></GridColumn>
             <GridColumn Field=@nameof(UsersModel.EMail) HeaderText="@Localizer.Str["Admin_Users_EmailLabel"]" Width="180"></GridColumn>
             <GridColumn Field=@nameof(UsersModel.Status) HeaderText="@Localizer.Str["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center" Width="80"></GridColumn>
-@*            <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=100>
-                <Template>
-                    @{
-                        var _User = (context as UsersModel);
-                        <div>
-                             <a href="" @onclick="@(() => EditUser(_User))" @onclick:preventDefault class="btnUpdate">@Localizer.Str["Value_Edit_Text"]</a>                             
-                        </div>
-                    }
-                </Template>
-            </GridColumn>*@
             <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=90>
                 <Template>
                     @{
@@ -91,6 +81,7 @@
     [Inject] private IUsersData UserService { get; set; }
     [Inject] private ILogger<UserPage> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
 
@@ -101,6 +92,7 @@
     protected bool showEditUserPopUp { get; set; }
     protected bool showDeleteUserPopUp { get; set; }
     private int _loadingStatus;
+    private string[] pageSizes { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -141,5 +133,16 @@
     {
         CurrentUser = user;
         showDeleteUserPopUp = true;
+    }
+
+    private void SetPageSizeDropDown()
+    {
+        List<string> pageList = new List<string>();
+        pageList.Add(@SfLocalizer.GetText("Pager_All"));
+        pageList.Add("10");
+        pageList.Add("20");
+        pageList.Add("50");
+        pageList.Add("100");
+        pageSizes = pageList.ToArray();
     }
 }

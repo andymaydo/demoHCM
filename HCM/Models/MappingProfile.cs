@@ -31,25 +31,25 @@ namespace HCM.Models
 
             CreateMap<ProfileGenInfoForm, CMSProfileModel>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<CMSProfileModel, ProfileGenInfoForm>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<CMSProfileModel, ProfileGenInfoForm>();
+                //.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
             CreateMap<ProfileContactsForm, CMSProfileModel>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<CMSProfileModel, ProfileContactsForm>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<CMSProfileModel, ProfileContactsForm>();
+                //.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
             
             CreateMap<ProfileEscalationContactsForm, CMSProfileModel>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<CMSProfileModel, ProfileEscalationContactsForm>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<CMSProfileModel, ProfileEscalationContactsForm>();
+                //.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
 
             CreateMap<ProfileEscalationRulesForm, CMSProfileModel>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<CMSProfileModel, ProfileEscalationRulesForm>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<CMSProfileModel, ProfileEscalationRulesForm>();
+                //.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
 
 

@@ -28,26 +28,30 @@
         <SfDialog Width="650px" ShowCloseIcon="true" IsModal="true" AllowDragging="true" EnableResize="false" @bind-Visible="@ShowModal">
             <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
             <DialogTemplates>
-                <Header><div class=" font-weight-bold">@Localizer.Str["MsgPanel_Confirm_Title"]</div></Header>
+                <Header><div class="tLabel text-white">@Localizer.Str["MsgPanel_Confirm_Title"]</div></Header>
                 <Content>
                     <p class="text-center">@ConfirmationMessage</p>
 
                     <div class="py-3">
                         <UiMessageBox Data="Messages.List"/>
                     </div>
-                </Content>            
+                </Content> 
+                 <FooterTemplate>
+                    <div class="text-center">
+                        <SfButton OnClick="CloseDialog"   Content="@Localizer.Str["Button_Cancel"]" ></SfButton>
+                        <SfButton OnClick="ConfirmAction" IsPrimary="true" Content="@Localizer.Str["Button_OK"]" ></SfButton>                
+                    </div>                
+                </FooterTemplate>
             </DialogTemplates>
-            <DialogButtons>
-                <div class="text-center">
-                    <SfButton OnClick="CloseDialog" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Cancel"]" ></SfButton>
-                    <SfButton OnClick="ConfirmAction" CssClass="e-flat e-info" Content="@Localizer.Str["Button_OK"]" ></SfButton>                
-                </div>                
-            </DialogButtons>
+           
         </SfDialog>
     }
     <style>
         .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
-            background-color: lightsalmon;
+            background-color: var(--primlight);
+        }
+        .e-icon-dlg-close {
+            color: white; 
         }
     </style>
 }

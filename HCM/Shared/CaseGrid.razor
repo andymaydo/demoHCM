@@ -18,7 +18,7 @@
 {
     <SfGrid ID="Grid" DataSource="@CaseList" AllowPaging="true" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture" EnablePersistence="false">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
-    <GridPageSettings PageSizes="@pageSizes" PageSize="20" PageCount="2"></GridPageSettings>
+    <GridPageSettings PageSizes="@pageSizes" PageSize="20" PageCount="3"></GridPageSettings>
     @*<GridEvents OnRecordDoubleClick="RecordDoubleClickHandler" TValue="CaseModel"></GridEvents>*@
     <GridColumns>
         <GridColumn Field=@nameof(CaseModel.CaseID) HeaderText="@Localizer.Str["Cases_List_CaseID"]" HeaderTextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Left" Width="80">
