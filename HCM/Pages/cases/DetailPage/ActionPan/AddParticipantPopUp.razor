@@ -33,7 +33,7 @@
                 }
                 @if (_loadingStatus == 1)
                 {
-                    <div class="mx-4">
+                    <div class="mx-4 mt-4">
                      <EditForm Context="Cntx" Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                         <DataAnnotationsValidator />
                         <div class="row">
@@ -53,8 +53,7 @@
                                 </CaseContactPan>
                             </div>
 
-
-                            <div class="col-md-12 py-3 bg-primlight-01 border border-13">
+                            <div class="col-md-12 py-3 border border-1 bg-primlight-01">
                                 <CaseContactPan Source="@FormModel.CaseParticipants"                                     
                                     ShowEmail = "true"
                                     ShowFunction = "true"
@@ -100,21 +99,18 @@
                                         <SfButton Type="button" @onclick="AddCaseParticipant">@Localizer.Str["Button_Add"]</SfButton>
                                     </div>                                
                                 </div>
-                            </div>
-
+                            </div>                            
+                        </div> 
+                        
+                        <div class="col-md-12">
+                            <hr class="row mt-4 mb-2"/>                                
+                            <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]"></SfButton>                        
                         </div>
-                        <div class="py-3">
-                            <UiMessageBox Data="Messages.List" />
-                        </div>
-                        <div class="row pt-2">
-                            <div class="col-12 e-footer-content py-2 border border-1">
-                                <div class="col-12">
-                                    <SfButton type="submit" IsPrimary="true">@Localizer.Str["Button_Save"]</SfButton>                        
-                                </div>
-                            </div>
-                        </div>
+                         
                      </EditForm>
                     </div>
+
+                    <UiMessageBox Data="Messages.List" />
                 }
 
             </Content>

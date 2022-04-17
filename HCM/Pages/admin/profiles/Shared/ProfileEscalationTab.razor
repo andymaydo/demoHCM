@@ -23,125 +23,131 @@
 }
 @if (_loadingStatus == 1)
 {
-    <div class="mx-4 mt-5">
-
-        <ProfileEscalationRulesPan Source="RulesForm.escalationRules" Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
-            ShowStriped="true" AllowDelete="true"
-            OnSorceItemDeleted = "InitStatusList">
-        </ProfileEscalationRulesPan>
-       
+    @if(RulesForm?.escalationRules?.Count > 0)
+    {
+        <div class="border border-1 bg-light p-2">
+            <ProfileEscalationRulesPan Source="RulesForm.escalationRules" Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
+                ShowStriped="true" AllowDelete="true"
+                OnSorceItemDeleted = "InitStatusList">
+            </ProfileEscalationRulesPan>
+        </div>   
         <div class="col-12 py-2"></div>
+    }
 
-        <EditForm Model="@RulesForm" OnValidSubmit="AddCaseRule">
-            <DataAnnotationsValidator />       
-            <div class="row mb-3">             
-                <div class="form-group col-md-8">
-                    <label class="col-form-label font-weight-bold">@Localizer.Str["Profile_Step_Escalation_RuleList_Name"]</label>
-                    <div>
-                       <SfDropDownList TValue="string" TItem="CaseStatusModel" DataSource="@CaseStatusList" 
-                            @bind-Value="@RulesForm.NewCaseStatusID"
-                            Placeholder="@Localizer.Str["Value_Select_Text"]">
-                            <DropDownListFieldSettings Text="CaseStatus" Value="CaseStatusID"></DropDownListFieldSettings>
-                        </SfDropDownList>
-                    </div>
+    <EditForm Model="@RulesForm" OnValidSubmit="AddCaseRule">
+        <DataAnnotationsValidator />       
+        <div class="row mb-3">             
+            <div class="col-md-8">
+                <label class="form-label">@Localizer.Str["Profile_Step_Escalation_RuleList_Name"]</label>
+                <div>
+                    <SfDropDownList TValue="string" TItem="CaseStatusModel" DataSource="@CaseStatusList" 
+                        @bind-Value="@RulesForm.NewCaseStatusID"
+                        Placeholder="@Localizer.Str["Value_Select_Text"]">
+                        <DropDownListFieldSettings Text="CaseStatus" Value="CaseStatusID"></DropDownListFieldSettings>
+                    </SfDropDownList>
                 </div>
-                <div class="form-group col-md-3">
-                    <label class="col-form-label font-weight-bold">@Localizer.Str["Profile_Step_Escalation_RuleList_Days"]</label>
-                    <div>
-                        <SfNumericTextBox Min="1" TValue="int" @bind-Value="@RulesForm.NewCaseStatusDays"></SfNumericTextBox >
-                    </div>                    
-                </div>
-                <div class="form-group col-md-1">
-                    <label class="col-form-label font-weight-bold">&nbsp;</label>
-                    <div>
-                        <SfButton>+</SfButton>
-                    </div>                        
-                </div>                          
             </div>
-        </EditForm> 
-
-        <CaseContactPan Source="ProfileContacts" Title="@Localizer.Str["Profile_Step3_TeilnehmerListe"]" 
-            ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true" AllowDelete="true"
-            OnSorceItemDeleted = "LoadUserList">
-        </CaseContactPan>
-       
-        <div class="col-12 py-2"></div>
-
-        <EditForm Model="@ContactsForm" OnValidSubmit="AddProfileContact">
-            <DataAnnotationsValidator />       
-            <div class="row mb-3">             
-                <div class="form-group col-md-8">
-                    <label class="col-form-label font-weight-bold">@Localizer.Str["Profile_Step2_TeilnehmerAnlegen"]</label>
-                    <div>
-                        <SfComboBox @ref="comboObj" TValue="string" TItem="UsersModel" 
-                            DataSource="@UserList"  
-                            @bind-Value="@ContactsForm.NewContactId"
-                            Placeholder="@Localizer.Str["Value_Select_Text"]"  
-                            AllowFiltering="true"
-                            Autofill="false">
-                            <ComboBoxTemplates TItem="UsersModel">
-                                <HeaderTemplate>
-                                    <span class="head">
-                                        <span class="login">@Localizer.Str["LoginLabel_UserName"]</span>
-                                        <span class="name">@Localizer.Str["Cases_ChangeUsers_List_Name"]</span>
-
-                                        <span class="func">@Localizer.Str["Cases_ChangeUsers_List_Devision"]</span>
-                                    </span>
-                                </HeaderTemplate>
-                                <ItemTemplate Context="ctx">
-                                    <span class="item">
-                                        <span class="login">@((ctx  as UsersModel).LoginName)</span>
-                                        <span class="name">@((ctx  as UsersModel).Name)</span>
-
-                                        <span class="func">@((ctx  as UsersModel).FunctionInFirma)</span>
-                                    </span>
-                                </ItemTemplate>
-                            </ComboBoxTemplates>                                       
-
-                            <ComboBoxFieldSettings Text="Name" Value="ContactID"></ComboBoxFieldSettings>
-                            <ComboBoxEvents TValue="string" TItem="UsersModel" Filtering="OnFilter"></ComboBoxEvents>
-                        </SfComboBox>
-
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <label class="col-form-label font-weight-bold">@Localizer.Str["Cases_ChangeUsers_List_Role"]</label>
-                    <div>
-                        <SfDropDownList TValue="string" TItem="ProfileRole" DataSource="@ProfileRoleList" 
-                            @bind-Value="@ContactsForm.NewContactRole"
-                            Placeholder="@Localizer.Str["Value_Select_Text"]">
-                            <DropDownListFieldSettings Text="Description" Value="Key"></DropDownListFieldSettings>
-                        </SfDropDownList>
-
-                    </div>                    
-                </div>
-                <div class="form-group col-md-1">
-                    <label class="col-form-label font-weight-bold">&nbsp;</label>
-                    <div>
-                        <SfButton>+</SfButton>
-                    </div>                        
-                </div>                          
+            <div class="col-md-3">
+                <label class="form-label">@Localizer.Str["Profile_Step_Escalation_RuleList_Days"]</label>
+                <div>
+                    <SfNumericTextBox Min="1" TValue="int" @bind-Value="@RulesForm.NewCaseStatusDays"></SfNumericTextBox >
+                </div>                    
             </div>
-        </EditForm> 
-
-        <div class="col-12 py-2 top_blue_bg"></div>
-        <div class="row">
-
-            <div class="col-12 text-right">
-                <SfButton 
-                    Disabled="@(ProfileContacts?.Count == 0 || RulesForm.escalationRules?.Count == 0 )" 
-                    OnClick="SaveEscalationForm" CssClass="e-flat" IsPrimary="true"  
-                    Content="@Localizer.Str["Button_Save"]" >
-                </SfButton>                        
-            </div>
-
+            <div class="col-md-1 text-end">
+                <label class="form-label">&nbsp;</label>
+                <div>
+                    <SfButton>+</SfButton>
+                </div>                        
+            </div>                          
         </div>
-    </div>
+    </EditForm> 
+    
+    <div class="col-12 py-3"></div>
+
+
+
+    @if(ProfileContacts?.Count > 0)
+    {
+        <div class="border border-1 bg-light p-2">
+            <CaseContactPan Source="ProfileContacts" Title="@Localizer.Str["Profile_Step3_TeilnehmerListe"]" 
+                ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true" AllowDelete="true"
+                OnSorceItemDeleted = "LoadUserList">
+            </CaseContactPan>
+        </div> 
+        <div class="col-12 py-2"></div>
+    }
+
+    <EditForm Model="@ContactsForm" OnValidSubmit="AddProfileContact">
+        <DataAnnotationsValidator />       
+        <div class="row mb-3">             
+            <div class="col-md-8">
+                <label class="form-label">@Localizer.Str["Profile_Step2_TeilnehmerAnlegen"]</label>
+                <div>
+                    <SfComboBox @ref="comboObj" TValue="string" TItem="UsersModel" 
+                        DataSource="@UserList"  
+                        @bind-Value="@ContactsForm.NewContactId"
+                        Placeholder="@Localizer.Str["Value_Select_Text"]"  
+                        AllowFiltering="true"
+                        Autofill="false">
+                        <ComboBoxTemplates TItem="UsersModel">
+                            <HeaderTemplate>
+                                <span class="head">
+                                    <span class="login">@Localizer.Str["LoginLabel_UserName"]</span>
+                                    <span class="name">@Localizer.Str["Cases_ChangeUsers_List_Name"]</span>
+
+                                    <span class="func">@Localizer.Str["Cases_ChangeUsers_List_Devision"]</span>
+                                </span>
+                            </HeaderTemplate>
+                            <ItemTemplate Context="ctx">
+                                <span class="item">
+                                    <span class="login">@((ctx  as UsersModel).LoginName)</span>
+                                    <span class="name">@((ctx  as UsersModel).Name)</span>
+
+                                    <span class="func">@((ctx  as UsersModel).FunctionInFirma)</span>
+                                </span>
+                            </ItemTemplate>
+                        </ComboBoxTemplates>                                       
+
+                        <ComboBoxFieldSettings Text="Name" Value="ContactID"></ComboBoxFieldSettings>
+                        <ComboBoxEvents TValue="string" TItem="UsersModel" Filtering="OnFilter"></ComboBoxEvents>
+                    </SfComboBox>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">@Localizer.Str["Cases_ChangeUsers_List_Role"]</label>
+                <div>
+                    <SfDropDownList TValue="string" TItem="ProfileRole" DataSource="@ProfileRoleList" 
+                        @bind-Value="@ContactsForm.NewContactRole"
+                        Placeholder="@Localizer.Str["Value_Select_Text"]">
+                        <DropDownListFieldSettings Text="Description" Value="Key"></DropDownListFieldSettings>
+                    </SfDropDownList>
+
+                </div>                    
+            </div>
+            <div class="col-md-1 text-end">
+                <label class="form-label">&nbsp;</label>
+                <div>
+                    <SfButton>+</SfButton>
+                </div>                        
+            </div>                          
+        </div>
+    </EditForm> 
+    
+
+    <hr class="col-md-12 mt-4 mb-2"/>
+    <div class="col-md-12">
+        <SfButton 
+            
+            OnClick="SaveEscalationForm" IsPrimary="true"  
+            Content="@Localizer.Str["Button_Save"]" >
+        </SfButton> 
+    </div>         
 }    
 
-<div class="py-3">
-    <UiMessageBox Data="Messages.List"/>
-</div>
+
+<UiMessageBox Data="Messages.List"/>
+
 
 <style>
         

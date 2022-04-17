@@ -28,53 +28,52 @@
             <DialogEvents OnClose="@CloseDialog" ></DialogEvents>
             <DialogTemplates>
                 <Header>
-                    <div class="ml-4 font-weight-bold">@Localizer.Str["Profile_Title"] (@ProfileVM.CurrentProfile.profileName)</div>
+                    <div class="tLabel">@Localizer.Str["Profile_Title"] (@ProfileVM.CurrentProfile.profileName)</div>
                 </Header>
                 <Content>
 
-                    <SfTab SelectedItemChanged="OnTabChanged" @ref="Tab" LoadOn="ContentLoad.Dynamic">
+                    <SfTab SelectedItemChanged="OnTabChanged" @ref="Tab" LoadOn="ContentLoad.Dynamic" CssClass="itemDetail e-small">
                         <TabItems>
                             <TabItem >
                                 <HeaderTemplate>@Localizer.Str["Profile_Step_AllView"]</HeaderTemplate>
                                 <ContentTemplate>
-                                    <ProfileOverviewTab ViewModel="ProfileVM"></ProfileOverviewTab>
+                                    <div class="m-3 mt-5">
+                                        <ProfileOverviewTab ViewModel="ProfileVM"></ProfileOverviewTab>
+                                    </div>
                                 </ContentTemplate>
                             </TabItem>
                             <TabItem >
                                 <HeaderTemplate>@Localizer.Str["Profile_Step_Allgemeine"]</HeaderTemplate>
                                 <ContentTemplate>
-                                    <ProfileGeneralTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileGeneralTab>
+                                    <div class="m-3 mt-5">
+                                        <ProfileGeneralTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileGeneralTab>
+                                    </div>
                                 </ContentTemplate>
                             </TabItem>
                             <TabItem >
                                 <HeaderTemplate>@Localizer.Str["Profile_Step_Teilnehmen"]</HeaderTemplate>
                                 <ContentTemplate>
-                                    <ProfileContactsTab ViewModel="ProfileVM" OnFormSaved="ContactSaved"></ProfileContactsTab>
+                                    <div class="m-3 mt-5">
+                                        <ProfileContactsTab ViewModel="ProfileVM" OnFormSaved="ContactSaved"></ProfileContactsTab>
+                                    </div>
                                 </ContentTemplate>
                             </TabItem>
                             <TabItem >
                                 <HeaderTemplate>@Localizer.Str["Profile_Step_Escalation"]</HeaderTemplate>
                                 <ContentTemplate>
-                                    <ProfileEscalationTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileEscalationTab>
+                                    <div class="m-3 mt-5">
+                                        <ProfileEscalationTab ViewModel="ProfileVM" OnFormSaved="FormSaved"></ProfileEscalationTab>
+                                    </div>
                                 </ContentTemplate>
                             </TabItem>                            
                         </TabItems>
                     </SfTab>
 
-                    <div class="py-3">
-                        <UiMessageBox Data="Messages.List" />
-                    </div>
-
+                    <UiMessageBox Data="Messages.List" />
 
                 </Content>
             </DialogTemplates>
-        </SfDialog>
-
-        <style>
-            .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
-                background-color: lightblue;
-            }
-        </style>
+        </SfDialog>        
     }
 
 }

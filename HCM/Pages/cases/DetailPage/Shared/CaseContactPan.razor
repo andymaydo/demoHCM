@@ -1,13 +1,11 @@
 ﻿ @using HCMApi
 @using Syncfusion.Blazor.Lists
+
+ <h5 class="tLabel2">@Title</h5>
+ <hr class="mb-2"/>
     
 @if(Source?.Count > 0)
 {
-    
-    <h5 class="tLabel2">@Title</h5>
-    <div class="top_blue_bg"></div>
-
-         
     <table class="table @(ShowStriped && Source.Count > 2 ? "table-striped" : "") table-hover table-borderless table-sm">              
         <tbody class="itemDetail">
             
@@ -33,7 +31,7 @@
                     @if (@AllowDelete)
                     {
                         <td align="right">
-                            <a href="" @onclick="@(() => DeleteFromList(c.ContactID))" @onclick:preventDefault class="btnRemove">@Localizer.Str["Button_Del"]</a>
+                            <a href="" @onclick="@(() => DeleteFromList(c.ContactID))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
                         </td>
                     }
                 </tr>       
@@ -41,8 +39,11 @@
             
         </tbody>
     </table>
-}        
-        
+}
+else
+{
+    <div class="itemDetail">@Localizer.Str["Value_NoData"]</div>
+}     
 
 
 @code {

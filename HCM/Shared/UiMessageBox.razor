@@ -1,15 +1,29 @@
 ﻿
-    @foreach (Message msg in Data)
-    {
-        var i = 0;
+@if (Data?.Count > 0)
+{
+    <div class="py-3">
+        @foreach (Message msg in Data)
+        {
+            var i = 0;
 
-        <Collapsable Title="@msg.Short" Style="@(msg.isError ? "alert-danger" : "alert-success")" Collapsed="true">
-             @msg.Detail
-        </Collapsable>
+            if (String.IsNullOrEmpty(msg.Detail))
+            {
+                <Collapsable Title="@msg.Short" Style="@(msg.isError ? "alert-danger" : "alert-success")" Collapsed="true"/>
+            }
+            else
+            {
+                <Collapsable Title="@msg.Short" Style="@(msg.isError ? "alert-danger" : "alert-success")" Collapsed="true">
+                    @msg.Detail                
+                </Collapsable>
+            }
 
-        i++;
+            i++;
 
-    }
+        }
+    </div>
+}
+
+    
     
 
 

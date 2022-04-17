@@ -39,6 +39,9 @@ a, .btn-link {
     cursor: pointer;
 }
 
+hr {
+    margin: 0;
+}
 
 body {
     padding-top: 170px;
@@ -329,8 +332,15 @@ UI
 .bottom_blue_bg {
     background-repeat: repeat-x;
     background-position: bottom;
-    background-image: url(../images/subMenuBg2.gif);
+    background-image: url(../images/grayLine3x25xtrans.png);
     padding: 4px 5px 3px 5px;
+    height: 25px;
+}
+.bottom_blue_bg_2 {
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../images/grayLine3x25xtrans.png);
+    padding: 0px 0px 10px 5px;
     height: 25px;
 }
 .top_blue_bg {
@@ -488,7 +498,7 @@ a.ReportItemNormal {
 .itemDetail {
     font-weight: normal;
     /*padding-left: 5px;*/
-    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    /*font-family: Arial, Tahoma,Helvetica, sans-serif;*/
     text-decoration: none;
     font-size: 14px;
     padding-bottom: 0px !important;
@@ -497,9 +507,9 @@ a.ReportItemNormal {
 .itemDetail2 {
     font-weight: bold;
     /*padding-left: 0px;*/
-    font-family: Arial, Tahoma,Helvetica, sans-serif;
+    /*font-family: Arial, Tahoma,Helvetica, sans-serif;*/
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     padding-bottom: 0px !important;
     padding-top: 0px !important;
 }
@@ -701,14 +711,7 @@ a.btnShowMatch {
     min-height: 100px !important;
 }*/
 
-.bottom_blue_bg_2 {
-    background-repeat: repeat-x;
-    background-position: top;
-    background-image: url(../images/subMenuBg.jpg);
-    padding: 0px 0px 10px 5px;
-    
-    height: 25px;
-}
+
 /*.e-hcm-statusInRole {
     text-decoration: none;
     color: #006800;

@@ -23,12 +23,13 @@
 }
 @if (_loadingStatus == 1)
 {
-    <div class="mx-4 mt-5">
-                
+    <div class="border border-1 bg-light p-2">
         <ProfileGeneralPan ViewModel="ViewModel"></ProfileGeneralPan>
+    </div>                
+    
+    <div class="col-12 py-2"></div>
 
-        <div class="col-12 py-2"></div>
-
+    <div class="border border-1 p-2">
         <CaseContactPan Source="ProfileContacts" 
             Title="@Localizer.Str["Profile_Step2_TeilnehmerListe"]" 
             ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true">
@@ -42,9 +43,11 @@
                 </SfCheckBox>
             </div>
         }
+    </div>
+    
+    <div class="col-12 py-2"></div>
 
-        <div class="col-12 py-2"></div>
-
+    <div class="border border-1 bg-light p-2">
         <ProfileEscalationRulesPan Source="ViewModel.CurrentProfile.escalationRules" 
             Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
             ShowStriped="true" AllowDelete="false">
@@ -57,13 +60,11 @@
             Title="@Localizer.Str["Profile_Step3_TeilnehmerListe"]" 
             ShowEmail="true" ShowFunction="true" ShowRole="true" ShowStriped="true">
         </CaseContactPan>         
-        
     </div>
 }    
 
-<div class="py-3">
-    <UiMessageBox Data="Messages.List"/>
-</div>
+<UiMessageBox Data="Messages.List"/>
+
 
 
 

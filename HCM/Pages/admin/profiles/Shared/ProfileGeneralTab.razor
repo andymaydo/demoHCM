@@ -20,47 +20,40 @@
 }        
 @if (_loadingStatus == 1)
 {
-    <div class="mx-4 mt-5">
         <EditForm Model="@ViewModel.GenInfoForm" OnValidSubmit="@ValidGenInfoFormSubmited" >
             <DataAnnotationsValidator />
-            <div class="form-group row">                                                               
-                <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_ProfileName"]</label>
-                <div class = "col-8">
+            <div class="row g-2">                                                               
+                <label class="col-md-4">@Localizer.Str["Profile_ProfileName"]</label>
+                <div class = "col-md-8">
                     <SfTextBox   @bind-Value="@ViewModel.GenInfoForm.profileName"></SfTextBox>
                     <ValidationMessage For="@(() => ViewModel.GenInfoForm.profileName)" />
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_Email_Language"]</label>
-                <div class = "col-8">
+                <label class="col-md-4">@Localizer.Str["Profile_Email_Language"]</label>
+                <div class = "col-md-8">
                     <SfComboBox  DataSource="@Languages" TValue="string" TItem="Language" ShowClearButton="false" @bind-Value="ViewModel.GenInfoForm.NotificationLang">
                         <ComboBoxFieldSettings Text="Description" Value="Key"></ComboBoxFieldSettings>
                     </SfComboBox>
                     <ValidationMessage For="@(() => ViewModel.GenInfoForm.NotificationLang)" />     
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-4 col-form-label font-weight-bold">@Localizer.Str["Profile_Description"]</label>
-                <div class = "col-8">
+
+                <label class="col-md-4">@Localizer.Str["Profile_Description"]</label>
+                <div class = "col-md-8">
                     <SfTextBox Multiline="true" @bind-Value="@ViewModel.GenInfoForm.profilDescr"></SfTextBox>
                     <ValidationMessage For="@(() => ViewModel.GenInfoForm.profilDescr)" /> 
-                </div>                                
-            </div>
+                </div>
 
-            <div class="col-12 py-2 top_blue_bg"></div>
-            <div class="row">                       
-                <div class="col-12 text-right">
-                    <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
-                </div>                       
-            </div>
-        </EditForm>
-    </div>
+                <hr class="col-md-12 mt-4"/>
+                <div class="col-md-12">
+                    <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]"></SfButton>                        
+                </div> 
+            </div>                    
+        </EditForm>   
 }
 
-<div class="py-3">
-    <UiMessageBox Data="Messages.List"/>
-</div>
+
+<UiMessageBox Data="Messages.List"/>
+
 
 
 
@@ -125,7 +118,6 @@
             Messages.List.Clear();
 
             await ViewModel.SaveGenInfo(CurrentContactId);            
-
             await OnFormSaved.InvokeAsync();            
            
         }
@@ -133,7 +125,7 @@
         {                        
             _logger.LogError(ex.Message);
             _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"], ex.Message);
 
         }
 

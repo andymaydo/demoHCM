@@ -26,7 +26,7 @@
             <Content>
 
                 <h5 class="tLabel2">@Localizer.Str["Admin_EditUsers_GeneralData"]</h5>
-                <div class="top_blue_bg"></div>                
+                <hr class="mb-2"/>                
                 <div class="mx-4 e-small">
                     <EditForm Model="@UserInfoModel" OnValidSubmit="@ValidUserInfoFormSubmited" >
                     <DataAnnotationsValidator />
@@ -70,7 +70,7 @@
                 </div>
 
                 <h5 class="tLabel2">@Localizer.Str["Admin_UsersChangePassowrdTitle"]</h5>
-                <div class="top_blue_bg"></div>
+                <hr class="mb-2"/>
                 <div class="mx-4 e-small">
                     <EditForm Model="@UserPassModel" OnValidSubmit="@ValidUserPassFormSubmited" >
                     <DataAnnotationsValidator />
@@ -96,7 +96,7 @@
                 </div>
                  
                 <h5 class="tLabel2">@Localizer.Str["Admin_EditUsers_RoleList"]</h5>
-                <div class="top_blue_bg"></div>
+                <hr class="mb-2"/>
                 <div class="mx-4 ">
                     <div class="row g-1">
                         <div class="col-md-12">
@@ -124,9 +124,7 @@
                 </div>
                 
 
-                <div class="py-3">
-                    <UiMessageBox Data="Messages.List"/>
-                </div>
+                <UiMessageBox Data="Messages.List"/>
 
                  
             </Content>

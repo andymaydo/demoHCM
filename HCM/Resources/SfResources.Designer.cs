@@ -59,5 +59,15305 @@ namespace HCM.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anfrage ist fehlgeschlagen.
+        /// </summary>
+        internal static string AutoComplete_ActionFailureTemplate {
+            get {
+                return ResourceManager.GetString("AutoComplete_ActionFailureTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Einträge vorhanden.
+        /// </summary>
+        internal static string AutoComplete_NoRecordsTemplate {
+            get {
+                return ResourceManager.GetString("AutoComplete_NoRecordsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heute.
+        /// </summary>
+        internal static string Calendar_Today {
+            get {
+                return ResourceManager.GetString("Calendar_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Folie.
+        /// </summary>
+        internal static string Carousel_NextSlide {
+            get {
+                return ResourceManager.GetString("Carousel_NextSlide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to von.
+        /// </summary>
+        internal static string Carousel_Of {
+            get {
+                return ResourceManager.GetString("Carousel_Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autoanimation starten.
+        /// </summary>
+        internal static string Carousel_PauseSlide {
+            get {
+                return ResourceManager.GetString("Carousel_PauseSlide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stoppen Sie die automatische Animation.
+        /// </summary>
+        internal static string Carousel_PlaySlide {
+            get {
+                return ResourceManager.GetString("Carousel_PlaySlide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorherige Folie.
+        /// </summary>
+        internal static string Carousel_PreviousSlide {
+            get {
+                return ResourceManager.GetString("Carousel_PreviousSlide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rutschen.
+        /// </summary>
+        internal static string Carousel_Slide {
+            get {
+                return ResourceManager.GetString("Carousel_Slide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diashow.
+        /// </summary>
+        internal static string Carousel_SlideShow {
+            get {
+                return ResourceManager.GetString("Carousel_SlideShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schwenken.
+        /// </summary>
+        internal static string Chart_Pan {
+            get {
+                return ResourceManager.GetString("Chart_Pan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zurücksetzen.
+        /// </summary>
+        internal static string Chart_Reset {
+            get {
+                return ResourceManager.GetString("Chart_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom zurücksetzen.
+        /// </summary>
+        internal static string Chart_ResetZoom {
+            get {
+                return ResourceManager.GetString("Chart_ResetZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoomen.
+        /// </summary>
+        internal static string Chart_Zoom {
+            get {
+                return ResourceManager.GetString("Chart_Zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hineinzoomen.
+        /// </summary>
+        internal static string Chart_ZoomIn {
+            get {
+                return ResourceManager.GetString("Chart_ZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rauszoomen.
+        /// </summary>
+        internal static string Chart_ZoomOut {
+            get {
+                return ResourceManager.GetString("Chart_ZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anwenden.
+        /// </summary>
+        internal static string ColorPicker_Apply {
+            get {
+                return ResourceManager.GetString("ColorPicker_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string ColorPicker_Cancel {
+            get {
+                return ResourceManager.GetString("ColorPicker_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wechselmodus.
+        /// </summary>
+        internal static string ColorPicker_ModeSwitcher {
+            get {
+                return ResourceManager.GetString("ColorPicker_ModeSwitcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anfrage ist fehlgeschlagen.
+        /// </summary>
+        internal static string ComboBox_ActionFailureTemplate {
+            get {
+                return ResourceManager.GetString("ComboBox_ActionFailureTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Einträge vorhanden.
+        /// </summary>
+        internal static string ComboBox_NoRecordsTemplate {
+            get {
+                return ResourceManager.GetString("ComboBox_NoRecordsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie ein Datum.
+        /// </summary>
+        internal static string DatePicker_Placeholder {
+            get {
+                return ResourceManager.GetString("DatePicker_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heute.
+        /// </summary>
+        internal static string DatePicker_Today {
+            get {
+                return ResourceManager.GetString("DatePicker_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anwenden.
+        /// </summary>
+        internal static string DateRangePicker_ApplyText {
+            get {
+                return ResourceManager.GetString("DateRangePicker_ApplyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string DateRangePicker_CancelText {
+            get {
+                return ResourceManager.GetString("DateRangePicker_CancelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefinierten Bereich.
+        /// </summary>
+        internal static string DateRangePicker_CustomRange {
+            get {
+                return ResourceManager.GetString("DateRangePicker_CustomRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tage.
+        /// </summary>
+        internal static string DateRangePicker_Days {
+            get {
+                return ResourceManager.GetString("DateRangePicker_Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endtermin.
+        /// </summary>
+        internal static string DateRangePicker_EndLabel {
+            get {
+                return ResourceManager.GetString("DateRangePicker_EndLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie einen Datumsbereich.
+        /// </summary>
+        internal static string DateRangePicker_Placeholder {
+            get {
+                return ResourceManager.GetString("DateRangePicker_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausgewählte Tage.
+        /// </summary>
+        internal static string DateRangePicker_SelectedDays {
+            get {
+                return ResourceManager.GetString("DateRangePicker_SelectedDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anfangsdatum.
+        /// </summary>
+        internal static string DateRangePicker_StartLabel {
+            get {
+                return ResourceManager.GetString("DateRangePicker_StartLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie ein Datum und eine Uhrzeit.
+        /// </summary>
+        internal static string DateTimePicker_Placeholder {
+            get {
+                return ResourceManager.GetString("DateTimePicker_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heute.
+        /// </summary>
+        internal static string DateTimePicker_Today {
+            get {
+                return ResourceManager.GetString("DateTimePicker_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In den Vordergrund bewegen.
+        /// </summary>
+        internal static string Diagram_BringToFront {
+            get {
+                return ResourceManager.GetString("Diagram_BringToFront", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string Diagram_Copy {
+            get {
+                return ResourceManager.GetString("Diagram_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schneiden.
+        /// </summary>
+        internal static string Diagram_Cut {
+            get {
+                return ResourceManager.GetString("Diagram_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppe.
+        /// </summary>
+        internal static string Diagram_Group {
+            get {
+                return ResourceManager.GetString("Diagram_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppierung.
+        /// </summary>
+        internal static string Diagram_Grouping {
+            get {
+                return ResourceManager.GetString("Diagram_Grouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nach vorne bewegen.
+        /// </summary>
+        internal static string Diagram_MoveForward {
+            get {
+                return ResourceManager.GetString("Diagram_MoveForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auftrag.
+        /// </summary>
+        internal static string Diagram_Order {
+            get {
+                return ResourceManager.GetString("Diagram_Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        internal static string Diagram_Paste {
+            get {
+                return ResourceManager.GetString("Diagram_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        internal static string Diagram_Redo {
+            get {
+                return ResourceManager.GetString("Diagram_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Auswählen.
+        /// </summary>
+        internal static string Diagram_SelectAll {
+            get {
+                return ResourceManager.GetString("Diagram_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nach hinten bewegen.
+        /// </summary>
+        internal static string Diagram_SendBackward {
+            get {
+                return ResourceManager.GetString("Diagram_SendBackward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In den Hintergrund bewegen.
+        /// </summary>
+        internal static string Diagram_SendToBack {
+            get {
+                return ResourceManager.GetString("Diagram_SendToBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rückgängig machen.
+        /// </summary>
+        internal static string Diagram_Undo {
+            get {
+                return ResourceManager.GetString("Diagram_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppierung aufheben.
+        /// </summary>
+        internal static string Diagram_UnGroup {
+            get {
+                return ResourceManager.GetString("Diagram_UnGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to h.
+        /// </summary>
+        internal static string DiagramComponent_H {
+            get {
+                return ResourceManager.GetString("DiagramComponent_H", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W.
+        /// </summary>
+        internal static string DiagramComponent_W {
+            get {
+                return ResourceManager.GetString("DiagramComponent_W", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X.
+        /// </summary>
+        internal static string DiagramComponent_X {
+            get {
+                return ResourceManager.GetString("DiagramComponent_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        internal static string DiagramComponent_Y {
+            get {
+                return ResourceManager.GetString("DiagramComponent_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schließen.
+        /// </summary>
+        internal static string Dialog_Close {
+            get {
+                return ResourceManager.GetString("Dialog_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A3.
+        /// </summary>
+        internal static string DocumentEditor_A3 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_A3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A4.
+        /// </summary>
+        internal static string DocumentEditor_A4 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_A4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A5.
+        /// </summary>
+        internal static string DocumentEditor_A5 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_A5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Akzeptieren.
+        /// </summary>
+        internal static string DocumentEditor_Accept {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Akzeptiere alle.
+        /// </summary>
+        internal static string DocumentEditor_AcceptAll {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AcceptAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Änderungen akzeptieren.
+        /// </summary>
+        internal static string DocumentEditor_AcceptChanges {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AcceptChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinzufügen.
+        /// </summary>
+        internal static string DocumentEditor_Add {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HINZUFÜGEN.
+        /// </summary>
+        internal static string DocumentEditor_ADDButton {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ADDButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieses Dokument hat keine Überschriften. Bitte fügen Sie Überschriften hinzu und versuchen Sie es erneut..
+        /// </summary>
+        internal static string DocumentEditor_AddHeadings {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AddHeadings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adresse.
+        /// </summary>
+        internal static string DocumentEditor_Address {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum Wörterbuch hinzufügen.
+        /// </summary>
+        internal static string DocumentEditor_AddToDictionary {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AddToDictionary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzer hinzufügen.
+        /// </summary>
+        internal static string DocumentEditor_AddUsers {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AddUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nach.
+        /// </summary>
+        internal static string DocumentEditor_After {
+            get {
+                return ResourceManager.GetString("DocumentEditor_After", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nach dem Text.
+        /// </summary>
+        internal static string DocumentEditor_AfterText {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AfterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausgerichtet um.
+        /// </summary>
+        internal static string DocumentEditor_AlignedAt {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AlignedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausrichtung.
+        /// </summary>
+        internal static string DocumentEditor_Alignment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Alignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle.
+        /// </summary>
+        internal static string DocumentEditor_All {
+            get {
+                return ResourceManager.GetString("DocumentEditor_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles erledigt.
+        /// </summary>
+        internal static string DocumentEditor_AllDone {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AllDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formatierung zulassen.
+        /// </summary>
+        internal static string DocumentEditor_AllowFormatting {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AllowFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilenumbruch über Seiten zulassen.
+        /// </summary>
+        internal static string DocumentEditor_AllowRowToBreakAcrossPages {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AllowRowToBreakAcrossPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lassen Sie den Abstand zwischen den Zellen zu.
+        /// </summary>
+        internal static string DocumentEditor_AllowSpacingBetweenCells {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AllowSpacingBetweenCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gelten.
+        /// </summary>
+        internal static string DocumentEditor_ApplyTo {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ApplyTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arabisch.
+        /// </summary>
+        internal static string DocumentEditor_Arabic {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Arabic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beim.
+        /// </summary>
+        internal static string DocumentEditor_At {
+            get {
+                return ResourceManager.GetString("DocumentEditor_At", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mindestens.
+        /// </summary>
+        internal static string DocumentEditor_AtLeast {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AtLeast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        internal static string DocumentEditor_Auto {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoFit.
+        /// </summary>
+        internal static string DocumentEditor_AutoFit {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AutoFit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoFit to Contents.
+        /// </summary>
+        internal static string DocumentEditor_AutoFitToContents {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AutoFitToContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoFit to Window.
+        /// </summary>
+        internal static string DocumentEditor_AutoFitToWindow {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AutoFitToWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verfügbare Stile.
+        /// </summary>
+        internal static string DocumentEditor_AvailableStyles {
+            get {
+                return ResourceManager.GetString("DocumentEditor_AvailableStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B4.
+        /// </summary>
+        internal static string DocumentEditor_B4 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_B4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B5.
+        /// </summary>
+        internal static string DocumentEditor_B5 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_B5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vor.
+        /// </summary>
+        internal static string DocumentEditor_Before {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Before", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vor dem Text.
+        /// </summary>
+        internal static string DocumentEditor_BeforeText {
+            get {
+                return ResourceManager.GetString("DocumentEditor_BeforeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fett gedruckt.
+        /// </summary>
+        internal static string DocumentEditor_Bold {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lesezeichen.
+        /// </summary>
+        internal static string DocumentEditor_Bookmark {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Bookmark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name des Lesezeichens.
+        /// </summary>
+        internal static string DocumentEditor_BookmarkName {
+            get {
+                return ResourceManager.GetString("DocumentEditor_BookmarkName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grenzen.
+        /// </summary>
+        internal static string DocumentEditor_Borders {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Borders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rahmen und Schattierung.
+        /// </summary>
+        internal static string DocumentEditor_BordersAndShading {
+            get {
+                return ResourceManager.GetString("DocumentEditor_BordersAndShading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterseite.
+        /// </summary>
+        internal static string DocumentEditor_Bottom {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box.
+        /// </summary>
+        internal static string DocumentEditor_Box {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen Sie das Inhaltsverzeichnis von.
+        /// </summary>
+        internal static string DocumentEditor_BuildTableOfContentsFrom {
+            get {
+                return ResourceManager.GetString("DocumentEditor_BuildTableOfContentsFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kugel.
+        /// </summary>
+        internal static string DocumentEditor_Bullet {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Bullet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufzählungszeichen.
+        /// </summary>
+        internal static string DocumentEditor_Bullets {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Bullets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durch.
+        /// </summary>
+        internal static string DocumentEditor_By {
+            get {
+                return ResourceManager.GetString("DocumentEditor_By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string DocumentEditor_Cancel {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zelle.
+        /// </summary>
+        internal static string DocumentEditor_Cell {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Cell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zellränder.
+        /// </summary>
+        internal static string DocumentEditor_CellMargins {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CellMargins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zellenoptionen.
+        /// </summary>
+        internal static string DocumentEditor_CellOptions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CellOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zentriert.
+        /// </summary>
+        internal static string DocumentEditor_Center {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Veränderung.
+        /// </summary>
+        internal static string DocumentEditor_Change {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ändere Alles.
+        /// </summary>
+        internal static string DocumentEditor_ChangeAll {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ChangeAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Änderungen.
+        /// </summary>
+        internal static string DocumentEditor_Changes {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Changes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charakter.
+        /// </summary>
+        internal static string DocumentEditor_Character {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Character", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontrollkästchen aktiviert.
+        /// </summary>
+        internal static string DocumentEditor_CheckBoxEnabled {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CheckBoxEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontrollkästchen Formularfeld.
+        /// </summary>
+        internal static string DocumentEditor_CheckBoxFormField {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CheckBoxFormField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontrollkästchengröße.
+        /// </summary>
+        internal static string DocumentEditor_CheckBoxSize {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CheckBoxSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überprüft.
+        /// </summary>
+        internal static string DocumentEditor_Checked {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Checked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie die zu ändernde Ebene.
+        /// </summary>
+        internal static string DocumentEditor_ChooseLevelToModify {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ChooseLevelToModify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klicken Sie hier, um dem Link zu folgen.
+        /// </summary>
+        internal static string DocumentEditor_ClickToFollowLink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ClickToFollowLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klicken Sie hier, um diesen Kommentar anzuzeigen.
+        /// </summary>
+        internal static string DocumentEditor_ClickToSeeThisComment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ClickToSeeThisComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schliessen.
+        /// </summary>
+        internal static string DocumentEditor_Close {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farbe.
+        /// </summary>
+        internal static string DocumentEditor_Color {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anzahl der Spalten muss zwischen 1 und 63 liegen..
+        /// </summary>
+        internal static string DocumentEditor_ColumnRange {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ColumnRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bemerkungen.
+        /// </summary>
+        internal static string DocumentEditor_Comments {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie können nur Kommentare in diesen Bereich einfügen..
+        /// </summary>
+        internal static string DocumentEditor_CommentsOnly {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CommentsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie keinen Abstand zwischen den Absätzen der gleichen Stile ein.
+        /// </summary>
+        internal static string DocumentEditor_ContextualSpacing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ContextualSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummerierung fortsetzen.
+        /// </summary>
+        internal static string DocumentEditor_ContinueNumbering {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ContinueNumbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string DocumentEditor_Copy {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlink kopieren.
+        /// </summary>
+        internal static string DocumentEditor_CopyHyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CopyHyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuen Stil erstellen.
+        /// </summary>
+        internal static string DocumentEditor_CreateNewStyle {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CreateNewStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefiniert.
+        /// </summary>
+        internal static string DocumentEditor_Custom {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefiniertes Format.
+        /// </summary>
+        internal static string DocumentEditor_CustomSize {
+            get {
+                return ResourceManager.GetString("DocumentEditor_CustomSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausschneiden.
+        /// </summary>
+        internal static string DocumentEditor_Cut {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strich Punkt.
+        /// </summary>
+        internal static string DocumentEditor_DashDot {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DashDot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strich Punkt Punkt.
+        /// </summary>
+        internal static string DocumentEditor_DashDotDot {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DashDotDot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strichpunkt gestrichen.
+        /// </summary>
+        internal static string DocumentEditor_DashDotStroked {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DashDotStroked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strich große Lücke.
+        /// </summary>
+        internal static string DocumentEditor_DashLargeGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DashLargeGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strich kleine Lücke.
+        /// </summary>
+        internal static string DocumentEditor_DashSmallGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DashSmallGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string DocumentEditor_Date {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datumsformat.
+        /// </summary>
+        internal static string DocumentEditor_DateFormat {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard-Zellenränder.
+        /// </summary>
+        internal static string DocumentEditor_DefaultCellMargins {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefaultCellMargins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standardzellenabstand.
+        /// </summary>
+        internal static string DocumentEditor_DefaultCellSpacing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefaultCellSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standarddatum.
+        /// </summary>
+        internal static string DocumentEditor_DefaultDate {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefaultDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standardnummer.
+        /// </summary>
+        internal static string DocumentEditor_DefaultNumber {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefaultNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standardtext.
+        /// </summary>
+        internal static string DocumentEditor_DefaultText {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefaultText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standardwert.
+        /// </summary>
+        internal static string DocumentEditor_DefaultValue {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefaultValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neue Mehrebenenliste definieren.
+        /// </summary>
+        internal static string DocumentEditor_DefineNewMultilevelList {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DefineNewMultilevelList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string DocumentEditor_Delete {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte löschen.
+        /// </summary>
+        internal static string DocumentEditor_DeleteColumn {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DeleteColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gelöscht.
+        /// </summary>
+        internal static string DocumentEditor_Deleted {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile löschen.
+        /// </summary>
+        internal static string DocumentEditor_DeleteRow {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DeleteRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle löschen.
+        /// </summary>
+        internal static string DocumentEditor_DeleteTable {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DeleteTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zielformatierung anpassen.
+        /// </summary>
+        internal static string DocumentEditor_DestinationFormat {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DestinationFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Andere erste Seite.
+        /// </summary>
+        internal static string DocumentEditor_DifferentFirstPage {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DifferentFirstPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschiedlich ungerade und gerade.
+        /// </summary>
+        internal static string DocumentEditor_DifferentOddAndEven {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DifferentOddAndEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Richtung.
+        /// </summary>
+        internal static string DocumentEditor_Direction {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Direction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinzugefügt Kommentare nicht gepostet. Wenn Sie fortfahren, wird dieser Kommentar verworfen..
+        /// </summary>
+        internal static string DocumentEditor_DiscardComment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DiscardComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punkt.
+        /// </summary>
+        internal static string DocumentEditor_Dot {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Dot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doppelt durchgestrichen.
+        /// </summary>
+        internal static string DocumentEditor_DoubleStrikethrough {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DoubleStrikethrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doppelt wellig.
+        /// </summary>
+        internal static string DocumentEditor_DoubleWavy {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DoubleWavy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dropdown aktiviert.
+        /// </summary>
+        internal static string DocumentEditor_DropDownEnabled {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DropDownEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dropdown-Formularfeld.
+        /// </summary>
+        internal static string DocumentEditor_DropDownFormField {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DropDownFormField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dropdown-Elemente.
+        /// </summary>
+        internal static string DocumentEditor_DropDownItems {
+            get {
+                return ResourceManager.GetString("DocumentEditor_DropDownItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string DocumentEditor_Edit {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feld bearbeiten.
+        /// </summary>
+        internal static string DocumentEditor_EditField {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EditField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlink bearbeiten.
+        /// </summary>
+        internal static string DocumentEditor_EditHyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EditHyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeitungsbeschränkungen.
+        /// </summary>
+        internal static string DocumentEditor_EditingRestrictions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EditingRestrictions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auswirkungen.
+        /// </summary>
+        internal static string DocumentEditor_Effects {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Effects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emboss3D.
+        /// </summary>
+        internal static string DocumentEditor_Emboss3D {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Emboss3D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja, Schutz erzwingen.
+        /// </summary>
+        internal static string DocumentEditor_EnforcingProtection {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EnforcingProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gravieren3D.
+        /// </summary>
+        internal static string DocumentEditor_Engrave3D {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Engrave3D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie die Formatierung für die Nummer ein.
+        /// </summary>
+        internal static string DocumentEditor_EnterFormattingForNumber {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EnterFormattingForNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neues Passwort eingeben.
+        /// </summary>
+        internal static string DocumentEditor_EnterNewPassword {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EnterNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzer eingeben.
+        /// </summary>
+        internal static string DocumentEditor_EnterUser {
+            get {
+                return ResourceManager.GetString("DocumentEditor_EnterUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fehler beim Herstellen der Verbindung mit dem Webserver.
+        /// </summary>
+        internal static string DocumentEditor_ErrorInEstablishingConnectionWithWebServer {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ErrorInEstablishingConnectionWithWebServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jeder.
+        /// </summary>
+        internal static string DocumentEditor_Everyone {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Everyone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genau.
+        /// </summary>
+        internal static string DocumentEditor_Exactly {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Exactly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausnahmen (optional).
+        /// </summary>
+        internal static string DocumentEditor_ExceptionsOptional {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ExceptionsOptional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executive.
+        /// </summary>
+        internal static string DocumentEditor_Executive {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Executive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldeinstellungen.
+        /// </summary>
+        internal static string DocumentEditor_FieldSettings {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FieldSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dateiname.
+        /// </summary>
+        internal static string DocumentEditor_FileName {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Füllen.
+        /// </summary>
+        internal static string DocumentEditor_Fill {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Fill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausfüllen aktiviert.
+        /// </summary>
+        internal static string DocumentEditor_FillInEnabled {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FillInEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finden.
+        /// </summary>
+        internal static string DocumentEditor_Find {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Find", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Region suchen, die ich bearbeiten kann.
+        /// </summary>
+        internal static string DocumentEditor_FindNextRegionICanEdit {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FindNextRegionICanEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FirstCapital.
+        /// </summary>
+        internal static string DocumentEditor_FirstCapital {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FirstCapital", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erste Linie.
+        /// </summary>
+        internal static string DocumentEditor_FirstLine {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FirstLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feste Spaltenbreite.
+        /// </summary>
+        internal static string DocumentEditor_FixedColumnWidth {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FixedColumnWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folgen Sie der Nummer mit.
+        /// </summary>
+        internal static string DocumentEditor_FollowNumberWith {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FollowNumberWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftart.
+        /// </summary>
+        internal static string DocumentEditor_Font {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftfarbe.
+        /// </summary>
+        internal static string DocumentEditor_FontColor {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FontColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftstil.
+        /// </summary>
+        internal static string DocumentEditor_FontStyle {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FontStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fusszeile.
+        /// </summary>
+        internal static string DocumentEditor_Footer {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Für den Osten.
+        /// </summary>
+        internal static string DocumentEditor_ForEast {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ForEast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format.
+        /// </summary>
+        internal static string DocumentEditor_Format {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formatierung.
+        /// </summary>
+        internal static string DocumentEditor_Formatting {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Formatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formatierungsbeschränkungen.
+        /// </summary>
+        internal static string DocumentEditor_FormattingRestrictions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FormattingRestrictions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formattyp.
+        /// </summary>
+        internal static string DocumentEditor_FormatType {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FormatType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formulare dürfen nur in dieser Region ausgefüllt werden..
+        /// </summary>
+        internal static string DocumentEditor_FormFieldsOnly {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FormFieldsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vom Rand.
+        /// </summary>
+        internal static string DocumentEditor_FromEdge {
+            get {
+                return ResourceManager.GetString("DocumentEditor_FromEdge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allgemeines.
+        /// </summary>
+        internal static string DocumentEditor_General {
+            get {
+                return ResourceManager.GetString("DocumentEditor_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gehe zu.
+        /// </summary>
+        internal static string DocumentEditor_GoTo {
+            get {
+                return ResourceManager.GetString("DocumentEditor_GoTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hängend.
+        /// </summary>
+        internal static string DocumentEditor_Hanging {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Hanging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Header.
+        /// </summary>
+        internal static string DocumentEditor_Header {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift.
+        /// </summary>
+        internal static string DocumentEditor_Heading {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift 1.
+        /// </summary>
+        internal static string DocumentEditor_Heading1 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift 2.
+        /// </summary>
+        internal static string DocumentEditor_Heading2 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift 3.
+        /// </summary>
+        internal static string DocumentEditor_Heading3 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift 4.
+        /// </summary>
+        internal static string DocumentEditor_Heading4 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift 5.
+        /// </summary>
+        internal static string DocumentEditor_Heading5 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift 6.
+        /// </summary>
+        internal static string DocumentEditor_Heading6 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Höhe.
+        /// </summary>
+        internal static string DocumentEditor_Height {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Markieren Sie die Regionen, die ich bearbeiten kann.
+        /// </summary>
+        internal static string DocumentEditor_HighlightTheRegionsICanEdit {
+            get {
+                return ResourceManager.GetString("DocumentEditor_HighlightTheRegionsICanEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlink.
+        /// </summary>
+        internal static string DocumentEditor_Hyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Hyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignorieren.
+        /// </summary>
+        internal static string DocumentEditor_Ignore {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Ignore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles ignorieren.
+        /// </summary>
+        internal static string DocumentEditor_IgnoreAll {
+            get {
+                return ResourceManager.GetString("DocumentEditor_IgnoreAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertiefung.
+        /// </summary>
+        internal static string DocumentEditor_Indentation {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Indentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzug von links.
+        /// </summary>
+        internal static string DocumentEditor_IndentFromLeft {
+            get {
+                return ResourceManager.GetString("DocumentEditor_IndentFromLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Von rechts einrücken.
+        /// </summary>
+        internal static string DocumentEditor_IndentFromRight {
+            get {
+                return ResourceManager.GetString("DocumentEditor_IndentFromRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Witwen-/Waisenkontrolle.
+        /// </summary>
+        internal static string DocumentEditor_IndentsAndSpacing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_IndentsAndSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string DocumentEditor_Information {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string DocumentEditor_Insert {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oben einfügen.
+        /// </summary>
+        internal static string DocumentEditor_InsertAbove {
+            get {
+                return ResourceManager.GetString("DocumentEditor_InsertAbove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unten einfügen.
+        /// </summary>
+        internal static string DocumentEditor_InsertBelow {
+            get {
+                return ResourceManager.GetString("DocumentEditor_InsertBelow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eingefügt.
+        /// </summary>
+        internal static string DocumentEditor_Inserted {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Inserted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlink einfügen.
+        /// </summary>
+        internal static string DocumentEditor_InsertHyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_InsertHyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links einfügen.
+        /// </summary>
+        internal static string DocumentEditor_InsertLeft {
+            get {
+                return ResourceManager.GetString("DocumentEditor_InsertLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts einfügen.
+        /// </summary>
+        internal static string DocumentEditor_InsertRight {
+            get {
+                return ResourceManager.GetString("DocumentEditor_InsertRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle einfügen.
+        /// </summary>
+        internal static string DocumentEditor_InsertTable {
+            get {
+                return ResourceManager.GetString("DocumentEditor_InsertTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einsatz.
+        /// </summary>
+        internal static string DocumentEditor_Inset {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Inset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instanzen.
+        /// </summary>
+        internal static string DocumentEditor_Instances {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Instances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kursiv.
+        /// </summary>
+        internal static string DocumentEditor_Italic {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elemente in der Dropdown-Liste.
+        /// </summary>
+        internal static string DocumentEditor_ItemsInDropDownList {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ItemsInDropDownList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechtfertigen.
+        /// </summary>
+        internal static string DocumentEditor_Justify {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Justify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weiter so.
+        /// </summary>
+        internal static string DocumentEditor_KeepLinesTogether {
+            get {
+                return ResourceManager.GetString("DocumentEditor_KeepLinesTogether", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quellformatierung beibehalten.
+        /// </summary>
+        internal static string DocumentEditor_KeepSource {
+            get {
+                return ResourceManager.GetString("DocumentEditor_KeepSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quellformatierung beibehalten.
+        /// </summary>
+        internal static string DocumentEditor_KeepSourceFormatting {
+            get {
+                return ResourceManager.GetString("DocumentEditor_KeepSourceFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einmal ignorieren.
+        /// </summary>
+        internal static string DocumentEditor_KeepWithNext {
+            get {
+                return ResourceManager.GetString("DocumentEditor_KeepWithNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landschaft.
+        /// </summary>
+        internal static string DocumentEditor_Landscape {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Landscape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout.
+        /// </summary>
+        internal static string DocumentEditor_Layout {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Führende Null.
+        /// </summary>
+        internal static string DocumentEditor_LeadingZero {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LeadingZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        internal static string DocumentEditor_Left {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links nach rechts.
+        /// </summary>
+        internal static string DocumentEditor_LeftToRight {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LeftToRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legal.
+        /// </summary>
+        internal static string DocumentEditor_Legal {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Legal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brief.
+        /// </summary>
+        internal static string DocumentEditor_Letter {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Letter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Niveau.
+        /// </summary>
+        internal static string DocumentEditor_Level {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzüge und Abstände.
+        /// </summary>
+        internal static string DocumentEditor_LineAndBreakPage {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LineAndBreakPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilenabstand.
+        /// </summary>
+        internal static string DocumentEditor_LineSpacing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LineSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verknüpft (Absatz und Zeichen).
+        /// </summary>
+        internal static string DocumentEditor_LinkedStyle {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LinkedStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Listenebene.
+        /// </summary>
+        internal static string DocumentEditor_ListLevel {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ListLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Paragraph.
+        /// </summary>
+        internal static string DocumentEditor_ListParagraph {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ListParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kleinbuchstaben.
+        /// </summary>
+        internal static string DocumentEditor_Lowercase {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Lowercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LowLetter.
+        /// </summary>
+        internal static string DocumentEditor_LowLetter {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LowLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LowRoman.
+        /// </summary>
+        internal static string DocumentEditor_LowRoman {
+            get {
+                return ResourceManager.GetString("DocumentEditor_LowRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ränder.
+        /// </summary>
+        internal static string DocumentEditor_Margin {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Margin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gross- / Kleinschreibung.
+        /// </summary>
+        internal static string DocumentEditor_MatchCase {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MatchCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zielformatierung anpassen.
+        /// </summary>
+        internal static string DocumentEditor_MatchDestinationFormatting {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MatchDestinationFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximale Länge.
+        /// </summary>
+        internal static string DocumentEditor_MaximumLength {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MaximumLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messen Sie in.
+        /// </summary>
+        internal static string DocumentEditor_MeasureIn {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MeasureIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zellen verbinden.
+        /// </summary>
+        internal static string DocumentEditor_MergeCells {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MergeCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diese Aktion wird nicht als Änderung markiert. Wollen Sie fortfahren?.
+        /// </summary>
+        internal static string DocumentEditor_MergeTrack {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MergeTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ändern.
+        /// </summary>
+        internal static string DocumentEditor_Modify {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stil ändern.
+        /// </summary>
+        internal static string DocumentEditor_ModifyStyle {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ModifyStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehr.
+        /// </summary>
+        internal static string DocumentEditor_More {
+            get {
+                return ResourceManager.GetString("DocumentEditor_More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehr Optionen.
+        /// </summary>
+        internal static string DocumentEditor_MoreOptions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MoreOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weitere Benutzer.
+        /// </summary>
+        internal static string DocumentEditor_MoreUsers {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MoreUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bewegen von.
+        /// </summary>
+        internal static string DocumentEditor_MoveFrom {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MoveFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen nach.
+        /// </summary>
+        internal static string DocumentEditor_MoveTo {
+            get {
+                return ResourceManager.GetString("DocumentEditor_MoveTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehrere.
+        /// </summary>
+        internal static string DocumentEditor_Multiple {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Multiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string DocumentEditor_Name {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation.
+        /// </summary>
+        internal static string DocumentEditor_Navigation {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Navigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neu.
+        /// </summary>
+        internal static string DocumentEditor_New {
+            get {
+                return ResourceManager.GetString("DocumentEditor_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuer Kommentar.
+        /// </summary>
+        internal static string DocumentEditor_NewComment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NewComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Änderungen.
+        /// </summary>
+        internal static string DocumentEditor_NextChanges {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NextChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächster Kommentar.
+        /// </summary>
+        internal static string DocumentEditor_NextComment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NextComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Lesezeichen gefunden.
+        /// </summary>
+        internal static string DocumentEditor_NoBookmarksFound {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NoBookmarksFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Änderungen.
+        /// </summary>
+        internal static string DocumentEditor_NoChanges {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NoChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Kommentare in diesem Dokument.
+        /// </summary>
+        internal static string DocumentEditor_NoCommentsInThisDocument {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NoCommentsInThisDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Überschrift gefunden!.
+        /// </summary>
+        internal static string DocumentEditor_NoHeadings {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NoHeadings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Treffer.
+        /// </summary>
+        internal static string DocumentEditor_NoMatches {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NoMatches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keiner.
+        /// </summary>
+        internal static string DocumentEditor_None {
+            get {
+                return ResourceManager.GetString("DocumentEditor_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kein Neustart.
+        /// </summary>
+        internal static string DocumentEditor_NoRestart {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NoRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        internal static string DocumentEditor_Normal {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht geprüft.
+        /// </summary>
+        internal static string DocumentEditor_NotChecked {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NotChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nichts.
+        /// </summary>
+        internal static string DocumentEditor_Nothing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Nothing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummer.
+        /// </summary>
+        internal static string DocumentEditor_Number {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zahlenformat.
+        /// </summary>
+        internal static string DocumentEditor_NumberFormat {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NumberFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummerierung.
+        /// </summary>
+        internal static string DocumentEditor_Numbering {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Numbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummerierung und Aufzählungszeichen.
+        /// </summary>
+        internal static string DocumentEditor_NumberingAndBullets {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NumberingAndBullets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl der Spalten.
+        /// </summary>
+        internal static string DocumentEditor_NumberOfColumns {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NumberOfColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilenanzahl.
+        /// </summary>
+        internal static string DocumentEditor_NumberOfRows {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NumberOfRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zahlenstil für diese Ebene.
+        /// </summary>
+        internal static string DocumentEditor_NumberStyleForThisLevel {
+            get {
+                return ResourceManager.GetString("DocumentEditor_NumberStyleForThisLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to von.
+        /// </summary>
+        internal static string DocumentEditor_Of {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In Ordnung.
+        /// </summary>
+        internal static string DocumentEditor_Ok {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffnen Sie den Hyperlink.
+        /// </summary>
+        internal static string DocumentEditor_OpenHyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_OpenHyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optionen.
+        /// </summary>
+        internal static string DocumentEditor_Options {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordinal.
+        /// </summary>
+        internal static string DocumentEditor_Ordinal {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Ordinal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordinaler Text.
+        /// </summary>
+        internal static string DocumentEditor_OrdinalText {
+            get {
+                return ResourceManager.GetString("DocumentEditor_OrdinalText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orientierung.
+        /// </summary>
+        internal static string DocumentEditor_Orientation {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Orientation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gliederungsebenen.
+        /// </summary>
+        internal static string DocumentEditor_OutlineLevels {
+            get {
+                return ResourceManager.GetString("DocumentEditor_OutlineLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anfang.
+        /// </summary>
+        internal static string DocumentEditor_Outset {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Outset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seiteneinrichtung.
+        /// </summary>
+        internal static string DocumentEditor_PageSetup {
+            get {
+                return ResourceManager.GetString("DocumentEditor_PageSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilen- und Seitenumbrüche.
+        /// </summary>
+        internal static string DocumentEditor_Pagination {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Pagination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Papier.
+        /// </summary>
+        internal static string DocumentEditor_Paper {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Paper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absatz.
+        /// </summary>
+        internal static string DocumentEditor_Paragraph {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Paragraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort.
+        /// </summary>
+        internal static string DocumentEditor_Password {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Passwort stimmt nicht überein.
+        /// </summary>
+        internal static string DocumentEditor_PasswordMismatch {
+            get {
+                return ResourceManager.GetString("DocumentEditor_PasswordMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string DocumentEditor_Paste {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prozent.
+        /// </summary>
+        internal static string DocumentEditor_Percent {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punkte.
+        /// </summary>
+        internal static string DocumentEditor_Points {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Porträt.
+        /// </summary>
+        internal static string DocumentEditor_Portrait {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Portrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string DocumentEditor_Position {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post.
+        /// </summary>
+        internal static string DocumentEditor_Post {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Post", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bevorzugte Breite.
+        /// </summary>
+        internal static string DocumentEditor_PreferredWidth {
+            get {
+                return ResourceManager.GetString("DocumentEditor_PreferredWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorschau.
+        /// </summary>
+        internal static string DocumentEditor_Preview {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorherige Änderungen.
+        /// </summary>
+        internal static string DocumentEditor_PreviousChanges {
+            get {
+                return ResourceManager.GetString("DocumentEditor_PreviousChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorheriger Kommentar.
+        /// </summary>
+        internal static string DocumentEditor_PreviousComment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_PreviousComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eigenschaften.
+        /// </summary>
+        internal static string DocumentEditor_Properties {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieses Dokument ist vor unbeabsichtigter Bearbeitung geschützt..
+        /// </summary>
+        internal static string DocumentEditor_ProtectedDocument {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ProtectedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to px.
+        /// </summary>
+        internal static string DocumentEditor_Px {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Px", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schreibgeschützt.
+        /// </summary>
+        internal static string DocumentEditor_ReadOnly {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie können in dieser Region bearbeiten..
+        /// </summary>
+        internal static string DocumentEditor_ReadOnlyProtection {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ReadOnlyProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie das neue Passwort zur Bestätigung erneut ein.
+        /// </summary>
+        internal static string DocumentEditor_ReenterNewPasswordToConfirm {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ReenterNewPasswordToConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        internal static string DocumentEditor_Regular {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Regular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normaler Text.
+        /// </summary>
+        internal static string DocumentEditor_RegularText {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RegularText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ablehnen.
+        /// </summary>
+        internal static string DocumentEditor_Reject {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles ablehnen.
+        /// </summary>
+        internal static string DocumentEditor_RejectAll {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RejectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Änderungen ablehnen.
+        /// </summary>
+        internal static string DocumentEditor_RejectChanges {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RejectChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTFERNEN.
+        /// </summary>
+        internal static string DocumentEditor_REMOVE {
+            get {
+                return ResourceManager.GetString("DocumentEditor_REMOVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlink entfernen.
+        /// </summary>
+        internal static string DocumentEditor_RemoveHyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RemoveHyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wieder öffnen.
+        /// </summary>
+        internal static string DocumentEditor_Reopen {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Reopen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen Sie dies als Kopfzeile oben auf jeder Seite.
+        /// </summary>
+        internal static string DocumentEditor_RepeatAsHeaderRowAtTheTopOfEachPage {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RepeatAsHeaderRowAtTheTopOfEachPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ersetzen.
+        /// </summary>
+        internal static string DocumentEditor_Replace {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Replace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles ersetzen.
+        /// </summary>
+        internal static string DocumentEditor_ReplaceAll {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ReplaceAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ersetzen mit.
+        /// </summary>
+        internal static string DocumentEditor_ReplaceWith {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ReplaceWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antworten.
+        /// </summary>
+        internal static string DocumentEditor_Reply {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Reply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zurücksetzen.
+        /// </summary>
+        internal static string DocumentEditor_Reset {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entschlossenheit.
+        /// </summary>
+        internal static string DocumentEditor_Resolve {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Resolve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neustart um.
+        /// </summary>
+        internal static string DocumentEditor_RestartAt {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RestartAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liste danach neu starten.
+        /// </summary>
+        internal static string DocumentEditor_RestartListAfter {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RestartListAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeitung einschränken.
+        /// </summary>
+        internal static string DocumentEditor_RestrictEditing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RestrictEditing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ergebnis.
+        /// </summary>
+        internal static string DocumentEditor_Result {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ergebnisse.
+        /// </summary>
+        internal static string DocumentEditor_Results {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts.
+        /// </summary>
+        internal static string DocumentEditor_Right {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenzahlen nach rechts ausrichten.
+        /// </summary>
+        internal static string DocumentEditor_RightAlignPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RightAlignPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts nach links.
+        /// </summary>
+        internal static string DocumentEditor_RightToLeft {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RightToLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reihe.
+        /// </summary>
+        internal static string DocumentEditor_Row {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Row", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reihenhöhe ist.
+        /// </summary>
+        internal static string DocumentEditor_RowHeightIs {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RowHeightIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anzahl der Zeilen muss zwischen 1 und 32767 liegen..
+        /// </summary>
+        internal static string DocumentEditor_RowRange {
+            get {
+                return ResourceManager.GetString("DocumentEditor_RowRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gleich wie der ganze Tisch.
+        /// </summary>
+        internal static string DocumentEditor_SameAsTheWholeTable {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SameAsTheWholeTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string DocumentEditor_Save {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QuickInfo-Text.
+        /// </summary>
+        internal static string DocumentEditor_ScreenTip {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ScreenTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suchen nach.
+        /// </summary>
+        internal static string DocumentEditor_SearchFor {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SearchFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Teile des Dokuments aus und wählen Sie Benutzer aus, die diese frei bearbeiten dürfen..
+        /// </summary>
+        internal static string DocumentEditor_SelectPartOfDocumentAndUser {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SelectPartOfDocumentAndUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rahmen.
+        /// </summary>
+        internal static string DocumentEditor_Setting {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schattierung.
+        /// </summary>
+        internal static string DocumentEditor_Shading {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Shading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Regionen anzeigen, die ich bearbeiten kann.
+        /// </summary>
+        internal static string DocumentEditor_ShowAllRegionsICanEdit {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ShowAllRegionsICanEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ebenen anzeigen.
+        /// </summary>
+        internal static string DocumentEditor_ShowLevels {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ShowLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenzahlen anzeigen.
+        /// </summary>
+        internal static string DocumentEditor_ShowPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ShowPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfach gewellt.
+        /// </summary>
+        internal static string DocumentEditor_SingleWavy {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SingleWavy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grösse.
+        /// </summary>
+        internal static string DocumentEditor_Size {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Platz.
+        /// </summary>
+        internal static string DocumentEditor_Space {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Space", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abstand.
+        /// </summary>
+        internal static string DocumentEditor_Spacing {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Spacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Besondere.
+        /// </summary>
+        internal static string DocumentEditor_Special {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Special", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie die Höhe an.
+        /// </summary>
+        internal static string DocumentEditor_SpecifyHeight {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SpecifyHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechtschreibprüfung.
+        /// </summary>
+        internal static string DocumentEditor_SpellCheck {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SpellCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechtschreibung.
+        /// </summary>
+        internal static string DocumentEditor_Spelling {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Spelling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechtschreibeditor.
+        /// </summary>
+        internal static string DocumentEditor_SpellingEditor {
+            get {
+                return ResourceManager.GetString("DocumentEditor_SpellingEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginne bei.
+        /// </summary>
+        internal static string DocumentEditor_StartAt {
+            get {
+                return ResourceManager.GetString("DocumentEditor_StartAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starten Sie die Durchsetzung des Schutzes.
+        /// </summary>
+        internal static string DocumentEditor_StartEnforcingProtection {
+            get {
+                return ResourceManager.GetString("DocumentEditor_StartEnforcingProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erklärung.
+        /// </summary>
+        internal static string DocumentEditor_Statement {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Statement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stoppen Sie den Schutz.
+        /// </summary>
+        internal static string DocumentEditor_StopProtection {
+            get {
+                return ResourceManager.GetString("DocumentEditor_StopProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchgestrichen.
+        /// </summary>
+        internal static string DocumentEditor_Strikethrough {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Strikethrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stil.
+        /// </summary>
+        internal static string DocumentEditor_Style {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stil basiert auf.
+        /// </summary>
+        internal static string DocumentEditor_StyleBasedOn {
+            get {
+                return ResourceManager.GetString("DocumentEditor_StyleBasedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stil für folgenden Absatz.
+        /// </summary>
+        internal static string DocumentEditor_StyleForFollowingParagraph {
+            get {
+                return ResourceManager.GetString("DocumentEditor_StyleForFollowingParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stile.
+        /// </summary>
+        internal static string DocumentEditor_Styles {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Styles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artart.
+        /// </summary>
+        internal static string DocumentEditor_StyleType {
+            get {
+                return ResourceManager.GetString("DocumentEditor_StyleType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string DocumentEditor_Subscript {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Subscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorschläge.
+        /// </summary>
+        internal static string DocumentEditor_Suggestions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Suggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochgestellt.
+        /// </summary>
+        internal static string DocumentEditor_Superscript {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Superscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabulatorzeichen.
+        /// </summary>
+        internal static string DocumentEditor_TabCharacter {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TabCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle.
+        /// </summary>
+        internal static string DocumentEditor_Table {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Table", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tab Leader.
+        /// </summary>
+        internal static string DocumentEditor_TabLeader {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TabLeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tischrichtung.
+        /// </summary>
+        internal static string DocumentEditor_TableDirection {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TableDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelleneingabefelder.
+        /// </summary>
+        internal static string DocumentEditor_TableEntryFields {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TableEntryFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis.
+        /// </summary>
+        internal static string DocumentEditor_TableOfContents {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TableOfContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabellenoptionen.
+        /// </summary>
+        internal static string DocumentEditor_TableOptions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TableOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelleneigenschaften.
+        /// </summary>
+        internal static string DocumentEditor_TableProperties {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TableProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabloid.
+        /// </summary>
+        internal static string DocumentEditor_Tabloid {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Tabloid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textformat.
+        /// </summary>
+        internal static string DocumentEditor_TextFormat {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textformularfeld.
+        /// </summary>
+        internal static string DocumentEditor_TextFormField {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TextFormField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text einrücken um.
+        /// </summary>
+        internal static string DocumentEditor_TextIndentAt {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TextIndentAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur Text.
+        /// </summary>
+        internal static string DocumentEditor_TextOnly {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TextOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzuzeigender Text.
+        /// </summary>
+        internal static string DocumentEditor_TextToDisplay {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TextToDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Passwort ist inkorrekt.
+        /// </summary>
+        internal static string DocumentEditor_ThePasswordIsIncorrect {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThePasswordIsIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dick.
+        /// </summary>
+        internal static string DocumentEditor_Thick {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Thick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dicke dünne große Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThickThinLargeGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThickThinLargeGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dicke dünne mittlere Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThickThinMediumGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThickThinMediumGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dicke dünne kleine Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThickThinSmallGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThickThinSmallGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dünne dicke große Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThinThickLargeGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThinThickLargeGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dünne dicke mittlere Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThinThickMediumGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThinThickMediumGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dünne dicke kleine Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThinThickSmallGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThinThickSmallGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dünn dick dünn große Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThinThickThinLargeGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThinThickThinLargeGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dünn dick dünn mittel Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThinThickThinMediumGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThinThickThinMediumGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dünn dick dünn kleine Lücke.
+        /// </summary>
+        internal static string DocumentEditor_ThinThickThinSmallGap {
+            get {
+                return ResourceManager.GetString("DocumentEditor_ThinThickThinSmallGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titelkoffer.
+        /// </summary>
+        internal static string DocumentEditor_Titlecase {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Titlecase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 1.
+        /// </summary>
+        internal static string DocumentEditor_TOC1 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 2.
+        /// </summary>
+        internal static string DocumentEditor_TOC2 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 3.
+        /// </summary>
+        internal static string DocumentEditor_TOC3 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 4.
+        /// </summary>
+        internal static string DocumentEditor_TOC4 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 5.
+        /// </summary>
+        internal static string DocumentEditor_TOC5 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 6.
+        /// </summary>
+        internal static string DocumentEditor_TOC6 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 7.
+        /// </summary>
+        internal static string DocumentEditor_TOC7 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 8.
+        /// </summary>
+        internal static string DocumentEditor_TOC8 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis 9.
+        /// </summary>
+        internal static string DocumentEditor_TOC9 {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOC9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOC-Ebene.
+        /// </summary>
+        internal static string DocumentEditor_TOCLevel {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TOCLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tooltip.
+        /// </summary>
+        internal static string DocumentEditor_Tooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to oben.
+        /// </summary>
+        internal static string DocumentEditor_Top {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verdreifachen.
+        /// </summary>
+        internal static string DocumentEditor_Triple {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Triple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Art.
+        /// </summary>
+        internal static string DocumentEditor_Type {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie Ihren Kommentar ein.
+        /// </summary>
+        internal static string DocumentEditor_TypeYourComment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TypeYourComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie hier Ihren Kommentar ein.
+        /// </summary>
+        internal static string DocumentEditor_TypeYourCommentHere {
+            get {
+                return ResourceManager.GetString("DocumentEditor_TypeYourCommentHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fehler unterstreichen.
+        /// </summary>
+        internal static string DocumentEditor_UnderlineErrors {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UnderlineErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterstreichen Sie Stil.
+        /// </summary>
+        internal static string DocumentEditor_UnderlineStyle {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UnderlineStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht veröffentlichte Kommentare.
+        /// </summary>
+        internal static string DocumentEditor_UnPostedComments {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UnPostedComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dokumentschutz aufheben.
+        /// </summary>
+        internal static string DocumentEditor_UnprotectDocument {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UnprotectDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kann nicht verfolgt werden.
+        /// </summary>
+        internal static string DocumentEditor_UnTrack {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UnTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feld aktualisieren.
+        /// </summary>
+        internal static string DocumentEditor_UpdateField {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UpdateField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UpLetter.
+        /// </summary>
+        internal static string DocumentEditor_UpLetter {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UpLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Großbuchstaben.
+        /// </summary>
+        internal static string DocumentEditor_Uppercase {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Uppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UpRoman.
+        /// </summary>
+        internal static string DocumentEditor_UpRoman {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UpRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwenden Sie Lesezeichen.
+        /// </summary>
+        internal static string DocumentEditor_UseBookmarks {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UseBookmarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwenden Sie Hyperlinks anstelle von Seitenzahlen.
+        /// </summary>
+        internal static string DocumentEditor_UseHyperlinksInsteadOfPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditor_UseHyperlinksInsteadOfPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzer.
+        /// </summary>
+        internal static string DocumentEditor_User {
+            get {
+                return ResourceManager.GetString("DocumentEditor_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzer.
+        /// </summary>
+        internal static string DocumentEditor_Users {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertikale Ausrichtung.
+        /// </summary>
+        internal static string DocumentEditor_VerticalAlignment {
+            get {
+                return ResourceManager.GetString("DocumentEditor_VerticalAlignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aussicht.
+        /// </summary>
+        internal static string DocumentEditor_View {
+            get {
+                return ResourceManager.GetString("DocumentEditor_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wir haben alle ersetzt.
+        /// </summary>
+        internal static string DocumentEditor_WeReplacedAll {
+            get {
+                return ResourceManager.GetString("DocumentEditor_WeReplacedAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ganze Wörter.
+        /// </summary>
+        internal static string DocumentEditor_WholeWords {
+            get {
+                return ResourceManager.GetString("DocumentEditor_WholeWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Halte die Linien zusammen.
+        /// </summary>
+        internal static string DocumentEditor_WidowControl {
+            get {
+                return ResourceManager.GetString("DocumentEditor_WidowControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breite.
+        /// </summary>
+        internal static string DocumentEditor_Width {
+            get {
+                return ResourceManager.GetString("DocumentEditor_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mit.
+        /// </summary>
+        internal static string DocumentEditor_With {
+            get {
+                return ResourceManager.GetString("DocumentEditor_With", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie können Text nur mit bestimmten Stilen formatieren..
+        /// </summary>
+        internal static string DocumentEditor_YouMayFormatTextOnlyWithCertainStyles {
+            get {
+                return ResourceManager.GetString("DocumentEditor_YouMayFormatTextOnlyWithCertainStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ihre Berechtigungen.
+        /// </summary>
+        internal static string DocumentEditor_YourPermissions {
+            get {
+                return ResourceManager.GetString("DocumentEditor_YourPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie die Fußzeile hinzu oder bearbeiten Sie sie..
+        /// </summary>
+        internal static string DocumentEditorContainer_AddOrEditTheFooter {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AddOrEditTheFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie den Header hinzu oder bearbeiten Sie ihn..
+        /// </summary>
+        internal static string DocumentEditorContainer_AddOrEditTheHeader {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AddOrEditTheHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenzahlen hinzufügen..
+        /// </summary>
+        internal static string DocumentEditorContainer_AddPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AddPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boden ausrichten.
+        /// </summary>
+        internal static string DocumentEditorContainer_AlignBottom {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AlignBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Im Zentrum anordnen.
+        /// </summary>
+        internal static string DocumentEditorContainer_AlignCenter {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AlignCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links ausrichten (Strg + L).
+        /// </summary>
+        internal static string DocumentEditorContainer_AlignLeftTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AlignLeftTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts ausrichten (Strg + R).
+        /// </summary>
+        internal static string DocumentEditorContainer_AlignRightTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AlignRightTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text ausrichten.
+        /// </summary>
+        internal static string DocumentEditorContainer_AlignText {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AlignText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oben ausrichten.
+        /// </summary>
+        internal static string DocumentEditorContainer_Aligntop {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Aligntop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Grenzen.
+        /// </summary>
+        internal static string DocumentEditorContainer_AllBorders {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AllBorders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Kappen.
+        /// </summary>
+        internal static string DocumentEditorContainer_AllCaps {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AllCaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenverhältnis.
+        /// </summary>
+        internal static string DocumentEditorContainer_AspectRatio {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_AspectRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fett Kursiv.
+        /// </summary>
+        internal static string DocumentEditorContainer_BoldItalicTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_BoldItalicTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fett (Strg + B).
+        /// </summary>
+        internal static string DocumentEditorContainer_BoldTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_BoldTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lesezeichen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Bookmark {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Bookmark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Randfarbe.
+        /// </summary>
+        internal static string DocumentEditorContainer_BorderColor {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_BorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rahmenstil.
+        /// </summary>
+        internal static string DocumentEditorContainer_BorderStyle {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_BorderStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rahmenbreite.
+        /// </summary>
+        internal static string DocumentEditorContainer_BorderWidth {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_BorderWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterseite.
+        /// </summary>
+        internal static string DocumentEditorContainer_Bottom {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Untere Grenze.
+        /// </summary>
+        internal static string DocumentEditorContainer_BottomBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_BottomBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brechen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Break {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Break", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufzählungszeichen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Bullets {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Bullets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Über die URL.
+        /// </summary>
+        internal static string DocumentEditorContainer_ByURL {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ByURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Cancel {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zelle.
+        /// </summary>
+        internal static string DocumentEditorContainer_Cell {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Cell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell Margin.
+        /// </summary>
+        internal static string DocumentEditorContainer_CellMargin {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_CellMargin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zentrum (Strg + E).
+        /// </summary>
+        internal static string DocumentEditorContainer_CenterTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_CenterTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontrollkästchen.
+        /// </summary>
+        internal static string DocumentEditorContainer_CheckBox {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_CheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen Sie alle Formatierungen.
+        /// </summary>
+        internal static string DocumentEditorContainer_ClearAllFormatting {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ClearAllFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bemerkungen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Comments {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen Sie ein neues Dokument..
+        /// </summary>
+        internal static string DocumentEditorContainer_CreateANewDocument {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_CreateANewDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen Sie in Ihrem Dokument einen Link für den schnellen Zugriff auf Webseiten und Dateien (Strg + K)..
+        /// </summary>
+        internal static string DocumentEditorContainer_CreateHyperlink {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_CreateHyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die aktuelle Seitenzahl im Dokument. Klicken oder tippen Sie, um zu einer bestimmten Seite zu navigieren..
+        /// </summary>
+        internal static string DocumentEditorContainer_CurrentPageNumber {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_CurrentPageNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzug verkleinern.
+        /// </summary>
+        internal static string DocumentEditorContainer_DecreaseIndent {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DecreaseIndent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalten löschen.
+        /// </summary>
+        internal static string DocumentEditorContainer_DeleteColumns {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DeleteColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilen löschen.
+        /// </summary>
+        internal static string DocumentEditorContainer_DeleteRows {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DeleteRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschiedliche erste Seite.
+        /// </summary>
+        internal static string DocumentEditorContainer_DifferentFirstPage {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DifferentFirstPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschiedliche Kopf- und Fußzeile für die erste Seite..
+        /// </summary>
+        internal static string DocumentEditorContainer_DifferentHeaderAndFooterForFirstPage {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DifferentHeaderAndFooterForFirstPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschiedliche Kopf- und Fußzeilen für gerade und ungerade Seiten..
+        /// </summary>
+        internal static string DocumentEditorContainer_DifferentHeaderAndFooterForOddAndEvenPages {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DifferentHeaderAndFooterForOddAndEvenPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verschiedene gerade und ungerade Seiten.
+        /// </summary>
+        internal static string DocumentEditorContainer_DifferentOddAndEvenPages {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DifferentOddAndEvenPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abstand vom unteren Rand der Seite zum unteren Rand der Fußzeile..
+        /// </summary>
+        internal static string DocumentEditorContainer_DistanceFromBottomOfThePageToBottomOfTheFooter {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DistanceFromBottomOfThePageToBottomOfTheFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abstand vom oberen Rand der Seite zum oberen Rand der Kopfzeile..
+        /// </summary>
+        internal static string DocumentEditorContainer_DistanceFromTopOfThePageToTopOfTheHeader {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DistanceFromTopOfThePageToTopOfTheHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doppelt.
+        /// </summary>
+        internal static string DocumentEditorContainer_Double {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Double", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dropdown-Liste.
+        /// </summary>
+        internal static string DocumentEditorContainer_DropDown {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_DropDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endnote einfügen (Alt + Strg + D)..
+        /// </summary>
+        internal static string DocumentEditorContainer_Endnote_Tooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Endnote_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fehler beim Herstellen der Verbindung mit dem Webserver.
+        /// </summary>
+        internal static string DocumentEditorContainer_ErrorInEstablishingConnectionWithWebServer {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ErrorInEstablishingConnectionWithWebServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Füllen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Fill {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Fill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Füllfarbe.
+        /// </summary>
+        internal static string DocumentEditorContainer_FillColor {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FillColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formulare ausfüllen.
+        /// </summary>
+        internal static string DocumentEditorContainer_FillingInForms {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FillingInForms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finden.
+        /// </summary>
+        internal static string DocumentEditorContainer_Find {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Find", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suchen Sie nach Text im Dokument (Strg + F)..
+        /// </summary>
+        internal static string DocumentEditorContainer_FindText {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FindText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eine Seite einpassen.
+        /// </summary>
+        internal static string DocumentEditorContainer_FitOnePage {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FitOnePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenbreite anpassen.
+        /// </summary>
+        internal static string DocumentEditorContainer_FitPageWidth {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FitPageWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftart.
+        /// </summary>
+        internal static string DocumentEditorContainer_Font {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftfarbe.
+        /// </summary>
+        internal static string DocumentEditorContainer_FontColor {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FontColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftgröße.
+        /// </summary>
+        internal static string DocumentEditorContainer_FontSize {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fusszeile.
+        /// </summary>
+        internal static string DocumentEditorContainer_Footer {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fußzeile von unten.
+        /// </summary>
+        internal static string DocumentEditorContainer_FooterFromBottom {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FooterFromBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fußnote einfügen (Alt + Strg + F)..
+        /// </summary>
+        internal static string DocumentEditorContainer_Footnote_Tooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Footnote_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formularfelder.
+        /// </summary>
+        internal static string DocumentEditorContainer_FormFields {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_FormFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to H.
+        /// </summary>
+        internal static string DocumentEditorContainer_H {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_H", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Header.
+        /// </summary>
+        internal static string DocumentEditorContainer_Header {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopfzeile Fußzeile.
+        /// </summary>
+        internal static string DocumentEditorContainer_HeaderAndFooter {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_HeaderAndFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopfzeile von oben.
+        /// </summary>
+        internal static string DocumentEditorContainer_HeaderFromTop {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_HeaderFromTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift - - - - 1.
+        /// </summary>
+        internal static string DocumentEditorContainer_HEADING1 {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_HEADING1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift - - - - 2.
+        /// </summary>
+        internal static string DocumentEditorContainer_HEADING2 {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_HEADING2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift - - - - 3.
+        /// </summary>
+        internal static string DocumentEditorContainer_HEADING3 {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_HEADING3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Höhe.
+        /// </summary>
+        internal static string DocumentEditorContainer_Height {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bild.
+        /// </summary>
+        internal static string DocumentEditorContainer_Image {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzug vergrößern.
+        /// </summary>
+        internal static string DocumentEditorContainer_IncreaseIndent {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_IncreaseIndent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string DocumentEditorContainer_Information {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Insert {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Insert_Endnote {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Insert_Endnote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Insert_Footnote {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Insert_Footnote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie ein Lesezeichen an einer bestimmten Stelle in dieses Dokument ein..
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertABookmarkInASpecificPlaceInThisDocument {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertABookmarkInASpecificPlaceInThisDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie eine Tabelle in das Dokument ein.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertATableIntoTheDocument {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertATableIntoTheDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalten links einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertColumnsToTheLeft {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertColumnsToTheLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalten rechts einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertColumnsToTheRight {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertColumnsToTheRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie ein Inline-Bild aus einer Datei ein..
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertInlinePictureFromAFile {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertInlinePictureFromAFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen / Löschen.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertOrDelete {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertOrDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilen darüber einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertRowsAbove {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertRowsAbove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilen darunter einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsertRowsBelow {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsertRowsBelow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Innerhalb der Grenzen.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsideBorders {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsideBorders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Innerhalb der horizontalen Grenze.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsideHorizontalBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsideHorizontalBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Innerhalb der vertikalen Grenze.
+        /// </summary>
+        internal static string DocumentEditorContainer_InsideVerticalBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_InsideVerticalBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kursiv (Strg + I).
+        /// </summary>
+        internal static string DocumentEditorContainer_ItalicTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ItalicTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausrichten (Strg + J).
+        /// </summary>
+        internal static string DocumentEditorContainer_JustifyTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_JustifyTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        internal static string DocumentEditorContainer_Left {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linke Grenze.
+        /// </summary>
+        internal static string DocumentEditorContainer_LeftBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_LeftBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ebenen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Levels {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Levels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilenabstand.
+        /// </summary>
+        internal static string DocumentEditorContainer_LineSpacing {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_LineSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verknüpfung.
+        /// </summary>
+        internal static string DocumentEditorContainer_Link {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lokale Zwischenablage.
+        /// </summary>
+        internal static string DocumentEditorContainer_LocalClipboard {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_LocalClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stile verwalten.
+        /// </summary>
+        internal static string DocumentEditorContainer_ManageStyles {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ManageStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zellen verbinden.
+        /// </summary>
+        internal static string DocumentEditorContainer_MergeCells {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_MergeCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neu.
+        /// </summary>
+        internal static string DocumentEditorContainer_New {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuer Kommentar.
+        /// </summary>
+        internal static string DocumentEditorContainer_NewComment {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_NewComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Grenze.
+        /// </summary>
+        internal static string DocumentEditorContainer_NoBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_NoBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummerierung.
+        /// </summary>
+        internal static string DocumentEditorContainer_Numbering {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Numbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl der Überschriften- oder Gliederungsebenen, die im Inhaltsverzeichnis angezeigt werden sollen..
+        /// </summary>
+        internal static string DocumentEditorContainer_NumberOfHeadingOrOutlineLevelsToBeShownInTableOfContents {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_NumberOfHeadingOrOutlineLevelsToBeShownInTableOfContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to von.
+        /// </summary>
+        internal static string DocumentEditorContainer_Of {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffnen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Open {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffnen Sie ein Dokument..
+        /// </summary>
+        internal static string DocumentEditorContainer_OpenADocument {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_OpenADocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffnen Sie das Dialogfeld zur Seiteneinrichtung..
+        /// </summary>
+        internal static string DocumentEditorContainer_OpenThePageSetupDialog {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_OpenThePageSetupDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optionen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Options {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Außengrenzen.
+        /// </summary>
+        internal static string DocumentEditorContainer_OutsideBorders {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_OutsideBorders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seite.
+        /// </summary>
+        internal static string DocumentEditorContainer_Page {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenumbruch.
+        /// </summary>
+        internal static string DocumentEditorContainer_PageBreak {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_PageBreak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitennummer.
+        /// </summary>
+        internal static string DocumentEditorContainer_PageNumber {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_PageNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seiteneinrichtung.
+        /// </summary>
+        internal static string DocumentEditorContainer_PageSetup {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_PageSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absatz.
+        /// </summary>
+        internal static string DocumentEditorContainer_Paragraph {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Paragraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string DocumentEditorContainer_Position {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drucklayout.
+        /// </summary>
+        internal static string DocumentEditorContainer_PrintLayout {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_PrintLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schutzmaßnahmen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Protections {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Protections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verschaffen Sie sich einen Überblick über Ihr Dokument, indem Sie ein Inhaltsverzeichnis hinzufügen..
+        /// </summary>
+        internal static string DocumentEditorContainer_ProvideAnOverviewOfYourDocumentByAddingATableOfContents {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ProvideAnOverviewOfYourDocumentByAddingATableOfContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schreibgeschützt.
+        /// </summary>
+        internal static string DocumentEditorContainer_ReadOnly {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        internal static string DocumentEditorContainer_Redo {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen Sie die letzte Operation (Strg + Y)..
+        /// </summary>
+        internal static string DocumentEditorContainer_RedoTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_RedoTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regulär.
+        /// </summary>
+        internal static string DocumentEditorContainer_RegularTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_RegularTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeitung einschränken.
+        /// </summary>
+        internal static string DocumentEditorContainer_RestrictEditing {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_RestrictEditing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts.
+        /// </summary>
+        internal static string DocumentEditorContainer_Right {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenzahlen nach rechts ausrichten.
+        /// </summary>
+        internal static string DocumentEditorContainer_RightAlignPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_RightAlignPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Richten Sie die Seitenzahlen im Inhaltsverzeichnis nach rechts aus..
+        /// </summary>
+        internal static string DocumentEditorContainer_RightAlignPageNumbersInTableOfContents {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_RightAlignPageNumbersInTableOfContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechter Rand.
+        /// </summary>
+        internal static string DocumentEditorContainer_RightBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_RightBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abschnitt Pause.
+        /// </summary>
+        internal static string DocumentEditorContainer_SectionBreak {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_SectionBreak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kommentare einfügen.
+        /// </summary>
+        internal static string DocumentEditorContainer_ShowComments {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ShowComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenzahlen anzeigen.
+        /// </summary>
+        internal static string DocumentEditorContainer_ShowPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ShowPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenzahlen im Inhaltsverzeichnis anzeigen..
+        /// </summary>
+        internal static string DocumentEditorContainer_ShowPageNumbersInTableOfContents {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ShowPageNumbersInTableOfContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single.
+        /// </summary>
+        internal static string DocumentEditorContainer_Single {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechtschreibprüfung.
+        /// </summary>
+        internal static string DocumentEditorContainer_SpellCheck {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_SpellCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchgestrichen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Strikethrough {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Strikethrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stile.
+        /// </summary>
+        internal static string DocumentEditorContainer_Styles {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Styles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiefgestellt (Strg + =).
+        /// </summary>
+        internal static string DocumentEditorContainer_SubscriptTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_SubscriptTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochgestellt (Strg + Umschalt ++).
+        /// </summary>
+        internal static string DocumentEditorContainer_SuperscriptTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_SuperscriptTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle.
+        /// </summary>
+        internal static string DocumentEditorContainer_Table {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Table", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inhaltsverzeichnis.
+        /// </summary>
+        internal static string DocumentEditorContainer_TableOfContents {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_TableOfContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string DocumentEditorContainer_Text {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textform.
+        /// </summary>
+        internal static string DocumentEditorContainer_TextForm {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_TextForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hervorhebungsfarbe für Text.
+        /// </summary>
+        internal static string DocumentEditorContainer_TextHighlightColor {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_TextHighlightColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischen der internen Zwischenablage und der Systemzwischenablage wechseln.         /// Der Zugriff auf die Systemzwischenablage über ein Skript wird aufgrund der Sicherheitsrichtlinien des Browsers verweigert. Stattdessen         /// 1. Sie können die interne Zwischenablage zum Ausschneiden, Kopieren und Einfügen innerhalb der Komponente aktivieren.         /// 2. Sie können die Tastenkombinationen (Strg + X, Strg + C und Strg + V) zum Ausschneiden verwenden , kopieren und einfügen mit System-Zwischenablage..
+        /// </summary>
+        internal static string DocumentEditorContainer_ToggleBetweenTheInternalClipboardAndSystemClipboard {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ToggleBetweenTheInternalClipboardAndSystemClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to oben.
+        /// </summary>
+        internal static string DocumentEditorContainer_Top {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oberer Rand.
+        /// </summary>
+        internal static string DocumentEditorContainer_TopBorder {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_TopBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verfolgen Sie die im Dokument vorgenommenen Änderungen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Track_changes {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Track_changes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Änderungen verfolgen.
+        /// </summary>
+        internal static string DocumentEditorContainer_TrackChanges {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_TrackChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fehler unterstreichen.
+        /// </summary>
+        internal static string DocumentEditorContainer_UnderlineErrors {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UnderlineErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterstreichen (Strg + U).
+        /// </summary>
+        internal static string DocumentEditorContainer_UnderlineTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UnderlineTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rückgängig machen.
+        /// </summary>
+        internal static string DocumentEditorContainer_Undo {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machen Sie die letzte Operation rückgängig (Strg + Z)..
+        /// </summary>
+        internal static string DocumentEditorContainer_UndoTooltip {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UndoTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualisieren.
+        /// </summary>
+        internal static string DocumentEditorContainer_Update {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Querverweisfelder aktualisieren.
+        /// </summary>
+        internal static string DocumentEditorContainer_UpdateCrossReferenceFields {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UpdateCrossReferenceFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Felder aktualisieren.
+        /// </summary>
+        internal static string DocumentEditorContainer_UpdateFields {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UpdateFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochladen vom Computer.
+        /// </summary>
+        internal static string DocumentEditorContainer_UploadFromComputer {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UploadFromComputer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwenden Sie Hyperlinks.
+        /// </summary>
+        internal static string DocumentEditorContainer_UseHyperlinks {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UseHyperlinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwenden Sie Hyperlinks anstelle von Seitenzahlen..
+        /// </summary>
+        internal static string DocumentEditorContainer_UseHyperlinksInsteadOfPageNumbers {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_UseHyperlinksInsteadOfPageNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W.
+        /// </summary>
+        internal static string DocumentEditorContainer_W {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_W", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web-Layout.
+        /// </summary>
+        internal static string DocumentEditorContainer_WebLayout {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_WebLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breite.
+        /// </summary>
+        internal static string DocumentEditorContainer_Width {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoomstufe.
+        /// </summary>
+        internal static string DocumentEditorContainer_ZoomLevel {
+            get {
+                return ResourceManager.GetString("DocumentEditorContainer_ZoomLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anfrage ist fehlgeschlagen.
+        /// </summary>
+        internal static string DropDownList_ActionFailureTemplate {
+            get {
+                return ResourceManager.GetString("DropDownList_ActionFailureTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Einträge vorhanden.
+        /// </summary>
+        internal static string DropDownList_NoRecordsTemplate {
+            get {
+                return ResourceManager.GetString("DropDownList_NoRecordsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zugriff verweigert.
+        /// </summary>
+        internal static string FileManager_AccessDenied {
+            get {
+                return ResourceManager.GetString("FileManager_AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben keine Berechtigung, auf diesen Ordner zuzugreifen..
+        /// </summary>
+        internal static string FileManager_AccessDetails {
+            get {
+                return ResourceManager.GetString("FileManager_AccessDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ist nicht zugänglich. Sie benötigen die Berechtigung, um die Aktion {1} auszuführen..
+        /// </summary>
+        internal static string FileManager_AccessMessage {
+            get {
+                return ResourceManager.GetString("FileManager_AccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mache das für alle aktuellen Einträge.
+        /// </summary>
+        internal static string FileManager_ApplyAllLabel {
+            get {
+                return ResourceManager.GetString("FileManager_ApplyAllLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufsteigend.
+        /// </summary>
+        internal static string FileManager_Ascending {
+            get {
+                return ResourceManager.GetString("FileManager_Ascending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string FileManager_ButtonCancel {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen.
+        /// </summary>
+        internal static string FileManager_ButtonCreate {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behalte beides.
+        /// </summary>
+        internal static string FileManager_ButtonKeepBoth {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonKeepBoth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        internal static string FileManager_ButtonNo {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string FileManager_ButtonOk {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ersetzen.
+        /// </summary>
+        internal static string FileManager_ButtonReplace {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string FileManager_ButtonSave {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überspringen.
+        /// </summary>
+        internal static string FileManager_ButtonSkip {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonSkip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        internal static string FileManager_ButtonYes {
+            get {
+                return ResourceManager.GetString("FileManager_ButtonYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie diese Datei wirklich löschen?.
+        /// </summary>
+        internal static string FileManager_ContentDelete {
+            get {
+                return ResourceManager.GetString("FileManager_ContentDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} existiert bereits. Möchten Sie umbenennen und einfügen?.
+        /// </summary>
+        internal static string FileManager_ContentDuplicate {
+            get {
+                return ResourceManager.GetString("FileManager_ContentDuplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie diesen Ordner wirklich löschen?.
+        /// </summary>
+        internal static string FileManager_ContentFolderDelete {
+            get {
+                return ResourceManager.GetString("FileManager_ContentFolderDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie diese {0} -Elemente wirklich löschen?.
+        /// </summary>
+        internal static string FileManager_ContentMultipleDelete {
+            get {
+                return ResourceManager.GetString("FileManager_ContentMultipleDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie Ihren Ordnernamen ein.
+        /// </summary>
+        internal static string FileManager_ContentNewFolder {
+            get {
+                return ResourceManager.GetString("FileManager_ContentNewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie Ihren neuen Namen ein.
+        /// </summary>
+        internal static string FileManager_ContentRename {
+            get {
+                return ResourceManager.GetString("FileManager_ContentRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn Sie eine Dateinamenerweiterung ändern, wird die Datei möglicherweise instabil. Möchten Sie das wirklich ändern?.
+        /// </summary>
+        internal static string FileManager_ContentRenameConfirmation {
+            get {
+                return ResourceManager.GetString("FileManager_ContentRenameConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In diesem Ordner existiert bereits eine Datei mit diesem Namen. Was würdest du gern tun?.
+        /// </summary>
+        internal static string FileManager_ContentRetry {
+            get {
+                return ResourceManager.GetString("FileManager_ContentRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string FileManager_Copy {
+            get {
+                return ResourceManager.GetString("FileManager_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellt.
+        /// </summary>
+        internal static string FileManager_Created {
+            get {
+                return ResourceManager.GetString("FileManager_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schnitt.
+        /// </summary>
+        internal static string FileManager_Cut {
+            get {
+                return ResourceManager.GetString("FileManager_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum erstellt.
+        /// </summary>
+        internal static string FileManager_DateCreated {
+            get {
+                return ResourceManager.GetString("FileManager_DateCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geändert.
+        /// </summary>
+        internal static string FileManager_DateModified {
+            get {
+                return ResourceManager.GetString("FileManager_DateModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string FileManager_Delete {
+            get {
+                return ResourceManager.GetString("FileManager_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absteigend.
+        /// </summary>
+        internal static string FileManager_Descending {
+            get {
+                return ResourceManager.GetString("FileManager_Descending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzelheiten.
+        /// </summary>
+        internal static string FileManager_Details {
+            get {
+                return ResourceManager.GetString("FileManager_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herunterladen.
+        /// </summary>
+        internal static string FileManager_Download {
+            get {
+                return ResourceManager.GetString("FileManager_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string FileManager_Error {
+            get {
+                return ResourceManager.GetString("FileManager_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen Sie die Dateien hierher, um sie hochzuladen.
+        /// </summary>
+        internal static string FileManager_FileUpload {
+            get {
+                return ResourceManager.GetString("FileManager_FileUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to keine Ergebnisse gefunden.
+        /// </summary>
+        internal static string FileManager_FilterEmpty {
+            get {
+                return ResourceManager.GetString("FileManager_FilterEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Versuchen Sie es mit einem anderen Filter.
+        /// </summary>
+        internal static string FileManager_FilterKey {
+            get {
+                return ResourceManager.GetString("FileManager_FilterKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieser Ordner ist leer.
+        /// </summary>
+        internal static string FileManager_FolderEmpty {
+            get {
+                return ResourceManager.GetString("FileManager_FolderEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei löschen.
+        /// </summary>
+        internal static string FileManager_HeaderDelete {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei / Ordner existiert.
+        /// </summary>
+        internal static string FileManager_HeaderDuplicate {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderDuplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lösche Ordne.
+        /// </summary>
+        internal static string FileManager_HeaderFolderDelete {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderFolderDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehrere Elemente löschen.
+        /// </summary>
+        internal static string FileManager_HeaderMultipleDelete {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderMultipleDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mappe.
+        /// </summary>
+        internal static string FileManager_HeaderNewFolder {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderNewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Umbenennen.
+        /// </summary>
+        internal static string FileManager_HeaderRename {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestätigung umbenennen.
+        /// </summary>
+        internal static string FileManager_HeaderRenameConfirmation {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderRenameConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Datei existiert bereits.
+        /// </summary>
+        internal static string FileManager_HeaderRetry {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daten hochladen.
+        /// </summary>
+        internal static string FileManager_HeaderUpload {
+            get {
+                return ResourceManager.GetString("FileManager_HeaderUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eintrag ausgewählt.
+        /// </summary>
+        internal static string FileManager_ItemSelection {
+            get {
+                return ResourceManager.GetString("FileManager_ItemSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elemente ausgewählt.
+        /// </summary>
+        internal static string FileManager_ItemsSelection {
+            get {
+                return ResourceManager.GetString("FileManager_ItemsSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KB.
+        /// </summary>
+        internal static string FileManager_KB {
+            get {
+                return ResourceManager.GetString("FileManager_KB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ort.
+        /// </summary>
+        internal static string FileManager_Location {
+            get {
+                return ResourceManager.GetString("FileManager_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geändert.
+        /// </summary>
+        internal static string FileManager_Modified {
+            get {
+                return ResourceManager.GetString("FileManager_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string FileManager_Name {
+            get {
+                return ResourceManager.GetString("FileManager_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NetworkError: Fehler beim Senden auf XMLHTTPRequest: Fehler beim Laden.
+        /// </summary>
+        internal static string FileManager_NetworkError {
+            get {
+                return ResourceManager.GetString("FileManager_NetworkError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuer Ordner.
+        /// </summary>
+        internal static string FileManager_NewFolder {
+            get {
+                return ResourceManager.GetString("FileManager_NewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keiner.
+        /// </summary>
+        internal static string FileManager_None {
+            get {
+                return ResourceManager.GetString("FileManager_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffnen.
+        /// </summary>
+        internal static string FileManager_Open {
+            get {
+                return ResourceManager.GetString("FileManager_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string FileManager_Paste {
+            get {
+                return ResourceManager.GetString("FileManager_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pfad.
+        /// </summary>
+        internal static string FileManager_Path {
+            get {
+                return ResourceManager.GetString("FileManager_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genehmigung.
+        /// </summary>
+        internal static string FileManager_Permission {
+            get {
+                return ResourceManager.GetString("FileManager_Permission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualisierung.
+        /// </summary>
+        internal static string FileManager_Refresh {
+            get {
+                return ResourceManager.GetString("FileManager_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Umbenennen.
+        /// </summary>
+        internal static string FileManager_Rename {
+            get {
+                return ResourceManager.GetString("FileManager_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suche.
+        /// </summary>
+        internal static string FileManager_Search {
+            get {
+                return ResourceManager.GetString("FileManager_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to keine Ergebnisse gefunden.
+        /// </summary>
+        internal static string FileManager_SearchEmpty {
+            get {
+                return ResourceManager.GetString("FileManager_SearchEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Versuchen Sie es mit verschiedenen Stichwörtern.
+        /// </summary>
+        internal static string FileManager_SearchKey {
+            get {
+                return ResourceManager.GetString("FileManager_SearchKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Alle.
+        /// </summary>
+        internal static string FileManager_SelectAll {
+            get {
+                return ResourceManager.GetString("FileManager_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ServerError: Ungültige Antwort von.
+        /// </summary>
+        internal static string FileManager_ServerError {
+            get {
+                return ResourceManager.GetString("FileManager_ServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größe.
+        /// </summary>
+        internal static string FileManager_Size {
+            get {
+                return ResourceManager.GetString("FileManager_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sortiere nach.
+        /// </summary>
+        internal static string FileManager_SortBy {
+            get {
+                return ResourceManager.GetString("FileManager_SortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Zielordner ist der Unterordner des Quellordners..
+        /// </summary>
+        internal static string FileManager_SubFolderError {
+            get {
+                return ResourceManager.GetString("FileManager_SubFolderError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string FileManager_TooltipCopy {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schnitt.
+        /// </summary>
+        internal static string FileManager_TooltipCut {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string FileManager_TooltipDelete {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzelheiten.
+        /// </summary>
+        internal static string FileManager_TooltipDetails {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herunterladen.
+        /// </summary>
+        internal static string FileManager_TooltipDownload {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuer Ordner.
+        /// </summary>
+        internal static string FileManager_TooltipNewFolder {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipNewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string FileManager_TooltipPaste {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualisierung.
+        /// </summary>
+        internal static string FileManager_TooltipRefresh {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Umbenennen.
+        /// </summary>
+        internal static string FileManager_TooltipRename {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Alle.
+        /// </summary>
+        internal static string FileManager_TooltipSelectAll {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipSelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auswahl aufheben.
+        /// </summary>
+        internal static string FileManager_TooltipSelection {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sortiere nach.
+        /// </summary>
+        internal static string FileManager_TooltipSortBy {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipSortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochladen.
+        /// </summary>
+        internal static string FileManager_TooltipUpload {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aussicht.
+        /// </summary>
+        internal static string FileManager_TooltipView {
+            get {
+                return ResourceManager.GetString("FileManager_TooltipView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Art.
+        /// </summary>
+        internal static string FileManager_Type {
+            get {
+                return ResourceManager.GetString("FileManager_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochladen.
+        /// </summary>
+        internal static string FileManager_Upload {
+            get {
+                return ResourceManager.GetString("FileManager_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Datei- oder Ordnername darf nicht leer sein..
+        /// </summary>
+        internal static string FileManager_ValidationEmpty {
+            get {
+                return ResourceManager.GetString("FileManager_ValidationEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Datei- oder Ordnername {0} enthält ungültige Zeichen. Bitte verwenden Sie einen anderen Namen. Gültige Datei- oder Ordnernamen dürfen nicht mit einem Punkt oder Leerzeichen enden..
+        /// </summary>
+        internal static string FileManager_ValidationInvalid {
+            get {
+                return ResourceManager.GetString("FileManager_ValidationInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eine Datei oder ein Ordner mit dem Namen {0} ist bereits vorhanden..
+        /// </summary>
+        internal static string FileManager_ValidationNewFolderExists {
+            get {
+                return ResourceManager.GetString("FileManager_ValidationNewFolderExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} kann nicht in {1} umbenannt werden: Ziel ist bereits vorhanden..
+        /// </summary>
+        internal static string FileManager_ValidationRenameExists {
+            get {
+                return ResourceManager.GetString("FileManager_ValidationRenameExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aussicht.
+        /// </summary>
+        internal static string FileManager_View {
+            get {
+                return ResourceManager.GetString("FileManager_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzelheiten.
+        /// </summary>
+        internal static string FileManager_ViewDetails {
+            get {
+                return ResourceManager.GetString("FileManager_ViewDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Große Icons.
+        /// </summary>
+        internal static string FileManager_ViewLargeIcons {
+            get {
+                return ResourceManager.GetString("FileManager_ViewLargeIcons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Über.
+        /// </summary>
+        internal static string Gantt_Above {
+            get {
+                return ResourceManager.GetString("Gantt_Above", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinzufügen.
+        /// </summary>
+        internal static string Gantt_Add {
+            get {
+                return ResourceManager.GetString("Gantt_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neue Aufgabe.
+        /// </summary>
+        internal static string Gantt_AddDialogTitle {
+            get {
+                return ResourceManager.GetString("Gantt_AddDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dauer.
+        /// </summary>
+        internal static string Gantt_AutoDuration {
+            get {
+                return ResourceManager.GetString("Gantt_AutoDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoFit-Spalte.
+        /// </summary>
+        internal static string Gantt_AutoFit {
+            get {
+                return ResourceManager.GetString("Gantt_AutoFit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Spalten automatisch anpassen.
+        /// </summary>
+        internal static string Gantt_AutoFitAll {
+            get {
+                return ResourceManager.GetString("Gantt_AutoFitAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baseline-Enddatum.
+        /// </summary>
+        internal static string Gantt_BaselineEndDate {
+            get {
+                return ResourceManager.GetString("Gantt_BaselineEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basisstartdatum.
+        /// </summary>
+        internal static string Gantt_BaselineStartDate {
+            get {
+                return ResourceManager.GetString("Gantt_BaselineStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unten.
+        /// </summary>
+        internal static string Gantt_Below {
+            get {
+                return ResourceManager.GetString("Gantt_Below", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Gantt_Cancel {
+            get {
+                return ResourceManager.GetString("Gantt_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kind.
+        /// </summary>
+        internal static string Gantt_Child {
+            get {
+                return ResourceManager.GetString("Gantt_Child", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles einklappen.
+        /// </summary>
+        internal static string Gantt_CollapseAll {
+            get {
+                return ResourceManager.GetString("Gantt_CollapseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie den Datensatz wirklich löschen?.
+        /// </summary>
+        internal static string Gantt_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("Gantt_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie den Abhängigkeitslink wirklich entfernen?.
+        /// </summary>
+        internal static string Gantt_ConfirmPredecessorDelete {
+            get {
+                return ResourceManager.GetString("Gantt_ConfirmPredecessorDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konvertieren.
+        /// </summary>
+        internal static string Gantt_Convert {
+            get {
+                return ResourceManager.GetString("Gantt_Convert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CSV-Export.
+        /// </summary>
+        internal static string Gantt_CsvExport {
+            get {
+                return ResourceManager.GetString("Gantt_CsvExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefinierte Spalten.
+        /// </summary>
+        internal static string Gantt_CustomColumn {
+            get {
+                return ResourceManager.GetString("Gantt_CustomColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefinierte Spalten.
+        /// </summary>
+        internal static string Gantt_CustomTab {
+            get {
+                return ResourceManager.GetString("Gantt_CustomTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D.
+        /// </summary>
+        internal static string Gantt_D {
+            get {
+                return ResourceManager.GetString("Gantt_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string Gantt_Day {
+            get {
+                return ResourceManager.GetString("Gantt_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tage.
+        /// </summary>
+        internal static string Gantt_Days {
+            get {
+                return ResourceManager.GetString("Gantt_Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string Gantt_Delete {
+            get {
+                return ResourceManager.GetString("Gantt_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abhängigkeit löschen.
+        /// </summary>
+        internal static string Gantt_DeleteDependency {
+            get {
+                return ResourceManager.GetString("Gantt_DeleteDependency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufgabe löschen.
+        /// </summary>
+        internal static string Gantt_DeleteTask {
+            get {
+                return ResourceManager.GetString("Gantt_DeleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abhängigkeit.
+        /// </summary>
+        internal static string Gantt_Dependency {
+            get {
+                return ResourceManager.GetString("Gantt_Dependency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dauer.
+        /// </summary>
+        internal static string Gantt_Duration {
+            get {
+                return ResourceManager.GetString("Gantt_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string Gantt_Edit {
+            get {
+                return ResourceManager.GetString("Gantt_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufgabeninformationen.
+        /// </summary>
+        internal static string Gantt_EditDialogTitle {
+            get {
+                return ResourceManager.GetString("Gantt_EditDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Datensätze zum Anzeigen.
+        /// </summary>
+        internal static string Gantt_EmptyRecord {
+            get {
+                return ResourceManager.GetString("Gantt_EmptyRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endtermin.
+        /// </summary>
+        internal static string Gantt_EndDate {
+            get {
+                return ResourceManager.GetString("Gantt_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie den Wert ein.
+        /// </summary>
+        internal static string Gantt_EnterValue {
+            get {
+                return ResourceManager.GetString("Gantt_EnterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ereignismarker.
+        /// </summary>
+        internal static string Gantt_EventMarkers {
+            get {
+                return ResourceManager.GetString("Gantt_EventMarkers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel-Export.
+        /// </summary>
+        internal static string Gantt_ExcelExport {
+            get {
+                return ResourceManager.GetString("Gantt_ExcelExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle erweitern.
+        /// </summary>
+        internal static string Gantt_ExpandAll {
+            get {
+                return ResourceManager.GetString("Gantt_ExpandAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fertig.
+        /// </summary>
+        internal static string Gantt_Finish {
+            get {
+                return ResourceManager.GetString("Gantt_Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Von.
+        /// </summary>
+        internal static string Gantt_From {
+            get {
+                return ResourceManager.GetString("Gantt_From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allgemeines.
+        /// </summary>
+        internal static string Gantt_GeneralTab {
+            get {
+                return ResourceManager.GetString("Gantt_GeneralTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to h.
+        /// </summary>
+        internal static string Gantt_H {
+            get {
+                return ResourceManager.GetString("Gantt_H", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stunde.
+        /// </summary>
+        internal static string Gantt_Hour {
+            get {
+                return ResourceManager.GetString("Gantt_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Std.
+        /// </summary>
+        internal static string Gantt_Hours {
+            get {
+                return ResourceManager.GetString("Gantt_Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        internal static string Gantt_Id {
+            get {
+                return ResourceManager.GetString("Gantt_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzug.
+        /// </summary>
+        internal static string Gantt_Indent {
+            get {
+                return ResourceManager.GetString("Gantt_Indent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verzögerung.
+        /// </summary>
+        internal static string Gantt_Lag {
+            get {
+                return ResourceManager.GetString("Gantt_Lag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linke Aufgabenbezeichnung.
+        /// </summary>
+        internal static string Gantt_LeftTaskLabel {
+            get {
+                return ResourceManager.GetString("Gantt_LeftTaskLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        internal static string Gantt_M {
+            get {
+                return ResourceManager.GetString("Gantt_M", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meilenstein.
+        /// </summary>
+        internal static string Gantt_Milestone {
+            get {
+                return ResourceManager.GetString("Gantt_Milestone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mindest.
+        /// </summary>
+        internal static string Gantt_Min {
+            get {
+                return ResourceManager.GetString("Gantt_Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minute.
+        /// </summary>
+        internal static string Gantt_Minute {
+            get {
+                return ResourceManager.GetString("Gantt_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protokoll.
+        /// </summary>
+        internal static string Gantt_Minutes {
+            get {
+                return ResourceManager.GetString("Gantt_Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Gantt_Name {
+            get {
+                return ResourceManager.GetString("Gantt_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Zeitspanne.
+        /// </summary>
+        internal static string Gantt_NextTimeSpan {
+            get {
+                return ResourceManager.GetString("Gantt_NextTimeSpan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anmerkungen.
+        /// </summary>
+        internal static string Gantt_Notes {
+            get {
+                return ResourceManager.GetString("Gantt_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offset.
+        /// </summary>
+        internal static string Gantt_Offset {
+            get {
+                return ResourceManager.GetString("Gantt_Offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Gantt_OkText {
+            get {
+                return ResourceManager.GetString("Gantt_OkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausrücken.
+        /// </summary>
+        internal static string Gantt_Outdent {
+            get {
+                return ResourceManager.GetString("Gantt_Outdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorherige Zeitspanne.
+        /// </summary>
+        internal static string Gantt_PrevTimeSpan {
+            get {
+                return ResourceManager.GetString("Gantt_PrevTimeSpan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fortschritt.
+        /// </summary>
+        internal static string Gantt_Progress {
+            get {
+                return ResourceManager.GetString("Gantt_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ressourcen-ID.
+        /// </summary>
+        internal static string Gantt_ResourceID {
+            get {
+                return ResourceManager.GetString("Gantt_ResourceID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ressourcen.
+        /// </summary>
+        internal static string Gantt_ResourceName {
+            get {
+                return ResourceManager.GetString("Gantt_ResourceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Richtige Aufgabenbezeichnung.
+        /// </summary>
+        internal static string Gantt_RightTaskLabel {
+            get {
+                return ResourceManager.GetString("Gantt_RightTaskLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string Gantt_Save {
+            get {
+                return ResourceManager.GetString("Gantt_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string Gantt_SaveButton {
+            get {
+                return ResourceManager.GetString("Gantt_SaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suche.
+        /// </summary>
+        internal static string Gantt_Search {
+            get {
+                return ResourceManager.GetString("Gantt_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufsteigend sortieren.
+        /// </summary>
+        internal static string Gantt_SortAscending {
+            get {
+                return ResourceManager.GetString("Gantt_SortAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absteigend sortieren.
+        /// </summary>
+        internal static string Gantt_SortDescending {
+            get {
+                return ResourceManager.GetString("Gantt_SortDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string Gantt_Start {
+            get {
+                return ResourceManager.GetString("Gantt_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anfangsdatum.
+        /// </summary>
+        internal static string Gantt_StartDate {
+            get {
+                return ResourceManager.GetString("Gantt_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enddatum der Unteraufgaben.
+        /// </summary>
+        internal static string Gantt_SubTaskEndDate {
+            get {
+                return ResourceManager.GetString("Gantt_SubTaskEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Startdatum der Unteraufgaben.
+        /// </summary>
+        internal static string Gantt_SubTaskStartDate {
+            get {
+                return ResourceManager.GetString("Gantt_SubTaskStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Aufgabe.
+        /// </summary>
+        internal static string Gantt_Task {
+            get {
+                return ResourceManager.GetString("Gantt_Task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; nach &quot;{1}&quot; verschoben, um den Vorgang abzuschließen, und die beiden Aufgaben sind miteinander verknüpft. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskAfterPredecessor_FF {
+            get {
+                return ResourceManager.GetString("Gantt_TaskAfterPredecessor_FF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; von &quot;{1}&quot; entfernt und die beiden Aufgaben sind miteinander verknüpft. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskAfterPredecessor_FS {
+            get {
+                return ResourceManager.GetString("Gantt_TaskAfterPredecessor_FS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; nach dem Start von &quot;{1}&quot; verschoben und die beiden Aufgaben sind miteinander verbunden. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskAfterPredecessor_SF {
+            get {
+                return ResourceManager.GetString("Gantt_TaskAfterPredecessor_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; verschoben, um nach dem Start von &quot;{1}&quot; zu beginnen, und die beiden Aufgaben sind miteinander verbunden. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskAfterPredecessor_SS {
+            get {
+                return ResourceManager.GetString("Gantt_TaskAfterPredecessor_SS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; nach &quot;{1}&quot; verschoben, um den Vorgang abzuschließen, und die beiden Aufgaben sind miteinander verknüpft. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskBeforePredecessor_FF {
+            get {
+                return ResourceManager.GetString("Gantt_TaskBeforePredecessor_FF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; verschoben, um vor dem Ende von &quot;{1}&quot; zu beginnen, und die beiden Aufgaben sind miteinander verknüpft. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskBeforePredecessor_FS {
+            get {
+                return ResourceManager.GetString("Gantt_TaskBeforePredecessor_FS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; von &quot;{1}&quot; zum Start verschoben und die beiden Aufgaben sind miteinander verbunden. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskBeforePredecessor_SF {
+            get {
+                return ResourceManager.GetString("Gantt_TaskBeforePredecessor_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie haben &quot;{0}&quot; verschoben, um vor dem Start von &quot;{1}&quot; zu beginnen, und die beiden Aufgaben sind miteinander verknüpft. Infolgedessen können die Links nicht beachtet werden. Wählen Sie unten eine Aktion aus, die ausgeführt werden soll.
+        /// </summary>
+        internal static string Gantt_TaskBeforePredecessor_SS {
+            get {
+                return ResourceManager.GetString("Gantt_TaskBeforePredecessor_SS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufgabeninformationen.
+        /// </summary>
+        internal static string Gantt_TaskInformation {
+            get {
+                return ResourceManager.GetString("Gantt_TaskInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task-Link.
+        /// </summary>
+        internal static string Gantt_TaskLink {
+            get {
+                return ResourceManager.GetString("Gantt_TaskLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufgabenmodus.
+        /// </summary>
+        internal static string Gantt_TaskMode {
+            get {
+                return ResourceManager.GetString("Gantt_TaskMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        internal static string Gantt_TaskMode_Auto {
+            get {
+                return ResourceManager.GetString("Gantt_TaskMode_Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handbuch.
+        /// </summary>
+        internal static string Gantt_TaskMode_Manual {
+            get {
+                return ResourceManager.GetString("Gantt_TaskMode_Manual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Aufgaben.
+        /// </summary>
+        internal static string Gantt_Tasks {
+            get {
+                return ResourceManager.GetString("Gantt_Tasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufgabentyp.
+        /// </summary>
+        internal static string Gantt_TaskType {
+            get {
+                return ResourceManager.GetString("Gantt_TaskType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeline-Zelle.
+        /// </summary>
+        internal static string Gantt_TimelineCell {
+            get {
+                return ResourceManager.GetString("Gantt_TimelineCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zu.
+        /// </summary>
+        internal static string Gantt_To {
+            get {
+                return ResourceManager.GetString("Gantt_To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum Meilenstein.
+        /// </summary>
+        internal static string Gantt_ToMilestone {
+            get {
+                return ResourceManager.GetString("Gantt_ToMilestone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zur Aufgabe.
+        /// </summary>
+        internal static string Gantt_ToTask {
+            get {
+                return ResourceManager.GetString("Gantt_ToTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Art.
+        /// </summary>
+        internal static string Gantt_Type {
+            get {
+                return ResourceManager.GetString("Gantt_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualisieren.
+        /// </summary>
+        internal static string Gantt_Update {
+            get {
+                return ResourceManager.GetString("Gantt_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arbeit.
+        /// </summary>
+        internal static string Gantt_Work {
+            get {
+                return ResourceManager.GetString("Gantt_Work", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notizen schreiben.
+        /// </summary>
+        internal static string Gantt_WriteNotes {
+            get {
+                return ResourceManager.GetString("Gantt_WriteNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hineinzoomen.
+        /// </summary>
+        internal static string Gantt_ZoomIn {
+            get {
+                return ResourceManager.GetString("Gantt_ZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rauszoomen.
+        /// </summary>
+        internal static string Gantt_ZoomOut {
+            get {
+                return ResourceManager.GetString("Gantt_ZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom passend.
+        /// </summary>
+        internal static string Gantt_ZoomToFit {
+            get {
+                return ResourceManager.GetString("Gantt_ZoomToFit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinzufügen.
+        /// </summary>
+        internal static string Grid_Add {
+            get {
+                return ResourceManager.GetString("Grid_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuen Datensatz hinzufügen.
+        /// </summary>
+        internal static string Grid_AddFormTitle {
+            get {
+                return ResourceManager.GetString("Grid_AddFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UND.
+        /// </summary>
+        internal static string Grid_AND {
+            get {
+                return ResourceManager.GetString("Grid_AND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diese Spalte automatisch anpassen.
+        /// </summary>
+        internal static string Grid_AutoFit {
+            get {
+                return ResourceManager.GetString("Grid_AutoFit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatisch alle Spalten anpassen.
+        /// </summary>
+        internal static string Grid_AutoFitAll {
+            get {
+                return ResourceManager.GetString("Grid_AutoFitAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie die Änderungen wirklich speichern?.
+        /// </summary>
+        internal static string Grid_BatchSaveConfirm {
+            get {
+                return ResourceManager.GetString("Grid_BatchSaveConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht gespeicherte Änderungen gehen verloren. Sind Sie sicher, dass Sie fortfahren wollen?.
+        /// </summary>
+        internal static string Grid_BatchSaveLostChanges {
+            get {
+                return ResourceManager.GetString("Grid_BatchSaveLostChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischen.
+        /// </summary>
+        internal static string Grid_Between {
+            get {
+                return ResourceManager.GetString("Grid_Between", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leerzeichen.
+        /// </summary>
+        internal static string Grid_Blanks {
+            get {
+                return ResourceManager.GetString("Grid_Blanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Grid_Cancel {
+            get {
+                return ResourceManager.GetString("Grid_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Grid_CancelButton {
+            get {
+                return ResourceManager.GetString("Grid_CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie die Änderungen wirklich abbrechen?.
+        /// </summary>
+        internal static string Grid_CancelEdit {
+            get {
+                return ResourceManager.GetString("Grid_CancelEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte auswählen.
+        /// </summary>
+        internal static string Grid_ChooseColumns {
+            get {
+                return ResourceManager.GetString("Grid_ChooseColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie ein Datum.
+        /// </summary>
+        internal static string Grid_ChooseDate {
+            get {
+                return ResourceManager.GetString("Grid_ChooseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string Grid_ClearButton {
+            get {
+                return ResourceManager.GetString("Grid_ClearButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter löschen.
+        /// </summary>
+        internal static string Grid_ClearFilter {
+            get {
+                return ResourceManager.GetString("Grid_ClearFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalten.
+        /// </summary>
+        internal static string Grid_Columnchooser {
+            get {
+                return ResourceManager.GetString("Grid_Columnchooser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spaltenmenüsymbol.
+        /// </summary>
+        internal static string Grid_ColumnMenuIconARIA {
+            get {
+                return ResourceManager.GetString("Grid_ColumnMenuIconARIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie den Datensatz wirklich löschen?.
+        /// </summary>
+        internal static string Grid_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("Grid_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enthält.
+        /// </summary>
+        internal static string Grid_Contains {
+            get {
+                return ResourceManager.GetString("Grid_Contains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string Grid_Copy {
+            get {
+                return ResourceManager.GetString("Grid_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CSV-Export.
+        /// </summary>
+        internal static string Grid_Csvexport {
+            get {
+                return ResourceManager.GetString("Grid_Csvexport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefinierte Filter.
+        /// </summary>
+        internal static string Grid_CustomFilter {
+            get {
+                return ResourceManager.GetString("Grid_CustomFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie ein Datum.
+        /// </summary>
+        internal static string Grid_CustomFilterDatePlaceHolder {
+            get {
+                return ResourceManager.GetString("Grid_CustomFilterDatePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie den Wert ein.
+        /// </summary>
+        internal static string Grid_CustomFilterPlaceHolder {
+            get {
+                return ResourceManager.GetString("Grid_CustomFilterPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datumsfilter.
+        /// </summary>
+        internal static string Grid_DateFilter {
+            get {
+                return ResourceManager.GetString("Grid_DateFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateTime-Filter.
+        /// </summary>
+        internal static string Grid_DateTimeFilter {
+            get {
+                return ResourceManager.GetString("Grid_DateTimeFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string Grid_Delete {
+            get {
+                return ResourceManager.GetString("Grid_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Datensätze zum Löschen ausgewählt.
+        /// </summary>
+        internal static string Grid_DeleteOperationAlert {
+            get {
+                return ResourceManager.GetString("Grid_DeleteOperationAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufzeichnung löschen.
+        /// </summary>
+        internal static string Grid_DeleteRecord {
+            get {
+                return ResourceManager.GetString("Grid_DeleteRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string Grid_Edit {
+            get {
+                return ResourceManager.GetString("Grid_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details von.
+        /// </summary>
+        internal static string Grid_EditFormTitle {
+            get {
+                return ResourceManager.GetString("Grid_EditFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Datensätze zum Bearbeiten ausgewählt.
+        /// </summary>
+        internal static string Grid_EditOperationAlert {
+            get {
+                return ResourceManager.GetString("Grid_EditOperationAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datensatz bearbeiten.
+        /// </summary>
+        internal static string Grid_EditRecord {
+            get {
+                return ResourceManager.GetString("Grid_EditRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DataSource darf beim ersten Laden nicht leer sein, da Spalten aus dataSource in AutoGenerate Column Grid generiert werden.
+        /// </summary>
+        internal static string Grid_EmptyDataSourceError {
+            get {
+                return ResourceManager.GetString("Grid_EmptyDataSourceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Datensätze zum Anzeigen.
+        /// </summary>
+        internal static string Grid_EmptyRecord {
+            get {
+                return ResourceManager.GetString("Grid_EmptyRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endet mit.
+        /// </summary>
+        internal static string Grid_EndsWith {
+            get {
+                return ResourceManager.GetString("Grid_EndsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie den Wert ein.
+        /// </summary>
+        internal static string Grid_EnterValue {
+            get {
+                return ResourceManager.GetString("Grid_EnterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gleich.
+        /// </summary>
+        internal static string Grid_Equal {
+            get {
+                return ResourceManager.GetString("Grid_Equal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel-Export.
+        /// </summary>
+        internal static string Grid_Excelexport {
+            get {
+                return ResourceManager.GetString("Grid_Excelexport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        internal static string Grid_Export {
+            get {
+                return ResourceManager.GetString("Grid_Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to falsch.
+        /// </summary>
+        internal static string Grid_False {
+            get {
+                return ResourceManager.GetString("Grid_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Filterbalkenzelle.
+        /// </summary>
+        internal static string Grid_FilterbarTitle {
+            get {
+                return ResourceManager.GetString("Grid_FilterbarTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string Grid_FilterButton {
+            get {
+                return ResourceManager.GetString("Grid_FilterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsch.
+        /// </summary>
+        internal static string Grid_FilterFalse {
+            get {
+                return ResourceManager.GetString("Grid_FilterFalse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string Grid_FilterMenu {
+            get {
+                return ResourceManager.GetString("Grid_FilterMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filtersymbol.
+        /// </summary>
+        internal static string Grid_FilterMenuIconARIA {
+            get {
+                return ResourceManager.GetString("Grid_FilterMenuIconARIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wahr.
+        /// </summary>
+        internal static string Grid_FilterTrue {
+            get {
+                return ResourceManager.GetString("Grid_FilterTrue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erste Seite.
+        /// </summary>
+        internal static string Grid_FirstPage {
+            get {
+                return ResourceManager.GetString("Grid_FirstPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größer als.
+        /// </summary>
+        internal static string Grid_GreaterThan {
+            get {
+                return ResourceManager.GetString("Grid_GreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größer als oder gleich.
+        /// </summary>
+        internal static string Grid_GreaterThanOrEqual {
+            get {
+                return ResourceManager.GetString("Grid_GreaterThanOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nach dieser Spalte gruppieren.
+        /// </summary>
+        internal static string Grid_Group {
+            get {
+                return ResourceManager.GetString("Grid_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppenschaltfläche.
+        /// </summary>
+        internal static string Grid_GroupButtonARIA {
+            get {
+                return ResourceManager.GetString("Grid_GroupButtonARIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Gruppierung ist für diese Spalte deaktiviert.
+        /// </summary>
+        internal static string Grid_GroupDisable {
+            get {
+                return ResourceManager.GetString("Grid_GroupDisable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen Sie eine Spaltenüberschrift hierher, um die Spalte zu gruppieren.
+        /// </summary>
+        internal static string Grid_GroupDropArea {
+            get {
+                return ResourceManager.GetString("Grid_GroupDropArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungültige Filterdaten.
+        /// </summary>
+        internal static string Grid_InvalidFilterMessage {
+            get {
+                return ResourceManager.GetString("Grid_InvalidFilterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eintrag.
+        /// </summary>
+        internal static string Grid_Item {
+            get {
+                return ResourceManager.GetString("Grid_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einträge.
+        /// </summary>
+        internal static string Grid_Items {
+            get {
+                return ResourceManager.GetString("Grid_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letzte Seite.
+        /// </summary>
+        internal static string Grid_LastPage {
+            get {
+                return ResourceManager.GetString("Grid_LastPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weniger als.
+        /// </summary>
+        internal static string Grid_LessThan {
+            get {
+                return ResourceManager.GetString("Grid_LessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weniger als oder gleich.
+        /// </summary>
+        internal static string Grid_LessThanOrEqual {
+            get {
+                return ResourceManager.GetString("Grid_LessThanOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match-Fall.
+        /// </summary>
+        internal static string Grid_MatchCase {
+            get {
+                return ResourceManager.GetString("Grid_MatchCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Treffer gefunden.
+        /// </summary>
+        internal static string Grid_Matchs {
+            get {
+                return ResourceManager.GetString("Grid_Matchs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Seite.
+        /// </summary>
+        internal static string Grid_NextPage {
+            get {
+                return ResourceManager.GetString("Grid_NextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Treffer gefunden.
+        /// </summary>
+        internal static string Grid_NoResult {
+            get {
+                return ResourceManager.GetString("Grid_NoResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht gleich.
+        /// </summary>
+        internal static string Grid_NotEqual {
+            get {
+                return ResourceManager.GetString("Grid_NotEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl Filter.
+        /// </summary>
+        internal static string Grid_NumberFilter {
+            get {
+                return ResourceManager.GetString("Grid_NumberFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Grid_OKButton {
+            get {
+                return ResourceManager.GetString("Grid_OKButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ODER.
+        /// </summary>
+        internal static string Grid_OR {
+            get {
+                return ResourceManager.GetString("Grid_OR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF-Export.
+        /// </summary>
+        internal static string Grid_Pdfexport {
+            get {
+                return ResourceManager.GetString("Grid_Pdfexport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorherige Seite.
+        /// </summary>
+        internal static string Grid_PreviousPage {
+            get {
+                return ResourceManager.GetString("Grid_PreviousPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drucken.
+        /// </summary>
+        internal static string Grid_Print {
+            get {
+                return ResourceManager.GetString("Grid_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kontrollkästchen Zeile.
+        /// </summary>
+        internal static string Grid_RowSelectionCheckBoxARIA {
+            get {
+                return ResourceManager.GetString("Grid_RowSelectionCheckBoxARIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string Grid_Save {
+            get {
+                return ResourceManager.GetString("Grid_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to speichern.
+        /// </summary>
+        internal static string Grid_SaveButton {
+            get {
+                return ResourceManager.GetString("Grid_SaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suche.
+        /// </summary>
+        internal static string Grid_Search {
+            get {
+                return ResourceManager.GetString("Grid_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalten durchsuchen.
+        /// </summary>
+        internal static string Grid_SearchColumns {
+            get {
+                return ResourceManager.GetString("Grid_SearchColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Alle.
+        /// </summary>
+        internal static string Grid_SelectAll {
+            get {
+                return ResourceManager.GetString("Grid_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeilen anzeigen, in denen:.
+        /// </summary>
+        internal static string Grid_ShowRowsWhere {
+            get {
+                return ResourceManager.GetString("Grid_ShowRowsWhere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufsteigend sortieren.
+        /// </summary>
+        internal static string Grid_SortAscending {
+            get {
+                return ResourceManager.GetString("Grid_SortAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absteigend sortieren.
+        /// </summary>
+        internal static string Grid_SortDescending {
+            get {
+                return ResourceManager.GetString("Grid_SortDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginnt mit.
+        /// </summary>
+        internal static string Grid_StartsWith {
+            get {
+                return ResourceManager.GetString("Grid_StartsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textfilter.
+        /// </summary>
+        internal static string Grid_TextFilter {
+            get {
+                return ResourceManager.GetString("Grid_TextFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wahr.
+        /// </summary>
+        internal static string Grid_True {
+            get {
+                return ResourceManager.GetString("Grid_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppierung nach dieser Spalte aufheben.
+        /// </summary>
+        internal static string Grid_Ungroup {
+            get {
+                return ResourceManager.GetString("Grid_Ungroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klicken Sie hier, um die Gruppierung aufzuheben.
+        /// </summary>
+        internal static string Grid_UnGroupButton {
+            get {
+                return ResourceManager.GetString("Grid_UnGroupButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schaltfläche „Gruppierung aufheben“.
+        /// </summary>
+        internal static string Grid_UnGroupButtonARIA {
+            get {
+                return ResourceManager.GetString("Grid_UnGroupButtonARIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualisieren.
+        /// </summary>
+        internal static string Grid_Update {
+            get {
+                return ResourceManager.GetString("Grid_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word-Export.
+        /// </summary>
+        internal static string Grid_Wordexport {
+            get {
+                return ResourceManager.GetString("Grid_Wordexport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string InPlaceEditor_Cancel {
+            get {
+                return ResourceManager.GetString("InPlaceEditor_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum Bearbeiten anklicken.
+        /// </summary>
+        internal static string InPlaceEditor_EditAreaClick {
+            get {
+                return ResourceManager.GetString("InPlaceEditor_EditAreaClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doppelklick zum bearbeiten.
+        /// </summary>
+        internal static string InPlaceEditor_EditAreaDoubleClick {
+            get {
+                return ResourceManager.GetString("InPlaceEditor_EditAreaDoubleClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum Bearbeiten anklicken.
+        /// </summary>
+        internal static string InPlaceEditor_EditIcon {
+            get {
+                return ResourceManager.GetString("InPlaceEditor_EditIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wird geladen....
+        /// </summary>
+        internal static string InPlaceEditor_LoadingText {
+            get {
+                return ResourceManager.GetString("InPlaceEditor_LoadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string InPlaceEditor_Save {
+            get {
+                return ResourceManager.GetString("InPlaceEditor_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neue Karte hinzufügen.
+        /// </summary>
+        internal static string Kanban_AddTitle {
+            get {
+                return ResourceManager.GetString("Kanban_AddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Kanban_Cancel {
+            get {
+                return ResourceManager.GetString("Kanban_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Karten ausgewählt.
+        /// </summary>
+        internal static string Kanban_CardsSelected {
+            get {
+                return ResourceManager.GetString("Kanban_CardsSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string Kanban_Delete {
+            get {
+                return ResourceManager.GetString("Kanban_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie diese Karte wirklich löschen?.
+        /// </summary>
+        internal static string Kanban_DeleteContent {
+            get {
+                return ResourceManager.GetString("Kanban_DeleteContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Karte löschen.
+        /// </summary>
+        internal static string Kanban_DeleteTitle {
+            get {
+                return ResourceManager.GetString("Kanban_DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Karte bearbeiten.
+        /// </summary>
+        internal static string Kanban_EditTitle {
+            get {
+                return ResourceManager.GetString("Kanban_EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufgabe.
+        /// </summary>
+        internal static string Kanban_Item {
+            get {
+                return ResourceManager.GetString("Kanban_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einträge.
+        /// </summary>
+        internal static string Kanban_Items {
+            get {
+                return ResourceManager.GetString("Kanban_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        internal static string Kanban_Max {
+            get {
+                return ResourceManager.GetString("Kanban_Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min.
+        /// </summary>
+        internal static string Kanban_Min {
+            get {
+                return ResourceManager.GetString("Kanban_Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        internal static string Kanban_No {
+            get {
+                return ResourceManager.GetString("Kanban_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Karten zum Anzeigen.
+        /// </summary>
+        internal static string Kanban_No_Cards {
+            get {
+                return ResourceManager.GetString("Kanban_No_Cards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string Kanban_Save {
+            get {
+                return ResourceManager.GetString("Kanban_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        internal static string Kanban_Yes {
+            get {
+                return ResourceManager.GetString("Kanban_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anfrage ist fehlgeschlagen.
+        /// </summary>
+        internal static string ListBox_ActionFailureTemplate {
+            get {
+                return ResourceManager.GetString("ListBox_ActionFailureTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle verschieben von.
+        /// </summary>
+        internal static string ListBox_MoveAllFrom {
+            get {
+                return ResourceManager.GetString("ListBox_MoveAllFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle verschieben nach.
+        /// </summary>
+        internal static string ListBox_MoveAllTo {
+            get {
+                return ResourceManager.GetString("ListBox_MoveAllTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sich abwärts bewegen.
+        /// </summary>
+        internal static string ListBox_MoveDown {
+            get {
+                return ResourceManager.GetString("ListBox_MoveDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verschieben von.
+        /// </summary>
+        internal static string ListBox_MoveFrom {
+            get {
+                return ResourceManager.GetString("ListBox_MoveFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen nach.
+        /// </summary>
+        internal static string ListBox_MoveTo {
+            get {
+                return ResourceManager.GetString("ListBox_MoveTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nach oben bewegen.
+        /// </summary>
+        internal static string ListBox_MoveUp {
+            get {
+                return ResourceManager.GetString("ListBox_MoveUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Aufzeichnungen gefunden.
+        /// </summary>
+        internal static string ListBox_NoRecordsTemplate {
+            get {
+                return ResourceManager.GetString("ListBox_NoRecordsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Alle.
+        /// </summary>
+        internal static string ListBox_SelectAllText {
+            get {
+                return ResourceManager.GetString("ListBox_SelectAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles wiederufen.
+        /// </summary>
+        internal static string ListBox_UnSelectAllText {
+            get {
+                return ResourceManager.GetString("ListBox_UnSelectAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schwenken.
+        /// </summary>
+        internal static string Maps_Pan {
+            get {
+                return ResourceManager.GetString("Maps_Pan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zurücksetzen.
+        /// </summary>
+        internal static string Maps_Reset {
+            get {
+                return ResourceManager.GetString("Maps_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoomen.
+        /// </summary>
+        internal static string Maps_Zoom {
+            get {
+                return ResourceManager.GetString("Maps_Zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hineinzoomen.
+        /// </summary>
+        internal static string Maps_ZoomIn {
+            get {
+                return ResourceManager.GetString("Maps_ZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rauszoomen.
+        /// </summary>
+        internal static string Maps_ZoomOut {
+            get {
+                return ResourceManager.GetString("Maps_ZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Anfrage ist fehlgeschlagen.
+        /// </summary>
+        internal static string MultiSelect_ActionFailureTemplate {
+            get {
+                return ResourceManager.GetString("MultiSelect_ActionFailureTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Einträge vorhanden.
+        /// </summary>
+        internal static string MultiSelect_NoRecordsTemplate {
+            get {
+                return ResourceManager.GetString("MultiSelect_NoRecordsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +${count} mehr ...
+        /// </summary>
+        internal static string MultiSelect_OverflowCountTemplate {
+            get {
+                return ResourceManager.GetString("MultiSelect_OverflowCountTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Alle.
+        /// </summary>
+        internal static string MultiSelect_SelectAllText {
+            get {
+                return ResourceManager.GetString("MultiSelect_SelectAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ${count} ausgewählt.
+        /// </summary>
+        internal static string MultiSelect_TotalCountTemplate {
+            get {
+                return ResourceManager.GetString("MultiSelect_TotalCountTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles wiederufen.
+        /// </summary>
+        internal static string MultiSelect_UnSelectAllText {
+            get {
+                return ResourceManager.GetString("MultiSelect_UnSelectAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wert verringern.
+        /// </summary>
+        internal static string NumericTextBox_DecrementTitle {
+            get {
+                return ResourceManager.GetString("NumericTextBox_DecrementTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inkrementieren Sie den Wert.
+        /// </summary>
+        internal static string NumericTextBox_IncrementTitle {
+            get {
+                return ResourceManager.GetString("NumericTextBox_IncrementTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle.
+        /// </summary>
+        internal static string Pager_All {
+            get {
+                return ResourceManager.GetString("Pager_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} von {1} Seiten.
+        /// </summary>
+        internal static string Pager_CurrentPageInfo {
+            get {
+                return ResourceManager.GetString("Pager_CurrentPageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gehe zur ersten Seite.
+        /// </summary>
+        internal static string Pager_FirstPageTooltip {
+            get {
+                return ResourceManager.GetString("Pager_FirstPageTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gehe zu Seite.
+        /// </summary>
+        internal static string Pager_GotoPageARIA {
+            get {
+                return ResourceManager.GetString("Pager_GotoPageARIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gehe zur letzten Seite.
+        /// </summary>
+        internal static string Pager_LastPageTooltip {
+            get {
+                return ResourceManager.GetString("Pager_LastPageTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum nächsten Pager gehen.
+        /// </summary>
+        internal static string Pager_NextPagerTooltip {
+            get {
+                return ResourceManager.GetString("Pager_NextPagerTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gehe zur nächsten Seite.
+        /// </summary>
+        internal static string Pager_NextPageTooltip {
+            get {
+                return ResourceManager.GetString("Pager_NextPageTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einträge.
+        /// </summary>
+        internal static string Pager_PagerAllDropDown {
+            get {
+                return ResourceManager.GetString("Pager_PagerAllDropDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objekte pro Seite.
+        /// </summary>
+        internal static string Pager_PagerDropDown {
+            get {
+                return ResourceManager.GetString("Pager_PagerDropDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum vorherigen Pager wechseln.
+        /// </summary>
+        internal static string Pager_PreviousPagerTooltip {
+            get {
+                return ResourceManager.GetString("Pager_PreviousPagerTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zurück zur letzten Seite.
+        /// </summary>
+        internal static string Pager_PreviousPageTooltip {
+            get {
+                return ResourceManager.GetString("Pager_PreviousPageTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ({0} Einträge).
+        /// </summary>
+        internal static string Pager_TotalItemsInfo {
+            get {
+                return ResourceManager.GetString("Pager_TotalItemsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF Viewer.
+        /// </summary>
+        internal static string PdfViewer {
+            get {
+                return ResourceManager.GetString("PdfViewer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Akzeptiert.
+        /// </summary>
+        internal static string PdfViewer_Accepted {
+            get {
+                return ResourceManager.GetString("PdfViewer_Accepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_Add {
+            get {
+                return ResourceManager.GetString("PdfViewer_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pfeil hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kreis hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddCircle {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddCircle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einen Kommentar hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddComment {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Füge Kommentare hinzu.
+        /// </summary>
+        internal static string PdfViewer_AddComments {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_Addline {
+            get {
+                return ResourceManager.GetString("PdfViewer_Addline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polygon hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddPolygon {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddPolygon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechteck hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddRectangle {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antwort hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddReply {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddReply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formen hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddShapes {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddShapes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stempel hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_AddStamp {
+            get {
+                return ResourceManager.GetString("PdfViewer_AddStamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linksbündig.
+        /// </summary>
+        internal static string PdfViewer_AlignLeft {
+            get {
+                return ResourceManager.GetString("PdfViewer_AlignLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts ausrichten.
+        /// </summary>
+        internal static string PdfViewer_AlignRight {
+            get {
+                return ResourceManager.GetString("PdfViewer_AlignRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anmerkungen hinzufügen oder bearbeiten.
+        /// </summary>
+        internal static string PdfViewer_Annotation {
+            get {
+                return ResourceManager.GetString("PdfViewer_Annotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anmerkung bearbeiten.
+        /// </summary>
+        internal static string PdfViewer_AnnotationEditText {
+            get {
+                return ResourceManager.GetString("PdfViewer_AnnotationEditText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anwenden.
+        /// </summary>
+        internal static string PdfViewer_Apply {
+            get {
+                return ResourceManager.GetString("PdfViewer_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zugelassen.
+        /// </summary>
+        internal static string PdfViewer_Approved {
+            get {
+                return ResourceManager.GetString("PdfViewer_Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatisch.
+        /// </summary>
+        internal static string PdfViewer_Automatic {
+            get {
+                return ResourceManager.GetString("PdfViewer_Automatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fett gedruckt.
+        /// </summary>
+        internal static string PdfViewer_Bold {
+            get {
+                return ResourceManager.GetString("PdfViewer_Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lesezeichen.
+        /// </summary>
+        internal static string PdfViewer_Bookmarks {
+            get {
+                return ResourceManager.GetString("PdfViewer_Bookmarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DURCHSUCHE.
+        /// </summary>
+        internal static string PdfViewer_Browse_Signature_Image {
+            get {
+                return ResourceManager.GetString("PdfViewer_Browse_Signature_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kalibrieren.
+        /// </summary>
+        internal static string PdfViewer_Calibrate {
+            get {
+                return ResourceManager.GetString("PdfViewer_Calibrate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bereich kalibrieren.
+        /// </summary>
+        internal static string PdfViewer_CalibrateArea {
+            get {
+                return ResourceManager.GetString("PdfViewer_CalibrateArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abstand kalibrieren.
+        /// </summary>
+        internal static string PdfViewer_CalibrateDistance {
+            get {
+                return ResourceManager.GetString("PdfViewer_CalibrateDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perimeter kalibrieren.
+        /// </summary>
+        internal static string PdfViewer_CalibratePerimeter {
+            get {
+                return ResourceManager.GetString("PdfViewer_CalibratePerimeter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radius kalibrieren.
+        /// </summary>
+        internal static string PdfViewer_CalibrateRadius {
+            get {
+                return ResourceManager.GetString("PdfViewer_CalibrateRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lautstärke kalibrieren.
+        /// </summary>
+        internal static string PdfViewer_CalibrateVolume {
+            get {
+                return ResourceManager.GetString("PdfViewer_CalibrateVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string PdfViewer_Cancel {
+            get {
+                return ResourceManager.GetString("PdfViewer_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abgesagt.
+        /// </summary>
+        internal static string PdfViewer_Cancelled {
+            get {
+                return ResourceManager.GetString("PdfViewer_Cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        internal static string PdfViewer_Center {
+            get {
+                return ResourceManager.GetString("PdfViewer_Center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Randstärke ändern.
+        /// </summary>
+        internal static string PdfViewer_ChangeThickness {
+            get {
+                return ResourceManager.GetString("PdfViewer_ChangeThickness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to klar.
+        /// </summary>
+        internal static string PdfViewer_Clear {
+            get {
+                return ResourceManager.GetString("PdfViewer_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es wurde ein clientseitiger Fehler gefunden. Überprüfen Sie die benutzerdefinierten Header in der AjaxRequestSettings-Eigenschaft und die Webanaktionsmethoden in der ServerActionSettings-Eigenschaft..
+        /// </summary>
+        internal static string PdfViewer_Clienterror {
+            get {
+                return ResourceManager.GetString("PdfViewer_Clienterror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nah dran.
+        /// </summary>
+        internal static string PdfViewer_Close {
+            get {
+                return ResourceManager.GetString("PdfViewer_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschlossen.
+        /// </summary>
+        internal static string PdfViewer_Closed {
+            get {
+                return ResourceManager.GetString("PdfViewer_Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschlossener Pfeil.
+        /// </summary>
+        internal static string PdfViewer_ClosedArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_ClosedArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farbe ändern.
+        /// </summary>
+        internal static string PdfViewer_ColorEdit {
+            get {
+                return ResourceManager.GetString("PdfViewer_ColorEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kommentar.
+        /// </summary>
+        internal static string PdfViewer_Comment {
+            get {
+                return ResourceManager.GetString("PdfViewer_Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kommentarbereich.
+        /// </summary>
+        internal static string PdfViewer_CommentPanel {
+            get {
+                return ResourceManager.GetString("PdfViewer_CommentPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bemerkungen.
+        /// </summary>
+        internal static string PdfViewer_Comments {
+            get {
+                return ResourceManager.GetString("PdfViewer_Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abgeschlossen.
+        /// </summary>
+        internal static string PdfViewer_Completed {
+            get {
+                return ResourceManager.GetString("PdfViewer_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertraulich.
+        /// </summary>
+        internal static string PdfViewer_Confidential {
+            get {
+                return ResourceManager.GetString("PdfViewer_Confidential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string PdfViewer_Copy {
+            get {
+                return ResourceManager.GetString("PdfViewer_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen.
+        /// </summary>
+        internal static string PdfViewer_Create {
+            get {
+                return ResourceManager.GetString("PdfViewer_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefinierter Stempel.
+        /// </summary>
+        internal static string PdfViewer_CustomStamp {
+            get {
+                return ResourceManager.GetString("PdfViewer_CustomStamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schnitt.
+        /// </summary>
+        internal static string PdfViewer_Cut {
+            get {
+                return ResourceManager.GetString("PdfViewer_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anmerkung löschen.
+        /// </summary>
+        internal static string PdfViewer_Delete {
+            get {
+                return ResourceManager.GetString("PdfViewer_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string PdfViewer_DeleteContext {
+            get {
+                return ResourceManager.GetString("PdfViewer_DeleteContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiefe.
+        /// </summary>
+        internal static string PdfViewer_Depth {
+            get {
+                return ResourceManager.GetString("PdfViewer_Depth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diamant.
+        /// </summary>
+        internal static string PdfViewer_Diamond {
+            get {
+                return ResourceManager.GetString("PdfViewer_Diamond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diamantpfeil.
+        /// </summary>
+        internal static string PdfViewer_DiamondArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_DiamondArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herunterladen.
+        /// </summary>
+        internal static string PdfViewer_Download {
+            get {
+                return ResourceManager.GetString("PdfViewer_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download-Datei.
+        /// </summary>
+        internal static string PdfViewer_DownloadFile {
+            get {
+                return ResourceManager.GetString("PdfViewer_DownloadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luftzug.
+        /// </summary>
+        internal static string PdfViewer_Draft {
+            get {
+                return ResourceManager.GetString("PdfViewer_Draft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZEICHNEN.
+        /// </summary>
+        internal static string PdfViewer_Draw_hand_Signature {
+            get {
+                return ResourceManager.GetString("PdfViewer_Draw_hand_Signature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tinte zeichnen.
+        /// </summary>
+        internal static string PdfViewer_DrawInk {
+            get {
+                return ResourceManager.GetString("PdfViewer_DrawInk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschrift zeichnen.
+        /// </summary>
+        internal static string PdfViewer_DrawSignature {
+            get {
+                return ResourceManager.GetString("PdfViewer_DrawSignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamisch.
+        /// </summary>
+        internal static string PdfViewer_Dynamic {
+            get {
+                return ResourceManager.GetString("PdfViewer_Dynamic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string PdfViewer_Edit {
+            get {
+                return ResourceManager.GetString("PdfViewer_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pfeil beenden.
+        /// </summary>
+        internal static string PdfViewer_EndArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_EndArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gib deinen Namen ein.
+        /// </summary>
+        internal static string PdfViewer_Enter_Signature_as_Name {
+            get {
+                return ResourceManager.GetString("PdfViewer_Enter_Signature_as_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieses Dokument ist passwortgeschützt. Bitte Passwort eingeben..
+        /// </summary>
+        internal static string PdfViewer_EnterPassword {
+            get {
+                return ResourceManager.GetString("PdfViewer_EnterPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anmerkungen exportieren.
+        /// </summary>
+        internal static string PdfViewer_ExportAnnotations {
+            get {
+                return ResourceManager.GetString("PdfViewer_ExportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Aktion zum Exportieren von Anmerkungen ist fehlgeschlagen. Bitte stellen Sie sicher, dass Anmerkungen ordnungsgemäß hinzugefügt werden.
+        /// </summary>
+        internal static string PdfViewer_ExportFailed {
+            get {
+                return ResourceManager.GetString("PdfViewer_ExportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei fehlerhaft.
+        /// </summary>
+        internal static string PdfViewer_FileCorrupted {
+            get {
+                return ResourceManager.GetString("PdfViewer_FileCorrupted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Datei ist beschädigt und kann nicht geöffnet werden..
+        /// </summary>
+        internal static string PdfViewer_FileCorruptedContent {
+            get {
+                return ResourceManager.GetString("PdfViewer_FileCorruptedContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die importierte JSON-Datei wurde nicht am gewünschten Speicherort gefunden.
+        /// </summary>
+        internal static string PdfViewer_FileNotFound {
+            get {
+                return ResourceManager.GetString("PdfViewer_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Füllfarbe.
+        /// </summary>
+        internal static string PdfViewer_FillColor {
+            get {
+                return ResourceManager.GetString("PdfViewer_FillColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finale.
+        /// </summary>
+        internal static string PdfViewer_Final {
+            get {
+                return ResourceManager.GetString("PdfViewer_Final", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Im Dokument finden.
+        /// </summary>
+        internal static string PdfViewer_Findindocument {
+            get {
+                return ResourceManager.GetString("PdfViewer_Findindocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erste Seite.
+        /// </summary>
+        internal static string PdfViewer_FirstText {
+            get {
+                return ResourceManager.GetString("PdfViewer_FirstText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seite anpassen.
+        /// </summary>
+        internal static string PdfViewer_FitPage {
+            get {
+                return ResourceManager.GetString("PdfViewer_FitPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breite anpassen.
+        /// </summary>
+        internal static string PdfViewer_FitWidth {
+            get {
+                return ResourceManager.GetString("PdfViewer_FitWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftfarbe.
+        /// </summary>
+        internal static string PdfViewer_FontColor {
+            get {
+                return ResourceManager.GetString("PdfViewer_FontColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftfamilie.
+        /// </summary>
+        internal static string PdfViewer_FontFamily {
+            get {
+                return ResourceManager.GetString("PdfViewer_FontFamily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftgröße.
+        /// </summary>
+        internal static string PdfViewer_FontSize {
+            get {
+                return ResourceManager.GetString("PdfViewer_FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Für Kommentar.
+        /// </summary>
+        internal static string PdfViewer_ForComment {
+            get {
+                return ResourceManager.GetString("PdfViewer_ForComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zur öffentlichen Veröffentlichung.
+        /// </summary>
+        internal static string PdfViewer_ForPublicRelease {
+            get {
+                return ResourceManager.GetString("PdfViewer_ForPublicRelease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freier Text.
+        /// </summary>
+        internal static string PdfViewer_FreeText {
+            get {
+                return ResourceManager.GetString("PdfViewer_FreeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erste Seite anzeigen.
+        /// </summary>
+        internal static string PdfViewer_GoToFirstPage {
+            get {
+                return ResourceManager.GetString("PdfViewer_GoToFirstPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letzte Seite anzeigen.
+        /// </summary>
+        internal static string PdfViewer_GoToLastPage {
+            get {
+                return ResourceManager.GetString("PdfViewer_GoToLastPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zur Seite gehen.
+        /// </summary>
+        internal static string PdfViewer_GoToPage {
+            get {
+                return ResourceManager.GetString("PdfViewer_GoToPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signatur hinzufügen.
+        /// </summary>
+        internal static string PdfViewer_HandwrittenSignatureDialogHeaderText {
+            get {
+                return ResourceManager.GetString("PdfViewer_HandwrittenSignatureDialogHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text hervorheben.
+        /// </summary>
+        internal static string PdfViewer_Highlight {
+            get {
+                return ResourceManager.GetString("PdfViewer_Highlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Markieren.
+        /// </summary>
+        internal static string PdfViewer_HighlightContext {
+            get {
+                return ResourceManager.GetString("PdfViewer_HighlightContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anmerkungen importieren.
+        /// </summary>
+        internal static string PdfViewer_ImportAnnotations {
+            get {
+                return ResourceManager.GetString("PdfViewer_ImportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungültiger JSON-Dateityp oder Dateiname; Bitte wählen Sie eine gültige JSON-Datei aus.
+        /// </summary>
+        internal static string PdfViewer_ImportFailed {
+            get {
+                return ResourceManager.GetString("PdfViewer_ImportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur Informationen.
+        /// </summary>
+        internal static string PdfViewer_InformationOnly {
+            get {
+                return ResourceManager.GetString("PdfViewer_InformationOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erste hier.
+        /// </summary>
+        internal static string PdfViewer_InitialHere {
+            get {
+                return ResourceManager.GetString("PdfViewer_InitialHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsches Passwort. Bitte versuche es erneut..
+        /// </summary>
+        internal static string PdfViewer_InvalidPassword {
+            get {
+                return ResourceManager.GetString("PdfViewer_InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kursiv.
+        /// </summary>
+        internal static string PdfViewer_Italic {
+            get {
+                return ResourceManager.GetString("PdfViewer_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechtfertigen.
+        /// </summary>
+        internal static string PdfViewer_Justify {
+            get {
+                return ResourceManager.GetString("PdfViewer_Justify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letzte Seite.
+        /// </summary>
+        internal static string PdfViewer_LastText {
+            get {
+                return ResourceManager.GetString("PdfViewer_LastText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leader Länge.
+        /// </summary>
+        internal static string PdfViewer_LeaderLength {
+            get {
+                return ResourceManager.GetString("PdfViewer_LeaderLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linienfarbe.
+        /// </summary>
+        internal static string PdfViewer_LineColor {
+            get {
+                return ResourceManager.GetString("PdfViewer_LineColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linieneigenschaften.
+        /// </summary>
+        internal static string PdfViewer_LineProperties {
+            get {
+                return ResourceManager.GetString("PdfViewer_LineProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linienstil.
+        /// </summary>
+        internal static string PdfViewer_LineStyle {
+            get {
+                return ResourceManager.GetString("PdfViewer_LineStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dicke der Linie.
+        /// </summary>
+        internal static string PdfViewer_LineThickness {
+            get {
+                return ResourceManager.GetString("PdfViewer_LineThickness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groß-und Kleinschreibung berücksichtigen.
+        /// </summary>
+        internal static string PdfViewer_Matchcase {
+            get {
+                return ResourceManager.GetString("PdfViewer_Matchcase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Seite anzeigen.
+        /// </summary>
+        internal static string PdfViewer_NextPage {
+            get {
+                return ResourceManager.GetString("PdfViewer_NextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächste Seite.
+        /// </summary>
+        internal static string PdfViewer_NextText {
+            get {
+                return ResourceManager.GetString("PdfViewer_NextText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noch keine Kommentare.
+        /// </summary>
+        internal static string PdfViewer_NoCommentsYet {
+            get {
+                return ResourceManager.GetString("PdfViewer_NoCommentsYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Viewer hat die Suche im Dokument abgeschlossen. Es wurden keine Übereinstimmungen mehr gefunden.
+        /// </summary>
+        internal static string PdfViewer_Nomatches {
+            get {
+                return ResourceManager.GetString("PdfViewer_Nomatches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keiner.
+        /// </summary>
+        internal static string PdfViewer_None {
+            get {
+                return ResourceManager.GetString("PdfViewer_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht bestätigt.
+        /// </summary>
+        internal static string PdfViewer_NotApproved {
+            get {
+                return ResourceManager.GetString("PdfViewer_NotApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kein Text gefunden.
+        /// </summary>
+        internal static string PdfViewer_NoTextFound {
+            get {
+                return ResourceManager.GetString("PdfViewer_NoTextFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht zur öffentlichen Veröffentlichung.
+        /// </summary>
+        internal static string PdfViewer_NotForPublicRelease {
+            get {
+                return ResourceManager.GetString("PdfViewer_NotForPublicRelease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string PdfViewer_OK {
+            get {
+                return ResourceManager.GetString("PdfViewer_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opazität.
+        /// </summary>
+        internal static string PdfViewer_Opacity {
+            get {
+                return ResourceManager.GetString("PdfViewer_Opacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deckkraft ändern.
+        /// </summary>
+        internal static string PdfViewer_OpacityEdit {
+            get {
+                return ResourceManager.GetString("PdfViewer_OpacityEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei öffnen.
+        /// </summary>
+        internal static string PdfViewer_Open {
+            get {
+                return ResourceManager.GetString("PdfViewer_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffne den Pfeil.
+        /// </summary>
+        internal static string PdfViewer_OpenArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_OpenArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öffnen.
+        /// </summary>
+        internal static string PdfViewer_OpenText {
+            get {
+                return ResourceManager.GetString("PdfViewer_OpenText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seite.
+        /// </summary>
+        internal static string PdfViewer_Page {
+            get {
+                return ResourceManager.GetString("PdfViewer_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktuelle Seitenzahl.
+        /// </summary>
+        internal static string PdfViewer_PageNumber {
+            get {
+                return ResourceManager.GetString("PdfViewer_PageNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seitenminiaturen.
+        /// </summary>
+        internal static string PdfViewer_PageThumbnails {
+            get {
+                return ResourceManager.GetString("PdfViewer_PageThumbnails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Pan-Modus.
+        /// </summary>
+        internal static string PdfViewer_Panning {
+            get {
+                return ResourceManager.GetString("PdfViewer_Panning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schwenken.
+        /// </summary>
+        internal static string PdfViewer_PanText {
+            get {
+                return ResourceManager.GetString("PdfViewer_PanText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort erforderlich.
+        /// </summary>
+        internal static string PdfViewer_PasswordProtected {
+            get {
+                return ResourceManager.GetString("PdfViewer_PasswordProtected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string PdfViewer_Paste {
+            get {
+                return ResourceManager.GetString("PdfViewer_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post.
+        /// </summary>
+        internal static string PdfViewer_Post {
+            get {
+                return ResourceManager.GetString("PdfViewer_Post", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorläufige Ergebnisse.
+        /// </summary>
+        internal static string PdfViewer_PreliminaryResults {
+            get {
+                return ResourceManager.GetString("PdfViewer_PreliminaryResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorherige Seite anzeigen.
+        /// </summary>
+        internal static string PdfViewer_PreviousPage {
+            get {
+                return ResourceManager.GetString("PdfViewer_PreviousPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorherige Seite.
+        /// </summary>
+        internal static string PdfViewer_PreviousText {
+            get {
+                return ResourceManager.GetString("PdfViewer_PreviousText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Druckdatei.
+        /// </summary>
+        internal static string PdfViewer_Print {
+            get {
+                return ResourceManager.GetString("PdfViewer_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drucken.
+        /// </summary>
+        internal static string PdfViewer_PrintText {
+            get {
+                return ResourceManager.GetString("PdfViewer_PrintText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eigenschaften.
+        /// </summary>
+        internal static string PdfViewer_Properties {
+            get {
+                return ResourceManager.GetString("PdfViewer_Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empfangen.
+        /// </summary>
+        internal static string PdfViewer_Received {
+            get {
+                return ResourceManager.GetString("PdfViewer_Received", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen.
+        /// </summary>
+        internal static string PdfViewer_Redo {
+            get {
+                return ResourceManager.GetString("PdfViewer_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abgelehnt.
+        /// </summary>
+        internal static string PdfViewer_Rejected {
+            get {
+                return ResourceManager.GetString("PdfViewer_Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieser PDF-Viewer erfordert eine serverseitige Verarbeitung, um die PDF-Dateien über den Webdienst zu rendern. Sie müssen die ServiceURL konfigurieren, um mit PDF Viewer fortzufahren..
+        /// </summary>
+        internal static string PdfViewer_Required_ServiceUrl_Error_Message {
+            get {
+                return ResourceManager.GetString("PdfViewer_Required_ServiceUrl_Error_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bewertet.
+        /// </summary>
+        internal static string PdfViewer_Reviewed {
+            get {
+                return ResourceManager.GetString("PdfViewer_Reviewed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überarbeitet.
+        /// </summary>
+        internal static string PdfViewer_Revised {
+            get {
+                return ResourceManager.GetString("PdfViewer_Revised", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Runden.
+        /// </summary>
+        internal static string PdfViewer_Round {
+            get {
+                return ResourceManager.GetString("PdfViewer_Round", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Runder Pfeil.
+        /// </summary>
+        internal static string PdfViewer_RoundArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_RoundArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschrift speichern.
+        /// </summary>
+        internal static string PdfViewer_Save_Signature {
+            get {
+                return ResourceManager.GetString("PdfViewer_Save_Signature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skalierungsverhältnis.
+        /// </summary>
+        internal static string PdfViewer_ScaleRatio {
+            get {
+                return ResourceManager.GetString("PdfViewer_ScaleRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suche.
+        /// </summary>
+        internal static string PdfViewer_SearchText {
+            get {
+                return ResourceManager.GetString("PdfViewer_SearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auswahl.
+        /// </summary>
+        internal static string PdfViewer_SelectionText {
+            get {
+                return ResourceManager.GetString("PdfViewer_SelectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Webdienst hört nicht zu. PDF Viewer ist für alle Funktionen vom Webdienst abhängig. Bitte starten Sie den Webdienst, um fortzufahren..
+        /// </summary>
+        internal static string PdfViewer_Servererror {
+            get {
+                return ResourceManager.GetString("PdfViewer_Servererror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status einstellen.
+        /// </summary>
+        internal static string PdfViewer_SetStatus {
+            get {
+                return ResourceManager.GetString("PdfViewer_SetStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hier unterschreiben.
+        /// </summary>
+        internal static string PdfViewer_SignHere {
+            get {
+                return ResourceManager.GetString("PdfViewer_SignHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quadrat.
+        /// </summary>
+        internal static string PdfViewer_Square {
+            get {
+                return ResourceManager.GetString("PdfViewer_Square", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quadratischer Pfeil.
+        /// </summary>
+        internal static string PdfViewer_SquareArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_SquareArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standardgeschäft.
+        /// </summary>
+        internal static string PdfViewer_StandardBusiness {
+            get {
+                return ResourceManager.GetString("PdfViewer_StandardBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pfeil starten.
+        /// </summary>
+        internal static string PdfViewer_StartArrow {
+            get {
+                return ResourceManager.GetString("PdfViewer_StartArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchgestrichener Text.
+        /// </summary>
+        internal static string PdfViewer_Strikethrough {
+            get {
+                return ResourceManager.GetString("PdfViewer_Strikethrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchschlagen.
+        /// </summary>
+        internal static string PdfViewer_StrikethroughContext {
+            get {
+                return ResourceManager.GetString("PdfViewer_StrikethroughContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchgestrichen.
+        /// </summary>
+        internal static string PdfViewer_Strikethroughs {
+            get {
+                return ResourceManager.GetString("PdfViewer_Strikethroughs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strichfarbe ändern.
+        /// </summary>
+        internal static string PdfViewer_StrokeEdit {
+            get {
+                return ResourceManager.GetString("PdfViewer_StrokeEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formular senden.
+        /// </summary>
+        internal static string PdfViewer_SubmitForm {
+            get {
+                return ResourceManager.GetString("PdfViewer_SubmitForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string PdfViewer_Subscript {
+            get {
+                return ResourceManager.GetString("PdfViewer_Subscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochgestellt.
+        /// </summary>
+        internal static string PdfViewer_Superscript {
+            get {
+                return ResourceManager.GetString("PdfViewer_Superscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textausrichtung.
+        /// </summary>
+        internal static string PdfViewer_TextAlign {
+            get {
+                return ResourceManager.GetString("PdfViewer_TextAlign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftstil.
+        /// </summary>
+        internal static string PdfViewer_TextProperties {
+            get {
+                return ResourceManager.GetString("PdfViewer_TextProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text finden.
+        /// </summary>
+        internal static string PdfViewer_TextSearch {
+            get {
+                return ResourceManager.GetString("PdfViewer_TextSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textauswahlwerkzeug.
+        /// </summary>
+        internal static string PdfViewer_TextSelection {
+            get {
+                return ResourceManager.GetString("PdfViewer_TextSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ART.
+        /// </summary>
+        internal static string PdfViewer_Type_Signature {
+            get {
+                return ResourceManager.GetString("PdfViewer_Type_Signature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text unterstreichen.
+        /// </summary>
+        internal static string PdfViewer_Underline {
+            get {
+                return ResourceManager.GetString("PdfViewer_Underline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterstreichen.
+        /// </summary>
+        internal static string PdfViewer_UnderlineContext {
+            get {
+                return ResourceManager.GetString("PdfViewer_UnderlineContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterstreicht.
+        /// </summary>
+        internal static string PdfViewer_Underlines {
+            get {
+                return ResourceManager.GetString("PdfViewer_Underlines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rückgängig machen.
+        /// </summary>
+        internal static string PdfViewer_Undo {
+            get {
+                return ResourceManager.GetString("PdfViewer_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HOCHLADEN.
+        /// </summary>
+        internal static string PdfViewer_Upload_Signature {
+            get {
+                return ResourceManager.GetString("PdfViewer_Upload_Signature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leere.
+        /// </summary>
+        internal static string PdfViewer_Void {
+            get {
+                return ResourceManager.GetString("PdfViewer_Void", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeugin.
+        /// </summary>
+        internal static string PdfViewer_Witness {
+            get {
+                return ResourceManager.GetString("PdfViewer_Witness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoomen.
+        /// </summary>
+        internal static string PdfViewer_Zoom {
+            get {
+                return ResourceManager.GetString("PdfViewer_Zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hineinzoomen.
+        /// </summary>
+        internal static string PdfViewer_ZoomIn {
+            get {
+                return ResourceManager.GetString("PdfViewer_ZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hineinzoomen.
+        /// </summary>
+        internal static string PdfViewer_ZoomInText {
+            get {
+                return ResourceManager.GetString("PdfViewer_ZoomInText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rauszoomen.
+        /// </summary>
+        internal static string PdfViewer_ZoomOut {
+            get {
+                return ResourceManager.GetString("PdfViewer_ZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rauszoomen.
+        /// </summary>
+        internal static string PdfViewer_ZoomOutText {
+            get {
+                return ResourceManager.GetString("PdfViewer_ZoomOutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinzufügen.
+        /// </summary>
+        internal static string PivotView_Add {
+            get {
+                return ResourceManager.GetString("PivotView_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bedingung hinzufügen.
+        /// </summary>
+        internal static string PivotView_AddCondition {
+            get {
+                return ResourceManager.GetString("PivotView_AddCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feld hier hinzufügen.
+        /// </summary>
+        internal static string PivotView_AddFieldMessage {
+            get {
+                return ResourceManager.GetString("PivotView_AddFieldMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zur Spalte hinzufügen.
+        /// </summary>
+        internal static string PivotView_AddToColumn {
+            get {
+                return ResourceManager.GetString("PivotView_AddToColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum Filter hinzufügen.
+        /// </summary>
+        internal static string PivotView_AddToFilter {
+            get {
+                return ResourceManager.GetString("PivotView_AddToFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zur Zeile hinzufügen.
+        /// </summary>
+        internal static string PivotView_AddToRow {
+            get {
+                return ResourceManager.GetString("PivotView_AddToRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zum Wert hinzufügen.
+        /// </summary>
+        internal static string PivotView_AddToValue {
+            get {
+                return ResourceManager.GetString("PivotView_AddToValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nach.
+        /// </summary>
+        internal static string PivotView_After {
+            get {
+                return ResourceManager.GetString("PivotView_After", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nach oder gleich.
+        /// </summary>
+        internal static string PivotView_AfterOrEqualTo {
+            get {
+                return ResourceManager.GetString("PivotView_AfterOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aggregat.
+        /// </summary>
+        internal static string PivotView_Aggregate {
+            get {
+                return ResourceManager.GetString("PivotView_Aggregate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warnen.
+        /// </summary>
+        internal static string PivotView_Alert {
+            get {
+                return ResourceManager.GetString("PivotView_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle.
+        /// </summary>
+        internal static string PivotView_All {
+            get {
+                return ResourceManager.GetString("PivotView_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Felder.
+        /// </summary>
+        internal static string PivotView_AllFields {
+            get {
+                return ResourceManager.GetString("PivotView_AllFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Werte.
+        /// </summary>
+        internal static string PivotView_AllValues {
+            get {
+                return ResourceManager.GetString("PivotView_AllValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to und.
+        /// </summary>
+        internal static string PivotView_And {
+            get {
+                return ResourceManager.GetString("PivotView_And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anwenden.
+        /// </summary>
+        internal static string PivotView_Apply {
+            get {
+                return ResourceManager.GetString("PivotView_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bereich.
+        /// </summary>
+        internal static string PivotView_Area {
+            get {
+                return ResourceManager.GetString("PivotView_Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufsteigend.
+        /// </summary>
+        internal static string PivotView_Ascending {
+            get {
+                return ResourceManager.GetString("PivotView_Ascending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchschnitt.
+        /// </summary>
+        internal static string PivotView_Avg {
+            get {
+                return ResourceManager.GetString("PivotView_Avg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bar.
+        /// </summary>
+        internal static string PivotView_Bar {
+            get {
+                return ResourceManager.GetString("PivotView_Bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basisfeld.
+        /// </summary>
+        internal static string PivotView_BaseField {
+            get {
+                return ResourceManager.GetString("PivotView_BaseField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basisgegenstand.
+        /// </summary>
+        internal static string PivotView_BaseItem {
+            get {
+                return ResourceManager.GetString("PivotView_BaseItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vor.
+        /// </summary>
+        internal static string PivotView_Before {
+            get {
+                return ResourceManager.GetString("PivotView_Before", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorher oder gleich.
+        /// </summary>
+        internal static string PivotView_BeforeOrEqualTo {
+            get {
+                return ResourceManager.GetString("PivotView_BeforeOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginnt mit.
+        /// </summary>
+        internal static string PivotView_BeginWith {
+            get {
+                return ResourceManager.GetString("PivotView_BeginWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischen.
+        /// </summary>
+        internal static string PivotView_Between {
+            get {
+                return ResourceManager.GetString("PivotView_Between", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Leer).
+        /// </summary>
+        internal static string PivotView_Blank {
+            get {
+                return ResourceManager.GetString("PivotView_Blank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Burbuja.
+        /// </summary>
+        internal static string PivotView_Bubble {
+            get {
+                return ResourceManager.GetString("PivotView_Bubble", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to durch.
+        /// </summary>
+        internal static string PivotView_By {
+            get {
+                return ResourceManager.GetString("PivotView_By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berechnetes Feld.
+        /// </summary>
+        internal static string PivotView_CalculatedField {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten Sie die bearbeiteten Feldinformationen.
+        /// </summary>
+        internal static string PivotView_CalculatedField_ClearTooltipMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_ClearTooltipMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In diesem Namen ist bereits ein Berechnungsfeld vorhanden. Möchten Sie es ersetzen?.
+        /// </summary>
+        internal static string PivotView_CalculatedField_ConfirmMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_ConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen Sie Felder in die Formel und legen Sie sie dort ab.
+        /// </summary>
+        internal static string PivotView_CalculatedField_DragDropMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_DragDropMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen Sie das Feld in die Formel.
+        /// </summary>
+        internal static string PivotView_CalculatedField_DragMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_DragMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das berechnete Feld kann nur in der Werteachse in einem anderen Bereich platziert werden..
+        /// </summary>
+        internal static string PivotView_CalculatedField_DropMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_DropMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berechnetes Feld bearbeiten.
+        /// </summary>
+        internal static string PivotView_CalculatedField_EditTooltipMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_EditTooltipMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beispiel: (&apos;Sum(Order_Count)&apos; + &apos;Sum(In_Stock)&apos;) * 250.
+        /// </summary>
+        internal static string PivotView_CalculatedField_ExampleWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_ExampleWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In diesem Namen ist bereits ein Feld vorhanden. Bitte geben Sie einen anderen Namen ein..
+        /// </summary>
+        internal static string PivotView_CalculatedField_ExistMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_ExistMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fügen Sie hier Felder hinzu und bearbeiten Sie die Formel..
+        /// </summary>
+        internal static string PivotView_CalculatedField_MobileWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_MobileWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie den Feldnamen ein.
+        /// </summary>
+        internal static string PivotView_CalculatedField_NameWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_NameWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beispiel: [Measures].[Order Quantity] + ([Measures].[Order Quantity] * 0.10).
+        /// </summary>
+        internal static string PivotView_CalculatedField_OLAPExampleWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_OLAPExampleWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Está seguro de que desea eliminar este campo calculado?.
+        /// </summary>
+        internal static string PivotView_CalculatedField_RemoveMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_RemoveMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen Sie Felder per Drag-and-Drop, um einen Ausdruck zu erstellen. Und wenn Sie die vorhandenen berechneten Felder bearbeiten möchten! Sie können dies erreichen, indem Sie einfach das Feld unter „Berechnete Mitglieder“ auswählen..
+        /// </summary>
+        internal static string PivotView_CalculatedField_Tooltip {
+            get {
+                return ResourceManager.GetString("PivotView_CalculatedField_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string PivotView_Cancel {
+            get {
+                return ResourceManager.GetString("PivotView_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagramm.
+        /// </summary>
+        internal static string PivotView_Chart {
+            get {
+                return ResourceManager.GetString("PivotView_Chart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de carta.
+        /// </summary>
+        internal static string PivotView_ChartType {
+            get {
+                return ResourceManager.GetString("PivotView_ChartType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuración de tipo de gráfico.
+        /// </summary>
+        internal static string PivotView_ChartTypeSettings {
+            get {
+                return ResourceManager.GetString("PivotView_ChartTypeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feld auswählen.
+        /// </summary>
+        internal static string PivotView_ChooseFieldMessage {
+            get {
+                return ResourceManager.GetString("PivotView_ChooseFieldMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string PivotView_Clear {
+            get {
+                return ResourceManager.GetString("PivotView_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter löschen.
+        /// </summary>
+        internal static string PivotView_ClearFilter {
+            get {
+                return ResourceManager.GetString("PivotView_ClearFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schließen.
+        /// </summary>
+        internal static string PivotView_Close {
+            get {
+                return ResourceManager.GetString("PivotView_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zusammenbruch.
+        /// </summary>
+        internal static string PivotView_Collapse {
+            get {
+                return ResourceManager.GetString("PivotView_Collapse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Säule.
+        /// </summary>
+        internal static string PivotView_Column {
+            get {
+                return ResourceManager.GetString("PivotView_Column", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte hier ablegen.
+        /// </summary>
+        internal static string PivotView_ColumnAxisWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_ColumnAxisWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalten.
+        /// </summary>
+        internal static string PivotView_Columns {
+            get {
+                return ResourceManager.GetString("PivotView_Columns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bedingte Formatierung.
+        /// </summary>
+        internal static string PivotView_ConditionalFormating {
+            get {
+                return ResourceManager.GetString("PivotView_ConditionalFormating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to formato condicional ....
+        /// </summary>
+        internal static string PivotView_ConditionalFormatingMenu {
+            get {
+                return ResourceManager.GetString("PivotView_ConditionalFormatingMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bedingte formatierung.
+        /// </summary>
+        internal static string PivotView_ConditionalFormatting {
+            get {
+                return ResourceManager.GetString("PivotView_ConditionalFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enthält.
+        /// </summary>
+        internal static string PivotView_Contains {
+            get {
+                return ResourceManager.GetString("PivotView_Contains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string PivotView_Copy {
+            get {
+                return ResourceManager.GetString("PivotView_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl.
+        /// </summary>
+        internal static string PivotView_Count {
+            get {
+                return ResourceManager.GetString("PivotView_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berechnetes Feld erstellen.
+        /// </summary>
+        internal static string PivotView_CreateCalculatedField {
+            get {
+                return ResourceManager.GetString("PivotView_CreateCalculatedField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CSV.
+        /// </summary>
+        internal static string PivotView_CSV {
+            get {
+                return ResourceManager.GetString("PivotView_CSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Währung.
+        /// </summary>
+        internal static string PivotView_Currency {
+            get {
+                return ResourceManager.GetString("PivotView_Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Währungszeichen.
+        /// </summary>
+        internal static string PivotView_CurrencySymbol {
+            get {
+                return ResourceManager.GetString("PivotView_CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefiniert.
+        /// </summary>
+        internal static string PivotView_Custom {
+            get {
+                return ResourceManager.GetString("PivotView_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzerdefiniertes Format.
+        /// </summary>
+        internal static string PivotView_CustomFormat {
+            get {
+                return ResourceManager.GetString("PivotView_CustomFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie eine benutzerdefinierte Formatzeichenfolge ein.
+        /// </summary>
+        internal static string PivotView_CustomFormatMessage {
+            get {
+                return ResourceManager.GetString("PivotView_CustomFormatMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string PivotView_Date {
+            get {
+                return ResourceManager.GetString("PivotView_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeigen Sie die Elemente an, für die das Datum gilt.
+        /// </summary>
+        internal static string PivotView_DateTextMessage {
+            get {
+                return ResourceManager.GetString("PivotView_DateTextMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tage.
+        /// </summary>
+        internal static string PivotView_Days {
+            get {
+                return ResourceManager.GetString("PivotView_Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nachkommastellen.
+        /// </summary>
+        internal static string PivotView_DecimalPlaces {
+            get {
+                return ResourceManager.GetString("PivotView_DecimalPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layoutaktualisierung verschieben.
+        /// </summary>
+        internal static string PivotView_DeferLayoutUpdate {
+            get {
+                return ResourceManager.GetString("PivotView_DeferLayoutUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string PivotView_Delete {
+            get {
+                return ResourceManager.GetString("PivotView_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen Sie einen aktuellen Bericht.
+        /// </summary>
+        internal static string PivotView_DeleteReport {
+            get {
+                return ResourceManager.GetString("PivotView_DeleteReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absteigend.
+        /// </summary>
+        internal static string PivotView_Descending {
+            get {
+                return ResourceManager.GetString("PivotView_Descending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzelheiten.
+        /// </summary>
+        internal static string PivotView_Details {
+            get {
+                return ResourceManager.GetString("PivotView_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterschied von.
+        /// </summary>
+        internal static string PivotView_DifferenceFrom {
+            get {
+                return ResourceManager.GetString("PivotView_DifferenceFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abmessungen.
+        /// </summary>
+        internal static string PivotView_Dimension {
+            get {
+                return ResourceManager.GetString("PivotView_Dimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deutliche Anzahl.
+        /// </summary>
+        internal static string PivotView_DistinctCount {
+            get {
+                return ResourceManager.GetString("PivotView_DistinctCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginnt nicht mit.
+        /// </summary>
+        internal static string PivotView_DoesNotBeginWith {
+            get {
+                return ResourceManager.GetString("PivotView_DoesNotBeginWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beinhaltet nicht.
+        /// </summary>
+        internal static string PivotView_DoesNotContains {
+            get {
+                return ResourceManager.GetString("PivotView_DoesNotContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endet nicht mit.
+        /// </summary>
+        internal static string PivotView_DoesNotEndsWith {
+            get {
+                return ResourceManager.GetString("PivotView_DoesNotEndsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ist nicht gleich.
+        /// </summary>
+        internal static string PivotView_DoesNotEquals {
+            get {
+                return ResourceManager.GetString("PivotView_DoesNotEquals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Gesamtsummen anzeigen.
+        /// </summary>
+        internal static string PivotView_DoNotShowGrandTotals {
+            get {
+                return ResourceManager.GetString("PivotView_DoNotShowGrandTotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischensummen nicht anzeigen.
+        /// </summary>
+        internal static string PivotView_DoNotShowSubtotals {
+            get {
+                return ResourceManager.GetString("PivotView_DoNotShowSubtotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Krapfen.
+        /// </summary>
+        internal static string PivotView_Doughnut {
+            get {
+                return ResourceManager.GetString("PivotView_Doughnut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen.
+        /// </summary>
+        internal static string PivotView_Drag {
+            get {
+                return ResourceManager.GetString("PivotView_Drag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ziehen Sie Felder zwischen den folgenden Achsen:.
+        /// </summary>
+        internal static string PivotView_DragFieldsMessage {
+            get {
+                return ResourceManager.GetString("PivotView_DragFieldsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchbohren.
+        /// </summary>
+        internal static string PivotView_DrillThrough {
+            get {
+                return ResourceManager.GetString("PivotView_DrillThrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Rohelemente berechneter Felder können nicht angezeigt werden..
+        /// </summary>
+        internal static string PivotView_DrillThroughErrorMessage {
+            get {
+                return ResourceManager.GetString("PivotView_DrillThroughErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string PivotView_Edit {
+            get {
+                return ResourceManager.GetString("PivotView_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Datensätze zum Anzeigen.
+        /// </summary>
+        internal static string PivotView_EmptyRecordsMessage {
+            get {
+                return ResourceManager.GetString("PivotView_EmptyRecordsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Berichte gefunden !!.
+        /// </summary>
+        internal static string PivotView_EmptyReportMessage {
+            get {
+                return ResourceManager.GetString("PivotView_EmptyReportMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endet bei.
+        /// </summary>
+        internal static string PivotView_EndAt {
+            get {
+                return ResourceManager.GetString("PivotView_EndAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endet mit.
+        /// </summary>
+        internal static string PivotView_EndsWith {
+            get {
+                return ResourceManager.GetString("PivotView_EndsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum eingeben.
+        /// </summary>
+        internal static string PivotView_EnterDate {
+            get {
+                return ResourceManager.GetString("PivotView_EnterDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie einen Berichtsnamen ein.
+        /// </summary>
+        internal static string PivotView_EnterReportNameMessage {
+            get {
+                return ResourceManager.GetString("PivotView_EnterReportNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wert eingeben.
+        /// </summary>
+        internal static string PivotView_EnterValue {
+            get {
+                return ResourceManager.GetString("PivotView_EnterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gleich.
+        /// </summary>
+        internal static string PivotView_Equals {
+            get {
+                return ResourceManager.GetString("PivotView_Equals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string PivotView_Error {
+            get {
+                return ResourceManager.GetString("PivotView_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to z.B:.
+        /// </summary>
+        internal static string PivotView_Example {
+            get {
+                return ResourceManager.GetString("PivotView_Example", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel.
+        /// </summary>
+        internal static string PivotView_Excel {
+            get {
+                return ResourceManager.GetString("PivotView_Excel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erweitern.
+        /// </summary>
+        internal static string PivotView_Expand {
+            get {
+                return ResourceManager.GetString("PivotView_Expand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        internal static string PivotView_Export {
+            get {
+                return ResourceManager.GetString("PivotView_Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausdruck.
+        /// </summary>
+        internal static string PivotView_Expression {
+            get {
+                return ResourceManager.GetString("PivotView_Expression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsch.
+        /// </summary>
+        internal static string PivotView_False {
+            get {
+                return ResourceManager.GetString("PivotView_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldbeschriftung.
+        /// </summary>
+        internal static string PivotView_FieldCaption {
+            get {
+                return ResourceManager.GetString("PivotView_FieldCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldbeschriftung.
+        /// </summary>
+        internal static string PivotView_FieldCaptionMessage {
+            get {
+                return ResourceManager.GetString("PivotView_FieldCaptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie die Feldbeschriftung ein.
+        /// </summary>
+        internal static string PivotView_FieldCaptionWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_FieldCaptionWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Feld, das Sie verschieben, kann nicht in diesem Bereich des Berichts platziert werden.
+        /// </summary>
+        internal static string PivotView_FieldDropErrorMessage {
+            get {
+                return ResourceManager.GetString("PivotView_FieldDropErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldliste.
+        /// </summary>
+        internal static string PivotView_FieldList {
+            get {
+                return ResourceManager.GetString("PivotView_FieldList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldname.
+        /// </summary>
+        internal static string PivotView_FieldName {
+            get {
+                return ResourceManager.GetString("PivotView_FieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldname :.
+        /// </summary>
+        internal static string PivotView_FieldNameMessage {
+            get {
+                return ResourceManager.GetString("PivotView_FieldNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldtyp.
+        /// </summary>
+        internal static string PivotView_FieldType {
+            get {
+                return ResourceManager.GetString("PivotView_FieldType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string PivotView_Filter {
+            get {
+                return ResourceManager.GetString("PivotView_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter hier ablegen.
+        /// </summary>
+        internal static string PivotView_FilterAxisWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_FilterAxisWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gefiltert.
+        /// </summary>
+        internal static string PivotView_Filtered {
+            get {
+                return ResourceManager.GetString("PivotView_Filtered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string PivotView_Filters {
+            get {
+                return ResourceManager.GetString("PivotView_Filters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format.
+        /// </summary>
+        internal static string PivotView_Format {
+            get {
+                return ResourceManager.GetString("PivotView_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeichenfolge formatieren.
+        /// </summary>
+        internal static string PivotView_FormatString {
+            get {
+                return ResourceManager.GetString("PivotView_FormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formattyp.
+        /// </summary>
+        internal static string PivotView_FormatType {
+            get {
+                return ResourceManager.GetString("PivotView_FormatType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formel.
+        /// </summary>
+        internal static string PivotView_Formula {
+            get {
+                return ResourceManager.GetString("PivotView_Formula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trichter.
+        /// </summary>
+        internal static string PivotView_Funnel {
+            get {
+                return ResourceManager.GetString("PivotView_Funnel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gesamtsumme.
+        /// </summary>
+        internal static string PivotView_GrandTotal {
+            get {
+                return ResourceManager.GetString("PivotView_GrandTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gesamtsummen.
+        /// </summary>
+        internal static string PivotView_GrandTotals {
+            get {
+                return ResourceManager.GetString("PivotView_GrandTotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größer als.
+        /// </summary>
+        internal static string PivotView_GreaterThan {
+            get {
+                return ResourceManager.GetString("PivotView_GreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größer als oder gleich wie.
+        /// </summary>
+        internal static string PivotView_GreaterThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("PivotView_GreaterThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppe.
+        /// </summary>
+        internal static string PivotView_Group {
+            get {
+                return ResourceManager.GetString("PivotView_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie die Beschriftung ein, die in der Kopfzeile angezeigt werden soll.
+        /// </summary>
+        internal static string PivotView_GroupCaptionMessage {
+            get {
+                return ResourceManager.GetString("PivotView_GroupCaptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppiert.
+        /// </summary>
+        internal static string PivotView_Grouped {
+            get {
+                return ResourceManager.GetString("PivotView_Grouped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie die Beschriftung für das Gruppenfeld ein.
+        /// </summary>
+        internal static string PivotView_GroupFieldCaptionMessage {
+            get {
+                return ResourceManager.GetString("PivotView_GroupFieldCaptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppierung.
+        /// </summary>
+        internal static string PivotView_Grouping {
+            get {
+                return ResourceManager.GetString("PivotView_Grouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppenname.
+        /// </summary>
+        internal static string PivotView_GroupName {
+            get {
+                return ResourceManager.GetString("PivotView_GroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Std.
+        /// </summary>
+        internal static string PivotView_Hours {
+            get {
+                return ResourceManager.GetString("PivotView_Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string PivotView_Index {
+            get {
+                return ResourceManager.GetString("PivotView_Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intervall von.
+        /// </summary>
+        internal static string PivotView_IntervalBy {
+            get {
+                return ResourceManager.GetString("PivotView_IntervalBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungültiges Format..
+        /// </summary>
+        internal static string PivotView_InvalidFormat {
+            get {
+                return ResourceManager.GetString("PivotView_InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungültige Formel..
+        /// </summary>
+        internal static string PivotView_InvalidFormula {
+            get {
+                return ResourceManager.GetString("PivotView_InvalidFormula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diese Auswahl kann nicht gruppiert werden..
+        /// </summary>
+        internal static string PivotView_InvalidGroupSelectionMessage {
+            get {
+                return ResourceManager.GetString("PivotView_InvalidGroupSelectionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JPEG.
+        /// </summary>
+        internal static string PivotView_JPEG {
+            get {
+                return ResourceManager.GetString("PivotView_JPEG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Etikette.
+        /// </summary>
+        internal static string PivotView_Label {
+            get {
+                return ResourceManager.GetString("PivotView_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeigen Sie die Elemente an, für die das Etikett.
+        /// </summary>
+        internal static string PivotView_LabelTextMessage {
+            get {
+                return ResourceManager.GetString("PivotView_LabelTextMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        internal static string PivotView_Left {
+            get {
+                return ResourceManager.GetString("PivotView_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weniger als.
+        /// </summary>
+        internal static string PivotView_LessThan {
+            get {
+                return ResourceManager.GetString("PivotView_LessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gleich oder kleiner als.
+        /// </summary>
+        internal static string PivotView_LessThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("PivotView_LessThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linie.
+        /// </summary>
+        internal static string PivotView_Line {
+            get {
+                return ResourceManager.GetString("PivotView_Line", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Belastung.
+        /// </summary>
+        internal static string PivotView_LoadReport {
+            get {
+                return ResourceManager.GetString("PivotView_LoadReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datensätze verwalten.
+        /// </summary>
+        internal static string PivotView_ManageRecords {
+            get {
+                return ResourceManager.GetString("PivotView_ManageRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        internal static string PivotView_Max {
+            get {
+                return ResourceManager.GetString("PivotView_Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MDX-Abfrage.
+        /// </summary>
+        internal static string PivotView_MdxQuery {
+            get {
+                return ResourceManager.GetString("PivotView_MdxQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messen.
+        /// </summary>
+        internal static string PivotView_Measure {
+            get {
+                return ResourceManager.GetString("PivotView_Measure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Median.
+        /// </summary>
+        internal static string PivotView_Median {
+            get {
+                return ResourceManager.GetString("PivotView_Median", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mitglied.
+        /// </summary>
+        internal static string PivotView_Member {
+            get {
+                return ResourceManager.GetString("PivotView_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weitere Einträge gefunden. Suche, um weiter zu verfeinern..
+        /// </summary>
+        internal static string PivotView_MemberLimitMessage {
+            get {
+                return ResourceManager.GetString("PivotView_MemberLimitMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min.
+        /// </summary>
+        internal static string PivotView_Min {
+            get {
+                return ResourceManager.GetString("PivotView_Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protokoll.
+        /// </summary>
+        internal static string PivotView_Minutes {
+            get {
+                return ResourceManager.GetString("PivotView_Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monate.
+        /// </summary>
+        internal static string PivotView_Months {
+            get {
+                return ResourceManager.GetString("PivotView_Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehr....
+        /// </summary>
+        internal static string PivotView_MoreOption {
+            get {
+                return ResourceManager.GetString("PivotView_MoreOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehrere Achsen.
+        /// </summary>
+        internal static string PivotView_MultipleAxes {
+            get {
+                return ResourceManager.GetString("PivotView_MultipleAxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehrachsenmodus.
+        /// </summary>
+        internal static string PivotView_MultipleAxisMode {
+            get {
+                return ResourceManager.GetString("PivotView_MultipleAxisMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehrere Elemente.
+        /// </summary>
+        internal static string PivotView_MultipleItems {
+            get {
+                return ResourceManager.GetString("PivotView_MultipleItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen Sie einen neuen Bericht.
+        /// </summary>
+        internal static string PivotView_NewReport {
+            get {
+                return ResourceManager.GetString("PivotView_NewReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie Änderungen an diesem Bericht speichern?.
+        /// </summary>
+        internal static string PivotView_NewReportConfirmMessage {
+            get {
+                return ResourceManager.GetString("PivotView_NewReportConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string PivotView_No {
+            get {
+                return ResourceManager.GetString("PivotView_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kein Format gefunden !!!.
+        /// </summary>
+        internal static string PivotView_NoFormatMessage {
+            get {
+                return ResourceManager.GetString("PivotView_NoFormatMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie einen Wert ein.
+        /// </summary>
+        internal static string PivotView_NoInputMessage {
+            get {
+                return ResourceManager.GetString("PivotView_NoInputMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Treffer.
+        /// </summary>
+        internal static string PivotView_NoMatchesMessage {
+            get {
+                return ResourceManager.GetString("PivotView_NoMatchesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht zwischen.
+        /// </summary>
+        internal static string PivotView_NotBetween {
+            get {
+                return ResourceManager.GetString("PivotView_NotBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht gleich.
+        /// </summary>
+        internal static string PivotView_NotEquals {
+            get {
+                return ResourceManager.GetString("PivotView_NotEquals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kein Wert.
+        /// </summary>
+        internal static string PivotView_NoValue {
+            get {
+                return ResourceManager.GetString("PivotView_NoValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Null.
+        /// </summary>
+        internal static string PivotView_Null {
+            get {
+                return ResourceManager.GetString("PivotView_Null", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummer.
+        /// </summary>
+        internal static string PivotView_Number {
+            get {
+                return ResourceManager.GetString("PivotView_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beispiel: C, P, 0000%, ### 0. ## 0 # usw..
+        /// </summary>
+        internal static string PivotView_NumberFormat_ExampleWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_NumberFormat_ExampleWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formato de número ....
+        /// </summary>
+        internal static string PivotView_NumberFormatMenu {
+            get {
+                return ResourceManager.GetString("PivotView_NumberFormatMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zahlenformatierung.
+        /// </summary>
+        internal static string PivotView_NumberFormatting {
+            get {
+                return ResourceManager.GetString("PivotView_NumberFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to von.
+        /// </summary>
+        internal static string PivotView_Of {
+            get {
+                return ResourceManager.GetString("PivotView_Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string PivotView_OK {
+            get {
+                return ResourceManager.GetString("PivotView_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Außer Reichweite.
+        /// </summary>
+        internal static string PivotView_OutOfRange {
+            get {
+                return ResourceManager.GetString("PivotView_OutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Übergeordnete Hierarchie.
+        /// </summary>
+        internal static string PivotView_ParentHierarchy {
+            get {
+                return ResourceManager.GetString("PivotView_ParentHierarchy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pareto.
+        /// </summary>
+        internal static string PivotView_Pareto {
+            get {
+                return ResourceManager.GetString("PivotView_Pareto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF.
+        /// </summary>
+        internal static string PivotView_PDF {
+            get {
+                return ResourceManager.GetString("PivotView_PDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prozent.
+        /// </summary>
+        internal static string PivotView_Percent {
+            get {
+                return ResourceManager.GetString("PivotView_Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prozentsatz.
+        /// </summary>
+        internal static string PivotView_Percentage {
+            get {
+                return ResourceManager.GetString("PivotView_Percentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % der Spalte insgesamt.
+        /// </summary>
+        internal static string PivotView_PercentageOfColumnTotal {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfColumnTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % des Unterschieds von.
+        /// </summary>
+        internal static string PivotView_PercentageOfDifferenceFrom {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfDifferenceFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % der Gesamtsumme.
+        /// </summary>
+        internal static string PivotView_PercentageOfGrandTotal {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfGrandTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % der übergeordneten Spalte insgesamt.
+        /// </summary>
+        internal static string PivotView_PercentageOfParentColumnTotal {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfParentColumnTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % der Gesamtzahl der übergeordneten Zeilen.
+        /// </summary>
+        internal static string PivotView_PercentageOfParentRowTotal {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfParentRowTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % der Elternsumme.
+        /// </summary>
+        internal static string PivotView_PercentageOfParentTotal {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfParentTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % der Zeilensumme.
+        /// </summary>
+        internal static string PivotView_PercentageOfRowTotal {
+            get {
+                return ResourceManager.GetString("PivotView_PercentageOfRowTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kuchen.
+        /// </summary>
+        internal static string PivotView_Pie {
+            get {
+                return ResourceManager.GetString("PivotView_Pie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PNG.
+        /// </summary>
+        internal static string PivotView_PNG {
+            get {
+                return ResourceManager.GetString("PivotView_PNG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polar.
+        /// </summary>
+        internal static string PivotView_Polar {
+            get {
+                return ResourceManager.GetString("PivotView_Polar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bevölkerungsstandardabweichung.
+        /// </summary>
+        internal static string PivotView_PopulationStDev {
+            get {
+                return ResourceManager.GetString("PivotView_PopulationStDev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Populationsvarianz.
+        /// </summary>
+        internal static string PivotView_PopulationVar {
+            get {
+                return ResourceManager.GetString("PivotView_PopulationVar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        internal static string PivotView_Product {
+            get {
+                return ResourceManager.GetString("PivotView_Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pyramide.
+        /// </summary>
+        internal static string PivotView_Pyramid {
+            get {
+                return ResourceManager.GetString("PivotView_Pyramid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qtr.
+        /// </summary>
+        internal static string PivotView_Quarter {
+            get {
+                return ResourceManager.GetString("PivotView_Quarter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Viertel.
+        /// </summary>
+        internal static string PivotView_Quarters {
+            get {
+                return ResourceManager.GetString("PivotView_Quarters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vierteljahr.
+        /// </summary>
+        internal static string PivotView_QuarterYear {
+            get {
+                return ResourceManager.GetString("PivotView_QuarterYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radar.
+        /// </summary>
+        internal static string PivotView_Radar {
+            get {
+                return ResourceManager.GetString("PivotView_Radar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        internal static string PivotView_Remove {
+            get {
+                return ResourceManager.GetString("PivotView_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie diesen Bericht wirklich löschen?.
+        /// </summary>
+        internal static string PivotView_RemoveReportConfirmMessage {
+            get {
+                return ResourceManager.GetString("PivotView_RemoveReportConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benennen Sie einen aktuellen Bericht um.
+        /// </summary>
+        internal static string PivotView_RenameReport {
+            get {
+                return ResourceManager.GetString("PivotView_RenameReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ist bereits vorhanden. Möchten Sie es ersetzen?.
+        /// </summary>
+        internal static string PivotView_ReplaceReport_AfterMessage {
+            get {
+                return ResourceManager.GetString("PivotView_ReplaceReport_AfterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ein Bericht mit dem Namen .
+        /// </summary>
+        internal static string PivotView_ReplaceReport_BeforeMessage {
+            get {
+                return ResourceManager.GetString("PivotView_ReplaceReport_BeforeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berichtsliste.
+        /// </summary>
+        internal static string PivotView_ReportList {
+            get {
+                return ResourceManager.GetString("PivotView_ReportList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berichtsname:.
+        /// </summary>
+        internal static string PivotView_ReportNameMessage {
+            get {
+                return ResourceManager.GetString("PivotView_ReportNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recht.
+        /// </summary>
+        internal static string PivotView_Right {
+            get {
+                return ResourceManager.GetString("PivotView_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reihe.
+        /// </summary>
+        internal static string PivotView_Row {
+            get {
+                return ResourceManager.GetString("PivotView_Row", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hier eine Zeile ablegen.
+        /// </summary>
+        internal static string PivotView_RowAxisWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_RowAxisWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reihen.
+        /// </summary>
+        internal static string PivotView_Rows {
+            get {
+                return ResourceManager.GetString("PivotView_Rows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laufende Summen.
+        /// </summary>
+        internal static string PivotView_RunningTotals {
+            get {
+                return ResourceManager.GetString("PivotView_RunningTotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Musterbericht.
+        /// </summary>
+        internal static string PivotView_SampleReport {
+            get {
+                return ResourceManager.GetString("PivotView_SampleReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standardabweichung der Probe.
+        /// </summary>
+        internal static string PivotView_SampleStDev {
+            get {
+                return ResourceManager.GetString("PivotView_SampleStDev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stichprobenvarianz.
+        /// </summary>
+        internal static string PivotView_SampleVar {
+            get {
+                return ResourceManager.GetString("PivotView_SampleVar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Als aktuellen Bericht speichern.
+        /// </summary>
+        internal static string PivotView_SaveAsReport {
+            get {
+                return ResourceManager.GetString("PivotView_SaveAsReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern Sie einen Bericht.
+        /// </summary>
+        internal static string PivotView_SaveReport {
+            get {
+                return ResourceManager.GetString("PivotView_SaveReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Streuen.
+        /// </summary>
+        internal static string PivotView_Scatter {
+            get {
+                return ResourceManager.GetString("PivotView_Scatter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suche.
+        /// </summary>
+        internal static string PivotView_Search {
+            get {
+                return ResourceManager.GetString("PivotView_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sekunden.
+        /// </summary>
+        internal static string PivotView_Seconds {
+            get {
+                return ResourceManager.GetString("PivotView_Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausgewählte Einträge.
+        /// </summary>
+        internal static string PivotView_SelectedItems {
+            get {
+                return ResourceManager.GetString("PivotView_SelectedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie Gruppen aus.
+        /// </summary>
+        internal static string PivotView_SelectGroups {
+            get {
+                return ResourceManager.GetString("PivotView_SelectGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur Gesamtsummenspalten anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowColumnGrandTotalsOnly {
+            get {
+                return ResourceManager.GetString("PivotView_ShowColumnGrandTotalsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur Zwischensummenspalten anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowColumnSubtotalsOnly {
+            get {
+                return ResourceManager.GetString("PivotView_ShowColumnSubtotalsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feldliste anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowFieldList {
+            get {
+                return ResourceManager.GetString("PivotView_ShowFieldList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gesamtsummen anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowGrandTotals {
+            get {
+                return ResourceManager.GetString("PivotView_ShowGrandTotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legende anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowLegend {
+            get {
+                return ResourceManager.GetString("PivotView_ShowLegend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur Gesamtsummenzeilen anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowRowGrandTotalsOnly {
+            get {
+                return ResourceManager.GetString("PivotView_ShowRowGrandTotalsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur Zwischensummenzeilen anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowRowSubtotalsOnly {
+            get {
+                return ResourceManager.GetString("PivotView_ShowRowSubtotalsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischensummen anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowSubtotals {
+            get {
+                return ResourceManager.GetString("PivotView_ShowSubtotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle anzeigen.
+        /// </summary>
+        internal static string PivotView_ShowTable {
+            get {
+                return ResourceManager.GetString("PivotView_ShowTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sortieren.
+        /// </summary>
+        internal static string PivotView_Sort {
+            get {
+                return ResourceManager.GetString("PivotView_Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufsteigende Reihenfolge sortieren.
+        /// </summary>
+        internal static string PivotView_SortAscending_TooltipMessage {
+            get {
+                return ResourceManager.GetString("PivotView_SortAscending_TooltipMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absteigende Reihenfolge sortieren.
+        /// </summary>
+        internal static string PivotView_SortDescending_TooltipMessage {
+            get {
+                return ResourceManager.GetString("PivotView_SortDescending_TooltipMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datenreihenfolge sortieren.
+        /// </summary>
+        internal static string PivotView_SortNone_TooltipMessage {
+            get {
+                return ResourceManager.GetString("PivotView_SortNone_TooltipMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ranura.
+        /// </summary>
+        internal static string PivotView_Spline {
+            get {
+                return ResourceManager.GetString("PivotView_Spline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Área de spline.
+        /// </summary>
+        internal static string PivotView_SplineArea {
+            get {
+                return ResourceManager.GetString("PivotView_SplineArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestapelt.
+        /// </summary>
+        internal static string PivotView_Stacked {
+            get {
+                return ResourceManager.GetString("PivotView_Stacked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Área apilada.
+        /// </summary>
+        internal static string PivotView_StackedArea {
+            get {
+                return ResourceManager.GetString("PivotView_StackedArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Área 100% apilada.
+        /// </summary>
+        internal static string PivotView_StackedArea100 {
+            get {
+                return ResourceManager.GetString("PivotView_StackedArea100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Barra apilada.
+        /// </summary>
+        internal static string PivotView_StackedBar {
+            get {
+                return ResourceManager.GetString("PivotView_StackedBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Barra 100% apilada.
+        /// </summary>
+        internal static string PivotView_StackedBar100 {
+            get {
+                return ResourceManager.GetString("PivotView_StackedBar100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Columna apilada.
+        /// </summary>
+        internal static string PivotView_StackedColumn {
+            get {
+                return ResourceManager.GetString("PivotView_StackedColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Columna 100% apilada.
+        /// </summary>
+        internal static string PivotView_StackedColumn100 {
+            get {
+                return ResourceManager.GetString("PivotView_StackedColumn100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        internal static string PivotView_Standard {
+            get {
+                return ResourceManager.GetString("PivotView_Standard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginnt um.
+        /// </summary>
+        internal static string PivotView_StartAt {
+            get {
+                return ResourceManager.GetString("PivotView_StartAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pivot-Feldliste.
+        /// </summary>
+        internal static string PivotView_StaticFieldList {
+            get {
+                return ResourceManager.GetString("PivotView_StaticFieldList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Área de paso.
+        /// </summary>
+        internal static string PivotView_StepArea {
+            get {
+                return ResourceManager.GetString("PivotView_StepArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Línea de paso.
+        /// </summary>
+        internal static string PivotView_StepLine {
+            get {
+                return ResourceManager.GetString("PivotView_StepLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischensummen.
+        /// </summary>
+        internal static string PivotView_Subtotals {
+            get {
+                return ResourceManager.GetString("PivotView_Subtotals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summe.
+        /// </summary>
+        internal static string PivotView_Sum {
+            get {
+                return ResourceManager.GetString("PivotView_Sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werte zusammenfassen mit.
+        /// </summary>
+        internal static string PivotView_Summaries {
+            get {
+                return ResourceManager.GetString("PivotView_Summaries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werte zusammenfassen mit.
+        /// </summary>
+        internal static string PivotView_SummarizeValuesBy {
+            get {
+                return ResourceManager.GetString("PivotView_SummarizeValuesBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SVG.
+        /// </summary>
+        internal static string PivotView_SVG {
+            get {
+                return ResourceManager.GetString("PivotView_SVG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbolposition.
+        /// </summary>
+        internal static string PivotView_SymbolPosition {
+            get {
+                return ResourceManager.GetString("PivotView_SymbolPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gesamt.
+        /// </summary>
+        internal static string PivotView_Total {
+            get {
+                return ResourceManager.GetString("PivotView_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wahr.
+        /// </summary>
+        internal static string PivotView_True {
+            get {
+                return ResourceManager.GetString("PivotView_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nicht definiert.
+        /// </summary>
+        internal static string PivotView_Undefined {
+            get {
+                return ResourceManager.GetString("PivotView_Undefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppierung aufheben.
+        /// </summary>
+        internal static string PivotView_Ungroup {
+            get {
+                return ResourceManager.GetString("PivotView_Ungroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte geben Sie einen gültigen Datensatznamen ein !!!.
+        /// </summary>
+        internal static string PivotView_ValidReportNameMessage {
+            get {
+                return ResourceManager.GetString("PivotView_ValidReportNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wert.
+        /// </summary>
+        internal static string PivotView_Value {
+            get {
+                return ResourceManager.GetString("PivotView_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wert hier ablegen.
+        /// </summary>
+        internal static string PivotView_ValueAxisWatermark {
+            get {
+                return ResourceManager.GetString("PivotView_ValueAxisWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wertefeldeinstellungen.
+        /// </summary>
+        internal static string PivotView_ValueFieldSettings {
+            get {
+                return ResourceManager.GetString("PivotView_ValueFieldSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werte.
+        /// </summary>
+        internal static string PivotView_Values {
+            get {
+                return ResourceManager.GetString("PivotView_Values", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeigen Sie die Elemente an, für die.
+        /// </summary>
+        internal static string PivotView_ValueTextMessage {
+            get {
+                return ResourceManager.GetString("PivotView_ValueTextMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warnung.
+        /// </summary>
+        internal static string PivotView_Warning {
+            get {
+                return ResourceManager.GetString("PivotView_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jahre.
+        /// </summary>
+        internal static string PivotView_Years {
+            get {
+                return ResourceManager.GetString("PivotView_Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to si.
+        /// </summary>
+        internal static string PivotView_Yes {
+            get {
+                return ResourceManager.GetString("PivotView_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bedingung hinzufügen.
+        /// </summary>
+        internal static string QueryBuilder_AddCondition {
+            get {
+                return ResourceManager.GetString("QueryBuilder_AddCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppe hinzufügen.
+        /// </summary>
+        internal static string QueryBuilder_AddGroup {
+            get {
+                return ResourceManager.GetString("QueryBuilder_AddGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UND.
+        /// </summary>
+        internal static string QueryBuilder_AND {
+            get {
+                return ResourceManager.GetString("QueryBuilder_AND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischen.
+        /// </summary>
+        internal static string QueryBuilder_Between {
+            get {
+                return ResourceManager.GetString("QueryBuilder_Between", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enthält.
+        /// </summary>
+        internal static string QueryBuilder_Contains {
+            get {
+                return ResourceManager.GetString("QueryBuilder_Contains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gruppe löschen.
+        /// </summary>
+        internal static string QueryBuilder_DeleteGroup {
+            get {
+                return ResourceManager.GetString("QueryBuilder_DeleteGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen Sie diesen Zustand.
+        /// </summary>
+        internal static string QueryBuilder_DeleteRule {
+            get {
+                return ResourceManager.GetString("QueryBuilder_DeleteRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string QueryBuilder_Edit {
+            get {
+                return ResourceManager.GetString("QueryBuilder_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leeren.
+        /// </summary>
+        internal static string QueryBuilder_Empty {
+            get {
+                return ResourceManager.GetString("QueryBuilder_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endet mit.
+        /// </summary>
+        internal static string QueryBuilder_EndsWith {
+            get {
+                return ResourceManager.GetString("QueryBuilder_EndsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gleich.
+        /// </summary>
+        internal static string QueryBuilder_Equal {
+            get {
+                return ResourceManager.GetString("QueryBuilder_Equal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größer als.
+        /// </summary>
+        internal static string QueryBuilder_GreaterThan {
+            get {
+                return ResourceManager.GetString("QueryBuilder_GreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größer als oder gleich.
+        /// </summary>
+        internal static string QueryBuilder_GreaterThanOrEqual {
+            get {
+                return ResourceManager.GetString("QueryBuilder_GreaterThanOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Im.
+        /// </summary>
+        internal static string QueryBuilder_In {
+            get {
+                return ResourceManager.GetString("QueryBuilder_In", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weniger als.
+        /// </summary>
+        internal static string QueryBuilder_LessThan {
+            get {
+                return ResourceManager.GetString("QueryBuilder_LessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weniger als oder gleich.
+        /// </summary>
+        internal static string QueryBuilder_LessThanOrEqual {
+            get {
+                return ResourceManager.GetString("QueryBuilder_LessThanOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht zwischen.
+        /// </summary>
+        internal static string QueryBuilder_NotBetween {
+            get {
+                return ResourceManager.GetString("QueryBuilder_NotBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enthält nicht.
+        /// </summary>
+        internal static string QueryBuilder_NotContains {
+            get {
+                return ResourceManager.GetString("QueryBuilder_NotContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht leer.
+        /// </summary>
+        internal static string QueryBuilder_NotEmpty {
+            get {
+                return ResourceManager.GetString("QueryBuilder_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht gleich.
+        /// </summary>
+        internal static string QueryBuilder_NotEqual {
+            get {
+                return ResourceManager.GetString("QueryBuilder_NotEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht in.
+        /// </summary>
+        internal static string QueryBuilder_NotIn {
+            get {
+                return ResourceManager.GetString("QueryBuilder_NotIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ODER.
+        /// </summary>
+        internal static string QueryBuilder_OR {
+            get {
+                return ResourceManager.GetString("QueryBuilder_OR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Andere Felder.
+        /// </summary>
+        internal static string QueryBuilder_OtherFields {
+            get {
+                return ResourceManager.GetString("QueryBuilder_OtherFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTFERNEN.
+        /// </summary>
+        internal static string QueryBuilder_Remove {
+            get {
+                return ResourceManager.GetString("QueryBuilder_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie ein Feld aus.
+        /// </summary>
+        internal static string QueryBuilder_SelectField {
+            get {
+                return ResourceManager.GetString("QueryBuilder_SelectField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Betreiber auswählen.
+        /// </summary>
+        internal static string QueryBuilder_SelectOperator {
+            get {
+                return ResourceManager.GetString("QueryBuilder_SelectOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wert eingeben.
+        /// </summary>
+        internal static string QueryBuilder_SelectValue {
+            get {
+                return ResourceManager.GetString("QueryBuilder_SelectValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginnt mit.
+        /// </summary>
+        internal static string QueryBuilder_StartsWith {
+            get {
+                return ResourceManager.GetString("QueryBuilder_StartsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zusammenfassungsansicht.
+        /// </summary>
+        internal static string QueryBuilder_SummaryViewTitle {
+            get {
+                return ResourceManager.GetString("QueryBuilder_SummaryViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieses Feld wird benötigt.
+        /// </summary>
+        internal static string QueryBuilder_ValidationMessage {
+            get {
+                return ResourceManager.GetString("QueryBuilder_ValidationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl.
+        /// </summary>
+        internal static string RecurrenceEditor_Count {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Täglich.
+        /// </summary>
+        internal static string RecurrenceEditor_Daily {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tage).
+        /// </summary>
+        internal static string RecurrenceEditor_Days {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ende.
+        /// </summary>
+        internal static string RecurrenceEditor_End {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jeden.
+        /// </summary>
+        internal static string RecurrenceEditor_Every {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Every", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zuerst.
+        /// </summary>
+        internal static string RecurrenceEditor_First {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_First", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vierte.
+        /// </summary>
+        internal static string RecurrenceEditor_Fourth {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Fourth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zuletzt.
+        /// </summary>
+        internal static string RecurrenceEditor_Last {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat.
+        /// </summary>
+        internal static string RecurrenceEditor_Month {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monats-Expander.
+        /// </summary>
+        internal static string RecurrenceEditor_MonthExpander {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_MonthExpander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monatlich.
+        /// </summary>
+        internal static string RecurrenceEditor_Monthly {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Monthly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monatliche Position.
+        /// </summary>
+        internal static string RecurrenceEditor_MonthPosition {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_MonthPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat (e).
+        /// </summary>
+        internal static string RecurrenceEditor_Months {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat Woche.
+        /// </summary>
+        internal static string RecurrenceEditor_MonthWeek {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_MonthWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to noch nie.
+        /// </summary>
+        internal static string RecurrenceEditor_Never {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Never", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keiner.
+        /// </summary>
+        internal static string RecurrenceEditor_None {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen Sie Ein.
+        /// </summary>
+        internal static string RecurrenceEditor_On {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_On", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string RecurrenceEditor_OnDay {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_OnDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen.
+        /// </summary>
+        internal static string RecurrenceEditor_Repeat {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Repeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederhole jeden.
+        /// </summary>
+        internal static string RecurrenceEditor_RepeatEvery {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_RepeatEvery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholungsintervall.
+        /// </summary>
+        internal static string RecurrenceEditor_RepeatInterval {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_RepeatInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zweite.
+        /// </summary>
+        internal static string RecurrenceEditor_Second {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tage).
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryDay {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat (e).
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryMonth {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to auf.
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryOn {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholt.
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryRepeat {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryRepeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zusammenfassung.
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryTimes {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bis um.
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryUntil {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryUntil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wochen).
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryWeek {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jahre).
+        /// </summary>
+        internal static string RecurrenceEditor_SummaryYear {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_SummaryYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dritte.
+        /// </summary>
+        internal static string RecurrenceEditor_Third {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Third", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bis um.
+        /// </summary>
+        internal static string RecurrenceEditor_Until {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Until", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wöchentlich.
+        /// </summary>
+        internal static string RecurrenceEditor_Weekly {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Weekly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wochen).
+        /// </summary>
+        internal static string RecurrenceEditor_Weeks {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Weeks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year Expander.
+        /// </summary>
+        internal static string RecurrenceEditor_YearExpander {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_YearExpander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jährlich.
+        /// </summary>
+        internal static string RecurrenceEditor_Yearly {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Yearly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jahre).
+        /// </summary>
+        internal static string RecurrenceEditor_Years {
+            get {
+                return ResourceManager.GetString("RecurrenceEditor_Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_Align {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Align", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ausrichtungen.
+        /// </summary>
+        internal static string RichTextEditor_Alignments {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Alignments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Im Zentrum anordnen.
+        /// </summary>
+        internal static string RichTextEditor_AlignmentsDropDownCenter {
+            get {
+                return ResourceManager.GetString("RichTextEditor_AlignmentsDropDownCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Justify ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_AlignmentsDropDownJustify {
+            get {
+                return ResourceManager.GetString("RichTextEditor_AlignmentsDropDownJustify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linksbündig.
+        /// </summary>
+        internal static string RichTextEditor_AlignmentsDropDownLeft {
+            get {
+                return ResourceManager.GetString("RichTextEditor_AlignmentsDropDownLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Im Zentrum anordnen.
+        /// </summary>
+        internal static string RichTextEditor_AlignmentsDropDownRight {
+            get {
+                return ResourceManager.GetString("RichTextEditor_AlignmentsDropDownRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to alternativer Text.
+        /// </summary>
+        internal static string RichTextEditor_AlternateHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_AlternateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to alternativer Text.
+        /// </summary>
+        internal static string RichTextEditor_AltText {
+            get {
+                return ResourceManager.GetString("RichTextEditor_AltText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hintergrundfarbe.
+        /// </summary>
+        internal static string RichTextEditor_BackgroundColor {
+            get {
+                return ResourceManager.GetString("RichTextEditor_BackgroundColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fett gedruckt.
+        /// </summary>
+        internal static string RichTextEditor_Bold {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchsuche.
+        /// </summary>
+        internal static string RichTextEditor_Browse {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Kreis .
+        /// </summary>
+        internal static string RichTextEditor_BulletFormatListCircle {
+            get {
+                return ResourceManager.GetString("RichTextEditor_BulletFormatListCircle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Rabatt .
+        /// </summary>
+        internal static string RichTextEditor_BulletFormatListDisc {
+            get {
+                return ResourceManager.GetString("RichTextEditor_BulletFormatListDisc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Keiner .
+        /// </summary>
+        internal static string RichTextEditor_BulletFormatListNone {
+            get {
+                return ResourceManager.GetString("RichTextEditor_BulletFormatListNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Quadrat .
+        /// </summary>
+        internal static string RichTextEditor_BulletFormatListSquare {
+            get {
+                return ResourceManager.GetString("RichTextEditor_BulletFormatListSquare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bildbeschreibung.
+        /// </summary>
+        internal static string RichTextEditor_Caption {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zellauffüllung.
+        /// </summary>
+        internal static string RichTextEditor_Cellpadding {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Cellpadding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zellenabstand.
+        /// </summary>
+        internal static string RichTextEditor_Cellspacing {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Cellspacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sauber.
+        /// </summary>
+        internal static string RichTextEditor_CleanFormat {
+            get {
+                return ResourceManager.GetString("RichTextEditor_CleanFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alles löschen.
+        /// </summary>
+        internal static string RichTextEditor_ClearAll {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ClearAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format löschen.
+        /// </summary>
+        internal static string RichTextEditor_ClearFormat {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ClearFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl der Spalten.
+        /// </summary>
+        internal static string RichTextEditor_Columns {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Columns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieren.
+        /// </summary>
+        internal static string RichTextEditor_Copy {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlink einfügen.
+        /// </summary>
+        internal static string RichTextEditor_CreateLink {
+            get {
+                return ResourceManager.GetString("RichTextEditor_CreateLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle erstellen.
+        /// </summary>
+        internal static string RichTextEditor_CreateTable {
+            get {
+                return ResourceManager.GetString("RichTextEditor_CreateTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schnitt.
+        /// </summary>
+        internal static string RichTextEditor_Cut {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte löschen.
+        /// </summary>
+        internal static string RichTextEditor_DeleteColumn {
+            get {
+                return ResourceManager.GetString("RichTextEditor_DeleteColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile löschen.
+        /// </summary>
+        internal static string RichTextEditor_DeleteRow {
+            get {
+                return ResourceManager.GetString("RichTextEditor_DeleteRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string RichTextEditor_DialogCancel {
+            get {
+                return ResourceManager.GetString("RichTextEditor_DialogCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string RichTextEditor_DialogInsert {
+            get {
+                return ResourceManager.GetString("RichTextEditor_DialogInsert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualisieren.
+        /// </summary>
+        internal static string RichTextEditor_DialogUpdate {
+            get {
+                return ResourceManager.GetString("RichTextEditor_DialogUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Größe ändern.
+        /// </summary>
+        internal static string RichTextEditor_Dimension {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Dimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzeige.
+        /// </summary>
+        internal static string RichTextEditor_Display {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bild bearbeiten.
+        /// </summary>
+        internal static string RichTextEditor_EditImageHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_EditImageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link bearbeiten.
+        /// </summary>
+        internal static string RichTextEditor_EditLink {
+            get {
+                return ResourceManager.GetString("RichTextEditor_EditLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftfarbe.
+        /// </summary>
+        internal static string RichTextEditor_FontColor {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftartenname.
+        /// </summary>
+        internal static string RichTextEditor_FontName {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Arial .
+        /// </summary>
+        internal static string RichTextEditor_FontNameArial {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameArial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Georgia .
+        /// </summary>
+        internal static string RichTextEditor_FontNameGeorgia {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameGeorgia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Einschlag .
+        /// </summary>
+        internal static string RichTextEditor_FontNameImpact {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameImpact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Segoe UI .
+        /// </summary>
+        internal static string RichTextEditor_FontNameSegoeUI {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameSegoeUI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Tahoma .
+        /// </summary>
+        internal static string RichTextEditor_FontNameTahoma {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameTahoma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Mal neu römisch .
+        /// </summary>
+        internal static string RichTextEditor_FontNameTimesNewRoman {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameTimesNewRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Verdana .
+        /// </summary>
+        internal static string RichTextEditor_FontNameVerdana {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontNameVerdana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schriftgröße.
+        /// </summary>
+        internal static string RichTextEditor_FontSize {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formate.
+        /// </summary>
+        internal static string RichTextEditor_Formats {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Formats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  kodex .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownCode {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Überschrift 1 .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownHeading1 {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Überschrift 2 .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownHeading2 {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Überschrift 3 .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownHeading3 {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Überschrift 4 .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownHeading4 {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Überschrift 5 .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownHeading5 {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Überschrift  6 .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownHeading6 {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownHeading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Absatz .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownParagraph {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Zitat .
+        /// </summary>
+        internal static string RichTextEditor_FormatsDropDownQuotation {
+            get {
+                return ResourceManager.GetString("RichTextEditor_FormatsDropDownQuotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximieren.
+        /// </summary>
+        internal static string RichTextEditor_Fullscreen {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Fullscreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bild einfügen.
+        /// </summary>
+        internal static string RichTextEditor_Image {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternativer Text.
+        /// </summary>
+        internal static string RichTextEditor_ImageAlternateText {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageAlternateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bildbeschriftung.
+        /// </summary>
+        internal static string RichTextEditor_ImageCaption {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klicken Sie hier zum Hochladen.
+        /// </summary>
+        internal static string RichTextEditor_ImageDeviceUploadMessage {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageDeviceUploadMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brechen.
+        /// </summary>
+        internal static string RichTextEditor_ImageDisplayDropDownBreak {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageDisplayDropDownBreak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In der Reihe.
+        /// </summary>
+        internal static string RichTextEditor_ImageDisplayDropDownInline {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageDisplayDropDownInline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bild einfügen.
+        /// </summary>
+        internal static string RichTextEditor_ImageHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Höhe.
+        /// </summary>
+        internal static string RichTextEditor_ImageHeight {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link einfügen.
+        /// </summary>
+        internal static string RichTextEditor_ImageInsertLinkHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageInsertLinkHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie können auch einen Link aus dem Internet bereitstellen.
+        /// </summary>
+        internal static string RichTextEditor_ImageLinkHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageLinkHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bildgröße.
+        /// </summary>
+        internal static string RichTextEditor_ImageSizeHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageSizeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legen Sie das Bild hier ab oder durchsuchen Sie es, um es hochzuladen.
+        /// </summary>
+        internal static string RichTextEditor_ImageUploadMessage {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageUploadMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://example.com/image.png.
+        /// </summary>
+        internal static string RichTextEditor_ImageUrl {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breite.
+        /// </summary>
+        internal static string RichTextEditor_ImageWidth {
+            get {
+                return ResourceManager.GetString("RichTextEditor_ImageWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzug vergrößern.
+        /// </summary>
+        internal static string RichTextEditor_Indent {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Indent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code eingeben.
+        /// </summary>
+        internal static string RichTextEditor_InsertCode {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte links einfügen.
+        /// </summary>
+        internal static string RichTextEditor_InsertColumnLeft {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertColumnLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte rechts einfügen.
+        /// </summary>
+        internal static string RichTextEditor_InsertColumnRight {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertColumnRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        internal static string RichTextEditor_InsertLink {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile danach einfügen.
+        /// </summary>
+        internal static string RichTextEditor_InsertRowAfter {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertRowAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile davor einfügen.
+        /// </summary>
+        internal static string RichTextEditor_InsertRowBefore {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertRowBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle einfügen.
+        /// </summary>
+        internal static string RichTextEditor_InsertTableBtn {
+            get {
+                return ResourceManager.GetString("RichTextEditor_InsertTableBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kursiv.
+        /// </summary>
+        internal static string RichTextEditor_Italic {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Im Zentrum anordnen.
+        /// </summary>
+        internal static string RichTextEditor_JustifyCenter {
+            get {
+                return ResourceManager.GetString("RichTextEditor_JustifyCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Justify ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_JustifyFull {
+            get {
+                return ResourceManager.GetString("RichTextEditor_JustifyFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linksbündig.
+        /// </summary>
+        internal static string RichTextEditor_JustifyLeft {
+            get {
+                return ResourceManager.GetString("RichTextEditor_JustifyLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechts ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_JustifyRight {
+            get {
+                return ResourceManager.GetString("RichTextEditor_JustifyRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behalten.
+        /// </summary>
+        internal static string RichTextEditor_KeepFormat {
+            get {
+                return ResourceManager.GetString("RichTextEditor_KeepFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link einfügen.
+        /// </summary>
+        internal static string RichTextEditor_LinkHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link in neuem Fenster öffnen.
+        /// </summary>
+        internal static string RichTextEditor_LinkOpenInNewWindow {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkOpenInNewWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text anzeigen.
+        /// </summary>
+        internal static string RichTextEditor_LinkText {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geben Sie einen Titel ein.
+        /// </summary>
+        internal static string RichTextEditor_LinkTitle {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titel.
+        /// </summary>
+        internal static string RichTextEditor_LinkTooltipLabel {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkTooltipLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://example.com.
+        /// </summary>
+        internal static string RichTextEditor_LinkUrl {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Webadresse.
+        /// </summary>
+        internal static string RichTextEditor_LinkWebUrl {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LinkWebUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kleinbuchstaben.
+        /// </summary>
+        internal static string RichTextEditor_LowerCase {
+            get {
+                return ResourceManager.GetString("RichTextEditor_LowerCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximieren.
+        /// </summary>
+        internal static string RichTextEditor_Maximize {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Maximize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte geben Sie eine URL für Ihr Bild an.
+        /// </summary>
+        internal static string RichTextEditor_MdImageLink {
+            get {
+                return ResourceManager.GetString("RichTextEditor_MdImageLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimieren.
+        /// </summary>
+        internal static string RichTextEditor_Minimize {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Minimize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Unteres Alpha .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListLowerAlpha {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListLowerAlpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Untergriechisch .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListLowerGreek {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListLowerGreek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Unterrömisch .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListLowerRoman {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListLowerRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Keiner .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListNone {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Nummer .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListNumber {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Oberes Alpha .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListUpperAlpha {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListUpperAlpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Oberrömisch .
+        /// </summary>
+        internal static string RichTextEditor_NumberFormatListUpperRoman {
+            get {
+                return ResourceManager.GetString("RichTextEditor_NumberFormatListUpperRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verbindung öffnen.
+        /// </summary>
+        internal static string RichTextEditor_OpenLink {
+            get {
+                return ResourceManager.GetString("RichTextEditor_OpenLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nummerierte Liste.
+        /// </summary>
+        internal static string RichTextEditor_OrderedList {
+            get {
+                return ResourceManager.GetString("RichTextEditor_OrderedList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einzug verringern.
+        /// </summary>
+        internal static string RichTextEditor_Outdent {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Outdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfügen.
+        /// </summary>
+        internal static string RichTextEditor_Paste {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string RichTextEditor_PasteDialogCancel {
+            get {
+                return ResourceManager.GetString("RichTextEditor_PasteDialogCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string RichTextEditor_PasteDialogOk {
+            get {
+                return ResourceManager.GetString("RichTextEditor_PasteDialogOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format einfügen.
+        /// </summary>
+        internal static string RichTextEditor_PasteFormat {
+            get {
+                return ResourceManager.GetString("RichTextEditor_PasteFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie die Formatierungsaktion.
+        /// </summary>
+        internal static string RichTextEditor_PasteFormatContent {
+            get {
+                return ResourceManager.GetString("RichTextEditor_PasteFormatContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einfacher Text.
+        /// </summary>
+        internal static string RichTextEditor_PlainText {
+            get {
+                return ResourceManager.GetString("RichTextEditor_PlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorschau.
+        /// </summary>
+        internal static string RichTextEditor_Preview {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drucken.
+        /// </summary>
+        internal static string RichTextEditor_Print {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen.
+        /// </summary>
+        internal static string RichTextEditor_Redo {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        internal static string RichTextEditor_Remove {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link entfernen.
+        /// </summary>
+        internal static string RichTextEditor_RemoveLink {
+            get {
+                return ResourceManager.GetString("RichTextEditor_RemoveLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle entfernen.
+        /// </summary>
+        internal static string RichTextEditor_RemoveTable {
+            get {
+                return ResourceManager.GetString("RichTextEditor_RemoveTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ersetzen.
+        /// </summary>
+        internal static string RichTextEditor_Replace {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Replace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reihenanzahl.
+        /// </summary>
+        internal static string RichTextEditor_Rows {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Rows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code-Ansicht.
+        /// </summary>
+        internal static string RichTextEditor_Sourcecode {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Sourcecode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchgestrichen.
+        /// </summary>
+        internal static string RichTextEditor_Strikethrough {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Strikethrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stile.
+        /// </summary>
+        internal static string RichTextEditor_Styles {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Styles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string RichTextEditor_Subscript {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Subscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochgestellt.
+        /// </summary>
+        internal static string RichTextEditor_Superscript {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Superscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabellenzellenhintergrund.
+        /// </summary>
+        internal static string RichTextEditor_TableCellBackground {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableCellBackground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontale Ausrichtung der Tabellenzelle.
+        /// </summary>
+        internal static string RichTextEditor_TableCellHorizontalAlign {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableCellHorizontalAlign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertikale Ausrichtung der Tabellenzelle.
+        /// </summary>
+        internal static string RichTextEditor_TableCellVerticalAlign {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableCellVerticalAlign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Col.
+        /// </summary>
+        internal static string RichTextEditor_TableColText {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableColText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabellenspalten.
+        /// </summary>
+        internal static string RichTextEditor_TableColumns {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle einfügen.
+        /// </summary>
+        internal static string RichTextEditor_TableDialogHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableDialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle bearbeiten.
+        /// </summary>
+        internal static string RichTextEditor_TableEditHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableEditHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle Eigenschaften bearbeiten.
+        /// </summary>
+        internal static string RichTextEditor_TableEditProperties {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableEditProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabellenüberschrift.
+        /// </summary>
+        internal static string RichTextEditor_TableHeader {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Überschrift.
+        /// </summary>
+        internal static string RichTextEditor_TableHeadingText {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableHeadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte löschen.
+        /// </summary>
+        internal static string RichTextEditor_TableInsertColumnDropDownDelete {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableInsertColumnDropDownDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte links einfügen.
+        /// </summary>
+        internal static string RichTextEditor_TableInsertColumnDropDownLeft {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableInsertColumnDropDownLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spalte rechts einfügen.
+        /// </summary>
+        internal static string RichTextEditor_TableInsertColumnDropDownRight {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableInsertColumnDropDownRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile danach einfügen.
+        /// </summary>
+        internal static string RichTextEditor_TableInsertRowDropDownAfter {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableInsertRowDropDownAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile davor einfügen.
+        /// </summary>
+        internal static string RichTextEditor_TableInsertRowDropDownBefore {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableInsertRowDropDownBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeile löschen.
+        /// </summary>
+        internal static string RichTextEditor_TableInsertRowDropDownDelete {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableInsertRowDropDownDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabelle entfernen.
+        /// </summary>
+        internal static string RichTextEditor_TableRemove {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabellenzeilen.
+        /// </summary>
+        internal static string RichTextEditor_TableRows {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Zeilen.
+        /// </summary>
+        internal static string RichTextEditor_TableStylesDropDownAlternateRows {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableStylesDropDownAlternateRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestrichelte Grenzen.
+        /// </summary>
+        internal static string RichTextEditor_TableStylesDropDownDashedBorder {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableStylesDropDownDashedBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unten ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_TableVerticalAlignDropDownBottom {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableVerticalAlignDropDownBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mitte ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_TableVerticalAlignDropDownMiddle {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableVerticalAlignDropDownMiddle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oben ausrichten.
+        /// </summary>
+        internal static string RichTextEditor_TableVerticalAlignDropDownTop {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableVerticalAlignDropDownTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breite.
+        /// </summary>
+        internal static string RichTextEditor_TableWidth {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TableWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text eingeben.
+        /// </summary>
+        internal static string RichTextEditor_TextPlaceholder {
+            get {
+                return ResourceManager.GetString("RichTextEditor_TextPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unterstreichen.
+        /// </summary>
+        internal static string RichTextEditor_Underline {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Underline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rückgängig machen.
+        /// </summary>
+        internal static string RichTextEditor_Undo {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aufzählung.
+        /// </summary>
+        internal static string RichTextEditor_UnorderedList {
+            get {
+                return ResourceManager.GetString("RichTextEditor_UnorderedList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Großbuchstaben.
+        /// </summary>
+        internal static string RichTextEditor_UpperCase {
+            get {
+                return ResourceManager.GetString("RichTextEditor_UpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ViewSide.
+        /// </summary>
+        internal static string RichTextEditor_Viewside {
+            get {
+                return ResourceManager.GetString("RichTextEditor_Viewside", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titel hinzufügen.
+        /// </summary>
+        internal static string Schedule_AddTitle {
+            get {
+                return ResourceManager.GetString("Schedule_AddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agenda.
+        /// </summary>
+        internal static string Schedule_Agenda {
+            get {
+                return ResourceManager.GetString("Schedule_Agenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warnen.
+        /// </summary>
+        internal static string Schedule_Alert {
+            get {
+                return ResourceManager.GetString("Schedule_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Den ganzen Tag.
+        /// </summary>
+        internal static string Schedule_AllDay {
+            get {
+                return ResourceManager.GetString("Schedule_AllDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginnen Sie von.
+        /// </summary>
+        internal static string Schedule_BeginFrom {
+            get {
+                return ResourceManager.GetString("Schedule_BeginFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ereignisse können nicht innerhalb des gesperrten Zeitbereichs geplant werden..
+        /// </summary>
+        internal static string Schedule_BlockAlert {
+            get {
+                return ResourceManager.GetString("Schedule_BlockAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Schedule_Cancel {
+            get {
+                return ResourceManager.GetString("Schedule_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Schedule_CancelButton {
+            get {
+                return ResourceManager.GetString("Schedule_CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schließen.
+        /// </summary>
+        internal static string Schedule_Close {
+            get {
+                return ResourceManager.GetString("Schedule_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Dauer des Ereignisses muss kürzer als die Häufigkeit sein, mit der es auftritt. Verkürzen Sie die Dauer oder ändern Sie das Wiederholungsmuster im Wiederholungsereignis-Editor..
+        /// </summary>
+        internal static string Schedule_CreateError {
+            get {
+                return ResourceManager.GetString("Schedule_CreateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erstellen.
+        /// </summary>
+        internal static string Schedule_CreateEvent {
+            get {
+                return ResourceManager.GetString("Schedule_CreateEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string Schedule_Day {
+            get {
+                return ResourceManager.GetString("Schedule_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string Schedule_Delete {
+            get {
+                return ResourceManager.GetString("Schedule_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Löschen.
+        /// </summary>
+        internal static string Schedule_DeleteButton {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie diesen Termin wirklich löschen?.
+        /// </summary>
+        internal static string Schedule_DeleteContent {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diese Veranstaltung.
+        /// </summary>
+        internal static string Schedule_DeleteEvent {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie die ausgewählten Ereignisse wirklich löschen?.
+        /// </summary>
+        internal static string Schedule_DeleteMultipleContent {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteMultipleContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehrere Ereignisse löschen.
+        /// </summary>
+        internal static string Schedule_DeleteMultipleEvent {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteMultipleEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ganze Serie.
+        /// </summary>
+        internal static string Schedule_DeleteSeries {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ereignis löschen.
+        /// </summary>
+        internal static string Schedule_DeleteTitle {
+            get {
+                return ResourceManager.GetString("Schedule_DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beschreibung.
+        /// </summary>
+        internal static string Schedule_Description {
+            get {
+                return ResourceManager.GetString("Schedule_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearbeiten.
+        /// </summary>
+        internal static string Schedule_Edit {
+            get {
+                return ResourceManager.GetString("Schedule_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wie möchten Sie den Termin in der Serie ändern?.
+        /// </summary>
+        internal static string Schedule_EditContent {
+            get {
+                return ResourceManager.GetString("Schedule_EditContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diese Veranstaltung.
+        /// </summary>
+        internal static string Schedule_EditEvent {
+            get {
+                return ResourceManager.GetString("Schedule_EditEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folge Veranstaltungen.
+        /// </summary>
+        internal static string Schedule_EditFollowingEvent {
+            get {
+                return ResourceManager.GetString("Schedule_EditFollowingEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholung bearbeiten.
+        /// </summary>
+        internal static string Schedule_EditRecurrence {
+            get {
+                return ResourceManager.GetString("Schedule_EditRecurrence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ganze Serie.
+        /// </summary>
+        internal static string Schedule_EditSeries {
+            get {
+                return ResourceManager.GetString("Schedule_EditSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ereignis bearbeiten.
+        /// </summary>
+        internal static string Schedule_EditTitle {
+            get {
+                return ResourceManager.GetString("Schedule_EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An diesem Tag sind keine Veranstaltungen geplant..
+        /// </summary>
+        internal static string Schedule_EmptyContainer {
+            get {
+                return ResourceManager.GetString("Schedule_EmptyContainer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ende.
+        /// </summary>
+        internal static string Schedule_End {
+            get {
+                return ResourceManager.GetString("Schedule_End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ende um.
+        /// </summary>
+        internal static string Schedule_EndAt {
+            get {
+                return ResourceManager.GetString("Schedule_EndAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endzeit.
+        /// </summary>
+        internal static string Schedule_EndTime {
+            get {
+                return ResourceManager.GetString("Schedule_EndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeitzone beenden.
+        /// </summary>
+        internal static string Schedule_EndTimezone {
+            get {
+                return ResourceManager.GetString("Schedule_EndTimezone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der eingegebene Datumswert ist ungültig..
+        /// </summary>
+        internal static string Schedule_InvalidDateError {
+            get {
+                return ResourceManager.GetString("Schedule_InvalidDateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ort.
+        /// </summary>
+        internal static string Schedule_Location {
+            get {
+                return ResourceManager.GetString("Schedule_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suchen Sie nach mehr.
+        /// </summary>
+        internal static string Schedule_LookForMore {
+            get {
+                return ResourceManager.GetString("Schedule_LookForMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat.
+        /// </summary>
+        internal static string Schedule_Month {
+            get {
+                return ResourceManager.GetString("Schedule_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monatsagenda.
+        /// </summary>
+        internal static string Schedule_MonthAgenda {
+            get {
+                return ResourceManager.GetString("Schedule_MonthAgenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehr.
+        /// </summary>
+        internal static string Schedule_More {
+            get {
+                return ResourceManager.GetString("Schedule_More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mehr Details.
+        /// </summary>
+        internal static string Schedule_MoreDetails {
+            get {
+                return ResourceManager.GetString("Schedule_MoreDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neues Event.
+        /// </summary>
+        internal static string Schedule_NewEvent {
+            get {
+                return ResourceManager.GetString("Schedule_NewEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nächster.
+        /// </summary>
+        internal static string Schedule_next {
+            get {
+                return ResourceManager.GetString("Schedule_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        internal static string Schedule_No {
+            get {
+                return ResourceManager.GetString("Schedule_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Ereignisse.
+        /// </summary>
+        internal static string Schedule_NoEvents {
+            get {
+                return ResourceManager.GetString("Schedule_NoEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Aufzeichnungen.
+        /// </summary>
+        internal static string Schedule_NoRecords {
+            get {
+                return ResourceManager.GetString("Schedule_NoRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Kein Titel).
+        /// </summary>
+        internal static string Schedule_NoTitle {
+            get {
+                return ResourceManager.GetString("Schedule_NoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auftreten.
+        /// </summary>
+        internal static string Schedule_Occurrence {
+            get {
+                return ResourceManager.GetString("Schedule_Occurrence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Schedule_Ok {
+            get {
+                return ResourceManager.GetString("Schedule_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bisherige.
+        /// </summary>
+        internal static string Schedule_Previous {
+            get {
+                return ResourceManager.GetString("Schedule_Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholung.
+        /// </summary>
+        internal static string Schedule_Recurrence {
+            get {
+                return ResourceManager.GetString("Schedule_Recurrence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen.
+        /// </summary>
+        internal static string Schedule_Repeat {
+            get {
+                return ResourceManager.GetString("Schedule_Repeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholt.
+        /// </summary>
+        internal static string Schedule_Repeats {
+            get {
+                return ResourceManager.GetString("Schedule_Repeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwei Ereignisse desselben Ereignisses können nicht am selben Tag auftreten..
+        /// </summary>
+        internal static string Schedule_SameDayAlert {
+            get {
+                return ResourceManager.GetString("Schedule_SameDayAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string Schedule_Save {
+            get {
+                return ResourceManager.GetString("Schedule_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speichern.
+        /// </summary>
+        internal static string Schedule_SaveButton {
+            get {
+                return ResourceManager.GetString("Schedule_SaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeitzone suchen.
+        /// </summary>
+        internal static string Schedule_SearchTimezone {
+            get {
+                return ResourceManager.GetString("Schedule_SearchTimezone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elemente ausgewählt.
+        /// </summary>
+        internal static string Schedule_SelectedItems {
+            get {
+                return ResourceManager.GetString("Schedule_SelectedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serie.
+        /// </summary>
+        internal static string Schedule_Series {
+            get {
+                return ResourceManager.GetString("Schedule_Series", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie die an bestimmten Instanzen dieser Serie vorgenommenen Änderungen verwerfen und erneut mit der gesamten Serie abgleichen?.
+        /// </summary>
+        internal static string Schedule_SeriesChangeAlert {
+            get {
+                return ResourceManager.GetString("Schedule_SeriesChangeAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ereignisse anzeigen bis.
+        /// </summary>
+        internal static string Schedule_ShowingEventsUntil {
+            get {
+                return ResourceManager.GetString("Schedule_ShowingEventsUntil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string Schedule_Start {
+            get {
+                return ResourceManager.GetString("Schedule_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das ausgewählte Enddatum liegt vor dem Startdatum..
+        /// </summary>
+        internal static string Schedule_StartEndError {
+            get {
+                return ResourceManager.GetString("Schedule_StartEndError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Startzeit.
+        /// </summary>
+        internal static string Schedule_StartTime {
+            get {
+                return ResourceManager.GetString("Schedule_StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starten Sie die Zeitzone.
+        /// </summary>
+        internal static string Schedule_StartTimezone {
+            get {
+                return ResourceManager.GetString("Schedule_StartTimezone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gegenstand.
+        /// </summary>
+        internal static string Schedule_Subject {
+            get {
+                return ResourceManager.GetString("Schedule_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string Schedule_TimelineDay {
+            get {
+                return ResourceManager.GetString("Schedule_TimelineDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat.
+        /// </summary>
+        internal static string Schedule_TimelineMonth {
+            get {
+                return ResourceManager.GetString("Schedule_TimelineMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Woche.
+        /// </summary>
+        internal static string Schedule_TimelineWeek {
+            get {
+                return ResourceManager.GetString("Schedule_TimelineWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arbeitswoche.
+        /// </summary>
+        internal static string Schedule_TimelineWorkWeek {
+            get {
+                return ResourceManager.GetString("Schedule_TimelineWorkWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeline-Jahr.
+        /// </summary>
+        internal static string Schedule_TimelineYear {
+            get {
+                return ResourceManager.GetString("Schedule_TimelineYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeitzone.
+        /// </summary>
+        internal static string Schedule_Timezone {
+            get {
+                return ResourceManager.GetString("Schedule_Timezone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titel.
+        /// </summary>
+        internal static string Schedule_Title {
+            get {
+                return ResourceManager.GetString("Schedule_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heute.
+        /// </summary>
+        internal static string Schedule_Today {
+            get {
+                return ResourceManager.GetString("Schedule_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Woche.
+        /// </summary>
+        internal static string Schedule_Week {
+            get {
+                return ResourceManager.GetString("Schedule_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wochenprogramm.
+        /// </summary>
+        internal static string Schedule_WeekAgenda {
+            get {
+                return ResourceManager.GetString("Schedule_WeekAgenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arbeitswoche.
+        /// </summary>
+        internal static string Schedule_WorkWeek {
+            get {
+                return ResourceManager.GetString("Schedule_WorkWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arbeitswochen-Agenda.
+        /// </summary>
+        internal static string Schedule_WorkWeekAgenda {
+            get {
+                return ResourceManager.GetString("Schedule_WorkWeekAgenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Wiederholungsmuster ist ungültig..
+        /// </summary>
+        internal static string Schedule_WrongPattern {
+            get {
+                return ResourceManager.GetString("Schedule_WrongPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jahr.
+        /// </summary>
+        internal static string Schedule_Year {
+            get {
+                return ResourceManager.GetString("Schedule_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        internal static string Schedule_Yes {
+            get {
+                return ResourceManager.GetString("Schedule_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to erhöhen.
+        /// </summary>
+        internal static string Slider_DecrementTitle {
+            get {
+                return ResourceManager.GetString("Slider_DecrementTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to verringern.
+        /// </summary>
+        internal static string Slider_IncrementTitle {
+            get {
+                return ResourceManager.GetString("Slider_IncrementTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schließen.
+        /// </summary>
+        internal static string Tab_CloseButtonTitle {
+            get {
+                return ResourceManager.GetString("Tab_CloseButtonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wähle eine Zeit.
+        /// </summary>
+        internal static string TimePicker_Placeholder {
+            get {
+                return ResourceManager.GetString("TimePicker_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schließen.
+        /// </summary>
+        internal static string Toast_Close {
+            get {
+                return ResourceManager.GetString("Toast_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Uploader_Abort {
+            get {
+                return ResourceManager.GetString("Uploader_Abort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchsuchen.
+        /// </summary>
+        internal static string Uploader_Browse {
+            get {
+                return ResourceManager.GetString("Uploader_Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Uploader_Cancel {
+            get {
+                return ResourceManager.GetString("Uploader_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zurücksetzen.
+        /// </summary>
+        internal static string Uploader_Clear {
+            get {
+                return ResourceManager.GetString("Uploader_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei löschen.
+        /// </summary>
+        internal static string Uploader_Delete {
+            get {
+                return ResourceManager.GetString("Uploader_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oder legen Sie Dateien hier ab.
+        /// </summary>
+        internal static string Uploader_DropFilesHint {
+            get {
+                return ResourceManager.GetString("Uploader_DropFilesHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei-Upload abgebrochen.
+        /// </summary>
+        internal static string Uploader_FileUploadCancel {
+            get {
+                return ResourceManager.GetString("Uploader_FileUploadCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochladen.
+        /// </summary>
+        internal static string Uploader_InProgress {
+            get {
+                return ResourceManager.GetString("Uploader_InProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dateityp ist nicht erlaubt.
+        /// </summary>
+        internal static string Uploader_InvalidFileType {
+            get {
+                return ResourceManager.GetString("Uploader_InvalidFileType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dateigröße ist zu groß.
+        /// </summary>
+        internal static string Uploader_InvalidMaxFileSize {
+            get {
+                return ResourceManager.GetString("Uploader_InvalidMaxFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dateigröße ist zu klein.
+        /// </summary>
+        internal static string Uploader_invalidMinFileSize {
+            get {
+                return ResourceManager.GetString("Uploader_invalidMinFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        internal static string Uploader_Pause {
+            get {
+                return ResourceManager.GetString("Uploader_Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei-Upload angehalten.
+        /// </summary>
+        internal static string Uploader_PauseUpload {
+            get {
+                return ResourceManager.GetString("Uploader_PauseUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bereit zum Hochladen.
+        /// </summary>
+        internal static string Uploader_ReadyToUploadMessage {
+            get {
+                return ResourceManager.GetString("Uploader_ReadyToUploadMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        internal static string Uploader_Remove {
+            get {
+                return ResourceManager.GetString("Uploader_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei kann nicht entfernt werden.
+        /// </summary>
+        internal static string Uploader_RemovedFailedMessage {
+            get {
+                return ResourceManager.GetString("Uploader_RemovedFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei erfolgreich entfernt.
+        /// </summary>
+        internal static string Uploader_RemovedSuccessMessage {
+            get {
+                return ResourceManager.GetString("Uploader_RemovedSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fortsetzen.
+        /// </summary>
+        internal static string Uploader_Resume {
+            get {
+                return ResourceManager.GetString("Uploader_Resume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiederholen.
+        /// </summary>
+        internal static string Uploader_Retry {
+            get {
+                return ResourceManager.GetString("Uploader_Retry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hochladen.
+        /// </summary>
+        internal static string Uploader_Upload {
+            get {
+                return ResourceManager.GetString("Uploader_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei konnte nicht hochgeladen werden.
+        /// </summary>
+        internal static string Uploader_UploadFailedMessage {
+            get {
+                return ResourceManager.GetString("Uploader_UploadFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datei erfolgreich hochgeladen.
+        /// </summary>
+        internal static string Uploader_UploadSuccessMessage {
+            get {
+                return ResourceManager.GetString("Uploader_UploadSuccessMessage", resourceCulture);
+            }
+        }
     }
 }

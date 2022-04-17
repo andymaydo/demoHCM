@@ -12,7 +12,7 @@
     </div>   
 </div>
  
-@if (!Collapsed)
+@if (!Collapsed && @ChildContent != null)
 {
     <div class="card-body bg-light">
         @ChildContent

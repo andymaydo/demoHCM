@@ -29,72 +29,68 @@
                     }
                     @if (_loadingStatus == 1)
                     {
-                        <div class="mx-4 mt-4">
+                        <div class="mx-4">
                             <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited">
                             <DataAnnotationsValidator />
-                            <div class="row">
-                                <div class="col-md-7">        
-                                    <div class="col-12 mb-3">
-                                        <label class="tLabel">@Localizer.Str["Cases_AddMessage_Subject"]</label>
-                                        <div class="top_blue_bg_thin"></div>
-                                        <div class="itemDetail">@FormModel.CaseSubject</div>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label class="tLabel2">@Localizer.Str["Cases_AddMessage_Note"]</label>
-                                        <SfTextBox Multiline="true" HtmlAttributes="@htmlAttribute" @bind-Value="@FormModel.Note"></SfTextBox>
-                                        <ValidationMessage For="@(() => FormModel.Note)" />
+                                <div class="row gy-3">
+                                    <div class="row col-md-7 gy-3">        
+                                        <div class="col-12">
+                                            <label class="tLabel">@Localizer.Str["Cases_AddMessage_Subject"]</label>
+                                            <hr class="mb-2"/>
+                                            <div class="itemDetail">@FormModel.CaseSubject</div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="tLabel2">@Localizer.Str["Cases_AddMessage_Note"]</label>
+                                            <SfTextBox Multiline="true" HtmlAttributes="@htmlAttribute" @bind-Value="@FormModel.Note"></SfTextBox>
+                                            <ValidationMessage For="@(() => FormModel.Note)" />
 
-                                        <SfCheckBox @bind-Checked="@FormModel.WithMatchReport" Label="@Localizer.Str["Cases_AddMessage_AddReport"]"></SfCheckBox>
+                                            <SfCheckBox @bind-Checked="@FormModel.WithMatchReport" Label="@Localizer.Str["Cases_AddMessage_AddReport"]"></SfCheckBox>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <FileUploadPan CaseId=CaseModel.CaseID CaseDocs=@CaseDocs></FileUploadPan>
+                                        </div>   
+                                    </div>
+                                    <div class="col-md-1">                           
+                                    </div>
+                                    <div class="row col-md-4 gy-3">
+
+                                        <div class="col-12">
+                                            <div class="tLabel">@Localizer.Str["Cases_AddMessage_NotifyUsers"]</div>
+                                            <hr class="mb-2"/>
+                                            <SfCheckBox @bind-Checked="@FormModel.NotifyAll" @onchange="NotifyAllOnChange" Label="@Localizer.Str["Value_All_Text"]"></SfCheckBox>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <CaseContactPan Source="@FormModel.ProfileParticipants" ShowCheckBox="true" CheckBoxDisabled="@ProfileModel.NotifyAllProfileParticipants" ShowStriped="true" 
+                                                Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <CaseContactPan Source="@FormModel.CaseParticipants" ShowCheckBox="true" ShowStriped="true" 
+                                                Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <CaseOriginatorPan Source="FormModel.Originator" ShowCheckBox="true"></CaseOriginatorPan>
+                                        </div>
+
+                                         <div class="col-12 e-small">
+                                            <div class="tLabel2">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
+                                            <hr class="mb-2"/>
+                                            <SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail1"></SfTextBox>
+                                            <ValidationMessage For="@(() => FormModel.ExtEmail1)" />                                 
+                                        </div>
                                     </div>
 
-                                    <div class="col-12 mb-3">
-                                        <FileUploadPan CaseId=CaseModel.CaseID CaseDocs=@CaseDocs></FileUploadPan>
-                                    </div>   
-                                </div>
-                                <div class="col-md-1">                           
-                                </div>
-                                <div class="col-md-4 e-small">
-                                    <div class="tLabel">@Localizer.Str["Cases_AddMessage_NotifyUsers"]</div>
-                                    <div class="top_blue_bg_thin"></div>
-
-                                    <div class="col-12 mb-3">
-                                        <SfCheckBox @bind-Checked="@FormModel.NotifyAll" @onchange="NotifyAllOnChange" Label="@Localizer.Str["Value_All_Text"]"></SfCheckBox>
-                                    </div>
-
-                                    <div class="col-12 mb-3">
-                                        <CaseContactPan Source="@FormModel.ProfileParticipants" ShowCheckBox="true" CheckBoxDisabled="@ProfileModel.NotifyAllProfileParticipants" ShowStriped="true" 
-                                            Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
-                                    </div>
-
-                                    <div class="col-12 mb-3">
-                                        <CaseContactPan Source="@FormModel.CaseParticipants" ShowCheckBox="true" ShowStriped="true" 
-                                            Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
-                                    </div>
-
-                                    <div class="col-12 mb-3">
-                                        <CaseOriginatorPan Source="FormModel.Originator" ShowCheckBox="true"></CaseOriginatorPan>
-                                    </div>
-
-                                     <div class="col-12 mb-3">
-                                        <div class="tLabel2">@Localizer.Str["Cases_AddMessage_ExEmails"]</div>
-                                        <div class="top_blue_bg"></div>
-                                        <SfTextBox Multiline="false" @bind-Value="@FormModel.ExtEmail1"></SfTextBox>
-                                        <ValidationMessage For="@(() => FormModel.ExtEmail1)" />                                 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="py-3">
-                                <UiMessageBox Data="Messages.List" />
-                            </div>
-                           <div class="row">
-                                <div class="col-12 e-footer-content pt-2 border border-1">
-                                    <div class="col-12">
-                                        <SfButton type="submit" IsPrimary="true">@Localizer.Str["Button_Save"]</SfButton>                        
-                                    </div>
-                                </div>
-                            </div>
+                                    <div class="col-md-12">
+                                        <hr class="mt-4 mb-2"/>
+                                        <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]"></SfButton>                        
+                                    </div> 
+                                </div>                      
                             </EditForm>
                         </div>
+                        <UiMessageBox Data="Messages.List" />
                     }
                     
                 </Content>

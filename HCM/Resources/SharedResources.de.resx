@@ -1231,6 +1231,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Value_False_Text" xml:space="preserve">
     <value>nein</value>
   </data>
+  <data name="Value_NoData" xml:space="preserve">
+    <value>Keine Datensätze zum Anzeigen</value>
+  </data>
   <data name="Value_Select_Text" xml:space="preserve">
     <value>Bitte auswählen</value>
   </data>

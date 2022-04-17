@@ -3389,6 +3389,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keine Datensätze zum Anzeigen.
+        /// </summary>
+        public static string Value_NoData {
+            get {
+                return ResourceManager.GetString("Value_NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bitte auswählen.
         /// </summary>
         public static string Value_Select_Text {

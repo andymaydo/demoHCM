@@ -24,7 +24,7 @@
             <Header><div class="tLabel">@Localizer.Str["Admin_Users_CreateUserTitle"]</div></Header>
             <Content>
                 <h5 class="tLabel2">@Localizer.Str["Admin_Users_EditUserTitle"]</h5>
-                <div class="top_blue_bg"></div>    
+                <hr class="mb-2"/>    
                 <div class="mx-4 e-small">
                     <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
                     <DataAnnotationsValidator />
@@ -71,10 +71,9 @@
                     </div>                   
                     </EditForm>
                 </div>
-               
-                <div class="py-3">
-                    <UiMessageBox Data="Messages.List" />
-                </div>
+
+                <UiMessageBox Data="Messages.List" />
+
 
                  
             </Content>

@@ -1231,6 +1231,9 @@ it - after verification of the hit - in the menu
   <data name="Value_False_Text" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="Value_NoData" xml:space="preserve">
+    <value>No records to display</value>
+  </data>
   <data name="Value_Select_Text" xml:space="preserve">
     <value>Please select</value>
   </data>

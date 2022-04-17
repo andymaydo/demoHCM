@@ -5,7 +5,7 @@
 
 
 <h6>@Localizer.Str["Label_Filter"]</h6>
-<div class="top_blue_bg"></div>
+<hr class="mb-2"/>
 
 @if(_loadingStatus == 1)
 {
@@ -105,9 +105,7 @@
 
 
 
-<div class="pt-3">
-    <UiMessageBox Data="Messages.List" />
-</div>
+<UiMessageBox Data="Messages.List" />
 
 
 @code {
