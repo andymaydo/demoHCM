@@ -11,6 +11,7 @@ namespace HCMApi
     {
         Task<List<Case>> GetCasesList(int? filterCaseID, int? appID, int? caseTypeID, int? caseStatusID, int loginUserID, DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? ProfileID, string CustomerName);
         Task<Case> Load(int _caseID);
+        Task<Case> Load(int _caseID, int contactId);
 
         Task<int> Create();
 

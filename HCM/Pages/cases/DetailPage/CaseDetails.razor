@@ -1,4 +1,6 @@
 ﻿@page "/Cases/CaseDetails"
+@page "/Cases/CaseDetails/{pCaseId:int}"
+
 @using HCMApi
 @using HCMApi.Models
 @using HCM.Pages.cases.DetailPage.HistoryPan
@@ -34,7 +36,7 @@
                     <CaseSubjPan CaseSubject="@MyCase.Subject"></CaseSubjPan>
                 </div>
                 <div class="py-3">
-                    <CaseMatchPan CaseCustomerName="@MyCase.CustomerName"></CaseMatchPan>
+                    <CaseMatchPan CaseCustomerName="@MyCase.CustomerName" OnShowMatch="OpenMatchResults"></CaseMatchPan>
                  </div>
                  <div class="py-3">
                     <CaseHistoryPan Source="@CaseEvents"></CaseHistoryPan>
@@ -69,8 +71,10 @@
     [Inject] private ICMSAPI CmsService { get; set; }
     [Inject] private ICMSProfile ProileService { get; set; }
     [Inject] private IMapper _mapper { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public int? pCaseId { get; set; }
 
     protected int CaseId { get; set; }
     protected Case MyCase { get; set; }
@@ -90,12 +94,19 @@
 
         Messages = new UiMessages();
 
-        var caseId = await ProtectedSessionStorage.GetAsync<int>("CaseId");
-        CaseId = caseId.Success ? caseId.Value : -1;
-
         _loadingStatus = 0;
         try
         {
+            if(pCaseId != null)
+            {
+                CaseId = (int)pCaseId;
+            }
+            else
+            {
+                var caseId = await ProtectedSessionStorage.GetAsync<int>("CaseId");
+                CaseId = caseId.Success ? caseId.Value : -1;
+            }
+
             await LoadCaseData();
             _loadingStatus = 1;
         }
@@ -113,8 +124,8 @@
     protected async Task LoadCaseData()
     {
 
-        MyCase = await CmsService.LoadCase(CaseId);
-        if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
+        MyCase = await CmsService.LoadCase(CaseId, CurrentContactId);
+        if(MyCase == null){ throw new Exception(@Localizer.Str["Case_NotFound"]); }
 
         if (MyCase.CaseStatusID == 0)
         {
@@ -162,4 +173,13 @@
             Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
         }
     }
+
+
+    public async Task OpenMatchResults()
+    {     
+        await ProtectedSessionStorage.SetAsync("MatchResultCaseId", CaseId);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Cases/MatchResult", "_blank");
+    }
+
 }

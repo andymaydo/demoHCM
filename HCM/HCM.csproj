@@ -45,6 +45,7 @@
     <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
     <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
+    <Content Remove="Pages\cases\DetailPage\Details_.razor" />
     <Content Remove="Pages\cases\Details_.razor" />
     <Content Remove="Pages\cases\ListCases.razor" />
     <Content Remove="Pages\cases\MatchResult.razor" />

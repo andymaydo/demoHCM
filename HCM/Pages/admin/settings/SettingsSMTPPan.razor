@@ -13,56 +13,53 @@
 
     <EditForm Model="@FormModel" OnValidSubmit="@ValidFormSubmited" >
         <DataAnnotationsValidator />      
-                   
-        <div class="form-group">
-            <label class="col-form-label">@Localizer.Str["SMTP_2"]</label>            
+       
+        <div class="mb-3">
+            <label class="form-label">@Localizer.Str["SMTP_2"]</label>            
             <SfTextBox @bind-Value="@FormModel.SMTPServer"></SfTextBox>
             <ValidationMessage For="@(() => FormModel.SMTPServer)" />     
         </div>
-        
-        <div class="form-group">
-            <label class="col-form-label">@Localizer.Str["SMTP_3"]</label>
+        <div class="mb-3">
+            <label class="form-label">@Localizer.Str["SMTP_3"]</label>
             <SfTextBox @bind-Value="@FormModel.SMTPServerPort"></SfTextBox>
             <ValidationMessage For="@(() => FormModel.SMTPServerPort)" />                                       
         </div>
+       
         
-
-        <div class="row"> 
-            <div class="col-md-12">
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <SfCheckBox 
-                            @bind-Checked="FormModel.SMTPServerAuth" 
-                            Label="@Localizer.Str["SMTP_4"]" 
-                            TChecked="bool">
-                        </SfCheckBox>
-                    </div>
-                    <div class="card-body">
-                        <div class=" form-group row">
-                            <label class="col-md-2">@Localizer.Str["SMTP_5"]</label>
-                            <div class = "col-md-10">
-                                <SfTextBox @bind-Value="@FormModel.SMTPServerUser"></SfTextBox>
-                                <ValidationMessage For="@(() => FormModel.SMTPServerUser)" /> 
-                            </div>                                
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2">@Localizer.Str["SMTP_6"]</label>
-                            <div class = "col-md-10">
-                                <SfTextBox @bind-Value="@FormModel.SMTPServerPass"
-                                    Type="Syncfusion.Blazor.Inputs.InputType.Password">
-                                </SfTextBox>
-                                <ValidationMessage For="@(() => FormModel.SMTPServerPass)" /> 
-                            </div>                                
-                        </div>
-                    </div>
-                </div>
+        <div class="card card-secondary mb-3">
+            <div class="card-header">
+                <SfCheckBox 
+                    @bind-Checked="FormModel.SMTPServerAuth" 
+                    Label="@Localizer.Str["SMTP_4"]" 
+                    TChecked="bool">
+                </SfCheckBox>
             </div>
-            
-        </div>        
-     
+            <div class="card-body">
+                <div class="row mb-3">
+                    <label class="col-form-label col-lg-3">@Localizer.Str["SMTP_5"]</label>
+                    <div class = "col-lg-9">
+                        <SfTextBox @bind-Value="@FormModel.SMTPServerUser"
+                            Enabled="FormModel.SMTPServerAuth">
+                        </SfTextBox>
+                        <ValidationMessage For="@(() => FormModel.SMTPServerUser)" /> 
+                    </div> 
+                </div>
+                <div class="row mb-3">
+                    <label class="col-form-label col-lg-3">@Localizer.Str["SMTP_6"]</label>
+                    <div class = "col-lg-9">
+                        <SfTextBox @bind-Value="@FormModel.SMTPServerPass"
+                            Type="Syncfusion.Blazor.Inputs.InputType.Password" 
+                            Enabled="FormModel.SMTPServerAuth">
+                        </SfTextBox>
+                        <ValidationMessage For="@(() => FormModel.SMTPServerPass)" /> 
+                    </div>  
+                </div>                    
+            </div>
+        </div>
+
         <div class="row pt-2">                       
             <div class="col-12 text-right">
-                <SfButton Type="submit" CssClass="e-flat e-info" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                <SfButton Type="submit" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
             </div>                       
         </div>
     </EditForm>

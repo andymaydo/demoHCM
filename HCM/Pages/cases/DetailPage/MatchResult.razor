@@ -1,0 +1,67 @@
+﻿@page "/Cases/MatchResult"
+
+@using HCMApi;
+
+@using HCMDataAccess;
+@using HCMModels;
+@using System.Xml;
+@using System.Xml.Xsl;
+@using System.Xml.XPath;
+@using System.IO;
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc;
+
+
+
+<div class="container">
+    <p>
+        @((MarkupString)myMarkup)
+    </p>
+</div>
+
+@code {
+    [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
+    [Inject] private ICMSAPI CmsService { get; set; }
+    [Inject] private ILogger<MatchResult> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+    protected int CaseId { get; set; }
+    protected Case MyCase { get; set; }
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+    private string myMarkup = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        Messages = new UiMessages();
+
+        _loadingStatus = 0;
+        try
+        {
+            var caseId = await ProtectedSessionStorage.GetAsync<int>("MatchResultCaseId");
+            CaseId = caseId.Success ? caseId.Value : -1;
+
+
+            MyCase = await CmsService.LoadCase(CaseId);
+            if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
+
+            myMarkup = Common.HCMXslTransform.GetHtmlResult(MyCase.CaseData, MyCase.CaseTypeID ?? 0);
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }        
+
+    }
+
+
+}

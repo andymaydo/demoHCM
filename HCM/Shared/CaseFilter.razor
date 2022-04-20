@@ -31,7 +31,8 @@
                             <span class="mx-1">-</span>
                             <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.ModifyToDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>                            
                         </div>
-                    </div>                                                                               
+                    </div>                                        
+
                 </div>
 
                 <div class="col-lg-4">
@@ -82,12 +83,23 @@
                             <SfTextBox Placeholder="@Localizer.Str["Label_Filter_CustomerName"]" @bind-Value="_localModel.SearchedName" ></SfTextBox>
                         </div>
                     </div>
+
+                    @if (_localModel.ShowOwnCasesCheckBox)
+                    {
+                        <div class="row mb-2">
+                            <label class="col-lg-4 text-lg-end">@Localizer.Str["Label_Filter_Report_OnlyOwn"]</label>
+                            <div class="col-lg-8">
+                                <SfCheckBox @bind-Checked="_localModel.ShowOnlyOwnCases" TChecked="bool"></SfCheckBox>
+                            </div>
+                        </div> 
+                    }                    
+
                 </div>
             </div>
 
         </div>
 
-        <div class="bottom_blue_bg"></div>
+        <hr class="mt-2" />
 
         <div class="row py-3">
             <div class="col-lg">

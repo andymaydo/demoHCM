@@ -35,7 +35,12 @@
 
     protected override void OnInitialized()
     {
-        InputFilter = new CaseFilterModel(showStatus:false, showResult:false, showOnlyOpenCases:false);        
+        InputFilter = new CaseFilterModel(
+            showStatus:false, 
+            showResult:false, 
+            showOnlyOpenCases:false, 
+            showOwnCasesCheckBox:true
+        );        
         CurrentCulture = CultureInfo.CurrentCulture.Name;
         ShowReport(InputFilter);
     }

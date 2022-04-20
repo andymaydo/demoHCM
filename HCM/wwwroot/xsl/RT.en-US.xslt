@@ -25,17 +25,9 @@
 </xsl:variable>
 
 
-<xsl:text disable-output-escaping="yes"><![CDATA[
+  <xsl:text disable-output-escaping="yes"><![CDATA[
 <style type="text/css">
-body {
-	color: #666666;
-}
 
-TD, UL, OL, LI {
-
-   color: #004181;
-   text-decoration: none;
-}
 TD.contenttitle
 {
 	FONT-FAMILY:verdana;
@@ -52,11 +44,8 @@ TD.contentitemb
 @media screen,print 
 {
 .tblHead {
+	 font-size: 9pt;
    background-color: #B7BAD9;
-   padding-left:2;
-   padding-top:2;
-   padding-bottom:2;
-   margin-top:2;
 }
 .fcol {
    border: solid 1px #FFFFFF;
@@ -89,35 +78,30 @@ TD.contentitemb
    font-family: Helvetica,Verdana, Arial;
    font-size: 10px;
 }
-.colitem a
-{
-   color: #0000FF;
-}
+
 .colitemredalert
 {
    background-color: #E19379;
    border: solid 1px #FFFFFF;
    border-left-width:0;
    border-top:0;
-font-family: Helvetica,Verdana, Arial;
+   font-family: Helvetica,Verdana, Arial;
    font-size: 10px;
 }
-.colitemredalert a
-{
-   color: #0000FF;
-}
+
 .colitemcustomer
 {
    background-color: #F0F000;
    border: solid 1px #FFFFFF;
    border-left-width:0;
    border-top:0;
-font-family: Helvetica,Verdana, Arial;
+   font-family: Helvetica,Verdana, Arial;
    font-size: 10px;
 }
-.colitemcustomer a
+a
 {
-   color: #0000FF;
+  color: #0000FF;
+	
 }
  }
 </style>

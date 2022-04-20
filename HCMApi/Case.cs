@@ -247,6 +247,33 @@ namespace HCMApi
             //}
         }
 
+        public async Task<Case> Load(int _caseID, int contactId)
+        {
+
+            var procedure = "Case_GetOne_ByUser";
+            var _params = new DynamicParameters();
+
+            _params.Add(name: "@caseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: _caseID);
+            _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: contactId);
+
+
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            {
+                var result = await conn.QueryAsync<Case>(procedure, _params, commandType: CommandType.StoredProcedure);
+
+                List<Case> _CaseList = result.ToList<Case>();
+                if (_CaseList.Count > 0)
+                {
+                    Case _Case = new Case();
+                    _Case = _CaseList[0];
+
+                    return _Case;
+                }
+                return null;
+            }
+
+        }
+
         public async Task<int> Create()
         {
 

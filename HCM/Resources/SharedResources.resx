@@ -685,6 +685,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Cases_Title" xml:space="preserve">
     <value>My Cases</value>
   </data>
+  <data name="Case_NotFound" xml:space="preserve">
+    <value>Case nicht gefunden oder Sie haben keine Berechtigung dazu.</value>
+  </data>
   <data name="Case_Result_-1" xml:space="preserve">
     <value>ZZ result -1</value>
   </data>

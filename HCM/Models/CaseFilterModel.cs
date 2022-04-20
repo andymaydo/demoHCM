@@ -19,14 +19,16 @@ namespace HCM.Models
         public int? StatusId { get; set; }
         public int? ResultId { get; set; }
 
+        public bool ShowOwnCasesCheckBox { get; set; }
         public bool ShowOnlyOwnCases { get; set; }
         public bool ShowOnlyOpenCases { get; set; }
         public bool ShowStatus { get; set; }
         public bool ShowResult { get; set; }
 
-        public CaseFilterModel(bool showOnlyOpenCases = true, bool showStatus = true, bool showResult = true)
+        public CaseFilterModel(bool showOnlyOpenCases = true, bool showStatus = true, bool showResult = true, bool  showOwnCasesCheckBox = false)
         {
             GateId = 1; //DPFGate - default and only
+            ShowOwnCasesCheckBox = showOwnCasesCheckBox;
             ShowOnlyOwnCases = true;
 
             ShowOnlyOpenCases = showOnlyOpenCases;

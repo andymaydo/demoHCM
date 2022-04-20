@@ -34,6 +34,12 @@ namespace HCMApi
         {
             return await _iCase.Load(caseID);
         }
+
+        public async Task<Case> LoadCase(int caseID, int contactId)
+        {
+            return await _iCase.Load(caseID, contactId);
+        }
+
         public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID)
         {
             return await _iCase.GetStatusByCase(caseID);

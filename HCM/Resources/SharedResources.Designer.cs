@@ -869,6 +869,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Case nicht gefunden oder Sie haben keine Berechtigung dazu..
+        /// </summary>
+        public static string Case_NotFound {
+            get {
+                return ResourceManager.GetString("Case_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ZZ result -1.
         /// </summary>
         public static string Case_Result__1 {

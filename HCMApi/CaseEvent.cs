@@ -98,10 +98,10 @@ namespace HCMApi
 
                     CaseEvent _CaseEvent = result.First();
 
-                    if (_CaseEvent.CaseEventID > 0)
-                        CaseEventHandlers.OnEvent(this);
+                    //if (_CaseEvent.CaseEventID > 0)
+                    //    CaseEventHandlers.OnEvent(_CaseEvent);
 
-                    return 1;
+                    return _CaseEvent.CaseEventID;
 
                 }
             //}
@@ -122,31 +122,15 @@ namespace HCMApi
             _params.Add(name: "@CaseEventID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseEventID);
             _params.Add(name: "@CaseEventNotifyContacts", dbType: DbType.Xml, direction: ParameterDirection.Input, value: CaseEventNotifyContacts);
 
-            try
+            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
             {
-                 using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
-                {
 
-                    var result = conn.ExecuteScalar(procedure, _params, commandType: CommandType.StoredProcedure);
+                var affectedRows = conn.Execute(procedure, _params, commandType: CommandType.StoredProcedure);
 
-                    int RetID = 0;
-                    try
-                    {
-                        RetID = Convert.ToInt32(result);
-                    }
-                    catch{}
-
-                    if (RetID == 1)
-                        return true;
-                    else
-                        return false;
-
-                }
+                return true;
+               
             }
-            catch
-            {
-                return false;
-            }
+            
             
 
         }
