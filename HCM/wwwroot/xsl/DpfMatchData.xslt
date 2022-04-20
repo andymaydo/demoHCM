@@ -19,53 +19,25 @@
         <title>SAPPER CMS</title>
         <xsl:text disable-output-escaping="yes"><![CDATA[
 <style type="text/css">
-body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 9px;
-	color: #666666;
-	background-color: #FFFFFF;
-	margin: 0px;
-	padding: 0px;
-}
-form {
-	margin: 0px;
-	padding: 0px;
-}
-a {
-	color: #66cc33;
-	text-decoration: none;
-}
 
-TD, UL, OL, LI {
-   font-family: Verdana, Arial, Helvetica;
-   font-weight: normal;
-   font-size: 11px;
-   color: #004181;
-   text-decoration: none;
-}
 TD.contenttitle
 {
 	FONT-FAMILY:verdana;
-	font-size: 14px;	
+	font-size: 14pt;	
 	color: #0e3d6b;
-font-weight: bold;
 }
 TD.contentitemb
 {
 	FONT-FAMILY:verdana;
-	font-size: 11px;	
-	FONT-WEIGHT: bold;
-  padding-left:10px;
+	font-size: 8pt;	
+	FONT-WEIGHT: bold
 }
 
 @media screen,print 
 {
 .tblHead {
-   background-color: #dddddd;
-   padding-left:2;
-   padding-top:2;
-   padding-bottom:2;
-   margin-top:2;
+	 font-size: 9pt;
+   background-color: #B7BAD9;
 }
 .fcol {
    border: solid 1px #FFFFFF;
@@ -98,10 +70,7 @@ TD.contentitemb
    font-family: Helvetica,Verdana, Arial;
    font-size: 10px;
 }
-.colitem a
-{
-   color: #0000FF;
-}
+
 .colitemredalert
 {
    background-color: #E19379;
@@ -111,10 +80,7 @@ TD.contentitemb
    font-family: Helvetica,Verdana, Arial;
    font-size: 10px;
 }
-.colitemredalert a
-{
-   color: #0000FF;
-}
+
 .colitemcustomer
 {
    background-color: #F0F000;
@@ -124,9 +90,10 @@ TD.contentitemb
    font-family: Helvetica,Verdana, Arial;
    font-size: 10px;
 }
-.colitemcustomer a
+a
 {
-   color: #0000FF;
+  color: #0000FF;
+	
 }
  }
 </style>

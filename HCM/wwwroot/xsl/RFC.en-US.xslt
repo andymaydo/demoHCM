@@ -27,47 +27,34 @@
 <html>
 <head>
 <title>DPF RFC Service Report</title>
-<xsl:text disable-output-escaping="yes"><![CDATA[
+  <xsl:text disable-output-escaping="yes"><![CDATA[
 <style type="text/css">
+
 TD.contenttitle
 {
 	FONT-FAMILY:verdana;
-	font-size: 13pt;	
+	font-size: 14pt;	
 	color: #0e3d6b;
 }
 TD.contentitemb
 {
 	FONT-FAMILY:verdana;
 	font-size: 8pt;	
-	FONT-WEIGHT: bold;
+	FONT-WEIGHT: bold
 }
 
 @media screen,print 
 {
 .tblHead {
-   background-color: #1a535d;
-   color: #FFFFFF;
-   padding-left:2;
-   padding-top:2;
-   padding-bottom:2;
-   margin-top:2;
-font-size: 14px;
-   font-family: Helvetica, Verdana, Arial;
+	 font-size: 9pt;
+   background-color: #B7BAD9;
 }
-.fcol_match_result {
+.fcol {
    border: solid 1px #FFFFFF;
 }
-.col_match_resul {
+.col {
    border: solid 1px #FFFFFF;
    border-left-width:0;
-}
-td.fcol_match_result
-{
-  padding-left:3px;
-}
-td.col_match_resul
-{
-  padding-left:3px;
 }
 .tblRow {
    padding-left:2;
@@ -81,7 +68,7 @@ td.col_match_resul
    background-color: #E7E9F5;
    border: solid 1px #FFFFFF;
    border-top:0;
-   font-size: 11px;
+   font-size: 10px;
    font-family: Helvetica, Verdana, Arial;
 }
 .colitem
@@ -91,43 +78,19 @@ td.col_match_resul
    border-left-width:0;
    border-top:0;
    font-family: Helvetica,Verdana, Arial;
-   font-size: 12px;
+   font-size: 10px;
 }
-td.colitem
-{
-  padding-left:3px;
-}
-.colitem a
-{
-   color: #0000FF;
-}
+
 .colitemredalert
-{
-   background-color: #dee2e6;
-   border: solid 1px #FFFFFF;
-   border-left-width:0;
-   border-top:0;
-   font-family: Helvetica,Verdana, Arial;
-   font-size: 12px;
-}
-.firstcolitemredalert
 {
    background-color: #E19379;
    border: solid 1px #FFFFFF;
    border-left-width:0;
    border-top:0;
    font-family: Helvetica,Verdana, Arial;
-   font-size: 12px;
-  FONT-WEIGHT: bold;
+   font-size: 10px;
 }
-td.colitemredalert
-{
-  padding-left:3px;
-}
-.colitemredalert a
-{
-   color: #0000FF;
-}
+
 .colitemcustomer
 {
    background-color: #F0F000;
@@ -135,16 +98,12 @@ td.colitemredalert
    border-left-width:0;
    border-top:0;
    font-family: Helvetica,Verdana, Arial;
-   font-size: 12px;
+   font-size: 10px;
 }
-td.colitemcustomer
+a
 {
-  padding-left:2px;
-}
-
-.colitemcustomer a
-{
-   color: #0000FF;
+  color: #0000FF;
+	
 }
  }
 </style>
