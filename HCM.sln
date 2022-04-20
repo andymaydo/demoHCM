@@ -14,6 +14,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCMApi", "HCMApi\HCMApi.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCMModels", "HCMModels\HCMModels.csproj", "{F4577E33-9E79-4133-910D-A42C8EA14812}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMailSend", "ServiceMailSend\ServiceMailSend.csproj", "{80A7BED6-93B1-4D6C-8F24-261A911BE145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{64C7B905-B9FC-4580-B512-EB16898A8599}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,14 @@ Global
 		{F4577E33-9E79-4133-910D-A42C8EA14812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4577E33-9E79-4133-910D-A42C8EA14812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4577E33-9E79-4133-910D-A42C8EA14812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A7BED6-93B1-4D6C-8F24-261A911BE145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A7BED6-93B1-4D6C-8F24-261A911BE145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A7BED6-93B1-4D6C-8F24-261A911BE145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A7BED6-93B1-4D6C-8F24-261A911BE145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64C7B905-B9FC-4580-B512-EB16898A8599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C7B905-B9FC-4580-B512-EB16898A8599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64C7B905-B9FC-4580-B512-EB16898A8599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64C7B905-B9FC-4580-B512-EB16898A8599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
