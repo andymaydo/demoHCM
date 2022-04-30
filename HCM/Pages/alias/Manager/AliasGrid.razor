@@ -1,0 +1,130 @@
+﻿
+
+<div class="blue_bg"></div>
+<h5>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h5>
+
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+
+@if (_loadingStatus == 1)
+{
+
+    <SfGrid DataSource="@AliasList" AllowResizing="false" AllowSorting="true" AllowPaging="true" AllowTextWrap="true" AllowExcelExport="true">        
+        <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings>
+        <GridPageSettings PageSize="20"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field=@nameof(AmAlias.aliasID) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Id")" AutoFit="true">
+                <Template>
+                    @{
+                        var rep = (context as AmAlias);
+                        <div>                            
+                             <div class="alink" @onclick="@(() => ShowAliasInfo(rep.aliasID))"><span class="oi oi-zoom-in"></span> @rep.aliasID</div>
+                        </div>
+                    }
+                </Template>
+            </GridColumn>
+            <GridColumn Field=@nameof(AmAlias.LicName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_LicName")" AutoFit="true">
+                <Template>
+                    @{
+                        var rep = (context as AmAlias);
+                        if (String.IsNullOrEmpty(rep.LicName))
+                        {
+                            <div>@AmLocalizer.GetText("AliasFilter_License_Uebergreifend")</div>
+                        }
+                        else
+                        {
+                            <div>@rep.LicName</div>
+                        }
+                    }
+                </Template>
+        </GridColumn>
+        <GridColumn Field=@nameof(AmAlias.belegNummer) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_BelegNr")" AutoFit="true"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.aliasName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Name")"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.aliasAddress) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Street")"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.aliasStatusID) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Status")" AutoFit="true">
+            <Template>
+                @{
+                    var rep = (context as AmAlias);
+                    <div>@AmLocalizer.GetText(AmEnums.AliasStatusDic[rep.aliasStatusID])</div>
+                }
+            </Template>
+            </GridColumn>
+            <GridColumn Field=@nameof(AmAlias.AuthDate) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_CreatedOn")" Type="ColumnType.DateTime"></GridColumn>
+            <GridColumn Field=@nameof(AmAlias.AuthFullName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_CreatedBy")"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
+@if (_showAliasInfoPopUp)
+{
+    <CascadingValue Value="@CurrentUserId" Name="CurrentUserId">
+        <AliasInfoPopUp @bind-ShowModal="_showAliasInfoPopUp" OnDialogClosed=@LoadAliasList AliasId="_currentAliasId"></AliasInfoPopUp> 
+    </CascadingValue>
+}
+
+@code {
+
+    [Inject] private IAliasManager AliasService { get; set; }
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
+    [Inject] private ILogger<AliasGrid> _logger { get; set; }
+
+    [Parameter] public int CurrentUserId { get; set; }
+    //[Parameter] public string Culture { get; set; }
+    [Parameter] public AmAliasFilter InputFilter { get; set; }    
+
+
+    protected List<AmAlias> AliasList { get; set; }
+    protected int _loadingStatus { get; set; }
+    protected UiMessages Messages { get; set; }
+
+    private AmAliasFilter _inputFilter { get; set; }
+    private int _currentAliasId { get; set; }
+    private bool _showAliasInfoPopUp { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Messages = new UiMessages();
+        
+    }
+
+     protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+        try
+        {
+
+            Messages.List.Clear();
+            _loadingStatus = 0;
+            if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
+            {
+                _inputFilter = ObjHelper.Clone(InputFilter);
+                await LoadAliasList();
+            }
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@AmLocalizer.GetText("MsgPanel_Error_Title"),ex.Message, showDetail: true);
+            _loadingStatus = 2;
+        }
+    }
+
+    public async Task LoadAliasList()
+    {       
+        AliasList = await AliasService.GetByFilterAsync(InputFilter, CurrentUserId);
+             
+    }
+
+    private void ShowAliasInfo(int aliasId)
+    {
+        _currentAliasId = aliasId;
+        _showAliasInfoPopUp = true;
+    }
+}
+

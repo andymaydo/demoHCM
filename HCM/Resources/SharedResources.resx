@@ -919,6 +919,15 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="MainMenu_Administration" xml:space="preserve">
     <value>Administration</value>
   </data>
+  <data name="MainMenu_Alias" xml:space="preserve">
+    <value>Alias Manager</value>
+  </data>
+  <data name="MainMenu_AliasList" xml:space="preserve">
+    <value>Alias Liste</value>
+  </data>
+  <data name="MainMenu_AliasReport" xml:space="preserve">
+    <value>Alias Bericht</value>
+  </data>
   <data name="MainMenu_Home" xml:space="preserve">
     <value>Home</value>
   </data>

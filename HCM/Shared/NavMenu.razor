@@ -1,6 +1,5 @@
 ﻿@inject CommonLocalizationService Localizer
-@inject NavigationManager MyNavigationManager
-@inject AppState _AppState
+@*@inject NavigationManager MyNavigationManager*@
 
 
 
@@ -30,6 +29,10 @@
 
                     <li class="nav-item" @onclick="ToggleNavMenu">
                         <NavLink class="nav-link" href="/Reports"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Reports"]</NavLink>                            
+                    </li>
+
+                     <li class="nav-item" @onclick="ToggleNavMenu">
+                        <NavLink class="nav-link" href="/Alias/List"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Alias"]</NavLink>                            
                     </li>
 
                     <li class="nav-item">

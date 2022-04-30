@@ -105,12 +105,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AliasManger\AliasManger\AliasManger.csproj" />
     <ProjectReference Include="..\HCMApi\HCMApi.csproj" />
     <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
     <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\AmResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AmResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SfResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
@@ -124,6 +129,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Docs\" />
+    <Folder Include="Pages\alias\Report\" />
     <Folder Include="wwwroot\xsl\" />
   </ItemGroup>
 
@@ -140,6 +146,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\AmResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AmResource.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\SfResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

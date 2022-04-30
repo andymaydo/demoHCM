@@ -25,6 +25,7 @@ using AutoMapper;
 using HCM.Models;
 using HCM.Resources;
 
+
 namespace HCM
 {
     public class Startup
@@ -82,9 +83,6 @@ namespace HCM
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
 
-            services.AddRazorPages();
-            services.AddServerSideBlazor();
-
             services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
             services.AddSingleton<IReportsCaseData, ReportsCaseData>();
             services.AddSingleton<IFiltersData, FiltersData>();
@@ -101,9 +99,11 @@ namespace HCM
             services.AddSingleton<ICMSProfile, CMSProfile>();
             services.AddTransient<ProfileWizardVM>();
 
-            services.AddSingleton<AppState, AppState>();
 
-            services.AddBlazoredLocalStorage();
+            services.AddSingleton<IAliasManager, AliasService>();
+            services.AddSingleton<IAliasManagerLocalizer, AliasManagerLocalizer>();
+            
+
             services.AddOptions();
             services.AddAuthorizationCore();
             //services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();

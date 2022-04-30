@@ -2453,6 +2453,33 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alias Manager.
+        /// </summary>
+        public static string MainMenu_Alias {
+            get {
+                return ResourceManager.GetString("MainMenu_Alias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias Liste.
+        /// </summary>
+        public static string MainMenu_AliasList {
+            get {
+                return ResourceManager.GetString("MainMenu_AliasList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias Bericht.
+        /// </summary>
+        public static string MainMenu_AliasReport {
+            get {
+                return ResourceManager.GetString("MainMenu_AliasReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string MainMenu_Home {

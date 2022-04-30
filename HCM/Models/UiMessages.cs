@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace HCM.Models
 {
-    public class UiMessages
+    public class UiMessages 
     {
-       
+
         public List<Message> List { get; set; }
         public UiMessages()
         {
@@ -16,7 +16,7 @@ namespace HCM.Models
 
         public void AddError(string shortMessage, string detailedMessage = null, bool showDetail = false)
         {
-            List.Add(new Message { Short = shortMessage, Detail = detailedMessage, isError=true, showDetail=showDetail });            
+            List.Add(new Message { Short = shortMessage, Detail = detailedMessage, isError = true, showDetail = showDetail });
         }
         public void AddInfo(string shortMessage, string detailedMessage = null, bool showDetail = false)
         {

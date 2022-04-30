@@ -1,0 +1,77 @@
+﻿@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Inputs
+
+
+
+
+<div class="col-12 mt-3">
+
+    @if (AliasObj.WaitingForAuth)
+    {
+        <div class="font-weight-bold mb-1">@AmLocalizer.GetText("AliasFilter_WaitAuth")</div>
+
+        <AliasProtocol FilterBy="Waiting" @bind-SelectedProtocolId="SelectedProtocolId"/>
+
+        @*<AuthorizeView Roles="Res.AliasAuthorize">
+            <Authorized>*@
+                <SfButton CssClass="e-outline mr-3 mt-2" OnClick="@(() => OnActionBtnClick("Authorize"))">@AmLocalizer.GetText("AliasDetail_Btn_Authorize")</SfButton>
+                <SfButton CssClass="e-outline mt-2" OnClick="@(() => OnActionBtnClick("Cancel"))">@AmLocalizer.GetText("AliasDetail_Btn_Cancel")</SfButton>
+           @* </Authorized>
+            <NotAuthorized>
+                <div class="mt-2 alert-warning">@AmLocalizer.GetText("Alias_Message_NoRightsToAuthorize")</div>
+            </NotAuthorized>
+        </AuthorizeView>*@
+
+    }
+    else
+    {
+
+        @if (AliasObj.aliasStatusID == 0)
+        {
+            <SfButton CssClass="e-outline mr-3" OnClick="@(() => OnActionBtnClick("Reactivate"))">@AmLocalizer.GetText("AliasDetail_Btn_Reactivate")</SfButton>
+        }
+        @if (AliasObj.aliasStatusID == 1)
+        {
+            <SfButton CssClass="e-outline mr-3" OnClick="@(() => OnActionBtnClick("Deactivate"))">@AmLocalizer.GetText("AliasDetail_Btn_Deactivate")</SfButton>
+        }
+        @if (AliasObj.aliasStatusID == 0 || AliasObj.aliasStatusID == 1)
+        {
+            <SfButton CssClass="e-outline" OnClick="@(() => OnActionBtnClick("Delete"))">@AmLocalizer.GetText("AliasDetail_Btn_Delete")</SfButton>
+        }
+
+    }
+
+    @if (showActionForm)
+    {
+        <AliasDetailsActionsConfirm 
+            @bind-ShowForm="showActionForm" 
+            ActionType="@ActionType" 
+            ProtocolId="@SelectedProtocolId" 
+            OnAliasStatusChange="@(async() => await OnAliasStatusChange.InvokeAsync())" />   
+    }
+
+    
+</div>
+
+@code {
+
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
+
+    [CascadingParameter] public AmAlias AliasObj { get; set; }
+    [Parameter] public EventCallback OnAliasStatusChange { get; set; }
+
+    protected string ActionType { get; set; }
+    protected int SelectedProtocolId { get; set; } = 0;
+    protected bool showActionForm { get; set; }
+    //protected AliasDetailsActionsConfirm ConfirmRef { get; set; }
+
+
+    protected void OnActionBtnClick(string actionType)
+    {
+        showActionForm = true;
+        ActionType = actionType;
+        //ConfirmRef.Show(actionType);
+    }
+
+
+}
