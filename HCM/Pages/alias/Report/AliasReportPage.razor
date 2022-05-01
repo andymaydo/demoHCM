@@ -1,0 +1,31 @@
+﻿@page "/Alias/Report"
+@using Syncfusion.Blazor.Grids
+@using System.Security.Claims
+
+
+<AliasReportGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId="@VgsAccountId" InputFilter="InputFilter"></AliasReportGrid>
+
+
+@code {
+    [Inject] public CMSSettings cmsSettings { get; set; }
+
+    [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
+
+    protected string CurrentUserLogin { get; set; }
+    protected string VgsAccountId { get; set; }
+
+
+    protected AmAliasFilter InputFilter { get; set; } 
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        InputFilter = new AmAliasFilter();
+        InputFilter.AllTime = true;
+
+        CurrentUserLogin = CurrentPrincipal.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value.ToString();
+        VgsAccountId = cmsSettings.VGSAccId;
+        
+    }
+}

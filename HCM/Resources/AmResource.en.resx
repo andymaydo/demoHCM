@@ -195,6 +195,9 @@
   <data name="AliasList_Content_Column_CreatedOn" xml:space="preserve">
     <value>Created on</value>
   </data>
+  <data name="AliasList_Content_Column_HCMProfile" xml:space="preserve">
+    <value>HCM Profile</value>
+  </data>
   <data name="AliasList_Content_Column_Id" xml:space="preserve">
     <value>ID</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="AliasList_Content_Column_Street" xml:space="preserve">
     <value>Street</value>
+  </data>
+  <data name="AliasList_Content_Column_Wait4Auth" xml:space="preserve">
+    <value>Waiting for authorization</value>
   </data>
   <data name="AliasProtocol_Action_Deactivation" xml:space="preserve">
     <value>Deactivated</value>

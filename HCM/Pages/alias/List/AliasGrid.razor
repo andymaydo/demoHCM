@@ -1,0 +1,135 @@
+﻿@using HCM.Pages.alias.DetailsPopUp
+
+<div class="blue_bg"></div>
+<h5>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h5>
+
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+
+@if (_loadingStatus == 1)
+{
+
+    <SfGrid DataSource="@AliasList" AllowResizing="false" AllowSorting="true" AllowPaging="true" AllowTextWrap="true" AllowExcelExport="true">        
+        <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings>
+        <GridPageSettings PageSize="20"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field=@nameof(AmAlias.aliasID) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Id")" Width="60">
+                <Template>
+                    @{
+                        var rep = (context as AmAlias);
+                        <div>                            
+                             <div class="alink" @onclick="@(() => ShowAliasInfo(rep.aliasID))"><span class="oi oi-zoom-in"></span> @rep.aliasID</div>
+                        </div>
+                    }
+                </Template>
+            </GridColumn>
+            <GridColumn Field=@nameof(AmAlias.LicName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_LicName")" Width="140">
+                <Template>
+                    @{
+                        var rep = (context as AmAlias);
+                        if (String.IsNullOrEmpty(rep.LicName))
+                        {
+                            <div>@AmLocalizer.GetText("AliasFilter_License_Uebergreifend")</div>
+                        }
+                        else
+                        {
+                            <div>@rep.LicName</div>
+                        }
+                    }
+                </Template>
+        </GridColumn>
+        <GridColumn Field=@nameof(AmAlias.hcmProfilName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_HCMProfile")" Width="140"></GridColumn>
+        
+        <GridColumn Field=@nameof(AmAlias.aliasName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Name")" Width="170"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.aliasAddress) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Street")" Width="160"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.aliasStatusID) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Status")" Width="90">
+            <Template>
+                @{
+                    var rep = (context as AmAlias);
+                    <div>@AmLocalizer.GetText(AmEnums.AliasStatusDic[rep.aliasStatusID])</div>
+                }
+            </Template>
+            </GridColumn>
+        <GridColumn Field=@nameof(AmAlias.AuthDate) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_CreatedOn")" Type="ColumnType.DateTime"  Width="110"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.AuthFullName) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_CreatedBy")"  Width="120"></GridColumn>
+        <GridColumn Field=@nameof(AmAlias.WaitingForAuth) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Wait4Auth")" DisplayAsCheckBox="true"  Width="120"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
+@if (_showAliasInfoPopUp)
+{
+    <CascadingValue Value="@CurrentUserLogin" Name="CurrentUserLogin">
+    <CascadingValue Value="@VgsAccountId" Name="VgsAccountId">
+        <AliasInfoPopUp @bind-ShowModal="_showAliasInfoPopUp" OnDialogClosed=@LoadAliasList AliasId="_currentAliasId"></AliasInfoPopUp> 
+    </CascadingValue>
+    </CascadingValue>
+}
+
+@code {
+
+    [Inject] private IAliasManager AliasService { get; set; }
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
+    [Inject] private ILogger<AliasGrid> _logger { get; set; }
+
+    
+    [Parameter] public string CurrentUserLogin { get; set; }
+    [Parameter] public string VgsAccountId { get; set; }
+    [Parameter] public AmAliasFilter InputFilter { get; set; }    
+
+
+    protected List<AmAlias> AliasList { get; set; }
+    protected int _loadingStatus { get; set; }
+    protected UiMessages Messages { get; set; }
+
+    private AmAliasFilter _inputFilter { get; set; }
+    private int _currentAliasId { get; set; }
+    private bool _showAliasInfoPopUp { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Messages = new UiMessages();
+        
+    }
+
+     protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+        try
+        {
+
+            Messages.List.Clear();
+            _loadingStatus = 0;
+            if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
+            {
+                _inputFilter = ObjHelper.Clone(InputFilter);
+                await LoadAliasList();
+            }
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@AmLocalizer.GetText("MsgPanel_Error_Title"),ex.Message, showDetail: true);
+            _loadingStatus = 2;
+        }
+    }
+
+    public async Task LoadAliasList()
+    {       
+        AliasList = await AliasService.GetByFilterAsync(InputFilter.Name, InputFilter.Street,"1,2",-100,false, VgsAccountId);
+             
+    }
+
+    private void ShowAliasInfo(int aliasId)
+    {
+        _currentAliasId = aliasId;
+        _showAliasInfoPopUp = true;
+    }
+}
+

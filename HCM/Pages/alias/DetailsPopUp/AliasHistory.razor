@@ -1,0 +1,27 @@
+﻿<div>
+
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-xl-12">
+
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-11  mb-3">
+
+                            <h5 class="card-title mb-3">@AmLocalizer.GetText("AliasInfo.Tab1.Header")</h5>
+                            <AliasProtocol/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@code {
+     [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
+}

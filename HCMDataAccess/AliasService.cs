@@ -22,18 +22,19 @@ namespace HCMDataAccess
         }
 
 
-        public async Task<List<AmAlias>> GetByFilterAsync(AmAliasFilter filter, int userId)
+        public async Task<List<AmAlias>> GetByFilterAsync(string aliasName, string alisStreet, string profilesCSV,
+            int statusId, bool waitAuth, string accId)
         {
-            string sql = "[dbo].[Alias_List]";
+            string sql = "[dbo].[Alias_List_HCM]";
 
             var p = new DynamicParameters();
-            //p.Add("UserID", userId);
-            //p.Add("Status", filter.StatusId);          //-100 => all
-            //p.Add("AliasName", filter.Name);
-            //p.Add("Address", filter.Street);
-            //p.Add("LicID", -1);                     // -1 => all
-            //p.Add("WaitAuth", filter.WaitAuth);
-            //p.Add("APPID", filter.LicenseId);       // "-1" => all; -10: uebergreifend
+
+            p.Add("Status", statusId);          //-100 => all
+            p.Add("AliasName", aliasName);
+            p.Add("Address", alisStreet);
+                              
+            p.Add("WaitAuth", waitAuth);
+            p.Add("licenseTable", profilesCSV);      
 
             using (var connection = new SqlConnection(_sqlConnStr))
             {
@@ -56,6 +57,7 @@ namespace HCMDataAccess
                 return result;
             }
         }
+        
         public async Task<List<AmAliasProtocol>> ProtocolGetWaitingByAliasIdAsync(int aliasId)
         {
             string sql = "[dbo].[pAliasHistory_GetWaitingAuthByAliasId]";
@@ -84,20 +86,22 @@ namespace HCMDataAccess
                 return result.AsList<AmAliasProtocol>();
             }
         }
-        public async Task<List<AmAliasReport>> ReportGetByFilterAsync(AmAliasFilter filter, int userId)
+
+        public async Task<List<AmAliasReport>> ReportGetByFilterAsync(DateTime von, DateTime bis, bool allTime, 
+                string aliasName, string alisStreet, string profilesCSV, string accId)
         {
-            string sql = "[CLOUD].[Alias_Report_Grouped]";
+            string sql = "[dbo].[Alias_Report_Grouped_HCM]";
 
             var p = new DynamicParameters();
 
-            p.Add("von", filter.Von);
-            p.Add("bis", filter.Bis);
-            p.Add("allTime", filter.AllTime);
-            p.Add("LizID", -1);                     // -1 => all
-            p.Add("AliasName", filter.Name);
-            p.Add("AliasStreet", filter.Street);
-            p.Add("callerID", userId);
-            p.Add("APPID", filter.LicenseId);       // "-1" => all; -10: uebergreifend
+            p.Add("von", von);
+            p.Add("bis", bis);
+            p.Add("allTime", allTime);
+           
+            p.Add("AliasName", aliasName);
+            p.Add("AliasStreet", alisStreet);
+           
+            p.Add("licenseTable", profilesCSV);    
 
             using (var connection = new SqlConnection(_sqlConnStr))
             {
@@ -111,15 +115,16 @@ namespace HCMDataAccess
 
 
 
-        public async Task ReActivateAsync(int aliasId, string reason, int callerId)
+        public async Task ReActivateAsync(int aliasId, string reason, string callerLogin)
         {
             
             string sql = "[dbo].[AliasProtocol_ReActiveAction]";
 
             var p = new DynamicParameters();
-            p.Add("userID", callerId);
+            p.Add("userID", -10);
             p.Add("aliasID", aliasId);
             p.Add("Description", reason);
+            p.Add("userLogin", "hcm:" + callerLogin);
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -128,29 +133,18 @@ namespace HCMDataAccess
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
                 var returnValue = p.Get<int>("return_value");
-
-                //if (returnValue == 0)
-                //{
-                //    res.Success = true;
-                //}
-                //else
-                //{
-                //    res.Success = false;
-                //    res.ErrMsg = "SQLErr";
-                //}
-
-                //return res;
             }
         }
-        public async Task DeActivateAsync(int aliasId, string reason, int callerId)
+        public async Task DeActivateAsync(int aliasId, string reason, string callerLogin)
         {
             
             string sql = "[dbo].[AliasProtocol_DeActiveAction]";
 
             var p = new DynamicParameters();
-            p.Add("userID", callerId);
+            p.Add("userID", -10);
             p.Add("aliasID", aliasId);
             p.Add("Description", reason);
+            p.Add("userLogin", "hcm:" + callerLogin);
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -159,29 +153,18 @@ namespace HCMDataAccess
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
                 var returnValue = p.Get<int>("return_value");
-
-                //if (returnValue == 0)
-                //{
-                //    res.Success = true;
-                //}
-                //else
-                //{
-                //    res.Success = false;
-                //    res.ErrMsg = "SQLErr";
-                //}
-
-                //return res;
             }
         }
-        public async Task DeleteAsync(int aliasId, string reason, int callerId)
+        public async Task DeleteAsync(int aliasId, string reason, string callerLogin)
         {
             //Result res = new Result();
             string sql = "[dbo].[AliasProtocol_DeteteAction]";
 
             var p = new DynamicParameters();
-            p.Add("userID", callerId);
+            p.Add("userID", -10);
             p.Add("aliasID", aliasId);
             p.Add("Description", reason);
+            p.Add("userLogin", "hcm:" + callerLogin);
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -190,29 +173,18 @@ namespace HCMDataAccess
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
                 var returnValue = p.Get<int>("return_value");
-
-                //if (returnValue == 0)
-                //{
-                //    res.Success = true;
-                //}
-                //else
-                //{
-                //    res.Success = false;
-                //    res.ErrMsg = "SQLErr";
-                //}
-
-                //return res;
             }
         }
-        public async Task AuthorizeAsync(int aliasProtokolId, string reason, int callerId)
+        public async Task AuthorizeAsync(int aliasProtokolId, string reason, string callerLogin)
         {
             //Result res = new Result();
             string sql = "[dbo].[AliasProtocol_CommitAction]";
 
             var p = new DynamicParameters();
-            p.Add("userID", callerId);
+            p.Add("userID", -10);
             p.Add("aliasProtocolID", aliasProtokolId);
             p.Add("AuthNote", reason);
+            p.Add("userLogin", "hcm:" + callerLogin);
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -221,29 +193,18 @@ namespace HCMDataAccess
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
                 var returnValue = p.Get<int>("return_value");
-
-                //if (returnValue == 0)
-                //{
-                //    res.Success = true;
-                //}
-                //else
-                //{
-                //    res.Success = false;
-                //    res.ErrMsg = "SQLErr";
-                //}
-
-                //return res;
             }
         }
-        public async Task DiscardAsync(int aliasProtokolId, string reason, int callerId)
+        public async Task DiscardAsync(int aliasProtokolId, string reason, string callerLogin)
         {
             //Result res = new Result();
             string sql = "[dbo].[AliasProtocol_DiscardAction]";
 
             var p = new DynamicParameters();
-            p.Add("userID", callerId);
+            p.Add("userID", -10);
             p.Add("aliasProtocolID", aliasProtokolId);
             p.Add("AuthNote", reason);
+            p.Add("userLogin", "hcm:" + callerLogin);
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -252,18 +213,6 @@ namespace HCMDataAccess
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
                 var returnValue = p.Get<int>("return_value");
-
-                //if (returnValue == 0)
-                //{
-                //    res.Success = true;
-                //}
-                //else
-                //{
-                //    res.Success = false;
-                //    res.ErrMsg = "SQLErr";
-                //}
-
-                //return res;
             }
         }
 

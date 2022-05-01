@@ -19,6 +19,9 @@ namespace HCMModels
         public int licID { get; set; }
         public string APPID { get; set; }
         public string LicName { get; set; }
+        public string hcmProfilId { get; set; }
+        public string hcmProfilName { get; set; }
+        
         public string AuthFullName { get; set; }
         public DateTime? AuthDate { get; set; }
         public bool WaitingForAuth { get; set; }
@@ -34,7 +37,10 @@ namespace HCMModels
         public string StatusName { get; set; }
         public int InUserID { get; set; }
         public string InFullName { get; set; }
+        public string InUserLogin { get; set; }
+        
         public int AuthUserID { get; set; }
+        public string AuthUserLogin { get; set; }
         public string Description { get; set; }
         public string AuthNote { get; set; }
     }
@@ -46,6 +52,8 @@ namespace HCMModels
         public string aliasAddress { get; set; }
         public int licID { get; set; }
         public string LicName { get; set; }
+        public string hcmProfilId { get; set; }
+        public string hcmProfilName { get; set; }
         public int Acepted { get; set; }
         public int Ignored { get; set; }
     }
@@ -62,8 +70,8 @@ namespace HCMModels
         public string Street { get; set; }
 
         public bool WaitAuth { get; set; }
-        public DateTime Von { get; set; }
-        public DateTime Bis { get; set; }
+        public DateTime Von { get; set; } = DateTime.Today.AddDays(-1);
+        public DateTime Bis { get; set; } = DateTime.Today;
         public bool AllTime { get; set; }
     }
 

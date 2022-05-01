@@ -38,6 +38,11 @@
                                 </div>
 
                                 <div class="row mt-1">
+                                    <div class="col-md-3 font-weight-bold">@AmLocalizer.GetText("AliasList_Content_Column_HCMProfile"):</div>
+                                    <div class="col-md-9">@Item.hcmProfilName</div>
+                                </div>
+
+                                <div class="row mt-1">
                                     <div class="col-md-3 font-weight-bold">@AmLocalizer.GetText("AliasList_Content_Column_CaseId"):</div>
                                     <div class="col-md-9">@((MarkupString)Item.caseUrl)</div>
                                 </div>
@@ -49,6 +54,11 @@
                                 <div class="row mt-1">
                                     <div class="col-md-3 font-weight-bold">@AmLocalizer.GetText("AliasList_Content_Column_Street"):</div>
                                     <div class="col-md-9">@Item.aliasAddress</div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-md-3 font-weight-bold">@AmLocalizer.GetText("AliasList_Content_Column_BelegNr"):</div>
+                                    <div class="col-md-9">@Item.belegNummer</div>
                                 </div>
 
                                 <div class="row mt-3">

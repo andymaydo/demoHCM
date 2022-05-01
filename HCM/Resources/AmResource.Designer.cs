@@ -340,6 +340,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HCM Profil.
+        /// </summary>
+        public static string AliasList_Content_Column_HCMProfile {
+            get {
+                return ResourceManager.GetString("AliasList_Content_Column_HCMProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
         public static string AliasList_Content_Column_Id {
@@ -381,6 +390,15 @@ namespace HCM.Resources {
         public static string AliasList_Content_Column_Street {
             get {
                 return ResourceManager.GetString("AliasList_Content_Column_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erwartet Autorisierung.
+        /// </summary>
+        public static string AliasList_Content_Column_Wait4Auth {
+            get {
+                return ResourceManager.GetString("AliasList_Content_Column_Wait4Auth", resourceCulture);
             }
         }
         

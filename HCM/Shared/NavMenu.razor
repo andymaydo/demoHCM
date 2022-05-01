@@ -32,7 +32,7 @@
                     </li>
 
                      <li class="nav-item" @onclick="ToggleNavMenu">
-                        <NavLink class="nav-link" href="/Alias/List"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Alias"]</NavLink>                            
+                        <NavLink class="nav-link" href="/Alias/"  @onclick:preventDefault @onmousedown="() => expandAlias = !expandAlias" Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Alias"]</NavLink>                            
                     </li>
 
                     <li class="nav-item">
@@ -63,6 +63,22 @@
             </div>
 
         }
+        @if (expandAlias)
+        {
+            <div class="col-md-12">
+               <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="@(NewLocation.Contains("/Alias/List") ? "nav-item-set" : "nav-item")">
+                            <NavLink class="nav-link" href="/Alias/List" Match="NavLinkMatch.Prefix">@Localizer.Str["MainMenu_AliasList"]</NavLink>
+                        </li>
+                        <li class="@(NewLocation.Contains("/Alias/Report") ? "nav-item-set" : "nav-item")">
+                            <NavLink class="nav-link" href="/Alias/Report"  Match="NavLinkMatch.Prefix">@Localizer.Str["MainMenu_AliasReport"]</NavLink>
+                        </li>                       
+                    </ul>
+               </div>
+            </div>
+
+        }
         <div class="col-md-12 text-right">
             <LoginDisplay />
         </div>
@@ -75,6 +91,7 @@
 
     bool collapseNavMenu = true;
     bool expandAdmin = false;
+    bool expandAlias = false;
 
     string baseMenuClass = " navbar-collapse d-xl-inline-flex ";
 

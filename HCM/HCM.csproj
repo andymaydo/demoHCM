@@ -105,7 +105,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AliasManger\AliasManger\AliasManger.csproj" />
     <ProjectReference Include="..\HCMApi\HCMApi.csproj" />
     <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
     <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
@@ -129,7 +128,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Docs\" />
-    <Folder Include="Pages\alias\Report\" />
     <Folder Include="wwwroot\xsl\" />
   </ItemGroup>
 

@@ -16,8 +16,8 @@
 
         <div class="mt-2">
 
-            <SfButton CssClass="e-outline mr-3">@AmLocalizer.GetText("Form_Button_OK")</SfButton>
-            <SfButton CssClass="e-outline" OnClick="OnActionCancel">@AmLocalizer.GetText("Form_Button_Cancel")</SfButton>
+            <SfButton Type="submit" CssClass="e-outline mr-3">@AmLocalizer.GetText("Form_Button_OK")</SfButton>
+            <SfButton Type="button" CssClass="e-outline" OnClick="OnActionCancel">@AmLocalizer.GetText("Form_Button_Cancel")</SfButton>
 
         </div>
     </EditForm>
@@ -31,7 +31,7 @@
     [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
     [Inject] private ILogger<AliasDetailsActionsConfirm> _logger { get; set; }
 
-    [CascadingParameter(Name = "CurrentUserId")] public int currenrUserId { get; set; }
+    [CascadingParameter(Name = "CurrentUserLogin")] public string CurrentUserLogin { get; set; }
     [CascadingParameter] public AmAlias Aliastem { get; set; }
 
     [Parameter] public string ActionType { get; set; }
@@ -40,9 +40,6 @@
     [Parameter] public EventCallback<bool> ShowFormChanged { get; set; }
     [Parameter] public EventCallback OnAliasStatusChange { get; set; }
 
-
-    //[CascadingParameter] public AliasInfoPopUp<AliasContent> Parent1 { get; set; }
-    //[CascadingParameter] public AliasInfoPopUp<AliasReportContent> Parent2 { get; set; }
 
     [Display(Name = "AliasDetail_ActionReason", ResourceType = typeof(AmResource))]
     [Required(ErrorMessageResourceName = "Form_Field_Required", ErrorMessageResourceType = typeof(AmResource))]
@@ -53,12 +50,6 @@
     {
         ShowForm = false;
         await ShowFormChanged.InvokeAsync(ShowForm);
-
-        //if(Parent1 != null)
-        //   await Parent1.ReloadItem();
-
-        //if (Parent2 != null)
-        //    await Parent2.ReloadItem();
     }
 
     protected async Task HandleValidSubmit()
@@ -70,27 +61,27 @@
             {
                 case "Reactivate":
 
-                    await AliasService.ReActivateAsync(Aliastem.aliasID, ActionsReason, currenrUserId);
+                    await AliasService.ReActivateAsync(Aliastem.aliasID, ActionsReason, CurrentUserLogin);
                     break;
 
                 case "Deactivate":
 
-                    await AliasService.DeActivateAsync(Aliastem.aliasID, ActionsReason, currenrUserId);
+                    await AliasService.DeActivateAsync(Aliastem.aliasID, ActionsReason, CurrentUserLogin);
                     break;
 
                 case "Delete":
 
-                    await AliasService.DeleteAsync(Aliastem.aliasID, ActionsReason, currenrUserId);
+                    await AliasService.DeleteAsync(Aliastem.aliasID, ActionsReason, CurrentUserLogin);
                     break;
 
                 case "Authorize":
 
-                    await AliasService.AuthorizeAsync(ProtocolId, ActionsReason, currenrUserId);
+                    await AliasService.AuthorizeAsync(ProtocolId, ActionsReason, CurrentUserLogin);
                     break;
 
                 case "Cancel":
 
-                    await AliasService.DiscardAsync(ProtocolId, ActionsReason, currenrUserId);
+                    await AliasService.DiscardAsync(ProtocolId, ActionsReason, CurrentUserLogin);
                     break;
             }
 

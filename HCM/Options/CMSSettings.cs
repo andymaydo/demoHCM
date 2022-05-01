@@ -8,6 +8,7 @@ namespace HCM.Options
     public class CMSSettings
     {
         public string CmsDocPath { get; set; }
+        public string VGSAccId { get; set; }
         public string AliasApiUrl { get; set; }
         public string AliasApiUsr { get; set; }
         public string AliasApiPwd { get; set; }
