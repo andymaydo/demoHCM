@@ -34,12 +34,12 @@ namespace HCMDataAccess
          
             
         }
-        public  List<ProfileModel> GetProfiles(int appID)
+        public  List<ProfileModel> GetProfiles(int? contactID)
         {
-            var procedure = "Profile_GetByApp";
+            var procedure = "Profile_GetByContact";
             var _params = new DynamicParameters();
 
-            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
+            _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: contactID);
 
 
             using (var conn = new SqlConnection(_config.GetConnectionString("Default")))

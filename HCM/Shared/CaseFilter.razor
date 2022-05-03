@@ -89,7 +89,7 @@
                         <div class="row mb-2">
                             <label class="col-lg-4 text-lg-end">@Localizer.Str["Label_Filter_Report_OnlyOwn"]</label>
                             <div class="col-lg-8">
-                                <SfCheckBox @bind-Checked="_localModel.ShowOnlyOwnCases" TChecked="bool"></SfCheckBox>
+                                <SfCheckBox @bind-Checked="_localModel.ShowOnlyOwnCases" TChecked="bool" @onchange="InitProfileList"></SfCheckBox>
                             </div>
                         </div> 
                     }                    
@@ -125,6 +125,7 @@
     [Inject] private ILogger<CaseFilter> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
 
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public CaseFilterModel InputModel { get; set; }
     [Parameter] public string Culture  { get; set; }
     [Parameter] public EventCallback<CaseFilterModel> OnValidSubmit { get; set; }
@@ -194,7 +195,7 @@
         {
             statusList = FiltersDataService.GetStatuses4Application(gateId);
         }
-       
+
         foreach (FiltersModels.CaseStatusModel status in statusList)
         {
             status.CaseStatus = Localizer.Str["Case_Status_" + status.CaseStatusID.ToString()];
@@ -224,11 +225,17 @@
         GateList =  FiltersDataService.GetGates();
         int intdpfGate = 1;
 
-        ProfileList =  FiltersDataService.GetProfiles(intdpfGate);
+        InitProfileList();
         CategoryList =  FiltersDataService.GetCategories(intdpfGate);
         ResultList =  GetLocalizedResultLis(intdpfGate);
         StatusList =  GetLocalizedStatusLis(intdpfGate);
 
         _comboLoaded = true;
+    }
+
+    protected void InitProfileList()
+    {
+        int? contactId = _localModel.ShowOnlyOwnCases ? CurrentContactId : null;
+        ProfileList =  FiltersDataService.GetProfiles(contactId);
     }
 }

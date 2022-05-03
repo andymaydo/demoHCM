@@ -289,6 +289,42 @@ it - after verification of the hit - in the menu
   <data name="AliasApiSuccess" xml:space="preserve">
     <value>Alias created successfuly</value>
   </data>
+  <data name="AliasFilter_AllTime" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="AliasFilter_Btn_Submit" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="AliasFilter_CardTitle" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="AliasFilter_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="AliasFilter_License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AliasFilter_License_SelectAll" xml:space="preserve">
+    <value>all</value>
+  </data>
+  <data name="AliasFilter_License_Uebergreifend" xml:space="preserve">
+    <value>cross-profile</value>
+  </data>
+  <data name="AliasFilter_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AliasFilter_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="AliasFilter_Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="AliasFilter_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="AliasFilter_WaitAuth" xml:space="preserve">
+    <value>Waiting for authorization</value>
+  </data>
   <data name="Button_Add" xml:space="preserve">
     <value>Add</value>
   </data>

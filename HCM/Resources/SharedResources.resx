@@ -289,6 +289,42 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="AliasApiSuccess" xml:space="preserve">
     <value>Alias erfolgreich erstellt</value>
   </data>
+  <data name="AliasFilter_AllTime" xml:space="preserve">
+    <value>Gesamt bisher</value>
+  </data>
+  <data name="AliasFilter_Btn_Submit" xml:space="preserve">
+    <value>Anzeigen</value>
+  </data>
+  <data name="AliasFilter_CardTitle" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="AliasFilter_From" xml:space="preserve">
+    <value>Von</value>
+  </data>
+  <data name="AliasFilter_License" xml:space="preserve">
+    <value>Liz-ID</value>
+  </data>
+  <data name="AliasFilter_License_SelectAll" xml:space="preserve">
+    <value>alle</value>
+  </data>
+  <data name="AliasFilter_License_Uebergreifend" xml:space="preserve">
+    <value>übergreifend</value>
+  </data>
+  <data name="AliasFilter_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AliasFilter_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="AliasFilter_Street" xml:space="preserve">
+    <value>Straße</value>
+  </data>
+  <data name="AliasFilter_To" xml:space="preserve">
+    <value>Bis</value>
+  </data>
+  <data name="AliasFilter_WaitAuth" xml:space="preserve">
+    <value>Erwartet Autorisierung</value>
+  </data>
   <data name="Button_Add" xml:space="preserve">
     <value>anlegen</value>
   </data>

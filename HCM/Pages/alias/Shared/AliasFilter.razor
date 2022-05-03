@@ -1,0 +1,117 @@
+﻿
+
+@if (_loadingStatus == 0)
+{
+    <p><em>Loading...</em></p>
+}
+
+@if (_loadingStatus == 1)
+{
+ 
+    <EditForm Model="Filter" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="container-fluid mt-3 itemDetail e-small">
+               
+            <div class="row">
+                <div class="col-lg-4">
+                    <label class="form-label">@Localizer.Str["AliasFilter_Name"]</label>
+                    <SfTextBox @bind-Value="Filter.Name" />
+                    <ValidationMessage For="@(() => Filter.Name)" />
+                </div>
+
+                <div class="col-lg-4">
+                    <label class="form-label">@Localizer.Str["AliasFilter_Street"]</label>
+                    <SfTextBox @bind-Value="Filter.Street" />
+                    <ValidationMessage For="@(() => Filter.Street)" />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4">
+                    <label class="form-label">@Localizer.Str["AliasFilter_License"]</label>
+                    <SfComboBox TValue="string" TItem="FiltersModels.ProfileModel" @bind-Value='Filter.LicenseId'  Placeholder="@Localizer.Str["Value_All_Text"]" DataSource="@ProfileList">
+                        <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
+                    </SfComboBox>        
+                    <ValidationMessage For="@(() => Filter.LicenseId)" />
+                </div>
+
+                <div class="col-lg-4">
+                    <label class="form-label">@Localizer.Str["AliasFilter_Status"]</label>
+                    <SfComboBox TValue="int" TItem="AmAliasStatusItem" DataSource="@ListOfStatuses" @bind-value="@Filter.StatusId">
+                        <ComboBoxFieldSettings Value="StatusId" Text="StatusName"></ComboBoxFieldSettings>                                
+                    </SfComboBox>
+                    <ValidationMessage For="@(() => Filter.StatusId)" />
+                </div>
+
+                <div class="col-lg-4 form-inline d-flex align-bottom">
+                    <SfCheckBox Label="@Localizer.Str["AliasFilter_WaitAuth"]" @bind-Checked="Filter.WaitAuth"></SfCheckBox>
+                </div>
+            </div>
+
+     
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <SfButton type="submit" IsPrimary="true">@Localizer.Str["AliasFilter_Btn_Submit"]</SfButton>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+  
+}
+
+
+
+@code {
+    [Inject] private IFiltersData FiltersDataService { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
+    [Inject] private ILogger<AliasFilter> _logger { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public EventCallback<AmAliasFilter> OnSubmit { get; set; }
+
+    protected AmAliasFilter Filter { get; set; }
+    protected List<FiltersModels.ProfileModel> ProfileList;
+    protected List<AmAliasStatusItem> ListOfStatuses;
+    protected int _loadingStatus { get; set; }
+    protected UiMessages Messages { get; set; }
+
+
+
+    protected override void OnInitialized()
+    {
+
+        base.OnInitialized();
+
+
+        try
+        {
+            _loadingStatus = 0;     //start loading    
+
+            Filter = new AmAliasFilter();
+
+            ListOfStatuses = AmEnums.AliasStatusDic.Select(kvp => new AmAliasStatusItem { StatusId = kvp.Key, StatusName = AmLocalizer.GetText(kvp.Value) }).ToList();
+            Filter.StatusId = -100;
+
+            ProfileList =  FiltersDataService.GetProfiles(CurrentContactId);
+            _loadingStatus = 1; //loading finished
+
+        }
+        catch (Exception ex)
+        {
+            _loadingStatus = 2; //loading failed
+            _logger.LogDebug(ex, ex.StackTrace);
+            _logger.LogError(ex.Message);
+        }
+
+    }
+
+    protected void HandleValidSubmit()
+    {
+        
+        OnSubmit.InvokeAsync(Filter);
+    }
+}

@@ -10,7 +10,7 @@ namespace HCMDataAccess
 
         //Task<List<FiltersModels.GateModel>> GetGates();
         List<FiltersModels.GateModel> GetGates();
-        List<FiltersModels.ProfileModel> GetProfiles(int appID);
+        List<FiltersModels.ProfileModel> GetProfiles(int? contactID);
         List<FiltersModels.CaseResultModel> GetResults(int appID);
         List<FiltersModels.CaseStatusModel> GetStatuses();
 

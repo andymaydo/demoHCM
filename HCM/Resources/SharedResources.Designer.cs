@@ -563,6 +563,114 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gesamt bisher.
+        /// </summary>
+        public static string AliasFilter_AllTime {
+            get {
+                return ResourceManager.GetString("AliasFilter_AllTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzeigen.
+        /// </summary>
+        public static string AliasFilter_Btn_Submit {
+            get {
+                return ResourceManager.GetString("AliasFilter_Btn_Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string AliasFilter_CardTitle {
+            get {
+                return ResourceManager.GetString("AliasFilter_CardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Von.
+        /// </summary>
+        public static string AliasFilter_From {
+            get {
+                return ResourceManager.GetString("AliasFilter_From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liz-ID.
+        /// </summary>
+        public static string AliasFilter_License {
+            get {
+                return ResourceManager.GetString("AliasFilter_License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to alle.
+        /// </summary>
+        public static string AliasFilter_License_SelectAll {
+            get {
+                return ResourceManager.GetString("AliasFilter_License_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to übergreifend.
+        /// </summary>
+        public static string AliasFilter_License_Uebergreifend {
+            get {
+                return ResourceManager.GetString("AliasFilter_License_Uebergreifend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string AliasFilter_Name {
+            get {
+                return ResourceManager.GetString("AliasFilter_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string AliasFilter_Status {
+            get {
+                return ResourceManager.GetString("AliasFilter_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straße.
+        /// </summary>
+        public static string AliasFilter_Street {
+            get {
+                return ResourceManager.GetString("AliasFilter_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bis.
+        /// </summary>
+        public static string AliasFilter_To {
+            get {
+                return ResourceManager.GetString("AliasFilter_To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erwartet Autorisierung.
+        /// </summary>
+        public static string AliasFilter_WaitAuth {
+            get {
+                return ResourceManager.GetString("AliasFilter_WaitAuth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to anlegen.
         /// </summary>
         public static string Button_Add {

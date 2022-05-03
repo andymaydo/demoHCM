@@ -1,14 +1,21 @@
 ﻿@page "/Alias/List"
 @using Syncfusion.Blazor.Grids
 @using System.Security.Claims
+@using HCM.Pages.alias.Shared
 
 
 
-        <AliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AliasGrid>
+<h6>@Localizer.Str["AliasFilter_CardTitle"]</h6>
+<hr class="mb-2"/>
+
+<AliasFilter></AliasFilter>
+
+<AliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AliasGrid>
 
 
 
 @code {
+    [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] public CMSSettings cmsSettings { get; set; }
 
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
