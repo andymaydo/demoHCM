@@ -2,14 +2,19 @@
 
 <CaseFilter InputModel="@InputFilter" Culture="@Culture" OnValidSubmit="ShowReport"></CaseFilter>
 
-@if(ReportType == "Alias")
+
+@if (showReport)
 {
-    <CaseGridAliasOnly InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGridAliasOnly>    
+    @if(ReportType == "Alias")
+    {
+        <CaseGridAliasOnly InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGridAliasOnly>    
+    }
+    else
+    {
+        <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGrid>   
+    }
 }
-else
-{
-    <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGrid>   
-}
+
 
 
 @code {
@@ -24,11 +29,13 @@ else
     [Parameter] public EventCallback<int> OnCaseDetailsClicked { get; set; }
 
     protected CaseFilterModel SubmitedFilter { get; set; }
+    protected bool showReport { get; set; }
 
 
 
     protected override void OnInitialized()
     {
+        showReport = false;
         if (ExecOnInit)
         {
             ShowReport(InputFilter);
@@ -37,6 +44,7 @@ else
 
     protected void  ShowReport(CaseFilterModel filter)
     {
+        showReport = true;
         SubmitedFilter = ObjHelper.Clone<CaseFilterModel>(filter);       
 
     }

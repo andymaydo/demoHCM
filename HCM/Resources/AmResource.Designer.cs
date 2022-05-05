@@ -178,7 +178,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter.
+        ///   Looks up a localized string similar to Filtereinstellungen.
         /// </summary>
         public static string AliasFilter_CardTitle {
             get {
@@ -187,7 +187,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Von.
+        ///   Looks up a localized string similar to von.
         /// </summary>
         public static string AliasFilter_From {
             get {
@@ -250,7 +250,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bis.
+        ///   Looks up a localized string similar to bis.
         /// </summary>
         public static string AliasFilter_To {
             get {

@@ -4,18 +4,25 @@
 @using HCM.Pages.alias.Shared
 
 
+<h3>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h3>
 
-<h6>@Localizer.Str["AliasFilter_CardTitle"]</h6>
+<h6>@AmLocalizer.GetText("AliasFilter_CardTitle")</h6>
 <hr class="mb-2"/>
 
-<AliasFilter></AliasFilter>
+<AliasFilter ShowDateSelector="false" OnSubmit="ShowReport"></AliasFilter>
 
-<AliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AliasGrid>
+
+@if(showReport)
+{
+    <div class="blue_bg"></div>
+    <h5>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h5>
+    <AliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AliasGrid>
+}
 
 
 
 @code {
-    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
     [Inject] public CMSSettings cmsSettings { get; set; }
 
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
@@ -23,6 +30,7 @@
     protected AmAliasFilter InputFilter { get; set; } 
     protected string CurrentUserLogin { get; set; }
     protected string VgsAccountId { get; set; }
+    protected bool showReport { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -30,6 +38,12 @@
         InputFilter = new AmAliasFilter();
         CurrentUserLogin = CurrentPrincipal.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value.ToString();
         VgsAccountId = cmsSettings.VGSAccId;
+        
+    }
 
+    protected void  ShowReport(AmAliasFilter filter)
+    {
+        showReport = true;
+        InputFilter = filter;       
     }
 }

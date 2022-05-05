@@ -1,4 +1,4 @@
-﻿
+﻿@using AutoMapper
 
 @if (_loadingStatus == 0)
 {
@@ -15,52 +15,98 @@
                
             <div class="row">
                 <div class="col-lg-4">
-                    <label class="form-label">@Localizer.Str["AliasFilter_Name"]</label>
-                    <SfTextBox @bind-Value="Filter.Name" />
-                    <ValidationMessage For="@(() => Filter.Name)" />
+                    <div class="row mb-2">
+                        <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_Name"]</label>
+                        <div class="col-lg-9">
+                            <SfTextBox @bind-Value="Filter.Name" ShowClearButton="true"/>
+                            <ValidationMessage For="@(() => Filter.Name)" />
+                        </div>
+                    </div>       
+                    
+                    <div class="row mb-2">
+                        <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_Street"]</label>
+                        <div class="col-lg-9">
+                            <SfTextBox @bind-Value="Filter.Street" ShowClearButton="true"/>
+                            <ValidationMessage For="@(() => Filter.Street)" />
+                        </div>
+                    </div>   
+
                 </div>
 
                 <div class="col-lg-4">
-                    <label class="form-label">@Localizer.Str["AliasFilter_Street"]</label>
-                    <SfTextBox @bind-Value="Filter.Street" />
-                    <ValidationMessage For="@(() => Filter.Street)" />
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-4">
-                    <label class="form-label">@Localizer.Str["AliasFilter_License"]</label>
-                    <SfComboBox TValue="string" TItem="FiltersModels.ProfileModel" @bind-Value='Filter.LicenseId'  Placeholder="@Localizer.Str["Value_All_Text"]" DataSource="@ProfileList">
-                        <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
-                    </SfComboBox>        
-                    <ValidationMessage For="@(() => Filter.LicenseId)" />
-                </div>
-
-                <div class="col-lg-4">
-                    <label class="form-label">@Localizer.Str["AliasFilter_Status"]</label>
-                    <SfComboBox TValue="int" TItem="AmAliasStatusItem" DataSource="@ListOfStatuses" @bind-value="@Filter.StatusId">
-                        <ComboBoxFieldSettings Value="StatusId" Text="StatusName"></ComboBoxFieldSettings>                                
-                    </SfComboBox>
-                    <ValidationMessage For="@(() => Filter.StatusId)" />
+                    <div class="row mb-2">
+                        <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_License"]</label>
+                        <div class="col-lg-9">
+                            <SfComboBox TValue="string" TItem="FiltersModels.ProfileModel" @bind-Value='Filter.LicenseId' ShowClearButton="false"  DataSource="@ProfileList">
+                                <ComboBoxFieldSettings Text="ProfileName" Value="ProfileID"></ComboBoxFieldSettings>
+                            </SfComboBox>        
+                            <ValidationMessage For="@(() => Filter.LicenseId)" />
+                        </div>
+                    </div>    
+                    <div class="row mb-2">
+                        <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_Status"]</label>
+                        <div class="col-lg-9">
+                           <SfComboBox TValue="int" TItem="AmAliasStatusItem" DataSource="@ListOfStatuses" ShowClearButton="false" @bind-value="@Filter.StatusId">
+                                <ComboBoxFieldSettings Value="StatusId" Text="StatusName"></ComboBoxFieldSettings>                                
+                            </SfComboBox>
+                            <ValidationMessage For="@(() => Filter.StatusId)" />
+                        </div>
+                    </div>                                        
                 </div>
 
-                <div class="col-lg-4 form-inline d-flex align-bottom">
-                    <SfCheckBox Label="@Localizer.Str["AliasFilter_WaitAuth"]" @bind-Checked="Filter.WaitAuth"></SfCheckBox>
-                </div>
-            </div>
+                @if (ShowDateSelector)
+                {
+                    <div class="col-lg-4">
+                        <div class="row mb-2">
+                            <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_From"]</label>
+                            <div class="col-lg-9">
+                               <SfDatePicker TValue="DateTime" @bind-Value='Filter.Von' StrictMode=true ShowTodayButton="true"></SfDatePicker>
+                               <ValidationMessage For="@(() => Filter.Von)" />
+                            </div> 
+                        </div> 
+                        <div class="row mb-2">
+                            <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_To"]</label>
+                            <div class="col-lg-9">
+                               <SfDatePicker TValue="DateTime" @bind-Value='Filter.Bis' StrictMode=true ShowTodayButton="true"></SfDatePicker>
+                               <ValidationMessage For="@(() => Filter.Bis)" />
+                            </div> 
+                        </div>   
 
-     
+                        <div class="row mb-2">
+                            <div class="col-lg-3 form-label text-lg-end"></div>
+                            <div class="col-lg-9">
+                                <SfCheckBox Label="@Localizer.Str["AliasFilter_AllTime"]" @bind-Checked="Filter.AllTime"></SfCheckBox>
+                            </div>
+                        </div>                                             
+                    </div>                    
+                }
+                else
+                {
+                    <div class="col-lg-4">
+                        <div class="row mb-2">
+                            <div class="col-lg-12">
+                                <SfCheckBox Label="@Localizer.Str["AliasFilter_WaitAuth"]" @bind-Checked="Filter.WaitAuth"></SfCheckBox>
+                            </div>
+                        </div>                                        
+                    </div>                    
+                }
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <SfButton type="submit" IsPrimary="true">@Localizer.Str["AliasFilter_Btn_Submit"]</SfButton>
-                </div>
+
+            </div>            
+        </div>
+
+        <hr class="mt-2" />
+
+        <div class="row py-3">
+            <div class="col-lg">
+                <SfButton type="submit" IsPrimary="true">@Localizer.Str["Button_Filter"]</SfButton>                
             </div>
         </div>
 
-    </EditForm>
-  
+    </EditForm>          
+
 }
+<UiMessageBox Data="Messages.List" />
 
 
 
@@ -69,8 +115,10 @@
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
     [Inject] private ILogger<AliasFilter> _logger { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public bool ShowDateSelector { get; set; }
     [Parameter] public EventCallback<AmAliasFilter> OnSubmit { get; set; }
 
     protected AmAliasFilter Filter { get; set; }
@@ -85,7 +133,7 @@
     {
 
         base.OnInitialized();
-
+        Messages = new UiMessages();
 
         try
         {
@@ -97,6 +145,10 @@
             Filter.StatusId = -100;
 
             ProfileList =  FiltersDataService.GetProfiles(CurrentContactId);
+            ProfileList.Insert(0, new FiltersModels.ProfileModel() 
+                { ProfileID = -100, ProfileName = @Localizer.Str["Value_All_Text"] });
+            Filter.LicenseId = "-100";
+
             _loadingStatus = 1; //loading finished
 
         }
@@ -105,13 +157,23 @@
             _loadingStatus = 2; //loading failed
             _logger.LogDebug(ex, ex.StackTrace);
             _logger.LogError(ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"]);
         }
 
     }
 
     protected void HandleValidSubmit()
     {
-        
-        OnSubmit.InvokeAsync(Filter);
+        var _filter = ObjHelper.Clone(Filter);
+        if (_filter.LicenseId == "-100")
+        {
+            var profileIDArray = ProfileList?.Select(x => x.ProfileID.ToString()).ToArray();
+            if(profileIDArray != null)
+            {
+                _filter.LicenseId = String.Join(",", profileIDArray);
+            }
+            
+        }
+        OnSubmit.InvokeAsync(_filter);
     }
 }
