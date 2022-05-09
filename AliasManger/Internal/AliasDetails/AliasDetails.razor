@@ -1,0 +1,89 @@
+﻿@using Syncfusion.Blazor.Buttons
+
+<div class="">
+
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-xl-12">
+
+            @if (Item != null)
+            {  
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-11  mb-3">
+
+                        <div class="am-form-header mb-3">@AmLocalizer.GetText("AliasDetail_Header")</div>
+                        <div class="row">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_Id"):</div>
+                            <div class="col-md-9">@Item.aliasID</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_Status"):</div>
+                            <div class="col-md-9">@AmLocalizer.GetText((@AmEnums.AliasStatusDic[Item.aliasStatusID]))</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_LicName"):</div>
+                            <div class="col-md-9">
+                                @if (String.IsNullOrEmpty(Item.LicName))
+                                {
+                                    @AmLocalizer.GetText("AliasFilter_License_Uebergreifend");
+                                }
+                                else
+                                {
+                                    @Item.LicName;
+                                }
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_HCMProfile"):</div>
+                            <div class="col-md-9">@Item.hcmProfilName</div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_CaseId"):</div>
+                            <div class="col-md-9">@((MarkupString)Item.caseUrl)</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_Name"):</div>
+                            <div class="col-md-9">@Item.aliasName</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_Street"):</div>
+                            <div class="col-md-9">@Item.aliasAddress</div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-md-3 am-label">@AmLocalizer.GetText("AliasList_Content_Column_BelegNr"):</div>
+                            <div class="col-md-9">@Item.belegNummer</div>
+                        </div>
+
+                        <div class="row mt-3">
+
+                            <AliasDetailsActions OnAliasStatusChange="@(async() => await OnAliasStatusChange.InvokeAsync())" />
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+            else
+            {
+
+                <div class="text-center"><em>@AmLocalizer.GetText("Component_Status_LoadingFailed")</em></div>
+            }
+            
+        </div>
+
+    </div>
+
+</div>
+
+@code {
+
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
+
+
+    [CascadingParameter] public AmAlias Item { get; set; }
+    [Parameter] public EventCallback OnAliasStatusChange { get; set; }
+
+}
