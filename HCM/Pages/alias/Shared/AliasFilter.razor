@@ -1,4 +1,6 @@
-﻿@using AutoMapper
+﻿@using AliasManger.Models
+@using AliasManger.Interfaces
+@using AutoMapper
 
 @if (_loadingStatus == 0)
 {
@@ -60,14 +62,14 @@
                         <div class="row mb-2">
                             <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_From"]</label>
                             <div class="col-lg-9">
-                               <SfDatePicker TValue="DateTime" @bind-Value='Filter.Von' StrictMode=true ShowTodayButton="true"></SfDatePicker>
+                               <SfDatePicker TValue="DateTime" @bind-Value='Filter.Von' StrictMode=true ShowTodayButton="true" Enabled="@(!Filter.AllTime)"></SfDatePicker>
                                <ValidationMessage For="@(() => Filter.Von)" />
                             </div> 
                         </div> 
                         <div class="row mb-2">
                             <label class="col-lg-3 form-label text-lg-end">@Localizer.Str["AliasFilter_To"]</label>
                             <div class="col-lg-9">
-                               <SfDatePicker TValue="DateTime" @bind-Value='Filter.Bis' StrictMode=true ShowTodayButton="true"></SfDatePicker>
+                               <SfDatePicker TValue="DateTime" @bind-Value='Filter.Bis' StrictMode=true ShowTodayButton="true" Enabled="@(!Filter.AllTime)"></SfDatePicker>
                                <ValidationMessage For="@(() => Filter.Bis)" />
                             </div> 
                         </div>   

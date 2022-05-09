@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.IO;
-using DotNetOpenMail;
+
 using System.Reflection;
 using System.Data.SqlClient;
 using Common;

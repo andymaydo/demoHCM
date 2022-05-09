@@ -62,8 +62,6 @@ namespace HCMModels
     {
         
         public string LicenseId { get; set; }
-        //public string CloudAppId { get; set; }
-        //public string HcmProfileId { get; set; }
         public int StatusId { get; set; }
 
         public string Name { get; set; }

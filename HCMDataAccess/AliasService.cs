@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HCMModels;
+using AliasManger.Interfaces;
+using AliasManger.Models;
 
 namespace HCMDataAccess
 {
@@ -124,7 +126,7 @@ namespace HCMDataAccess
             p.Add("userID", -10);
             p.Add("aliasID", aliasId);
             p.Add("Description", reason);
-            p.Add("userLogin", "hcm:" + callerLogin);
+            p.Add("userLogin", callerLogin + "@hcm");
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -144,7 +146,7 @@ namespace HCMDataAccess
             p.Add("userID", -10);
             p.Add("aliasID", aliasId);
             p.Add("Description", reason);
-            p.Add("userLogin", "hcm:" + callerLogin);
+            p.Add("userLogin", callerLogin + "@hcm");
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -164,7 +166,7 @@ namespace HCMDataAccess
             p.Add("userID", -10);
             p.Add("aliasID", aliasId);
             p.Add("Description", reason);
-            p.Add("userLogin", "hcm:" + callerLogin);
+            p.Add("userLogin", callerLogin + "@hcm");
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -184,7 +186,7 @@ namespace HCMDataAccess
             p.Add("userID", -10);
             p.Add("aliasProtocolID", aliasProtokolId);
             p.Add("AuthNote", reason);
-            p.Add("userLogin", "hcm:" + callerLogin);
+            p.Add("userLogin", callerLogin + "@hcm");
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))
@@ -204,7 +206,7 @@ namespace HCMDataAccess
             p.Add("userID", -10);
             p.Add("aliasProtocolID", aliasProtokolId);
             p.Add("AuthNote", reason);
-            p.Add("userLogin", "hcm:" + callerLogin);
+            p.Add("userLogin", callerLogin + "@hcm");
             p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (var connection = new SqlConnection(_sqlConnStr))

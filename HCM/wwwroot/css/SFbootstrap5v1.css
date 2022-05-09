@@ -3,7 +3,7 @@
 .e-control,
 .e-css {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 12px;
+  /* font-size: 12px; */
   font-weight: 400; }
 
 .e-error {

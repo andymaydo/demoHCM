@@ -1,19 +1,35 @@
 ﻿@page "/Alias/Report"
 @using Syncfusion.Blazor.Grids
 @using System.Security.Claims
+@using HCM.Pages.alias.Shared
+@using AliasManger
+@using AliasManger.Interfaces
+@using AliasManger.Models
 
 
-<AliasReportGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId="@VgsAccountId" InputFilter="InputFilter"></AliasReportGrid>
+<h3>@AmLocalizer.GetText("AliasReport_Content_CardTitle")</h3>
+
+<h6>@AmLocalizer.GetText("AliasFilter_CardTitle")</h6>
+<hr class="mb-2"/>
+<AliasFilter ShowDateSelector="true" OnSubmit="ShowReport"></AliasFilter>
+
+@if(showReport)
+{
+    <div class="blue_bg"></div>
+    <h5>@AmLocalizer.GetText("AliasReport_Content_CardTitle")</h5>
+    <AmAliasReportGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId" InputFilter="InputFilter"></AmAliasReportGrid>
+}
 
 
 @code {
+    [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
     [Inject] public CMSSettings cmsSettings { get; set; }
 
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
 
     protected string CurrentUserLogin { get; set; }
     protected string VgsAccountId { get; set; }
-
+    protected bool showReport { get; set; }
 
     protected AmAliasFilter InputFilter { get; set; } 
 
@@ -22,10 +38,16 @@
     {
         await base.OnInitializedAsync();
         InputFilter = new AmAliasFilter();
-        InputFilter.AllTime = true;
+        
 
         CurrentUserLogin = CurrentPrincipal.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value.ToString();
         VgsAccountId = cmsSettings.VGSAccId;
         
+    }
+
+    protected void  ShowReport(AmAliasFilter filter)
+    {
+        showReport = true;
+        InputFilter = filter;       
     }
 }

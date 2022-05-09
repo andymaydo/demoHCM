@@ -1,5 +1,8 @@
-﻿using HCM.Resources;
+﻿using AliasManger.Interfaces;
+using HCM.Resources;
 using HCMDataAccess;
+using System;
+
 namespace HCM.Options
 {
 
@@ -17,6 +20,15 @@ namespace HCM.Options
             {
                 return AmResource.ResourceManager;
             }
+        }
+
+        public Type ResourceSetType
+        {
+            get
+            {
+                return this.ResourceManager.ResourceSetType;
+            }
+             
         }
     }
 }

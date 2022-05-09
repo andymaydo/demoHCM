@@ -42,6 +42,14 @@
     <Content Remove="Pages\admin\profiles\Profiles_.razor" />
     <Content Remove="Pages\admin\profiles\ProfileView.razor" />
     <Content Remove="Pages\admin\settings\Settings_.razor" />
+    <Content Remove="Pages\alias\List\AliasGrid.razor" />
+    <Content Remove="Pages\alias\Report\AliasReportGrid.razor" />
+    <Content Remove="Pages\alias\Shared\AliasDetails.razor" />
+    <Content Remove="Pages\alias\Shared\AliasDetailsActions.razor" />
+    <Content Remove="Pages\alias\Shared\AliasDetailsActionsConfirm.razor" />
+    <Content Remove="Pages\alias\Shared\AliasHistory.razor" />
+    <Content Remove="Pages\alias\Shared\AliasInfoPopUp.razor" />
+    <Content Remove="Pages\alias\Shared\AliasProtocol.razor" />
     <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
     <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
     <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />

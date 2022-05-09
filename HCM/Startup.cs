@@ -24,7 +24,7 @@ using System.Reflection;
 using AutoMapper;
 using HCM.Models;
 using HCM.Resources;
-
+using AliasManger.Interfaces;
 
 namespace HCM
 {
@@ -107,7 +107,7 @@ namespace HCM
             services.AddOptions();
             services.AddAuthorizationCore();
             //services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
-            services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
+            //services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
             
 
         }

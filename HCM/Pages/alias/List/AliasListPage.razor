@@ -2,13 +2,15 @@
 @using Syncfusion.Blazor.Grids
 @using System.Security.Claims
 @using HCM.Pages.alias.Shared
+@using AliasManger
+@using AliasManger.Interfaces
+@using AliasManger.Models
 
 
 <h3>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h3>
 
 <h6>@AmLocalizer.GetText("AliasFilter_CardTitle")</h6>
 <hr class="mb-2"/>
-
 <AliasFilter ShowDateSelector="false" OnSubmit="ShowReport"></AliasFilter>
 
 
@@ -16,7 +18,7 @@
 {
     <div class="blue_bg"></div>
     <h5>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h5>
-    <AliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AliasGrid>
+    <AmAliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AmAliasGrid>
 }
 
 

@@ -135,6 +135,12 @@
   <data name="AliasDetail_Btn_Reactivate" xml:space="preserve">
     <value>Reactivate</value>
   </data>
+  <data name="AliasDetail_Header" xml:space="preserve">
+    <value>Alias Record</value>
+  </data>
+  <data name="AliasDetail_History_Header" xml:space="preserve">
+    <value>Alias Action History</value>
+  </data>
   <data name="AliasFilter_AllTime" xml:space="preserve">
     <value>Total</value>
   </data>

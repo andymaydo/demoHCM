@@ -1,8 +1,5 @@
 ﻿@using HCM.Pages.alias.Shared
 
-<div class="blue_bg"></div>
-<h5>@AmLocalizer.GetText("AliasReport_Content_CardTitle")</h5>
-
 @if (_loadingStatus == 0)
 {
     <p><em>Loading...</em></p>
@@ -114,7 +111,7 @@
     public async Task LoadAliasReportList()
     {       
         AliasReportList = await AliasService.ReportGetByFilterAsync(_inputFilter.Von, _inputFilter.Bis, _inputFilter.AllTime,
-            _inputFilter.Name, _inputFilter.Street, "1,2,3", VgsAccountId);
+            _inputFilter.Name, _inputFilter.Street,_inputFilter.LicenseId, VgsAccountId);
              
     }
 

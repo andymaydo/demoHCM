@@ -160,6 +160,24 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alias Eintrag.
+        /// </summary>
+        public static string AliasDetail_Header {
+            get {
+                return ResourceManager.GetString("AliasDetail_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias Aktion Historie.
+        /// </summary>
+        public static string AliasDetail_History_Header {
+            get {
+                return ResourceManager.GetString("AliasDetail_History_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gesamt bisher.
         /// </summary>
         public static string AliasFilter_AllTime {
@@ -709,7 +727,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Das Feld &quot;{0}&quot; ist ein Pflichtfeld..
+        ///   Looks up a localized string similar to Das Feld &quot;{0}&quot; ist ein Pflichtfeld !.
         /// </summary>
         public static string Form_Field_Required {
             get {

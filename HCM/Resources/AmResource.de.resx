@@ -135,6 +135,12 @@
   <data name="AliasDetail_Btn_Reactivate" xml:space="preserve">
     <value>Reaktivieren</value>
   </data>
+  <data name="AliasDetail_Header" xml:space="preserve">
+    <value>Alias Eintrag</value>
+  </data>
+  <data name="AliasDetail_History_Header" xml:space="preserve">
+    <value>Alias Aktion Historie</value>
+  </data>
   <data name="AliasFilter_AllTime" xml:space="preserve">
     <value>Gesamt bisher</value>
   </data>
@@ -334,7 +340,7 @@
     <value>Das Feld "{0}" hat ungültigen Zeichen !</value>
   </data>
   <data name="Form_Field_Required" xml:space="preserve">
-    <value>Das Feld "{0}" ist ein Pflichtfeld.</value>
+    <value>Das Feld "{0}" ist ein Pflichtfeld !</value>
   </data>
   <data name="Form_Field_StringLength" xml:space="preserve">
     <value>Das Feld "{0}" muss eine Länge zwischen {2} und {1} Zeichen haben.</value>
