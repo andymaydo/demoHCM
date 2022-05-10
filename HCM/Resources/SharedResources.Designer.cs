@@ -671,6 +671,33 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warnung.
+        /// </summary>
+        public static string AuthMsg_Header {
+            get {
+                return ResourceManager.GetString("AuthMsg_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie sind nicht berechtigt, diesen Bereich zu sehen..
+        /// </summary>
+        public static string AuthMsg_Text {
+            get {
+                return ResourceManager.GetString("AuthMsg_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berechtigung erforderlich.
+        /// </summary>
+        public static string AuthMsg_Title {
+            get {
+                return ResourceManager.GetString("AuthMsg_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to anlegen.
         /// </summary>
         public static string Button_Add {

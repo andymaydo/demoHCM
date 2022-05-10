@@ -325,6 +325,15 @@ it - after verification of the hit - in the menu
   <data name="AliasFilter_WaitAuth" xml:space="preserve">
     <value>Waiting for authorization</value>
   </data>
+  <data name="AuthMsg_Header" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="AuthMsg_Text" xml:space="preserve">
+    <value>You are not authorized to view this resource.</value>
+  </data>
+  <data name="AuthMsg_Title" xml:space="preserve">
+    <value>Authorization required</value>
+  </data>
   <data name="Button_Add" xml:space="preserve">
     <value>Add</value>
   </data>

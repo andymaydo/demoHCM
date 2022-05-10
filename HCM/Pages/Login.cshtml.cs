@@ -56,25 +56,22 @@ namespace HCM.Pages
         private async Task<bool> SignInAsync(string userName, string password, string culture)
         {
             bool res;
-            //try
-            //{
+
                 var LoginResponse = await _loginData.Login(userName, password);
                 if (LoginResponse.Success)
                 {
-                    var claims = new[]
-                    {
-                        new Claim("UserID", LoginResponse.UserID.ToString()),
-                        new Claim("ContactID", LoginResponse.ContactID.ToString()),
-                        new Claim("FullName", string.IsNullOrEmpty(LoginResponse.FullName) ? "FullName":LoginResponse.FullName ),                        
-                        new Claim(ClaimTypes.NameIdentifier, userName)
-                    };
+                    var claims = new List<Claim>();
 
+                    claims.Add(new Claim("UserID", LoginResponse.UserID.ToString()));
+                    claims.Add(new Claim("ContactID", LoginResponse.ContactID.ToString()));
+                    claims.Add(new Claim("FullName", string.IsNullOrEmpty(LoginResponse.FullName) ? "FullName" : LoginResponse.FullName));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, userName));
                     
-                    //var userRoles = await _portalUser.UserRolesGetAsync(pUser.AdmUserID);
-                    //foreach (var r in userRoles)
-                    //{
-                    //    claims.Add(new Claim(ClaimTypes.Role, r));
-                    //}
+                    var userRoles = await _loginData.UserRolesGetAsync(userName);
+                    foreach (var r in userRoles)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, r));
+                    }
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(claimsIdentity);
@@ -96,14 +93,6 @@ namespace HCM.Pages
                     res = false;
                 }
                 
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex.Message);
-            //    _logger.LogDebug(ex.StackTrace);
-
-            //    res = false;
-            //}
             return res;
         }       
 

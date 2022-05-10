@@ -1,5 +1,5 @@
 ﻿@page "/admin/profiles/ProfileList"
-@attribute [Authorize]
+@attribute [Authorize(Roles = "admin,profile")]
 
 @using HCMApi;
 @using HCMApi.Models

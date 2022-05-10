@@ -325,6 +325,15 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="AliasFilter_WaitAuth" xml:space="preserve">
     <value>Erwartet Autorisierung</value>
   </data>
+  <data name="AuthMsg_Header" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="AuthMsg_Text" xml:space="preserve">
+    <value>Sie sind nicht berechtigt, diesen Bereich zu sehen.</value>
+  </data>
+  <data name="AuthMsg_Title" xml:space="preserve">
+    <value>Berechtigung erforderlich</value>
+  </data>
   <data name="Button_Add" xml:space="preserve">
     <value>anlegen</value>
   </data>

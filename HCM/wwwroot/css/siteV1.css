@@ -13,9 +13,16 @@
     --primdark-08: rgba(var(--base-prim-dark),0.8);
 
 }
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
 }
 div .wraptxt {
     white-space: pre-wrap;
@@ -72,7 +79,7 @@ h3{
     color: var(--primdark-08);
 }
 h5 {
-    color: black;
+    /*color: black;*/
     padding-top: 1rem;
 }
 

@@ -7,6 +7,7 @@
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
+@using System.Security.Claims
 
 
 <h3>@Localizer.Str["Menu_Users_List"]</h3>
@@ -14,9 +15,14 @@
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Administration_Users_List_Table_Title"]</h5>
 
-<div class="text-end mb-3">
-    <SfButton @onclick="@(() => showAddUserPopUp = true)" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
-</div>
+<AuthorizeView Roles="admin,userCreate">
+    <Authorized>
+        <div class="text-end mb-3">
+            <SfButton @onclick="@(() => showAddUserPopUp = true)" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
 
 @if (_loadingStatus == 0)
 {
@@ -35,7 +41,7 @@
                     @{
                         var _User = (context as UsersModel);
                         <div>
-                             <div class="alink"  @onclick="@(() => EditUser(_User))"><span class="oi oi-zoom-in"></span> @_User.LoginName</div>                             
+                            <div class="alink"  @onclick="@(() => EditUser(_User))"><span class="oi oi-zoom-in"></span> @_User.LoginName</div>                             
                         </div>
                     }
                 </Template>
@@ -46,12 +52,16 @@
             <GridColumn Field=@nameof(UsersModel.Status) HeaderText="@Localizer.Str["Admin_UsersIsApprovedLabel"]" DisplayAsCheckBox="true" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Center" Width="80"></GridColumn>
             <GridColumn HeaderText="" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" Width=90>
                 <Template>
-                    @{
-                        var _User = (context as UsersModel);
+                @{
+                    var _User = (context as UsersModel);
+                    @if(_User.ContactID != CurrentContactId)
+                    {
                         <div>                            
-                             <a href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
-                        </div>
+                            <a href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
+                        </div> 
                     }
+                        
+                }
                 </Template>
             </GridColumn>
         </GridColumns>
@@ -82,6 +92,8 @@
     [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
+
 
     protected UiMessages Messages { get; set; }
     protected List<UsersModel> UserList { get; set; }
@@ -109,6 +121,10 @@
         try
         {
             UserList = await UserService.UsersList(CurrentContactId);
+            if(!(CurrentPrincipal.IsInRole("admin") || CurrentPrincipal.IsInRole("userCreate")))
+            {
+                UserList.RemoveAll(u => u.ContactID != CurrentContactId);
+            }
             _loadingStatus = 1;
         }
         catch (Exception ex)
