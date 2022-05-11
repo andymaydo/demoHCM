@@ -13,14 +13,20 @@
             <a href="" @onclick="@(() => showAddParticipantPopUp = true)" @onclick:preventDefault><span class="oi oi-person"></span> @Localizer.Str["Cases_Detail_Action_AddUser"]</a>
         </div>
 
-       
-        <div class="col-lg-12">
-            <a href="" @onclick="@(() => showChangeStatusPopUp = true)" @onclick:preventDefault><span class="oi oi-wrench"></span> @Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
-        </div>
-       
-        <div class="col-lg-12">
-            <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault><span class="oi oi-task"></span> @Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
-        </div>
+        @if(CaseRole == "Moderator" || CaseRole == "AliasManager")
+        {
+             <div class="col-lg-12">
+                <a href="" @onclick="@(() => showChangeStatusPopUp = true)" @onclick:preventDefault><span class="oi oi-wrench"></span> @Localizer.Str["Cases_Detail_Action_ChangeStatus"]</a>
+             </div>
+        }
+   
+        @if(CaseRole == "AliasManager")
+        {
+            <div class="col-lg-12">
+               <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault><span class="oi oi-task"></span> @Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
+            </div>       
+        }
+
        
     </div>
     
@@ -71,42 +77,25 @@
 
     protected void GetContactsCaseRole()
     {
-        CaseRole = "AliasManager";
-    }
+        foreach (CaseContact c in ProfileModel?.profileParticipants)
+        {
+            if (c.ContactID == CurrentContactId)
+            {
+                CaseRole = c.ProfileRole;
+            }
+        }
 
-    public void IsUserAliasManager()
-    {
-
-
-        //if (_CMSProfileModel != null)
-        //{
-        //    if (_CMSProfileModel.profileParticipants != null)
-        //    {
-        //        foreach (CaseContact c in _CMSProfileModel.profileParticipants)
-        //        {
-        //            if (c.ProfileRole == "AliasManager" && c.ContactID == _UsersModel.ContactID)
-        //            {
-        //                ShowAddAliasDialog = true;
-        //                ShowChangeStatusDialog = true;
-        //                return;
-        //            }
-        //        }
-        //    }
-
-        //    if (_CMSProfileModel.escalationUsers != null)
-        //    {
-        //        foreach (CaseContact c in _CMSProfileModel.escalationUsers)
-        //        {
-        //            if (c.ProfileRole == "AliasManager" && c.ContactID == _UsersModel.ContactID)
-        //            {
-        //                ShowAddAliasDialog = true;
-        //                ShowChangeStatusDialog = true;
-        //                return;
-        //            }
-        //        }
-        //    }
-        //}
-
+        //Escalated Case
+        if(CaseModel.CaseStatusID == 6)
+        {
+            foreach (CaseContact c in ProfileModel?.escalationUsers)
+            {
+                if (c.ContactID == CurrentContactId)
+                {
+                    CaseRole = c.ProfileRole;
+                }
+            }
+        }
     }
 
 }

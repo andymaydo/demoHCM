@@ -84,12 +84,21 @@
                                     </div>                                
 
                                     <div class="col-12">
-                                        <CaseContactPan Source="@FormModel.ProfileParticipants" ShowCheckBox="true" CheckBoxDisabled="@ProfileModel.NotifyAllProfileParticipants" ShowStriped="true" 
+                                        <CaseContactPan 
+                                            Source="@FormModel.ProfileParticipants" 
+                                            ShowCheckBox="true" 
+                                            CheckBoxDisabled="@ProfileModel.NotifyAllProfileParticipants" 
+                                            ShowStriped="true" 
+                                            ShowRole = "true"
                                             Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
                                     </div>
 
                                     <div class="col-12">
-                                        <CaseContactPan Source="@FormModel.CaseParticipants" ShowCheckBox="true" ShowStriped="true" 
+                                        <CaseContactPan 
+                                            Source="@FormModel.CaseParticipants" 
+                                            ShowCheckBox="true" 
+                                            ShowStriped="true"
+                                            ShowRole = "true"
                                             Title="@Localizer.Str["Cases_Detail_Label_Users"]"></CaseContactPan>
                                     </div>
 

@@ -1261,6 +1261,15 @@ it - after verification of the hit - in the menu
   <data name="UserRole_4" xml:space="preserve">
     <value>User Administration</value>
   </data>
+  <data name="UserRole_40" xml:space="preserve">
+    <value>Alias-Read Only</value>
+  </data>
+  <data name="UserRole_41" xml:space="preserve">
+    <value>Alias-Read/Write</value>
+  </data>
+  <data name="UserRole_42" xml:space="preserve">
+    <value>Alias-Supervisor</value>
+  </data>
   <data name="UserRole_5" xml:space="preserve">
     <value>System Settings</value>
   </data>

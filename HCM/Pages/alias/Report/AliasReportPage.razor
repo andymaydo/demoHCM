@@ -1,4 +1,6 @@
 ﻿@page "/Alias/Report"
+@attribute [Authorize(Roles = "admin,aliasView,aliasMng,aliasAuth")]
+
 @using Syncfusion.Blazor.Grids
 @using System.Security.Claims
 @using HCM.Pages.alias.Shared
@@ -17,7 +19,13 @@
 {
     <div class="blue_bg"></div>
     <h5>@AmLocalizer.GetText("AliasReport_Content_CardTitle")</h5>
-    <AmAliasReportGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId" InputFilter="InputFilter"></AmAliasReportGrid>
+    <AmAliasReportGrid 
+        CurrentUserLogin="@CurrentUserLogin" 
+        VgsAccountId = "@VgsAccountId" 
+        InputFilter="InputFilter"
+        AllowActions = "@CurrentPrincipal.IsInRole("aliasMng")" 
+        AllowAuthorization = "@CurrentPrincipal.IsInRole("aliasAuth")">
+    </AmAliasReportGrid>
 }
 
 

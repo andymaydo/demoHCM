@@ -1,4 +1,6 @@
 ﻿@page "/Alias/List"
+@attribute [Authorize(Roles = "admin,aliasView,aliasMng,aliasAuth")]
+
 @using Syncfusion.Blazor.Grids
 @using System.Security.Claims
 @using HCM.Pages.alias.Shared
@@ -18,7 +20,13 @@
 {
     <div class="blue_bg"></div>
     <h5>@AmLocalizer.GetText("AliasList_Content_CardTitle")</h5>
-    <AmAliasGrid CurrentUserLogin="@CurrentUserLogin" VgsAccountId = "@VgsAccountId"  InputFilter="InputFilter"></AmAliasGrid>
+    <AmAliasGrid 
+        CurrentUserLogin="@CurrentUserLogin" 
+        VgsAccountId = "@VgsAccountId" 
+        InputFilter="InputFilter" 
+        AllowActions = "@CurrentPrincipal.IsInRole("aliasMng")" 
+        AllowAuthorization = "@CurrentPrincipal.IsInRole("aliasAuth")">
+    </AmAliasGrid>
 }
 
 

@@ -58,6 +58,8 @@ namespace HCM.Models
 
             CreateMap<SettingsModel, SettingsSMTPForm>().ReverseMap();
 
+            CreateMap<CaseModel, Case>().ReverseMap();
+
         }
     }
 

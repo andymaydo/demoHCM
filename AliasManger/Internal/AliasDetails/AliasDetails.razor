@@ -58,9 +58,10 @@
                         </div>
 
                         <div class="row mt-3">
-
+                        @if (AllowActions)
+                        {
                             <AliasDetailsActions OnAliasStatusChange="@(async() => await OnAliasStatusChange.InvokeAsync())" />
-
+                        }                            
                         </div>
 
                     </div>
@@ -84,6 +85,7 @@
 
 
     [CascadingParameter] public AmAlias Item { get; set; }
+    [CascadingParameter(Name = "AllowActions")] protected bool AllowActions { get; set; }
     [Parameter] public EventCallback OnAliasStatusChange { get; set; }
 
 }

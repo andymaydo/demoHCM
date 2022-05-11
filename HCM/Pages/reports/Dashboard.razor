@@ -1,6 +1,7 @@
 ﻿@page "/Reports"
 @attribute [Authorize]
 @using System.Globalization
+@using System.Security.Claims
 
 
 
@@ -27,6 +28,7 @@
 
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
 
 
     protected CaseFilterModel InputFilter { get; set; }
@@ -39,7 +41,7 @@
             showStatus:false, 
             showResult:false, 
             showOnlyOpenCases:false, 
-            showOwnCasesCheckBox:true
+            showOwnCasesCheckBox:(CurrentPrincipal.IsInRole("report") || CurrentPrincipal.IsInRole("admin"))
         );        
         CurrentCulture = CultureInfo.CurrentCulture.Name;
         ShowReport(InputFilter);

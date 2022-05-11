@@ -107,7 +107,7 @@ namespace HCM
             services.AddOptions();
             services.AddAuthorizationCore();
             //services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
-            //services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
+            services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
             
 
         }

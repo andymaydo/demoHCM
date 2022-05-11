@@ -12,15 +12,15 @@
 
         <AliasProtocol FilterBy="Waiting" @bind-SelectedProtocolId="SelectedProtocolId"/>
 
-        @*<AuthorizeView Roles="Res.AliasAuthorize">
-            <Authorized>*@
-                <SfButton IsPrimary="true"  CssClass="e-outline mr-3 mt-2" OnClick="@(() => OnActionBtnClick("Authorize"))">@AmLocalizer.GetText("AliasDetail_Btn_Authorize")</SfButton>
-                <SfButton CssClass="e-outline mt-2" OnClick="@(() => OnActionBtnClick("Cancel"))">@AmLocalizer.GetText("AliasDetail_Btn_Cancel")</SfButton>
-           @* </Authorized>
-            <NotAuthorized>
-                <div class="mt-2 alert-warning">@AmLocalizer.GetText("Alias_Message_NoRightsToAuthorize")</div>
-            </NotAuthorized>
-        </AuthorizeView>*@
+        @if (AllowAuthorization)
+        {
+            <SfButton IsPrimary="true"  CssClass="e-outline mr-3 mt-2" OnClick="@(() => OnActionBtnClick("Authorize"))">@AmLocalizer.GetText("AliasDetail_Btn_Authorize")</SfButton>
+            <SfButton CssClass="e-outline mt-2" OnClick="@(() => OnActionBtnClick("Cancel"))">@AmLocalizer.GetText("AliasDetail_Btn_Cancel")</SfButton>
+        }
+        else
+        {
+            <div class="mt-2 alert-warning">@AmLocalizer.GetText("Alias_Message_NoRightsToAuthorize")</div>            
+        }
 
     }
     else
@@ -58,6 +58,7 @@
     [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
 
     [CascadingParameter] public AmAlias AliasObj { get; set; }
+    [CascadingParameter(Name = "AllowAuthorization")] protected bool AllowAuthorization { get; set; }
     [Parameter] public EventCallback OnAliasStatusChange { get; set; }
 
     protected string ActionType { get; set; }

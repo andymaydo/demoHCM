@@ -1261,6 +1261,15 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="UserRole_4" xml:space="preserve">
     <value>Benutzerverwaltung</value>
   </data>
+  <data name="UserRole_40" xml:space="preserve">
+    <value>Alias-Leserechte</value>
+  </data>
+  <data name="UserRole_41" xml:space="preserve">
+    <value>Alias-Schreibrechte</value>
+  </data>
+  <data name="UserRole_42" xml:space="preserve">
+    <value>Alias-Supervisor</value>
+  </data>
   <data name="UserRole_5" xml:space="preserve">
     <value>Systemeinstellungen</value>
   </data>

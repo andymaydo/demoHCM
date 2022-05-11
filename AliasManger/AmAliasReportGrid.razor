@@ -52,7 +52,11 @@
 {
     <CascadingValue Value="@CurrentUserLogin" Name="CurrentUserLogin">
     <CascadingValue Value="@VgsAccountId" Name="VgsAccountId">
+    <CascadingValue Value="@AllowActions" Name="AllowActions">
+    <CascadingValue Value="@AllowAuthorization" Name="AllowAuthorization">
         <AliasInfoPopUp @bind-ShowModal="_showAliasInfoPopUp" AliasId="_currentAliasId"></AliasInfoPopUp> 
+    </CascadingValue>
+    </CascadingValue>
     </CascadingValue>
     </CascadingValue>
 }
@@ -66,6 +70,8 @@
     [Parameter] public string CurrentUserLogin { get; set; }
     [Parameter] public string VgsAccountId { get; set; }    
     [Parameter] public AmAliasFilter InputFilter { get; set; }    
+    [Parameter] public bool AllowActions { get; set; }
+    [Parameter] public bool AllowAuthorization { get; set; }
 
 
     protected List<AmAliasReport> AliasReportList { get; set; }

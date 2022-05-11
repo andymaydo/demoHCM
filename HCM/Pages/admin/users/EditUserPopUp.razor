@@ -57,7 +57,7 @@
 
                         <label class="col-md-4">@Localizer.Str["Admin_UsersIsApprovedLabel"]</label>
                         <div class = "col-md-8">
-                            <SfCheckBox @bind-Checked="@UserInfoModel.Status"></SfCheckBox>
+                            <SfCheckBox Disabled="@(!@IsAuthToEdit)" @bind-Checked="@UserInfoModel.Status"></SfCheckBox>
                             <ValidationMessage For="@(() => UserInfoModel.Status)" /> 
                         </div>
 
@@ -94,35 +94,40 @@
                     </div>                    
                     </EditForm>
                 </div>
-                 
-                <h5 class="tLabel2">@Localizer.Str["Admin_EditUsers_RoleList"]</h5>
-                <hr class="mb-2"/>
-                <div class="mx-4 ">
-                    <div class="row g-1">
-                        <div class="col-md-12">
-                            <SfCheckBox @bind-Checked="@AdminRoleModel.IsSelected" 
-                                @onchange="AdminRoleOnChange"
-                                Label="@AdminRoleModel.LocalizerRoleName" 
-                                Disabled="@AdminRoleModel.IsDisabled"></SfCheckBox>
+                
+                @if (IsAuthToEdit)
+                {
+                    <h5 class="tLabel2">@Localizer.Str["Admin_EditUsers_RoleList"]</h5>
+                    <hr class="mb-2"/>
+                    <div class="mx-4 ">
+                        <div class="row g-1">
+                            <div class="col-md-12">
+                                <SfCheckBox @bind-Checked="@AdminRoleModel.IsSelected" 
+                                    @onchange="AdminRoleOnChange"
+                                    Label="@AdminRoleModel.LocalizerRoleName" 
+                                    Disabled="@AdminRoleModel.IsDisabled"></SfCheckBox>
+                            </div>
+
+                             @foreach (var item in UserRoleList)
+                            {                           
+                                <div class="col-md-6">
+                                    <SfCheckBox @bind-Checked="@item.IsSelected"                                     
+                                        Label="@item.LocalizerRoleName" 
+                                        Disabled="@item.IsDisabled"></SfCheckBox>
+                                </div>                        
+                            }
                         </div>
 
-                         @foreach (var item in UserRoleList)
-                        {                           
-                            <div class="col-md-6">
-                                <SfCheckBox @bind-Checked="@item.IsSelected"                                     
-                                    Label="@item.LocalizerRoleName" 
-                                    Disabled="@item.IsDisabled"></SfCheckBox>
-                            </div>                        
-                        }
+                    
+                         <div class="row e-small">                       
+                            <div class="col-md-12 text-end">
+                                <SfButton OnClick="UserRolesUpdate" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
+                            </div>                       
+                        </div>
+                    
+                    
                     </div>
-
-                     <div class="row e-small">                       
-                        <div class="col-md-12 text-end">
-                            <SfButton OnClick="UserRolesUpdate" IsPrimary="true"  Content="@Localizer.Str["Button_Save"]" ></SfButton>                        
-                        </div>                       
-                    </div>
-                </div>
-                
+                }
 
                 <UiMessageBox Data="Messages.List"/>
 
@@ -146,6 +151,7 @@
 
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
     [Parameter] public UsersModel UserModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
@@ -156,6 +162,7 @@
     protected List<UserRolesForm> UserRoleList { get; set; }
     protected UserRolesForm AdminRoleModel { get; set; }
     protected UiMessages Messages { get; set; }
+    protected bool IsAuthToEdit { get; set; }  
     private int _loadingStatus;
 
     protected override void OnInitialized()
@@ -165,6 +172,7 @@
         try
         {
             _loadingStatus = 0;
+            IsAuthToEdit = false;
 
             if(UserModel == null )
             {               
@@ -177,6 +185,11 @@
 
             UserInfoModel = _mapper.Map<EditUserForm>(UserModel);
             UserPassModel = _mapper.Map<PassUserForm>(UserModel);
+
+            if(CurrentPrincipal.IsInRole("admin") || CurrentPrincipal.IsInRole("userCreate"))
+            {
+                IsAuthToEdit = true;
+            }
 
             InitUserRoleList();
 

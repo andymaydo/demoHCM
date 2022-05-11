@@ -3497,6 +3497,33 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alias-Leserechte.
+        /// </summary>
+        public static string UserRole_40 {
+            get {
+                return ResourceManager.GetString("UserRole_40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias-Schreibrechte.
+        /// </summary>
+        public static string UserRole_41 {
+            get {
+                return ResourceManager.GetString("UserRole_41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias-Supervisor.
+        /// </summary>
+        public static string UserRole_42 {
+            get {
+                return ResourceManager.GetString("UserRole_42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Systemeinstellungen.
         /// </summary>
         public static string UserRole_5 {
