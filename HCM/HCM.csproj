@@ -12,18 +12,26 @@
 
   <ItemGroup>
     <Compile Remove="Connected Services\**" />
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="Data\**" />
     <Compile Remove="Pages\admin_\**" />
     <Compile Remove="Pages\auth\**" />
     <Compile Remove="Resources\Resources\**" />
     <Content Remove="Connected Services\**" />
+    <Content Remove="Controllers\**" />
+    <Content Remove="Data\**" />
     <Content Remove="Pages\admin_\**" />
     <Content Remove="Pages\auth\**" />
     <Content Remove="Resources\Resources\**" />
     <EmbeddedResource Remove="Connected Services\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Data\**" />
     <EmbeddedResource Remove="Pages\admin_\**" />
     <EmbeddedResource Remove="Pages\auth\**" />
     <EmbeddedResource Remove="Resources\Resources\**" />
     <None Remove="Connected Services\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="Data\**" />
     <None Remove="Pages\admin_\**" />
     <None Remove="Pages\auth\**" />
     <None Remove="Resources\Resources\**" />
@@ -135,7 +143,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Docs\" />
     <Folder Include="wwwroot\xsl\" />
   </ItemGroup>

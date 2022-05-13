@@ -36,8 +36,8 @@ namespace HCMDataAccess
             p.Add("Address", alisStreet);
                               
             p.Add("WaitAuth", waitAuth);
-            p.Add("licenseTable", profilesCSV);      
-
+            p.Add("licenseTable", profilesCSV);
+           
             using (var connection = new SqlConnection(_sqlConnStr))
             {
                 connection.Open();
@@ -218,6 +218,121 @@ namespace HCMDataAccess
             }
         }
 
+        public async Task CreateAsync(string aliasName, string aliasStreet, string description, 
+                int? profilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
+                string caseUrl, string hcmUserFullName, string accId)
+        {
+            int licId;
 
+            if(profilId != null)
+            {
+                licId = await GetLicIdByProfileId((int)profilId);
+            }
+            else
+            {
+                licId = await GetLicIdBySapInfo(sapIp, sapGw, sapMandant);
+            }
+
+            if(licId == -1)
+            {
+                throw new Exception("LicIdNotDetermined");
+            }
+
+            var existingAliasId = await AliasExists(aliasName, aliasStreet, licId, sapBelegNr);
+            if (existingAliasId == 0)
+            {
+                await DbCreateAsync(aliasName, aliasStreet, description, hcmUserFullName,
+                    sapBelegNr, caseUrl, licId, accId);
+            }
+            else
+            {
+                throw new Exception("AliasExists");
+            }
+        }
+
+
+
+
+
+        private async Task<int>GetLicIdByProfileId(int profileId) 
+        {
+            string sql = "[dbo].[pLiz_RetriveBy_ProfileID]";
+
+            var p = new DynamicParameters();
+            p.Add("ProfileID", profileId);
+            p.Add("LicID", DbType.Int32, direction: ParameterDirection.Output);
+
+            using (var connection = new SqlConnection(_sqlConnStr))
+            {
+                connection.Open();
+                await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
+
+                return p.Get<Int32>("LicID");
+            }
+        }
+
+        private async Task<int> GetLicIdBySapInfo(string sapIp,string sapGw, string sapMandant)
+        {
+            string sql = "[dbo].[pLiz_RetriveBy_SapIP_SapGTW_Mandant]";
+
+            var p = new DynamicParameters();
+            p.Add("SapIP", sapIp);
+            p.Add("SapGTW", sapGw);
+            p.Add("Mandant", sapMandant);
+            p.Add("LicID", DbType.Int32, direction: ParameterDirection.Output);
+
+            using (var connection = new SqlConnection(_sqlConnStr))
+            {
+                connection.Open();
+                await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
+
+                return p.Get<Int32>("LicID");
+            }
+        }
+
+        private async Task DbCreateAsync(string aliasName, string aliasStreet, string description, string hcmUserFullName,
+               string sapBelegNr, string caseUrl, int licId, string accId)
+        {
+            string sql = "[dbo].[AliasProtocol_InsertAndActivate]";
+
+            var p = new DynamicParameters();
+            p.Add("userID", -10);
+            p.Add("AliasName", aliasName);
+            p.Add("aliasAddress", aliasStreet);
+            p.Add("Description", description);
+            p.Add("hcmUserFullName", hcmUserFullName);
+            p.Add("belegNummer", sapBelegNr);
+            p.Add("CaseURL", caseUrl);
+            p.Add("LicID", licId);
+            p.Add("accId", accId);
+
+
+            using (var connection = new SqlConnection(_sqlConnStr))
+            {
+                connection.Open();
+                await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        private async Task<int> AliasExists(string aliasName, string aliasStreet, int licId, string sapBelegNr)
+        {
+            string sql = "[dbo].[Alias_IsExists]";
+
+            var p = new DynamicParameters();
+            p.Add("AliasName", aliasName);
+            p.Add("aliasAddress", aliasStreet);
+            p.Add("checkDeleted", 0);
+            p.Add("belegNummer", sapBelegNr);
+            p.Add("LicID", licId);
+            p.Add("@return_value", DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            using (var connection = new SqlConnection(_sqlConnStr))
+            {
+                connection.Open();
+                await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
+
+                return p.Get<int>("return_value");
+            }
+        }
     }
 }

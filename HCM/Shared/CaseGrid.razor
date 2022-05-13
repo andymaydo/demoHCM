@@ -40,9 +40,14 @@
             <Template>
                 @{
                     var _Case = (context as CaseModel);
-                    <div class="alink" @onclick="@(() => StatusChangeHandler(_Case))">
-                        <span class="oi oi-wrench"></span> @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                    //<div class="alink" @onclick="@(() => StatusChangeHandler(_Case))">
+                    //    <span class="oi oi-wrench"></span> @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                    //</div>
+
+                    <div>
+                        @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
                     </div>
+                    
                 }
             </Template>
         </GridColumn>
@@ -69,13 +74,13 @@
 </SfGrid>
 }
 
-@if (showChangeStatusPopUp)
+@*@if (showChangeStatusPopUp)
 {
     <ChangeStatusPopUp @bind-ShowModal="showChangeStatusPopUp" 
         CaseModel="@CurrentCase" ProfileModel="@ProfileModel" 
         OnFormSaved="OnStatusChanged">
     </ChangeStatusPopUp> 
-}
+}*@
 
 <UiMessageBox Data="Messages.List" />
 
@@ -153,42 +158,42 @@
         await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
     }
 
-    public async Task StatusChangeHandler(CaseModel currentCase)
-    {
-        try
-        {
-            CurrentCase = await CmsService.LoadCase(currentCase.CaseID);       
-            ProfileModel = ProileService.Load(currentCase.ProfileID);
-            showChangeStatusPopUp = true;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);            
-        }
+    //public async Task StatusChangeHandler(CaseModel currentCase)
+    //{
+    //    try
+    //    {
+    //        CurrentCase = await CmsService.LoadCase(currentCase.CaseID);       
+    //        ProfileModel = ProileService.Load(currentCase.ProfileID);
+    //        showChangeStatusPopUp = true;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        _logger.LogError(ex.Message);
+    //        _logger.LogDebug(ex, ex.Message);
+    //        Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);            
+    //    }
     
-    }
+    //}
 
-    public async Task OnStatusChanged()
-    {
-        try
-        {
-            _loadingStatus = 0;
-            Messages.List.Clear();
+    //public async Task OnStatusChanged()
+    //{
+    //    try
+    //    {
+    //        _loadingStatus = 0;
+    //        Messages.List.Clear();
             
-            await LoadCaseList();
+    //        await LoadCaseList();
 
-            _loadingStatus = 1;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
-            _loadingStatus = 2;
-        }
-    }
+    //        _loadingStatus = 1;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        _logger.LogError(ex.Message);
+    //        _logger.LogDebug(ex, ex.Message);
+    //        Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+    //        _loadingStatus = 2;
+    //    }
+    //}
 
 
     private async Task LoadCaseList()

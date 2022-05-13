@@ -15,7 +15,6 @@ using System.Configuration;
 using System.Globalization;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Localization;
-using blazorInputs;
 using BlazorDownloadFile;
 using System;
 using Microsoft.AspNetCore.Authentication.Cookies;

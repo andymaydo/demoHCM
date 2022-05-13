@@ -578,7 +578,7 @@ namespace HCM.Resources {
         /// </summary>
         public static string Component_Status_Loading {
             get {
-                return ResourceManager.GetString("Component.Status.Loading", resourceCulture);
+                return ResourceManager.GetString("Component_Status_Loading", resourceCulture);
             }
         }
         
@@ -587,7 +587,7 @@ namespace HCM.Resources {
         /// </summary>
         public static string Component_Status_LoadingFailed {
             get {
-                return ResourceManager.GetString("Component.Status.LoadingFailed", resourceCulture);
+                return ResourceManager.GetString("Component_Status_LoadingFailed", resourceCulture);
             }
         }
         
@@ -596,7 +596,7 @@ namespace HCM.Resources {
         /// </summary>
         public static string Component_Status_NoData {
             get {
-                return ResourceManager.GetString("Component.Status.NoData", resourceCulture);
+                return ResourceManager.GetString("Component_Status_NoData", resourceCulture);
             }
         }
         

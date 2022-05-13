@@ -2,7 +2,7 @@
 
 @if (_loadingStatus == 0)
 {
-    <p><em>Loading...</em></p>
+    <p><em>@AmLocalizer.GetText("Component_Status_Loading")</em></p>
 }
 
 @if (_loadingStatus == 1)
@@ -46,6 +46,10 @@
 
         </GridColumns>
     </SfGrid>
+}
+else
+{
+    <p><em>@AmLocalizer.GetText("Component_Status_LoadingFailed")</em></p>
 }
 
 @if (_showAliasInfoPopUp)

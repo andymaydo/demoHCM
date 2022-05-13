@@ -288,13 +288,13 @@
   <data name="Alias_Status_SelectAll" xml:space="preserve">
     <value>alle</value>
   </data>
-  <data name="Component.Status.Loading" xml:space="preserve">
+  <data name="Component_Status_Loading" xml:space="preserve">
     <value>Laden ...</value>
   </data>
-  <data name="Component.Status.LoadingFailed" xml:space="preserve">
+  <data name="Component_Status_LoadingFailed" xml:space="preserve">
     <value>Laden fehlgeschlagen ...</value>
   </data>
-  <data name="Component.Status.NoData" xml:space="preserve">
+  <data name="Component_Status_NoData" xml:space="preserve">
     <value>Keine Daten gefunden</value>
   </data>
   <data name="Form_Action_Error" xml:space="preserve">

@@ -22,5 +22,10 @@ namespace AliasManger.Interfaces
         Task DeleteAsync(int aliasId, string reason, string callerLogin);
         Task AuthorizeAsync(int aliasProtokolId, string reason, string callerLogin);
         Task DiscardAsync(int aliasProtokolId, string reason, string callerLogin);
+
+
+        Task CreateAsync(string aliasName, string aliasStreet, string description,
+                int? profilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
+                string caseUrl, string hcmUserFullName, string accId);
     }
 }
