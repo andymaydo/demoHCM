@@ -599,7 +599,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Liz-ID.
+        ///   Looks up a localized string similar to Profil.
         /// </summary>
         public static string AliasFilter_License {
             get {

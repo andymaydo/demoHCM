@@ -302,7 +302,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>Von</value>
   </data>
   <data name="AliasFilter_License" xml:space="preserve">
-    <value>Liz-ID</value>
+    <value>Profil</value>
   </data>
   <data name="AliasFilter_License_SelectAll" xml:space="preserve">
     <value>alle</value>

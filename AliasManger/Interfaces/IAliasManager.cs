@@ -25,7 +25,8 @@ namespace AliasManger.Interfaces
 
 
         Task CreateAsync(string aliasName, string aliasStreet, string description,
-                int? profilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
-                string caseUrl, string hcmUserFullName, string accId);
+                int? vgsProfilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
+                string hcmUserFullName, string hcmProfilId, string hcmProfilName,
+                string caseUrl, string accId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿                 
+@using AliasManger.Interfaces
 @using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.Logging
 @using Syncfusion.Blazor.Popups
@@ -133,6 +134,7 @@
     [Inject] public ICMSAPI CmsService{ get; set; }
     [Inject] public CMSSettings cmsSettings { get; set; }
     [Inject] public ISettingsData dbSettingsService { get; set; }
+    [Inject] public IAliasManager AliasService { get; set; }
 
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
@@ -174,7 +176,6 @@
                 throw new ArgumentNullException("ProfileModel");
             }
 
-            InitAliasApiClient();
             InitFormModel();
 
             _loadingStatus = 1;
@@ -197,34 +198,52 @@
 
     protected async Task ValidFormSubmited()
     {
+
+
         try
         {
             Messages.List.Clear();
 
+            try
+            {
+                await CreateAlias();
+            }
+            catch (Exception ex)
+            {        
+                string errMsg; 
+
+                switch (ex.Message)
+                {
+                    case "AliasExists":
+                        errMsg = @Localizer.Str["AliasApiError_100510"];
+                        break;
+
+                    case "LicIdNotDetermined":
+                        errMsg = @Localizer.Str["AliasApiError_100507"];
+                        break;
+
+                    default:
+                        _logger.LogError(ex.Message);
+                        _logger.LogDebug(ex, ex.Message); 
+                        errMsg = @Localizer.Str["AliasApiError_110000"];
+                        break;
+                }
+                throw new Exception(errMsg);
+            }
+
             var notifyList = GetNotifyList();
             var docsXML = GetAttachedDocs();
-
-            var statusCode = await CreateAlias();
-
-            if(statusCode == 0)
-            {
-                await CmsService.OnEvent(CMSSettings.EventAddAlias, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);    
-            }
-            else
-            {
-                throw new Exception(Localizer.Str["AliasApiError_" + statusCode.ToString()]);
-            }
-
+            await CmsService.OnEvent(CMSSettings.EventAddAlias, CurrentContactId, CaseModel.CaseID, docsXML, FormModel.Note, notifyList);    
 
             await OnFormSaved.InvokeAsync();
-            await CloseDialog();
+            await CloseDialog();                
         }
         catch (Exception ex)
-        {                        
+        {
             _logger.LogError(ex.Message);
             _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
 
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
         }
 
     }
@@ -269,30 +288,43 @@
 
     private async Task<int> CreateAlias()
     {
+
+        string sapIp = null;
+        string sapGw = null;
+        string sapMndnt = null;
+        string sapTranId = null;
+        int? profileId = null;
+        string caseUrl;
+        string hcmUserFullName;
+        string hcmProfilId;
+        string hcmProfilName;
+
         var dbSettings = await dbSettingsService.GetSettings();
         var appUrl = dbSettings?.AppUrl;
 
-        AliasOut aliasRequest = new AliasOut();
-        aliasRequest.aliasauth.username = cmsSettings.AliasApiUsr;
-        aliasRequest.aliasauth.pwd = cmsSettings.AliasApiPwd;
+        hcmUserFullName = CurrentPrincipal.Claims.Where(c=>c.Type=="FullName").FirstOrDefault().Value;
+        hcmProfilId = CaseModel.ProfileID.ToString();
+        hcmProfilName = CaseModel.ProfileName;
+        caseUrl = appUrl + "/Cases/CaseDetails/" + CaseModel.CaseID.ToString();
+        
 
         //sap
         if(CaseModel.SettingsData.sapip != null)
         {
             if(FormModel.LizIdType == "own" || FormModel.LizIdType == "beleg")
             {
-                aliasRequest.aliasauth.sapip = CaseModel.SettingsData?.sapip;
-                aliasRequest.aliasauth.sapgw = CaseModel.SettingsData?.sapgw;
-                aliasRequest.aliasauth.sapmandant = CaseModel.SettingsData?.sapmandant;
+                sapIp = CaseModel.SettingsData?.sapip;
+                sapGw = CaseModel.SettingsData?.sapgw;
+                sapMndnt = CaseModel.SettingsData?.sapmandant;
 
                 if(FormModel.LizIdType == "beleg")
                 {
-                    aliasRequest.aliasauth.saptranid = CaseModel.SrcData?.vbeln;
+                    sapTranId = CaseModel.SrcData?.vbeln;
                 }
             }
             else
             {
-                aliasRequest.aliasauth.profileid = "-100";
+                profileId = -100;
             }
         }
 
@@ -301,52 +333,24 @@
         {
             if(FormModel.LizIdType == "own")
             {
-                aliasRequest.aliasauth.profileid = CaseModel.SettingsData?.profileid.ToString();
+                profileId = CaseModel.SettingsData?.profileid;
             }
             else
             {
-                aliasRequest.aliasauth.profileid = "-100";
+                profileId = -100;
             }
         }
 
+        await AliasService.CreateAsync(FormModel.AliasName, FormModel.AliasStreet, FormModel.Note,
+                profileId, sapIp, sapGw, sapMndnt, sapTranId, 
+                hcmUserFullName, hcmProfilId, hcmProfilName, caseUrl, cmsSettings.VGSAccId);
 
-        aliasRequest.data.aliasname = System.Net.WebUtility.UrlDecode(FormModel.AliasName);
-        aliasRequest.data.aliasaddress = System.Net.WebUtility.UrlDecode(FormModel.AliasStreet);
-        aliasRequest.data.aliasnote = System.Net.WebUtility.UrlDecode(FormModel.Note);
-
-        aliasRequest.data.hcmUserFullName = System.Net.WebUtility.UrlDecode(CurrentPrincipal.Claims.Where(c=>c.Type=="FullName").FirstOrDefault().Value.ToString());
-
-        aliasRequest.data.verid = CaseModel.SettingsData.verid;
-
-        aliasRequest.data.caseurl = "<a href=\"" + appUrl + "/cases/detail.aspx?id=" + CaseModel.CaseID.ToString() + "\" target=\"_blank\">" + CaseModel.CaseID.ToString() + "</a>";
-
-        ////api request
-        //var aliasResponse = await AliasApiClient.AliasCreateAsync(aliasRequest.AsXml());       
-
-        //XmlDocument resultxml = new XmlDocument();
-        //resultxml.LoadXml(aliasResponse.Body.AliasCreateResult);
-        //_logger.LogError(resultxml.InnerText);
-
-        //int statusCode;
-        //bool successfullyParsed = int.TryParse(resultxml.SelectSingleNode("/root/status/statuscode").InnerText, out statusCode);
-        //if (successfullyParsed)
-        //{
-        //    return statusCode;
-        //}
-        //else
-        //{
-        //    return 110000;
-        //}
 
         return 0;
 
     } 
-    private  void InitAliasApiClient()
-    {
-        var apiUrl = cmsSettings.AliasApiUrl;
-        //apiUrl = "http://localhost:1123/AliasApi.asmx";
-        AliasApiClient = new AliasApiSoapClient(EndpointConfiguration.AliasApiSoap12, apiUrl);
-    }
+  
+
     private void InitFormModel()
     {
 

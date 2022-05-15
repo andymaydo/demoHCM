@@ -219,30 +219,39 @@ namespace HCMDataAccess
         }
 
         public async Task CreateAsync(string aliasName, string aliasStreet, string description, 
-                int? profilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
-                string caseUrl, string hcmUserFullName, string accId)
+                int? vgsProfilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
+                string hcmUserFullName, string hcmProfilId, string hcmProfilName,
+                string caseUrl, string accId)
         {
-            int licId;
+            int? licId = null;
 
-            if(profilId != null)
-            {
-                licId = await GetLicIdByProfileId((int)profilId);
-            }
-            else
-            {
-                licId = await GetLicIdBySapInfo(sapIp, sapGw, sapMandant);
-            }
 
-            if(licId == -1)
+            switch (vgsProfilId)
+            {
+                case null:
+                    licId = await GetLicIdBySapInfo(sapIp, sapGw, sapMandant);
+                    break;
+
+                case -100:
+                    licId = -100;
+                    break;
+
+                default:
+                    licId = await GetLicIdByProfileId((int)vgsProfilId);
+                    break;
+            }
+            
+
+            if(licId == null)
             {
                 throw new Exception("LicIdNotDetermined");
             }
 
-            var existingAliasId = await AliasExists(aliasName, aliasStreet, licId, sapBelegNr);
+            var existingAliasId = await AliasExists(aliasName, aliasStreet, (int)licId, sapBelegNr);
             if (existingAliasId == 0)
             {
-                await DbCreateAsync(aliasName, aliasStreet, description, hcmUserFullName,
-                    sapBelegNr, caseUrl, licId, accId);
+                await DbCreateAsync(aliasName, aliasStreet, description, hcmUserFullName, hcmProfilId, hcmProfilName,
+                    sapBelegNr, caseUrl, (int)licId, accId);
             }
             else
             {
@@ -254,7 +263,7 @@ namespace HCMDataAccess
 
 
 
-        private async Task<int>GetLicIdByProfileId(int profileId) 
+        private async Task<int?>GetLicIdByProfileId(int profileId) 
         {
             string sql = "[dbo].[pLiz_RetriveBy_ProfileID]";
 
@@ -267,11 +276,11 @@ namespace HCMDataAccess
                 connection.Open();
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
-                return p.Get<Int32>("LicID");
+                return p.Get<Int32?>("LicID");
             }
         }
 
-        private async Task<int> GetLicIdBySapInfo(string sapIp,string sapGw, string sapMandant)
+        private async Task<int?> GetLicIdBySapInfo(string sapIp,string sapGw, string sapMandant)
         {
             string sql = "[dbo].[pLiz_RetriveBy_SapIP_SapGTW_Mandant]";
 
@@ -286,12 +295,13 @@ namespace HCMDataAccess
                 connection.Open();
                 await connection.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
 
-                return p.Get<Int32>("LicID");
+                return p.Get<Int32?>("LicID");
             }
         }
 
-        private async Task DbCreateAsync(string aliasName, string aliasStreet, string description, string hcmUserFullName,
-               string sapBelegNr, string caseUrl, int licId, string accId)
+        private async Task DbCreateAsync(string aliasName, string aliasStreet, string description, 
+                string hcmUserFullName, string hcmProfilId, string hcmProfilName,
+                string sapBelegNr, string caseUrl, int licId, string accId)
         {
             string sql = "[dbo].[AliasProtocol_InsertAndActivate]";
 
@@ -299,13 +309,16 @@ namespace HCMDataAccess
             p.Add("userID", -10);
             p.Add("AliasName", aliasName);
             p.Add("aliasAddress", aliasStreet);
+            p.Add("realName", null);
+            p.Add("realAddress", null);
             p.Add("Description", description);
             p.Add("hcmUserFullName", hcmUserFullName);
+            p.Add("hcmProfilId", hcmProfilId);
+            p.Add("hcmProfilName", hcmProfilName);
             p.Add("belegNummer", sapBelegNr);
             p.Add("CaseURL", caseUrl);
             p.Add("LicID", licId);
-            p.Add("accId", accId);
-
+         
 
             using (var connection = new SqlConnection(_sqlConnStr))
             {

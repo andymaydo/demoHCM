@@ -23,8 +23,8 @@
         CurrentUserLogin="@CurrentUserLogin" 
         VgsAccountId = "@VgsAccountId" 
         InputFilter="InputFilter"
-        AllowActions = "@CurrentPrincipal.IsInRole("aliasMng")" 
-        AllowAuthorization = "@CurrentPrincipal.IsInRole("aliasAuth")">
+        AllowActions = "@(@CurrentPrincipal.IsInRole("aliasMng") || @CurrentPrincipal.IsInRole("admin"))" 
+        AllowAuthorization = "@(@CurrentPrincipal.IsInRole("aliasAuth") || @CurrentPrincipal.IsInRole("admin"))">
     </AmAliasReportGrid>
 }
 
