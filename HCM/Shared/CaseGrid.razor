@@ -11,13 +11,7 @@
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Cases_ListCases"]</h5>
 
-@if (_loadingStatus == 0)
-{
-    <p><em>Loading...</em></p>
-}
 
-@if (_loadingStatus == 1)
-{
     <SfGrid ID="Grid" DataSource="@CaseList" AllowPaging="true" AllowTextWrap="true"  AllowSorting="true" Locale="@Culture" EnablePersistence="false">
     <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
     <GridPageSettings PageSizes="@pageSizes" PageSize="20" PageCount="3"></GridPageSettings>
@@ -72,7 +66,7 @@
         </GridColumn>*@
     </GridColumns>
 </SfGrid>
-}
+
 
 @*@if (showChangeStatusPopUp)
 {
@@ -82,12 +76,9 @@
     </ChangeStatusPopUp> 
 }*@
 
-<UiMessageBox Data="Messages.List" />
-
 
 @code {
-    [Inject] private IReportsCaseData ReportService { get; set; }
-    [Inject] private ILogger<CaseGrid> _logger { get; set; }
+
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
@@ -96,19 +87,16 @@
     [Inject] private ICMSAPI CmsService { get; set; }
     [Inject] private IMapper _mapper { get; set; }
 
-    [Parameter] public CaseFilterModel InputFilter { get; set; }
-    [Parameter] public int ContactId { get; set; }
+    [Parameter] public List<CaseModel> CaseList { get; set; }
     [Parameter] public string Culture  { get; set; }     
     [Parameter] public EventCallback<int> OnCaseDetailsClicked { get; set; }
 
     protected SfGrid<CaseModel> CGrid { get; set; }
     protected string GridState;
 
-    protected UiMessages Messages { get; set; }
-    protected List<CaseModel> CaseList { get; set; }
-    protected CMSProfileModel ProfileModel { get; set; }     
-    protected Case CurrentCase { get; set; }
-    protected bool showChangeStatusPopUp { get; set; }
+    //protected CMSProfileModel ProfileModel { get; set; }     
+    //protected Case CurrentCase { get; set; }
+    //protected bool showChangeStatusPopUp { get; set; }
 
     private string[] pageSizes { get; set; }
     private int _loadingStatus;
@@ -119,36 +107,36 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();       
-        Messages = new UiMessages();
-        ProfileModel = new CMSProfileModel();
+        //Messages = new UiMessages();
+        //ProfileModel = new CMSProfileModel();
 
         SetPageSizeDropDown();
 
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        base.OnParametersSet();
-        try
-        {
+    //protected override async Task OnParametersSetAsync()
+    //{
+    //    base.OnParametersSet();
+    //    try
+    //    {
 
-            Messages.List.Clear();
-            _loadingStatus = 0;
-            if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
-            {
-                _inputFilter = ObjHelper.Clone(InputFilter);
-                await LoadCaseList();
-            }
-            _loadingStatus = 1;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
-            _loadingStatus = 2;
-        }
-    }
+    //        Messages.List.Clear();
+    //        _loadingStatus = 0;
+    //        if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
+    //        {
+    //            _inputFilter = ObjHelper.Clone(InputFilter);
+    //            await LoadCaseList();
+    //        }
+    //        _loadingStatus = 1;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        _logger.LogError(ex.Message);
+    //        _logger.LogDebug(ex, ex.Message);
+    //        Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+    //        _loadingStatus = 2;
+    //    }
+    //}
 
     public async Task RecordDoubleClickHandler(int caseId)
     {     
@@ -196,17 +184,17 @@
     //}
 
 
-    private async Task LoadCaseList()
-    {
+    //private async Task LoadCaseList()
+    //{
 
-        int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
+    //    int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
 
-        CaseList = await ReportService.CaseDetail(InputFilter.GateId, InputFilter.CategoryId, _contactID, 
-            InputFilter.StatusId, InputFilter.ResultId,
-            InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
-            InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
+    //    CaseList = await ReportService.CaseDetail(InputFilter.GateId, InputFilter.CategoryId, _contactID, 
+    //        InputFilter.StatusId, InputFilter.ResultId,
+    //        InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
+    //        InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
 
-    }
+    //}
 
     private void SetPageSizeDropDown()
     {

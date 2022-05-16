@@ -1,13 +1,6 @@
 ﻿@using AliasManger.Internal.AliasDetails
 
 
-@if (_loadingStatus == 0)
-{
-   <p><em>@AmLocalizer.GetText("Component_Status_Loading")</em></p>
-}
-
-@if (_loadingStatus == 1)
-{
 
     <SfGrid DataSource="@AliasList" AllowResizing="false" AllowSorting="true" AllowPaging="true" AllowTextWrap="true" AllowExcelExport="true">        
         <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings>
@@ -55,11 +48,7 @@
         <GridColumn Field=@nameof(AmAlias.WaitingForAuth) HeaderText="@AmLocalizer.GetText("AliasList_Content_Column_Wait4Auth")" DisplayAsCheckBox="true"  Width="120"></GridColumn>
         </GridColumns>
     </SfGrid>
-}
-else
-{
-    <p><em>@AmLocalizer.GetText("Component_Status_LoadingFailed")</em></p>
-}
+
 
 
 
@@ -69,7 +58,9 @@ else
     <CascadingValue Value="@AllowActions" Name="AllowActions">
     <CascadingValue Value="@AllowAuthorization" Name="AllowAuthorization">
     <CascadingValue Value="@VgsAccountId" Name="VgsAccountId">
-        <AliasInfoPopUp @bind-ShowModal="_showAliasInfoPopUp" OnDialogClosed=@LoadAliasList AliasId="_currentAliasId"></AliasInfoPopUp> 
+        <AliasInfoPopUp @bind-ShowModal="_showAliasInfoPopUp" AliasId="_currentAliasId"
+            OnDialogClosed=@(async() => await OnAliasInfoDialogClosed.InvokeAsync()) >
+        </AliasInfoPopUp> 
     </CascadingValue>
     </CascadingValue>
     </CascadingValue>
@@ -78,19 +69,18 @@ else
 
 @code {
 
-    [Inject] private IAliasManager AliasService { get; set; }
     [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
     [Inject] private ILogger<AmAliasGrid> _logger { get; set; }
 
     
     [Parameter] public string CurrentUserLogin { get; set; }
     [Parameter] public string VgsAccountId { get; set; }
-    [Parameter] public AmAliasFilter InputFilter { get; set; }    
     [Parameter] public bool AllowActions { get; set; }
     [Parameter] public bool AllowAuthorization { get; set; }
+    [Parameter] public List<AmAlias> AliasList { get; set; }
+    [Parameter] public EventCallback OnAliasInfoDialogClosed { get; set; }
 
 
-    protected List<AmAlias> AliasList { get; set; }
     protected int _loadingStatus { get; set; }
 
 
@@ -98,37 +88,6 @@ else
     private int _currentAliasId { get; set; }
     private bool _showAliasInfoPopUp { get; set; }
 
-
-     protected override async Task OnParametersSetAsync()
-    {
-        base.OnParametersSet();
-        try
-        {
-
-
-            _loadingStatus = 0;
-            if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
-            {
-                _inputFilter = ObjHelper.Clone(InputFilter);
-                await LoadAliasList();
-            }
-            _loadingStatus = 1;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            _logger.LogDebug(ex, ex.Message);
-
-            _loadingStatus = 2;
-        }
-    }
-
-    public async Task LoadAliasList()
-    {       
-        AliasList = await AliasService.GetByFilterAsync(_inputFilter.Name, _inputFilter.Street,
-            _inputFilter.LicenseId,_inputFilter.StatusId,_inputFilter.WaitAuth, VgsAccountId);
-             
-    }
 
     private void ShowAliasInfo(int aliasId)
     {

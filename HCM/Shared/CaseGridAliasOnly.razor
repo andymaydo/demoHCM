@@ -36,56 +36,26 @@
 </SfGrid>
 
 
-<UiMessageBox Data="Messages.List" />
-
-
 @code {
-    [Inject] private IReportsCaseData ReportService { get; set; }
-    [Inject] private ILogger<CaseGrid> _logger { get; set; }
+
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
     [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
 
-    [Parameter] public CaseFilterModel InputFilter { get; set; }
-    [Parameter] public int ContactId { get; set; }
+    [Parameter] public List<CaseModel> CaseList { get; set; }
     [Parameter] public string Culture  { get; set; }     
     [Parameter] public EventCallback<int> OnCaseDetailsClicked { get; set; }
 
-    protected UiMessages Messages { get; set; }
-    protected List<CaseModel> CaseList { get; set; }
 
-    private CaseFilterModel _inputFilter;
     private string[] pageSizes { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();       
-        Messages = new UiMessages();
         SetPageSizeDropDown();
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        base.OnParametersSet();
-        try
-        {
-
-            Messages.List.Clear();
-            if (!ObjHelper.JsonCompare(_inputFilter, InputFilter))
-            {
-                _inputFilter = ObjHelper.Clone(InputFilter);
-                await LoadCaseList();
-            }
-
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            _logger.LogDebug(ex, ex.Message);
-            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
-        }
-    }
 
     public async Task RecordDoubleClickHandler(int caseId)
     {     
@@ -95,16 +65,6 @@
         await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
     }
 
-    private async Task LoadCaseList()
-    {
-
-        int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
-        
-        CaseList = await ReportService.AliasDetail(InputFilter.GateId, InputFilter.CategoryId, _contactID, 
-                InputFilter.StatusId, InputFilter.ResultId,
-                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate,
-                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
-    }
     
     private void SetPageSizeDropDown()
     {

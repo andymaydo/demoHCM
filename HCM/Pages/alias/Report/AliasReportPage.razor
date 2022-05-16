@@ -19,43 +19,80 @@
 {
     <div class="blue_bg"></div>
     <h5>@AmLocalizer.GetText("AliasReport_Content_CardTitle")</h5>
-    <AmAliasReportGrid 
-        CurrentUserLogin="@CurrentUserLogin" 
-        VgsAccountId = "@VgsAccountId" 
-        InputFilter="InputFilter"
-        AllowActions = "@(@CurrentPrincipal.IsInRole("aliasMng") || @CurrentPrincipal.IsInRole("admin"))" 
-        AllowAuthorization = "@(@CurrentPrincipal.IsInRole("aliasAuth") || @CurrentPrincipal.IsInRole("admin"))">
-    </AmAliasReportGrid>
+
+    @if (_loadingStatus == 0)
+    {
+        <p><em>@AmLocalizer.GetText("Component_Status_Loading")</em></p>
+    }
+
+    if (_loadingStatus == 1)
+    {
+        <AmAliasReportGrid 
+            CurrentUserLogin="@CurrentUserLogin" 
+            VgsAccountId = "@VgsAccountId" 
+            AliasReportList = "@AliasReportList"
+            AllowActions = "@(@CurrentPrincipal.IsInRole("aliasMng") || @CurrentPrincipal.IsInRole("admin"))" 
+            AllowAuthorization = "@(@CurrentPrincipal.IsInRole("aliasAuth") || @CurrentPrincipal.IsInRole("admin"))">
+        </AmAliasReportGrid>
+    }
+    else
+    {
+        <p><em>@AmLocalizer.GetText("Component_Status_LoadingFailed")</em></p>
+    }
+
 }
 
 
 @code {
+    [Inject] private IAliasManager AliasService { get; set; }
     [Inject] private IAliasManagerLocalizer AmLocalizer { get; set; }
     [Inject] public CMSSettings cmsSettings { get; set; }
+    [Inject] private ILogger<AliasReportPage> _logger { get; set; }
 
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
 
+    protected List<AmAliasReport> AliasReportList { get; set; }
     protected string CurrentUserLogin { get; set; }
     protected string VgsAccountId { get; set; }
     protected bool showReport { get; set; }
 
     protected AmAliasFilter InputFilter { get; set; } 
-
+    protected int _loadingStatus { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
         InputFilter = new AmAliasFilter();
-        
 
         CurrentUserLogin = CurrentPrincipal.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value.ToString();
-        VgsAccountId = cmsSettings.VGSAccId;
-        
+        VgsAccountId = cmsSettings.VGSAccId;        
     }
 
-    protected void  ShowReport(AmAliasFilter filter)
+    protected async Task ShowReport(AmAliasFilter filter)
     {
-        showReport = true;
-        InputFilter = filter;       
+       try
+        {
+            _loadingStatus = 0;
+
+            showReport = true;
+            InputFilter = filter;
+            await LoadAliasReportList();
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+
+            _loadingStatus = 2;
+        }       
+    }
+
+    public async Task LoadAliasReportList()
+    {       
+        AliasReportList = await AliasService.ReportGetByFilterAsync(InputFilter.Von, InputFilter.Bis, InputFilter.AllTime,
+            InputFilter.Name, InputFilter.Street,InputFilter.LicenseId, VgsAccountId);
+             
     }
 }

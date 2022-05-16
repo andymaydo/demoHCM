@@ -5,49 +5,117 @@
 
 @if (showReport)
 {
-    @if(ReportType == "Alias")
+    @if (_loadingStatus == 0)
     {
-        <CaseGridAliasOnly InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGridAliasOnly>    
+        <p><em>Loading...</em></p>
     }
-    else
+
+    @if (_loadingStatus == 1)
     {
-        <CaseGrid InputFilter="@SubmitedFilter" ContactId="CurrentContactId" Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGrid>   
+        @if(ReportType == "Alias")
+        {
+            <CaseGridAliasOnly CaseList="CaseListAlias"  Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGridAliasOnly>    
+        }
+        else
+        {
+            <CaseGrid CaseList="CaseList"  Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGrid>   
+        }
     }
+
+    <UiMessageBox Data="Messages.List" />
+
 }
 
 
 
 @code {
 
+    [Inject] private IReportsCaseData ReportService { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private ILogger<CaseReport> _logger { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+
     [Parameter] public CaseFilterModel InputFilter { get; set; }
     [Parameter] public string Culture  { get; set; }
     [Parameter] public bool ExecOnInit { get; set; }
     [Parameter] public string ReportType { get; set; }
     [Parameter] public EventCallback<int> OnCaseDetailsClicked { get; set; }
 
+
     protected CaseFilterModel SubmitedFilter { get; set; }
+    protected List<CaseModel> CaseList { get; set; }
+    protected List<CaseModel> CaseListAlias { get; set; }
     protected bool showReport { get; set; }
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
 
 
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         showReport = false;
+        Messages = new UiMessages();
+        CaseList = new List<CaseModel>();
+        CaseListAlias = new List<CaseModel>();
+
         if (ExecOnInit)
         {
-            ShowReport(InputFilter);
+            await ShowReport(InputFilter);
         }   
     }
 
-    protected void  ShowReport(CaseFilterModel filter)
+    protected async Task ShowReport(CaseFilterModel filter)
     {
-        showReport = true;
-        SubmitedFilter = ObjHelper.Clone<CaseFilterModel>(filter);       
+        try
+        {
+            _loadingStatus = 0;
+            Messages.List.Clear();
+
+            showReport = true;
+            SubmitedFilter = ObjHelper.Clone<CaseFilterModel>(filter);
+
+            @if(ReportType == "Alias")
+            {
+                await LoadCaseListAlias();
+            }
+            else
+            {
+                await LoadCaseList();
+            }
+            
+            _loadingStatus = 1;
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+            _loadingStatus = 2;
+        }   
 
     }
 
-    
+    private async Task LoadCaseList()
+    {
+
+        int? _contactID = SubmitedFilter.ShowOnlyOwnCases ? CurrentContactId : null;
+
+        CaseList = await ReportService.CaseDetail(SubmitedFilter.GateId, SubmitedFilter.CategoryId, _contactID, 
+            SubmitedFilter.StatusId, SubmitedFilter.ResultId,
+            SubmitedFilter.CreateFromDate, SubmitedFilter.CreateToDate, SubmitedFilter.ModifyFromDate, SubmitedFilter.ModifyToDate, 
+            SubmitedFilter.CaseId, SubmitedFilter.ProfilId, SubmitedFilter.SearchedName);
+
+    }
+
+    private async Task LoadCaseListAlias()
+    {
+
+        int? _contactID = SubmitedFilter.ShowOnlyOwnCases ? CurrentContactId : null;
+        
+        CaseListAlias = await ReportService.AliasDetail(SubmitedFilter.GateId, SubmitedFilter.CategoryId, _contactID, 
+                SubmitedFilter.StatusId, SubmitedFilter.ResultId,
+                SubmitedFilter.CreateFromDate, SubmitedFilter.CreateToDate, SubmitedFilter.ModifyFromDate, SubmitedFilter.ModifyToDate,
+                SubmitedFilter.CaseId, SubmitedFilter.ProfilId, SubmitedFilter.SearchedName);
+    }
 }
