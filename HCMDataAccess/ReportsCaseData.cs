@@ -23,7 +23,7 @@ namespace HCMDataAccess
         DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
         {
 
-            var procedure = "REPORT_CaseDetail1";
+            var procedure = "REPORT_CaseDetail";
             var _params = new DynamicParameters();
 
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);

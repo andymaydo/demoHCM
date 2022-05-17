@@ -17,3 +17,9 @@
     font-weight: bold;
     color: #444444;
 }
+.am-card-border {
+    border-color: gray;
+}
+.am-card-bg {
+    background-color: lightgray;
+}

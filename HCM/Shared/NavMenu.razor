@@ -19,23 +19,23 @@
             <div class="@NavMenuCssClass" >
                 
                 <ul class="navbar-nav flex-grow-1">
+                    @*<li class="nav-item" @onclick="ToggleNavMenu">
+                        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onmousedown="CollapseAllSubMenus">@Localizer.Str["MainMenu_Home"]</NavLink>                            
+                    </li>*@
                     <li class="nav-item" @onclick="ToggleNavMenu">
-                        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Home"]</NavLink>                            
-                    </li>
-                    <li class="nav-item" @onclick="ToggleNavMenu">
-                        <NavLink class="nav-link" href="/Cases"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_MyCases"]</NavLink>                            
-                    </li>
-
-                    <li class="nav-item" @onclick="ToggleNavMenu">
-                        <NavLink class="nav-link" href="/Reports"  Match="NavLinkMatch.Prefix" @onmousedown="() => expandAdmin = false">@Localizer.Str["MainMenu_Reports"]</NavLink>                            
+                        <NavLink class="nav-link" href="/Cases"  Match="NavLinkMatch.Prefix" @onmousedown="CollapseAllSubMenus">@Localizer.Str["MainMenu_MyCases"]</NavLink>                            
                     </li>
 
-                     <li class="nav-item" @onclick="ToggleNavMenu">
-                        <NavLink class="nav-link" href="/Alias/"  @onclick:preventDefault @onmousedown="() => expandAlias = !expandAlias" Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Alias"]</NavLink>                            
+                    <li class="nav-item" @onclick="ToggleNavMenu">
+                        <NavLink class="nav-link" href="/Reports"  Match="NavLinkMatch.Prefix" @onmousedown="CollapseAllSubMenus">@Localizer.Str["MainMenu_Reports"]</NavLink>                            
+                    </li>
+
+                     <li class="nav-item">
+                        <NavLink class="nav-link" href="/Alias/"  @onclick:preventDefault @onmousedown="ExpandAliasSubMenu" Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Alias"]</NavLink>                            
                     </li>
 
                     <li class="nav-item">
-                        <NavLink class="nav-link" href="admin/" @onclick:preventDefault @onmousedown="() => expandAdmin = !expandAdmin"  Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Administration"]</NavLink>                            
+                        <NavLink class="nav-link" href="admin/" @onclick:preventDefault @onmousedown="ExpandAdminSubMenu"  Match="NavLinkMatch.Prefix" >@Localizer.Str["MainMenu_Administration"]</NavLink>                            
                     </li>
 
                 </ul>
@@ -47,7 +47,7 @@
         {
             <div class="col-md-12">
                <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav ml-3 flex-grow-1">
                         <li class="@(NewLocation.Contains("admin/profiles") ? "nav-item-set" : "nav-item")">
                             <NavLink class="nav-link" href="admin/profiles/ProfileList" Match="NavLinkMatch.Prefix">@Localizer.Str["Menu_Profiles"]</NavLink>
                         </li>
@@ -104,4 +104,21 @@
         collapseNavMenu = !collapseNavMenu;
     }
 
+    void CollapseAllSubMenus()
+    {
+        expandAdmin = false;
+        expandAlias = false;
+    }
+
+    void ExpandAdminSubMenu()
+    {
+        CollapseAllSubMenus();
+        expandAdmin = true;
+    }
+
+    void ExpandAliasSubMenu()
+    {
+        CollapseAllSubMenus();
+        expandAlias = true;
+    }
 }

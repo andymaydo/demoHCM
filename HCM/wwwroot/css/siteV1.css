@@ -130,10 +130,19 @@ h5 {
 
 
 
+/**** Alias Manager ****/
+
+.am-card-border {
+    border-color: var(--primlight-05) !important;
+}
+
+.am-card-bg {
+    background-color: var(--primlight-001) !important;
+}
 
 /**** UI ****/
 
-.blue_bg {
+    .blue_bg {
     background-repeat: repeat-x;
     background-position: top;
     background-image: url(../images/bg-title-V1.png);
