@@ -121,6 +121,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AliasManagerService\AliasManagerService.csproj" />
     <ProjectReference Include="..\AliasManger\AliasManger.csproj" />
     <ProjectReference Include="..\HCMApi\HCMApi.csproj" />
     <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />

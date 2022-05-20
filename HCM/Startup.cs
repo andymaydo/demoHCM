@@ -24,6 +24,7 @@ using AutoMapper;
 using HCM.Models;
 using HCM.Resources;
 using AliasManger.Interfaces;
+using AliasManagerService;
 
 namespace HCM
 {

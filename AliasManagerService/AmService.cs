@@ -1,22 +1,16 @@
-﻿using Dapper;
+﻿using AliasManger.Interfaces;
+using AliasManger.Models;
+using Dapper;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HCMModels;
-using AliasManger.Interfaces;
-using AliasManger.Models;
 
-namespace HCMDataAccess
+namespace AliasManagerService
 {
     public class AliasService : IAliasManager
     {
         private string _sqlConnStr;
-  
+
 
         public AliasService(IConfiguration conf)
         {
@@ -34,10 +28,10 @@ namespace HCMDataAccess
             p.Add("Status", statusId);          //-100 => all
             p.Add("AliasName", aliasName);
             p.Add("Address", alisStreet);
-                              
+
             p.Add("WaitAuth", waitAuth);
             p.Add("licenseTable", profilesCSV);
-           
+
             using (var connection = new SqlConnection(_sqlConnStr))
             {
                 connection.Open();
@@ -59,7 +53,7 @@ namespace HCMDataAccess
                 return result;
             }
         }
-        
+
         public async Task<List<AmAliasProtocol>> ProtocolGetWaitingByAliasIdAsync(int aliasId)
         {
             string sql = "[dbo].[pAliasHistory_GetWaitingAuthByAliasId]";
@@ -89,7 +83,7 @@ namespace HCMDataAccess
             }
         }
 
-        public async Task<List<AmAliasReport>> ReportGetByFilterAsync(DateTime von, DateTime bis, bool allTime, 
+        public async Task<List<AmAliasReport>> ReportGetByFilterAsync(DateTime von, DateTime bis, bool allTime,
                 string aliasName, string alisStreet, string profilesCSV, string accId)
         {
             string sql = "[dbo].[Alias_Report_Grouped_HCM]";
@@ -99,11 +93,11 @@ namespace HCMDataAccess
             p.Add("von", von);
             p.Add("bis", bis);
             p.Add("allTime", allTime);
-           
+
             p.Add("AliasName", aliasName);
             p.Add("AliasStreet", alisStreet);
-           
-            p.Add("licenseTable", profilesCSV);    
+
+            p.Add("licenseTable", profilesCSV);
 
             using (var connection = new SqlConnection(_sqlConnStr))
             {
@@ -119,7 +113,7 @@ namespace HCMDataAccess
 
         public async Task ReActivateAsync(int aliasId, string reason, string callerLogin)
         {
-            
+
             string sql = "[dbo].[AliasProtocol_ReActiveAction]";
 
             var p = new DynamicParameters();
@@ -139,7 +133,7 @@ namespace HCMDataAccess
         }
         public async Task DeActivateAsync(int aliasId, string reason, string callerLogin)
         {
-            
+
             string sql = "[dbo].[AliasProtocol_DeActiveAction]";
 
             var p = new DynamicParameters();
@@ -218,7 +212,7 @@ namespace HCMDataAccess
             }
         }
 
-        public async Task CreateAsync(string aliasName, string aliasStreet, string description, 
+        public async Task CreateAsync(string aliasName, string aliasStreet, string description,
                 int? vgsProfilId, string sapIp, string sapGw, string sapMandant, string sapBelegNr,
                 string hcmUserFullName, string hcmProfilId, string hcmProfilName,
                 string caseUrl, string accId)
@@ -240,9 +234,9 @@ namespace HCMDataAccess
                     licId = await GetLicIdByProfileId((int)vgsProfilId);
                     break;
             }
-            
 
-            if(licId == null)
+
+            if (licId == null)
             {
                 throw new Exception("LicIdNotDetermined");
             }
@@ -263,7 +257,7 @@ namespace HCMDataAccess
 
 
 
-        private async Task<int?>GetLicIdByProfileId(int profileId) 
+        private async Task<int?> GetLicIdByProfileId(int profileId)
         {
             string sql = "[dbo].[pLiz_RetriveBy_ProfileID]";
 
@@ -280,7 +274,7 @@ namespace HCMDataAccess
             }
         }
 
-        private async Task<int?> GetLicIdBySapInfo(string sapIp,string sapGw, string sapMandant)
+        private async Task<int?> GetLicIdBySapInfo(string sapIp, string sapGw, string sapMandant)
         {
             string sql = "[dbo].[pLiz_RetriveBy_SapIP_SapGTW_Mandant]";
 
@@ -299,7 +293,7 @@ namespace HCMDataAccess
             }
         }
 
-        private async Task DbCreateAsync(string aliasName, string aliasStreet, string description, 
+        private async Task DbCreateAsync(string aliasName, string aliasStreet, string description,
                 string hcmUserFullName, string hcmProfilId, string hcmProfilName,
                 string sapBelegNr, string caseUrl, int licId, string accId)
         {
@@ -318,7 +312,7 @@ namespace HCMDataAccess
             p.Add("belegNummer", sapBelegNr);
             p.Add("CaseURL", caseUrl);
             p.Add("LicID", licId);
-         
+
 
             using (var connection = new SqlConnection(_sqlConnStr))
             {

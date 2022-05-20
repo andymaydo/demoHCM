@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AliasManger\AliasManger.csproj" />
     <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
   </ItemGroup>
 
