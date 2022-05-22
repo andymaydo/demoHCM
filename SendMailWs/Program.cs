@@ -1,5 +1,4 @@
 using SendMailWs;
-using HCMDataAccess;
 using Serilog;
 using SendMailWs.Services;
 using MailLib.Interfaces;
@@ -19,9 +18,12 @@ Log.Logger = new LoggerConfiguration()
 IHost host = Host.CreateDefaultBuilder(args)    
     .ConfigureServices(services =>
     {
-        services.AddSingleton<ISettingsData, SettingsService>();
-        services.AddSingleton<IMailQueue, MailQueueService>();
         services.AddSingleton<IMailService, MailService>();
+
+        services.AddSingleton<IMailClientSettings, HcmMailClientSettingsService>();
+        services.AddSingleton<IMailQueue, HcmMailQueueService>();
+        services.AddSingleton<ISqlLog, HcmSqlLogService>();
+
         services.AddSingleton<IUnitOfWork, UnitOfWorkService>();
 
         services.AddHostedService<Worker>();
