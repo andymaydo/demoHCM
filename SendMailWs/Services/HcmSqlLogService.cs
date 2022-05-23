@@ -12,7 +12,7 @@ namespace SendMailWs.Services
 {
     public class HcmSqlLogService : ISqlLog
     {
-        private string _sqlConnStr;
+        private readonly string _sqlConnStr;
         private readonly ILogger<HcmSqlLogService> _logger;
 
 
@@ -25,9 +25,8 @@ namespace SendMailWs.Services
         public async Task AddSqlLog(string errCode, string errMsg, Exception ex)
         {
             var evMessage = ex.StackTrace ?? errMsg ?? "";
-
-            int evCode;
-            Int32.TryParse(errCode, out evCode);
+        
+            Int32.TryParse(errCode, out int evCode);
 
             await DbCreateEventLog(evCode, evMessage);
 

@@ -79,6 +79,15 @@ namespace SendMailWs.Services
             public string Body { get; set; }
             public string CaseEventData { get; set; }  //xml
 
+            public HcmMailQueueItem()
+            {
+                FormAddr = String.Empty;
+                ToAddr = String.Empty;
+                Bcc = String.Empty;
+                Subj = String.Empty;
+                Body = String.Empty;
+                CaseEventData = String.Empty;
+            }
         }
 
         private sppAttachment GetAttachedReport(string caseEventData)
@@ -98,8 +107,7 @@ namespace SendMailWs.Services
                     htmlResult.FileName = DateTime.Now.ToString("yyMMddHHmm") + "_" + "HcmReport.html";
                     htmlResult.Content = System.Convert.FromBase64String(reportNode.InnerText);
 
-                    var filesToZip = new List<sppAttachment>();
-                    filesToZip.Add(htmlResult);
+                    var filesToZip = new List<sppAttachment> { htmlResult };
 
                     var archivedFile = sppZip.GetZipArchive(filesToZip);
 

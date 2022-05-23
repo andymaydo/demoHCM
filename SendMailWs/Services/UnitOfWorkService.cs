@@ -77,9 +77,11 @@ namespace SendMailWs.Services
         protected async Task ProcessMail(sppMailSettings smtpSettings, MailQueueItem item)
         {
             _logger.LogDebug("Start processing mail item ...");
-                var mailRequest = new sppMailRequest();
-                mailRequest.MailItem = item;
-                mailRequest.Settings = smtpSettings;            
+            var mailRequest = new sppMailRequest
+            {
+                MailItem = item,
+                Settings = smtpSettings
+            };
             _logger.LogDebug("MailRequest : {req}", JsonConvert.SerializeObject(mailRequest));
 
             _logger.LogInformation("Send Mail id: {id} from: {from} to: {to}", item.itemId, item.FromMail, item.ToEmail);

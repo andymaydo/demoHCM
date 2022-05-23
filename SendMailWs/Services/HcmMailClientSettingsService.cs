@@ -15,8 +15,8 @@ namespace SendMailWs.Services
 {
     public class HcmMailClientSettingsService : IMailClientSettings
     {
-        private string _sqlConnStr;
-        private bool _enableTls;
+        private readonly string _sqlConnStr;
+        private readonly bool _enableTls;
 
 
         public HcmMailClientSettingsService(IConfiguration conf)
@@ -57,6 +57,17 @@ namespace SendMailWs.Services
             public string SMTPServerPass { get; set; }
 
             public string AppUrl { get; set; }
+
+            public HcmSettingsModel()
+            {
+                SMTPServer = String.Empty;
+                SMTPServerPort = String.Empty;
+                
+                SMTPServerUser = String.Empty;
+                SMTPServerPass = String.Empty;
+
+                AppUrl = String.Empty;
+            }
         }
     }
 }
