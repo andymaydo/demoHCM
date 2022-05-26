@@ -23,8 +23,8 @@ using System.Reflection;
 using AutoMapper;
 using HCM.Models;
 using HCM.Resources;
-using AliasManger.Interfaces;
-using AliasManagerService;
+using AliasManager.Interfaces;
+using AliasManager.Services;
 
 namespace HCM
 {
@@ -83,30 +83,17 @@ namespace HCM
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
 
-            services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-            services.AddSingleton<IReportsCaseData, ReportsCaseData>();
-            services.AddSingleton<IFiltersData, FiltersData>();
-            services.AddSingleton<ICase, Case>();
-            services.AddSingleton<ICaseEvent, CaseEvent>();
-            services.AddSingleton<ICMSEvent, CMSEvent>();
-            services.AddSingleton<ICaseDoc, CaseDoc>();
-            services.AddSingleton<ICaseContact, CaseContact>();
-            services.AddSingleton<ICMSAPI, CMSAPI>();
-            services.AddSingleton<ILoginData, LoginData>();
-            services.AddSingleton<ISettingsData, SettingsData>();
-            services.AddSingleton<IUsersData, UsersData>();
-            services.AddSingleton<IUserRolesData, UserRolesData>();
-            services.AddSingleton<ICMSProfile, CMSProfile>();
+            services.AddHcmDataAccess();
+            services.AddHcmApi();
+
             services.AddTransient<ProfileWizardVM>();
 
-
-            services.AddSingleton<IAliasManager, AliasService>();
-            services.AddSingleton<IAliasManagerLocalizer, AliasManagerLocalizer>();
+            //AliasManager
+            services.AddAmHcmForVgs(Configuration.GetSection("ConnectionStrings:VGS").Value);
             
 
             services.AddOptions();
-            services.AddAuthorizationCore();
-            //services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
+            services.AddAuthorizationCore();            
             services.AddBlazorDownloadFile(ServiceLifetime.Scoped);
             
 
