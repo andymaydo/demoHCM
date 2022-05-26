@@ -16,8 +16,6 @@
 @using System.Xml
 @using static HCMModels.CaseModel
 @using HCMDataAccess
-@using AliasApi
-@using static AliasApi.AliasApiSoapClient
 
 
 @if (ShowModal)
@@ -151,7 +149,6 @@
     protected List<AliasLizStatus> LizTypeList { get; set; }
 
     protected UiMessages Messages { get; set; }
-    private AliasApiSoapClient AliasApiClient { get; set; }
     private int _loadingStatus;
 
 

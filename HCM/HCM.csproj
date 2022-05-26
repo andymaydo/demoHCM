@@ -10,72 +10,7 @@
     <Optimize>False</Optimize>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Controllers\**" />
-    <Compile Remove="Data\**" />
-    <Compile Remove="Pages\admin_\**" />
-    <Compile Remove="Pages\auth\**" />
-    <Compile Remove="Resources\Resources\**" />
-    <Content Remove="Controllers\**" />
-    <Content Remove="Data\**" />
-    <Content Remove="Pages\admin_\**" />
-    <Content Remove="Pages\auth\**" />
-    <Content Remove="Resources\Resources\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <EmbeddedResource Remove="Pages\admin_\**" />
-    <EmbeddedResource Remove="Pages\auth\**" />
-    <EmbeddedResource Remove="Resources\Resources\**" />
-    <None Remove="Controllers\**" />
-    <None Remove="Data\**" />
-    <None Remove="Pages\admin_\**" />
-    <None Remove="Pages\auth\**" />
-    <None Remove="Resources\Resources\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="LocalAuthenticationStateProvider.cs" />
-    <Compile Remove="Models\CaseActionVM.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Pages\admin\profiles\NewProfile.razor" />
-    <Content Remove="Pages\admin\profiles\ProfileStep1.razor" />
-    <Content Remove="Pages\admin\profiles\ProfileStep2.razor" />
-    <Content Remove="Pages\admin\profiles\ProfileStep3.razor" />
-    <Content Remove="Pages\admin\profiles\Profiles_.razor" />
-    <Content Remove="Pages\admin\profiles\ProfileView.razor" />
-    <Content Remove="Pages\admin\settings\Settings_.razor" />
-    <Content Remove="Pages\alias\List\AliasGrid.razor" />
-    <Content Remove="Pages\alias\Report\AliasReportGrid.razor" />
-    <Content Remove="Pages\alias\Shared\AliasDetails.razor" />
-    <Content Remove="Pages\alias\Shared\AliasDetailsActions.razor" />
-    <Content Remove="Pages\alias\Shared\AliasDetailsActionsConfirm.razor" />
-    <Content Remove="Pages\alias\Shared\AliasHistory.razor" />
-    <Content Remove="Pages\alias\Shared\AliasInfoPopUp.razor" />
-    <Content Remove="Pages\alias\Shared\AliasProtocol.razor" />
-    <Content Remove="Pages\cases\CaseAddeduserPan.razor" />
-    <Content Remove="Pages\cases\CaseEscaluserPan.razor" />
-    <Content Remove="Pages\cases\CaseResponsiblesPan.razor" />
-    <Content Remove="Pages\cases\DetailPage\Details_.razor" />
-    <Content Remove="Pages\cases\Details_.razor" />
-    <Content Remove="Pages\cases\ListCases.razor" />
-    <Content Remove="Pages\cases\MatchResult.razor" />
-    <Content Remove="Pages\Counter.razor" />
-    <Content Remove="Pages\reports\Reports.razor" />
-    <Content Remove="Shared\ChooseLanguage.razor" />
-    <Content Remove="Shared\SurveyPrompt.razor" />
-    <Content Remove="Shared\UserStatus.razor" />
-    <Content Remove="wwwroot\images\bg-title.gif" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Resources\SfResources.de1.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Pages\admin\users\Users.razor.txt" />
-  </ItemGroup>
+ 
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
@@ -94,7 +29,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
-    <PackageReference Include="SppAliasManager" Version="1.0.1" />
+    <PackageReference Include="SppAliasManager" Version="1.0.2" />
     <PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.47" />
     <PackageReference Include="Syncfusion.Blazor.Calendars" Version="20.1.0.47" />
     <PackageReference Include="Syncfusion.Blazor.Cards" Version="20.1.0.47" />
