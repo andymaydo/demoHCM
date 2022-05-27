@@ -4,11 +4,20 @@
     <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>25d027fb-faa0-4922-93ec-c6fbbe1b3a9f</UserSecretsId>
     <StartupObject></StartupObject>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>False</Optimize>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\kokom\.nuget\packages\sppaliasmanager\1.0.2\contentFiles\any\net6.0\wwwroot\AmStyle.css" />
+    <Content Remove="C:\Users\kokom\.nuget\packages\sppaliasmanager\1.0.2\contentFiles\any\net6.0\wwwroot\background.png" />
+    <Content Remove="C:\Users\kokom\.nuget\packages\sppaliasmanager\1.0.2\contentFiles\any\net6.0\wwwroot\exampleJsInterop.js" />
+    <Content Remove="Shared\UserStatus.razor" />
+  </ItemGroup>
 
  
 
