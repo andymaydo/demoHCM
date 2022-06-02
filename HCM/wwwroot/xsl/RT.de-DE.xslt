@@ -421,9 +421,6 @@ a
         </xsl:choose>
 
 
-        <xsl:choose>
-          <xsl:when test="(denid &lt; 10000000)">
-
             <a>
               <xsl:attribute name="href">
                 http://contentinfo.sapper.de/?id=<xsl:value-of select="denid"/>
@@ -431,11 +428,7 @@ a
               <xsl:attribute name="target">_new</xsl:attribute>
               <xsl:value-of select="DominoFormat:ReplaceEmpty(dentype)"/>
             </a>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="DominoFormat:ReplaceEmpty(dentype)"/>
-          </xsl:otherwise>
-        </xsl:choose>
+
         
         
 			</TD>	
