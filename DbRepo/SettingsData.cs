@@ -1,5 +1,7 @@
-﻿using Dapper;
-using HCMModels;
+﻿using Application.Interfaces;
+using Dapper;
+using Domain.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,16 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HCMDataAccess
+namespace DbRepo
 {
     public class SettingsData : ISettingsData
-    {     
+    {
 
 
-        private readonly ISqlDataAccess _db;
-        public SettingsData(ISqlDataAccess db)
+        private string _sqlConnStr;
+        public SettingsData(IConfiguration config)
         {
-            _db = db;
+            _sqlConnStr = config.GetConnectionString("Default");
         }
 
         public async Task<SettingsModel> GetSettings()
@@ -25,11 +27,9 @@ namespace HCMDataAccess
             var procedure = "AppSettings_Get";
             var _params = new DynamicParameters();
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
             try
             {
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                using (var conn = new SqlConnection(_sqlConnStr))
                 {
                     var result = await conn.QueryAsync<SettingsModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -59,7 +59,7 @@ namespace HCMDataAccess
             _params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                using (var conn = new SqlConnection(_sqlConnStr))
                 {
 
                     var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HCMApi
@@ -19,6 +20,6 @@ namespace HCMApi
         Task<int> Create();
         Task<int> Create(string vEmail);
 
-        Task<List<CaseContact>> Contact_GetAll();
+        Task<List<Contact>> Contact_GetAll();
     }
 }

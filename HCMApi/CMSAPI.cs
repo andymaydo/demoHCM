@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Domain;
+using Domain.Models;
 
 namespace HCMApi
 {
@@ -66,9 +68,9 @@ namespace HCMApi
         public async Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText)
         {
             Case lCase = await _iCase.Load(caseID);
-            await runOnEvent(eventID, IssuedByID, lCase, xmlData, EventText, new List<CaseContact>());
+            await runOnEvent(eventID, IssuedByID, lCase, xmlData, EventText, new List<Contact>());
         }
-        public async Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, List<CaseContact> xmlNotifyList)
+        public async Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, List<Contact> xmlNotifyList)
         {
             Case lCase = await _iCase.Load(caseID);
             await runOnEvent(eventID, IssuedByID, lCase, xmlData, EventText, xmlNotifyList);
@@ -79,10 +81,10 @@ namespace HCMApi
             if (NotifyParticipants)
                 await runOnEvent(eventID, IssuedByID, lCase, xmlData, EventText, lCase.ParticipantsAsList);
             else
-                await runOnEvent(eventID, IssuedByID, lCase, xmlData, EventText, new List<CaseContact>());
+                await runOnEvent(eventID, IssuedByID, lCase, xmlData, EventText, new List<Contact>());
 
         }
-        private async Task runOnEvent(string eventID, int IssuedByID, Case lCase, XmlDocument xmlData, string EventText, List<CaseContact> NotifyList)
+        private async Task runOnEvent(string eventID, int IssuedByID, Case lCase, XmlDocument xmlData, string EventText, List<Contact> NotifyList)
         {           
             CaseEvent lCaseEvent = new CaseEvent(_iCaseEvent.GetIConfiguration());
             lCaseEvent.caseID = lCase.CaseID;
@@ -90,7 +92,8 @@ namespace HCMApi
             lCaseEvent.eventID = eventID;
             lCaseEvent.CaseEventData = xmlData.InnerXml;
             lCaseEvent.CaseEventText = EventText;
-            lCaseEvent.CaseEventNotifyContacts = CaseContactList.AsXmlStringFromList(NotifyList);
+            //lCaseEvent.CaseEventNotifyContacts = CaseContactList.AsXmlStringFromList(NotifyList);
+            lCaseEvent.CaseEventNotifyContacts = NotifyList.ObjToXml().ToString();
 
             await onEvent(lCase, lCaseEvent, IssuedByID);
         }
@@ -123,9 +126,9 @@ namespace HCMApi
          public async Task ChangeParticipants(int IssuedByID, int caseID, XmlDocument xmlData, string EventText)
          {
             Case lCase = await _iCase.Load(caseID);
-            await runChangeParticipants(IssuedByID, lCase, xmlData, EventText, new List<CaseContact>());
+            await runChangeParticipants(IssuedByID, lCase, xmlData, EventText, new List<Contact>());
          }
-        protected async Task<bool> runChangeParticipants(int IssuedByID, Case lCase, XmlDocument xmlData, string EventText, List<CaseContact> NotifyList)
+        protected async Task<bool> runChangeParticipants(int IssuedByID, Case lCase, XmlDocument xmlData, string EventText, List<Contact> NotifyList)
         {
             CaseEvent lCaseEvent = new CaseEvent(_iCaseEvent.GetIConfiguration());
             lCaseEvent.caseID = lCase.CaseID;
@@ -133,7 +136,8 @@ namespace HCMApi
             lCaseEvent.eventID = "cms.participantschanged";
             lCaseEvent.CaseEventData = xmlData.InnerXml;
             lCaseEvent.CaseEventText = EventText;
-            lCaseEvent.CaseEventNotifyContacts = CaseContactList.AsXmlStringFromList(NotifyList);
+            //lCaseEvent.CaseEventNotifyContacts = CaseContactList.AsXmlStringFromList(NotifyList);
+            lCaseEvent.CaseEventNotifyContacts = NotifyList.ObjToXml().ToString();
 
             await onEvent(lCase, lCaseEvent, IssuedByID);
             return true;

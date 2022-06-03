@@ -1,9 +1,9 @@
 ﻿
 using AutoMapper;
 using AutoMapper.Internal;
+using Domain.Models;
 using HCM.Models;
 using HCMApi;
-using HCMApi.Models;
 using HCMModels;
 using Newtonsoft.Json;
 using System;
@@ -18,8 +18,11 @@ namespace HCM.Models
     {       
         public MappingProfile()
         {
-            CreateMap<CaseContactSelectable, CaseContact>();
-            CreateMap<CaseContact, CaseContactSelectable>();
+          
+
+
+            CreateMap<CaseContactSelectable, Contact>();
+            CreateMap<Contact, CaseContactSelectable>();
 
             CreateMap<CaseOriginator, CaseOriginatorSelectable>();
             CreateMap<CaseOriginatorSelectable, CaseOriginator>();
@@ -59,6 +62,10 @@ namespace HCM.Models
             CreateMap<SettingsModel, SettingsSMTPForm>().ReverseMap();
 
             CreateMap<CaseModel, Case>().ReverseMap();
+
+
+            //DbRepo
+            CreateMap<CMSProfileModelSimple, CMSProfileModel>().ReverseMap();
 
         }
     }

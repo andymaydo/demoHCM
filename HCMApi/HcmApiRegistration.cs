@@ -15,9 +15,9 @@ namespace HCMApi
             services.AddSingleton<ICaseEvent, CaseEvent>();
             services.AddSingleton<ICMSEvent, CMSEvent>();
             services.AddSingleton<ICaseDoc, CaseDoc>();
-            services.AddSingleton<ICaseContact, CaseContact>();
+            //services.AddSingleton<ICaseContact, CaseContact>();
             services.AddSingleton<ICMSAPI, CMSAPI>();
-            services.AddSingleton<ICMSProfile, CMSProfile>();
+            
         }
     }
 }

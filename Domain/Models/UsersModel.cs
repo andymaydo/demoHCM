@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Xml;
 
-namespace HCMModels
+namespace Domain.Models
 {
     public class UsersModel
     {

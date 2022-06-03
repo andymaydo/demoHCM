@@ -25,6 +25,7 @@ using HCM.Models;
 using HCM.Resources;
 using AliasManager.Interfaces;
 using AliasManager.Services;
+using DbRepo;
 
 namespace HCM
 {
@@ -78,12 +79,13 @@ namespace HCM
             services.AddSingleton<CommonLocalizationService>();
 
             services.AddAutoMapper(typeof(MappingProfile));
-
+            
             services.AddSyncfusionBlazor();                     
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
 
             services.AddHcmDataAccess();
+            services.AddInfraDb();
             services.AddHcmApi();
 
             services.AddTransient<ProfileWizardVM>();

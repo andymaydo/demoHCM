@@ -1,8 +1,8 @@
-﻿using HCMApi.Models;
+﻿using Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace HCMApi
+namespace Application.Interfaces
 {
     public interface ICMSProfile
     {      

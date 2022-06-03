@@ -1,4 +1,5 @@
 ﻿                 
+@using Domain
 @using HCMDataAccess
 @using HCMModels
 @using Microsoft.AspNetCore.Http
@@ -10,7 +11,6 @@
 @using Syncfusion.Blazor.Lists
 @using System.Security.Claims
 @using HCMApi
-@using HCMApi.Models
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
@@ -219,8 +219,8 @@
     {
         try
         {
-            CaseContactSerializable contacts = new CaseContactSerializable();
-            contacts.ContactList = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants);
+            List<Contact> contacts = new List<Contact>();
+            contacts = _mapper.Map<List<Contact>>(FormModel.CaseParticipants);
 
             XmlDocument AddedCaseParticipantsXml = new XmlDocument();
             AddedCaseParticipantsXml.LoadXml(contacts.ObjToXml());

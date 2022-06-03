@@ -15,9 +15,9 @@ namespace HCMDataAccess
 
             services.AddSingleton<IReportsCaseData, ReportsCaseData>();
             services.AddSingleton<IFiltersData, FiltersData>();
-            services.AddSingleton<ILoginData, LoginData>();
-            services.AddSingleton<ISettingsData, SettingsData>();
-            services.AddSingleton<IUsersData, UsersData>();
+            
+            
+            
             services.AddSingleton<IUserRolesData, UserRolesData>();
         }
     }

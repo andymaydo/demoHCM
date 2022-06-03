@@ -1,4 +1,5 @@
-﻿using HCM.Resources;
+﻿using Domain.Models;
+using HCM.Resources;
 using HCMApi;
 using HCMModels;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace HCM.Models
     public class ProfileContactsForm 
     {
         public bool NotifyAllProfileParticipants { get; set; }
-        public List<CaseContact> profileParticipants { get; set; } = new List<CaseContact>();
+        public List<Contact> profileParticipantsList{ get; set; } = new List<Contact>();
 
         [Display(Name = "Cases_ChangeUsers_FullUserList", ResourceType = typeof(SharedResources))]
         [Required(ErrorMessageResourceName = "Form_Field_Required", ErrorMessageResourceType = typeof(SharedResources))]
@@ -48,7 +49,7 @@ namespace HCM.Models
     public class ProfileEscalationContactsForm
     {
 
-        public List<CaseContact> escalationUsers { get; set; } = new List<CaseContact>();    
+        public List<Contact> escalationUsersList { get; set; } = new List<Contact>();    
 
         [Display(Name = "Cases_ChangeUsers_FullUserList", ResourceType = typeof(SharedResources))]
         [Required(ErrorMessageResourceName = "Form_Field_Required", ErrorMessageResourceType = typeof(SharedResources))]
@@ -62,7 +63,7 @@ namespace HCM.Models
 
     public class ProfileEscalationRulesForm
     {  
-        public List<CaseRule> escalationRules { get; set; } = new List<CaseRule>();
+        public List<CaseRule> escalationRulesList { get; set; } = new List<CaseRule>();
 
 
         [Display(Name = "Profile_Step_Escalation_RuleList_Name", ResourceType = typeof(SharedResources))]

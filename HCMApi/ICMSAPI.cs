@@ -1,4 +1,5 @@
-﻿using HCMModels;
+﻿using Domain.Models;
+using HCMModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace HCMApi
         Task<List<CaseEvent>> GetEventList(int caseID);
 
         Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, bool NotifyParticipants);
-        Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, List<CaseContact> xmlNotifyList);
+        Task OnEvent(string eventID, int IssuedByID, int caseID, XmlDocument xmlData, string EventText, List<Contact> xmlNotifyList);
 
 
         Task ChangeParticipants(int IssuedByID, int caseID, XmlDocument xmlData, string EventText);

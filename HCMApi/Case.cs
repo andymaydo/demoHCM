@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using Domain;
+using Domain.Models;
 using HCMModels;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -73,21 +75,27 @@ namespace HCMApi
             }
         }
 
-        public CaseContactList ParticipantsAsCaseContactList 
-        { 
+        //public CaseContactList ParticipantsAsCaseContactList 
+        //{ 
+        //    get
+        //    {
+        //        return CaseContactList.LoadFromXml(Participants);
+        //    }
+        //}
+        public List<Contact> ParticipantsAsList
+        {
             get
             {
-                return CaseContactList.LoadFromXml(Participants);
+                var listP = new List<Contact>();
+                try
+                {
+                    listP = ObjHelper.FromXml<List<Contact>>(Participants, "ContactList");
+                }
+                catch { }
+                return listP;
             }
         }
-        public List<CaseContact> ParticipantsAsList 
-        { 
-            get
-            {
-                return CaseContactList.LoadFromXmlAsList(Participants);
-            }
-        }
-        
+
 
         private readonly IConfiguration _config;
 

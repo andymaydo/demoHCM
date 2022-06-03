@@ -11,7 +11,6 @@
 @using Syncfusion.Blazor.Navigations
 @using System.Security.Claims
 @using HCMApi
-@using HCMApi.Models
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
@@ -170,7 +169,7 @@
 
             ViewModel.InitForms();         
 
-            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.ContactsForm.profileParticipants);            
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.ContactsForm.profileParticipantsList);            
 
             InitRoleList();
             await LoadUserList();
@@ -224,7 +223,7 @@
         {
             Messages.List.Clear();           
 
-            _mapper.Map(ProfileContacts, ViewModel.ContactsForm.profileParticipants);                      
+            _mapper.Map(ProfileContacts, ViewModel.ContactsForm.profileParticipantsList);                      
 
             await ViewModel.SaveContacts(CurrentContactId);
 

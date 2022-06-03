@@ -1,5 +1,5 @@
-﻿using HCMApi;
-using HCMApi.Models;
+﻿using Domain.Models;
+using HCMApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;

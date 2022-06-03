@@ -10,8 +10,7 @@
 @using Syncfusion.Blazor.Lists
 @using Syncfusion.Blazor.Navigations
 @using System.Security.Claims
-@using HCMApi
-@using HCMApi.Models
+
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
@@ -48,7 +47,7 @@
     <div class="col-12 py-2"></div>
 
     <div class="border border-1 bg-light p-2">
-        <ProfileEscalationRulesPan Source="ViewModel.CurrentProfile.escalationRules" 
+        <ProfileEscalationRulesPan Source="ViewModel.CurrentProfile.escalationRulesList" 
             Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
             ShowStriped="true" AllowDelete="false">
         </ProfileEscalationRulesPan>
@@ -97,8 +96,8 @@
 
             Messages = new UiMessages();
 
-            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.profileParticipants);            
-            EscalationContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.escalationUsers);            
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.profileParticipantsList);            
+            EscalationContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.escalationUsersList);            
 
             _loadingStatus = 1;
         }
