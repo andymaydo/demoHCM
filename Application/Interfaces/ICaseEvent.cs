@@ -1,16 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HCMApi
+namespace Application.Interfaces
 {
     public interface ICaseEvent
     {
         Task<List<CaseEvent>> GetHistoryByCase(int CaseID);
-        Task<int> Create();
-        IConfiguration GetIConfiguration();
+        Task<int> Create(CaseEvent caseEv);
+        Task SendMailToNotifyList(int caseEventID, string contacts);
     }
 }

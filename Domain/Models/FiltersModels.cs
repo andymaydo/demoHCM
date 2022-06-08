@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HCMModels
+namespace Domain.Models
 {
     public class FiltersModels
     {

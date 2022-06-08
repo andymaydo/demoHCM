@@ -259,7 +259,7 @@
 
     private List<CaseContactSelectable> GetProfileParticipants()
     {
-        var participants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
+        var participants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipantsList);
         if (ProfileModel.NotifyAllProfileParticipants)
         {
             participants?.ForEach(p => p.Selected = true);

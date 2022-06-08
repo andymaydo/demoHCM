@@ -57,7 +57,7 @@ namespace DbRepo
                 using (var conn = new SqlConnection(_sqlConnStr))
                 {
 
-                    var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                    var result = await conn.ExecuteAsync(procedure, _params, commandType: CommandType.StoredProcedure);
                     int ReturnValue = _params.Get<int>("@ReturnValue");
                     return ReturnValue;
 
@@ -88,7 +88,7 @@ namespace DbRepo
             using (var conn = new SqlConnection(_sqlConnStr))
             {
 
-                var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = await conn.ExecuteAsync(procedure, _params, commandType: CommandType.StoredProcedure);
                 int ReturnValue = _params.Get<int>("@ReturnValue");
                 return ReturnValue;
 
@@ -111,7 +111,7 @@ namespace DbRepo
             using (var conn = new SqlConnection(_sqlConnStr))
             {
 
-                var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = await conn.ExecuteAsync(procedure, _params, commandType: CommandType.StoredProcedure);
                 int ReturnValue = _params.Get<int>("@ReturnValue");
                 return ReturnValue;
 
@@ -133,7 +133,7 @@ namespace DbRepo
             using (var conn = new SqlConnection(_sqlConnStr))
             {
 
-                var result = await conn.QueryAsync<object>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = await conn.ExecuteAsync(procedure, _params, commandType: CommandType.StoredProcedure);
                 int ReturnValue = _params.Get<int>("@ReturnValue");
                 return ReturnValue;
 

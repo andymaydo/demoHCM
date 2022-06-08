@@ -11,12 +11,12 @@ namespace HCMApi
     {
         public static void AddHcmApi(this IServiceCollection services)
         {
-            services.AddSingleton<ICase, Case>();
-            services.AddSingleton<ICaseEvent, CaseEvent>();
+            
+            
             services.AddSingleton<ICMSEvent, CMSEvent>();
             services.AddSingleton<ICaseDoc, CaseDoc>();
             //services.AddSingleton<ICaseContact, CaseContact>();
-            services.AddSingleton<ICMSAPI, CMSAPI>();
+            
             
         }
     }

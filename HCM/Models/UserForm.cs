@@ -1,4 +1,5 @@
-﻿using HCM.Resources;
+﻿using Domain.Models;
+using HCM.Resources;
 using HCMModels;
 using System.ComponentModel.DataAnnotations;
 

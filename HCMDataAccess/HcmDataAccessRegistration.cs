@@ -13,12 +13,12 @@ namespace HCMDataAccess
         {
             services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 
-            services.AddSingleton<IReportsCaseData, ReportsCaseData>();
-            services.AddSingleton<IFiltersData, FiltersData>();
             
             
             
-            services.AddSingleton<IUserRolesData, UserRolesData>();
+            
+            
+            
         }
     }
 }

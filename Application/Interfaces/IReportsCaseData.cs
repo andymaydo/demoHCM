@@ -1,10 +1,10 @@
-﻿using HCMModels;
+﻿using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-namespace HCMDataAccess
+namespace Application.Interfaces
 {
     public interface IReportsCaseData
     {

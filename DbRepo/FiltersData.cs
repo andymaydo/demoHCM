@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Application.Interfaces;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -7,18 +8,16 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HCMModels.FiltersModels;
+using static Domain.Models.FiltersModels;
 
-namespace HCMDataAccess
+namespace DbRepo
 {
     public class FiltersData : IFiltersData
     {
-        private readonly IConfiguration _config;
-        private readonly ISqlDataAccess _db;
-        public FiltersData(IConfiguration config, ISqlDataAccess db)
+        private string _sqlConnStr;
+        public FiltersData(IConfiguration config)
         {
-            _config = config;
-            _db = db;
+            _sqlConnStr = config.GetConnectionString("Default");
         }
 
         public List<GateModel> GetGates()
@@ -26,7 +25,7 @@ namespace HCMDataAccess
             var procedure = "CaseData_Application_GetList";
             var _params = new DynamicParameters();
          
-            using (var conn = new SqlConnection(_db.GetConnStrName()))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result =  conn.Query<GateModel>(procedure, _params, commandType: CommandType.StoredProcedure);                
                 return result.ToList();
@@ -34,6 +33,7 @@ namespace HCMDataAccess
          
             
         }
+        
         public  List<ProfileModel> GetProfiles(int? contactID)
         {
             var procedure = "Profile_GetByContact";
@@ -42,13 +42,14 @@ namespace HCMDataAccess
             _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: contactID);
 
 
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<ProfileModel>(procedure, _params, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
 
         }
+        
         public  List<CategoryModel> GetCategories(int appID)
         {
             var procedure = "CaseType_GetByApp";
@@ -57,7 +58,7 @@ namespace HCMDataAccess
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
 
 
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<CategoryModel>(procedure, _params, commandType: CommandType.StoredProcedure);
                 return result.ToList();
@@ -65,17 +66,15 @@ namespace HCMDataAccess
 
         }
 
-         public List<CaseResultModel> GetResults(int appID)
+        public List<CaseResultModel> GetResults(int appID)
         {
             var procedure = "CaseData_Result_4Application";
             var _params = new DynamicParameters();
 
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
             
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<CaseResultModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -91,10 +90,8 @@ namespace HCMDataAccess
             var procedure = "CaseStatus_GetActiveOnly";
             var _params = new DynamicParameters();
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
             
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -112,10 +109,8 @@ namespace HCMDataAccess
 
             _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-            
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+        
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -131,9 +126,7 @@ namespace HCMDataAccess
             var procedure = "CaseStatus_GetForEscalation";
             var _params = new DynamicParameters();
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<CaseStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -144,16 +137,13 @@ namespace HCMDataAccess
             
         }
 
-
         public List<ProfileStatusModel> GetProfileStatuses()
         {
             var procedure = "ProfileStatus_GetList";
             var _params = new DynamicParameters();
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-            
-            using (var conn = new SqlConnection(_config.GetConnectionString("Default")))
+   
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = conn.Query<ProfileStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 

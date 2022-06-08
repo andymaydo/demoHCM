@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static HCMModels.CaseModel;
+using static Domain.Models.CaseModel;
 
 namespace HCM.Models
 {

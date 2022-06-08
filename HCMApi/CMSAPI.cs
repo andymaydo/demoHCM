@@ -23,37 +23,37 @@ namespace HCMApi
         }
 
         #region Case
-        public async Task<List<Case>> GetCaseList(int? caseID, int loginUserID)
-        {
-            return await _iCase.GetCasesList(caseID, null, null, null, loginUserID, null, null, null, null, null, null);
-        }
-        public async Task<List<Case>> GetCaseList(int? caseID, int? appID, int? caseTypeID, int? caseStatusID, int loginUserID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? ProfileID, string CustomerName)
-        {
-            return await _iCase.GetCasesList(caseID, appID, caseTypeID, caseStatusID, loginUserID, CreateDate1, CreateDate2, ModifiedDate1, ModifiedDate2, ProfileID, CustomerName);
-        }
-        public async Task<Case> LoadCase(int caseID)
-        {
-            return await _iCase.Load(caseID);
-        }
+        //public async Task<List<Case>> GetCaseList(int? caseID, int loginUserID)
+        //{
+        //    return await _iCase.GetCasesList(caseID, null, null, null, loginUserID, null, null, null, null, null, null);
+        //}
+        //public async Task<List<Case>> GetCaseList(int? caseID, int? appID, int? caseTypeID, int? caseStatusID, int loginUserID,
+        //    DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? ProfileID, string CustomerName)
+        //{
+        //    return await _iCase.GetCasesList(caseID, appID, caseTypeID, caseStatusID, loginUserID, CreateDate1, CreateDate2, ModifiedDate1, ModifiedDate2, ProfileID, CustomerName);
+        //}
+        //public async Task<Case> LoadCase(int caseID)
+        //{
+        //    return await _iCase.Load(caseID);
+        //}
 
-        public async Task<Case> LoadCase(int caseID, int contactId)
-        {
-            return await _iCase.Load(caseID, contactId);
-        }
+        //public async Task<Case> LoadCase(int caseID, int contactId)
+        //{
+        //    return await _iCase.Load(caseID, contactId);
+        //}
 
-        public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID)
-        {
-            return await _iCase.GetStatusByCase(caseID);
-        }
-        #endregion
+        //public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID)
+        //{
+        //    return await _iCase.GetStatusByCase(caseID);
+        //}
+        //#endregion
 
         #region Event
-        public async Task<List<CaseEvent>> GetEventList(int caseID)
-        {
-            CaseEvent cEvent = new CaseEvent();
-            return await _iCaseEvent.GetHistoryByCase(caseID);
-        }
+        //public async Task<List<CaseEvent>> GetEventList(int caseID)
+        //{
+        //    CaseEvent cEvent = new CaseEvent();
+        //    return await _iCaseEvent.GetHistoryByCase(caseID);
+        //}
         //public CaseEvent LoadEvent(int eventID)
         //{
         //    CaseEvent cEvent = new CaseEvent(eventID);

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CaseEventHandlers.cs" />
+    <Compile Remove="CMSAPI.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
@@ -15,10 +20,6 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
     <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

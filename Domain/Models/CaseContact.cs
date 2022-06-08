@@ -35,12 +35,4 @@ namespace Domain.Models
         public string Function { get; set; }
     }
 
-    //[Serializable]
-    //[DataContract(Namespace = "DominoCMS")]
-    //[XmlRoot(Namespace = "DominoCMS", ElementName = "ContactList")]
-    //public class CaseContactList
-    //{
-    //    [XmlArrayItem("Contact")]
-    //    public List<CaseContact> ContactList { get; set; }
-    //}
 }

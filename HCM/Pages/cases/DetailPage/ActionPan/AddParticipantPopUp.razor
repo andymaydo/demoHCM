@@ -223,12 +223,12 @@
             contacts = _mapper.Map<List<Contact>>(FormModel.CaseParticipants);
 
             XmlDocument AddedCaseParticipantsXml = new XmlDocument();
-            AddedCaseParticipantsXml.LoadXml(contacts.ObjToXml());
-            //remove the root node
-            var ixml = AddedCaseParticipantsXml.DocumentElement.InnerXml;
-            AddedCaseParticipantsXml.LoadXml(ixml);
+            AddedCaseParticipantsXml.LoadXml(contacts.ObjToXml("ContactList"));
 
-            await CmsService.ChangeParticipants(CurrentContactId, CaseModel.CaseID, AddedCaseParticipantsXml, "");
+            await CmsService.ChangeParticipants(CaseModel.CaseID, AddedCaseParticipantsXml);
+
+            await CmsService.OnEvent(CMSSettings.EventParticipantsChanged, CurrentContactId, CaseModel.CaseID, AddedCaseParticipantsXml, String.Empty, new List<Contact>());    
+
 
             await OnFormSaved.InvokeAsync();
             await CloseDialog();
@@ -247,8 +247,8 @@
     {        
         
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
-        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
-        FormModel.EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
+        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipantsList);
+        FormModel.EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsersList);
 
         await LoadUserList();
 

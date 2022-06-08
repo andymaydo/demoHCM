@@ -64,7 +64,7 @@
 </div>
 
 @code {
-    [Inject] private ILogger<CaseDetails> _logger { get; set; }
+    [Inject] private ILogger<CaseDetailsPage> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
     [Inject] private ICMSAPI CmsService { get; set; }
@@ -128,15 +128,15 @@
 
         if (MyCase.CaseStatusID == 0)
         {
-            await CmsService.OnEvent(CMSSettings.EventDpfChecking, CurrentContactId, MyCase.CaseID, new System.Xml.XmlDocument(), Localizer.Str["Cases_SetStatus_InProgress"], false);                        
+            await CmsService.OnEvent(CMSSettings.EventDpfChecking, CurrentContactId, MyCase.CaseID, new System.Xml.XmlDocument(), Localizer.Str["Cases_SetStatus_InProgress"], new List<Contact>());                        
         }
 
         CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
         CaseEvents = await CmsService.GetEventList(CaseId);
 
         ProfileModel = ProileService.Load(MyCase.ProfileID);
-        ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
-        EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
+        ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipantsList);
+        EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsersList);
 
     }
 

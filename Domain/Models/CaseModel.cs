@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml;
 
-namespace HCMModels
+namespace Domain.Models
 {
     [Serializable]
     [DataContract(Namespace = "DominoCMS")]
@@ -12,8 +12,7 @@ namespace HCMModels
         public int appID { get; set; }
         public string appName { get; set; }
         public string CaseData { get; set; }
-        //public XmlDocument CaseData { get; set; }
-
+     
         public int CaseID { get; set; }
         public string CaseResult { get; set; }
         public int CaseResultID { get; set; }
@@ -40,14 +39,12 @@ namespace HCMModels
         public string Subject { get; set; } 
         public string AliasName { get; set; }
         
-        //public XmlDocument Participants { get; set; }
         
          
         public string Participants { get; set; }
         public XmlDocument ParticipantsAsXml { get; set; }
         
-        public XmlDocument CaseDataAsXml 
-        { get; set; }
+        public XmlDocument CaseDataAsXml { get; set; }
 
         
         public class CaseEventStatus

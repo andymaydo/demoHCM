@@ -1,5 +1,7 @@
-﻿using Dapper;
-using HCMModels;
+﻿using Application.Interfaces;
+using Dapper;
+using Domain.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,14 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace HCMDataAccess
+namespace DbRepo
 {
     public class ReportsCaseData : IReportsCaseData
     {
-        private readonly ISqlDataAccess _db;
-        public ReportsCaseData(ISqlDataAccess db)
+        private string _sqlConnStr;
+        public ReportsCaseData(IConfiguration config)
         {
-            _db = db;
+            _sqlConnStr = config.GetConnectionString("Default");
         }
 
         public async Task<List<CaseModel>> CaseDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
@@ -41,7 +43,7 @@ namespace HCMDataAccess
             _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
-            using (var conn = new SqlConnection(_db.GetConnStrName()))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -50,10 +52,6 @@ namespace HCMDataAccess
                 return _CaseModel;
             }
           
-
-            
-
-            //return DAO.ExecSqlProcedureReturnDt("REPORT_CaseDetail", parms);
         }
 
         public async Task<List<CaseModel>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
@@ -75,10 +73,8 @@ namespace HCMDataAccess
             _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
             
-                using (var conn = new SqlConnection(_db.GetConnStrName()))
+                using (var conn = new SqlConnection(_sqlConnStr))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -108,9 +104,7 @@ namespace HCMDataAccess
             _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-               using (var conn = new SqlConnection(_db.GetConnStrName()))
+               using (var conn = new SqlConnection(_sqlConnStr))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -140,9 +134,7 @@ namespace HCMDataAccess
             _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-            using (var conn = new SqlConnection(_db.GetConnStrName()))
+            using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);                                      
 
@@ -172,10 +164,7 @@ namespace HCMDataAccess
             _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
 
-
-            //_params.Add(name: "@ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
-
-            using (var conn = new SqlConnection(_db.GetConnStrName()))
+            using (var conn = new SqlConnection(_sqlConnStr))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
