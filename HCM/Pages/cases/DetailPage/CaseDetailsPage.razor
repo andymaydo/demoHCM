@@ -162,8 +162,7 @@
         try
         {
             Messages.List.Clear();                        
-            CaseEvents = await CmsService.GetEventList(CaseId);
-            throw new Exception("test exception");
+            CaseEvents = await CmsService.GetEventList(CaseId);            
         }
         catch (Exception ex)
         {                        
