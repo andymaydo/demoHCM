@@ -95,6 +95,10 @@ body {
         border-color: var(--primlight-05) !important;
     }
 
+    .border-primlight-01 {
+        border-color: var(--primlight-01) !important;
+    }
+
     .border-primlight {
         border-color: var(--primlight) !important;
     }

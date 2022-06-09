@@ -1,14 +1,11 @@
 ﻿@page "/Cases/MatchResult"
 
-@using HCMApi;
-
-@using HCMDataAccess;
-@using HCMModels;
 @using System.Xml;
 @using System.Xml.Xsl;
 @using System.Xml.XPath;
 @using System.IO;
 @using System.Globalization
+@using Domain
 @using Microsoft.AspNetCore.Mvc;
 
 
@@ -48,7 +45,7 @@
             MyCase = await CmsService.LoadCase(CaseId);
             if(MyCase == null){ throw new Exception($"Case Not Found ({CaseId.ToString()})"); }
 
-            myMarkup = Common.HCMXslTransform.GetHtmlResult(MyCase.CaseData, MyCase.CaseTypeID ?? 0);
+            myMarkup = XslHelper.HCMXslTransform.GetHtmlResult(MyCase.CaseData, MyCase.CaseTypeID ?? 0);
 
             _loadingStatus = 1;
         }

@@ -1,6 +1,3 @@
-
-using HCMApi;
-using HCMDataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -83,10 +80,7 @@ namespace HCM
             services.AddSyncfusionBlazor();                     
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
-
-            services.AddHcmDataAccess();
             services.AddInfraDb();
-            services.AddHcmApi();
 
             services.AddTransient<ProfileWizardVM>();
 

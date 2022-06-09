@@ -1,7 +1,5 @@
 ﻿using Domain.Models;
 using HCM.Resources;
-using HCMApi;
-using HCMModels;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

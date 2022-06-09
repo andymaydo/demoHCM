@@ -59,9 +59,6 @@
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\DbRepo\DbRepo.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\HCMApi\HCMApi.csproj" />
-    <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
-    <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -85,6 +82,7 @@
     <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
     <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
     <None Include="wwwroot\css\open-iconic\README.md" />
+    <None Include="wwwroot\js\jquery.min.js" />
   </ItemGroup>
 
   

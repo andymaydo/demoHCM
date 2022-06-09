@@ -1,5 +1,4 @@
-﻿using HCMApi;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using HCM.Resources;
 using System.Xml.Serialization;

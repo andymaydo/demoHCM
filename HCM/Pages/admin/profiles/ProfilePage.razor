@@ -1,16 +1,13 @@
 ﻿@page "/admin/profiles/ProfileList"
 @attribute [Authorize(Roles = "admin,profile")]
 
-@using HCMApi;
-@using HCMDataAccess;
-@using HCMModels;
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
 @using System.Globalization
 
 
-<h3>@Localizer.Str["Profile_List_Title"]</h3>
+<h3 id="pageTop">@Localizer.Str["Profile_List_Title"]</h3>
 
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Profile_List"]</h5>
@@ -110,7 +107,7 @@
     @if (showlDeleted)
     {
         <div class="py-3"></div>        
-        <h5>@Localizer.Str["Profile_Delete_List"]</h5>
+        <h5 id="deletedProfiles">@Localizer.Str["Profile_Delete_List"]</h5>
         <div class="alink itemDetail" @onclick="@(() => showlDeleted = !showlDeleted)">                          
             <span class="oi oi-minus"></span> @Localizer.Str["Profile_DeleteProfile_hide"]                
         </div>
@@ -202,6 +199,7 @@
 }
 
 @code {
+    [Inject] private IJSRuntime IJsRuntime { get; set; }
     [Inject] private ProfileWizardVM ProfileVM { get; set; }
     [Inject] private ICMSProfile ProfileService { get; set; }
     [Inject] private ILogger<ProfilePage> _logger { get; set; }
@@ -246,6 +244,7 @@
         _loadingStatus = 0;
         try
         {
+            Messages.List.Clear();
             ProfileList = await ProfileService.GetList(null, null);           
             DeletedProfileList = await ProfileService.GetDeleteList(null);
             _loadingStatus = 1;
@@ -263,7 +262,7 @@
     private async Task AddProfile()
     {
         try
-        {
+        {            
             await ProfileVM.AddNewProfileAsync(CurrentContactId, null, null, CultureInfo.CurrentCulture.Name);
 
             await DefaultGrid.SortColumnAsync("profileID", SortDirection.Descending);
@@ -372,4 +371,21 @@
         pageSizes = pageList.ToArray();
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (showlDeleted)
+        {
+            await ScrollToElementId("deletedProfiles");
+        }
+        else
+        {
+            await ScrollToElementId("pageTop");
+        }
+    }
+
+    protected async Task ScrollToElementId(string id)
+    {
+        await IJsRuntime.InvokeVoidAsync("scrollToElement", id);
+    }
 }

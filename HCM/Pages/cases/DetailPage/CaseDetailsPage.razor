@@ -1,7 +1,6 @@
 ﻿@page "/Cases/CaseDetails"
 @page "/Cases/CaseDetails/{pCaseId:int}"
 
-@using HCMApi
 @using HCM.Pages.cases.DetailPage.HistoryPan
 @using HCM.Pages.cases.DetailPage.Shared
 @using AutoMapper
@@ -164,6 +163,7 @@
         {
             Messages.List.Clear();                        
             CaseEvents = await CmsService.GetEventList(CaseId);
+            throw new Exception("test exception");
         }
         catch (Exception ex)
         {                        

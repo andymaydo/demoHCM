@@ -1,4 +1,4 @@
-﻿                 
+﻿          
 @using AliasManager.Interfaces
 @using Domain
 @using Microsoft.AspNetCore.Http
@@ -8,13 +8,11 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Lists
 @using System.Security.Claims
-@using HCMApi
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
 @using System.IO
 @using System.Xml
-@using HCMDataAccess
 @using static Domain.Models.CaseModel
 
 
@@ -272,7 +270,7 @@
         if (FormModel.WithMatchReport)
         {
             int caseTypeId = CaseModel.CaseTypeID == null ? 0 : (int)CaseModel.CaseTypeID;
-            string htmlResult = Common.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
+            string htmlResult = XslHelper.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
             byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
 
             caseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);

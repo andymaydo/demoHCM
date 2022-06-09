@@ -9,9 +9,9 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 
-namespace HCMApi
+namespace Domain
 {
-    public class Common
+    public class XslHelper
     {
         public class HCMXslTransform
         {
@@ -138,7 +138,7 @@ namespace HCMApi
 
             static XsltArgumentList GetArgumentList()
             {
-                Common.XSLFormat objXSLFormat = new Common.XSLFormat();
+                XslHelper.XSLFormat objXSLFormat = new XslHelper.XSLFormat();
                 XsltArgumentList args = new XsltArgumentList();
                 args.AddExtensionObject("urn:domino-function", objXSLFormat);
 

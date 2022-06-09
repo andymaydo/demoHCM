@@ -1,10 +1,7 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.Internal;
 using Domain.Models;
 using HCM.Models;
-using HCMApi;
-using HCMModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
