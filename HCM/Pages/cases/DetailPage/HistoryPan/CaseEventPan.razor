@@ -1,10 +1,10 @@
-﻿@using HCMApi
+﻿@using Domain
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
 
 @if (Source != null)
 {
-    <div class="container-fluid mb-5 border border-1 border-primlight-05 bg-primlight-01">
+    <div class="container-fluid mb-5 border border-1 border-primlight-01 bg-primlight-001">
 
         @*event header*@ 
         <div class="row mt-3">
@@ -81,10 +81,12 @@
     {
         base.OnParametersSet();
 
-        var contactList = CaseContactList.LoadFromXmlAsList(Source.CaseEventNotifyContacts);        
+        //var contactList = CaseContactList.LoadFromXmlAsList(Source.CaseEventNotifyContacts);  
+        var contactList = ObjHelper.FromXml<List<Contact>>(Source.CaseEventNotifyContacts, "ContactList");  
         NotifyContacts = _mapper.Map<List<CaseContactSelectable>>(contactList);
 
-        contactList = CaseContactList.LoadFromXmlAsList(Source.CaseEventData);        
+        //contactList = CaseContactList.LoadFromXmlAsList(Source.CaseEventData); 
+        contactList = ObjHelper.FromXml<List<Contact>>(Source.CaseEventData, "ContactList");  
         AddedCaseParticipants = _mapper.Map<List<CaseContactSelectable>>(contactList);
        
 

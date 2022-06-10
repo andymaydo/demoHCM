@@ -1,6 +1,3 @@
-
-using HCMApi;
-using HCMDataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +22,7 @@ using HCM.Models;
 using HCM.Resources;
 using AliasManager.Interfaces;
 using AliasManager.Services;
+using DbRepo;
 
 namespace HCM
 {
@@ -78,13 +76,11 @@ namespace HCM
             services.AddSingleton<CommonLocalizationService>();
 
             services.AddAutoMapper(typeof(MappingProfile));
-
+            
             services.AddSyncfusionBlazor();                     
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
-
-            services.AddHcmDataAccess();
-            services.AddHcmApi();
+            services.AddInfraDb();
 
             services.AddTransient<ProfileWizardVM>();
 

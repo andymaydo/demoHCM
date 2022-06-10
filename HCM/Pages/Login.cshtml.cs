@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
-using HCMDataAccess;
+using Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using HCM.Options;
 

@@ -1,7 +1,4 @@
-﻿                 
-@using HCMDataAccess
-@using HCMModels
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.Logging
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.Popups
@@ -10,12 +7,11 @@
 @using Syncfusion.Blazor.Lists
 @using Syncfusion.Blazor.Navigations
 @using System.Security.Claims
-@using HCMApi
-@using HCMApi.Models
+
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
-@using static HCMModels.FiltersModels
+
         
 @if (_loadingStatus == 0)
 {
@@ -48,7 +44,7 @@
     <div class="col-12 py-2"></div>
 
     <div class="border border-1 bg-light p-2">
-        <ProfileEscalationRulesPan Source="ViewModel.CurrentProfile.escalationRules" 
+        <ProfileEscalationRulesPan Source="ViewModel.CurrentProfile.escalationRulesList" 
             Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
             ShowStriped="true" AllowDelete="false">
         </ProfileEscalationRulesPan>
@@ -97,8 +93,8 @@
 
             Messages = new UiMessages();
 
-            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.profileParticipants);            
-            EscalationContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.escalationUsers);            
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.profileParticipantsList);            
+            EscalationContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.CurrentProfile.escalationUsersList);            
 
             _loadingStatus = 1;
         }

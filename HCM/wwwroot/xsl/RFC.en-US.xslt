@@ -143,12 +143,14 @@ a
 		<td width="10" class="contentitemb" align="center">:</td>
 		<td  class="contentitemb">[<xsl:value-of select="/Tran/Settings/sapip"/>]</td>
 	</tr>
+  <!--
 	<tr>
 		<td class="contentitemb">system number</td>
 		<td width="10" class="contentitemb" align="center">:</td>
 		<td  class="contentitemb">
       [<xsl:value-of select="/Tran/Settings/sapgw"/>]</td>
   </tr>
+  -->
   <tr>
     <td class="contentitemb">sap program id</td>
     <td width="10" class="contentitemb" align="center">:</td>
@@ -445,7 +447,7 @@ a
 			<TD align="center">
 				<xsl:choose>
 					<xsl:when test="(res > /Tran/Settings/redalert)">
-						<xsl:attribute name="class">firstcolitemredalert</xsl:attribute>
+						<xsl:attribute name="class">colitemredalert</xsl:attribute>
 						<xsl:value-of select="DominoFormat:ReplaceEmpty(res)"/>
 					</xsl:when>
 					<xsl:otherwise>

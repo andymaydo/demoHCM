@@ -1,4 +1,5 @@
-﻿using static HCMModels.CaseModel;
+﻿
+using static Domain.Models.CaseModel;
 
 namespace HCM.Models
 {

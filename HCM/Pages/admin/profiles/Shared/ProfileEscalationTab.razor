@@ -1,7 +1,4 @@
-﻿                 
-@using HCMDataAccess
-@using HCMModels
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.Logging
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.Popups
@@ -10,12 +7,10 @@
 @using Syncfusion.Blazor.Lists
 @using Syncfusion.Blazor.Navigations
 @using System.Security.Claims
-@using HCMApi
-@using HCMApi.Models
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
-@using static HCMModels.FiltersModels
+@using static Domain.Models.FiltersModels
         
 @if (_loadingStatus == 0)
 {
@@ -23,10 +18,10 @@
 }
 @if (_loadingStatus == 1)
 {
-    @if(RulesForm?.escalationRules?.Count > 0)
+    @if(RulesForm?.escalationRulesList?.Count > 0)
     {
         <div class="border border-1 bg-light p-2">
-            <ProfileEscalationRulesPan Source="RulesForm.escalationRules" Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
+            <ProfileEscalationRulesPan Source="RulesForm.escalationRulesList" Title="@Localizer.Str["Profile_Step_Escalation_RuleList"]" 
                 ShowStriped="true" AllowDelete="true"
                 OnSorceItemDeleted = "InitStatusList">
             </ProfileEscalationRulesPan>
@@ -222,7 +217,7 @@
             ContactsForm = _mapper.Map<ProfileEscalationContactsForm>(ViewModel.EscalationContactsForm);
             RulesForm = _mapper.Map<ProfileEscalationRulesForm>(ViewModel.EscalationRulesForm);
 
-            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.EscalationContactsForm.escalationUsers);            
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.EscalationContactsForm.escalationUsersList);            
 
             InitRoleList();
             InitStatusList();
@@ -277,7 +272,7 @@
         {
             var TotalStatusList = FilterService.GetStatusesForEscalation();
             CaseStatusList = TotalStatusList
-                                .Where(x => !RulesForm.escalationRules.Any(y => y.CaseStatusID == x.CaseStatusID))
+                                .Where(x => !RulesForm.escalationRulesList.Any(y => y.CaseStatusID == x.CaseStatusID))
                                 .ToList();
 
             foreach (CaseStatusModel status in CaseStatusList)
@@ -337,7 +332,7 @@
             bool successfullyParsed = int.TryParse(RulesForm.NewCaseStatusID, out sId);
             if (successfullyParsed)
             {
-                RulesForm.escalationRules.Add(new CaseRule()
+                RulesForm.escalationRulesList.Add(new CaseRule()
                 {
                     CaseStatusID = sId,
                     CaseStatusDays = RulesForm.NewCaseStatusDays                                      
@@ -383,8 +378,8 @@
         {
             Messages.List.Clear();
             
-            _mapper.Map(ProfileContacts, ViewModel.EscalationContactsForm.escalationUsers);
-            _mapper.Map(RulesForm.escalationRules, ViewModel.EscalationRulesForm.escalationRules);
+            _mapper.Map(ProfileContacts, ViewModel.EscalationContactsForm.escalationUsersList);
+            _mapper.Map(RulesForm.escalationRulesList, ViewModel.EscalationRulesForm.escalationRulesList);
 
             await ViewModel.SaveEscalation(CurrentContactId);
 

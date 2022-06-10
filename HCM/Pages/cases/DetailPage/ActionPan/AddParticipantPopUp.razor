@@ -1,6 +1,5 @@
 ﻿                 
-@using HCMDataAccess
-@using HCMModels
+@using Domain
 @using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.Logging
 @using Syncfusion.Blazor.Data
@@ -9,8 +8,6 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Lists
 @using System.Security.Claims
-@using HCMApi
-@using HCMApi.Models
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
@@ -219,16 +216,16 @@
     {
         try
         {
-            CaseContactSerializable contacts = new CaseContactSerializable();
-            contacts.ContactList = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants);
+            List<Contact> contacts = new List<Contact>();
+            contacts = _mapper.Map<List<Contact>>(FormModel.CaseParticipants);
 
             XmlDocument AddedCaseParticipantsXml = new XmlDocument();
-            AddedCaseParticipantsXml.LoadXml(contacts.ObjToXml());
-            //remove the root node
-            var ixml = AddedCaseParticipantsXml.DocumentElement.InnerXml;
-            AddedCaseParticipantsXml.LoadXml(ixml);
+            AddedCaseParticipantsXml.LoadXml(contacts.ObjToXml("ContactList"));
 
-            await CmsService.ChangeParticipants(CurrentContactId, CaseModel.CaseID, AddedCaseParticipantsXml, "");
+            await CmsService.ChangeParticipants(CaseModel.CaseID, AddedCaseParticipantsXml);
+
+            await CmsService.OnEvent(CMSSettings.EventParticipantsChanged, CurrentContactId, CaseModel.CaseID, AddedCaseParticipantsXml, String.Empty, new List<Contact>());    
+
 
             await OnFormSaved.InvokeAsync();
             await CloseDialog();
@@ -247,8 +244,8 @@
     {        
         
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
-        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
-        FormModel.EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsers);
+        FormModel.ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipantsList);
+        FormModel.EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsersList);
 
         await LoadUserList();
 

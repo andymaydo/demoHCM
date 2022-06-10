@@ -144,6 +144,7 @@ a
           [<xsl:value-of select="/Batch/Settings/sapip"/>]
         </td>
       </tr>
+      <!--
       <tr>
         <td class="contentitemb">system number</td>
         <td width="10" class="contentitemb" align="center">:</td>
@@ -151,6 +152,7 @@ a
           [<xsl:value-of select="/Batch/Settings/sapgw"/>]
         </td>
       </tr>
+      -->
       <tr>
         <td class="contentitemb">sap program id</td>
         <td width="10" class="contentitemb" align="center">:</td>

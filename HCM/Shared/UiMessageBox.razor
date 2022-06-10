@@ -1,7 +1,8 @@
-﻿
+﻿@using Microsoft.JSInterop
+
 @if (Data?.Count > 0)
 {
-    <div class="py-3">
+    <div id="AlertBox" class="py-3">
         @foreach (Message msg in Data)
         {
             var i = 0;
@@ -28,7 +29,18 @@
 
 
 @code {
+    [Inject] private IJSRuntime IJsRuntime { get; set; }
 
     [Parameter] public List<Message> Data { get; set; }
    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        await ScrollToElementId("AlertBox");
+    }
+
+    protected async Task ScrollToElementId(string id)
+    {
+        await IJsRuntime.InvokeVoidAsync("scrollToElement", id);
+    }
 }

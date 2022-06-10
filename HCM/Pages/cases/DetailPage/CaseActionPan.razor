@@ -1,6 +1,4 @@
-﻿@using HCMApi
-@using HCMApi.Models
-@using HCM.Pages.cases.DetailPage.ActionPan
+﻿@using HCM.Pages.cases.DetailPage.ActionPan
 
     <div class="tLabel">@Localizer.Str["Cases_Detail_Actions"]</div>
     <hr class="mb-2" />
@@ -77,7 +75,7 @@
 
     protected void GetContactsCaseRole()
     {
-        foreach (CaseContact c in ProfileModel?.profileParticipants)
+        foreach (Contact c in ProfileModel?.profileParticipantsList)
         {
             if (c.ContactID == CurrentContactId)
             {
@@ -88,7 +86,7 @@
         //Escalated Case
         if(CaseModel.CaseStatusID == 6)
         {
-            foreach (CaseContact c in ProfileModel?.escalationUsers)
+            foreach (Contact c in ProfileModel?.escalationUsersList)
             {
                 if (c.ContactID == CurrentContactId)
                 {

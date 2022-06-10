@@ -1,0 +1,219 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+:root {
+    --base-prim-dark: 64,0,0;
+    --base-prim-light: 156,0,0;
+
+    --primlight: rgb(var(--base-prim-light));
+    --primlight-05: rgba(var(--base-prim-light),0.5);
+    --primlight-01: rgba(var(--base-prim-light),0.1);
+    --primlight-001: rgba(var(--base-prim-light),0.01);
+    
+    --primdark: rgb(var(--base-prim-dark));
+    --primdark-08: rgba(var(--base-prim-dark),0.8);
+
+}
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
+}
+div .wraptxt {
+    white-space: pre-wrap;
+}
+
+a, .btn-link {
+    text-decoration: none;
+    color: var(--primlight);
+    /* font-size:14px; */
+}
+    a:hover, .btn-link:hover {
+        color: var(--primdark);
+    }
+
+.alink {
+    cursor: pointer;
+}
+
+hr {
+    margin: 0;
+}
+
+body {
+    padding-top: 170px;
+    padding-bottom: 40px;
+}
+
+@media all and (min-width: 1024px) {
+    #brand {
+        background-image: url('../images/logo1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+        height: 70px;
+        /*width: 100%;*/
+    }
+}
+
+@media all and (max-width: 1023px) {
+    #brand {
+        background-image: url('../images/logo1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+        height: 70px;
+        /*width: 100%;*/
+    }
+}
+
+
+    .bg-primdark {
+        background-color: var(--primdark) !important;
+    }
+
+    .bg-primlight {
+        background-color: var(--primlight) !important;
+    }
+
+    .bg-primlight-001 {
+        background-color: var(--primlight-001) !important;
+    }
+
+    .bg-primlight-01 {
+        background-color: var(--primlight-01) !important;
+    }
+
+
+
+    .border-primlight-05 {
+        border-color: var(--primlight-05) !important;
+    }
+
+    .border-primlight-01 {
+        border-color: var(--primlight-01) !important;
+    }
+
+    .border-primlight {
+        border-color: var(--primlight) !important;
+    }
+
+
+
+    h3 {
+        color: var(--primdark-08);
+    }
+
+    h5 {
+        /*color: black;*/
+        padding-top: 1rem;
+    }
+
+    .navbar-toggler {
+        /*display: block;*/
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+
+    .nav-item a {
+        height: 2rem;
+        font-size: 16px;
+    }
+
+
+
+
+    .valid.modified:not([type=checkbox]) {
+        outline: 1px solid #26b050;
+    }
+
+    .invalid {
+        outline: 1px solid red;
+    }
+
+    .validation-message {
+        color: red;
+    }
+
+
+    /**** SyncFusion ****/
+
+    @media screen and (max-width: 796px) {
+        .e-pager div.e-parentmsgbar {
+            width: calc(60% - 96px);
+        }
+    }
+
+    .e-dialog .e-footer-content {
+        background-color: #f8f8f8;
+        text-align: left;
+        border-color: #d9edf7
+    }
+
+    .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+        background-color: #d9edf7;
+    }
+
+
+
+    /**** Alias Manager ****/
+
+    .am-card-border {
+        border-color: var(--primlight-05) !important;
+    }
+
+    .am-card-bg {
+        background-color: var(--primlight-001) !important;
+    }
+
+    /**** UI ****/
+
+    .blue_bg {
+        background-repeat: repeat-x;
+        background-position: top;
+        background-image: url(../images/bg-title-V1.png);
+        /*padding: 5px 0px 0px 5px;*/
+        height: 25px;
+    }
+
+    .tLabel {
+        font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #444444;
+        /*padding-left: 5px;*/
+    }
+
+    .tLabel2 {
+        font-family: Arial,Verdana, Tahoma, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #444444;
+        /*padding-left: 5px;*/
+        font-weight: bold;
+    }
+
+
+    .itemDetail {
+        font-weight: normal;
+        /*padding-left: 5px;*/
+        /*font-family: Arial, Tahoma,Helvetica, sans-serif;*/
+        text-decoration: none;
+        font-size: 14px;
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+    }
+
+    .itemDetail2 {
+        font-weight: bold;
+        /*padding-left: 0px;*/
+        /*font-family: Arial, Tahoma,Helvetica, sans-serif;*/
+        text-decoration: none;
+        font-size: 12px;
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+    }

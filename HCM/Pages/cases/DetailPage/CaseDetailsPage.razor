@@ -1,0 +1,183 @@
+﻿@page "/Cases/CaseDetails"
+@page "/Cases/CaseDetails/{pCaseId:int}"
+
+@using HCM.Pages.cases.DetailPage.HistoryPan
+@using HCM.Pages.cases.DetailPage.Shared
+@using AutoMapper
+
+
+
+<div class="container-fluid">
+    <h3>@Localizer.Str["Cases_Detail_Title"]</h3>
+    
+    @if (_loadingStatus == 0)
+    {
+        <p><em>Loading...</em></p>
+    }
+
+    @if (_loadingStatus == 1)
+    {
+        
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="py-3">
+                    <CaseActionPan CaseModel="@MyCase" ProfileModel="@ProfileModel" 
+                        OnNoteAction="ReloadCaseHistory" 
+                        OnChangeStatusAction="ReloadCase"
+                        OnAddUserAction="ReloadCase"
+                        OnAddAliasAction="ReloadCaseHistory">                        
+                    </CaseActionPan>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="py-3">
+                    <CaseSubjPan CaseSubject="@MyCase.Subject"></CaseSubjPan>
+                </div>
+                <div class="py-3">
+                    <CaseMatchPan CaseCustomerName="@MyCase.CustomerName" OnShowMatch="OpenMatchResults"></CaseMatchPan>
+                 </div>
+                 <div class="py-3">
+                    <CaseHistoryPan Source="@CaseEvents"></CaseHistoryPan>
+                 </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="py-3">
+                    <CaseOverviewPan Source="@MyCase"></CaseOverviewPan>
+                </div>
+                <div class="py-3">
+                    <CaseContactPan Source="@ProfileParticipants" ShowStriped="true" ShowFunction="true" ShowRole="true" Title="@Localizer.Str["Cases_Detail_Label_ProfileUsers"]"></CaseContactPan>
+                </div>
+                <div class="py-3">
+                    <CaseContactPan Source="@EscalationParticipants" ShowFunction="true" ShowRole="true" Title="@Localizer.Str["Cases_Detail_Label_EscalationUsers"]"></CaseContactPan>
+                </div>
+                <div class="py-3">
+                    <CaseContactPan Source="@CaseParticipants" ShowFunction="true" ShowRole="true" Title=@Localizer.Str["Cases_Detail_Label_Users"]></CaseContactPan>
+                </div>
+            </div>
+        </div>
+       
+    }
+
+    <UiMessageBox Data="Messages.List" />
+
+</div>
+
+@code {
+    [Inject] private ILogger<CaseDetailsPage> _logger { get; set; }
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+    [Inject] private ProtectedSessionStorage  ProtectedSessionStorage { get; set; }
+    [Inject] private ICMSAPI CmsService { get; set; }
+    [Inject] private ICMSProfile ProileService { get; set; }
+    [Inject] private IMapper _mapper { get; set; }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
+
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
+    [Parameter] public int? pCaseId { get; set; }
+
+    protected int CaseId { get; set; }
+    protected Case MyCase { get; set; }
+    protected CMSProfileModel ProfileModel { get; set; } = new CMSProfileModel();
+    protected List<CaseContactSelectable> CaseParticipants { get; set; } 
+    protected List<CaseContactSelectable> ProfileParticipants { get; set; }
+    protected List<CaseContactSelectable> EscalationParticipants { get; set; }
+    protected List<CaseEvent> CaseEvents { get; set; } = new List<CaseEvent>();
+
+
+    protected UiMessages Messages { get; set; }
+    private int _loadingStatus;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        Messages = new UiMessages();
+
+        _loadingStatus = 0;
+        try
+        {
+            if(pCaseId != null)
+            {
+                CaseId = (int)pCaseId;
+            }
+            else
+            {
+                var caseId = await ProtectedSessionStorage.GetAsync<int>("CaseId");
+                CaseId = caseId.Success ? caseId.Value : -1;
+            }
+
+            await LoadCaseData();
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
+    }
+
+
+    protected async Task LoadCaseData()
+    {
+
+        MyCase = await CmsService.LoadCase(CaseId, CurrentContactId);
+        if(MyCase == null){ throw new Exception(@Localizer.Str["Case_NotFound"]); }
+
+        if (MyCase.CaseStatusID == 0)
+        {
+            await CmsService.OnEvent(CMSSettings.EventDpfChecking, CurrentContactId, MyCase.CaseID, new System.Xml.XmlDocument(), Localizer.Str["Cases_SetStatus_InProgress"], new List<Contact>());                        
+        }
+
+        CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
+        CaseEvents = await CmsService.GetEventList(CaseId);
+
+        ProfileModel = ProileService.Load(MyCase.ProfileID);
+        ProfileParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipantsList);
+        EscalationParticipants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.escalationUsersList);
+
+    }
+
+
+    protected async Task ReloadCase()
+    {
+        try
+        {
+            Messages.List.Clear();
+            MyCase = await CmsService.LoadCase(CaseId);
+            CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
+            CaseEvents = await CmsService.GetEventList(CaseId);
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+    }
+
+    protected async Task ReloadCaseHistory()
+    {
+        try
+        {
+            Messages.List.Clear();                        
+            CaseEvents = await CmsService.GetEventList(CaseId);            
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+        }
+    }
+
+
+    public async Task OpenMatchResults()
+    {     
+        await ProtectedSessionStorage.SetAsync("MatchResultCaseId", CaseId);
+
+        await JSRuntime.InvokeAsync<object>("open", "/Cases/MatchResult", "_blank");
+    }
+
+}

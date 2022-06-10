@@ -1,8 +1,8 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 :root {
-    --base-prim-dark: 64,0,0;
-    --base-prim-light: 156,0,0;
+    --base-prim-dark: 5,103,177;
+    --base-prim-light: 5,131,207;
 
     --primlight: rgb(var(--base-prim-light));
     --primlight-05: rgba(var(--base-prim-light),0.5);
@@ -95,6 +95,10 @@ body {
         border-color: var(--primlight-05) !important;
     }
 
+    .border-primlight-01 {
+        border-color: var(--primlight-01) !important;
+    }
+
     .border-primlight {
         border-color: var(--primlight) !important;
     }
@@ -102,7 +106,7 @@ body {
 
 
     h3 {
-        color: var(--primdark-08);
+        color: var(--primdark);
     }
 
     h5 {

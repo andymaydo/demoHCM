@@ -1,4 +1,4 @@
-﻿@using HCMApi
+﻿@using Domain
 @using BlazorDownloadFile;
 @using System.IO
 @using HCM.Options
@@ -28,11 +28,6 @@
                     <td align="right">@MatchReportAdded</td>                                        
                 </tr>
 
-                @*<tr>
-                    <td colspan=2>
-                        <UiMessageBox Data="Messages.List" />
-                    </td>                    
-                </tr>*@
             </tbody>
     </table>
 
@@ -47,7 +42,6 @@
 @code {
     [Inject] private ILogger<CaseEventDocList> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
-    [Inject] private ICaseDoc CaseDocService { get; set; }
     [Inject] private CMSSettings cmsSettingsService { get; set; }
     [Inject] private IBlazorDownloadFileService blazorDownloadFileService { get; set; }
 

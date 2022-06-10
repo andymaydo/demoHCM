@@ -6,6 +6,8 @@
     <StartupObject></StartupObject>
     <AssemblyVersion>3.0.0</AssemblyVersion>
     <FileVersion>3.0.0</FileVersion>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <SatelliteResourceLanguages>de</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -38,7 +40,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
-    <PackageReference Include="SppAliasManager" Version="1.0.2" />
+    <PackageReference Include="SppAliasManager" Version="1.0.3" />
     <PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.47" />
     <PackageReference Include="Syncfusion.Blazor.Calendars" Version="20.1.0.47" />
     <PackageReference Include="Syncfusion.Blazor.Cards" Version="20.1.0.47" />
@@ -56,12 +58,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HCMApi\HCMApi.csproj" />
-    <ProjectReference Include="..\HCMDataAccess\HCMDataAccess.csproj" />
-    <ProjectReference Include="..\HCMModels\HCMModels.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\DbRepo\DbRepo.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SfResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
@@ -82,6 +88,7 @@
     <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
     <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
     <None Include="wwwroot\css\open-iconic\README.md" />
+    <None Include="wwwroot\js\jquery.min.js" />
   </ItemGroup>
 
   
@@ -90,6 +97,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\SfResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

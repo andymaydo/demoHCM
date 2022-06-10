@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using HCMApi;
-using HCMApi.Models;
+﻿using Application.Interfaces;
+using AutoMapper;
+using Domain.Models;
 using System.Threading.Tasks;
 
 namespace HCM.Models
@@ -42,7 +42,7 @@ namespace HCM.Models
         public async Task CopyProfileAsync(int sourceId, int creatorId)
         {
             CurrentProfile = await _profileService.ProfilCopy(sourceId, creatorId);
-            IsCompleted = (CurrentProfile.profileParticipants?.Count > 0);
+            IsCompleted = (CurrentProfile.profileParticipantsList?.Count > 0);
             InitForms();
         }
 
@@ -56,7 +56,7 @@ namespace HCM.Models
         public  void LoadProfile(int profileId)
         {
             CurrentProfile = _profileService.Load(profileId);
-            IsCompleted = (CurrentProfile.profileParticipants?.Count > 0);
+            IsCompleted = (CurrentProfile.profileParticipantsList?.Count > 0);
             InitForms();
         }
 

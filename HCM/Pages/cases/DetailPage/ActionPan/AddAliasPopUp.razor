@@ -1,5 +1,6 @@
-﻿                 
+﻿          
 @using AliasManager.Interfaces
+@using Domain
 @using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.Logging
 @using Syncfusion.Blazor.Popups
@@ -7,15 +8,12 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Lists
 @using System.Security.Claims
-@using HCMApi
-@using HCMApi.Models
 @using System.Globalization
 @using AutoMapper
 @using HCM.Pages.cases.DetailPage.Shared
 @using System.IO
 @using System.Xml
-@using static HCMModels.CaseModel
-@using HCMDataAccess
+@using static Domain.Models.CaseModel
 
 
 @if (ShowModal)
@@ -244,20 +242,20 @@
         }
 
     }
-    private List<CaseContact> GetNotifyList()
+    private List<Contact> GetNotifyList()
     {
-        var CaseCont = _mapper.Map<List<CaseContact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
-        var ProfCont = _mapper.Map<List<CaseContact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
+        var CaseCont = _mapper.Map<List<Contact>>(FormModel.CaseParticipants.Where(i => i.Selected == true));
+        var ProfCont = _mapper.Map<List<Contact>>(FormModel.ProfileParticipants.Where(i => i.Selected == true));
         var Originator = FormModel.Originator;            
 
-        List<CaseContact> notifyList = new List<CaseContact>();
+        List<Contact> notifyList = new List<Contact>();
         notifyList.AddRange(CaseCont);
         notifyList.AddRange(ProfCont);
 
 
         if (Originator?.Selected ?? false)
         {
-            notifyList.Add(new CaseContact() 
+            notifyList.Add(new Contact() 
                     { 
                         Email = Originator.EMAIL, 
                         Name = Originator.NAMELAST, 
@@ -272,7 +270,7 @@
         if (FormModel.WithMatchReport)
         {
             int caseTypeId = CaseModel.CaseTypeID == null ? 0 : (int)CaseModel.CaseTypeID;
-            string htmlResult = Common.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
+            string htmlResult = XslHelper.HCMXslTransform.GetHtmlResult(CaseModel.CaseData, caseTypeId);
             byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(htmlResult);
 
             caseDocs.AddReport = System.Convert.ToBase64String(plainTextBytes);
@@ -369,7 +367,7 @@
 
     private List<CaseContactSelectable> GetProfileParticipants()
     {
-        var participants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipants);
+        var participants = _mapper.Map<List<CaseContactSelectable>>(ProfileModel.profileParticipantsList);
         if (ProfileModel.NotifyAllProfileParticipants)
         {
             participants?.ForEach(p => p.Selected = true);
