@@ -73,9 +73,9 @@
                             string Action = IsChecked ? "InActive" : "Active";
                             <SfCheckBox 
                                 Checked="_profile.profileStatusID == 1" 
+                                Label="@Localizer.Str["Profile_Status_" + _profile.profileStatusID.ToString()]"
                                 @onchange="@(() => ChangeStatus(_profile,Action))"></SfCheckBox>
                         }
-                        
                         
                     </div>                     
                 }
