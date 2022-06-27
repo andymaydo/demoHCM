@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{F914F6CF-39FA-4BF0-AEF2-EA3357EDFA6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VgsRepo", "VgsRepo\VgsRepo.csproj", "{7F345DEF-C6DC-4865-AA33-BF0CC0684796}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{F914F6CF-39FA-4BF0-AEF2-EA3357EDFA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F914F6CF-39FA-4BF0-AEF2-EA3357EDFA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F914F6CF-39FA-4BF0-AEF2-EA3357EDFA6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F345DEF-C6DC-4865-AA33-BF0CC0684796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F345DEF-C6DC-4865-AA33-BF0CC0684796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F345DEF-C6DC-4865-AA33-BF0CC0684796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F345DEF-C6DC-4865-AA33-BF0CC0684796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{10609E58-ACF3-4976-AC0B-5562ACA3BDDA} = {059350DF-0C3A-4B76-8F41-6BD6D7F583E6}
 		{9707B718-93B4-48AE-9EA3-D10B0F4FE24D} = {80CF4C83-89B3-4615-AD66-0DAEA8D79ABF}
 		{F914F6CF-39FA-4BF0-AEF2-EA3357EDFA6C} = {80CF4C83-89B3-4615-AD66-0DAEA8D79ABF}
+		{7F345DEF-C6DC-4865-AA33-BF0CC0684796} = {059350DF-0C3A-4B76-8F41-6BD6D7F583E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8948A1D2-D4F4-419A-A677-4852A8CC5D00}

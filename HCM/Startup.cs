@@ -23,6 +23,7 @@ using HCM.Resources;
 using AliasManager.Interfaces;
 using AliasManager.Services;
 using DbRepo;
+using VgsRepo;
 
 namespace HCM
 {
@@ -81,6 +82,7 @@ namespace HCM
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 
             services.AddInfraDb();
+            services.AddInfraVgs();
 
             services.AddTransient<ProfileWizardVM>();
 
