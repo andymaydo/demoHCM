@@ -2489,6 +2489,42 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to aktiviert.
+        /// </summary>
+        public static string LicInfo_Activated {
+            get {
+                return ResourceManager.GetString("LicInfo_Activated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lizenziert.
+        /// </summary>
+        public static string LicInfo_Licensed {
+            get {
+                return ResourceManager.GetString("LicInfo_Licensed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lizenzverstoß! Zu viele aktive Profiele..
+        /// </summary>
+        public static string LicInfo_ProfilesErrMsg {
+            get {
+                return ResourceManager.GetString("LicInfo_ProfilesErrMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lizenzverstoß! Zu viele aktive Benutzer..
+        /// </summary>
+        public static string LicInfo_UsersErrMsg {
+            get {
+                return ResourceManager.GetString("LicInfo_UsersErrMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ZZ apply action.
         /// </summary>
         public static string LinkButton_Execute {

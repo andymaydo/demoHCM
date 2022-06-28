@@ -8,7 +8,10 @@ namespace Application.Interfaces
 {
     public interface ILicLimits
     {
-        Task<int> UserCount(string applianceId);
-        Task<int> ProfileCount(string applianceId);
+        Task<int> GetUserCountLimit(string applianceId);
+        Task<int> GetProfileCountLimit(string applianceId);
+
+        Task SetCurrentProfileCount(string applianceId, int currProfileCount);
+        Task SetCurrentUserCount(string applianceId, int currUserCount);
     }
 }

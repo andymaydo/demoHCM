@@ -26,15 +26,13 @@
                 <Header><div class="tLabel text-white">@Localizer.Str["MsgPanel_Confirm_Title"]</div></Header>
                 <Content>
                     <p class="text-center">@ConfirmationMessage</p>
-
-                    <UiMessageBox Data="Messages.List"/>
-
                 </Content> 
                  <FooterTemplate>
                     <div class="text-center">
                         <SfButton OnClick="CloseDialog"   Content="@Localizer.Str["Button_Cancel"]" ></SfButton>
                         <SfButton OnClick="ConfirmAction" IsPrimary="true" Content="@Localizer.Str["Button_OK"]" ></SfButton>                
-                    </div>                
+                    </div> 
+                    <UiMessageBox Data="Messages.List"/>
                 </FooterTemplate>
             </DialogTemplates>
            
@@ -42,7 +40,7 @@
     }
     <style>
         .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
-            background-color: var(--primlight);
+            background-color: @DialogBgColor;
         }
         .e-icon-dlg-close {
             color: white; 
@@ -54,7 +52,7 @@
 
 
 @code {
-    
+
     [Inject] private ILogger<StatusChangePopUp> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
 
@@ -62,6 +60,7 @@
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public ProfileWizardVM ProfileVM { get; set; }
     [Parameter] public string NewStatus { get; set; }
+    [Parameter] public bool ActivationAllowed { get; set; }
     [Parameter] public bool ShowModal { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
     [Parameter] public EventCallback OnDialogClosed { get; set; }
@@ -69,6 +68,7 @@
     protected UiMessages Messages { get; set; }
     protected int newStatusId { get; set; }
     protected string ConfirmationMessage { get; set; }
+    protected string DialogBgColor { get; set; }
     private int _loadingStatus;
 
 
@@ -117,6 +117,11 @@
         {
             Messages.List.Clear();
 
+            if(!ActivationAllowed && newStatusId == 1)
+            {
+                throw new Exception(@Localizer.Str["LicInfo_ProfilesErrMsg"]);
+            }
+
             await ProfileVM.StatusUpdate(newStatusId,CurrentContactId);            
 
             await CloseDialog();
@@ -139,20 +144,24 @@
             case "Deleted":
                 newStatusId = -1;
                 ConfirmationMessage = @Localizer.Str["Profile_Delete_Confirm"];
+                DialogBgColor = "darkred";
                 break;
 
             case "InActive":
                 newStatusId = 0;
                 ConfirmationMessage = @Localizer.Str["Profile_Deactivate_Confirm"];
+                DialogBgColor = "darkred";
                 break;
 
             case "Active":
                 newStatusId = 1;
                 ConfirmationMessage = @Localizer.Str["Profile_Activate_Confirm"];
+                DialogBgColor = "var(--primlight)";
                 break;
 
             default:
                 newStatusId = -2;
+                DialogBgColor = "var(--primlight)";
                 break;
         }
        

@@ -5,20 +5,22 @@
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
 @using System.Globalization
-
+@using HCM.Pages.admin.zShred
 
 <h3 id="pageTop">@Localizer.Str["Profile_List_Title"]</h3>
 
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Profile_List"]</h5>
+
+<LicInfo SollWert=@LicensedProfileCount IstWert=@ActiveProfileCount></LicInfo>
+
 @if (!showlDeleted)
 {
-    <div class="alink itemDetail" @onclick="@(() => showlDeleted = !showlDeleted)" >    
+    <div class="alink itemDetail mt-3" @onclick="@(() => showlDeleted = !showlDeleted)" >    
         <span class="oi oi-plus"></span> @Localizer.Str["Profile_DeleteProfile"] 
     </div>
 }    
                              
-
 
 @if (_loadingStatus == 0)
 {
@@ -96,7 +98,7 @@
 
                             }
                                                   
-                             <a href="" @onclick="@(() => ChangeStatus(_profile, "Deleted"))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
+                             <a class="text-danger" href="" @onclick="@(() => ChangeStatus(_profile, "Deleted"))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
                         </div>
                     }
                 </Template>
@@ -192,6 +194,7 @@
 @if (showStatusChangePopUp)
 {
     <StatusChangePopUp @bind-ShowModal="showStatusChangePopUp" 
+        ActivationAllowed = "@(@ActiveProfileCount+1 <= @LicensedProfileCount)"
         ProfileVM="@ProfileVM" 
         NewStatus = "@NewStatusName"
         OnDialogClosed=@LoadProfileList>
@@ -202,9 +205,11 @@
     [Inject] private IJSRuntime IJsRuntime { get; set; }
     [Inject] private ProfileWizardVM ProfileVM { get; set; }
     [Inject] private ICMSProfile ProfileService { get; set; }
+    [Inject] private ILicLimits LicService { get; set; }
     [Inject] private ILogger<ProfilePage> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
+    [Inject] public CMSSettings cmsSettings { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
 
@@ -214,6 +219,8 @@
 
     protected CMSProfileModel CurrentProfile { get; set; }
     protected string NewStatusName { get; set; }
+    protected int ActiveProfileCount { get; set; }
+    protected int LicensedProfileCount { get; set; }
     protected bool showAddProfilePopUp { get; set; }
     protected bool showEditProfilePopUp { get; set; }
     protected bool showViewProfilePopUp { get; set; }
@@ -230,12 +237,26 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();       
-        Messages = new UiMessages();
-        currentGridPosition = new SfGridPosition();       
+        _loadingStatus = 0;
+        try
+        {
+            await base.OnInitializedAsync();       
+            Messages = new UiMessages();
+            currentGridPosition = new SfGridPosition();       
 
-        await LoadProfileList();
-        SetPageSizeDropDown();
+            LicensedProfileCount = await LicService.GetProfileCountLimit(cmsSettings.VGSAccId);
+
+            await LoadProfileList();
+            SetPageSizeDropDown();
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message);
+
+            _loadingStatus = 2;
+        }
     }
 
 
@@ -246,6 +267,10 @@
         {
             Messages.List.Clear();
             ProfileList = await ProfileService.GetList(null, null);           
+
+            ActiveProfileCount = ProfileList.Where(u => u.profileStatusID == 1).Count();
+            await LicService.SetCurrentProfileCount(cmsSettings.VGSAccId, ActiveProfileCount);
+
             DeletedProfileList = await ProfileService.GetDeleteList(null);
             _loadingStatus = 1;
         }

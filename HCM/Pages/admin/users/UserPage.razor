@@ -5,21 +5,13 @@
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
 @using System.Security.Claims
+@using HCM.Pages.admin.zShred
 
 
 <h3>@Localizer.Str["Menu_Users_List"]</h3>
 
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Administration_Users_List_Table_Title"]</h5>
-
-<AuthorizeView Roles="admin,userCreate">
-    <Authorized>
-        <div class="text-end mb-3">
-            <SfButton @onclick="@(() => showAddUserPopUp = true)" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
-        </div>
-    </Authorized>
-</AuthorizeView>
-
 
 @if (_loadingStatus == 0)
 {
@@ -28,6 +20,15 @@
 
 @if (_loadingStatus == 1)
 {
+    <AuthorizeView Roles="admin,userCreate">
+        <Authorized>
+            <LicInfo SollWert=@LicensedUserCount IstWert=@ActiveUserCount></LicInfo>
+            <div class="text-end mb-3">                
+                <SfButton @onclick="@(() => showAddUserPopUp = true)" IsPrimary="true" Content="@Localizer.Str["Menu_Users_Create"]" ></SfButton>
+            </div>
+        </Authorized>
+    </AuthorizeView>
+
     <SfGrid DataSource="@UserList" AllowPaging="true" AllowResizing="false" AllowTextWrap="true"  AllowSorting="true" >
         <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings> 
         <GridPageSettings PageSizes="@pageSizes" PageSize="20" PageCount="3"></GridPageSettings>
@@ -54,7 +55,7 @@
                     @if(_User.ContactID != CurrentContactId)
                     {
                         <div>                            
-                            <a href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
+                            <a class="text-danger" href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
                         </div> 
                     }
                         
@@ -74,7 +75,7 @@
 
 @if (showEditUserPopUp)
 {
-    <EditUserPopUp @bind-ShowModal="showEditUserPopUp" OnFormSaved=@LoadUserList UserModel="CurrentUser"></EditUserPopUp> 
+    <EditUserPopUp @bind-ShowModal="showEditUserPopUp" ActivationAllowed="@(@ActiveUserCount+1 <= @LicensedUserCount || @CurrentUser.Status)" OnFormSaved=@LoadUserList UserModel="CurrentUser"></EditUserPopUp> 
 }
 
 @if (showDeleteUserPopUp)
@@ -84,9 +85,11 @@
 
 @code {
     [Inject] private IUsersData UserService { get; set; }
+    [Inject] private ILicLimits LicService { get; set; }
     [Inject] private ILogger<UserPage> _logger { get; set; }
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ISyncfusionStringLocalizer SfLocalizer { get; set; }
+    [Inject] public CMSSettings cmsSettings { get; set; }
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
@@ -95,6 +98,8 @@
     protected UiMessages Messages { get; set; }
     protected List<UsersModel> UserList { get; set; }
     protected UsersModel CurrentUser { get; set; }
+    protected int ActiveUserCount { get; set; }
+    protected int LicensedUserCount { get; set; }
     protected bool showAddUserPopUp { get; set; }
     protected bool showEditUserPopUp { get; set; }
     protected bool showDeleteUserPopUp { get; set; }
@@ -103,11 +108,27 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();       
-        Messages = new UiMessages();
-        CurrentUser = new UsersModel();
+        _loadingStatus = 0;
+        try
+        {
+            await base.OnInitializedAsync();       
+            Messages = new UiMessages();
+            CurrentUser = new UsersModel();
 
-        await LoadUserList();
+            LicensedUserCount = await LicService.GetUserCountLimit(cmsSettings.VGSAccId);
+
+            await LoadUserList();
+
+            _loadingStatus = 1;
+        }
+        catch (Exception ex)
+        {                        
+            _logger.LogError(ex.Message);
+            _logger.LogDebug(ex, ex.Message);
+            Messages.AddError(@Localizer.Str["MsgPanel_Error_Title"],ex.Message, showDetail: true);
+
+            _loadingStatus = 2;
+        }
 
     }
 
@@ -118,6 +139,9 @@
         try
         {
             UserList = await UserService.UsersList(CurrentContactId);
+            ActiveUserCount = UserList.Where(u => u.Status == true).Count();
+            await LicService.SetCurrentUserCount(cmsSettings.VGSAccId, ActiveUserCount);
+
             if(!(CurrentPrincipal.IsInRole("admin") || CurrentPrincipal.IsInRole("userCreate")))
             {
                 UserList.RemoveAll(u => u.ContactID != CurrentContactId);

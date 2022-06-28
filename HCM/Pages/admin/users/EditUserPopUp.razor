@@ -149,6 +149,7 @@
     [CascadingParameter(Name = "CurrentPrincipal")] protected ClaimsPrincipal CurrentPrincipal { get; set; }
     [Parameter] public UsersModel UserModel { get; set; }
     [Parameter] public bool ShowModal { get; set; }
+    [Parameter] public bool ActivationAllowed { get; set; }
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
     [Parameter] public EventCallback OnFormSaved { get; set; }
 
@@ -275,6 +276,10 @@
         try
         {
             Messages.List.Clear();
+            if(!ActivationAllowed && UserInfoModel.Status)
+            {
+                throw new Exception(@Localizer.Str["LicInfo_UsersErrMsg"]);
+            }
 
             int result = await UserService.SaveData(UserModel.UserID, UserInfoModel.EMail, UserInfoModel.Name, UserInfoModel.FunctionInFirma, UserInfoModel.Status, CurrentContactId);
 

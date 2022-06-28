@@ -931,6 +931,18 @@ it - after verification of the hit - in the menu
   <data name="Label_Report_Status_Group_Title" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="LicInfo_Activated" xml:space="preserve">
+    <value>activated</value>
+  </data>
+  <data name="LicInfo_Licensed" xml:space="preserve">
+    <value>licensed</value>
+  </data>
+  <data name="LicInfo_ProfilesErrMsg" xml:space="preserve">
+    <value>License violation! Too many active profiles.</value>
+  </data>
+  <data name="LicInfo_UsersErrMsg" xml:space="preserve">
+    <value>License violation! Too many active users.</value>
+  </data>
   <data name="LinkButton_Execute" xml:space="preserve">
     <value>ZZ apply action</value>
   </data>

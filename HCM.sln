@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{F914F6CF-39FA-4BF0-AEF2-EA3357EDFA6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VgsRepo", "VgsRepo\VgsRepo.csproj", "{7F345DEF-C6DC-4865-AA33-BF0CC0684796}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VgsRepo", "VgsRepo\VgsRepo.csproj", "{7F345DEF-C6DC-4865-AA33-BF0CC0684796}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

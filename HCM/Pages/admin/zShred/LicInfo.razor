@@ -1,0 +1,12 @@
+﻿
+<div class="itemDetail">
+    <span class="fw-bold">@Localizer.Str["LicInfo_Licensed"]: @SollWert</span> 
+    <span>(@Localizer.Str["LicInfo_Activated"]: @IstWert)</span>
+</div>
+
+@code {
+    [Inject] private CommonLocalizationService Localizer { get; set; }
+
+    [Parameter] public int SollWert { get; set; }
+    [Parameter] public int IstWert { get; set; }
+}
