@@ -1130,6 +1130,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to entscheidungsreif.
+        /// </summary>
+        public static string Case_Status_101 {
+            get {
+                return ResourceManager.GetString("Case_Status_101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to in Bearbeitung.
         /// </summary>
         public static string Case_Status_5 {
@@ -2143,6 +2152,15 @@ namespace HCM.Resources {
         public static string event_dpf_onmatchfound {
             get {
                 return ResourceManager.GetString("event_dpf_onmatchfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entscheidungsreif.
+        /// </summary>
+        public static string event_dpf_ready4decision {
+            get {
+                return ResourceManager.GetString("event_dpf_ready4decision", resourceCulture);
             }
         }
         

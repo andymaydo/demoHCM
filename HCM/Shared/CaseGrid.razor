@@ -25,18 +25,18 @@
                 </Template>
         </GridColumn>
         <GridColumn Field=@nameof(CaseModel.ProfileName) HeaderText="@Localizer.Str["Label_Filter_ProfileID"]" Width="130"></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer.Str["Cases_List_Subject"]" Width="200"></GridColumn>        
-        <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer.Str["Cases_List_Status"]" Width="110">
+        <GridColumn Field=@nameof(CaseModel.Subject) HeaderText="@Localizer.Str["Cases_List_Subject"]" Width="180"></GridColumn>        
+        <GridColumn Field=@nameof(CaseModel.CaseStatus) HeaderText="@Localizer.Str["Cases_List_Status"]" Width="120">
             <Template>
                 @{
                     var _Case = (context as CaseModel);
                     <div class="alink" @onclick="@(() => StatusChangeHandler(_Case))">
-                        <span class="oi oi-wrench"></span> @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                        <span class="oi oi-wrench"></span>@Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
                     </div>                    
                 }
             </Template>
         </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CaseResult) HeaderText="@Localizer.Str["Cases_List_Ergebnis"]" Width="100">
+        <GridColumn Field=@nameof(CaseModel.CaseResult) HeaderText="@Localizer.Str["Cases_List_Ergebnis"]" Width="90">
             <Template>
                 @{
                     var _Case = (context as CaseModel);
@@ -46,9 +46,9 @@
                 }
             </Template>
         </GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer.Str["Cases_List_GeprufterName"]" Width="190" ></GridColumn>
-        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer.Str["Cases_List_CreateOn"]" Width="150" ></GridColumn>        
-        <GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer.Str["Cases_List_LastModify"]" Width="150" HideAtMedia="(min-width: 992px)"></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CustomerName) HeaderText="@Localizer.Str["Cases_List_GeprufterName"]" Width="150" ></GridColumn>
+        <GridColumn Field=@nameof(CaseModel.CreateDate) HeaderText="@Localizer.Str["Cases_List_CreateOn"]" Width="130" ></GridColumn>        
+        <GridColumn Field=@nameof(CaseModel.LastActivity) HeaderText="@Localizer.Str["Cases_List_LastModify"]" Width="130" HideAtMedia="(min-width: 992px)"></GridColumn>
         <GridColumn Field=@nameof(CaseModel.SapUser) Width="90" HideAtMedia="(min-width: 992px)"></GridColumn>
     </GridColumns>
 </SfGrid>
@@ -159,7 +159,7 @@
             {
                 args.Cell.AddClass(new string[] { "status-escalated" });
             } 
-            else if (args.Data.CaseStatusID == 5)
+            else if (args.Data.CaseStatusID == 15)
             {
                 args.Cell.AddClass(new string[] { "status-ready4decision " });
             }  

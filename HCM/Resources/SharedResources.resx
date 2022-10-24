@@ -772,6 +772,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Case_Status_1000" xml:space="preserve">
     <value>storniert</value>
   </data>
+  <data name="Case_Status_101" xml:space="preserve">
+    <value>entscheidungsreif</value>
+  </data>
   <data name="Case_Status_5" xml:space="preserve">
     <value>in Bearbeitung</value>
   </data>
@@ -816,6 +819,9 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   </data>
   <data name="event_dpf_onmatchfound" xml:space="preserve">
     <value>Treffer gefunden</value>
+  </data>
+  <data name="event_dpf_ready4decision" xml:space="preserve">
+    <value>entscheidungsreif</value>
   </data>
   <data name="event_dpf_reopen" xml:space="preserve">
     <value>erneute Bearbeitung gestartet</value>
