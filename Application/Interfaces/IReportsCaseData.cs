@@ -8,18 +8,13 @@ namespace Application.Interfaces
 {
     public interface IReportsCaseData
     {
-        Task<List<CaseModel>> CaseDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
-        DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
+        Task<List<CaseModel>> CaseDetail(CaseFilterBase caseFilter, int? ContactID);
 
-        Task<List<CaseModel>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
+        Task<List<CaseModel>> CaseByStatus(CaseFilterBase caseFilter, int? ContactID);
 
-        Task<List<CaseModel>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
-        Task<List<CaseModel>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
+        Task<List<CaseModel>> CaseByResult(CaseFilterBase caseFilter, int? ContactID);
+        Task<List<CaseModel>> AliasCount(CaseFilterBase caseFilter, int? ContactID);
 
-        Task<List<CaseModel>> AliasDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName);
+        Task<List<CaseModel>> AliasDetail(CaseFilterBase caseFilter, int? ContactID);
     }
 }

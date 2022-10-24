@@ -129,17 +129,11 @@
     {                                   
             int? _contactID = InputFilter.ShowOnlyOwnCases ? ContactId : null;
 
-            CaseByStatusList = await ReportService.CaseByStatus(InputFilter.GateId, InputFilter.CategoryId, _contactID,
-                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
-                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
+            CaseByStatusList = await ReportService.CaseByStatus(InputFilter, _contactID);
 
-            CaseByResultList = await ReportService.CaseByResult(InputFilter.GateId, InputFilter.CategoryId, _contactID,
-                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
-                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
+            CaseByResultList = await ReportService.CaseByResult(InputFilter, _contactID);
 
-            CaseByAliasList = await ReportService.AliasCount(InputFilter.GateId, InputFilter.CategoryId, _contactID,
-                InputFilter.CreateFromDate, InputFilter.CreateToDate, InputFilter.ModifyFromDate, InputFilter.ModifyToDate, 
-                InputFilter.CaseId, InputFilter.ProfilId, InputFilter.SearchedName);
+            CaseByAliasList = await ReportService.AliasCount(InputFilter, _contactID);
 
     }
 }

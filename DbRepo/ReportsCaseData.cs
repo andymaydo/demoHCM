@@ -21,60 +21,63 @@ namespace DbRepo
             _sqlConnStr = config.GetConnectionString("Default");
         }
 
-        public async Task<List<CaseModel>> CaseDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
-        DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
+    
+        public async Task<List<CaseModel>> CaseDetail(CaseFilterBase caseFilter, int? ContactID)
         {
 
             var procedure = "REPORT_CaseDetail";
             var _params = new DynamicParameters();
 
-            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
-            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.GateId);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CategoryId);
             _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
-            _params.Add(name: "@StatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: StatusID);
-            _params.Add(name: "@ResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ResultID);
+            _params.Add(name: "@StatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.StatusId);
+            _params.Add(name: "@ResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ResultId);
 
-            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
-            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
-            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
-            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateFromDate);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateToDate);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyFromDate);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyToDate);
 
-            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
-            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
-            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CaseId);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ProfilId);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.SearchedName);
+            _params.Add(name: "@SourceID", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.AddrSourceId);
+            _params.Add(name: "@MatchTranId", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.MatchTranId);
 
             using (var conn = new SqlConnection(_sqlConnStr))
             {
-                var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
+                var result = await conn.QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
                 List<CaseModel> _CaseModel = result.ToList<CaseModel>();
 
                 return _CaseModel;
             }
-          
+
         }
 
-        public async Task<List<CaseModel>> CaseByStatus(int appID, int? CaseTypeID, int? ContactID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
+        public async Task<List<CaseModel>> CaseByStatus(CaseFilterBase caseFilter, int? ContactID)
         {
             var procedure = "REPORT_CaseByStatus";
             var _params = new DynamicParameters();
 
-            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
-            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.GateId);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CategoryId);
             _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
 
-            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
-            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
-            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
-            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateFromDate);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateToDate);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyFromDate);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyToDate);
 
-            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
-            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
-            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CaseId);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ProfilId);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.SearchedName);
+            _params.Add(name: "@SourceID", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.AddrSourceId);
+            _params.Add(name: "@MatchTranId", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.MatchTranId);
 
-            
-                using (var conn = new SqlConnection(_sqlConnStr))
+
+            using (var conn = new SqlConnection(_sqlConnStr))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -85,26 +88,31 @@ namespace DbRepo
             
         }
 
-        public async Task<List<CaseModel>> CaseByResult(int appID, int? CaseTypeID, int? ContactID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
+        public async Task<List<CaseModel>> CaseByResult(CaseFilterBase caseFilter, int? ContactID)
         {
             var procedure = "REPORT_CaseByResult";
             var _params = new DynamicParameters();
 
-            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
-            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
-            _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.GateId);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CategoryId);
+            if (caseFilter.ShowOnlyOwnCases)
+            {
+                _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
+            }
+            
 
-            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
-            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
-            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
-            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateFromDate);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateToDate);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyFromDate);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyToDate);
 
-            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
-            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
-            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CaseId);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ProfilId);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.SearchedName);
+            _params.Add(name: "@SourceID", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.AddrSourceId);
+            _params.Add(name: "@MatchTranId", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.MatchTranId);
 
-               using (var conn = new SqlConnection(_sqlConnStr))
+            using (var conn = new SqlConnection(_sqlConnStr))
                 {
                     var result = await conn .QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);
 
@@ -115,24 +123,25 @@ namespace DbRepo
           
         }
 
-        public async Task<List<CaseModel>> AliasCount(int appID, int? CaseTypeID, int? ContactID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
+        public async Task<List<CaseModel>> AliasCount(CaseFilterBase caseFilter, int? ContactID)
         {
             var procedure = "REPORT_CaseByAlias";
             var _params = new DynamicParameters();
 
-            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
-            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.GateId);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CategoryId);
             _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
 
-            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
-            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
-            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
-            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateFromDate);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateToDate);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyFromDate);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyToDate);
 
-            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
-            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
-            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CaseId);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ProfilId);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.SearchedName);
+            _params.Add(name: "@SourceID", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.AddrSourceId);
+            _params.Add(name: "@MatchTranId", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.MatchTranId);
 
             using (var conn = new SqlConnection(_sqlConnStr))
             {
@@ -143,26 +152,27 @@ namespace DbRepo
          
         }
 
-        public async Task<List<CaseModel>> AliasDetail(int appID, int? CaseTypeID, int? ContactID, int? StatusID, int? ResultID,
-            DateTime? CreateDate1, DateTime? CreateDate2, DateTime? ModifiedDate1, DateTime? ModifiedDate2, int? CaseID, int? ProfileID, string CustomerName)
+        public async Task<List<CaseModel>> AliasDetail(CaseFilterBase caseFilter, int? ContactID)
         {
             var procedure = "REPORT_CaseAliasDetail";
             var _params = new DynamicParameters();
 
-            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: appID);
-            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseTypeID);
+            _params.Add(name: "@appID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.GateId);
+            _params.Add(name: "@CaseTypeID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CategoryId);
             _params.Add(name: "@ContactID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ContactID);
-            _params.Add(name: "@StatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: StatusID);
-            _params.Add(name: "@ResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ResultID);
+            _params.Add(name: "@StatusID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.StatusId);
+            _params.Add(name: "@ResultID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ResultId);
 
-            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate1);
-            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: CreateDate2);
-            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate1);
-            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: ModifiedDate2);
+            _params.Add(name: "@CreateDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateFromDate);
+            _params.Add(name: "@CreateDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.CreateToDate);
+            _params.Add(name: "@ModifiedDate1", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyFromDate);
+            _params.Add(name: "@ModifiedDate2", dbType: DbType.DateTime, direction: ParameterDirection.Input, value: caseFilter.ModifyToDate);
 
-            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: CaseID);
-            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: ProfileID);
-            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: CustomerName);
+            _params.Add(name: "@CaseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.CaseId);
+            _params.Add(name: "@ProfileID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseFilter.ProfilId);
+            _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.SearchedName);
+            _params.Add(name: "@SourceID", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.AddrSourceId);
+            _params.Add(name: "@MatchTranId", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.MatchTranId);
 
             using (var conn = new SqlConnection(_sqlConnStr))
                 {

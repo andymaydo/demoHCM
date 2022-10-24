@@ -19,7 +19,7 @@
         }
         else
         {
-            <CaseGrid CaseList="CaseList"  Culture="@Culture" OnCaseDetailsClicked="@((cId) => OnCaseDetailsClicked.InvokeAsync(cId))"></CaseGrid>   
+            <CaseGrid CaseList="CaseList"  Culture="@Culture" OnReloadNeeded="@(() => ShowReport(SubmitedFilter))"></CaseGrid>   
         }
     }
 
@@ -101,12 +101,7 @@
     {
 
         int? _contactID = SubmitedFilter.ShowOnlyOwnCases ? CurrentContactId : null;
-
-        CaseList = await ReportService.CaseDetail(SubmitedFilter.GateId, SubmitedFilter.CategoryId, _contactID, 
-            SubmitedFilter.StatusId, SubmitedFilter.ResultId,
-            SubmitedFilter.CreateFromDate, SubmitedFilter.CreateToDate, SubmitedFilter.ModifyFromDate, SubmitedFilter.ModifyToDate, 
-            SubmitedFilter.CaseId, SubmitedFilter.ProfilId, SubmitedFilter.SearchedName);
-
+        CaseList = await ReportService.CaseDetail(SubmitedFilter, _contactID);
     }
 
     private async Task LoadCaseListAlias()
@@ -114,9 +109,6 @@
 
         int? _contactID = SubmitedFilter.ShowOnlyOwnCases ? CurrentContactId : null;
         
-        CaseListAlias = await ReportService.AliasDetail(SubmitedFilter.GateId, SubmitedFilter.CategoryId, _contactID, 
-                SubmitedFilter.StatusId, SubmitedFilter.ResultId,
-                SubmitedFilter.CreateFromDate, SubmitedFilter.CreateToDate, SubmitedFilter.ModifyFromDate, SubmitedFilter.ModifyToDate,
-                SubmitedFilter.CaseId, SubmitedFilter.ProfilId, SubmitedFilter.SearchedName);
+        CaseListAlias = await ReportService.AliasDetail(SubmitedFilter, _contactID);
     }
 }

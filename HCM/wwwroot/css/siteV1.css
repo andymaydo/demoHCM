@@ -1,7 +1,7 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 :root {
-    --base-prim-dark: 5,103,177;
+    --base-prim-dark: 15,81,159;
     --base-prim-light: 5,131,207;
 
     --primlight: rgb(var(--base-prim-light));
@@ -26,6 +26,12 @@ html, body {
 }
 div .wraptxt {
     white-space: pre-wrap;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primdark);
+    border-color: var(--primlight);
 }
 
 a, .btn-link {
@@ -72,7 +78,9 @@ body {
     }
 }
 
-
+    .text-zimt{
+        color: #C75F09;
+    }
     .bg-primdark {
         background-color: var(--primdark) !important;
     }
@@ -148,6 +156,7 @@ body {
             width: calc(60% - 96px);
         }
     }
+
 
     .e-dialog .e-footer-content {
         background-color: #f8f8f8;

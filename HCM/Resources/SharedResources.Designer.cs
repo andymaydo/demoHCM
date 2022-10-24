@@ -2399,11 +2399,47 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source-ID.
+        /// </summary>
+        public static string Label_Filter_Case_SourceID {
+            get {
+                return ResourceManager.GetString("Label_Filter_Case_SourceID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source-ID Information ....
+        /// </summary>
+        public static string Label_Filter_Case_SourceID_Info {
+            get {
+                return ResourceManager.GetString("Label_Filter_Case_SourceID_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Label_Filter_Case_Status {
             get {
                 return ResourceManager.GetString("Label_Filter_Case_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tran-ID.
+        /// </summary>
+        public static string Label_Filter_Case_TranID {
+            get {
+                return ResourceManager.GetString("Label_Filter_Case_TranID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tran-ID Information ....
+        /// </summary>
+        public static string Label_Filter_Case_TranID_Info {
+            get {
+                return ResourceManager.GetString("Label_Filter_Case_TranID_Info", resourceCulture);
             }
         }
         

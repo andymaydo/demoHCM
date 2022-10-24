@@ -901,8 +901,20 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
   <data name="Label_Filter_Case_Result" xml:space="preserve">
     <value>Ergebnis</value>
   </data>
+  <data name="Label_Filter_Case_SourceID" xml:space="preserve">
+    <value>Source-ID</value>
+  </data>
+  <data name="Label_Filter_Case_SourceID_Info" xml:space="preserve">
+    <value>Source-ID Information ...</value>
+  </data>
   <data name="Label_Filter_Case_Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="Label_Filter_Case_TranID" xml:space="preserve">
+    <value>Tran-ID</value>
+  </data>
+  <data name="Label_Filter_Case_TranID_Info" xml:space="preserve">
+    <value>Tran-ID Information ...</value>
   </data>
   <data name="Label_Filter_CustomerName" xml:space="preserve">
     <value>geprüfter Name</value>

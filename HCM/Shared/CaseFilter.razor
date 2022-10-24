@@ -1,5 +1,6 @@
 ﻿
 @using Domain
+@using Syncfusion.Blazor.Popups
 
 
 <h6>@Localizer.Str["Label_Filter"]</h6>
@@ -12,28 +13,23 @@
         <div class="container-fluid mt-3 itemDetail e-small">
 
             <div class="row">
-                <div class="col-lg-4 pr-4">   
+                <div class="col-lg-3 pr-4">   
                     <div class="row mb-2">
                         <label class="col-lg-3 text-lg-end">@Localizer.Str["Label_Filter_Case_Created"]</label>
                         <div class="col-lg-9 d-lg-flex">
-                            <SfDatePicker lang="@Culture" TValue="DateTime?" @bind-Value='_localModel.CreateFromDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>
-                            <span class="mx-1">-</span>
-                            <SfDatePicker  Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.CreateToDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>                            
+                            <SfDateRangePicker ShowClearButton="true" Locale="@Culture" TValue="DateTime?" @bind-StartDate="_localModel.CreateFromDate" @bind-EndDate="_localModel.CreateToDate" ></SfDateRangePicker>
                         </div>
                     </div>
                     
                     <div class="row mb-2">
                         <label class="col-lg-3 text-lg-end">@Localizer.Str["Label_Filter_Case_Modify"]</label>
                         <div class="col-lg-9 d-lg-flex">
-                            <SfDatePicker lang="@Culture" TValue="DateTime?" @bind-Value='_localModel.ModifyFromDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>
-                            <span class="mx-1">-</span>
-                            <SfDatePicker Locale="@Culture" TValue="DateTime?" @bind-Value='_localModel.ModifyToDate' StrictMode=true ShowTodayButton="false"></SfDatePicker>                            
+                            <SfDateRangePicker ShowClearButton="true" Locale="@Culture" TValue="DateTime?" @bind-StartDate="_localModel.ModifyFromDate" @bind-EndDate="_localModel.ModifyToDate" ></SfDateRangePicker>                       
                         </div>
                     </div>                                        
-
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="row mb-2">
                         <label class="col-lg-4 text-lg-end">@Localizer.Str["Label_Filter_ProfileID"]</label>
                         <div class="col-lg-8">
@@ -67,7 +63,7 @@
                     }
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="row mb-2">
                         <label class="col-lg-4 text-lg-end">@Localizer.Str["Label_Filter_Case_CaseID"]</label>
                         <div class="col-lg-8">
@@ -78,7 +74,7 @@
                     <div class="row mb-2">
                         <label class="col-lg-4 text-lg-end">@Localizer.Str["Label_Filter_CustomerName"]</label>
                         <div class="col-lg-8">
-                            <SfTextBox Placeholder="@Localizer.Str["Label_Filter_CustomerName"]" @bind-Value="_localModel.SearchedName" ></SfTextBox>
+                            <SfTextBox Placeholder="@Localizer.Str["Label_Filter_CustomerName"]" ShowClearButton="true" @bind-Value="_localModel.SearchedName" ></SfTextBox>
                         </div>
                     </div>
 
@@ -91,7 +87,37 @@
                             </div>
                         </div> 
                     }                    
+                </div>
 
+                <div class="col-lg-3">
+                    <div class="row mb-2">
+                       
+                        <label class="col-lg-4 text-lg-end">
+                             <SfTooltip Target="#tranid" Content="@Localizer.Str["Label_Filter_Case_TranID_Info"]" Position="Position.RightBottom" IsSticky="true" OpensOn="Click">
+                                <div>
+                                    @Localizer.Str["Label_Filter_Case_TranID"]
+                                    <a id="tranid" href=""  @onclick:preventDefault><sup><i class="oi oi-info" title="info"></i></sup></a>
+                                </div>
+                            </SfTooltip>
+                        </label>
+                        <div class="col-lg-8">
+                            <SfNumericTextBox ShowSpinButton="false" ShowClearButton="true" Format="########"   Placeholder="@Localizer.Str["Label_Filter_Case_TranID"]" @bind-Value="_localModel.MatchTranId"></SfNumericTextBox>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                         <label class="col-lg-4 text-lg-end">
+                             <SfTooltip Target="#tranid" Content="@Localizer.Str["Label_Filter_Case_SourceID_Info"]" Position="Position.RightBottom" IsSticky="true" OpensOn="Click">
+                                <div>
+                                    @Localizer.Str["Label_Filter_Case_SourceID"]
+                                    <a id="tranid" href=""  @onclick:preventDefault><sup><i class="oi oi-info" title="info"></i></sup></a>
+                                </div>
+                            </SfTooltip>
+                        </label>                        
+                        <div class="col-lg-8">
+                            <SfTextBox Placeholder="@Localizer.Str["Label_Filter_Case_SourceID"]" ShowClearButton="true" @bind-Value="_localModel.AddrSourceId" ></SfTextBox>
+                        </div>
+                    </div>                    
                 </div>
             </div>
 
@@ -117,6 +143,12 @@
 
 <UiMessageBox Data="Messages.List" />
 
+<style>
+    .e-control {
+        font-family:inherit;
+        font-size:inherit;
+    }
+</style>
 
 @code {
     [Inject] private IFiltersData FiltersDataService { get; set; }
