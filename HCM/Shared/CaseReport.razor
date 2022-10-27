@@ -98,10 +98,8 @@
     }
 
     private async Task LoadCaseList()
-    {
-
-        int? _contactID = SubmitedFilter.ShowOnlyOwnCases ? CurrentContactId : null;
-        CaseList = await ReportService.CaseDetail(SubmitedFilter, _contactID);
+    {        
+        CaseList = await ReportService.CaseDetail(SubmitedFilter, CurrentContactId, SubmitedFilter.ShowOnlyOwnCases);
     }
 
     private async Task LoadCaseListAlias()

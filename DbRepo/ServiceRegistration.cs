@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace DbRepo
             services.AddSingleton<IFiltersData, FiltersData>();
             services.AddSingleton<ICaseEvent, CaseEventService>();
             services.AddSingleton<ICMSAPI, CMSAPI>();
+
+            services.AddSingleton<ILookUpTables, LookUpTableService>();
 
         }
     }

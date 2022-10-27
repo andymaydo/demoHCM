@@ -22,6 +22,6 @@ namespace Application.Interfaces
 
         Task ChangeParticipants(int caseID, XmlDocument xmlParticipants);
 
-        Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID);
+        Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID, string caseRole);
     }
 }

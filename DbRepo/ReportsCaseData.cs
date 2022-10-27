@@ -22,7 +22,7 @@ namespace DbRepo
         }
 
     
-        public async Task<List<CaseModel>> CaseDetail(CaseFilterBase caseFilter, int? ContactID)
+        public async Task<List<CaseModel>> CaseDetail(CaseFilterBase caseFilter, int ContactID, bool onlyOwnCases)
         {
 
             var procedure = "REPORT_CaseDetail";
@@ -44,7 +44,8 @@ namespace DbRepo
             _params.Add(name: "@CustomerName", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.SearchedName);
             _params.Add(name: "@SourceID", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.AddrSourceId);
             _params.Add(name: "@MatchTranId", dbType: DbType.String, direction: ParameterDirection.Input, value: caseFilter.MatchTranId);
-
+            _params.Add(name: "@showOnlyOwnCases", dbType: DbType.Boolean, direction: ParameterDirection.Input, value: onlyOwnCases);
+            
             using (var conn = new SqlConnection(_sqlConnStr))
             {
                 var result = await conn.QueryAsync<CaseModel>(procedure, _params, commandType: CommandType.StoredProcedure);

@@ -104,10 +104,9 @@
                         
                             
                          </EditForm>
-                    </div>
-
-                    <UiMessageBox Data="Messages.List" />
+                    </div>                    
                 }
+                <UiMessageBox Data="Messages.List" />
             </Content>
         </DialogTemplates>
     </SfDialog>
@@ -131,12 +130,13 @@
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
     [Parameter] public EventCallback OnFormSaved { get; set; }
 
-
+    protected string CaseRole { get; set; }
     protected ChangeStatusForm FormModel { get; set; }
     protected List<CaseEventStatus> StatusList { get; set; }
     protected CaseDocs CaseDocs { get; set; }
     protected UiMessages Messages { get; set; }
     private int _loadingStatus;
+     
 
 
     protected override async Task OnInitializedAsync()
@@ -158,6 +158,8 @@
             {               
                 throw new ArgumentNullException("ProfileModel");
             }
+
+            CaseRole = ProfileModel.GetContactRole(CurrentContactId, CaseModel.CaseStatusID);
 
             await InitFormModel();
 
@@ -257,7 +259,7 @@
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
         FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
 
-        StatusList = await CmsService.GetStatusByCase(CaseModel.CaseID);
+        StatusList = await CmsService.GetStatusByCase(CaseModel.CaseID, CaseRole);
         foreach (CaseEventStatus s in StatusList)
         {
             s.EventText = Localizer.Str["event_" + s.EventID.Replace(".", "_")];

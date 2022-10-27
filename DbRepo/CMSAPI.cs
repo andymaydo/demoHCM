@@ -62,13 +62,14 @@ namespace DbRepo
 
         }
 
-        public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID)
+        public async Task<List<CaseModel.CaseEventStatus>> GetStatusByCase(int caseID, string caseRole)
         {
 
             var procedure = "Case_GetEventByStatus";
             var _params = new DynamicParameters();
 
             _params.Add(name: "@caseID", dbType: DbType.Int32, direction: ParameterDirection.Input, value: caseID);
+            _params.Add(name: "@caseRole", dbType: DbType.String, direction: ParameterDirection.Input, value: caseRole);
 
             using (var conn = new SqlConnection(_sqlConnStr))
             {

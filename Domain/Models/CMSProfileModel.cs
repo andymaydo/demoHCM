@@ -43,7 +43,35 @@ namespace Domain.Models
                 this.escalationRules = value.ObjToXml("CaseRuleList");
             }
         }
-       
+
+        public string? GetContactRole(int contactId, int caseStatusId)
+        {
+            string? contactRole = null;
+
+            foreach (Contact c in profileParticipantsList)
+            {
+                if (c.ContactID == contactId)
+                {
+                    contactRole =  c.ProfileRole;
+                }
+            }
+
+            //Escalated Case
+            if (caseStatusId == 6)
+            {
+                foreach (Contact c in escalationUsersList)
+                {
+                    if (c.ContactID == contactId)
+                    {
+                        contactRole = c.ProfileRole;
+                    }
+                }
+            }
+
+            return contactRole;
+        }
+
+
     }
 
     public class CMSProfileModelSimple

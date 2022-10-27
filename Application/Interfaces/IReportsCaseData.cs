@@ -8,7 +8,7 @@ namespace Application.Interfaces
 {
     public interface IReportsCaseData
     {
-        Task<List<CaseModel>> CaseDetail(CaseFilterBase caseFilter, int? ContactID);
+        Task<List<CaseModel>> CaseDetail(CaseFilterBase caseFilter, int ContactID, bool onlyOwnCases);
 
         Task<List<CaseModel>> CaseByStatus(CaseFilterBase caseFilter, int? ContactID);
 

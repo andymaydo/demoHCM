@@ -45,8 +45,8 @@ namespace Domain.Models
         public XmlDocument ParticipantsAsXml { get; set; }
         
         public XmlDocument CaseDataAsXml { get; set; }
+        public string ContactProfileRole { get; set; }
 
-        
         public class CaseEventStatus
         {
             public string EventID { get; set; }

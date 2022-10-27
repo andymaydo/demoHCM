@@ -4,6 +4,7 @@
 
 
 
+
 <div class="blue_bg"></div>
 <h5>@Localizer.Str["Cases_ListCases"]</h5>
 
@@ -30,9 +31,20 @@
             <Template>
                 @{
                     var _Case = (context as CaseModel);
-                    <div class="alink" @onclick="@(() => StatusChangeHandler(_Case))">
-                        <span class="oi oi-wrench"></span>@Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
-                    </div>                    
+                    bool showLink = ShowStatusChangeLink(_Case);
+                    if (showLink)
+                    {
+                        <div class="alink" @onclick="@(() => StatusChangeHandler(_Case))">
+                            <span class="oi oi-wrench"></span>@Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                        </div>
+                    }
+                    else
+                    {   
+                        <div>
+                            @Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                        </div>                        
+                    }
+
                 }
             </Template>
         </GridColumn>
@@ -83,7 +95,9 @@
     [Inject] private ICMSAPI CmsService { get; set; }
     [Inject] private IMapper _mapper { get; set; }
     [Inject] private ILogger<CaseGrid> _logger { get; set; }
+    [Inject] private ILookUpTables LookupService { get; set; }
 
+    [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
     [Parameter] public List<CaseModel> CaseList { get; set; }
     [Parameter] public string Culture  { get; set; }         
     [Parameter] public EventCallback OnReloadNeeded { get; set; }
@@ -113,7 +127,7 @@
     }
 
 
-    public async Task StatusChangeHandler(CaseModel currentCase)
+    private async Task StatusChangeHandler(CaseModel currentCase)
     {
         try
         {
@@ -131,6 +145,23 @@
 
     }
 
+    private bool ShowStatusChangeLink(CaseModel currentCase)
+    {        
+        if(currentCase.ContactProfileRole == "User")
+        {
+            if (LookupService.StatusRoleEventsList.Where(
+                    x => x.CaseRole == "User" && x.CaseStatusID == currentCase.CaseStatusID
+                ).ToList().Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     private void SetPageSizeDropDown()
     {
