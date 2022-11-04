@@ -16,7 +16,7 @@
             {
                 <tr>                  
                     <td>
-                        <a href="" @onclick="@(() => StartDownload(cd.CaseID,cd.FilePath,cd.DocName))" @onclick:preventDefault ><span class="oi oi-data-transfer-download"></span> @cd.OrgFileName</a>
+                        <a href="" @onclick="@(() => StartDownload(cd.CaseID,cd.FilePath,cd.DocName))" @onclick:preventDefault ><i class="fa-solid fa-download"></i> @cd.OrgFileName</a>
                     </td>  
                     <td align="right">
                          @(cd.DocSize / 1024) Kb

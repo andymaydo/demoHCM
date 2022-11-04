@@ -17,7 +17,7 @@
 @if (!showlDeleted)
 {
     <div class="alink itemDetail mt-3" @onclick="@(() => showlDeleted = !showlDeleted)" >    
-        <span class="oi oi-plus"></span> @Localizer.Str["Profile_DeleteProfile"] 
+        <i class="fa-solid fa-square-plus"></i> @Localizer.Str["Profile_DeleteProfile"] 
     </div>
 }    
                              
@@ -53,7 +53,7 @@
                     @{
                         var _profile = (context as CMSProfileModel);
                         <div>
-                             <div class="alink"  @onclick="@(() => EditProfile(_profile))"><span class="oi oi-zoom-in"></span> @_profile.profileID</div>                             
+                             <div class="alink"  @onclick="@(() => EditProfile(_profile))"><i class="fa-solid fa-caret-down"></i> @_profile.profileID</div>                             
                         </div>
                     }
                 </Template>
@@ -92,13 +92,13 @@
                             @if (_profile.profileStatusID == 0 || _profile.profileStatusID == 1)
                             {   
                                 <span class="alink" @onclick="@(() => CopyProfile(_profile))">
-                                    <span class="oi oi-fork"></span> @Localizer.Str["Value_Copy_Text"]
+                                    <i class="fa-solid fa-copy"></i> @Localizer.Str["Value_Copy_Text"]
                                 </span>
                                 <span> </span>
 
                             }
                                                   
-                             <a class="text-danger" href="" @onclick="@(() => ChangeStatus(_profile, "Deleted"))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
+                             <a class="text-danger" href="" @onclick="@(() => ChangeStatus(_profile, "Deleted"))" @onclick:preventDefault><i class="fa-regular fa-trash-can"></i> @Localizer.Str["Button_Del"]</a>
                         </div>
                     }
                 </Template>
@@ -111,7 +111,7 @@
         <div class="py-3"></div>        
         <h5 id="deletedProfiles">@Localizer.Str["Profile_Delete_List"]</h5>
         <div class="alink itemDetail" @onclick="@(() => showlDeleted = !showlDeleted)">                          
-            <span class="oi oi-minus"></span> @Localizer.Str["Profile_DeleteProfile_hide"]                
+            <i class="fa-solid fa-square-minus"></i> @Localizer.Str["Profile_DeleteProfile_hide"]                
         </div>
         <div class="py-2"></div>
 
@@ -129,7 +129,7 @@
                     @{
                         var _profile = (context as CMSProfileModel);
                         <div>
-                             <div class="alink"  @onclick="@(() => ShowProfile(_profile))"><span class="oi oi-zoom-in"></span> @_profile.profileID</div>                             
+                             <div class="alink"  @onclick="@(() => ShowProfile(_profile))"><i class="fa-solid fa-caret-down"></i> @_profile.profileID</div>                             
                         </div>
                     }
                 </Template>
@@ -151,7 +151,7 @@
                             var _profile = (context as CMSProfileModel);
                             <div>
                                  <span class="alink" @onclick="@(() => CopyProfile(_profile))">
-                                    <span class="oi oi-fork"></span> @Localizer.Str["Value_Copy_Text"]
+                                    <i class="fa-solid fa-copy"></i> @Localizer.Str["Value_Copy_Text"]
                                 </span>
                             </div>
                         }

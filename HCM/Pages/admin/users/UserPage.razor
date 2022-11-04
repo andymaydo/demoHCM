@@ -39,7 +39,7 @@
                     @{
                         var _User = (context as UsersModel);
                         <div>
-                            <div class="alink"  @onclick="@(() => EditUser(_User))"><span class="oi oi-zoom-in"></span> @_User.LoginName</div>                             
+                            <div class="alink"  @onclick="@(() => EditUser(_User))"><i class="fa-solid fa-caret-down"></i> @_User.LoginName</div>                             
                         </div>
                     }
                 </Template>
@@ -55,7 +55,7 @@
                     @if(_User.ContactID != CurrentContactId)
                     {
                         <div>                            
-                            <a class="text-danger" href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>
+                            <a class="text-danger" href="" @onclick="@(() => DeleteUser(_User))" @onclick:preventDefault><i class="fa-regular fa-trash-can"></i> @Localizer.Str["Button_Del"]</a>
                         </div> 
                     }
                         

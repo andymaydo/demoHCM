@@ -36,11 +36,10 @@ div .wraptxt {
 
 a, .btn-link {
     text-decoration: none;
-    color: var(--primlight);
-    /* font-size:14px; */
+    color: var(--primdark);    
 }
-    a:hover, .btn-link:hover {
-        color: var(--primdark);
+    a:hover, .btn-link:hover {        
+        color: var(--primlight);
     }
 
 .alink {

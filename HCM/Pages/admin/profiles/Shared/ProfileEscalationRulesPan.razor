@@ -27,7 +27,7 @@
                     <td align="right">
                         @if (@AllowDelete)
                         {                        
-                            <a href="" @onclick="@(() => DeleteFromList(c.CaseStatusID))" @onclick:preventDefault><span class="oi oi-trash"></span> @Localizer.Str["Button_Del"]</a>                        
+                            <a href="" @onclick="@(() => DeleteFromList(c.CaseStatusID))" @onclick:preventDefault><i class="fa-regular fa-trash-can"></i> @Localizer.Str["Button_Del"]</a>                        
                         }
                     </td>
                 </tr>       

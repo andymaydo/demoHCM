@@ -17,7 +17,7 @@
                 @{
                     var _Case = (context as CaseModel);
                     <div>                            
-                            <a href="" @onclick="@(() => RecordDoubleClickHandler(_Case.CaseID))" @onclick:preventDefault><span class="oi oi-zoom-in"></span> @_Case.CaseID</a>
+                            <a class="alink" href="/Cases/CaseDetails/@_Case.CaseID"><i class="fa-solid fa-caret-down"></i> @_Case.CaseID</a>
                     </div>
                 }
             </Template>
@@ -54,13 +54,13 @@
     }
 
 
-    public async Task RecordDoubleClickHandler(int caseId)
-    {     
-        await OnCaseDetailsClicked.InvokeAsync(caseId);
-        await ProtectedSessionStorage.SetAsync("CaseId", caseId);
+    //public async Task RecordDoubleClickHandler(int caseId)
+    //{     
+    //    await OnCaseDetailsClicked.InvokeAsync(caseId);
+    //    await ProtectedSessionStorage.SetAsync("CaseId", caseId);
 
-        await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
-    }
+    //    await JSRuntime.InvokeAsync<object>("open", "/Cases/CaseDetails", "_blank");
+    //}
 
     
     private void SetPageSizeDropDown()

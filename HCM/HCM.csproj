@@ -40,7 +40,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
-    <PackageReference Include="SppAliasManager" Version="1.0.3" />
+    <PackageReference Include="SppAliasManager" Version="1.0.5" />
     <PackageReference Include="Syncfusion.Blazor.Buttons" Version="20.1.0.47" />
     <PackageReference Include="Syncfusion.Blazor.Calendars" Version="20.1.0.47" />
     <PackageReference Include="Syncfusion.Blazor.Cards" Version="20.1.0.47" />
@@ -79,10 +79,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
-    <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
-    <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
-    <None Include="wwwroot\css\open-iconic\README.md" />
+    <None Include="wwwroot\css\2del-open-iconic\FONT-LICENSE" />
+    <None Include="wwwroot\css\2del-open-iconic\font\fonts\open-iconic.svg" />
+    <None Include="wwwroot\css\2del-open-iconic\ICON-LICENSE" />
+    <None Include="wwwroot\css\2del-open-iconic\README.md" />
     <None Include="wwwroot\js\jquery.min.js" />
   </ItemGroup>
 

@@ -20,7 +20,7 @@
                     @{
                         var _Case = (context as CaseModel);
                         <div>                                                         
-                             <a class="alink" href="/Cases/CaseDetails/@_Case.CaseID"><span class="oi oi-zoom-in"></span> @_Case.CaseID</a>
+                             <a class="alink" href="/Cases/CaseDetails/@_Case.CaseID"><i class="fa-solid fa-caret-down"></i> @_Case.CaseID</a>
                         </div>
                     }
                 </Template>
@@ -35,7 +35,7 @@
                     if (showLink)
                     {
                         <div class="alink" @onclick="@(() => StatusChangeHandler(_Case))">
-                            <span class="oi oi-wrench"></span>@Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
+                            <i class="fa-solid fa-caret-left"></i>@Localizer.Str["Case_Status_" + _Case.CaseStatusID.ToString()]
                         </div>
                     }
                     else
@@ -132,7 +132,7 @@
         try
         {
             Messages.List.Clear();
-            CurrentCase = await CmsService.LoadCase(currentCase.CaseID);       
+            CurrentCase = await CmsService.LoadCase(currentCase.CaseID,CurrentContactId);       
             ProfileModel = ProileService.Load(currentCase.ProfileID);            
             showChangeStatusPopUp = true;
         }
