@@ -33,6 +33,9 @@ namespace Domain.Models
         public string ProfileRole { get; set; }
         [XmlElement("Function")]
         public string Function { get; set; }
+
+        public bool forEscalation { get; set; }
+        public string LoginName { get; set; }
     }
 
 }

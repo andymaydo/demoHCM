@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Text.Json;
 
 namespace Domain.Models
 {
@@ -14,7 +15,18 @@ namespace Domain.Models
         {
             get
             {
-                return ObjHelper.FromXml<List<Contact>>(profileParticipants, "ContactList");
+                //return ObjHelper.FromXml<List<Contact>>(profileParticipants, "ContactList");
+                try
+                {
+                    return JsonSerializer.Deserialize<List<Contact>>(profileParticipantsJSON)
+                        .Where(x => x.forEscalation == false).ToList();                    
+                }
+                catch (Exception ex)
+                {
+                    return new List<Contact>();
+                }
+               
+                
             }
             set 
             {
@@ -25,7 +37,16 @@ namespace Domain.Models
         {
             get
             {
-                return ObjHelper.FromXml<List<Contact>>(escalationUsers, "ContactList");
+                //return ObjHelper.FromXml<List<Contact>>(escalationUsers, "ContactList");
+                try
+                {
+                    return JsonSerializer.Deserialize<List<Contact>>(profileParticipantsJSON)
+                        .Where(x => x.forEscalation == true).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return new List<Contact>();
+                }
             }
             set
             {
@@ -44,32 +65,34 @@ namespace Domain.Models
             }
         }
 
-        public string? GetContactRole(int contactId, int caseStatusId)
-        {
-            string? contactRole = null;
+        //public string? GetContactRole(int contactId, int caseStatusId)
+        //{
+        //    string? contactRole = null;
 
-            foreach (Contact c in profileParticipantsList)
-            {
-                if (c.ContactID == contactId)
-                {
-                    contactRole =  c.ProfileRole;
-                }
-            }
+        //    contactRole = profileParticipantsList?.Find(x => x.ContactID == contactId)?.ProfileRole;
+        //    //foreach (Contact c in profileParticipantsList)
+        //    //{
+        //    //    if (c.ContactID == contactId)
+        //    //    {
+        //    //        contactRole =  c.ProfileRole;
+        //    //    }
+        //    //}
 
-            //Escalated Case
-            if (caseStatusId == 6)
-            {
-                foreach (Contact c in escalationUsersList)
-                {
-                    if (c.ContactID == contactId)
-                    {
-                        contactRole = c.ProfileRole;
-                    }
-                }
-            }
+        //    //Escalated Case
+        //    if (caseStatusId == 6)
+        //    {
+        //        contactRole = escalationUsersList?.Find(x => x.ContactID == contactId)?.ProfileRole;
+        //        //foreach (Contact c in escalationUsersList)
+        //        //{
+        //        //    if (c.ContactID == contactId)
+        //        //    {
+        //        //        contactRole = c.ProfileRole;
+        //        //    }
+        //        //}
+        //    }
 
-            return contactRole;
-        }
+        //    return contactRole;
+        //}
 
 
     }
@@ -88,6 +111,7 @@ namespace Domain.Models
         public string NotificationLang { get; set; }
 
         public string profileParticipants { get; set; }
+        public string profileParticipantsJSON { get; set; }
         public string escalationUsers { get; set; }
         public string escalationRules { get; set; }
         public bool NotifyAllProfileParticipants { get; set; }

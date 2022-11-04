@@ -42,6 +42,7 @@ namespace Domain.Models
         
          
         public string Participants { get; set; }
+        public string ParticipantsJSON { get; set; }
         public XmlDocument ParticipantsAsXml { get; set; }
         
         public XmlDocument CaseDataAsXml { get; set; }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Text.Json;
 
 namespace Domain.Models
 {
@@ -75,7 +76,15 @@ namespace Domain.Models
         {
             get
             {
-                return ObjHelper.FromXml<List<Contact>>(Participants, "ContactList");
+                //return ObjHelper.FromXml<List<Contact>>(Participants, "ContactList");                
+                try
+                {
+                    return JsonSerializer.Deserialize<List<Contact>>(ParticipantsJSON);
+                }
+                catch (Exception ex)
+                {
+                    return new List<Contact>();
+                }
             }
             set
             {

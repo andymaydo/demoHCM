@@ -130,7 +130,7 @@
     [Parameter] public EventCallback<bool> ShowModalChanged { get; set; }
     [Parameter] public EventCallback OnFormSaved { get; set; }
 
-    protected string CaseRole { get; set; }
+    //protected string CaseRole { get; set; }
     protected ChangeStatusForm FormModel { get; set; }
     protected List<CaseEventStatus> StatusList { get; set; }
     protected CaseDocs CaseDocs { get; set; }
@@ -159,7 +159,7 @@
                 throw new ArgumentNullException("ProfileModel");
             }
 
-            CaseRole = ProfileModel.GetContactRole(CurrentContactId, CaseModel.CaseStatusID);
+            //CaseRole = ProfileModel.GetContactRole(CurrentContactId, CaseModel.CaseStatusID);
 
             await InitFormModel();
 
@@ -259,7 +259,7 @@
         FormModel.CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(CaseModel.ParticipantsAsList);
         FormModel.Originator = _mapper.Map<CaseOriginatorSelectable>(CaseModel.Originator);
 
-        StatusList = await CmsService.GetStatusByCase(CaseModel.CaseID, CaseRole);
+        StatusList = await CmsService.GetStatusByCase(CaseModel.CaseID, CaseModel.ContactProfileRole);
         foreach (CaseEventStatus s in StatusList)
         {
             s.EventText = Localizer.Str["event_" + s.EventID.Replace(".", "_")];

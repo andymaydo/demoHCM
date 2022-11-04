@@ -24,7 +24,7 @@
                 </div>
             }
 
-            @if (CaseRole == "AliasManager")
+            @if (CaseModel.ContactProfileRole == "AliasManager")
             {
                 <div class="col-lg-12">
                     <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault><span class="oi oi-task"></span> @Localizer.Str["Cases_Detail_Action_AddAlias"]</a>
@@ -69,8 +69,7 @@
     [Parameter] public EventCallback OnChangeStatusAction { get; set; }
     [Parameter] public EventCallback OnAddAliasAction { get; set; }
 
-
-    protected string CaseRole { get; set; }
+    
     protected bool showAddNotePopUp { get; set; }
     protected bool showChangeStatusPopUp { get; set; }
     protected bool showChangeStatusLink { get; set; }

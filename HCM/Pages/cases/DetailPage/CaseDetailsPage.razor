@@ -145,7 +145,7 @@
         try
         {
             Messages.List.Clear();
-            MyCase = await CmsService.LoadCase(CaseId);
+            MyCase = await CmsService.LoadCase(CaseId,CurrentContactId);
             CaseParticipants = _mapper.Map<List<CaseContactSelectable>>(MyCase.ParticipantsAsList);
             CaseEvents = await CmsService.GetEventList(CaseId);
         }
