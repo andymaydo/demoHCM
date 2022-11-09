@@ -24,7 +24,7 @@
                 </div>
             }
 
-            @if (CaseModel.ContactProfileRole == "AliasManager")
+            @if (CaseModel.ContactProfileRole == "AliasManager" || CaseModel.ContactProfileRole == "GlobalAliasManager")
             {
                 <div class="col-lg-12">
                     <a href="" @onclick="@(() => showAddAliasPopUp = true)" @onclick:preventDefault><i class="fa-regular fa-address-card"></i> @Localizer.Str["Cases_Detail_Action_AddAlias"]</a>

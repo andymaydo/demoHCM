@@ -3173,6 +3173,15 @@ namespace HCM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Global Alias manager.
+        /// </summary>
+        public static string Profile_User_Role_4 {
+            get {
+                return ResourceManager.GetString("Profile_User_Role_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bitte tragen Sie Ihre Begründung für die Löschung ein!.
         /// </summary>
         public static string Profile_Validation_Delete_Profil {

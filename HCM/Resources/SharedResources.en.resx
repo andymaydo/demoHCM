@@ -1159,6 +1159,9 @@ it - after verification of the hit - in the menu
   <data name="Profile_User_Role_3" xml:space="preserve">
     <value>Alias manager</value>
   </data>
+  <data name="Profile_User_Role_4" xml:space="preserve">
+    <value>Global Alias manager</value>
+  </data>
   <data name="Profile_Validation_Delete_Profil" xml:space="preserve">
     <value>Please enter your reason for deleting!</value>
   </data>

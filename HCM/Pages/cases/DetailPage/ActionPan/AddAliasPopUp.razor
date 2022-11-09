@@ -301,7 +301,7 @@
         hcmProfilId = CaseModel.ProfileID.ToString();
         hcmProfilName = CaseModel.ProfileName;
         caseUrl = appUrl + "/Cases/CaseDetails/" + CaseModel.CaseID.ToString();
-        
+
 
         //sap
         if(CaseModel.SettingsData.sapip != null)
@@ -344,13 +344,17 @@
         return 0;
 
     } 
-  
+
 
     private void InitFormModel()
     {
-
-        LizTypeList.Add(new AliasLizStatus() { LizID = "all", LizText = Localizer.Str["Cases_AddAlias_AllLiz"] });
+        if (CaseModel.ContactProfileRole == "GlobalAliasManager")
+        {
+            LizTypeList.Add(new AliasLizStatus() { LizID = "all", LizText = Localizer.Str["Cases_AddAlias_AllLiz"] });
+        }
+       
         LizTypeList.Add(new AliasLizStatus() { LizID = "own", LizText = Localizer.Str["Cases_AddAlias_OwnLiz"] });
+
         if (!String.IsNullOrEmpty(CaseModel.SrcData.vbeln))
         {
             LizTypeList.Add(new AliasLizStatus() { LizID = "beleg", LizText = Localizer.Str["Cases_AddAlias_Beleg"] });
