@@ -25,7 +25,8 @@
 
     [Inject] private CommonLocalizationService Localizer { get; set; }
     [Inject] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
-    [Inject] private IJSRuntime JSRuntime { get; set; }
+    //[Inject] private IJSRuntime JSRuntime { get; set; }
+    [Inject] private NavigationManager NavManager { get; set; }
 
 
     [CascadingParameter(Name = "CurrentContactId")] protected int CurrentContactId { get; set; }
@@ -62,7 +63,8 @@
         filterDetailedReport.StatusId = statusId;
         await ProtectedSessionStore.SetAsync("FilterDetailedReport", filterDetailedReport);
 
-        await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed", "_blank");
+        //await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed", "_blank");
+        NavManager.NavigateTo("/Reports/ReportDetailed");
     }
      
     protected async Task ShowDetailedReportByResult(int resultId)
@@ -73,7 +75,8 @@
         filterDetailedReport.ResultId = resultId;
         await ProtectedSessionStore.SetAsync("FilterDetailedReport", filterDetailedReport);
 
-        await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed", "_blank");
+        //await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed", "_blank");
+        NavManager.NavigateTo("/Reports/ReportDetailed");
     }
 
     protected async Task ShowDetailedReportByAlias()
@@ -85,6 +88,7 @@
         filterDetailedReport.StatusId = null;
         await ProtectedSessionStore.SetAsync("FilterDetailedReport", filterDetailedReport);
 
-        await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed/Alias", "_blank");
+        //await JSRuntime.InvokeAsync<object>("open", "/Reports/ReportDetailed/Alias", "_blank");
+        NavManager.NavigateTo("/Reports/ReportDetailed/Alias");
     }
 }

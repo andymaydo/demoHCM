@@ -652,9 +652,6 @@ it - after verification of the hit - in the menu
   <data name="Cases_Detail_Label_ProfileUsers" xml:space="preserve">
     <value>Responsibles</value>
   </data>
-  <data name="Cases_Detail_Label_ProfileUsers1" xml:space="preserve">
-    <value>Responsibles</value>
-  </data>
   <data name="Cases_Detail_Label_Result" xml:space="preserve">
     <value>Result</value>
   </data>
@@ -818,7 +815,7 @@ it - after verification of the hit - in the menu
     <value>Classified as "Miss Hit"</value>
   </data>
   <data name="event_dpf_onmatchfound" xml:space="preserve">
-    <value>Hit Located</value>
+    <value>Hit found</value>
   </data>
   <data name="event_dpf_ready4decision" xml:space="preserve">
     <value>Decision Ready</value>
@@ -1145,7 +1142,7 @@ it - after verification of the hit - in the menu
     <value>Status</value>
   </data>
   <data name="Profile_Step_Teilnehmen" xml:space="preserve">
-    <value>Responsibles</value>
+    <value>Persons responsible</value>
   </data>
   <data name="Profile_Title" xml:space="preserve">
     <value>Profile Settings</value>

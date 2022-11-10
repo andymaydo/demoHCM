@@ -473,7 +473,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>neuer Aliaseintrag</value>
   </data>
   <data name="Cases_AddAlias_Validation_Note" xml:space="preserve">
-    <value>Die Felder "LizID" und "Begründung" sind pflichtig.</value>
+    <value>Die Felder "LizID" und "Begründung" sind Pflichtfelder.</value>
   </data>
   <data name="Cases_AddAlias_Validation_Title" xml:space="preserve">
     <value>Achtung!</value>
@@ -764,7 +764,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>neu</value>
   </data>
   <data name="Case_Status_10" xml:space="preserve">
-    <value>auf Eis gelegt</value>
+    <value>On hold</value>
   </data>
   <data name="Case_Status_100" xml:space="preserve">
     <value>entschieden</value>

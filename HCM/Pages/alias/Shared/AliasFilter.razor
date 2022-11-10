@@ -151,6 +151,7 @@
             ProfileList.Insert(0, new FiltersModels.ProfileModel() 
                 { ProfileID = -100, ProfileName = @Localizer.Str["Value_All_Text"] });
             Filter.LicenseId = "-100";
+            Filter.AllTime = true;
 
             _loadingStatus = 1; //loading finished
 

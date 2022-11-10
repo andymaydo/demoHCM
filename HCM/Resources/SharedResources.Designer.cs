@@ -1103,7 +1103,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to auf Eis gelegt.
+        ///   Looks up a localized string similar to On hold.
         /// </summary>
         public static string Case_Status_10 {
             get {
@@ -1265,7 +1265,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Felder &quot;LizID&quot; und &quot;Begründung&quot; sind pflichtig..
+        ///   Looks up a localized string similar to Die Felder &quot;LizID&quot; und &quot;Begründung&quot; sind Pflichtfelder..
         /// </summary>
         public static string Cases_AddAlias_Validation_Note {
             get {
