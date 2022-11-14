@@ -18,7 +18,7 @@ namespace DbRepo
             services.AddSingleton<IUserRolesData, UserRolesData>();
             services.AddSingleton<IReportsCaseData, ReportsCaseData>();
             services.AddSingleton<IFiltersData, FiltersData>();
-            services.AddSingleton<ICaseEvent, CaseEventService>();
+            //services.AddSingleton<ICaseEvent, CaseEventService>();
             services.AddSingleton<ICMSAPI, CMSAPI>();
 
             services.AddSingleton<ILookUpTables, LookUpTableService>();

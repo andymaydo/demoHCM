@@ -21,6 +21,11 @@
     <Content Remove="Shared\UserStatus.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Prod.pubxml" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Staging.pubxml" />
+  </ItemGroup>
+
  
 
   <ItemGroup>
@@ -79,10 +84,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\2del-open-iconic\FONT-LICENSE" />
-    <None Include="wwwroot\css\2del-open-iconic\font\fonts\open-iconic.svg" />
-    <None Include="wwwroot\css\2del-open-iconic\ICON-LICENSE" />
-    <None Include="wwwroot\css\2del-open-iconic\README.md" />
     <None Include="wwwroot\js\jquery.min.js" />
   </ItemGroup>
 

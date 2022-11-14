@@ -136,22 +136,6 @@ namespace DbRepo
             }
             
         }
-
-        public List<ProfileStatusModel> GetProfileStatuses()
-        {
-            var procedure = "ProfileStatus_GetList";
-            var _params = new DynamicParameters();
-
-   
-            using (var conn = new SqlConnection(_sqlConnStr))
-            {
-                var result = conn.Query<ProfileStatusModel>(procedure, _params, commandType: CommandType.StoredProcedure);
-
-                List<ProfileStatusModel> _ProfileStatusModel = result.ToList<ProfileStatusModel>();
-
-                return _ProfileStatusModel;
-            }
-           
-        }
+        
     }
 }
