@@ -13,7 +13,7 @@
             {
                 var itemName = c.Name;
                 itemName = itemName + (@ShowFunction ? " (" + c.Function + ")" : "");
-                itemName = itemName + (@ShowRole ? " (" + c.ProfileRole + ")" : "");
+                itemName = itemName + (@ShowRole ? " (" + Const.GetRoleName(c.ProfileRole,Localizer) + ")" : "");
                 itemName = itemName + (@ShowEmail ? " (" + c.Email + ")" : "");
                 <tr>                  
                     <td>

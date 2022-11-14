@@ -74,7 +74,7 @@
 
     <EditForm Model="@ContactsForm" OnValidSubmit="AddProfileContact">
         <DataAnnotationsValidator />       
-        <div class="row mb-3">             
+        <div class="row g-2">             
             <div class="col-md-8">
                 <label class="form-label">@Localizer.Str["Profile_Step2_TeilnehmerAnlegen"]</label>
                 <div>
@@ -219,7 +219,7 @@
 
             ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.EscalationContactsForm.escalationUsersList);            
 
-            InitRoleList();
+            ProfileRoleList = Const.GetProfileRoleList(Localizer);
             InitStatusList();
             await LoadUserList();
 
@@ -255,17 +255,7 @@
         }
 
     }
-    protected void InitRoleList()
-    {
-        ProfileRoleList = new List<ProfileRole>()
-        {
-            new ProfileRole(){ Key = "User", Description = Localizer.Str["Profile_User_Role_1"] },
-            new ProfileRole(){ Key = "Moderator", Description = Localizer.Str["Profile_User_Role_2"] },
-            new ProfileRole(){ Key = "AliasManager", Description = Localizer.Str["Profile_User_Role_3"] },
-            new ProfileRole(){ Key = "GlobalAliasManager", Description = Localizer.Str["Profile_User_Role_4"] }
-        };
-
-    }
+    
 
     protected void InitStatusList()
     {

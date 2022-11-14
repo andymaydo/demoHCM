@@ -165,9 +165,9 @@
 
             ViewModel.InitForms();         
 
-            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.ContactsForm.profileParticipantsList);            
+            ProfileContacts = _mapper.Map<List<CaseContactSelectable>>(ViewModel.ContactsForm.profileParticipantsList);
 
-            InitRoleList();
+            ProfileRoleList = Const.GetProfileRoleList(Localizer);
             await LoadUserList();
 
 
@@ -202,17 +202,7 @@
         }
 
     }
-    protected void InitRoleList()
-    {
-        ProfileRoleList = new List<ProfileRole>()
-        {
-            new ProfileRole(){ Key = "User", Description = Localizer.Str["Profile_User_Role_1"] },
-            new ProfileRole(){ Key = "Moderator", Description = Localizer.Str["Profile_User_Role_2"] },
-            new ProfileRole(){ Key = "AliasManager", Description = Localizer.Str["Profile_User_Role_3"] },
-            new ProfileRole(){ Key = "GlobalAliasManager", Description = Localizer.Str["Profile_User_Role_4"] }
-        };
 
-    }
 
     protected async Task SaveContactForm()
     {

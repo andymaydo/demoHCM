@@ -1157,10 +1157,10 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>Entscheider</value>
   </data>
   <data name="Profile_User_Role_3" xml:space="preserve">
-    <value>Alias Manager - lokal</value>
+    <value>Alias Manager-lokal</value>
   </data>
   <data name="Profile_User_Role_4" xml:space="preserve">
-    <value>Alias Manager - global</value>
+    <value>Alias Manager-global</value>
   </data>
   <data name="Profile_Validation_Delete_Profil" xml:space="preserve">
     <value>Bitte tragen Sie Ihre Begründung für die Löschung ein!</value>

@@ -1154,10 +1154,10 @@ it - after verification of the hit - in the menu
     <value>Decision Maker</value>
   </data>
   <data name="Profile_User_Role_3" xml:space="preserve">
-    <value>Alias Manager - local</value>
+    <value>Alias Manager-local</value>
   </data>
   <data name="Profile_User_Role_4" xml:space="preserve">
-    <value>Alias Manager - global</value>
+    <value>Alias Manager-global</value>
   </data>
   <data name="Profile_Validation_Delete_Profil" xml:space="preserve">
     <value>Please enter your reason for deleting!</value>

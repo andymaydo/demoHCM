@@ -3164,7 +3164,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alias Manager - lokal.
+        ///   Looks up a localized string similar to Alias Manager-lokal.
         /// </summary>
         public static string Profile_User_Role_3 {
             get {
@@ -3173,7 +3173,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alias Manager - global.
+        ///   Looks up a localized string similar to Alias Manager-global.
         /// </summary>
         public static string Profile_User_Role_4 {
             get {
