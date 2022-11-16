@@ -764,7 +764,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>neu</value>
   </data>
   <data name="Case_Status_10" xml:space="preserve">
-    <value>On hold</value>
+    <value>On Hold</value>
   </data>
   <data name="Case_Status_100" xml:space="preserve">
     <value>entschieden</value>
@@ -812,7 +812,7 @@ Treffers - im Menü "Aliasmanager" wieder.</value>
     <value>eskaliert</value>
   </data>
   <data name="event_dpf_hold" xml:space="preserve">
-    <value>auf Eis gelegt</value>
+    <value>On Hold</value>
   </data>
   <data name="event_dpf_nomatch" xml:space="preserve">
     <value>als "Fehltreffer" eingestuft</value>

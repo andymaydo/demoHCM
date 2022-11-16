@@ -27,7 +27,7 @@
                     <div class="tLabel">@Localizer.Str["Profile_Title"] (@ProfileVM.CurrentProfile.profileName)</div>
                 </Header>
                 <Content>                    
-                    <SfTab @ref="Tab" LoadOn="ContentLoad.Dynamic" CssClass="itemDetail e-small">
+                    <SfTab @ref="Tab" LoadOn="ContentLoad.Init" CssClass="itemDetail e-small">
                         <TabItems>
                             <TabItem>
                                 <HeaderTemplate>@Localizer.Str["Profile_Step_Allgemeine"]</HeaderTemplate>

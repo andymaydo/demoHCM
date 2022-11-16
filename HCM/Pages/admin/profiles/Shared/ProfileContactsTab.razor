@@ -191,7 +191,7 @@
         {
             var TotalUserList = await UserService.UsersList(CurrentContactId);
             UserList = TotalUserList
-                        .Where(x=>!ProfileContacts.Any(y=>y.ContactID == x.ContactID))                                        
+                        .Where(x=>!ProfileContacts.Any(y=>y.ContactID == x.ContactID) && x.Enable == 1)                                        
                         .ToList();
         }
         catch (Exception ex)

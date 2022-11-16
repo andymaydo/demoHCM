@@ -258,6 +258,7 @@
                     .Where(x=>!FormModel.CaseParticipants.Any(y=>y.ContactID == x.ContactID))                    
                     .Where(x=>!FormModel.ProfileParticipants.Any(y=>y.ContactID == x.ContactID))
                     .Where(x=>!FormModel.EscalationParticipants.Any(y=>y.ContactID == x.ContactID))
+                    .Where(x=> x.Enable == 1)
                     .ToList();  
     }
 

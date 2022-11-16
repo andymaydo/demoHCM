@@ -1103,7 +1103,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to On hold.
+        ///   Looks up a localized string similar to On Hold.
         /// </summary>
         public static string Case_Status_10 {
             get {
@@ -2129,7 +2129,7 @@ namespace HCM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to auf Eis gelegt.
+        ///   Looks up a localized string similar to On Hold.
         /// </summary>
         public static string event_dpf_hold {
             get {
